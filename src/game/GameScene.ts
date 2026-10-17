@@ -20,7 +20,6 @@ import {showHeroExplanation} from './HeroExplanation';
 import {sourceImpact} from './SourceImpact';
 import {mountSourceImpact} from './SourceImpactView';
 import {growthEventPayoff} from './GrowthPayoff';
-import {routeFrame} from './RouteFrame';
 import {routeFitCue,markRouteDetail} from './RouteFitCue';
 import {inventoryFeedback} from './InventoryFeedback';
 import {showSavedToolResult} from './SavedToolResult';
@@ -922,7 +921,7 @@ export class GameScene extends Phaser.Scene {
     if(this.ownedDrag)return;
     if(!view.active||this.playing||this.presentation)return;
     const frame=view.getData('frame') as Phaser.GameObjects.Rectangle,hit=view.getData('hit') as Phaser.GameObjects.Rectangle,hovered=this.jokerViews.get(this.hoveredJokerId??'')===view,x=Number(view.getData('baseX')),y=Number(view.getData('baseY')),scale=1;
-    this.tweens.killTweensOf(view);frame.setStrokeStyle(hovered?1:0,T.brass,.5);
+    this.tweens.killTweensOf(view);if(hovered)frame.setStrokeStyle(1,T.brass,.5);else frame.setStrokeStyle();
     if(animate&&!this.reducedMotion)this.tweens.add({targets:view,x,y,angle:0,scaleX:scale,scaleY:scale,duration:120,ease:'Sine.easeOut'});else {view.setPosition(x,y).setAngle(0).setScale(scale);}
     if(hovered)this.view.root.bringToTop(view);else if(hit?.active)this.view.root.moveBelow<Phaser.GameObjects.GameObject>(view,hit);
   }
