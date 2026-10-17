@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "auditCommit": "7d7921e76ca794a14e715e3eac3b4d66143862ff",
   "currentTask": "P08",
-  "selectionPolicy": "已发布main760；侧栏1af6e已无冲突合入46ced0c8，29路径28精确、GameScene仅叠加已发布Xin；6/7源指纹精确，浏览器源范围不冒称新整合复测。16必要交叉/类型329构建通过，源72/24布局与文成受控动态复用。孤注尚无SHA不纳入，不等刘娥样例；按已有授权普通eyes/main发布。389文件37460495B仍超20MB，规则资产/137清理保持；CI既有缺口、三目标未达标/P08 in_progress/人验正式门保持。",
+  "selectionPolicy": "main已发布e389侧栏/Xin/资源清理；AI候选e321/模块24285仅登记等待唯一Scene owner01a147f6，未合入。来源152/构建仅模块检查，待aiScoreContext输入和switchHandType/采用候选草稿一致性补丁回执齐再一起合，不孤立发布模块或声称操作已修。此次仅普通dev文档登记、不main/新测试；高牌最后策略与非最优保证保持，P08及三目标未达标/CI预算人验正式门保持。",
   "resumeContract": {
     "candidateCommit": "4bf6a7d63d7738d3c415d09439a1bdca878dc685",
     "gateTask": "A01",
@@ -2143,7 +2143,7 @@
     "source": "1af6e1710ad3c5fbb22430b561228bc2b39ce6db",
     "product": "46ced0c81471b18f059a88b5720a60bcf105b44a",
     "devBranch": "dev/eyes-followups-integration-20261017",
-    "status": "MERGED_NECESSARY_CHECKS_PASS_NORMAL_PUBLICATION_AUTHORIZED",
+    "status": "PUBLISHED_MAIN_AND_EYES_e389_SCOPED_EVIDENCE_RETAINED",
     "paths": 29,
     "exactPaths": 28,
     "intentionalCombined": [
@@ -2177,6 +2177,40 @@
       "137 retired assets",
       ".github/package lock"
     ],
-    "open": "existing CI defects;three experience goals/P08,human/device/hearing/haptics/formal gates"
+    "open": "existing CI defects;three experience goals/P08,human/device/hearing/haptics/formal gates",
+    "actualPublishedMain": "e389ea2c4a7f6d49284546f91992d13055072655"
+  },
+  "pendingIntegrations": {
+    "aiPreviewContext": {
+      "candidate": "e32149e8923e5a885b495e924233225837a077f4",
+      "moduleProduct": "24285a60bb049ab5cb87b3e1b56572a008b00738",
+      "branch": "dev/ai-preview-context-20261017",
+      "base": "760b9ebd56605d44786e6e8d2221b8ba22ab06a6",
+      "status": "WAITING_SINGLE_SCENE_OWNER_WIRING_AND_DRAFT_PARITY_RECEIPT_NOT_MERGED",
+      "sceneOwner": "01a147f6",
+      "requiredBeforeJointMerge": [
+        "GameScene import aiScoreContext and wrap aiInput().score with explicit current draft",
+        "switchHandType and candidate adoption preserve or explicitly reconcile selected target/payment/release/assist draft so selected-score preview matches actual played intent",
+        "owner patch receipt and necessary current-main integration checks"
+      ],
+      "sourceEvidence": {
+        "readme": "https://github.com/big-dimple/dachoupai/blob/e32149e8923e5a885b495e924233225837a077f4/docs/production/evidence/ai-hero-score-context-2026-10-17/README.md",
+        "tests": 152,
+        "files": 10,
+        "build": "PASS source only;328 modules",
+        "runtimeBrowser": "NOT_RUN",
+        "scenePatch": "GameScene-owner-input.patch supplied but not applied",
+        "initialFailure": "expected insufficient-gold;canonical priority invalid-score-resources;source README retains correction"
+      },
+      "currentMain": "e389ea2c4a7f6d49284546f91992d13055072655",
+      "registrationOnly": true,
+      "moduleMerged": false,
+      "inputPatchApplied": false,
+      "playerOperationFixed": false,
+      "newTestsRun": false,
+      "mainPushForRegistration": false,
+      "strategy": "high card remains last;public minimum branch,one candidate per type;no active-skill global optimality or random-result guarantee",
+      "nextAction": "wait for unique owner patch receipt then jointly integrate complete candidate;do not claim module tests prove final operation"
+    }
   }
 }
