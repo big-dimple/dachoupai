@@ -21,7 +21,7 @@ export function stageTableArtPlan(l:TableLayout):StageTableArtPlan {
  return plan;
 }
 /** Existing paper/character art; an optional hero entry owns only its portrait bounds. */
-export function drawStageTableArt(scene:Phaser.Scene,view:SceneView,characterId:CharacterId,inspectHero?:()=>void):void {
+export function drawStageTableArt(scene:Phaser.Scene,view:SceneView,characterId:CharacterId,inspectHero?:()=>void,legacyPortrait=true):void {
  const plan=stageTableArtPlan(view.layout);
  function sheet(name:string,b:Box,color:number,edge:number,shadow=false):void {
   if(b.width<=0||b.height<=0)return;
@@ -36,7 +36,7 @@ export function drawStageTableArt(scene:Phaser.Scene,view:SceneView,characterId:
  sheet('surface',plan.surface,T.jadeSoft,T.jade,true);
  sheet('program',plan.program,T.paper,T.brass);
  const key=selectionPortraitKey(characterId),box=plan.portrait;
- if(box){
+ if(box&&legacyPortrait){
   const holder=view.add(scene.add.container(0,0).setName('table-art/character-holder'));
   if(inspectHero){const hit=view.rect(box).setFillStyle(0,0).setStrokeStyle(0);view.target(hit,'table-art/hero-details',{tap:inspectHero,detail:inspectHero});}
   whenTextureReady(scene,holder,key,()=>{

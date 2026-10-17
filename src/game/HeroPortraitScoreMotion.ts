@@ -7,6 +7,7 @@ import {scoreContributions} from './ScoreContribution';
 import {scoreCardPose} from './ScorePosture';
 import {fitHeroPortraitPose} from './HeroPortraitLayout';
 import {Rational} from '../domain/rational';
+import type {CommandResult,R2RunState} from '../domain/run';
 
 export interface HeroPortraitScoreCue {eventId:string;positive:boolean}
 /** Exact saved hero arithmetic, including a real penalty; drafts/growth/zero checks do not strike. */
@@ -15,11 +16,22 @@ export function heroPortraitScoreCue(trace:ScoreTrace,event:ScoreEvent,heroId:Ch
   const contributions=scoreContributions(event);if(!contributions.length)return;
   return {eventId:event.eventId,positive:contributions.some(c=>Rational.fromJSON(c.after).compare(Rational.fromJSON(c.before))>0)};
 }
+/** A saved choice of real refill cards is a benefit, without inventing a scoring event. */
+export function heroPortraitRefillCue(before:R2RunState,result:CommandResult<R2RunState>):HeroPortraitScoreCue|undefined {
+  if(!result.ok||result.duplicate||before.characterId!=='laohuan'||before.phase!=='pending-refill'||!before.pendingRefill)return;
+  const after=result.state,pending=before.pendingRefill,kept=after.handOrder.filter(id=>!before.handOrder.includes(id));
+  if(after.runId!==before.runId||after.characterId!==before.characterId||after.commandSeq!==before.commandSeq+1||
+    result.receipt.seq!==after.commandSeq||after.phase!=='await-input'||after.pendingRefill!==null||
+    !kept.length||kept.length!==pending.required||kept.some(id=>!pending.candidateIds.includes(id))||
+    before.handOrder.some(id=>!after.handOrder.includes(id)))return;
+  return {eventId:result.receipt.commandId+'/saved-refill',positive:true};
+}
 export interface HeroPortraitMotionOptions {heroId:CharacterId;bounds:Box;reducedMotion:()=>boolean}
-export interface HeroPortraitMotionPlay {
-  trace:ScoreTrace;event:ScoreEvent;context:EffectContext;arrival:Promise<void>;duration:number;replay?:boolean;
+export interface HeroPortraitCuePlay {
+  context:EffectContext;arrival:Promise<void>;duration:number;replay?:boolean;
   onPhase?:(phase:'waiting'|'impact'|'rebound'|'rest')=>void;
 }
+export interface HeroPortraitMotionPlay extends HeroPortraitCuePlay {trace:ScoreTrace;event:ScoreEvent}
 type Job={key:string;cancel:()=>void;reduce:()=>void;promise:Promise<void>};
 const tint=(base:number,light:number,amount:number)=>{
   const channel=(shift:number)=>Math.round(((base>>shift)&255)*(1-amount)+((light>>shift)&255)*amount);
@@ -49,9 +61,14 @@ export class HeroPortraitScoreMotion {
   }
   reset():void {this.current?.cancel();}
   play(options:HeroPortraitMotionPlay):Promise<void> {
+    return this.playCue(heroPortraitScoreCue(options.trace,options.event,this.options.heroId),options);
+  }
+  playRefill(before:R2RunState,result:CommandResult<R2RunState>,options:HeroPortraitCuePlay):Promise<void> {
+    return this.playCue(this.options.heroId==='laohuan'?heroPortraitRefillCue(before,result):undefined,options);
+  }
+  private playCue(cue:HeroPortraitScoreCue|undefined,options:HeroPortraitCuePlay):Promise<void> {
     if(this.disposed||options.context.signal.aborted)return Promise.resolve();
     if(options.replay){this.reset();return Promise.resolve();}
-    const cue=heroPortraitScoreCue(options.trace,options.event,this.options.heroId);
     if(!cue||!this.visible()||!Number.isFinite(options.duration))return Promise.resolve();
     const key=options.context.generation+'/'+cue.eventId;
     if(this.current?.key===key)return this.current.promise;

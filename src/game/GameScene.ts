@@ -112,7 +112,13 @@ import {azaoChoice,savedAzaoCharge} from './AzaoChargeCopy';
 import {characterForRun} from './CharacterRunCopy';
 import { getCharacter, type CharacterId } from './characters';
 import type { IntermissionResult } from './IntermissionScene';
-import {addAvatar,avatarKey,portraitURL} from './portraits';
+import {addAvatar,avatarKey,portraitKey,portraitURL} from './portraits';
+import {heroPortraitLayout,heroPortraitArea,heroSidebarUtilities} from './HeroPortraitLayout';
+import {mountHeroPortraitScoreMotion,type HeroPortraitScoreMotion} from './HeroPortraitScoreMotion';
+import {savedC12Gifts,type SavedStageGift} from './SavedStageGift';
+import {StageGiftDelivery} from './StageGiftDelivery';
+import type {CommandResult} from '../domain/run';
+import {r2ConsumableCapacity} from '../domain/r2Resources';
 import {SceneView} from './SceneView';
 import {HandSelectionInput} from './HandSelectionInput';
 import {paintCardFeedback} from './CardFeedback';
@@ -222,7 +228,7 @@ export class GameScene extends Phaser.Scene {
   private ownedDrag?:OwnedJokerDragVisual;
   private lifecycle=0;
   private intent=0;
-  private presentation?:{generation:number;lifecycle:number;intent:number;state:RunState;score:ScoreTrace;hand:readonly PlayingCard[];displayHeat:string;originHeat:string;replay:boolean;previousTrace:ScoreTrace|null;credited:boolean;resourcePlayLeft?:number;resourceGold?:number};
+  private presentation?:{generation:number;lifecycle:number;intent:number;state:RunState;score:ScoreTrace;hand:readonly PlayingCard[];displayHeat:string;originHeat:string;replay:boolean;previousTrace:ScoreTrace|null;credited:boolean;resourcePlayLeft?:number;resourceGold?:number;resourceTools?:number;gifts:readonly SavedStageGift[]};
   private characterId!: CharacterId;
   private erxiangTargetId:string|null=null;
   private targetAttachment?:HeroTargetAttachment;
@@ -286,6 +292,10 @@ export class GameScene extends Phaser.Scene {
     super('game');
   }
   private heroClimax?:HeroClimaxView;
+  private heroPortrait?:Phaser.GameObjects.Image;
+  private heroPortraitMotion?:HeroPortraitScoreMotion;
+  private giftDelivery?:StageGiftDelivery;
+  private giftEvent?:ScoreEvent;
   private refillPresentation?:EffectContext;
   private heroActionButton?:Phaser.GameObjects.Rectangle;
   private readonly shownPayoffs=new Set<string>();
@@ -302,6 +312,7 @@ export class GameScene extends Phaser.Scene {
   private carriedTool?:ToolCarryIntent;
   async create(data?:{carriedTool?:ToolCarryIntent;preparedBossOwner?:object}): Promise<void> {
     this.targetAttachment?.destroy();this.targetAttachment=undefined;
+    this.heroPortraitMotion?.destroy();this.heroPortraitMotion=undefined;this.heroPortrait=undefined;this.giftDelivery?.destroy();this.giftDelivery=undefined;this.giftEvent=undefined;
     this.touyeSkillPhase=undefined;
     this.carriedTool=undefined;this.waitingForStage=false;this.reopenStageDirectory=undefined;this.enterPreparedStage=undefined;this.openStagePrograms=undefined;
     // Phaser reuses this Scene instance. Its former controls were destroyed on shutdown.
@@ -333,6 +344,7 @@ export class GameScene extends Phaser.Scene {
     };
     window.addEventListener('dachoupai-presentation',settings);
     this.events.once('shutdown',()=>{
+      this.heroPortraitMotion?.destroy();this.heroPortraitMotion=undefined;this.heroPortrait=undefined;this.giftDelivery?.destroy();this.giftDelivery=undefined;this.giftEvent=undefined;
       this.targetAttachment?.destroy();this.targetAttachment=undefined;
       this.touyeSkillPhase=undefined;
       this.game.canvas.removeAttribute('data-hand-input');this.stopHandHint();window.removeEventListener('pointerdown',this.pointerFocus,true);document.removeEventListener('focusin',this.focusFeedback);document.removeEventListener('focusout',this.focusFeedback);window.removeEventListener('blur',this.stopHandHint);document.removeEventListener('visibilitychange',this.hintVisibility);
@@ -534,7 +546,8 @@ export class GameScene extends Phaser.Scene {
     requestJokerArt(this,this.run.jokers.map(j=>j.definitionId),()=>{this.dialog.refreshArtLoad();if(!this.presentation&&!this.playing)this.render();});
     this.stage={...this.stage,targetHeat:this.run.stage!.targetHeat};
     this.controlsLive=false;this.stopScoreFire();
-    const v=this.view,l=v.layout;this.hoveredCardId=undefined;this.hoveredJokerId=undefined;this.jokerHoverPreview=undefined;v.clear();this.settlementChrome.clear();this.handNavigationButtons=[];v.paperBackground();drawStageTableArt(this,v,this.characterId,()=>this.inspectHeroExplanation());this.settledCards.clear();this.previewCards=undefined;
+    this.heroPortraitMotion?.destroy();this.heroPortraitMotion=undefined;this.heroPortrait=undefined;this.giftDelivery?.destroy();this.giftDelivery=undefined;
+    const v=this.view,l=v.layout;this.hoveredCardId=undefined;this.hoveredJokerId=undefined;this.jokerHoverPreview=undefined;v.clear();this.settlementChrome.clear();this.handNavigationButtons=[];v.paperBackground();drawStageTableArt(this,v,this.characterId,undefined,false);this.settledCards.clear();this.previewCards=undefined;
     this.playAuraPulse?.remove();this.playAuraPulse=undefined;this.playAura=undefined;
     if(this.progressBar)this.tweens.killTweensOf(this.progressBar);this.progressTarget=Number.NaN;
     const h=l.hud,c=getCharacter(this.characterId),portrait=l.mode==='portrait',short=l.mode==='landscape',heroRoom=portrait?Math.min(108,Math.max(74,h.width-252)):108,sidebar=heroSidebarRows(h);
@@ -610,10 +623,70 @@ export class GameScene extends Phaser.Scene {
     const play=l.tableActions.play;
     this.playAura=v.add(this.add.graphics().lineStyle(2,T.red,.7).strokeRoundedRect(play.x-3,play.y-3,play.width+6,play.height+6,9).setAlpha(0));
     this.statusText=v.text(l.status.x,l.status.y,'',14,'#f3d5ab',l.status.width);
-    this.inventoryButton=v.button(gameToolInventoryBox(l),toolInventoryLabel(this.run),'action/tool-inventory',()=>this.inspectInventory());
+    this.inventoryButton=v.button(heroSidebarUtilities(l)?.inventory??gameToolInventoryBox(l),toolInventoryLabel(this.run),'action/tool-inventory',()=>this.inspectInventory());
     inventoryFeedback(this,this.inventoryButton,this.run,this.ready,this.reducedMotion);
     this.controlsLive=true;
-    this.updateHud();this.renderHand();this.ownedDrag?.rebind();
+    this.updateHud();this.renderHand();this.ownedDrag?.rebind();this.mountSceneHeroPortrait();this.mountStageGiftDelivery();
+  }
+  private mountSceneHeroPortrait():void {
+    const l=this.view.layout,area=heroPortraitArea(l),holder=this.view.add(this.add.container(0,0).setName('hero/portrait-holder'));
+    const key=portraitKey(this.characterId);
+    whenTextureReady(this,holder,key,()=>{
+      const protectedBounds:Box[]=this.view.root.list.filter(object=>object instanceof Phaser.GameObjects.Text&&object.visible)
+        .map(object=>(object as Phaser.GameObjects.Text).getBounds());
+      for(const object of [this.roleAvatar,this.inventoryButton,this.heroActionButton,this.progressBar])
+        if(object?.active&&object.visible)protectedBounds.push(object.getBounds());
+      protectedBounds.push(this.tableHelpBox());
+      const image=this.add.image(0,0,key),placement=heroPortraitLayout(area,{width:image.width,height:image.height},protectedBounds,l.mode==='portrait'?3:6);
+      if(!placement){image.destroy();return;}
+      image.setPosition(placement.x,placement.y).setScale(placement.scale).setName('hero/portrait')
+        .setData('heroId',this.characterId).setData('assetId',this.characterId+'.portrait').setData('bounds',placement.imageBounds);
+      holder.add(image);this.heroPortrait=image;
+      this.heroPortraitMotion=mountHeroPortraitScoreMotion(this,image,{heroId:this.characterId,bounds:placement.safeBounds,reducedMotion:()=>this.reducedMotion});
+      const hit=this.view.rect(placement.imageBounds).setFillStyle(0,0).setStrokeStyle();
+      this.view.target(hit,'hero/portrait-details',{tap:()=>this.inspectHeroExplanation(),detail:()=>this.inspectHeroExplanation()});
+    });
+  }
+  private playSavedRefillPortrait(before:RunState,result:CommandResult<RunState>,context:EffectContext):void {
+    const motion=this.heroPortraitMotion,image=this.heroPortrait;if(!motion)return;
+    void motion.playRefill(before,result,{context,arrival:Promise.resolve(),duration:this.reducedMotion?120:180,
+      onPhase:phase=>{if(image?.active)image.setData('scoreEventId',result.ok?result.receipt.commandId+'/saved-refill':'').setData('scorePhase',phase);},
+    }).catch(()=>motion.reset());
+  }
+  private mountStageGiftDelivery():void {
+    this.giftDelivery=new StageGiftDelivery(this,{
+      parent:this.view.root,
+      source:id=>{const marker=this.jokerViews.get(id),frame=marker?.getData('frame') as Phaser.GameObjects.Rectangle|undefined;return marker?.active&&frame?.active?frame.getBounds():undefined;},
+      inventory:()=>this.inventoryButton?.active?this.inventoryButton.getBounds():undefined,
+      gold:()=>this.goldText?.active?this.goldText.getBounds():undefined,
+      reducedMotion:()=>this.reducedMotion,
+      blocked:()=>document.hidden||!!document.querySelector('dialog[open]')||runController(this)?.status==='readonly'||!this.scene.isActive(),
+      pulseSource:(id,context,duration)=>{
+        const event=this.giftEvent,presentation=this.presentation,marker=this.jokerViews.get(id);
+        if(!event||!presentation||presentation.replay||!marker||event.sourceInstanceId!==id)return;
+        const cue=ownedJokerMotionCue(presentation.score,event);if(!cue)return;
+        return playOwnedJokerScoreMotion(this,marker,cue,{context,arrival:Promise.resolve(),
+          beat:{...scoreBeat(event,0),windup:0,flight:0,impact:duration},speed:gameSession().speed,
+          portrait:this.view.layout.mode==='portrait',reducedMotion:this.reducedMotion});
+      },
+      arrived:fact=>{
+        const presentation=this.presentation;
+        if(!presentation||presentation.replay||!presentation.gifts.some(gift=>gift.key===fact.key))return;
+        if(fact.destination==='tools'){presentation.resourceTools=fact.after;this.audio.rareReveal();}
+        else {presentation.resourceGold=fact.after;this.audio.coin();}
+        this.updateHud();
+      },
+    });
+  }
+  /** Only a successful saved c12 fact replaces its own onStageClear presentation slot. */
+  private async showSavedStageGift(fact:SavedStageGift,event:ScoreEvent,context:EffectContext):Promise<void> {
+    this.giftEvent=event;
+    try {
+      const result=await this.giftDelivery?.play(fact,context);
+      if(result==='missing-anchor'&&!context.signal.aborted){
+        this.resultText.setText(fact.sourceName+' · '+(fact.destination==='tools'?fact.rewardName+'已入道具箱':'道具箱已满，已得'+fact.amount+'金'));
+      }
+    }finally{if(this.giftEvent===event)this.giftEvent=undefined;}
   }
   private renderJokerRack(jokers:readonly R2JokerInstance[]=this.run.jokers):void {
     const v=this.view,l=v.layout;this.jokerViews.clear();
@@ -1000,7 +1073,7 @@ export class GameScene extends Phaser.Scene {
   private selectionQuickInScore(_score:Box):boolean {return false;}
   private tableHelpBox():Box {
     const l=this.view.layout;
-    if(l.mode==='desktop')return {x:l.hud.x+12,y:l.hud.y+l.hud.height+240,width:l.hud.width-24,height:44};
+    if(l.mode==='desktop')return heroSidebarUtilities(l)!.help;
     if(l.mode==='landscape')return {x:l.hud.x+4,y:l.status.y-95,width:112,height:44};
     return {x:l.playedArea.x,y:l.playedArea.y,width:44,height:44};
   }
@@ -1637,13 +1710,13 @@ export class GameScene extends Phaser.Scene {
     } finally {if(this.alive(lifecycle,intent)){this.touyeSkillPhase=undefined;if(['await-input','pending-refill'].includes(this.run.phase)){this.playing=false;this.refreshSelection();}else this.updateHeroControl();}}
   }
 
-  private async showLaohuanPayoff(ids:readonly string[],looked:number,lifecycle:number,intent:number):Promise<void> {
+  private async showLaohuanPayoff(ids:readonly string[],looked:number,lifecycle:number,intent:number,refill?:{before:RunState;result:CommandResult<RunState>}):Promise<void> {
     if(!ids.length||!this.alive(lifecycle,intent))return;
     const receipt=this.run.receipts.find(r=>r.seq===this.run.commandSeq);if(!receipt)return;
     const eventId=receipt.commandId+'/laohuan-refill';if(this.shownPayoffs.has(eventId))return;
     const cards=ids.map(id=>this.run.deckInstances.find(c=>c.id===id)).filter((c):c is PlayingCard=>!!c),names=cards.map(c=>rankLabel(c.rank)+SUIT_SYMBOL[c.suit]).join(' ');
     const key:JokerKeyHighlight={eventId,kind:'payoff',heroId:'laohuan',cause:heroSkillName('laohuan')+'实际留牌',landing:'留'+cards.length+'张 · 已保存',fact:{eventId,sourceInstanceId:this.run.runId+'/character',definitionId:'',title:characterForRun(this.run).name+' · '+characterForRun(this.run).passiveName+' · 实际留牌',effect:'实际留下 '+names,condition:'换牌与留牌操作成功保存',destination:'当前手牌 · 不增加计分',next:'继续自主选牌'}};
-    this.effects.clear();this.effects.enqueue(async context=>{this.refillPresentation=context;try {const l=this.view.layout,stage=mountHeroClimax(this,this.view.root,{x:0,y:0,...cssViewport(this)},key,{skillName:characterForRun(this.run).passiveName,label:'实际留牌',before:cards.length+'张',after:cards.length+'张',note:'多看'+looked+'张 · '+names+'；不增加计分'},this.reducedMotion,{eyes:localHeroEyeSlot(l,toolInventoryPlayedArea(l),this.jokerViews.size)});if(!stage){
+    this.effects.clear();this.effects.enqueue(async context=>{this.refillPresentation=context;if(refill)this.playSavedRefillPortrait(refill.before,refill.result,context);try {const l=this.view.layout,stage=mountHeroClimax(this,this.view.root,{x:0,y:0,...cssViewport(this)},key,{skillName:characterForRun(this.run).passiveName,label:'实际留牌',before:cards.length+'张',after:cards.length+'张',note:'多看'+looked+'张 · '+names+'；不增加计分'},this.reducedMotion,{eyes:localHeroEyeSlot(l,toolInventoryPlayedArea(l),this.jokerViews.size)});if(!stage){
       // No free eye slot: the saved retention remains in the existing HUD.
       // A local avatar response cannot cover rules or turn retention into score.
       if(context.signal.aborted)return;this.shownPayoffs.add(eventId);this.audio.sourceCue('character');
@@ -1655,7 +1728,7 @@ export class GameScene extends Phaser.Scene {
     });try {await this.effects.drain();}catch {this.effects.clear();}
   }
   private async chooseRefill():Promise<void> {
-    const pending=this.pendingRefill;if(!pending||!this.ready||this.refillHidden||this.selectedIds.size!==pending.required)return;const ids=[...this.selectedIds],lifecycle=this.lifecycle,intent=++this.intent;this.playing=true;this.updateControls();try{const result=await dispatchRun(this,{type:'ChooseRefill',selectedIds:ids});if(!this.alive(lifecycle,intent))return;if(!result.ok){this.statusMessage=result.code==='save-failed'?'补牌未保存 · 菜单重试同一选择':'请留够指定张数';return;}this.run=result.state;this.selectedIds.clear();this.refillHidden=false;this.statusMessage=heroText('老幻·已保存留')+ids.length+'张 · 其余本场不再抽';this.renderHand();this.updateHud();if(!result.duplicate)await this.showLaohuanPayoff(ids,pending.candidateIds.length-pending.required,lifecycle,intent);}finally{if(this.alive(lifecycle,intent)){this.playing=false;this.refreshSelection();}}
+    const pending=this.pendingRefill;if(!pending||!this.ready||this.refillHidden||this.selectedIds.size!==pending.required)return;const ids=[...this.selectedIds],lifecycle=this.lifecycle,intent=++this.intent;this.playing=true;this.updateControls();const before=this.run;try{const result=await dispatchRun(this,{type:'ChooseRefill',selectedIds:ids});if(!this.alive(lifecycle,intent))return;if(!result.ok){this.statusMessage=result.code==='save-failed'?'补牌未保存 · 菜单重试同一选择':'请留够指定张数';return;}this.run=result.state;this.selectedIds.clear();this.refillHidden=false;this.statusMessage=heroText('老幻·已保存留')+ids.length+'张 · 其余本场不再抽';this.renderHand();this.updateHud();if(!result.duplicate)await this.showLaohuanPayoff(ids,pending.candidateIds.length-pending.required,lifecycle,intent,{before,result});}finally{if(this.alive(lifecycle,intent)){this.playing=false;this.refreshSelection();}}
   }
   private async playSelected(confirmedUnusedSkill=false):Promise<void> {
     if(this.pendingRefill){await this.chooseRefill();return;}
@@ -1669,7 +1742,7 @@ export class GameScene extends Phaser.Scene {
         back:()=>this.inspectRole(),play:()=>{void this.playSelected(true);},disable:()=>heroPlayReminders.disable(),
       });return;
     }
-    const erxiangTargetId=this.erxiangTargetId,xiemuBurn=this.xiemuBurn,azaoRelease=this.azaoRelease,selectedIds=[...this.selectedIds],assistIds=[...this.assistIds],lifecycle=this.lifecycle,intent=++this.intent,beforeHeat=this.heat,previousTrace=this.run.lastTrace,beforeHands=this.handsLeft,beforeGold=this.run.gold;
+    const erxiangTargetId=this.erxiangTargetId,xiemuBurn=this.xiemuBurn,azaoRelease=this.azaoRelease,selectedIds=[...this.selectedIds],assistIds=[...this.assistIds],lifecycle=this.lifecycle,intent=++this.intent,beforeHeat=this.heat,previousTrace=this.run.lastTrace,beforeHands=this.handsLeft,beforeGold=this.run.gold,beforeRun=this.run;
     this.clearHover();this.cancelAiCandidates();this.touyeSkillPhase=this.pendingTouye?'settling':undefined;this.playing=true;this.statusMessage='';this.updateControls();
     const selectedViews=this.cardViews.filter(v=>selectedIds.includes(v.card.id)||assistIds.includes(v.card.id));
     try {
@@ -1678,7 +1751,7 @@ export class GameScene extends Phaser.Scene {
       if(!result.ok||result.duplicate){if(!result.ok)this.statusMessage=result.code==='save-failed'?'未保存，请在菜单中重试或导出':result.code==='score-diagnostic'?'本手无法结算，资源与原状态已保留':'出牌未提交，请查看菜单或选择。';return;}
       this.run=result.state;
       const event=result.events.find(e=>e.type==='hand-scored-r2');if(!event||event.type!=='hand-scored-r2')throw Error('Successful play missing score event');
-      await this.presentTrace(event.score,result.state,selectedViews,lifecycle,intent,beforeHeat,false,previousTrace,beforeHands,beforeGold);
+      await this.presentTrace(event.score,result.state,selectedViews,lifecycle,intent,beforeHeat,false,previousTrace,beforeHands,beforeGold,savedC12Gifts(beforeRun,result));
     } finally {
       if(this.alive(lifecycle,intent)){this.touyeSkillPhase=undefined;if(this.run.phase==='await-input'&&!this.presentation){this.playing=false;this.refreshSelection();}else this.updateHeroControl();}
     }
@@ -1819,6 +1892,8 @@ export class GameScene extends Phaser.Scene {
   private async showScoreEvent(event:ScoreEvent,index:number,beat:ScoreBeat,context:EffectContext,key?:JokerKeyHighlight,number?:NumberImpact):Promise<void> {
     if(context.signal.aborted)return;
     this.ensureTraceSource(event);
+    const gift=!this.presentation?.replay?this.presentation?.gifts.find(fact=>fact.eventId===event.eventId):undefined;
+    if(gift){await this.showSavedStageGift(gift,event,context);return;}
     const benefit=this.presentation?savedBenefit(this.run,this.presentation.score,event):undefined;
     const sourceBenefit=hasActualBenefit(event);
     if(sourceBenefit&&event.sourceInstanceId===this.presentation?.state.routeStarter?.instanceId){const label=this.jokerViews.get(event.sourceInstanceId)?.getData('valueLabel') as Phaser.GameObjects.Text|undefined;label?.setText(event.operation==='add-growth'?'已存成长':'实际生效').setColor(C.red);}
@@ -1844,6 +1919,7 @@ export class GameScene extends Phaser.Scene {
     if(cardResponds&&card)sourceEffects.push(this.illuminateCard(card,event,timing,context,impact));
     if(event.sourceType==='character'){
       sourceEffects.push(this.animateRole(note,duration,context,timing,impact));
+      if(this.heroPortraitMotion&&this.presentation){const image=this.heroPortrait;sourceEffects.push(this.heroPortraitMotion.play({trace:this.presentation.score,event,context,arrival:impact,duration:timing.impact,replay:this.presentation.replay,onPhase:phase=>{if(image?.active)image.setData('scoreEventId',event.eventId).setData('scorePhase',phase);}}));}
     }else if(event.sourceType==='joker'&&sourceBenefit){
       sourceEffects.push(this.animateJoker(event,duration,context,timing,impact));
     }else if(event.operation==='seal-joker'&&event.targetJokerInstanceId){
@@ -2037,10 +2113,10 @@ export class GameScene extends Phaser.Scene {
     return this.wait(this.reducedMotion?0:100,context);
   }
 
-  private async presentTrace(score:ScoreTrace,state:RunState,views:readonly CardView[],lifecycle:number,intent:number,beforeHeat=this.heat,replay=false,previousTrace:ScoreTrace|null=this.run.lastTrace,beforeHands?:number,beforeGold?:number):Promise<void> {
+  private async presentTrace(score:ScoreTrace,state:RunState,views:readonly CardView[],lifecycle:number,intent:number,beforeHeat=this.heat,replay=false,previousTrace:ScoreTrace|null=this.run.lastTrace,beforeHands?:number,beforeGold?:number,gifts:readonly SavedStageGift[]=[]):Promise<void> {
     this.effects.clear();const generation=this.effects.generation;
     const originHeat=replay?(BigInt(beforeHeat)>BigInt(score.finalScore)?BigInt(beforeHeat)-BigInt(score.finalScore):0n).toString():beforeHeat;
-    const hand=score.cards,presentation={generation,lifecycle,intent,state,score,hand,displayHeat:beforeHeat,originHeat,replay,previousTrace,credited:replay,resourcePlayLeft:!replay&&beforeHands!==undefined?beforeHands-1:undefined,resourceGold:!replay?beforeGold:undefined};this.presentation=presentation;
+    const hand=score.cards,presentation={generation,lifecycle,intent,state,score,hand,displayHeat:beforeHeat,originHeat,replay,previousTrace,credited:replay,resourcePlayLeft:!replay&&beforeHands!==undefined?beforeHands-1:undefined,resourceGold:!replay?beforeGold:undefined,resourceTools:!replay?gifts[0]?.inventoryBefore:undefined,gifts:replay?[]:gifts};this.presentation=presentation;
     if(replay){
       this.handStart=0;
       this.cardViews.forEach(view=>{view.hit?.destroy();view.sheenTween?.remove();this.tweens.killTweensOf(view.container);view.container.destroy();});
@@ -2121,7 +2197,7 @@ export class GameScene extends Phaser.Scene {
 
   private completePresentation(presentation:NonNullable<GameScene['presentation']>):void {
     if(!this.alive(presentation.lifecycle,presentation.intent))return;
-    this.targetAttachment?.clear();
+    this.targetAttachment?.clear();this.heroPortraitMotion?.reset();this.giftDelivery?.cancel();this.giftEvent=undefined;
     this.stopScoreFire();this.setSettlementFocus(false);
     this.erxiangTargetId=null;this.azaoRelease=false;this.xiemuBurn=0;this.presentation=undefined;this.run=presentation.state;this.selectedIds.clear();this.assistIds=[];this.assistGestureStart=undefined;this.statusMessage=opponentSavedStatus(presentation.score)||savedHeroResult(this.run)||handGrowthChanges(this.run)[0]?.line||'';this.updateHud();
     if(this.run.phase==='stage-cleared'||this.run.phase==='run-won'){this.finishStage(true,true,!presentation.replay);return;}
@@ -2129,7 +2205,7 @@ export class GameScene extends Phaser.Scene {
     this.playing=false;this.render();this.revealDrawnCards(presentation.hand.map(card=>card.id));
   }
 
-  fastForward():void {this.targetAttachment?.clear();const presentation=this.presentation;if(!presentation){if(this.heroClimax||this.refillPresentation)this.effects.clear();return;}this.effects.clear();this.audio.cancelPresentation();this.cameras.main.resetFX();this.heatText.setScale(1);this.scoreTotal.setScale(1);this.completePresentation(presentation);}
+  fastForward():void {this.heroPortraitMotion?.reset();this.giftDelivery?.cancel();this.targetAttachment?.clear();const presentation=this.presentation;if(!presentation){if(this.heroClimax||this.refillPresentation)this.effects.clear();return;}this.effects.clear();this.audio.cancelPresentation();this.cameras.main.resetFX();this.heatText.setScale(1);this.scoreTotal.setScale(1);this.completePresentation(presentation);}
   replayLastTrace():void {
     if(this.playing||!this.run.lastTrace)return;
     this.targetAttachment?.clear();
@@ -2193,7 +2269,7 @@ export class GameScene extends Phaser.Scene {
   }
 
   private refreshToolInventory():void {
-    if(this.inventoryButton?.active)(this.inventoryButton.getData('label') as Phaser.GameObjects.Text).setText(toolInventoryLabel(this.run));
+    if(this.inventoryButton?.active){const count=this.presentation?.resourceTools,label=count===undefined?toolInventoryLabel(this.run):'道具箱 '+count+'/'+r2ConsumableCapacity(this.run);(this.inventoryButton.getData('label') as Phaser.GameObjects.Text).setText(label);}
   }
   private updateHud(): void {
     this.refreshToolInventory();

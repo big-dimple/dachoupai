@@ -1,4 +1,23 @@
-import type {Box} from './layout';
+import {playedFootprint,type Box,type TableLayout} from './layout';
+import {toolInventoryPlayedArea} from './ToolInventoryEntry';
+
+/** Sidebar utilities yield the existing free column to the full portrait. */
+export function heroSidebarUtilities(l:TableLayout){
+  if(l.mode!=='desktop')return;
+  const bottom=Math.min(l.height-12,l.actions.y+l.actions.height);
+  return {inventory:{x:l.hud.x+12,y:bottom-96,width:l.hud.width-24,height:44},
+    help:{x:l.hud.x+12,y:bottom-44,width:l.hud.width-24,height:44}};
+}
+
+/** Only hero decoration uses this space; source slots, score cells and hand seats never move. */
+export function heroPortraitArea(l:TableLayout):Box {
+  if(l.mode==='portrait'){
+    const top=l.scoreBoard.y+l.scoreBoard.height+4,bottom=playedFootprint(toolInventoryPlayedArea(l),true).y-22;
+    return {x:l.playedArea.x+50,y:top,width:Math.max(0,l.playedArea.width-56),height:Math.max(0,bottom-top)};
+  }
+  return {x:l.hud.x+6,y:l.hud.y+4,width:l.hud.width-12,
+    height:Math.max(0,(l.mode==='desktop'?l.actions.y+l.actions.height:l.hud.y+l.hud.height)-l.hud.y-8)};
+}
 
 /** Pick the largest full-width free band. Caller supplies measured text/control bounds. */
 export function heroPortraitLayout(area:Box,source:{width:number;height:number},protectedBounds:readonly Box[]=[],padding=6){
