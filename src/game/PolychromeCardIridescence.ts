@@ -9,6 +9,7 @@ export const IRIDESCENCE_CYCLE_MS=7200;
 const managers=new WeakMap<Phaser.Scene,IridescenceManager>();
 const palette=[0xf17eae,0xd79bfa,0x85b6f5,0x57d9db,0x9bdd9d,0xf4d282,0xf4a17c,0xf17eae];
 type Point={x:number;y:number};
+type Viewport={left:number;top:number;right:number;bottom:number};
 type Entry={host:Phaser.GameObjects.Container;edge:Phaser.GameObjects.Graphics;bounds:Box;path:Point[];lastPhase?:number;remove:()=>void};
 
 export function iridescenceColor(position:number):number {
@@ -33,20 +34,26 @@ export function iridescencePath(b:Box,segments=64):Point[] {
   });
 }
 
-function visible(entry:Entry,scene:Phaser.Scene):boolean {
+function viewport(camera:Phaser.Cameras.Scene2D.Camera):Viewport {
+  const view={left:Infinity,top:Infinity,right:-Infinity,bottom:-Infinity};
+  // worldView assumes the camera centre; this project uses origin(0,0) and DPR zoom.
+  for(const [x,y] of [[camera.x,camera.y],[camera.x+camera.width,camera.y],[camera.x,camera.y+camera.height],[camera.x+camera.width,camera.y+camera.height]]){
+    const p=camera.getWorldPoint(x,y);view.left=Math.min(view.left,p.x);view.right=Math.max(view.right,p.x);view.top=Math.min(view.top,p.y);view.bottom=Math.max(view.bottom,p.y);
+  }
+  return view;
+}
+function visible(entry:Entry,scene:Phaser.Scene,view:Viewport):boolean {
   const camera=scene.cameras.main;
   if(scene.sys?.settings.visible===false||!camera.visible||camera.alpha<=0)return false;
   for(let node:Phaser.GameObjects.Container|null=entry.host;node;node=node.parentContainer)
     if(!node.visible||!node.active||node.alpha<=0||(node.cameraFilter&camera.id)!==0)return false;
-  const m=entry.host.getWorldTransformMatrix(),b=entry.bounds,cm=camera.matrix;
+  const m=entry.host.getWorldTransformMatrix(),b=entry.bounds;
   let left=Infinity,top=Infinity,right=-Infinity,bottom=-Infinity;
   for(const [x,y] of [[b.x,b.y],[b.x+b.width,b.y],[b.x,b.y+b.height],[b.x+b.width,b.y+b.height]]){
-    const wx=m.a*x+m.c*y+m.tx-camera.scrollX,wy=m.b*x+m.d*y+m.ty-camera.scrollY;
-    const sx=cm.a*wx+cm.c*wy+cm.tx,sy=cm.b*wx+cm.d*wy+cm.ty;
-    left=Math.min(left,sx);right=Math.max(right,sx);top=Math.min(top,sy);bottom=Math.max(bottom,sy);
+    const wx=m.a*x+m.c*y+m.tx,wy=m.b*x+m.d*y+m.ty;
+    left=Math.min(left,wx);right=Math.max(right,wx);top=Math.min(top,wy);bottom=Math.max(bottom,wy);
   }
-  // worldView assumes the camera centre; this project uses origin(0,0) and DPR zoom.
-  return right>camera.x&&bottom>camera.y&&left<camera.x+camera.width&&top<camera.y+camera.height;
+  return right>view.left&&bottom>view.top&&left<view.right&&top<view.bottom;
 }
 
 function draw(entry:Entry,phase:number):void {
@@ -97,9 +104,9 @@ class IridescenceManager {
     const still=this.reduced();if(!still)this.elapsed+=Math.min(delta,IRIDESCENCE_FRAME_MS*2);
     this.cadence+=delta;if(this.cadence<IRIDESCENCE_FRAME_MS)return;this.cadence%=IRIDESCENCE_FRAME_MS;
     // No dependency on hover, scoring or playback speed; hidden tabs never catch up.
-    const phase=this.elapsed/IRIDESCENCE_CYCLE_MS%1;
+    const phase=this.elapsed/IRIDESCENCE_CYCLE_MS%1,view=viewport(this.scene.cameras.main);
     for(const e of this.entries){
-      const shown=visible(e,this.scene);e.edge.setVisible(shown).setData('motion',shown?(still?'static':'flowing'):'culled');
+      const shown=visible(e,this.scene,view);e.edge.setVisible(shown).setData('motion',shown?(still?'static':'flowing'):'culled');
       if(!shown)continue;
       const next=still?0:phase;if(e.lastPhase!==next)draw(e,next);
     }
