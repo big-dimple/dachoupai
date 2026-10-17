@@ -10,11 +10,11 @@ export function numberImpact(e:ScoreEvent,target:string,chain=0):NumberImpact|un
  if(h1.compare(h0)<=0&&m1.compare(m0)<=0)return;
  const factor=actualMultiplier(e),delta=h1.multiply(m1).add(h0.multiply(m0).multiply(new Rational(-1n)));
  const key=delta.compare(new Rational(BigInt(target),4n))>=0,tier:0|1|2|3=factor?chain>=3||factor.compare(new Rational(3n))>=0?3:chain>=2||factor.compare(new Rational(2n))>=0?2:1:key?1:0;
- return {kind:factor?'multiply':key?'key':'add',tier,chain,factor:factor?fractionText({n:factor.n.toString(),d:factor.d.toString()}):undefined,factorValue:factor?.toJSON(),peak:factor?1.48+tier*.02:key?1.28:1.14,color:tier>=3?'#80551f':tier?'#b8473a':'#26313a'};
+ return {kind:factor?'multiply':key?'key':'add',tier,chain,factor:factor?fractionText({n:factor.n.toString(),d:factor.d.toString()}):undefined,factorValue:factor?.toJSON(),peak:factor?1.48+tier*.02:key?1.36:1.28,color:tier>=3?'#80551f':tier?'#b8473a':'#26313a'};
 }
 export function impactBeat(base:ScoreBeat,impact:NumberImpact|undefined):ScoreBeat {
  if(!impact)return base;
- return {...base,windup:impact.kind==='multiply'?90:impact.kind==='key'?55:25,flight:base.flight?impact.kind==='multiply'?110:75:0,impact:impact.kind==='multiply'?280:impact.kind==='key'?210:145,rest:impact.kind==='multiply'?90:55};
+ return {...base,windup:impact.kind==='multiply'?110:impact.kind==='key'?75:55,flight:base.flight?impact.kind==='multiply'?170:110:0,impact:impact.kind==='multiply'?360:impact.kind==='key'?260:210,rest:impact.kind==='multiply'?110:70};
 }
 /** A held compression, fast release and one settle; no looping flash or shake. */
 export function numberPulse(t:number,kind:NumberImpact['kind'],peak:number){

@@ -68,7 +68,8 @@ export function mountHeroClimax(scene:Phaser.Scene,root:Phaser.GameObjects.Conta
  const readouts=scene.add.container(0,0).setName('hero/climax-readouts');board.add(readouts);numbers(readouts);
  const cumulative=readouts.list.find(o=>o.name==='hero/climax-value') as Phaser.GameObjects.Text|undefined;
  const localReadout=readouts.list.find(o=>o.name==='hero/climax-local-effect') as Phaser.GameObjects.Text|undefined;
- const contribution=value.contribution&&cumulative?mountClimaxContribution(scene,skillLayer,landingLayer,composition.source??composition.eyes,composition.local,composition.total,cumulative,value.contribution,localReadout):undefined;
+ const labelBounds=readouts.list.filter(o=>o.name.endsWith('-label')).map(o=>(o as Phaser.GameObjects.Text).getBounds());
+ const contribution=value.contribution&&cumulative?mountClimaxContribution(scene,skillLayer,landingLayer,composition.source??composition.eyes,composition.local,composition.total,cumulative,value.contribution,localReadout,labelBounds):undefined;
  if(reduced)contribution?.settle();
  const contentBottom=Math.max(...images.map(image=>{const b=image.getData('visibleBounds') as Box;return b.y+b.height;}),...readouts.list.map(o=>{const t=o as Phaser.GameObjects.Text;return t.y+t.displayHeight;}));
  const note=board.list.find(o=>o.name==='hero/climax-note') as Phaser.GameObjects.Text;note.setY(Math.ceil(contentBottom)+8);crispText(note);
@@ -80,14 +81,15 @@ export function mountHeroClimax(scene:Phaser.Scene,root:Phaser.GameObjects.Conta
  paper.fillStyle(T.paperLight,1).fillPoints([{x:p.x,y:p.y+4},{x:p.x+p.width,y:p.y},{x:p.x+p.width,y:bottom-4},{x:p.x,y:bottom}],true);
  paper.lineStyle(2,T.ink,.85).lineBetween(p.x,p.y+4,p.x+p.width,p.y);
  paper.lineStyle(2,T.red,.7).lineBetween(p.x,bottom,p.x+p.width,bottom-4);
- let disposed=false,still=reduced,struck=false,strikeAt=0,shot='',contributionAge=0,releaseDone:(()=>void)|undefined;const started=performance.now(),owned=new Set<Phaser.Tweens.Tween>();
+ let disposed=false,still=reduced,struck=false,strikeAt=0,shot='',contributionAge=0,charge:Phaser.Tweens.Tween|undefined,releaseDone:(()=>void)|undefined;const started=performance.now(),owned=new Set<Phaser.Tweens.Tween>();
  const show=(next:string)=>{if(next===shot)return;shot=next;eyesLayer.setVisible(next==='eyes');skillLayer.setVisible(next==='skill');landingLayer.setVisible(next==='landing');group.setData('shot',next).setData('shotAt',performance.now());};
- const update=()=>{if(disposed||group.getData('phase')==='release')return;const now=performance.now();show(still?'landing':!struck?(hasFocus?'eyes':'skill'):contribution?(contributionAge<420?'skill':'landing'):now-started<180?(hasFocus?'eyes':'skill'):now-strikeAt<600?'skill':'landing');ink.setAlpha(heroFocusPose(now-started,struck?now-strikeAt:undefined,still).alpha);};
+ const update=()=>{if(disposed||group.getData('phase')==='release')return;const now=performance.now();show(still?'landing':!struck?(contributionAge>0?'skill':hasFocus?'eyes':'skill'):contribution?(contributionAge<420?'skill':'landing'):now-started<180?(hasFocus?'eyes':'skill'):now-strikeAt<600?'skill':'landing');ink.setAlpha(heroFocusPose(now-started,struck?now-strikeAt:undefined,still).alpha);};
  const settle=()=>{board.setPosition(0,offset).setAlpha(1);backdrop.setAlpha(1);ink.setAlpha(.24);contribution?.settle();show('landing');};
  const dispose=(destroy=true)=>{if(disposed)return;disposed=true;scene.events?.off('update',update);for(const t of owned)t.remove();owned.clear();contribution?.dispose();releaseDone?.();releaseDone=undefined;if(destroy&&group.active)group.destroy();};
  group.once('destroy',()=>dispose(false));scene.events?.on('update',update);update();
+ if(contribution&&!still){const cursor={t:0};charge=scene.tweens.add({targets:cursor,t:160,delay:70,duration:160,ease:'Linear',onUpdate:()=>{if(disposed||still||struck)return;contributionAge=cursor.t;contribution.frame(cursor.t,false,false);update();}});owned.add(charge);}
  return {group,dispose,reduce:()=>{still=true;for(const t of owned)t.remove();owned.clear();settle();releaseDone?.();releaseDone=undefined;},
-  strike:()=>{if(disposed||struck)return;struck=true;strikeAt=performance.now();group.setData('phase','strike').setData('strikeAt',strikeAt);if(contribution){if(still)contribution.settle();else {const cursor={t:0};owned.add(scene.tweens.add({targets:cursor,t:600,duration:600,ease:'Linear',onUpdate:()=>{contributionAge=cursor.t;contribution.frame(cursor.t);update();},onComplete:()=>{contributionAge=600;contribution.settle();update();}}));}}update();},
+  strike:()=>{if(disposed||struck)return;struck=true;if(charge){charge.remove();owned.delete(charge);charge=undefined;}strikeAt=performance.now();group.setData('phase','strike').setData('strikeAt',strikeAt);if(contribution){if(still)contribution.settle();else {contributionAge=160;contribution.frame(160);const cursor={t:160};owned.add(scene.tweens.add({targets:cursor,t:600,duration:440,ease:'Linear',onUpdate:()=>{contributionAge=cursor.t;contribution.frame(cursor.t);update();},onComplete:()=>{contributionAge=600;contribution.settle();update();}}));}}update();},
   release:()=>new Promise<void>(resolve=>{if(disposed||still){resolve();return;}group.setData('phase','release').setData('releaseAt',performance.now());releaseDone=resolve;const t=scene.tweens.add({targets:[board,backdrop],alpha:0,duration:150,ease:'Cubic.easeIn',onComplete:()=>{releaseDone=undefined;resolve();}});owned.add(t);}),
  };
 }

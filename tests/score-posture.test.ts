@@ -21,6 +21,7 @@ describe('one card pose owner through the EffectQueue lifecycle',()=>{
     for(let ordinal=0;ordinal<2;ordinal++){
       const done=f.posture.play(f.target,{context,arrival:Promise.resolve(),duration:200,ordinal,reducedMotion:false,faceGlow:f.light});await flush();
       f.running[ordinal].tick(.3);expect(f.target.y).toBe(187);expect(f.target.angle).toBe(ordinal?4.5:9.5);expect(f.target.scaleX).toBeCloseTo(.756);
+      f.running[ordinal].tick(.38);expect(f.target.y).toBe(187);
       f.running[ordinal].tick(.76);expect(f.target.y).toBe(207);f.running[ordinal].finish();await done;
       expect(f.target).toMatchObject({y:205,angle:7,scaleX:.7,scaleY:.8});expect(f.light.alpha).toBe(.12);
     }

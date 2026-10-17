@@ -62,3 +62,9 @@ export function scoreImpactCell(board:Box):Box {
   const cell=scoreCells(board)[2],height=board.height>=108?65:Math.min(38,board.height-8);
   return {x:cell.x,y:board.y+board.height-height-3,width:cell.width,height};
 }
+
+/** Keep the pulse and its lift inside the numeric lane after measuring the fitted bitmap. */
+export function scorePulseFrame(cell:Box,width:number,height:number,requested:number,lift:number){
+  const scale=Math.min(requested,cell.width/Math.max(1,width),cell.height/Math.max(1,height)),room=Math.max(0,(cell.height-height*scale)/2);
+  return {scale,lift:Math.max(-room,Math.min(room,lift))};
+}
