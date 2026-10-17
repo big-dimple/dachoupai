@@ -1,0 +1,108 @@
+{
+  "candidate": "04efe4dae5834c85e2d57da934c86ea01e0e3ac7",
+  "scope": "Audio + earlier loading/card narrow integration UI path: held actual loading → catalog a11 keyboard zoom → short rotation → old hero portrait. Software Canvas; media playback/time observed only; not full suite, gameplay, audio listening, physical device or online acceptance.",
+  "errors": [],
+  "loading": {
+    "loaded": "6",
+    "total": "12",
+    "fish": 0,
+    "progress": 0.039518842105305825,
+    "max": 1
+  },
+  "phone": {
+    "dialog": {
+      "x": 0,
+      "y": 0,
+      "width": 390,
+      "height": 740,
+      "top": 0,
+      "right": 390,
+      "bottom": 740,
+      "left": 0
+    },
+    "close": {
+      "x": 338,
+      "y": 8,
+      "width": 44,
+      "height": 44,
+      "top": 8,
+      "right": 382,
+      "bottom": 52,
+      "left": 338
+    },
+    "image": {
+      "x": 8,
+      "y": 56,
+      "width": 374,
+      "height": 672,
+      "top": 56,
+      "right": 382,
+      "bottom": 728,
+      "left": 8
+    },
+    "fit": "contain"
+  },
+  "short": {
+    "dialog": {
+      "x": 0,
+      "y": 0,
+      "width": 740,
+      "height": 320,
+      "top": 0,
+      "right": 740,
+      "bottom": 320,
+      "left": 0
+    },
+    "close": {
+      "x": 688,
+      "y": 8,
+      "width": 44,
+      "height": 44,
+      "top": 8,
+      "right": 732,
+      "bottom": 52,
+      "left": 688
+    },
+    "image": {
+      "x": 8,
+      "y": 56,
+      "width": 724,
+      "height": 252,
+      "top": 56,
+      "right": 732,
+      "bottom": 308,
+      "left": 8
+    },
+    "fit": "contain"
+  },
+  "focusReturned": true,
+  "audioBefore": {
+    "scene": "menu",
+    "context": "running",
+    "volume": 0.3,
+    "slots": [
+      {
+        "track": "assets/audio/bgm/menu-chinese-yangguan.mp3",
+        "paused": false,
+        "time": 1.378853,
+        "loop": true
+      }
+    ]
+  },
+  "audioAfter": {
+    "scene": "menu",
+    "context": "running",
+    "volume": 0.3,
+    "slots": [
+      {
+        "track": "assets/audio/bgm/menu-chinese-yangguan.mp3",
+        "paused": false,
+        "time": 1.680544,
+        "loop": true
+      }
+    ]
+  },
+  "renderer": 1,
+  "finalDialogs": 0,
+  "status": "PASS"
+}

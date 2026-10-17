@@ -1,0 +1,26 @@
+{
+  "candidate": "04efe4dae5834c85e2d57da934c86ea01e0e3ac7",
+  "source": "934871198c8c737cba5aef3b5d8726138be341e5",
+  "product": "5a02e647d9d7b5e7ebbff23897822aadc8b7199d",
+  "previousIntegration": "64c87deaae5864fed85eff2f3c91b1ea4ed3a031",
+  "sourceFileIntersections": [],
+  "sourceBindingMatches": {
+    "src/audio/AudioEngine.ts": true,
+    "src/audio/mixPolicy.ts": true,
+    "src/main.ts": true,
+    "src/game/GameScene.ts": true,
+    "src/game/ShopScene.ts": true,
+    "src/game/CharacterSelectScene.ts": true,
+    "tests/audio-lifecycle.browser.mjs": true
+  },
+  "sourceAssertionChange": {
+    "before": ".82*1.075",
+    "after": ".82*1.35",
+    "by": "incoming audio source, not integrator",
+    "integratorChangedAssertions": false,
+    "retainedOriginalTest": "original-assertion-FAIL.log",
+    "originalTestCopiedByteExact": true,
+    "temporaryFixtureRemovedAfterRun": true
+  },
+  "authorEvidenceReuse": "117 tests and 8 browser cases bound to exact product hashes; not rerun as a full matrix by integrator."
+}

@@ -1,0 +1,21 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/.retained-audio-original.4AKO9A.test.ts (12 tests | 1 failed | 11 skipped) 22ms
+   × ordinary hits stay light and key multiplication has bounded three-layer timbre, all cancellable 20ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/.retained-audio-original.4AKO9A.test.ts > ordinary hits stay light and key multiplication has bounded three-layer timbre, all cancellable
+AssertionError: expected 1.107 to be close to 0.8815, received difference is 0.22550000000000003, but expected 0.005
+ ❯ tests/.retained-audio-original.4AKO9A.test.ts:6:457
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 11 skipped (12)
+   Start at  02:21:22
+   Duration  615ms (transform 348ms, setup 0ms, import 391ms, tests 22ms, environment 0ms)
+

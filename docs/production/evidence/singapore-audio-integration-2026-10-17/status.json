@@ -1,0 +1,48 @@
+{
+  "taskId": "P08",
+  "testedCommit": "04efe4dae5834c85e2d57da934c86ea01e0e3ac7",
+  "date": "2026-10-17",
+  "status": "PARTIAL_INTEGRATION_ASSERTION_CONTRACT_CHANGE_DISCLOSED",
+  "sourceCommit": "934871198c8c737cba5aef3b5d8726138be341e5",
+  "productCommit": "5a02e647d9d7b5e7ebbff23897822aadc8b7199d",
+  "mergeConflicts": [],
+  "sourceHashMatches": {
+    "src/audio/AudioEngine.ts": true,
+    "src/audio/mixPolicy.ts": true,
+    "src/main.ts": true,
+    "src/game/GameScene.ts": true,
+    "src/game/ShopScene.ts": true,
+    "src/game/CharacterSelectScene.ts": true,
+    "tests/audio-lifecycle.browser.mjs": true
+  },
+  "checks": {
+    "currentTargeted": {
+      "passed": 38,
+      "failed": 0
+    },
+    "unchangedOriginalAssertion": {
+      "passed": 0,
+      "failed": 1,
+      "skipped": 11,
+      "actual": 1.107,
+      "expected": 0.8815,
+      "evidence": "original-assertion-FAIL.log"
+    },
+    "build": "PASS",
+    "singleCombinedUiPath": "PASS",
+    "pageErrors": 0,
+    "mediaTimeBefore": 1.378853,
+    "mediaTimeAfter": 1.680544
+  },
+  "assertionsChangedByIntegrator": false,
+  "oldAssertionChangedByIncomingSource": true,
+  "pendingSources": [
+    "recommendation-and-flow",
+    "highlight-source-budget-followup"
+  ],
+  "fullSuiteByIntegrator": "NOT_RUN",
+  "heard": false,
+  "physicalDevice": "NOT_RUN",
+  "mainPushed": false,
+  "ciQueried": false
+}
