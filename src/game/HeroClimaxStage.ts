@@ -5,7 +5,7 @@ import type {Box} from './layout';
 import {heroClimaxLayout,reserveHeroClimaxHeader} from './HeroClimaxLayout';
 import {heroFocusComposition,heroFocusCrop,heroFocusPose} from './HeroClimaxFocus';
 import {mountHeroClimaxCaption} from './HeroClimaxCaption';
-import {portraitFocusKey,portraitKey,selectionPortraitKey,avatarKey} from './portraits';
+import {heroEyesKey,portraitFocusKey,portraitKey,selectionPortraitKey,avatarKey} from './portraits';
 import {climaxSourceKey} from './ClimaxSourceArt';
 import {jokerArtKey} from './jokerArt';
 import {getCharacter} from './characters';
@@ -18,7 +18,7 @@ import {SCORE_FONT,UI_FONT,PAPER_THEME as T,PAPER_CSS as C} from './theme';
 /** Fixed eye strip, source and numeric lanes. Only peripheral ink releases once. */
 export function mountHeroClimax(scene:Phaser.Scene,root:Phaser.GameObjects.Container,viewport:Box,key:JokerKeyHighlight,value:HeroClimaxValue,reduced:boolean):HeroClimaxView|undefined {
  const id=key.heroId;if(!id)return;
- const focusKey=portraitFocusKey(id),hasFocus=scene.textures.exists(focusKey),heroKey=[portraitKey(id),selectionPortraitKey(id),avatarKey(id)].find(k=>scene.textures.exists(k));if(!heroKey)return;
+ const eyesKey=heroEyesKey(id),dedicated=scene.textures.exists(eyesKey),focusKey=portraitFocusKey(id),legacyFocus=scene.textures.exists(focusKey),hasFocus=dedicated||legacyFocus,heroKey=[portraitKey(id),selectionPortraitKey(id),avatarKey(id)].find(k=>scene.textures.exists(k));if(!dedicated&&!heroKey)return;
  const character=getCharacter(id),actualSource=!!key.fact.definitionId,density=textDensity(scene);
  let l=heroClimaxLayout(viewport.width,viewport.height,actualSource);const p=l.panel;
  const group=scene.add.container(0,0).setName('joker/key-focus').setData('eventId',key.eventId).setData('benefit',key.fact).setData('heroClimax',true).setData('starter',key.kind==='starter').setData('phase',reduced?'still':'charge').setData('bounds',viewport).setData('panel',p).setData('headlineWidth',l.nameW);root.add(group);
@@ -35,12 +35,12 @@ export function mountHeroClimax(scene:Phaser.Scene,root:Phaser.GameObjects.Conta
   const b={x:box.x+(box.width-crop.width*scale)/2,y:box.y,width:crop.width*scale,height:crop.height*scale};
   const image=scene.add.image(b.x+(source.width/2-crop.x)*scale,b.y+(source.height/2-crop.y)*scale,texture).setOrigin(.5).setCrop(crop.x,crop.y,crop.width,crop.height).setScale(scale).setName(name).setData('visibleBounds',b).setData('sampledCrop',crop);parent.add(image);images.push(image);return image;
  };
- const texture=hasFocus?focusKey:heroKey,source=scene.textures.get(texture).getSourceImage() as HTMLImageElement;
- const focus=addCrop(focusLayer,texture,composition.eyes,hasFocus?heroFocusCrop(id,source.width,source.height):{x:0,y:0,width:source.width,height:source.height},hasFocus?'hero/climax-eyes':'hero/climax-portrait').setData('camera',hasFocus?'stable-eye-strip':'still-portrait-fallback').setData('assetId',id+'.focus');
+ const texture=dedicated?eyesKey:legacyFocus?focusKey:heroKey!,source=scene.textures.get(texture).getSourceImage() as HTMLImageElement;
+ const focus=addCrop(focusLayer,texture,composition.eyes,!dedicated&&legacyFocus?heroFocusCrop(id,source.width,source.height):{x:0,y:0,width:source.width,height:source.height},hasFocus?'hero/climax-eyes':'hero/climax-portrait').setData('camera',dedicated?'dedicated-eye-strip':hasFocus?'stable-eye-strip':'still-portrait-fallback').setData('assetId',id+(dedicated?'.eyes':'.focus'));
  const ink=scene.add.graphics().setName('hero/focus-ink'),b=focus.getData('visibleBounds') as Box;focusLayer.add(ink);
- // Broken pencil-like edge strokes remain outside the photo and all text lanes.
- const strokes=[[[b.x-10,b.y+8],[b.x-6,b.y+1],[b.x+12,b.y-3]],[[b.x-8,b.y+b.height-8],[b.x-4,b.y+b.height+3],[b.x+16,b.y+b.height+5]],[[b.x+b.width-14,b.y-4],[b.x+b.width+6,b.y-1],[b.x+b.width+10,b.y+9]],[[b.x+b.width-12,b.y+b.height+4],[b.x+b.width+5,b.y+b.height+1],[b.x+b.width+9,b.y+b.height-8]]];
- for(const [i,path] of strokes.entries()){ink.lineStyle(i%2?1.2:2,T.ink,.9);for(let n=1;n<path.length;n++)ink.lineBetween(path[n-1][0],path[n-1][1],path[n][0],path[n][1]);}
+ // The supplied strip owns its pencil edges. Four short outward rays add only a quiet hit.
+ const strokes=[[[b.x-12,b.y+b.height*.28],[b.x-4,b.y+b.height*.36]],[[b.x-10,b.y+b.height*.76],[b.x-3,b.y+b.height*.68]],[[b.x+b.width+4,b.y+b.height*.34],[b.x+b.width+12,b.y+b.height*.26]],[[b.x+b.width+3,b.y+b.height*.7],[b.x+b.width+10,b.y+b.height*.78]]];
+ for(const path of strokes){ink.lineStyle(1,T.ink,.7);ink.lineBetween(path[0][0],path[0][1],path[1][0],path[1][1]);}
  ink.setData('strokes',strokes).setData('protectedPhoto',b);
  const sourceArt=[climaxSourceKey(key.fact.definitionId),jokerArtKey(key.fact.definitionId)].find(k=>k&&scene.textures.exists(k));
  if(actualSource&&sourceArt&&composition.source){
@@ -68,8 +68,9 @@ export function mountHeroClimax(scene:Phaser.Scene,root:Phaser.GameObjects.Conta
  const readouts=scene.add.container(0,0).setName('hero/climax-readouts');board.add(readouts);numbers(readouts);
  const cumulative=readouts.list.find(o=>o.name==='hero/climax-value') as Phaser.GameObjects.Text|undefined;
  const localReadout=readouts.list.find(o=>o.name==='hero/climax-local-effect') as Phaser.GameObjects.Text|undefined;
- const labelBounds=readouts.list.filter(o=>o.name.endsWith('-label')).map(o=>(o as Phaser.GameObjects.Text).getBounds());
- const contribution=value.contribution&&cumulative?mountClimaxContribution(scene,skillLayer,landingLayer,composition.source??composition.eyes,composition.local,composition.total,cumulative,value.contribution,localReadout,labelBounds):undefined;
+ const labelBounds=readouts.list.filter(o=>o.name.endsWith('-label')).map(o=>{const t=o as Phaser.GameObjects.Text;return{x:t.x-t.displayOriginX*t.scaleX,y:t.y-t.displayOriginY*t.scaleY,width:t.displayWidth,height:t.displayHeight};});
+ const contributionSource=images.find(image=>image.name==='hero/climax-source')??focus;
+ const contribution=value.contribution&&cumulative?mountClimaxContribution(scene,skillLayer,landingLayer,contributionSource.getData('visibleBounds') as Box,composition.local,composition.total,cumulative,value.contribution,localReadout,labelBounds,images.map(image=>image.getData('visibleBounds') as Box)):undefined;
  if(reduced)contribution?.settle();
  const contentBottom=Math.max(...images.map(image=>{const b=image.getData('visibleBounds') as Box;return b.y+b.height;}),...readouts.list.map(o=>{const t=o as Phaser.GameObjects.Text;return t.y+t.displayHeight;}));
  const note=board.list.find(o=>o.name==='hero/climax-note') as Phaser.GameObjects.Text;note.setY(Math.ceil(contentBottom)+8);crispText(note);

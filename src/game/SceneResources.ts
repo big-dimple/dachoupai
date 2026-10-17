@@ -27,7 +27,8 @@ export function sceneResources(target:string,run?:R2RunState,startup=false):Scen
  if(target==='character-select'||target==='title')return boundedResources(heroes);
  const ids=new Set([...(run?.jokers.map(j=>j.definitionId)??[]),...(target==='shop'?run?.shop?.offers.map(o=>o.definitionId)??[]:[]),...(run?.lastTrace?.sourceJokers.map(j=>j.definitionId)??[])]);
  const goodsIds=new Set([...(run?.consumables.map(j=>j.definitionId)??[]),...(run?.longTermItems??[]),...(target==='shop'?run?.shop?[...run.shop.toolOffers,...run.shop.itemOffers].map(o=>o.definitionId):[]:[])]);
- return boundedResources([...heroes,...court,...joker.filter(a=>[...ids].some(id=>jokerArtKey(id)===a.key)),...goods.filter(a=>goodsIds.has(a.key.slice('goods-art/'.length))),...(target==='shop'&&!run?.shop?priority:[])]);
+ const eyes=target==='game'?CHARACTER_ART.filter(a=>a.id===run?.characterId&&a.purpose==='eyes').map(a=>({key:a.key,url:a.url,pixels:a.width*a.height})):[];
+ return boundedResources([...heroes,...eyes,...court,...joker.filter(a=>[...ids].some(id=>jokerArtKey(id)===a.key)),...goods.filter(a=>goodsIds.has(a.key.slice('goods-art/'.length))),...(target==='shop'&&!run?.shop?priority:[])]);
 }
 export interface PreparationProgress {total:number;loaded:number;failed:number;pending:number;states:WarmImageState[]}
 export function prepareSceneResources(game:Phaser.Game,assets:readonly SceneResource[],changed:(p:PreparationProgress)=>void,signal:AbortSignal,deadline=12000):Promise<PreparationProgress>{

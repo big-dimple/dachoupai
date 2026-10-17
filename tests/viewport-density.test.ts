@@ -1,6 +1,6 @@
 import {afterEach,expect,it,vi} from 'vitest';
 import {viewportMetrics,FRAMEBUFFER_PIXELS,installViewport} from '../src/platform/Viewport';
-import {crispText} from '../src/game/TextRaster';
+import {crispText,prepareTextScale} from '../src/game/TextRaster';
 afterEach(()=>vi.unstubAllGlobals());
 it.each([1,1.25])('keeps native canvas pointer coordinates aligned after CSS resize at DPR%s',dpr=>{
  let width=320,height=568,resized!:()=>void;
@@ -36,4 +36,9 @@ it.each([[5120,2880,1],[7680,4320,1],[8192,4320,2],[8191,4321,3],[3841,2161,3]])
 it('aligns a centred text bitmap edge, retaining its origin and exact font scale',()=>{
  const text:any={scene:{scale:{zoom:1/3}},style:{resolution:1},x:100.1,y:200.2,displayOriginX:23.5,displayOriginY:0,scaleX:1,scaleY:1,setResolution(n:number){this.style.resolution=n;},setPosition(x:number,y:number){this.x=x;this.y=y;}};
  crispText(text);expect(text.style.resolution).toBe(3);expect((text.x-23.5)*3).toBeCloseTo(Math.round((text.x-23.5)*3));expect(text.y*3).toBeCloseTo(Math.round(text.y*3));expect(text.scaleX).toBe(1);
+});
+it('prepares peak-scale text pixels once and keeps framebuffer alignment without demoting the bitmap',()=>{
+ const data=new Map(),resolution=vi.fn(),text:any={scene:{scale:{zoom:1}},style:{resolution:1},x:100.1,y:200.2,displayOriginX:23.5,displayOriginY:17,scaleX:1,scaleY:1,setData(k:string,v:any){data.set(k,v);return this;},getData:(k:string)=>data.get(k),setResolution(n:number){this.style.resolution=n;resolution(n);},setPosition(x:number,y:number){this.x=x;this.y=y;}};
+ prepareTextScale(text,1.54);expect(text.style.resolution).toBe(2);text.scaleX=text.scaleY=1.54;crispText(text);crispText(text);
+ expect(resolution).toHaveBeenCalledOnce();expect(text.style.resolution).toBeGreaterThanOrEqual(1.54);expect(text.x-23.5*1.54).toBeCloseTo(Math.round(text.x-23.5*1.54));expect(text.y-17*1.54).toBeCloseTo(Math.round(text.y-17*1.54));
 });

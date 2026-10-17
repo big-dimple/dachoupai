@@ -22,20 +22,32 @@ it('licensed transition BGM is named and remains gesture-gated before any media 
 
 import {mountHeroClimax} from '../src/game/HeroClimax';
 // Phaser emits DESTROY before clearing `active`/`scene`; mirror that order to catch recursive destruction.
-function stageFixture(detail=true){
+function stageFixture(detail=true,eyes=true){
  const tweens:any[]=[];
- const object=(type='Object',text=''):any=>{const data=new Map(),events=new Map();const o:any={type,text,width:Math.max(10,text.length*20),height:24,scaleX:1,scaleY:1,alpha:1,active:true,list:[],scene:{},style:{fontSize:'44px'},visible:true,destroyCount:0};
+ const object=(type='Object',text=''):any=>{const data=new Map(),events=new Map();const o:any={type,text,width:Math.max(10,text.length*20),height:24,displayOriginX:0,displayOriginY:0,scaleX:1,scaleY:1,alpha:1,active:true,list:[],scene:{},style:{fontSize:'44px'},visible:true,destroyCount:0};
   for(const name of ['setName','setAlpha','setX','setY','setAngle','setVisible'] as const)o[name]=(v:any)=>{o[{setName:'name',setAlpha:'alpha',setX:'x',setY:'y',setAngle:'angle',setVisible:'visible'}[name]!]=v;return o;};
   for(const name of ['setOrigin','setCrop','setStrokeStyle','setDisplaySize','fillStyle','fillPoints','clear','lineStyle','strokeCircle','lineBetween','fillEllipse'])o[name]=()=>o;
   o.lineBetween=vi.fn(()=>o);o.getBounds=()=>({x:o.x,y:o.y,width:o.width*o.scaleX,height:o.height*o.scaleY});Object.defineProperty(o,'displayHeight',{get:()=>o.height*o.scaleY});Object.defineProperty(o,'displayWidth',{get:()=>o.width*o.scaleX});o.setFontSize=()=>o;o.setWordWrapWidth=()=>o;
   o.setText=(v:string)=>{o.text=v;o.width=v.length*20;return o;};o.setData=(k:string,v:any)=>{data.set(k,v);return o;};o.getData=(k:string)=>data.get(k);o.setPosition=(x:number,y:number)=>{o.x=x;o.y=y;return o;};o.setScale=(x:number,y=x)=>{o.scaleX=x;o.scaleY=y;return o;};o.add=(v:any)=>{o.list.push(...(Array.isArray(v)?v:[v]));return o;};o.addAt=(v:any,i:number)=>{o.list.splice(i,0,v);return o;};o.once=(e:string,f:()=>void)=>{events.set(e,f);return o;};o.destroy=()=>{o.destroyCount++;const f=events.get('destroy');events.delete('destroy');f?.();o.active=false;o.scene=undefined;};return o;
  };
- const listeners=new Set();const scene:any={events:{on:(_:string,f:any)=>listeners.add(f),off:(_:string,f:any)=>listeners.delete(f)},scale:{zoom:1},textures:{exists:(key:string)=>detail||!key.startsWith('climax-source/'),get:()=>({getSourceImage:()=>({width:615,height:768})})},tweens:{add:(config:any)=>{const t={config,remove:vi.fn()};tweens.push(t);return t;}},add:{container:()=>object('Container'),graphics:()=>object('Graphics'),rectangle:()=>object('Rectangle'),tileSprite:()=>object('TileSprite'),image:()=>object('Image'),text:(_:number,__:number,s:string)=>object('Text',s)}};
+ const listeners=new Set();const scene:any={events:{on:(_:string,f:any)=>listeners.add(f),off:(_:string,f:any)=>listeners.delete(f)},scale:{zoom:1},textures:{exists:(key:string)=>(eyes||!key.startsWith('hero-eyes-'))&&(detail||!key.startsWith('climax-source/')),get:(key:string)=>({getSourceImage:()=>key.startsWith('hero-eyes-')?{width:768,height:288}:{width:615,height:768}})},tweens:{add:(config:any)=>{const t={config,remove:vi.fn()};tweens.push(t);return t;}},add:{container:()=>object('Container'),graphics:()=>object('Graphics'),rectangle:()=>object('Rectangle'),tileSprite:()=>object('TileSprite'),image:()=>object('Image'),text:(_:number,__:number,s:string)=>object('Text',s)}};
  const p=play('multiply'),key=keyHighlight(p.s,p.t)!,stage=mountHeroClimax(scene,object('Container'),{x:0,y:0,width:390,height:740},key,heroClimaxValue(p.s,p.t,key)!,false)!;
  return {stage,tweens,listeners};
 }
 it('external Phaser destruction clears owned tweens and release wait without recursively destroying the group',async()=>{
  const {stage,tweens}=stageFixture(),done=stage.release();stage.group.destroy();await done;expect((stage.group as any).destroyCount).toBe(1);expect(tweens.every(t=>t.remove.mock.calls.length===1)).toBe(true);stage.dispose();expect((stage.group as any).destroyCount).toBe(1);
+});
+it('uses the entire dedicated eye original without portrait cropping, stretching or camera movement',()=>{
+ const {stage}=stageFixture(),board=(stage.group as any).list.find((o:any)=>o.name==='hero/climax-board'),eye=board.list.find((o:any)=>o.name==='hero/focus-anchor').list.find((o:any)=>o.name==='hero/climax-eyes');
+ expect(eye.getData('camera')).toBe('dedicated-eye-strip');expect(eye.getData('sampledCrop')).toEqual({x:0,y:0,width:768,height:288});expect(eye.getData('assetId')).toMatch(/\.eyes$/);expect(eye.scaleX).toBe(eye.scaleY);expect(eye.scaleX).toBeLessThanOrEqual(1);
+ const pose=[eye.x,eye.y,eye.scaleX,eye.scaleY];stage.strike();expect([eye.x,eye.y,eye.scaleX,eye.scaleY]).toEqual(pose);stage.reduce();expect([eye.x,eye.y,eye.scaleX,eye.scaleY]).toEqual(pose);stage.dispose();
+ const fallback=stageFixture(true,false),old=(fallback.stage.group as any).list.find((o:any)=>o.name==='hero/climax-board').list.find((o:any)=>o.name==='hero/focus-anchor').list.find((o:any)=>o.name==='hero/climax-eyes');expect(old.getData('camera')).toBe('stable-eye-strip');fallback.stage.dispose();
+});
+it('prepares the numeric peak and routes only the flight outside the measured label row',()=>{
+ const {stage,tweens}=stageFixture(),board=(stage.group as any).list.find((o:any)=>o.name==='hero/climax-board'),texts=board.list.find((o:any)=>o.name==='hero/climax-readouts').list,route=board.list.find((o:any)=>o.name==='hero/shot-skill').list.find((o:any)=>o.name==='hero/contribution-route');
+ expect(texts.find((o:any)=>o.name==='hero/climax-value').getData('rasterPeakScale')).toBe(1.54);expect(texts.find((o:any)=>o.name==='hero/climax-local-effect').getData('rasterPeakScale')).toBe(1.12);
+ for(const [a,b] of route.getData('segments')){expect([a.x,a.y,b.x,b.y].every(Number.isFinite)).toBe(true);for(const guard of route.getData('guards')){const inside=(p:any)=>p.x>guard.x&&p.x<guard.x+guard.width&&p.y>guard.y&&p.y<guard.y+guard.height;expect(inside(a)).toBe(false);expect(inside(b)).toBe(false);}}
+ const charge=tweens[0].config;charge.targets.t=80;charge.onUpdate();expect(route.lineBetween.mock.calls.length).toBeGreaterThan(0);stage.strike();const calls=route.lineBetween.mock.calls.length,pulse=tweens[1].config;pulse.targets.t=292;pulse.onUpdate();expect(route.lineBetween.mock.calls.length).toBe(calls);stage.dispose();
 });
 it('switching to reduced motion during release settles its wait and leaves disposal idempotent',async()=>{
  const {stage}=stageFixture(),done=stage.release();stage.reduce();await done;stage.dispose();stage.dispose();expect((stage.group as any).destroyCount).toBe(1);
