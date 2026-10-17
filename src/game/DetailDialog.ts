@@ -13,6 +13,7 @@ import {createJokerRarityElement,type JokerRarity} from './JokerRarity';
 import {openCardArtZoom} from './CardArtZoomModal';
 import {JOKER_ART,jokerArtUrl,jokerArtPreviewUrl} from './jokerArt';
 import {cardDisplayName} from './tangsongCardNames';
+import './DetailDialog.css';
 /** Native modal owns focus and readable, scrollable details independently of canvas resize. */
 let dismissedPointer:{x:number;y:number;until:number}|undefined;
 /** A rapid second tap at a just-dismissed modal button must not reach the canvas behind it. */
@@ -73,7 +74,7 @@ export class DetailDialog {
       b.onclick=async()=>{AudioEngine.shared.select();b.disabled=true;b.setAttribute('aria-busy','true');status.hidden=true;try{await action.run();}catch{if(this.active(dialog)){status.textContent='操作未完成，请重试。';status.hidden=false;}}finally{if(b.isConnected){b.disabled=!!action.disabled;b.removeAttribute('aria-busy');}}};return b;
     };
     for(const action of actions)row.append(actionButton(action));
-    const close=document.createElement('button');close.textContent=options.closeLabel??'关闭';close.className='dialog-close';close.onclick=()=>{AudioEngine.shared.cancel();this.close(dialog);};row.append(close);
+    const close=document.createElement('button');close.type='button';close.textContent=options.closeLabel??'关闭';close.className='dialog-close';close.onclick=()=>{AudioEngine.shared.cancel();this.close(dialog);};row.append(close);
     dialog.append(header);
     if(options.portrait?.url){
       const portrait=options.portrait,image=document.createElement('img'),card=portrait.layout==='card';image.hidden=true;image.className=card?'dialog-card-image':'dialog-portrait';image.alt=portrait.alt;image.decoding='async';
@@ -199,6 +200,12 @@ export class DetailDialog {
     else copy.append(content,status);
     const scroll=document.createElement('div');scroll.className='dialog-scroll';if(intro.childElementCount)scroll.append(intro);for(const selector of ['figcaption','.detail-art-status','.detail-art-retry'])for(const node of layout.querySelectorAll(selector))scroll.append(node);scroll.append(copy);layout.append(scroll);dialog.append(layout,row);document.body.append(dialog);
     dialog.addEventListener('cancel',event=>{event.preventDefault();this.close(dialog);});
+    dialog.addEventListener('keydown',event=>{
+      if(event.key!=='Tab')return;
+      const controls=[...dialog.querySelectorAll<HTMLElement>('button,input,select,textarea,a[href],summary,[tabindex]')].filter(element=>element.tabIndex>=0&&!element.matches(':disabled')&&element.getClientRects().length>0&&getComputedStyle(element).visibility!=='hidden');
+      const first=controls[0],last=controls[controls.length-1];
+      if(event.shiftKey&&document.activeElement===first||!event.shiftKey&&document.activeElement===last){event.preventDefault();(event.shiftKey?last:first)?.focus({preventScroll:true});}
+    });
     dialog.addEventListener('pointerup',event=>{this.lastPointer={x:event.clientX,y:event.clientY};});
     dialog.showModal();this.dialog=dialog;cleanups.push(observeSuitSymbols(dialog));close.focus({preventScroll:true});dialog.scrollTop=0;return dialog;
   }
