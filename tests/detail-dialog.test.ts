@@ -3,6 +3,8 @@ import {DetailDialog} from '../src/game/DetailDialog';
 import {cardAbilityCopy} from '../src/game/CardCopy';
 import {JOKER_ART,jokerArtUrl,jokerArtPreviewUrl} from '../src/game/jokerArt';
 import {cardDisplayName} from '../src/game/tangsongCardNames';
+import {GOODS_ART} from '../src/game/GoodsArt';
+import {toolInfo,itemInfo,goodsArtPortrait} from '../src/game/r2ToolInfo';
 
 const art=vi.hoisted(()=>({progressive:vi.fn(),decode:vi.fn(),mountF09:vi.fn(),zoom:vi.fn()}));
 vi.mock('../src/game/DetailArt',()=>({progressiveArt:art.progressive,decodeArtImage:art.decode}));
@@ -96,6 +98,20 @@ describe('detail art recovery and stable rarity',()=>{
   it.each(['/invented/cards/a11.detail.webp','/assets/handdrawn-p08/cards/a11-v2-aa4e6a9988ab.detail.webp','/tool-hd.webp'])('does not advertise zoom for unregistered or stale %s',url=>{
     const owner=new DetailDialog(),dialog=owner.open('卡面','规则',[],{portrait:{...portrait,url}});
     expect(node(dialog).querySelector('.dialog-card-zoom-trigger')).toBeNull();expect(node(dialog).querySelector('.dialog-card-zoom-badge')).toBeNull();owner.close();
+  });
+
+  it.each(GOODS_ART.map(art=>[art.domainId,art.category]))('opens illustrated goods %s independently of use/purchase actions',(id,category)=>{
+    const info=category==='item-card'?itemInfo(id):toolInfo(id),owner=new DetailDialog(),purchase=vi.fn(),zoom={close:vi.fn()};art.zoom.mockReturnValue(zoom);
+    const dialog=owner.open(info.name,'规则',[{label:'购买或使用',run:purchase}],{portrait:goodsArtPortrait(info)});
+    const trigger=find(dialog,'.dialog-card-zoom-trigger');expect(trigger.getAttribute('aria-label')).toBe('放大鉴赏'+info.name);
+    trigger.click();expect(art.zoom).toHaveBeenLastCalledWith(id,info.name);expect(purchase).not.toHaveBeenCalled();
+    owner.close();expect(zoom.close).toHaveBeenCalledOnce();expect(trigger.onclick).toBeNull();
+  });
+
+  it('hides illustration zoom over a mechanism fallback, then restores it after real goods art recovers',()=>{
+    const info=toolInfo('T12'),owner=new DetailDialog(),dialog=owner.open(info.name,'规则',[],{portrait:goodsArtPortrait(info)}),trigger=find(dialog,'.dialog-card-zoom-trigger'),image=find(dialog,'.dialog-card-image');
+    image.dispatchEvent(new Event('error'));expect(find(dialog,'.dialog-card-art').dataset.artFallback).toBe('mechanism');expect(trigger.hidden).toBe(true);
+    image.src='blob:real-goods-art';upgrades[0].ready();expect(trigger.hidden).toBe(false);expect(image.alt).toBe(info.name);owner.close();
   });
 
   it('omits the entry when only a small card image or the same small/HD URL is supplied',()=>{
