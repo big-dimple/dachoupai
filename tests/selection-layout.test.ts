@@ -10,6 +10,12 @@ it('six discoverable seats in3x2, a distinct hero and reachable actions',()=>{
   expect(p.confirm.height).toBe(56);
  }
 });
+it('desktop keeps cancel in the header and reserves one bounded primary action',()=>{
+ const p=selectionLayout(1366,768,12,0);
+ expect(p.cancel.y+p.cancel.height).toBeLessThan(p.hero.y);
+ expect(p.cancel.width).toBeLessThanOrEqual(80);expect(p.details.width).toBeLessThanOrEqual(80);
+ expect(p.confirm.width).toBeGreaterThan(p.details.width*2);expect(p.confirm.width).toBeLessThan(p.w/3);expect(p.cards[0].y).toBe(p.cards[5].y);
+});
 it('short rotation splits hero and choices while retaining safe, separate 44px controls',()=>{
  for(const [width,height] of [[740,320],[568,320]])for(const step of ['hero','route'] as const){
   const p=selectionLayout(width,height,36,20,step,44,12),choices=step==='hero'?p.cards:p.routes;

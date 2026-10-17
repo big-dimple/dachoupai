@@ -1,0 +1,678 @@
+{
+  "base": "f81724b57736c7d4f299cf1d95705a7ba3ef9497",
+  "scope": "Local Windows Edge software viewports; source fingerprints are exact pre-commit working-file bytes.",
+  "layout": {
+    "head": "f81724b57736c7d4f299cf1d95705a7ba3ef9497",
+    "sourceHashes": {
+      "src/game/CharacterSelectScene.ts": "09a125c862d3a4f8002c704090ffa6e733b4227875953fb4c7881b5e938d76e0",
+      "src/game/SelectionLayout.ts": "7b6d3269deb575da8295c13aac59ae37340411711a00b8eb67ae224270c681a1",
+      "src/game/OpeningShowcaseLayout.ts": "cf197ae9be9618fb524aef8d4e17562348cbf63254fa83795d62c1e4230c4f16",
+      "src/game/SelectionStageView.ts": "69a775c82dcc73d182ec40f04b54a79ee3436d83b4b2def43640d8089f714073",
+      "src/game/HeroPortraitDialog.ts": "0f8689e1021a5b63390f139c1eb9b1a462317f5cf19c131235bbe70b8c663d59"
+    },
+    "browser": "143.0.3650.80",
+    "platform": "win32",
+    "cases": [
+      {
+        "label": "320x640-amo",
+        "selected": "amo",
+        "width": 320,
+        "height": 640,
+        "bottom": 0
+      },
+      {
+        "label": "320x640-touye",
+        "selected": "touye",
+        "width": 320,
+        "height": 640,
+        "bottom": 0
+      },
+      {
+        "label": "320x640-laohuan",
+        "selected": "laohuan",
+        "width": 320,
+        "height": 640,
+        "bottom": 0
+      },
+      {
+        "label": "320x640-erxiang",
+        "selected": "erxiang",
+        "width": 320,
+        "height": 640,
+        "bottom": 0
+      },
+      {
+        "label": "320x640-azao",
+        "selected": "azao",
+        "width": 320,
+        "height": 640,
+        "bottom": 0
+      },
+      {
+        "label": "320x640-xiemu",
+        "selected": "xiemu",
+        "width": 320,
+        "height": 640,
+        "bottom": 0
+      },
+      {
+        "label": "320x640-route-group",
+        "selected": "xiemu",
+        "width": 320,
+        "height": 640,
+        "bottom": 0
+      },
+      {
+        "label": "320x640-route-straight",
+        "selected": "xiemu",
+        "width": 320,
+        "height": 640,
+        "bottom": 0
+      },
+      {
+        "label": "320x640-route-flush",
+        "selected": "xiemu",
+        "width": 320,
+        "height": 640,
+        "bottom": 0
+      },
+      {
+        "label": "390x740-amo",
+        "selected": "amo",
+        "width": 390,
+        "height": 740,
+        "bottom": 0
+      },
+      {
+        "label": "390x740-touye",
+        "selected": "touye",
+        "width": 390,
+        "height": 740,
+        "bottom": 0
+      },
+      {
+        "label": "390x740-laohuan",
+        "selected": "laohuan",
+        "width": 390,
+        "height": 740,
+        "bottom": 0
+      },
+      {
+        "label": "390x740-erxiang",
+        "selected": "erxiang",
+        "width": 390,
+        "height": 740,
+        "bottom": 0
+      },
+      {
+        "label": "390x740-azao",
+        "selected": "azao",
+        "width": 390,
+        "height": 740,
+        "bottom": 0
+      },
+      {
+        "label": "390x740-xiemu",
+        "selected": "xiemu",
+        "width": 390,
+        "height": 740,
+        "bottom": 0
+      },
+      {
+        "label": "390x740-route-group",
+        "selected": "xiemu",
+        "width": 390,
+        "height": 740,
+        "bottom": 0
+      },
+      {
+        "label": "390x740-route-straight",
+        "selected": "xiemu",
+        "width": 390,
+        "height": 740,
+        "bottom": 0
+      },
+      {
+        "label": "390x740-route-flush",
+        "selected": "xiemu",
+        "width": 390,
+        "height": 740,
+        "bottom": 0
+      },
+      {
+        "label": "1366x768-amo",
+        "selected": "amo",
+        "width": 1366,
+        "height": 768,
+        "bottom": 0
+      },
+      {
+        "label": "1366x768-touye",
+        "selected": "touye",
+        "width": 1366,
+        "height": 768,
+        "bottom": 0
+      },
+      {
+        "label": "1366x768-laohuan",
+        "selected": "laohuan",
+        "width": 1366,
+        "height": 768,
+        "bottom": 0
+      },
+      {
+        "label": "1366x768-erxiang",
+        "selected": "erxiang",
+        "width": 1366,
+        "height": 768,
+        "bottom": 0
+      },
+      {
+        "label": "1366x768-azao",
+        "selected": "azao",
+        "width": 1366,
+        "height": 768,
+        "bottom": 0
+      },
+      {
+        "label": "1366x768-xiemu",
+        "selected": "xiemu",
+        "width": 1366,
+        "height": 768,
+        "bottom": 0
+      },
+      {
+        "label": "1366x768-route-group",
+        "selected": "xiemu",
+        "width": 1366,
+        "height": 768,
+        "bottom": 0
+      },
+      {
+        "label": "1366x768-route-straight",
+        "selected": "xiemu",
+        "width": 1366,
+        "height": 768,
+        "bottom": 0
+      },
+      {
+        "label": "1366x768-route-flush",
+        "selected": "xiemu",
+        "width": 1366,
+        "height": 768,
+        "bottom": 0
+      },
+      {
+        "label": "1920x1080-amo",
+        "selected": "amo",
+        "width": 1920,
+        "height": 1080,
+        "bottom": 0
+      },
+      {
+        "label": "1920x1080-touye",
+        "selected": "touye",
+        "width": 1920,
+        "height": 1080,
+        "bottom": 0
+      },
+      {
+        "label": "1920x1080-laohuan",
+        "selected": "laohuan",
+        "width": 1920,
+        "height": 1080,
+        "bottom": 0
+      },
+      {
+        "label": "1920x1080-erxiang",
+        "selected": "erxiang",
+        "width": 1920,
+        "height": 1080,
+        "bottom": 0
+      },
+      {
+        "label": "1920x1080-azao",
+        "selected": "azao",
+        "width": 1920,
+        "height": 1080,
+        "bottom": 0
+      },
+      {
+        "label": "1920x1080-xiemu",
+        "selected": "xiemu",
+        "width": 1920,
+        "height": 1080,
+        "bottom": 0
+      },
+      {
+        "label": "1920x1080-route-group",
+        "selected": "xiemu",
+        "width": 1920,
+        "height": 1080,
+        "bottom": 0
+      },
+      {
+        "label": "1920x1080-route-straight",
+        "selected": "xiemu",
+        "width": 1920,
+        "height": 1080,
+        "bottom": 0
+      },
+      {
+        "label": "1920x1080-route-flush",
+        "selected": "xiemu",
+        "width": 1920,
+        "height": 1080,
+        "bottom": 0
+      },
+      {
+        "label": "390x528-amo",
+        "selected": "amo",
+        "width": 390,
+        "height": 528,
+        "bottom": 0
+      },
+      {
+        "label": "390x528-touye",
+        "selected": "touye",
+        "width": 390,
+        "height": 528,
+        "bottom": 0
+      },
+      {
+        "label": "390x528-laohuan",
+        "selected": "laohuan",
+        "width": 390,
+        "height": 528,
+        "bottom": 0
+      },
+      {
+        "label": "390x528-erxiang",
+        "selected": "erxiang",
+        "width": 390,
+        "height": 528,
+        "bottom": 0
+      },
+      {
+        "label": "390x528-azao",
+        "selected": "azao",
+        "width": 390,
+        "height": 528,
+        "bottom": 0
+      },
+      {
+        "label": "390x528-xiemu",
+        "selected": "xiemu",
+        "width": 390,
+        "height": 528,
+        "bottom": 0
+      },
+      {
+        "label": "390x528-route-group",
+        "selected": "xiemu",
+        "width": 390,
+        "height": 528,
+        "bottom": 0
+      },
+      {
+        "label": "390x528-route-straight",
+        "selected": "xiemu",
+        "width": 390,
+        "height": 528,
+        "bottom": 0
+      },
+      {
+        "label": "390x528-route-flush",
+        "selected": "xiemu",
+        "width": 390,
+        "height": 528,
+        "bottom": 0
+      },
+      {
+        "label": "740x390-amo",
+        "selected": "amo",
+        "width": 740,
+        "height": 390,
+        "bottom": 0
+      },
+      {
+        "label": "740x390-touye",
+        "selected": "touye",
+        "width": 740,
+        "height": 390,
+        "bottom": 0
+      },
+      {
+        "label": "740x390-laohuan",
+        "selected": "laohuan",
+        "width": 740,
+        "height": 390,
+        "bottom": 0
+      },
+      {
+        "label": "740x390-erxiang",
+        "selected": "erxiang",
+        "width": 740,
+        "height": 390,
+        "bottom": 0
+      },
+      {
+        "label": "740x390-azao",
+        "selected": "azao",
+        "width": 740,
+        "height": 390,
+        "bottom": 0
+      },
+      {
+        "label": "740x390-xiemu",
+        "selected": "xiemu",
+        "width": 740,
+        "height": 390,
+        "bottom": 0
+      },
+      {
+        "label": "740x390-route-group",
+        "selected": "xiemu",
+        "width": 740,
+        "height": 390,
+        "bottom": 0
+      },
+      {
+        "label": "740x390-route-straight",
+        "selected": "xiemu",
+        "width": 740,
+        "height": 390,
+        "bottom": 0
+      },
+      {
+        "label": "740x390-route-flush",
+        "selected": "xiemu",
+        "width": 740,
+        "height": 390,
+        "bottom": 0
+      }
+    ],
+    "starts": [
+      {
+        "width": 320,
+        "mode": {
+          "mode": "standard",
+          "difficulty": 0,
+          "challengeId": null,
+          "programsEnabled": false
+        },
+        "characterId": "xiemu",
+        "route": "flush",
+        "persistedAndColdRestored": true
+      },
+      {
+        "width": 1366,
+        "mode": {
+          "mode": "standard",
+          "difficulty": 0,
+          "challengeId": null,
+          "programsEnabled": false
+        },
+        "characterId": "xiemu",
+        "route": "flush",
+        "persistedAndColdRestored": true
+      }
+    ],
+    "errors": [],
+    "status": "PASS",
+    "caseCount": 54
+  },
+  "finalInput": {
+    "sourceHashes": {
+      "src/game/CharacterSelectScene.ts": "09a125c862d3a4f8002c704090ffa6e733b4227875953fb4c7881b5e938d76e0",
+      "src/game/SelectionLayout.ts": "7b6d3269deb575da8295c13aac59ae37340411711a00b8eb67ae224270c681a1",
+      "src/game/OpeningShowcaseLayout.ts": "cf197ae9be9618fb524aef8d4e17562348cbf63254fa83795d62c1e4230c4f16",
+      "src/game/SelectionStageView.ts": "69a775c82dcc73d182ec40f04b54a79ee3436d83b4b2def43640d8089f714073"
+    },
+    "cases": [
+      {
+        "label": "1366x768-amo",
+        "selected": "amo",
+        "width": 1366,
+        "height": 768,
+        "bottom": 0
+      },
+      {
+        "label": "1366x768-touye",
+        "selected": "touye",
+        "width": 1366,
+        "height": 768,
+        "bottom": 0
+      },
+      {
+        "label": "1366x768-laohuan",
+        "selected": "laohuan",
+        "width": 1366,
+        "height": 768,
+        "bottom": 0
+      },
+      {
+        "label": "1366x768-erxiang",
+        "selected": "erxiang",
+        "width": 1366,
+        "height": 768,
+        "bottom": 0
+      },
+      {
+        "label": "1366x768-azao",
+        "selected": "azao",
+        "width": 1366,
+        "height": 768,
+        "bottom": 0
+      },
+      {
+        "label": "1366x768-xiemu",
+        "selected": "xiemu",
+        "width": 1366,
+        "height": 768,
+        "bottom": 0
+      },
+      {
+        "label": "390x740-amo",
+        "selected": "amo",
+        "width": 390,
+        "height": 740,
+        "bottom": 0
+      },
+      {
+        "label": "390x740-touye",
+        "selected": "touye",
+        "width": 390,
+        "height": 740,
+        "bottom": 0
+      },
+      {
+        "label": "390x740-laohuan",
+        "selected": "laohuan",
+        "width": 390,
+        "height": 740,
+        "bottom": 0
+      },
+      {
+        "label": "390x740-erxiang",
+        "selected": "erxiang",
+        "width": 390,
+        "height": 740,
+        "bottom": 0
+      },
+      {
+        "label": "390x740-azao",
+        "selected": "azao",
+        "width": 390,
+        "height": 740,
+        "bottom": 0
+      },
+      {
+        "label": "390x740-xiemu",
+        "selected": "xiemu",
+        "width": 390,
+        "height": 740,
+        "bottom": 0
+      },
+      {
+        "label": "320x640-amo",
+        "selected": "amo",
+        "width": 320,
+        "height": 640,
+        "bottom": 34
+      },
+      {
+        "label": "320x640-touye",
+        "selected": "touye",
+        "width": 320,
+        "height": 640,
+        "bottom": 34
+      },
+      {
+        "label": "320x640-laohuan",
+        "selected": "laohuan",
+        "width": 320,
+        "height": 640,
+        "bottom": 34
+      },
+      {
+        "label": "320x640-erxiang",
+        "selected": "erxiang",
+        "width": 320,
+        "height": 640,
+        "bottom": 34
+      },
+      {
+        "label": "320x640-azao",
+        "selected": "azao",
+        "width": 320,
+        "height": 640,
+        "bottom": 34
+      },
+      {
+        "label": "320x640-xiemu",
+        "selected": "xiemu",
+        "width": 320,
+        "height": 640,
+        "bottom": 34
+      },
+      {
+        "label": "568x320-amo",
+        "selected": "amo",
+        "width": 568,
+        "height": 320,
+        "bottom": 20
+      },
+      {
+        "label": "568x320-touye",
+        "selected": "touye",
+        "width": 568,
+        "height": 320,
+        "bottom": 20
+      },
+      {
+        "label": "568x320-laohuan",
+        "selected": "laohuan",
+        "width": 568,
+        "height": 320,
+        "bottom": 20
+      },
+      {
+        "label": "568x320-erxiang",
+        "selected": "erxiang",
+        "width": 568,
+        "height": 320,
+        "bottom": 20
+      },
+      {
+        "label": "568x320-azao",
+        "selected": "azao",
+        "width": 568,
+        "height": 320,
+        "bottom": 20
+      },
+      {
+        "label": "568x320-xiemu",
+        "selected": "xiemu",
+        "width": 568,
+        "height": 320,
+        "bottom": 20
+      }
+    ],
+    "errors": [],
+    "status": "PASS",
+    "caseCount": 24
+  },
+  "unit": {
+    "files": [
+      "selection-layout",
+      "opening-signature",
+      "hero-text-contract",
+      "hero-opening-intent"
+    ],
+    "passed": 18
+  },
+  "productionBuild": {
+    "status": "PASS",
+    "assets": [
+      {
+        "name": "index-BjICR4K5.css",
+        "sha256": "0eb622be28a6de07f8df947f711b51254f07a9ceea9cb3fc64da3ca5534b1231"
+      },
+      {
+        "name": "index-u-GgO9wI.js",
+        "sha256": "d28bedf6c84794dc978340a9b2a755710894f0b6797ba66936861b705a47f4a9"
+      }
+    ]
+  },
+  "referenceFiles": [
+    {
+      "name": "image(10).png",
+      "bytes": 595325,
+      "sha256": "78f6cc02d20f578da5aa0abaeb61c42a34adca4c47b8c8f60f395e4fdf1f550a"
+    },
+    {
+      "name": "image(20261017-033023).png",
+      "bytes": 926209,
+      "sha256": "b5c069f2d20a434e4ecc8081af692550f5dc1660764960db6ddd8b1d76f116fa"
+    }
+  ],
+  "screenshots": [
+    {
+      "name": "before-pc.png",
+      "sha256": "ccdca89537722a7fa2af9d0d37d77d70b00c3286a719745968947d72cdeb996e"
+    },
+    {
+      "name": "before-390.png",
+      "sha256": "18f619b7d01ed319fd2ae7938e6be616b1d46e09aad3a8e36d719145102a9901"
+    },
+    {
+      "name": "before-320.png",
+      "sha256": "0cee7e0e3d98a3aa17fe62d12df91e566d9dce82be494d76ab3021f9406574bf"
+    },
+    {
+      "name": "after-pc.png",
+      "sha256": "e3dde9be0b1dc6e5521efbc5d7129ae2eaf19b986c83d1c1a901a7b9c457dbf5"
+    },
+    {
+      "name": "after-390.png",
+      "sha256": "7212c990d6f61b620efdeaf1dc37fb2d71381959b0340a1ecdb336898c8ccf51"
+    },
+    {
+      "name": "after-320.png",
+      "sha256": "ba229a44d6d04b379c0f1e6114e7a41c33288121f85d36245e94cf7dc0d9c433"
+    },
+    {
+      "name": "after-route-390.png",
+      "sha256": "15ccc86bd94de90fa1aa503521ff6b9945e73fa9ec9e22b524ffb6a48014d1d4"
+    },
+    {
+      "name": "after-story-390.png",
+      "sha256": "3ba0c2c0da8af269a53813ddfd69c8163abfa2f94940ea0903ec65d208db90eb"
+    },
+    {
+      "name": "after-portrait-390.png",
+      "sha256": "693d2d588385df6e8f44c212474848cbeaa6f59b3a30f2b5f5bb36b13d1c97ce"
+    }
+  ]
+}

@@ -26,16 +26,16 @@ it('route examples use actual new-run starters and explicitly retain delayed flu
 it('first-shop step follows actual shelf then owned stock without writing state or offering consumed stock',()=>{let s=run();const before=JSON.stringify(s),starter=s.shop!.offers.find(o=>starterOffer(s,o))!;expect(openingShopStep(s)?.offerId).toBe(starter.offerId);expect(JSON.stringify(s)).toBe(before);s=send(s,{type:'BuyOffer',offerId:starter.offerId});const next=openingShopStep(s);expect(next?.kind).toBe('basic-tools');expect(next?.action).toBe('选基础改牌');expect(next?.offerId).toBeUndefined();s=send(s,{type:'BuyBasicTool',definitionId:'T10',shopSeq:s.shop!.basicChoice!.shopSeq});expect(openingShopStep(s)?.kind).toBe('inventory');const copy=structuredClone(s);copy.consumables=[];expect(openingShopStep(copy)?.kind).toBe('hand');copy.stageIndex=1;expect(openingShopStep(copy)).toBeUndefined();});
 it('old identity first-shop step follows actual shelf then owned stock without writing state or offering consumed stock',()=>{let s=createRun({seed:'group-natural-17',runId:'signature',characterId:'erxiang',rulesVersion:'r2',r2Identity:{contentVersion:R2_ERXIANG_HANDOFF_VERSION,contentHash:R2_ERXIANG_HANDOFF_HASH},openingRoute:'group'});const before=JSON.stringify(s),starter=s.shop!.offers.find(o=>starterOffer(s,o))!;expect(openingShopStep(s)?.offerId).toBe(starter.offerId);expect(JSON.stringify(s)).toBe(before);s=send(s,{type:'BuyOffer',offerId:starter.offerId});const next=openingShopStep(s);expect(next?.kind).toBe('tools');expect(next?.offerId).toBe(s.shop!.toolOffers.find(o=>o.definitionId==='T10')!.offerId);s=send(s,{type:'BuyOffer',offerId:next!.offerId!});expect(openingShopStep(s)?.kind).toBe('inventory');const copy=structuredClone(s);copy.consumables=[];expect(openingShopStep(copy)?.kind).toBe('hand');copy.stageIndex=1;expect(openingShopStep(copy)).toBeUndefined();});
 it('showcase bands and portrait reserve disjoint real space across required dimensions',()=>{for(const [w,h] of [[1366,768],[1280,720],[390,740],[320,740],[390,660],[740,390]])for(const step of ['hero','route'] as const){const p=selectionLayout(w,h,12,0,step),q=openingShowcaseLayout(p.hero,p.portrait,p.short);for(const b of [q.art,q.copy,q.demo]){expect(b.width).toBeGreaterThan(40);expect(b.y+b.height).toBeLessThanOrEqual(p.hero.y+p.hero.height);expect(b.x+b.width).toBeLessThanOrEqual(p.hero.x+p.hero.width);}expect(q.copy.y+q.copy.height).toBeLessThanOrEqual(q.demo.y+1);}});
-it('folded showcase gives tall phones a full-width art band with separate summary, discovery and navigation',()=>{
+it('showcase keeps art, identity, summary and discovery separate across orientations',()=>{
  for(const [w,h] of [[1366,768],[1280,720],[390,740],[320,640],[390,528],[740,390]])for(const step of ['hero','route'] as const)for(const bottom of [0,34]){
   const p=selectionLayout(w,h,12,bottom,step),q=openingShowcaseLayout(p.hero,p.portrait,p.short);
-  expect(q.demo.height).toBe((p.portrait||p.short)?44:48);expect(q.demo.width).toBeGreaterThan(100);
-  for(const b of [q.art,q.copy,q.demo]){
+  expect(q.demo.height).toBe(44);expect(q.demo.width).toBeGreaterThan(100);
+  for(const b of [q.art,q.identity,q.copy,q.demo]){
    expect(b.height).toBeGreaterThan(0);expect(b.x).toBeGreaterThanOrEqual(p.hero.x);expect(b.y).toBeGreaterThanOrEqual(p.hero.y);
    expect(b.x+b.width).toBeLessThanOrEqual(p.hero.x+p.hero.width);expect(b.y+b.height).toBeLessThanOrEqual(p.hero.y+p.hero.height);
   }
-  expect(intersects(q.art,q.copy)).toBe(false);expect(intersects(q.art,q.demo)).toBe(false);expect(intersects(q.copy,q.demo)).toBe(false);
+  expect(intersects(q.art,q.identity)).toBe(false);expect(intersects(q.art,q.copy)).toBe(false);expect(intersects(q.art,q.demo)).toBe(false);expect(intersects(q.copy,q.demo)).toBe(false);
   for(const b of [...p.cards,...p.routes,p.confirm,p.cancel,p.details])expect(intersects(q.demo,b)).toBe(false);
-  if(p.portrait&&p.hero.height>=300){expect(q.art.width).toBeGreaterThan(p.hero.width*.9);expect(q.art.y+q.art.height).toBeLessThan(q.copy.y);expect(q.copy.height).toBeGreaterThanOrEqual(100);}
+  if(p.portrait&&p.hero.height>=300){expect(q.art.width).toBeGreaterThan(p.hero.width*.5);expect(q.identity.width).toBeGreaterThan(100);expect(q.art.y+q.art.height).toBeLessThan(q.copy.y);expect(q.copy.height).toBeGreaterThanOrEqual(100);}
  }
 });

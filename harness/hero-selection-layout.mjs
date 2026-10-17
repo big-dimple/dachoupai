@@ -14,7 +14,7 @@ const server=await preview({build:{outDir:'shots/hero-selection-build'},preview:
 console.log('Local server ready');
 const browser=await chromium.launch({...process.env.HERO_LAYOUT_BROWSER?{executablePath:process.env.HERO_LAYOUT_BROWSER}:{channel:process.platform==='win32'?'msedge':undefined},args:['--disable-gpu']});
 console.log('Browser ready');
-const paths=['src/game/CharacterSelectScene.ts','src/game/SelectionLayout.ts','src/game/OpeningShowcaseLayout.ts','src/game/HeroPortraitDialog.ts'];
+const paths=['src/game/CharacterSelectScene.ts','src/game/SelectionLayout.ts','src/game/OpeningShowcaseLayout.ts','src/game/SelectionStageView.ts','src/game/HeroPortraitDialog.ts'];
 const sourceHashes=Object.fromEntries(await Promise.all(paths.map(async path=>[path,createHash('sha256').update(await readFile(path)).digest('hex')])));
 const report={head:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),sourceHashes,browser:browser.version(),platform:process.platform,cases:[],starts:[],errors:[]};
 const ids=['amo','touye','laohuan','erxiang','azao','xiemu'];
