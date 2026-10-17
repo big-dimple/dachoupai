@@ -167,8 +167,7 @@ export class IntermissionScene extends Phaser.Scene {
     }
     if(p.portrait){const shift=nextBottom+8-p.primary.y;p.primary.y+=shift;p.left.y+=shift;p.right.y+=shift;p.noticeY+=shift;}
     if(nextStage){
-      const gift=this.ready?stageGiftReceipt(run):undefined;
-      this.auxiliary(p.left,gift?'赠品去向':'本场详情','action/result-details',()=>gift?this.inspectGift():this.inspectResult());
+      this.auxiliary(p.left,'本场详情','action/result-details',()=>this.inspectResult());
       v.button(p.primary,'前往筹备商店','action/continue-stage',()=>void this.next(),this.ready,true);
     }else if(won){
       this.auxiliary(p.left,'返回选角','action/return-select',()=>this.returnToSelect(),!this.busy);
@@ -256,10 +255,6 @@ export class IntermissionScene extends Phaser.Scene {
     const run=runController(this)!.state;
     const go=()=>this.next();
     showBuildJourney(this.dialog,run,{ready:this.ready&&run.phase==='stage-cleared',source:()=>this.inspectLastHand(),deck:()=>showDeckInspection(this.dialog,run),tools:()=>this.dialog.open('道具箱 · 过关只读',run.consumables.map(c=>toolInfo(c.definitionId).name).join('、')+'\n过关页只查看；前往筹备商店后再选择工具和对象。',[{label:'前往筹备商店继续培养',run:go}]),tool:id=>{const item=run.consumables.find(c=>c.instanceId===id);if(!item)return;const info=toolInfo(item.definitionId,run);this.dialog.open(info.name+' · 过关只读',info.description+'\n'+info.cost+'\n前往筹备商店后自己选择目标并确认。',[{label:'前往筹备商店继续培养',run:go}],{portrait:goodsArtPortrait(info)});},continueLabel:'前往筹备商店继续培养',continue:go});
-  }
-  private inspectGift():void {
-    const gift=stageGiftReceipt(runController(this)!.state);if(!gift)return;
-    this.dialog.open(gift.title,gift.body,[{label:'前往筹备商店',primary:true,disabled:!this.ready,run:()=>this.next()},{label:'本场详情',run:()=>this.inspectResult()}],{...(gift.toolId?{portrait:goodsArtPortrait(toolInfo(gift.toolId))}:{})});
   }
   private inspectResult():void {
     const run=runController(this)!.state,stage={...getR2Stage(this.result.stageIndex,run.tourMode,run.difficulty,run)!,targetHeat:run.stage!.targetHeat};
