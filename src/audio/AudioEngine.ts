@@ -76,6 +76,7 @@ export class AudioEngine {
   private duckUntil = 0;
   private duckFloor=.35;
   private readonly failureCues = new WeakSet<FailureCue>();
+  private musicFilterNode?: BiquadFilterNode;
 
   /** Retry a failed/interrupted unlock on a later gesture without resuming every ordinary click. */
   get needsGestureUnlock(): boolean {
@@ -191,7 +192,16 @@ export class AudioEngine {
         }
         ceiling.curve = curve;
         ceiling.oversample = '2x';
-        gains.music.connect(gains.master);
+        if (this.musicFilterNode) {
+          try {
+            gains.music.connect(this.musicFilterNode);
+            this.musicFilterNode.connect(gains.master);
+          } catch {
+            gains.music.connect(gains.master);
+          }
+        } else {
+          gains.music.connect(gains.master);
+        }
         gains.sfx.connect(gains.master);
         gains.ui.connect(gains.master);
         gains.master.connect(compressor);
@@ -615,5 +625,223 @@ export class AudioEngine {
   failure(cue:FailureCue):void {
     if(!cue||this.failureCues.has(cue))return;this.failureCues.add(cue);if(!this.canPlay('sfx'))return;
     this.duckMusic(.6);this.cue('failure');
+  }
+
+  /**
+   * Returns the underlying AudioContext if initialized and available.
+   */
+  getAudioContext(): AudioContext | undefined {
+    return this.context;
+  }
+
+  /**
+   * Attaches a lowpass filter node specifically into the music bus branch.
+   * [Music Sources / Slots] -> gains.music -> [filterNode] -> gains.master.
+   * SFX and UI buses completely bypass this filter, keeping clicks and scoring chimes crisp.
+   * Returns an unregister cleanup function that restores the direct music route.
+   */
+  attachMusicFilter(filterNode: BiquadFilterNode): () => void {
+    this.musicFilterNode = filterNode;
+    if (this.context && this.gains) {
+      try {
+        this.gains.music.disconnect();
+        this.gains.music.connect(filterNode);
+        filterNode.disconnect();
+        filterNode.connect(this.gains.master);
+      } catch {
+        // Safe fallback: restore direct route if connection fails
+        try {
+          this.gains.music.disconnect();
+          this.gains.music.connect(this.gains.master);
+        } catch {}
+      }
+    }
+    return () => {
+      if (this.musicFilterNode === filterNode) {
+        this.musicFilterNode = undefined;
+        if (this.context && this.gains) {
+          try {
+            this.gains.music.disconnect();
+            this.gains.music.connect(this.gains.master);
+          } catch {}
+        }
+      }
+    };
+  }
+
+  /**
+   * Plays a synthesized pentatonic chime (宫商角徵羽) routed directly through the SFX bus.
+   * Clamped between C4 (261Hz) and E6 (1318Hz), with harmonic shimmer and ducking.
+   * Governed by master volume, sfx slider, mute, voice budget, and presentation cancellation.
+   */
+  playPentatonicNote(stepIndex: number, options: { isMultiplier?: boolean; speedRatio?: number } = {}): void {
+    if (!this.canPlay('sfx')) return;
+    try {
+      const context = this.context!;
+      const speed = Math.max(0.5, Math.min(5.0, options.speedRatio ?? 1.0));
+      const now = context.currentTime;
+
+      // Pentatonic scale base frequencies C4..A4
+      const scale = [261.63, 293.66, 329.63, 392.00, 440.00];
+      const noteIdx = Math.abs(stepIndex) % scale.length;
+      const octave = Math.min(2, Math.floor(Math.abs(stepIndex) / scale.length));
+      let freq = scale[noteIdx] * Math.pow(2, octave);
+      if (freq > 1318.51) freq = 1318.51; // Hard clamp E6
+      if (freq < 130.0) freq = 130.0;
+
+      const duration = (options.isMultiplier ? 0.35 : 0.22) / speed;
+      const osc = context.createOscillator();
+      const oscHarmonic = context.createOscillator();
+      const gain = context.createGain();
+      const filter = context.createBiquadFilter();
+
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, now);
+
+      oscHarmonic.type = 'triangle';
+      oscHarmonic.frequency.setValueAtTime(freq * 2.008, now);
+
+      filter.type = 'bandpass';
+      filter.frequency.setValueAtTime(freq * 1.5, now);
+      filter.Q.setValueAtTime(2.5, now);
+
+      const peakGain = (options.isMultiplier ? 0.28 : 0.20) * SOURCE_GAIN.sfx;
+      gain.gain.setValueAtTime(0, now);
+      gain.gain.linearRampToValueAtTime(peakGain, now + 0.008 / speed);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+
+      osc.connect(filter);
+      oscHarmonic.connect(filter);
+      filter.connect(gain);
+      gain.connect(this.gains!.sfx);
+
+      const voice: Voice = {
+        source: osc,
+        gain,
+        filter,
+        bus: 'sfx',
+        scoreAccent: true,
+        startsAt: now,
+        endsAt: now + duration,
+        priority: options.isMultiplier ? 3 : 2
+      };
+      this.retain(voice);
+
+      osc.start(now);
+      oscHarmonic.start(now);
+      osc.stop(now + duration);
+      oscHarmonic.stop(now + duration);
+
+      osc.onended = () => {
+        try {
+          oscHarmonic.stop();
+          oscHarmonic.disconnect();
+        } catch {}
+      };
+
+      this.duckMusic(options.isMultiplier ? 0.35 : 0.16, 0.3);
+    } catch {
+      // Audio errors must never disrupt gameplay
+    }
+  }
+
+  /**
+   * Plays a heavy Tang Dynasty war drum sub-bass hit for multiplier / climax events.
+   * Pitch bends downward from 135Hz to 36Hz with a resonant low-pass filter.
+   * Routed through SFX bus, obeying mute, volume, and presentation cancellation.
+   */
+  playWarDrum(options: { speedRatio?: number } = {}): void {
+    if (!this.canPlay('sfx')) return;
+    try {
+      const context = this.context!;
+      const speed = Math.max(0.5, Math.min(5.0, options.speedRatio ?? 1.0));
+      const now = context.currentTime;
+      const duration = 0.55 / speed;
+
+      const osc = context.createOscillator();
+      const gain = context.createGain();
+      const filter = context.createBiquadFilter();
+
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(135, now);
+      osc.frequency.exponentialRampToValueAtTime(36, now + duration);
+
+      filter.type = 'lowpass';
+      filter.frequency.setValueAtTime(220, now);
+      filter.frequency.exponentialRampToValueAtTime(55, now + duration);
+      filter.Q.setValueAtTime(4.0, now);
+
+      const peakGain = 0.38 * SOURCE_GAIN.sfx;
+      gain.gain.setValueAtTime(0, now);
+      gain.gain.linearRampToValueAtTime(peakGain, now + 0.006 / speed);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+
+      osc.connect(filter);
+      filter.connect(gain);
+      gain.connect(this.gains!.sfx);
+
+      const voice: Voice = {
+        source: osc,
+        gain,
+        filter,
+        bus: 'sfx',
+        scoreAccent: true,
+        startsAt: now,
+        endsAt: now + duration,
+        priority: 4
+      };
+      this.retain(voice);
+
+      osc.start(now);
+      osc.stop(now + duration);
+
+      this.duckMusic(0.45, 0.2);
+    } catch {
+      // Audio errors must never disrupt gameplay
+    }
+  }
+
+  /**
+   * Plays a resonant Bronze Temple Bell for resolution / victory.
+   * 432Hz bronze chime with long decay.
+   */
+  playTempleBell(options: { speedRatio?: number } = {}): void {
+    if (!this.canPlay('sfx')) return;
+    try {
+      const context = this.context!;
+      const speed = Math.max(0.5, Math.min(5.0, options.speedRatio ?? 1.0));
+      const now = context.currentTime;
+      const duration = 1.2 / speed;
+
+      const osc = context.createOscillator();
+      const gain = context.createGain();
+
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(432, now);
+
+      const peakGain = 0.32 * SOURCE_GAIN.sfx;
+      gain.gain.setValueAtTime(0, now);
+      gain.gain.linearRampToValueAtTime(peakGain, now + 0.01 / speed);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+
+      osc.connect(gain);
+      gain.connect(this.gains!.sfx);
+
+      const voice: Voice = {
+        source: osc,
+        gain,
+        bus: 'sfx',
+        scoreAccent: true,
+        startsAt: now,
+        endsAt: now + duration,
+        priority: 4
+      };
+      this.retain(voice);
+
+      osc.start(now);
+      osc.stop(now + duration);
+
+      this.duckMusic(0.6, 0.25);
+    } catch {}
   }
 }

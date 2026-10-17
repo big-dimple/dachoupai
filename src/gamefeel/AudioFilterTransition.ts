@@ -27,13 +27,50 @@ export class AudioFilterTransition {
   private activeStack: Set<string> = new Set();
   private currentFrequency: number = 20000;
   private isWired: boolean = false;
+  private detachFn?: () => void;
 
   public static readonly MUFFLE_FREQ = 450;    // Deep, warm indoor/underwater club vibe
   public static readonly BRIGHT_FREQ = 20000;  // Full spectrum clarity
 
   /**
-   * Wires the filter node into the Music bus of the given AudioContext or AudioEngine.
-   * Can be inserted between a Music source/submix and gains.music.
+   * Formally attaches to the shared AudioEngine's music bus.
+   * Only the music bus is filtered; SFX and UI remain crisp and bright.
+   */
+  public attachToAudioEngine(engine: AudioEngine = AudioEngine.shared): boolean {
+    if (this.isWired && this.filterNode) {
+      return true;
+    }
+
+    const ctx = engine.getAudioContext();
+    if (!ctx || ctx.state === 'closed') {
+      return false;
+    }
+
+    this.ctx = ctx;
+    if (!this.filterNode) {
+      this.filterNode = ctx.createBiquadFilter();
+      this.filterNode.type = 'lowpass';
+      this.filterNode.frequency.setValueAtTime(this.currentFrequency, ctx.currentTime);
+      this.filterNode.Q.setValueAtTime(1.0, ctx.currentTime);
+    }
+
+    this.detachFn?.();
+    this.detachFn = engine.attachMusicFilter(this.filterNode);
+    this.isWired = true;
+    return true;
+  }
+
+  /**
+   * Detaches from AudioEngine, cleanly restoring the direct music route.
+   */
+  public detach(): void {
+    this.detachFn?.();
+    this.detachFn = undefined;
+    this.isWired = false;
+  }
+
+  /**
+   * Compatibility method for manual audio pipeline wiring.
    */
   public wireIntoMusicPipeline(ctx: AudioContext, musicInputNode: AudioNode, musicBusGain: GainNode): BiquadFilterNode {
     this.ctx = ctx;
@@ -46,7 +83,6 @@ export class AudioFilterTransition {
     }
 
     try {
-      // Disconnect direct route and insert filter in-between
       musicInputNode.disconnect();
       musicInputNode.connect(this.filterNode);
       this.filterNode.connect(musicBusGain);
