@@ -1,4 +1,5 @@
 import type {Box} from './layout';
+import {shopOfferGeometry} from './ShopOfferLayout';
 /** The old copy allowance is not a licence to place invisible targets over shop actions. */
 export function shopOwnedHitBox(card:Box,actionTop:number,expanded:boolean):Box {
   return {...card,height:Math.min(card.height+(expanded?22:0),Math.max(card.height,actionTop-card.y-4))};
@@ -44,14 +45,11 @@ function desktopShopLayout(width:number,height:number,top:number,bottom:number,_
   const inventoryEntry={x:rightX+rightWidth-168,y:top+64,width:168,height:44};
   const shopPanel={x:rightX,y:slotY+ownedHeight+40,width:rightWidth,height:height-bottom-8-(slotY+ownedHeight+40)};
   const actionWidth=width>=1600?144:128,goodsX=shopPanel.x+16,goodsWidth=shopPanel.width-actionWidth-48;
-  // Reserve the lower 128px goods row, its headings and the feedback gap first.
-  const guidanceHeight=usableHeight<760?20:38,groupGap=usableHeight<760?2:24;
-  const faceHeightBudget=usableHeight-332-ownedHeight-128-(16+guidanceHeight-(24-groupGap));
-  const seat=(goodsWidth-24)/3,cardWidth=Math.max(88,Math.min(width>=1600?144:128,faceHeightBudget/1.4)),cardHeight=cardWidth*1.4;
-  const upperY=shopPanel.y+28,upperHeight=cardHeight+136+guidanceHeight;
+  const guidanceHeight=0,groupGap=8,lowerHeight=usableHeight>=850?192:144;
+  const seat=(goodsWidth-24)/3,upperY=shopPanel.y+28,upperHeight=shopPanel.height-28-groupGap-24-lowerHeight-32;
   const jokerOffers:Box[]=Array.from({length:3},(_,i)=>({x:goodsX+i*(seat+12),y:upperY,width:seat,height:upperHeight}));
-  const shelf=jokerOffers.map(b=>({x:b.x+(b.width-cardWidth)/2,y:b.y+6,width:cardWidth,height:cardHeight}));
-  const groupY=upperY+upperHeight+groupGap,groupWidth=(goodsWidth-16)/2,lowerY=groupY+24,lowerHeight=Math.max(96,shopPanel.y+shopPanel.height-32-lowerY);
+  const shelf=jokerOffers.map(b=>shopOfferGeometry(b,'jokers')!.art);
+  const groupY=upperY+upperHeight+groupGap,groupWidth=(goodsWidth-16)/2,lowerY=groupY+24;
   const toolOffers={x:goodsX,y:lowerY,width:groupWidth,height:lowerHeight},itemOffers={x:goodsX+groupWidth+16,y:lowerY,width:groupWidth,height:lowerHeight};
   const feedback={x:shopPanel.x+12,y:shopPanel.y+shopPanel.height-24,width:shopPanel.width-24,height:20};
   const play={x:shopPanel.x+shopPanel.width-actionWidth-12,y:shopPanel.y+28,width:actionWidth,height:56},reroll={x:play.x,y:play.y+68,width:actionWidth,height:44};

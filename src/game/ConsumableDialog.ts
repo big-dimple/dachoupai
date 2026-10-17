@@ -126,7 +126,7 @@ function selectionIssue(tool:R2ToolDefinition,state:R2RunState,selection:Selecti
   }
 }
 
-export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boolean,send:(action:Action,expectedSeq?:number)=>Promise<boolean>,initialInstanceId?:string):void {
+export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boolean,send:(action:Action,expectedSeq?:number)=>Promise<boolean>,initialInstanceId?:string,reuseOwner?:HTMLDialogElement):void {
   const expectedSeq=state.commandSeq,focus=currentBuildFocus(state,state.openingRoute);
   const known=(state.phase==='shop'?state.deckInstances.filter(card=>!state.destroyedIds.includes(card.id)):state.phase==='await-input'?state.handOrder.map(id=>state.deckInstances.find(card=>card.id===id)!):[]);
   const cardChoices:Choice[]=known.map((card,index)=>({id:card.id,name:cardName(card),detail:`${card.enhancement?enhancementName(card):'普通'}${(card.edition??'none')==='none'?'':' · '+editionLabel(card.edition)}\n第 ${index+1} 张`,card}));
@@ -136,6 +136,7 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
     const item=state.consumables.find(consumable=>consumable.instanceId===instanceId),definition=item&&R2_TOOLS.find(candidate=>candidate.id===item.definitionId);if(!item||!definition)return;
     const tool=definition;
     const info=toolInfo(tool.id,state),selection:Selection={ids:new Set(),targetKind:'card'};let busy=false;
+    const targetless=tool.target.kind==='none'||tool.target.kind==='whole-deck'||tool.target.kind==='discovered-hand'&&tool.target.selection==='fixed';
     const useAction={label:'确认使用',primary:true,disabled:true,run:async()=>{
       if(busy||selectionIssue(tool,state,selection,known,ready))return;
       const action:Extract<Action,{type:'UseConsumable'}>={type:'UseConsumable',instanceId,targetIds:targetChoices().filter(choice=>selection.ids.has(choice.id)).map(choice=>choice.id)};
@@ -159,8 +160,9 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
         catch{const status=confirmation.querySelector<HTMLParagraphElement>('.dialog-status')!;status.textContent='销毁未完成，请重试。';status.hidden=false;}
       }}],{closeLabel:'取消'});
     }};
-    const d=dialog.open(info.name+' · 使用',[info.description,toolUseCost(tool),info.risk].join('\n\n'),[useAction,destroyAction],{closeLabel:'取消 · 保留工具',portrait:goodsArtPortrait(info),effectBody:info.summary,collapseRules:true});d.classList.add('tool-detail');markRouteDetail(d,routeFitCue(state,'tools',tool.id));
+    const d=dialog.open(info.name+' · 使用',[info.description,toolUseCost(tool),info.risk].join('\n\n'),[useAction,destroyAction],{closeLabel:'稍后使用',portrait:goodsArtPortrait(info),effectBody:info.summary,collapseRules:true},reuseOwner);d.classList.add('tool-detail');markRouteDetail(d,routeFitCue(state,'tools',tool.id));
     const instruction=document.createElement('p'),target=tool.target;
+    if(targetless)d.classList.add('tool-targetless');
     instruction.className='tool-short-instruction';
     const count=target.kind==='cards'||target.kind==='card-sacrifice'?`选 ${target.minimum===target.maximum?target.maximum:target.minimum+'–'+target.maximum} 张` :target.kind==='card-or-joker'?'选 1 个普通版次对象':target.kind==='joker-sacrifice'?'选 1 张牺牲牌与 1 张受益牌':target.kind==='discovered-hand'?(target.selection==='fixed'?'固定牌型 · 无需选择':'选已发现牌型'):target.kind==='suit'?'选 1 种花色':target.kind==='hand-exchange'?'选 2 种不同牌型':target.kind==='whole-deck'?'整副有效牌组': '无需选牌';
     instruction.textContent=target.kind==='card-sacrifice'?`受益 ${target.minimum}–${target.maximum} 张 + 牺牲 1 张 → 确认`:target.kind==='joker-sacrifice'?'受益 1 张 + 牺牲 1 张 → 确认':count+' → 确认使用';d.querySelector('.dialog-header')!.append(instruction);
@@ -215,7 +217,7 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
         label.append(name,select);panel.append(label,host);selects.push(select);gallery('普通版次目标',cardChoices,'target',1,host);
         select.onchange=()=>{selection.targetKind=select.value as 'card'|'joker';selection.ids.clear();for(let index=controls.length-1;index>=0;index--)if(controls[index].role==='target')controls.splice(index,1);host.replaceChildren();gallery('普通版次目标',targetChoices(),'target',1,host);refresh();};break;
       }
-      case 'discovered-hand':if(tool.target.selection==='chosen'){const types=focusedUpgradeTypes(state,focus);handSelect('升级牌型',types,type=>{selection.handType=type;},types[0]);}break;
+      case 'discovered-hand':if(tool.target.selection==='chosen'){const types=focusedUpgradeTypes(state,focus);handSelect('升级牌型',types,type=>{selection.handType=type;});}break;
       case 'suit': {
         const label=document.createElement('label'),name=document.createElement('span'),select=document.createElement('select'),empty=document.createElement('option');label.className='tool-field';name.textContent='全副花色';select.setAttribute('aria-label','全副花色');empty.value='';empty.textContent='请选择';select.append(empty);
         const facts=r2S04Facts(state);
@@ -244,6 +246,7 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
     const paneScroll={targets:0,changes:0};
     for(const [pane,label] of [['targets','返回选牌'],['changes','查看预览']] as const){const b=document.createElement('button');b.type='button';b.textContent=label;b.dataset.pane=pane;b.setAttribute('aria-pressed',String(pane==='targets'));b.onclick=()=>{paneScroll[workspace.dataset.pane as keyof typeof paneScroll]=workspace.scrollTop;workspace.dataset.pane=pane;d.dataset.toolPane=pane;workspace.scrollTop=paneScroll[pane];for(const other of panes.querySelectorAll('button'))other.setAttribute('aria-pressed',String(other===b));};panes.append(b);}d.querySelector('.dialog-header')!.append(panes);
     if(['whole-deck','none'].includes(tool.target.kind))panes.querySelector<HTMLButtonElement>('button:last-child')!.click();
+    if(targetless){const direct=document.createElement('section');direct.className='tool-direct-summary';if(art)direct.append(art);direct.append(dock);workspace.prepend(direct);panes.remove();instruction.textContent=info.summary+' · 确认才生效';const rules=d.querySelector('.card-rules');if(rules){for(const text of rules.querySelectorAll('p'))risks.append(text);rules.remove();}}
     function refresh():void {
       const operation=tool.operation;
       for(const button of sortButtons)button.disabled=busy;
@@ -279,7 +282,7 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
         const detail=label.querySelector('small');if(detail)detail.textContent=choice.detail+(reason?' · '+reason:'');
       }
       directoryUpdates.forEach(update=>update());selects.forEach(select=>{select.disabled=busy;});useAction.disabled=busy||!!issue;destroyAction.disabled=busy||!ready;confirm.disabled=useAction.disabled;destroy.disabled=destroyAction.disabled;
-      hint.textContent=busy?'正在使用…':issue??'目标有效。确认后使用物品并支付上述代价。';hint.dataset.valid=String(!issue);
+      hint.textContent=busy?'正在使用…':issue??(targetless?'确认后使用并消耗这件工具。':'目标有效。确认后使用物品并支付上述代价。');hint.dataset.valid=String(!issue);
       // Fixed summary rows retain visible selected identities, including targets outside filters.
       const donor=(tool.target.kind==='joker-sacrifice'?jokerChoices:cardChoices).find(choice=>choice.id===selection.sacrificeId);
       selectionHint.textContent=['cards','card-sacrifice','card-or-joker','joker-sacrifice'].includes(tool.target.kind)
@@ -328,9 +331,11 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
       if(permanent)lines.push(permanent);
       preview.hidden=compactPreview;preview.textContent=compactPreview?'':operation.kind==='clear-deck-specials'&&issue?issue:lines.join('\n\n')||'选择目标后，这里会显示变化与代价。';
     }
+    if(targetless)selectionHint.remove();
     refresh();
   };
   if(!initialInstanceId)AudioEngine.shared.titleConfirm();
+  if(initialInstanceId){openTool(initialInstanceId);return;}
   const available=state.consumables.some(c=>R2_TOOLS.find(t=>t.id===c.definitionId)?.phases.includes(state.phase as 'shop'|'await-input'));
   const inventory=dialog.open('道具箱',state.consumables.length&&!available?'现有工具不在当前使用阶段；库存仍保留，按卡面提示到商店或牌桌使用。':'选择工具，确认后使用。');inventory.classList.add('tool-inventory');
   const content=inventory.querySelector('.dialog-copy')!;

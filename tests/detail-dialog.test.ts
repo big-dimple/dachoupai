@@ -71,6 +71,15 @@ const node=(element:unknown)=>element as Element;
 const find=(root:unknown,selector:string)=>{const found=node(root).querySelector(selector);expect(found,selector).not.toBeNull();return found!;};
 const flush=async()=>{for(let i=0;i<4;i++)await Promise.resolve();};
 
+it('purchase to target selection keeps the same open panel and replaces its old controls',()=>{
+  const owner=new DetailDialog(),buy=vi.fn(),first=owner.open('购买工具','尚未购买',[{label:'购买',primary:true,run:buy}]);
+  const modal=vi.spyOn(node(first),'showModal');
+  const second=owner.open('选择目标','已购买，尚未使用',[{label:'确认使用',primary:true,disabled:true,run:vi.fn()}],{closeLabel:'稍后使用'},first);
+  expect(second).toBe(first);expect(owner.current).toBe(first);expect(modal).not.toHaveBeenCalled();
+  expect(find(first,'.dialog-header').children.find(n=>n.tagName==='H2')?.textContent).toBe('选择目标');expect(find(first,'.dialog-actions').children.map(b=>b.textContent)).toEqual(['确认使用','稍后使用']);expect(buy).not.toHaveBeenCalled();
+  owner.close();
+});
+
 beforeEach(()=>{
   vi.clearAllMocks();upgrades.length=0;
   const body=new Element('BODY');dom={body,activeElement:body,createElement:tag=>new Element(tag.toUpperCase()),querySelector:selector=>body.querySelector(selector)};

@@ -1,0 +1,11 @@
+D:/ai/dachoupai/dachoupai/.codex-remote-attachments/shop-flow-redesign-20261017/src/application/checkpoint.ts:109
+  throw Error(message);
+        ^
+
+Error: invalid-save-opening-state
+    at fail (D:/ai/dachoupai/dachoupai/.codex-remote-attachments/shop-flow-redesign-20261017/src/application/checkpoint.ts:109:9)
+    at validateState (D:/ai/dachoupai/dachoupai/.codex-remote-attachments/shop-flow-redesign-20261017/src/application/checkpoint.ts:1278:132)
+    at makeCheckpoint (D:/ai/dachoupai/dachoupai/.codex-remote-attachments/shop-flow-redesign-20261017/src/application/checkpoint.ts:1339:3)
+    at file:///D:/ai/dachoupai/dachoupai/.codex-remote-attachments/shop-flow-redesign-20261017/docs/production/evidence/shop-flow-redesign-2026-10-17/browser-check.mjs:22:13
+
+Node.js v22.20.0
