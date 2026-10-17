@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "auditCommit": "7d7921e76ca794a14e715e3eac3b4d66143862ff",
   "currentTask": "P08",
-  "selectionPolicy": "13:02起新加坡AI仅独立分支建议/素材/音乐/示例，等用户通知才逐项评审，不合并、不自动吸收未知分支/远端提交/外部计划；当前只接我方已指派且有精确回执的白名单，已有我方优化继续且不等待外部。main已发布2f0dd4e6，本次仅dev边界登记；未知main变化先保留报告，不reset/force。最高源牌音画仍等01a147ec同版GameScene/实际序列与最新6609双拍联合包。三目标/P08及预算/真人正式门保持。",
+  "selectionPolicy": "我方白名单源牌4eac（含6609）实际合64c07b00，新增5files48交叉及类型339构建PASS，正常eyes/main交付，不等CI。局部双拍/同层虹彩只签功能，受控公开导入非自然/听感/真机；PC手机图已看但手机大空白/教学行/技能叠框未过，下一批优先源牌演出空间及整手导演。英雄/c12/透视反光等后续不阻本批；ca843不合，13:02外部边界保持。P08/三体验/20MB/人验正式门不关闭。",
   "resumeContract": {
     "candidateCommit": "4bf6a7d63d7738d3c415d09439a1bdca878dc685",
     "gateTask": "A01",
@@ -38,7 +38,7 @@
       ],
       "package": "docs/production/WORK_PACKAGES.md#p08",
       "humanGate": false,
-      "completionScope": "P08及三体验目标仍未达标。商店头栏/Shop虹彩1075经aceb、旧名63145和手册最新7b18实际合277d13cc，38交叉/类型340构建PASS，正常dev/main交付；源18/28/30/74及双端按各自范围复用，不重测手册。GameScene/音频/规则存档资产不改。最高下一项仍为01a147ec的顶部五牌分散悬浮/去红粗框/真实左右回弹，与最新6609真实scoreRebound双拍同版GameScene/序列闭环；未交不孤立单发旧8a9。Shop虹彩不代签战斗，用户旧词原现场根因仍未知。389文件37488833B超20MB，原CI缺口/审美理解/听感触感/实体手机/性能与正式门保持。",
+      "completionScope": "P08和三体验目标仍未达标。源牌4eac含6609实际合64c07b00：五牌分散纯图/左右回弹/主击arrival与同Tween回弹第二拍/同层虹彩按功能收口，62路径/8核心/5源hash精确，保main2f0商店/文案/AI刘娥。新增5files48交叉、类型339构建PASS；源96及4files48与7最终受控用例按原范围复用，不相加、不冒称自然/新矩阵/真人。已看双端图，手机牌型至待出区大留白、底部教学整行、技能叠框未过视觉，下一批优先给源牌演出空间；整手导演/透视反光惯性/英雄和c12接线/非HM成长差值仍后续，不阻本功能批。389文件37488800B超20MB；外部ca843不合，原CI缺口、听感触感/真机/后台/性能/正式门保持。",
       "evidence": [
         "docs/production/evidence/feedback-batch-integration-2026-10-17/eyes-followups.json",
         "docs/production/evidence/feedback-batch-integration-2026-10-17/zoom-sort.json",
@@ -2180,26 +2180,7 @@
     "open": "existing CI defects;three experience goals/P08,human/device/hearing/haptics/formal gates",
     "actualPublishedMain": "e389ea2c4a7f6d49284546f91992d13055072655"
   },
-  "pendingIntegrations": {
-    "sourceCardAudioCore": {
-      "priority": "HIGHEST_NEXT",
-      "owner": "01a147ec",
-      "status": "WAITING_COMBINED_SOURCE_CARD_LATEST6609_REBOUND_DOUBLE_BEAT_SCENE_SEQUENCE_RECEIPT",
-      "audioCandidate": "6609f4f609199ee1d5c9271c9389daaebb943bd7",
-      "audioBranch": "dev/score-audio-density-20261017",
-      "requiredScope": [
-        "top five jokers spread floating",
-        "remove thick red boxes",
-        "actual triggered source left/right motion and recoil",
-        "same-event audio sync;nonparticipants do not fake motion"
-      ],
-      "mergePolicy": "latest6609 plus source-card GameScene same-version wiring and actual sequence receipt only;do not publish old single-beat8a9 alone or claim double-beat/human experience complete",
-      "supersededAudioCandidate": "8a9b3d995a980bc9147babc0f683b01f114e39bb",
-      "scoreReboundContract": "double beat at the actual rebound phase;requires GameScene same-version wiring and actual sequence evidence",
-      "previousAudioSourceEvidence": "105narrow/type/build/no clipping;human listening NOT_RUN",
-      "latestAudioSourceEvidence": "parent delivered scoreRebound double-beat contract;not locally merged/tested;actual scene sequence pending"
-    }
-  },
+  "pendingIntegrations": {},
   "encoreCopyFollowup": {
     "baseMain": "e389ea2c4a7f6d49284546f91992d13055072655",
     "includedRegistrationDevCommit": "af45fe50924710fb528563f7bc1eecef02f5da38",
@@ -2362,6 +2343,34 @@
       "integratedProduct": "277d13cc381545e4b2965d2aa019c6bb7e11ad1c",
       "sourceEvidence": "28related/type/build;1180/390 native menu geometry8px,12edge clicks and canonical tuples reused at five exact LF source hashes",
       "fourAreasAndIridescenceHooks": "preserved"
+    },
+    "sourceCardAudioCore": {
+      "priority": "FUNCTIONAL_BATCH_VERIFIED_EXPERIENCE_FOLLOWUP_OPEN",
+      "owner": "01a147ec",
+      "status": "FUNCTIONAL_WIRING_VERIFIED_NORMAL_MAIN_DEV_DELIVERY_AUTHORIZED",
+      "audioCandidate": "6609f4f609199ee1d5c9271c9389daaebb943bd7",
+      "audioBranch": "dev/score-audio-density-20261017",
+      "requiredScope": [
+        "top five jokers spread floating",
+        "remove thick red boxes",
+        "actual triggered source left/right motion and recoil",
+        "same-event audio sync;nonparticipants do not fake motion"
+      ],
+      "mergePolicy": "latest6609 plus source-card GameScene same-version wiring and actual sequence receipt only;do not publish old single-beat8a9 alone or claim double-beat/human experience complete",
+      "supersededAudioCandidate": "8a9b3d995a980bc9147babc0f683b01f114e39bb",
+      "scoreReboundContract": "double beat at the actual rebound phase;requires GameScene same-version wiring and actual sequence evidence",
+      "previousAudioSourceEvidence": "105narrow/type/build/no clipping;human listening NOT_RUN",
+      "latestAudioSourceEvidence": "source96 core and4files48 audio/iridescence reused;actual master-graph WebM and real scoreRebound sequence,heard=false",
+      "candidate": "4eac55ed67cfb2165c26f1caf2545462b1bc2ac3",
+      "sourceProduct": "c2dcab7f50ff9df2135784d39098da99c9e8657a",
+      "integratedProduct": "64c07b005cb022d2fa987a8a803590a773ec3c48",
+      "audio6609Ancestor": true,
+      "audioFilesExact6609": true,
+      "GameSceneWired": true,
+      "wholeExperienceAccepted": false,
+      "sourceCompiledHashesExact": 5,
+      "sourceNative": "PC3904x each13events/13pairs;7finalcases exact saved state;controlled public import,not natural/physical/hearing",
+      "remaining": "whole-hand director,perspective/reflection/inertia,mobile space/teaching row/nested skill frame,hero/c12 hooks,non-HM growth saved delta"
     }
   },
   "shopStructureFollowup": {
@@ -2544,13 +2553,55 @@
     "priorOwnReceiptsRetained": true,
     "expectedMain": "2f0dd4e6fcb8d343de79e719b0e9e4ce2d382679",
     "unexpectedMainPolicy": "preserve commit and changes;report SHA and comparison before proceeding;never reset/force overwrite",
-    "pendingAssignedCore": {
+    "recordingOnly": true,
+    "repositoryPermissionsChanged": false,
+    "resolvedAssignedCore": {
       "owner": "01a147ec",
       "audioCandidate": "6609f4f609199ee1d5c9271c9389daaebb943bd7",
-      "GameSceneCandidate": "await owner exact combined receipt",
-      "conditions": "same-version source motion and actual scoreRebound double-beat sequence,not audio alone"
+      "GameSceneCandidate": "4eac55ed67cfb2165c26f1caf2545462b1bc2ac3",
+      "conditions": "same-version source motion and actual scoreRebound double-beat sequence,not audio alone",
+      "integratedProduct": "64c07b005cb022d2fa987a8a803590a773ec3c48",
+      "status": "FUNCTIONAL_CURRENT_OWN_BATCH_VERIFIED"
+    }
+  },
+  "sourceCardAudioFollowup": {
+    "baseMain": "2f0dd4e6fcb8d343de79e719b0e9e4ce2d382679",
+    "baseDev": "093c7cc5b30af6c1848dba4a4dbe21fb31490a63",
+    "source": "4eac55ed67cfb2165c26f1caf2545462b1bc2ac3",
+    "sourceProduct": "c2dcab7f50ff9df2135784d39098da99c9e8657a",
+    "product": "64c07b005cb022d2fa987a8a803590a773ec3c48",
+    "devBranch": "dev/eyes-followups-integration-20261017",
+    "status": "FUNCTION_CHECKS_PASS_NORMAL_MAIN_AND_DEV_DELIVERY_AUTHORIZED",
+    "sourceChangedPathsExact": 62,
+    "coreExactSource": 8,
+    "audio6609AncestorAndThreeBlobsExact": true,
+    "cross": {
+      "files": 5,
+      "tests": 48,
+      "status": "PASS",
+      "scope": "shopBoss/heroDraft/sourceArt/haptics/mixPolicy"
     },
-    "recordingOnly": true,
-    "repositoryPermissionsChanged": false
+    "typecheckAndBuild": "PASS339 modules",
+    "sourceEvidenceReused": "96core and4files48separate;PC3904x13events13pairs;7finalcases;not summed or native rerun",
+    "humanMobileArtAccepted": false,
+    "visualNext": [
+      "prioritize source-performance space between hand type and pending play",
+      "remove/rehouse full bottom teaching status row",
+      "reduce nested skill button frames"
+    ],
+    "notIncluded": [
+      "whole-hand director",
+      "genuine perspective/reflection/spring inertia",
+      "hero portrait and c12 GameScene hooks",
+      "saved before/after non-HM growth popup delta"
+    ],
+    "fullDist": {
+      "files": 389,
+      "bytes": 37488800,
+      "limit": 20000000,
+      "status": "FAIL"
+    },
+    "externalCa843Merged": false,
+    "open": "P08 and3experiencegoals,human understanding/listening,physical devices/background/performance/formal gates"
   }
 }

@@ -1,0 +1,104 @@
+{
+  "baseDev": "093c7cc5b30af6c1848dba4a4dbe21fb31490a63",
+  "baseMain": "2f0dd4e6fcb8d343de79e719b0e9e4ce2d382679",
+  "source": "4eac55ed67cfb2165c26f1caf2545462b1bc2ac3",
+  "sourceProduct": "c2dcab7f50ff9df2135784d39098da99c9e8657a",
+  "testedProduct": "64c07b005cb022d2fa987a8a803590a773ec3c48",
+  "newPaths": 62,
+  "allChangedPathsExactSource": true,
+  "different": [],
+  "audio6609Ancestor": true,
+  "audioFilesExact6609": {
+    "src/audio/AudioEngine.ts": true,
+    "src/audio/foley.ts": true,
+    "src/audio/mixPolicy.ts": true
+  },
+  "coreSourceHashes": {
+    "src/game/GameScene.ts": {
+      "actualSHA256LF": "f6abd044b0a6e424cdd9bb2aefac2b0b45a8f4d359ae9cf4512cebe514d1694d",
+      "sourceCompiledSHA256LF": "f6abd044b0a6e424cdd9bb2aefac2b0b45a8f4d359ae9cf4512cebe514d1694d",
+      "matches": true
+    },
+    "src/game/OwnedJokerScoreMotion.ts": {
+      "actualSHA256LF": "25a409d6602b43569a27da1d7bb1f1517da3eaacb4ad2736ba239af85bc17aee",
+      "sourceCompiledSHA256LF": "25a409d6602b43569a27da1d7bb1f1517da3eaacb4ad2736ba239af85bc17aee",
+      "matches": true
+    },
+    "src/game/layout.ts": {
+      "actualSHA256LF": "e15138729ed0d0b2c1d6a4db416365404d159da8213a97d41bff84b5550cdc2f",
+      "sourceCompiledSHA256LF": "e15138729ed0d0b2c1d6a4db416365404d159da8213a97d41bff84b5550cdc2f",
+      "matches": true
+    },
+    "src/game/PolychromeCardIridescence.ts": {
+      "actualSHA256LF": "560b19c18a2c3238d079a2f74d47b9910e268155239c4a8c3ef1d915c249e145",
+      "sourceCompiledSHA256LF": "560b19c18a2c3238d079a2f74d47b9910e268155239c4a8c3ef1d915c249e145",
+      "matches": true
+    },
+    "src/audio/AudioEngine.ts": {
+      "actualSHA256LF": "45187afcbc61abe8e38be60bebc0db5a5a085f1513792e94df168f72a2610535",
+      "sourceCompiledSHA256LF": "45187afcbc61abe8e38be60bebc0db5a5a085f1513792e94df168f72a2610535",
+      "matches": true
+    }
+  },
+  "protectedDiff": [],
+  "sourceNativeEvidence": {
+    "cases": 7,
+    "pcPhoneFastEventsEach": 13,
+    "pcPhoneFastDoubleBeatPairsEach": 13,
+    "allFinalCasesExactSavedState": true,
+    "iridescenceParent": "owned-joker/score-pose",
+    "media": [
+      {
+        "key": "pc",
+        "path": "final/pc/av-continuous.webm",
+        "bytes": 3946753,
+        "video": "VP8",
+        "audio": "Opus from actual master graph",
+        "heard": false
+      },
+      {
+        "key": "phone",
+        "path": "final/phone/av-continuous.webm",
+        "bytes": 4660493,
+        "video": "VP8",
+        "audio": "Opus from actual master graph",
+        "heard": false
+      },
+      {
+        "key": "fast",
+        "path": "final/fast/av-continuous.webm",
+        "bytes": 2127909,
+        "video": "VP8",
+        "audio": "Opus from actual master graph",
+        "heard": false
+      }
+    ],
+    "scope": "public-import controlled inventory/native selection and play;source exact hashes reused;not natural acquisition,not current root browser rerun",
+    "heard": false,
+    "physicalDevice": false,
+    "humanMobileArtAcceptance": false
+  },
+  "newlyAbsorbedCommits": [
+    "4eac55ed67cfb2165c26f1caf2545462b1bc2ac3",
+    "c2dcab7f50ff9df2135784d39098da99c9e8657a",
+    "b040d104c12cfd2e5bf3c49c5729d90a45281ac9",
+    "d7f9def37239d20a9620e7cebb476a2b899cb6ac",
+    "ae850029f7c5fd22b91f8338b1e9619d64d5d3cb",
+    "6609f4f609199ee1d5c9271c9389daaebb943bd7",
+    "20004d8e54d860350e9ff7825b21461c8f88a4a0",
+    "8a9b3d995a980bc9147babc0f683b01f114e39bb",
+    "a8cf70f73b39f5e2e43d80acfb4dfcae68042115",
+    "f468b63f04a90a6de890fc1e835ee03415ad69e4",
+    "0fd7c777207d6e2bbf649ede5748ed68ec8f58ec"
+  ],
+  "externalPolicy": "Only exact parent-assigned4eac with known6609 dependency;no Singapore ca843 branch integration or external plan adoption",
+  "visualReview": "parent and root viewed final/phone/selected.png;source cards separated,large gap between hand-type and pending-play,bottom teaching status row and framed skill button remain;record next batch for space allocated to source performance;NOT mobile art PASS",
+  "pending": [
+    "whole-hand director / spring inertia / genuine perspective / reflection / physical touch",
+    "real phone background (headless tab activation stayed visible; synthetic visibility cleanup was exercised)",
+    "subjective listening and feel",
+    "hero portrait 3a0984cf and c12 9c3db534 hooks",
+    "non-H/M coefficient growth popup uses event.value; saved before/after delta requires follow-up, not covered by this numeric-source fixture",
+    "phone composition whitespace,teaching row,skill nested frames;prioritize source-performance space"
+  ]
+}

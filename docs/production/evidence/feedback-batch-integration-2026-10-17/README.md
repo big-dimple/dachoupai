@@ -1,5 +1,16 @@
 # 本轮反馈整合回执 · 2026-10-17
 
+## 源牌功能接线、回弹双拍与同层虹彩（64c07b00）
+
+**源牌核心功能批实际整合：** main基线 `2f0dd4e6fcb8d343de79e719b0e9e4ce2d382679`；仅接我方指定 `4eac55ed67cfb2165c26f1caf2545462b1bc2ac3`（产品c2dcab7f），已正常合入 `64c07b005cb022d2fa987a8a803590a773ec3c48`。6609是来源真实祖先，3音频文件精确6609，无重复应用；62新增/变更路径精确来源、8核心文件一致、5编译源指纹匹配，当前商店/头栏/旧名/手册/AI刘娥/规则存档资产保持。顶部五牌分散纯图、左右摆动/回弹、同一arrival主击与同Tween回弹第二拍、同层虹彩及帮助/调序入口仅按功能接线收口。源PC/390/4×各13事件与13双拍、7最终用例和状态保存一致证据按同码范围复用：公开导入受控库存后原生选牌/出牌，含实际master音轨，非自然获取、真人试听或物理手机。作者96核心/4文件48整合不合算；本版新增5文件48交叉、类型/339构建通过，未重跑原生矩阵。已看PC/手机图：牌型文字到待出区仍大幅留白、底部“满足5·待检查0…”整行和技能叠框仍在，明确未通过移动端美术验收；下一批优先把空间给源牌演出。整手导演、透视/反光/惯性、英雄大立绘及c12接线属后续，不阻本批。整包389文件/37,488,800B仍超20MB；P08 in_progress及三目标未达标/听感触感/真机/性能/正式门保持。按既有授权普通eyes/main发布，不等CI；13:02外部边界有效，ca843不合入，最终发布SHA以远端回执为准。
+
+- [原作者完整范围与失败](../owned-joker-score-motion-2026-10-17/README.md)、[summary](../owned-joker-score-motion-2026-10-17/summary.json)：PC/390/4×各13真实收益事件及13主击/回弹对，7最终用例保存状态全等；后台为合成visibilitychange，真人听感heard=false。较早320/短横/减少动态仅按b040动作/音频范围复用，整份previous报告仍FAIL，不冒称c2dc重跑或全绿。
+- [PC图](../owned-joker-score-motion-2026-10-17/final/pc/selected.png)、[手机图](../owned-joker-score-motion-2026-10-17/final/phone/selected.png)已实际查看。[PC连续音画](../owned-joker-score-motion-2026-10-17/final/pc/av-continuous.webm)、[手机连续音画](../owned-joker-score-motion-2026-10-17/final/phone/av-continuous.webm)、[4×连续音画](../owned-joker-score-motion-2026-10-17/final/fast/av-continuous.webm)为作者原版实际音轨记录，此处不宣称root真人试听或新录。
+- [来源绑定](checks/owned-core-binding.json)：8核心精确source4eac，3音频精确6609，62路径精确；source报告的b040 HEAD与c2dc编译源hash绑定保留，未重写原报告HEAD。主线其余功能及13:02外部边界保持，不自动吸收ca843或其他远端提交/计划。
+- [新增交叉](checks/owned-core-cross.log)：5文件48项，shop-boss-preparation、hero-skill-draft-lifecycle、source-stage-art（保持96KiB上限与完整同ID来源）、score-table-haptics、audio-mix-policy。与作者4文件48项/96项分别记录，不合算。
+- [类型和生产构建](checks/owned-core-build.log)、[构建身份/体积](checks/owned-core-build.json)：339模块，revision64c07b00，builtAt2026-10-17T13:20:41.735Z，sourceStatus clean/modifiedfalse；审计记录/日志为验证输出，不冒称全部工作文件无输出。389文件/37,488,800B，20MB整包门仍FAIL，不删除在用素材凑预算。
+- 父级与root手机图审均未通过整体视觉：大空白、底部教学整行、技能按钮叠框待下一批，先为源牌演出让出空间。当前局部关键帧不是整手导演，轻转动/缩放/影子/虹彩不是完整透视反光、弹簧惯性或物理触碰。英雄大立绘/c12 GameScene接线、非H/M成长弹字真实差值仍pending；这些不阻本功能批发布，也不自动签为完成。
+
 **13:02外部协作边界：** 用户明确新加坡服务器AI只在独立分支交建议、素材/音乐素材/示例代码，无合并职责；须等用户通知后，由我方逐项评审吸收。当前Windows整合不等待它，只接本轮我方已指派且具精确回执的候选白名单，不自动吸收未知新加坡分支、远端新提交或其修改过的计划。已有我方优化继续；此前已交付来源不因本边界倒退。当前已发布main/eyes为 `2f0dd4e6fcb8d343de79e719b0e9e4ce2d382679`，本次只登记到dev，不动main/产品、不重测。若main有未知外部变化，先保留并报告SHA与差异，不reset/force覆盖；本边界仅记录流程，不改GitHub权限。最高源牌音画仍等01a147ec的同版GameScene/真实序列与6609双拍联合包，未知来源不得自动补入。
 
 ## 商店头栏／虹彩与小文案实际整合（277d13cc）
