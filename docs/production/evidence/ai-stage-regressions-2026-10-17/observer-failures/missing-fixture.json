@@ -1,0 +1,79 @@
+{
+  "head": "7d7921e76ca794a14e715e3eac3b4d66143862ff",
+  "dirty": "isolated git archive of baseline src",
+  "browser": "151.0.7922.173",
+  "renderer": "Chromium software Canvas",
+  "rows": [
+    {
+      "name": "ai-real-play",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "status": "FAIL",
+      "errors": [],
+      "error": "page.waitForFunction: Timeout 12000ms exceeded.\n    at waitScene (/tmp/dachoupai-regression-baseline/harness/ui.mjs:3:41)\n    at load (/tmp/dachoupai-regression-baseline/harness/ai-stage-regressions.mjs:31:57)\n    at async scenario.width (/tmp/dachoupai-regression-baseline/harness/ai-stage-regressions.mjs:41:3)\n    at async scenario (/tmp/dachoupai-regression-baseline/harness/ai-stage-regressions.mjs:37:6)\n    at async file:///tmp/dachoupai-regression-baseline/harness/ai-stage-regressions.mjs:40:2"
+    },
+    {
+      "name": "ready-later",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "status": "FAIL",
+      "errors": [],
+      "error": "page.waitForFunction: Timeout 12000ms exceeded.\n    at waitScene (/tmp/dachoupai-regression-baseline/harness/ui.mjs:3:41)\n    at load (/tmp/dachoupai-regression-baseline/harness/ai-stage-regressions.mjs:31:57)\n    at async file:///tmp/dachoupai-regression-baseline/harness/ai-stage-regressions.mjs:49:3\n    at async scenario (/tmp/dachoupai-regression-baseline/harness/ai-stage-regressions.mjs:37:6)\n    at async file:///tmp/dachoupai-regression-baseline/harness/ai-stage-regressions.mjs:48:139"
+    },
+    {
+      "name": "ready-escape",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "status": "FAIL",
+      "errors": [],
+      "error": "page.waitForFunction: Timeout 12000ms exceeded.\n    at waitScene (/tmp/dachoupai-regression-baseline/harness/ui.mjs:3:41)\n    at load (/tmp/dachoupai-regression-baseline/harness/ai-stage-regressions.mjs:31:57)\n    at async file:///tmp/dachoupai-regression-baseline/harness/ai-stage-regressions.mjs:49:3\n    at async scenario (/tmp/dachoupai-regression-baseline/harness/ai-stage-regressions.mjs:37:6)\n    at async file:///tmp/dachoupai-regression-baseline/harness/ai-stage-regressions.mjs:48:139"
+    },
+    {
+      "name": "skip-0",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "status": "FAIL",
+      "errors": [],
+      "error": "page.waitForFunction: Timeout 12000ms exceeded.\n    at waitScene (/tmp/dachoupai-regression-baseline/harness/ui.mjs:3:41)\n    at load (/tmp/dachoupai-regression-baseline/harness/ai-stage-regressions.mjs:31:57)\n    at async file:///tmp/dachoupai-regression-baseline/harness/ai-stage-regressions.mjs:54:3\n    at async scenario (/tmp/dachoupai-regression-baseline/harness/ai-stage-regressions.mjs:37:6)\n    at async file:///tmp/dachoupai-regression-baseline/harness/ai-stage-regressions.mjs:53:27"
+    },
+    {
+      "name": "skip-1",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "status": "FAIL",
+      "errors": [],
+      "error": "page.waitForFunction: Timeout 12000ms exceeded.\n    at waitScene (/tmp/dachoupai-regression-baseline/harness/ui.mjs:3:41)\n    at load (/tmp/dachoupai-regression-baseline/harness/ai-stage-regressions.mjs:31:57)\n    at async file:///tmp/dachoupai-regression-baseline/harness/ai-stage-regressions.mjs:54:3\n    at async scenario (/tmp/dachoupai-regression-baseline/harness/ai-stage-regressions.mjs:37:6)\n    at async file:///tmp/dachoupai-regression-baseline/harness/ai-stage-regressions.mjs:53:27"
+    },
+    {
+      "name": "skip-save-retry",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "status": "FAIL",
+      "errors": [],
+      "error": "page.waitForFunction: Timeout 12000ms exceeded.\n    at waitScene (/tmp/dachoupai-regression-baseline/harness/ui.mjs:3:41)\n    at load (/tmp/dachoupai-regression-baseline/harness/ai-stage-regressions.mjs:31:57)\n    at async file:///tmp/dachoupai-regression-baseline/harness/ai-stage-regressions.mjs:57:3\n    at async scenario (/tmp/dachoupai-regression-baseline/harness/ai-stage-regressions.mjs:37:6)\n    at async file:///tmp/dachoupai-regression-baseline/harness/ai-stage-regressions.mjs:56:2"
+    },
+    {
+      "name": "shop-close-and-boss-lock",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "status": "FAIL",
+      "errors": [],
+      "error": "page.evaluate: TypeError: Cannot read properties of undefined (reading 'state')\n    at eval (eval at evaluate (:311:30), <anonymous>:1:104)\n    at async <anonymous>:337:30\n    at snap (/tmp/dachoupai-regression-baseline/harness/ai-stage-regressions.mjs:29:17)\n    at /tmp/dachoupai-regression-baseline/harness/ai-stage-regressions.mjs:64:77\n    at async scenario (/tmp/dachoupai-regression-baseline/harness/ai-stage-regressions.mjs:37:6)\n    at async file:///tmp/dachoupai-regression-baseline/harness/ai-stage-regressions.mjs:63:2"
+    }
+  ],
+  "status": "FAIL"
+}
