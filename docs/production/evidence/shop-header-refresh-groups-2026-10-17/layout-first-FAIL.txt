@@ -1,0 +1,89 @@
+
+ RUN  v4.1.11 C:/Users/wanghongping/AppData/Local/Temp/dachoupai-common-art-zoom-20261017
+
+ 鉂?tests/shop-layout.test.ts (20 tests | 6 failed) 71ms
+   脳 keeps phone refresh, inventory and coins left of the measured menu including side insets 9ms
+   脳 portrait gallery and full-size hit areas remain stable across browser toolbar height changes 4ms
+   脳 first-shop guide has reachable exits without covering merchandise or primary shop actions 3ms
+   脳 three complete 4:5 portrait goods keep readable information and visible inventory clear of actions 3ms
+   脳 toolbar and action anchors stay fixed while compact stock reserves an owned heading 3ms
+   脳 PC portrait art spends actual remaining height without clipping three goods and independent lower groups 1ms
+
+鈳幆鈳幆鈳幆鈳?Failed Tests 6 鈳幆鈳幆鈳幆鈳?
+ FAIL  tests/shop-layout.test.ts > keeps phone refresh, inventory and coins left of the measured menu including side insets
+AssertionError: expected 68 to be 24 // Object.is equality
+
+- Expected
++ Received
+
+- 24
++ 68
+
+ 鉂?tests/shop-layout.test.ts:17:54
+     15|   const menu={x:width-right-56,y:24,width:44,height:44},p=shopLayout(w鈥?     16|   expect(h.purse.x+h.purse.width).toBeLessThanOrEqual(menu.x-8);
+     17|   for(const b of [h.inventory,h.reroll]){expect(b.y).toBe(menu.y);expe鈥?       |                                                      ^
+     18|   expect(intersects(h.inventory,h.reroll)).toBe(false);expect(intersec鈥?     19|  }
+
+鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆[1/6]鈳?
+ FAIL  tests/shop-layout.test.ts > portrait gallery and full-size hit areas remain stable across browser toolbar height changes
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ 鉂?tests/shop-layout.test.ts:29:82
+     27|    expect(tile.width).toBeGreaterThanOrEqual(44);expect(tile.height).t鈥?     28|    for(const next of tiles.slice(i+1))expect(intersects(tile,next)).to鈥?     29|    for(const action of [p.reroll,p.build,p.play])expect(intersects(til鈥?       |                                                                                  ^
+     30|   }
+     31|   for(const b of [p.reroll,p.build,p.play]){expect(b.width).toBeGreate鈥?
+鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆[2/6]鈳?
+ FAIL  tests/shop-layout.test.ts > first-shop guide has reachable exits without covering merchandise or primary shop actions
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ 鉂?tests/shop-layout.test.ts:37:254
+
+
+鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆[3/6]鈳?
+ FAIL  tests/shop-layout.test.ts > three complete 4:5 portrait goods keep readable information and visible inventory clear of actions
+AssertionError: expected 379.64285714285717 to be less than 365
+ 鉂?tests/shop-layout.test.ts:49:262
+
+
+鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆[4/6]鈳?
+ FAIL  tests/shop-layout.test.ts > toolbar and action anchors stay fixed while compact stock reserves an owned heading
+AssertionError: expected { x: 12, y: 108, width: 296, 鈥?1) } to deeply equal { Object (x, y, ...) }
+
+- Expected
++ Received
+
+  {
+    "height": 44,
+    "width": 296,
+    "x": 12,
+-   "y": 64,
++   "y": 108,
+  }
+
+ 鉂?tests/shop-layout.test.ts:88:34
+
+
+鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆[5/6]鈳?
+ FAIL  tests/shop-layout.test.ts > PC portrait art spends actual remaining height without clipping three goods and independent lower groups
+AssertionError: expected 502.9333333333333 to be less than 241.6
+ 鉂?tests/shop-layout.test.ts:156:189
+
+
+鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆[6/6]鈳?
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  6 failed | 35 passed (41)
+   Start at  22:18:25
+   Duration  2.56s (transform 3.75s, setup 0ms, import 4.49s, tests 234ms, environment 0ms)

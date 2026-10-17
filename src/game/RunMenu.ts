@@ -39,6 +39,7 @@ export function routeSavedRun(game:Phaser.Game):void {
 export function installRunMenu(game:Phaser.Game,getActions:()=>RunMenuActions|undefined=()=>game.registry.get('runMenuActions') as RunMenuActions|undefined):void {
   const session=gameSession(),audio=AudioEngine.shared,fullscreen=installFullscreen(),haptics=Haptics.shared;
   const host=document.createElement('div'),toggle=document.createElement('button'),fullButton=document.createElement('button'),modal=document.createElement('dialog'),panel=document.createElement('section'),status=document.createElement('p');
+  const dock=document.createElement('button'),chevron=document.createElement('span'),entry=document.createElement('div');let dockExpanded=false;
   const fullscreenInfo=document.createElement('p'),fullscreenHint=document.createElement('div'),hintCopy=document.createElement('span'),hintClose=document.createElement('button');
   let previousFocus:HTMLElement|undefined,attentionKey='',hintSeen=false;
   const stored=(key:string):unknown=>{try{return JSON.parse(localStorage.getItem(key)??'null');}catch{return null;}};
@@ -47,6 +48,8 @@ export function installRunMenu(game:Phaser.Game,getActions:()=>RunMenuActions|un
   audio.setVolume('master',1);audio.muted=false;audio.musicMuted=false;
   audio.setVolume('music',audioPreferences.music);audio.setVolume('sfx',audioPreferences.sfx);audio.setVolume('ui',audioPreferences.sfx);
   host.className='run-menu';toggle.className='run-menu-toggle';fullButton.className='run-fullscreen-toggle';
+  dock.type='button';dock.className='run-menu-dock';dock.setAttribute('aria-haspopup','menu');dock.setAttribute('aria-expanded','false');dock.setAttribute('aria-controls','run-menu-entry');dock.setAttribute('aria-label','展开菜单');chevron.textContent='‹';chevron.setAttribute('aria-hidden','true');dock.append(chevron);
+  entry.id='run-menu-entry';entry.className='run-menu-entry';entry.setAttribute('role','menu');entry.setAttribute('aria-label','菜单入口');entry.hidden=true;toggle.setAttribute('role','menuitem');toggle.setAttribute('aria-haspopup','dialog');
   toggle.type=fullButton.type='button';toggle.textContent='菜单';toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-controls','run-menu-modal');
   modal.id='run-menu-modal';modal.className='run-menu-modal';modal.setAttribute('aria-labelledby','run-menu-heading');panel.className='run-menu-panel';
   const heading=document.createElement('h2');heading.id='run-menu-heading';heading.textContent='本局与设置';panel.append(heading);
@@ -54,21 +57,26 @@ export function installRunMenu(game:Phaser.Game,getActions:()=>RunMenuActions|un
   fullscreenInfo.className='run-menu-fullscreen-info';fullscreenInfo.hidden=true;fullscreenInfo.setAttribute('role','status');fullscreenInfo.setAttribute('aria-live','polite');
   fullscreenHint.className='run-menu-fullscreen-hint';fullscreenHint.hidden=true;hintCopy.textContent='想多看一点？可在这里全屏游玩。';hintClose.type='button';hintClose.textContent='关闭提示';hintClose.onclick=()=>{fullscreenHint.hidden=true;};fullscreenHint.append(hintCopy,hintClose);
   const restoreAnchor=()=>{
-    host.prepend(toggle);fullscreenHint.hidden=true;toggle.textContent='菜单';toggle.setAttribute('aria-expanded','false');
+    entry.prepend(toggle);foldDock();dock.style.visibility='';toggle.setAttribute('role','menuitem');fullscreenHint.hidden=true;toggle.textContent='菜单';toggle.setAttribute('aria-expanded','false');
     toggle.setAttribute('aria-label',toggle.classList.contains('needs-attention')?'菜单，有进度提示待处理':'菜单');
-    if(previousFocus?.isConnected&&!previousFocus.hidden)previousFocus.focus({preventScroll:true});else toggle.focus({preventScroll:true});previousFocus=undefined;
+    if(previousFocus?.isConnected&&previousFocus!==toggle&&!previousFocus.closest('[hidden]'))previousFocus.focus({preventScroll:true});else dock.focus({preventScroll:true});previousFocus=undefined;
   };
   const close=()=>{haptics.stop();if(modal.open){if(typeof modal.close==='function')modal.close();else modal.removeAttribute('open');}restoreAnchor();};
   const open=()=>{
     if(modal.open)return;haptics.stop();previousFocus=document.activeElement instanceof HTMLElement?document.activeElement:undefined;
     refreshPlayback();
     // Only the menu anchor stays on the play surface, including browser fullscreen.
-    modal.prepend(toggle);toggle.textContent='关闭';toggle.setAttribute('aria-expanded','true');toggle.setAttribute('aria-label','关闭菜单');
+    modal.prepend(toggle);foldDock();dock.style.visibility='hidden';toggle.removeAttribute('role');toggle.textContent='关闭';toggle.setAttribute('aria-expanded','true');toggle.setAttribute('aria-label','关闭菜单');
     if(!hintSeen){hintSeen=true;fullscreenHint.hidden=false;try{localStorage.setItem('dachoupai-fullscreen-hint-v1','true');}catch{}}
     if(typeof modal.showModal==='function')modal.showModal();else modal.setAttribute('open','');
     const action=[retry,reload,takeover,resume].find(button=>!button.hidden&&!button.disabled);(action??toggle).focus({preventScroll:true});
   };
   toggle.onclick=()=>{if(modal.open){audio.cancel();close();}else{audio.select();open();}};
+  function foldDock(){dockExpanded=false;entry.hidden=true;dock.setAttribute('aria-expanded','false');dock.setAttribute('aria-label',dock.classList.contains('needs-attention')?'展开菜单，有进度提示待处理':'展开菜单');}
+  dock.onclick=()=>{if(dockExpanded){foldDock();return;}dockExpanded=true;entry.hidden=false;dock.setAttribute('aria-expanded','true');dock.setAttribute('aria-label','收起菜单入口');toggle.focus({preventScroll:true});};
+  const outsideDock=(e:PointerEvent)=>{if(dockExpanded&&!modal.open&&e.target instanceof Node&&!host.contains(e.target))foldDock();};
+  const escapeDock=(e:KeyboardEvent)=>{if(e.key==='Escape'&&dockExpanded&&!modal.open){e.preventDefault();e.stopPropagation();foldDock();dock.focus({preventScroll:true});}};
+  document.addEventListener('pointerdown',outsideDock,true);host.addEventListener('keydown',escapeDock);
   modal.addEventListener('cancel',event=>{event.preventDefault();close();});
   modal.addEventListener('close',()=>{haptics.stop();if(toggle.parentElement===modal)restoreAnchor();});
   modal.addEventListener('click',event=>{if(event.target===modal)close();});
@@ -183,7 +191,7 @@ export function installRunMenu(game:Phaser.Game,getActions:()=>RunMenuActions|un
     start.disabled=session.working||!!pending||!session.loaded||!session.lease.writable||run?.status==='saving'||run?.status==='paused';exit.disabled=start.disabled;exportRun.disabled=!run;importRun.disabled=session.working||!!pending||!session.loaded||!session.lease.writable;
     refreshPlayback();
     const warningNotice=session.notice&&!session.notice.startsWith('导入成功')&&!['本局已保存。','候选已保存，现已切换到该进度。'].includes(session.notice),critical=session.loaded?!!pending||run?.status==='paused'||run?.status==='readonly'||!!warningNotice||!session.lease.writable:!!session.notice;
-    toggle.classList.toggle('needs-attention',critical);toggle.setAttribute('aria-label',modal.open?'关闭菜单':critical?'菜单，有进度提示待处理':'菜单');status.dataset.tone=critical?'warning':run?.status==='saving'?'pending':'normal';
+    toggle.classList.toggle('needs-attention',critical);dock.classList.toggle('needs-attention',critical);if(!dockExpanded)foldDock();toggle.setAttribute('aria-label',modal.open?'关闭菜单':critical?'菜单，有进度提示待处理':'菜单');status.dataset.tone=critical?'warning':run?.status==='saving'?'pending':'normal';
     const key=critical?`${saving?.status}/${saving?.lastError}/${session.notice}/${session.lease.writable}/${!!pending}`:'';
     if(key&&key!==attentionKey){if(run?.status==='paused'||session.notice)saveTools.open=true;open();}attentionKey=key;
   }
@@ -193,10 +201,10 @@ export function installRunMenu(game:Phaser.Game,getActions:()=>RunMenuActions|un
     fullButton.title=state.active?'退出浏览器全屏':'全屏游玩，减少浏览器工具栏占用';
     fullscreenInfo.textContent=state.message;fullscreenInfo.hidden=!state.message;
   });
-  modal.append(panel);host.append(toggle,modal);document.body.append(host);
+  modal.append(panel);entry.append(toggle);host.append(dock,entry,modal);document.body.append(host);
   const unsubscribe=session.subscribe(refreshState);refreshState();
   const refreshLivePlayback=()=>{if(modal.open)refreshPlayback();};game.events.on('poststep',refreshLivePlayback);
   const refreshMenuActions=(_parent:unknown,key:string)=>{if(key==='runMenuActions')refreshPlayback();};
   for(const event of ['setdata','changedata','removedata'])game.registry.events.on(event,refreshMenuActions);
-  game.events.once('destroy',()=>{game.events.off('poststep',refreshLivePlayback);catalogDialog.close();unsubscribe();unsubscribeFullscreen();for(const event of ['setdata','changedata','removedata'])game.registry.events.off(event,refreshMenuActions);fullscreen.dispose();removeHapticSetting();haptics.dispose();if(modal.open)modal.close();host.remove();});
+  game.events.once('destroy',()=>{document.removeEventListener('pointerdown',outsideDock,true);host.removeEventListener('keydown',escapeDock);game.events.off('poststep',refreshLivePlayback);catalogDialog.close();unsubscribe();unsubscribeFullscreen();for(const event of ['setdata','changedata','removedata'])game.registry.events.off(event,refreshMenuActions);fullscreen.dispose();removeHapticSetting();haptics.dispose();if(modal.open)modal.close();host.remove();});
 }

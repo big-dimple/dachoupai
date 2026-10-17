@@ -40,7 +40,7 @@ export function shopHeldGeometry(card:Box,portrait:boolean){
 export function shopOfferGeometry(tile:Box,kind:keyof typeof SHOP_CATEGORIES,hasExtra=false,extraRows=1):ShopOfferGeometry|undefined {
   const padding=8,gap=12,titleHeight=22,priceHeight=24,reasonHeight=18,aspect=4/5;
   const extraHeight=hasExtra?24*extraRows:0;
-  if(kind==='jokers'){
+  if(kind==='jokers'||tile.height>=290){
     if(tile.height<290){
       const width=Math.min(128,(tile.width-20)*.48,(tile.height-16)*aspect),x=tile.x+padding+width+10,copyWidth=tile.x+tile.width-padding-x,priceY=tile.y+tile.height-padding-reasonHeight-priceHeight;
       if(width<64||copyWidth<80||tile.height<180)return;
@@ -48,7 +48,7 @@ export function shopOfferGeometry(tile:Box,kind:keyof typeof SHOP_CATEGORIES,has
       return {art,title:{x,y:tile.y+padding,width:copyWidth,height:titleHeight},identity:{x,y:tile.y+padding+24,width:copyWidth,height:16},summary:{x,y:tile.y+padding+46,width:copyWidth,height:priceY-tile.y-padding-50-extraHeight},...(hasExtra?{extra:{x,y:priceY-extraHeight,width:copyWidth,height:extraHeight-4}}:{}),price:{x,y:priceY,width:copyWidth,height:priceHeight},reason:{x,y:priceY+priceHeight,width:copyWidth,height:reasonHeight}};
     }
     const copyHeight=124+extraHeight;
-    const width=Math.min(224,tile.width-padding*2,(tile.height-padding*2-copyHeight)*aspect);
+    const width=Math.min(288,tile.width-padding*2,(tile.height-padding*2-copyHeight)*aspect);
     if(width<64)return;
     const art={x:tile.x+(tile.width-width)/2,y:tile.y+padding,width,height:width/aspect};
     const x=tile.x+padding,copyWidth=tile.width-padding*2,titleY=art.y+art.height+4,priceY=tile.y+tile.height-padding-reasonHeight-priceHeight;

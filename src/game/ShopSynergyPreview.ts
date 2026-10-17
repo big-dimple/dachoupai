@@ -30,8 +30,8 @@ export class ShopSynergyPreview {
     const reason=options?.copy.connection??result.tradeoff??(lines.length?'已持'+lines[0]+(lines.length>1?'；另有'+(lines.length-1)+'张可配合':''):result.reason||'尚无已持配合；先看单卡条件。');
     const button=touch&&options?{x:bubble.x+bubble.width-94,y:bubble.y+bubble.height-52,width:84,height:44}:undefined;
     const title=scene.add.text(bubble.x+10,bubble.y+8,name+' · '+(options?.copy.transaction??result.cashNote??'条件对照'),{fontFamily:UI_FONT,fontSize:'15px',fontStyle:'bold',color:'#203f3b',resolution:textDensity(scene)}).setName('shop/synergy-title');
-    const fullReason=[result.tradeoff?undefined:options?.copy.later,reason].filter(Boolean).join('\n');
-    const text=scene.add.text(bubble.x+10,bubble.y+32,fullReason,{fontFamily:UI_FONT,fontSize:'14px',color:'#263b37',resolution:textDensity(scene),maxLines:3,wordWrap:{width:bubble.width-(button?114:20),useAdvancedWrap:true},lineSpacing:3}).setName('shop/synergy-reason').setData('fullText',fullReason);
+    const fullReason=reason;
+    const text=scene.add.text(bubble.x+10,bubble.y+32,fullReason,{fontFamily:UI_FONT,fontSize:'14px',color:'#263b37',resolution:textDensity(scene),maxLines:2,wordWrap:{width:bubble.width-(button?114:20),useAdvancedWrap:true},lineSpacing:3}).setName('shop/synergy-reason').setData('fullText',fullReason);
     let titleCopy=title.text;while(title.width>bubble.width-20&&titleCopy.length){titleCopy=titleCopy.slice(0,-1);title.setText(titleCopy+'…');}
     crispText(title);crispText(text);
     const height=Math.max(bubble.height,text.height+44),plate=scene.add.graphics().fillStyle(0xf8f7ef,1).fillRoundedRect(bubble.x,bubble.y,bubble.width,height,6).lineStyle(1,0x7e9990,1).strokeRoundedRect(bubble.x+.5,bubble.y+.5,bubble.width-1,height-1,6);

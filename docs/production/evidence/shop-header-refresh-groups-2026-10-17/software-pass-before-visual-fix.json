@@ -1,0 +1,1400 @@
+{
+  "base": "8ebff2a2470ca37d64bafc99827bbf4bcc456cb9",
+  "browser": "153.0.8010.12",
+  "scope": "Three controlled public imports, native mouse/touch, no player save, physical device, natural acquisition or listening claim.",
+  "profiles": [
+    {
+      "width": 1180,
+      "height": 757,
+      "owned": 0,
+      "dpr": 1,
+      "errors": [],
+      "commands": [
+        {
+          "type": "PracticeHand",
+          "action": {
+            "type": "PracticeHand",
+            "handType": "pair",
+            "expectedLevel": 1,
+            "shopSeq": 1
+          },
+          "exactDomainAndStorage": true,
+          "gold": [
+            40,
+            36
+          ]
+        },
+        {
+          "type": "RerollShop",
+          "action": {
+            "type": "RerollShop"
+          },
+          "exactDomainAndStorage": true,
+          "gold": [
+            36,
+            34
+          ]
+        },
+        {
+          "type": "RerollShop",
+          "action": {
+            "type": "RerollShop"
+          },
+          "exactDomainAndStorage": true,
+          "gold": [
+            40,
+            40
+          ]
+        }
+      ],
+      "checks": [
+        "edge menu keyboard/outside collapse, focus and zero state write",
+        "single native tap opens stable full detail, cancel no command",
+        "PC inline three-route cancel preserves quota, one real saved upgrade disables all three",
+        "refresh quote/cancel/Escape zero writes; native double confirm commits exactly one canonical reroll",
+        "free reroll still confirms and consumes one real free entitlement"
+      ],
+      "initial": {
+        "pc": true,
+        "collapsed": false,
+        "kind": "jokers",
+        "workshop": false,
+        "offers": [
+          "controlled/workshop-0/shop/0/0/joker/0",
+          "controlled/workshop-0/shop/0/0/joker/1",
+          "controlled/workshop-0/shop/0/0/joker/2"
+        ],
+        "menu": {
+          "x": 1136,
+          "y": 12,
+          "width": 44,
+          "height": 44
+        },
+        "nodes": [
+          {
+            "name": "shop/title",
+            "text": "辛弃疾 · 筹备",
+            "hit": false,
+            "bounds": {
+              "x": 40,
+              "y": 24,
+              "width": 145,
+              "height": 30
+            }
+          },
+          {
+            "name": "shop/gold",
+            "text": "金币 40",
+            "hit": false,
+            "bounds": {
+              "x": 66,
+              "y": 153,
+              "width": 85,
+              "height": 30
+            }
+          },
+          {
+            "name": "action/chapter",
+            "text": "节目单 · 关闭",
+            "hit": true,
+            "bounds": {
+              "x": 36,
+              "y": 184,
+              "width": 200,
+              "height": 44
+            }
+          },
+          {
+            "name": "shop/owned-heading",
+            "text": "已持唐宋牌 0/5 · 从左向右结算",
+            "hit": false,
+            "bounds": {
+              "x": 272,
+              "y": 20,
+              "width": 220,
+              "height": 19
+            }
+          },
+          {
+            "name": "action/build",
+            "text": "培养建议 ›",
+            "hit": true,
+            "bounds": {
+              "x": 700,
+              "y": 14,
+              "width": 132,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/tool-inventory",
+            "text": "背包 0/2",
+            "hit": true,
+            "bounds": {
+              "x": 960,
+              "y": 12,
+              "width": 168,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/reroll",
+            "text": "刷新 2金币",
+            "hit": true,
+            "bounds": {
+              "x": 844,
+              "y": 12,
+              "width": 104,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/start-stage",
+            "text": "进入牌桌  →",
+            "hit": true,
+            "bounds": {
+              "x": 904,
+              "y": 681,
+              "width": 240,
+              "height": 56
+            }
+          },
+          {
+            "name": "action/shelf-jokers",
+            "text": "唐宋牌 · 3",
+            "hit": true,
+            "bounds": {
+              "x": 284,
+              "y": 80,
+              "width": 213.5,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/shelf-tools",
+            "text": "消耗工具 · 1",
+            "hit": true,
+            "bounds": {
+              "x": 499.5,
+              "y": 80,
+              "width": 213.5,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/shelf-workshop",
+            "text": "自选做牌 · 共用1次",
+            "hit": true,
+            "bounds": {
+              "x": 715,
+              "y": 80,
+              "width": 213.5,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/shelf-items",
+            "text": "长期物品 · 1",
+            "hit": true,
+            "bounds": {
+              "x": 930.5,
+              "y": 80,
+              "width": 213.5,
+              "height": 44
+            }
+          },
+          {
+            "name": "shop/offer-name",
+            "text": "浮生半日",
+            "id": "controlled/workshop-0/shop/0/0/joker/0",
+            "hit": false,
+            "bounds": {
+              "x": 292.000010172526,
+              "y": 476,
+              "width": 60,
+              "height": 19
+            }
+          },
+          {
+            "name": "shop/offer-identity",
+            "text": "普通 · 普通版",
+            "id": "controlled/workshop-0/shop/0/0/joker/0",
+            "hit": false,
+            "bounds": {
+              "x": 292.000010172526,
+              "y": 498,
+              "width": 82,
+              "height": 17
+            }
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "获得1金\n成功弃1张",
+            "id": "controlled/workshop-0/shop/0/0/joker/0",
+            "hit": false,
+            "bounds": {
+              "x": 292.000010172526,
+              "y": 516,
+              "width": 65,
+              "height": 34
+            }
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "4 金 · 查看详情",
+            "id": "controlled/workshop-0/shop/0/0/joker/0",
+            "hit": false,
+            "bounds": {
+              "x": 292.000010172526,
+              "y": 615,
+              "width": 112,
+              "height": 19
+            }
+          },
+          {
+            "name": "offer/controlled/workshop-0/shop/0/0/joker/0",
+            "hit": true,
+            "bounds": {
+              "x": 284,
+              "y": 136,
+              "width": 278.66666666666674,
+              "height": 529
+            }
+          },
+          {
+            "name": "shop/offer-name",
+            "text": "宾主尽欢",
+            "id": "controlled/workshop-0/shop/0/0/joker/1",
+            "hit": false,
+            "bounds": {
+              "x": 582.9999999999999,
+              "y": 476,
+              "width": 60,
+              "height": 19
+            }
+          },
+          {
+            "name": "shop/offer-identity",
+            "text": "普通 · 普通版",
+            "id": "controlled/workshop-0/shop/0/0/joker/1",
+            "hit": false,
+            "bounds": {
+              "x": 582.9999999999999,
+              "y": 498,
+              "width": 82,
+              "height": 17
+            }
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "每手1次 热度+30\n≥2张都计分",
+            "id": "controlled/workshop-0/shop/0/0/joker/1",
+            "hit": false,
+            "bounds": {
+              "x": 582.9999999999999,
+              "y": 516,
+              "width": 110,
+              "height": 34
+            }
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "4 金 · 查看详情",
+            "id": "controlled/workshop-0/shop/0/0/joker/1",
+            "hit": false,
+            "bounds": {
+              "x": 582.9999999999999,
+              "y": 615,
+              "width": 112,
+              "height": 19
+            }
+          },
+          {
+            "name": "offer/controlled/workshop-0/shop/0/0/joker/1",
+            "hit": true,
+            "bounds": {
+              "x": 574.6666666666667,
+              "y": 136,
+              "width": 278.66666666666674,
+              "height": 529
+            }
+          },
+          {
+            "name": "shop/offer-name",
+            "text": "满堂喝彩",
+            "id": "controlled/workshop-0/shop/0/0/joker/2",
+            "hit": false,
+            "bounds": {
+              "x": 873.000020345052,
+              "y": 476,
+              "width": 60,
+              "height": 19
+            }
+          },
+          {
+            "name": "shop/offer-identity",
+            "text": "普通 · 普通版",
+            "id": "controlled/workshop-0/shop/0/0/joker/2",
+            "hit": false,
+            "bounds": {
+              "x": 873.000020345052,
+              "y": 498,
+              "width": 82,
+              "height": 17
+            }
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "每手1次 热度+90\n对子等同点组合",
+            "id": "controlled/workshop-0/shop/0/0/joker/2",
+            "hit": false,
+            "bounds": {
+              "x": 873.000020345052,
+              "y": 516,
+              "width": 110,
+              "height": 34
+            }
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "4 金 · 查看详情",
+            "id": "controlled/workshop-0/shop/0/0/joker/2",
+            "hit": false,
+            "bounds": {
+              "x": 873.000020345052,
+              "y": 615,
+              "width": 112,
+              "height": 19
+            }
+          },
+          {
+            "name": "offer/controlled/workshop-0/shop/0/0/joker/2",
+            "hit": true,
+            "bounds": {
+              "x": 865.3333333333334,
+              "y": 136,
+              "width": 278.66666666666663,
+              "height": 529
+            }
+          }
+        ]
+      },
+      "status": "PASS"
+    },
+    {
+      "width": 1366,
+      "height": 900,
+      "owned": 5,
+      "dpr": 1,
+      "errors": [],
+      "commands": [
+        {
+          "type": "RerollShop",
+          "action": {
+            "type": "RerollShop"
+          },
+          "exactDomainAndStorage": true,
+          "gold": [
+            40,
+            38
+          ]
+        }
+      ],
+      "checks": [
+        "edge menu keyboard/outside collapse, focus and zero state write",
+        "single native tap opens stable full detail, cancel no command",
+        "refresh quote/cancel/Escape zero writes; native double confirm commits exactly one canonical reroll"
+      ],
+      "initial": {
+        "pc": true,
+        "collapsed": false,
+        "kind": "jokers",
+        "workshop": false,
+        "offers": [
+          "controlled/workshop-5/shop/0/0/joker/0",
+          "controlled/workshop-5/shop/0/0/joker/1",
+          "controlled/workshop-5/shop/0/0/joker/2"
+        ],
+        "menu": {
+          "x": 1322,
+          "y": 12,
+          "width": 44,
+          "height": 44
+        },
+        "nodes": [
+          {
+            "name": "shop/title",
+            "text": "辛弃疾 · 筹备",
+            "hit": false,
+            "bounds": {
+              "x": 40,
+              "y": 24,
+              "width": 145,
+              "height": 30
+            }
+          },
+          {
+            "name": "shop/gold",
+            "text": "金币 40",
+            "hit": false,
+            "bounds": {
+              "x": 66,
+              "y": 153,
+              "width": 85,
+              "height": 30
+            }
+          },
+          {
+            "name": "action/chapter",
+            "text": "节目单 · 关闭",
+            "hit": true,
+            "bounds": {
+              "x": 36,
+              "y": 184,
+              "width": 200,
+              "height": 44
+            }
+          },
+          {
+            "name": "shop/owned-heading",
+            "text": "持有 5/5 · 先加后乘，乘倍率通常靠右",
+            "hit": false,
+            "bounds": {
+              "x": 272,
+              "y": 20,
+              "width": 268,
+              "height": 19
+            }
+          },
+          {
+            "name": "action/build",
+            "text": "培养建议 ›",
+            "hit": true,
+            "bounds": {
+              "x": 744,
+              "y": 14,
+              "width": 132,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/tool-inventory",
+            "text": "背包 0/2",
+            "hit": true,
+            "bounds": {
+              "x": 1174,
+              "y": 72,
+              "width": 168,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/reroll",
+            "text": "刷新 2金币",
+            "hit": true,
+            "bounds": {
+              "x": 1174,
+              "y": 124,
+              "width": 104,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/start-stage",
+            "text": "进入牌桌  →",
+            "hit": true,
+            "bounds": {
+              "x": 1090,
+              "y": 824,
+              "width": 240,
+              "height": 56
+            }
+          },
+          {
+            "name": "action/shelf-jokers",
+            "text": "唐宋牌 · 3",
+            "hit": true,
+            "bounds": {
+              "x": 284,
+              "y": 224,
+              "width": 260,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/shelf-tools",
+            "text": "消耗工具 · 1",
+            "hit": true,
+            "bounds": {
+              "x": 546,
+              "y": 224,
+              "width": 260,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/shelf-workshop",
+            "text": "自选做牌 · 共用1次",
+            "hit": true,
+            "bounds": {
+              "x": 808,
+              "y": 224,
+              "width": 260,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/shelf-items",
+            "text": "长期物品 · 1",
+            "hit": true,
+            "bounds": {
+              "x": 1070,
+              "y": 224,
+              "width": 260,
+              "height": 44
+            }
+          },
+          {
+            "name": "shop/offer-name",
+            "text": "宾主尽欢",
+            "id": "controlled/workshop-5/shop/0/0/joker/0",
+            "hit": false,
+            "bounds": {
+              "x": 292.000010172526,
+              "y": 652,
+              "width": 60,
+              "height": 19
+            }
+          },
+          {
+            "name": "shop/offer-identity",
+            "text": "普通 · 普通版",
+            "id": "controlled/workshop-5/shop/0/0/joker/0",
+            "hit": false,
+            "bounds": {
+              "x": 292.000010172526,
+              "y": 674,
+              "width": 82,
+              "height": 17
+            }
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "每手1次 热度+30\n≥2张都计分",
+            "id": "controlled/workshop-5/shop/0/0/joker/0",
+            "hit": false,
+            "bounds": {
+              "x": 292.000010172526,
+              "y": 692,
+              "width": 110,
+              "height": 34
+            }
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "4 金 · 查看详情",
+            "id": "controlled/workshop-5/shop/0/0/joker/0",
+            "hit": false,
+            "bounds": {
+              "x": 292.000010172526,
+              "y": 758,
+              "width": 112,
+              "height": 19
+            }
+          },
+          {
+            "name": "offer/controlled/workshop-5/shop/0/0/joker/0",
+            "hit": true,
+            "bounds": {
+              "x": 284,
+              "y": 280,
+              "width": 340.66666666666674,
+              "height": 528
+            }
+          },
+          {
+            "name": "shop/offer-name",
+            "text": "挥毫泼墨",
+            "id": "controlled/workshop-5/shop/0/0/joker/1",
+            "hit": false,
+            "bounds": {
+              "x": 644.9999999999999,
+              "y": 652,
+              "width": 60,
+              "height": 19
+            }
+          },
+          {
+            "name": "shop/offer-identity",
+            "text": "普通 · 普通版",
+            "id": "controlled/workshop-5/shop/0/0/joker/1",
+            "hit": false,
+            "bounds": {
+              "x": 644.9999999999999,
+              "y": 674,
+              "width": 82,
+              "height": 17
+            }
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "每张符合条件的有效计分牌热度+8\n♠/♣计分",
+            "id": "controlled/workshop-5/shop/0/0/joker/1",
+            "hit": false,
+            "bounds": {
+              "x": 644.9999999999999,
+              "y": 692,
+              "width": 215,
+              "height": 34
+            }
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "4 金 · 查看详情",
+            "id": "controlled/workshop-5/shop/0/0/joker/1",
+            "hit": false,
+            "bounds": {
+              "x": 644.9999999999999,
+              "y": 758,
+              "width": 112,
+              "height": 19
+            }
+          },
+          {
+            "name": "offer/controlled/workshop-5/shop/0/0/joker/1",
+            "hit": true,
+            "bounds": {
+              "x": 636.6666666666667,
+              "y": 280,
+              "width": 340.66666666666674,
+              "height": 528
+            }
+          },
+          {
+            "name": "shop/offer-name",
+            "text": "满堂喝彩",
+            "id": "controlled/workshop-5/shop/0/0/joker/2",
+            "hit": false,
+            "bounds": {
+              "x": 996.9999593098958,
+              "y": 652,
+              "width": 60,
+              "height": 19
+            }
+          },
+          {
+            "name": "shop/offer-identity",
+            "text": "普通 · 普通版",
+            "id": "controlled/workshop-5/shop/0/0/joker/2",
+            "hit": false,
+            "bounds": {
+              "x": 996.9999593098958,
+              "y": 674,
+              "width": 82,
+              "height": 17
+            }
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "每手1次 热度+90\n对子等同点组合",
+            "id": "controlled/workshop-5/shop/0/0/joker/2",
+            "hit": false,
+            "bounds": {
+              "x": 996.9999593098958,
+              "y": 692,
+              "width": 110,
+              "height": 34
+            }
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "4 金 · 查看详情",
+            "id": "controlled/workshop-5/shop/0/0/joker/2",
+            "hit": false,
+            "bounds": {
+              "x": 996.9999593098958,
+              "y": 758,
+              "width": 112,
+              "height": 19
+            }
+          },
+          {
+            "name": "offer/controlled/workshop-5/shop/0/0/joker/2",
+            "hit": true,
+            "bounds": {
+              "x": 989.3333333333334,
+              "y": 280,
+              "width": 340.66666666666663,
+              "height": 528
+            }
+          }
+        ]
+      },
+      "status": "PASS"
+    },
+    {
+      "width": 390,
+      "height": 740,
+      "owned": 5,
+      "dpr": 2,
+      "errors": [],
+      "commands": [
+        {
+          "type": "RerollShop",
+          "action": {
+            "type": "RerollShop"
+          },
+          "exactDomainAndStorage": true,
+          "gold": [
+            40,
+            38
+          ]
+        },
+        {
+          "type": "ReorderJokers",
+          "action": {
+            "type": "ReorderJokers",
+            "ids": [
+              "held/mantangcai",
+              "held/tiesuanpan",
+              "held/pengci",
+              "held/huimaqiang",
+              "held/jiedongfeng"
+            ]
+          },
+          "exactDomainAndStorage": true,
+          "gold": [
+            38,
+            38
+          ]
+        }
+      ],
+      "checks": [
+        "edge menu keyboard/outside collapse, focus and zero state write",
+        "single native tap opens stable full detail, cancel no command",
+        "refresh quote/cancel/Escape zero writes; native double confirm commits exactly one canonical reroll",
+        "owned card single tap stable detail; native touch hold420ms then drag commits exact reorder",
+        "single 320x568 resize: two-row meaningful toolbar, no offscreen action, no state write"
+      ],
+      "initial": {
+        "pc": false,
+        "collapsed": false,
+        "kind": "jokers",
+        "workshop": false,
+        "offers": [
+          "controlled/workshop-5/shop/0/0/joker/0",
+          "controlled/workshop-5/shop/0/0/joker/1",
+          "controlled/workshop-5/shop/0/0/joker/2"
+        ],
+        "menu": {
+          "x": 346,
+          "y": 12,
+          "width": 44,
+          "height": 44
+        },
+        "nodes": [
+          {
+            "name": "shop/title",
+            "text": "辛弃疾",
+            "hit": false,
+            "bounds": {
+              "x": 12,
+              "y": 11,
+              "width": 54,
+              "height": 21
+            }
+          },
+          {
+            "name": "shop/gold",
+            "text": "金币 40",
+            "hit": false,
+            "bounds": {
+              "x": 272,
+              "y": 24.5,
+              "width": 57,
+              "height": 19
+            }
+          },
+          {
+            "name": "shop/owned-heading",
+            "text": "先加后乘，乘倍率通常靠右",
+            "hit": false,
+            "bounds": {
+              "x": 23,
+              "y": 397,
+              "width": 168,
+              "height": 17
+            }
+          },
+          {
+            "name": "action/shelf-jokers",
+            "text": "唐宋牌\n3",
+            "hit": true,
+            "bounds": {
+              "x": 12,
+              "y": 60,
+              "width": 90,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/shelf-tools",
+            "text": "消耗工具\n1",
+            "hit": true,
+            "bounds": {
+              "x": 104,
+              "y": 60,
+              "width": 90,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/shelf-workshop",
+            "text": "自选做牌\n共用1次",
+            "hit": true,
+            "bounds": {
+              "x": 196,
+              "y": 60,
+              "width": 90,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/shelf-items",
+            "text": "长期物品\n1",
+            "hit": true,
+            "bounds": {
+              "x": 288,
+              "y": 60,
+              "width": 90,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/tool-inventory",
+            "text": "背包\n0/2",
+            "hit": true,
+            "bounds": {
+              "x": 92,
+              "y": 12,
+              "width": 70,
+              "height": 44
+            }
+          },
+          {
+            "name": "shop/offer-name",
+            "text": "宾主尽欢",
+            "id": "controlled/workshop-5/shop/0/0/joker/0",
+            "hit": false,
+            "bounds": {
+              "x": 16.0000025431315,
+              "y": 251,
+              "width": 60,
+              "height": 19
+            }
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "每手1次 热度+30\n≥2张都计分",
+            "id": "controlled/workshop-5/shop/0/0/joker/0",
+            "hit": false,
+            "bounds": {
+              "x": 16.0000025431315,
+              "y": 295,
+              "width": 110,
+              "height": 34
+            }
+          },
+          {
+            "name": "shop/offer-identity",
+            "text": "普通·原版",
+            "id": "controlled/workshop-5/shop/0/0/joker/0",
+            "hit": false,
+            "bounds": {
+              "x": 16.0000025431315,
+              "y": 274,
+              "width": 60,
+              "height": 17
+            }
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "4金 · 详情",
+            "id": "controlled/workshop-5/shop/0/0/joker/0",
+            "hit": false,
+            "bounds": {
+              "x": 16.0000025431315,
+              "y": 335,
+              "width": 75,
+              "height": 19
+            }
+          },
+          {
+            "name": "offer/controlled/workshop-5/shop/0/0/joker/0",
+            "hit": true,
+            "bounds": {
+              "x": 16.333333333333343,
+              "y": 112,
+              "width": 108,
+              "height": 246
+            }
+          },
+          {
+            "name": "shop/offer-name",
+            "text": "挥毫泼墨",
+            "id": "controlled/workshop-5/shop/0/0/joker/1",
+            "hit": false,
+            "bounds": {
+              "x": 140.99999999999997,
+              "y": 251,
+              "width": 60,
+              "height": 19
+            }
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "每张符合条件的…\n♠/♣计分",
+            "id": "controlled/workshop-5/shop/0/0/joker/1",
+            "hit": false,
+            "bounds": {
+              "x": 140.99999999999997,
+              "y": 295,
+              "width": 110,
+              "height": 34
+            }
+          },
+          {
+            "name": "shop/offer-identity",
+            "text": "普通·原版",
+            "id": "controlled/workshop-5/shop/0/0/joker/1",
+            "hit": false,
+            "bounds": {
+              "x": 140.99999999999997,
+              "y": 274,
+              "width": 60,
+              "height": 17
+            }
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "4金 · 详情",
+            "id": "controlled/workshop-5/shop/0/0/joker/1",
+            "hit": false,
+            "bounds": {
+              "x": 140.99999999999997,
+              "y": 335,
+              "width": 75,
+              "height": 19
+            }
+          },
+          {
+            "name": "offer/controlled/workshop-5/shop/0/0/joker/1",
+            "hit": true,
+            "bounds": {
+              "x": 141.00000000000003,
+              "y": 112,
+              "width": 108,
+              "height": 246
+            }
+          },
+          {
+            "name": "shop/offer-name",
+            "text": "满堂喝彩",
+            "id": "controlled/workshop-5/shop/0/0/joker/2",
+            "hit": false,
+            "bounds": {
+              "x": 265.99998982747394,
+              "y": 251,
+              "width": 60,
+              "height": 19
+            }
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "每手1次 热度+90\n对子等同点组合",
+            "id": "controlled/workshop-5/shop/0/0/joker/2",
+            "hit": false,
+            "bounds": {
+              "x": 265.99998982747394,
+              "y": 295,
+              "width": 110,
+              "height": 34
+            }
+          },
+          {
+            "name": "shop/offer-identity",
+            "text": "普通·原版",
+            "id": "controlled/workshop-5/shop/0/0/joker/2",
+            "hit": false,
+            "bounds": {
+              "x": 265.99998982747394,
+              "y": 274,
+              "width": 60,
+              "height": 17
+            }
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "4金 · 详情",
+            "id": "controlled/workshop-5/shop/0/0/joker/2",
+            "hit": false,
+            "bounds": {
+              "x": 265.99998982747394,
+              "y": 335,
+              "width": 75,
+              "height": 19
+            }
+          },
+          {
+            "name": "offer/controlled/workshop-5/shop/0/0/joker/2",
+            "hit": true,
+            "bounds": {
+              "x": 265.6666666666667,
+              "y": 112,
+              "width": 108,
+              "height": 246
+            }
+          },
+          {
+            "name": "action/reroll",
+            "text": "刷新\n2金币",
+            "hit": true,
+            "bounds": {
+              "x": 168,
+              "y": 12,
+              "width": 72,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/start-stage",
+            "text": "进入牌桌",
+            "hit": true,
+            "bounds": {
+              "x": 12,
+              "y": 648,
+              "width": 366,
+              "height": 56
+            }
+          },
+          {
+            "name": "action/build",
+            "text": "培养建议 ›",
+            "hit": true,
+            "bounds": {
+              "x": 274,
+              "y": 545,
+              "width": 104,
+              "height": 44
+            }
+          }
+        ]
+      },
+      "narrow": {
+        "pc": false,
+        "collapsed": true,
+        "kind": "jokers",
+        "workshop": false,
+        "offers": [
+          "controlled/workshop-5/shop/0/1/joker/0",
+          "controlled/workshop-5/shop/0/1/joker/1",
+          "controlled/workshop-5/shop/0/1/joker/2"
+        ],
+        "menu": {
+          "x": 276,
+          "y": 12,
+          "width": 44,
+          "height": 44
+        },
+        "nodes": [
+          {
+            "name": "shop/title",
+            "text": "辛弃疾 · 筹备",
+            "hit": false,
+            "bounds": {
+              "x": 50,
+              "y": 15,
+              "width": 106,
+              "height": 21
+            }
+          },
+          {
+            "name": "shop/gold",
+            "text": "金币 38",
+            "hit": false,
+            "bounds": {
+              "x": 202,
+              "y": 24.5,
+              "width": 57,
+              "height": 19
+            }
+          },
+          {
+            "name": "action/shelf-jokers",
+            "text": "唐宋牌\n3",
+            "hit": true,
+            "bounds": {
+              "x": 12,
+              "y": 108,
+              "width": 72.5,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/shelf-tools",
+            "text": "消耗工具\n1",
+            "hit": true,
+            "bounds": {
+              "x": 86.5,
+              "y": 108,
+              "width": 72.5,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/shelf-workshop",
+            "text": "自选做牌\n共用1次",
+            "hit": true,
+            "bounds": {
+              "x": 161,
+              "y": 108,
+              "width": 72.5,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/shelf-items",
+            "text": "长期物品\n1",
+            "hit": true,
+            "bounds": {
+              "x": 235.5,
+              "y": 108,
+              "width": 72.5,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/tool-inventory",
+            "text": "背包\n0/2",
+            "hit": true,
+            "bounds": {
+              "x": 12,
+              "y": 56,
+              "width": 70,
+              "height": 44
+            }
+          },
+          {
+            "name": "shop/offer-name",
+            "text": "双喜临门",
+            "id": "controlled/workshop-5/shop/0/1/joker/0",
+            "hit": false,
+            "bounds": {
+              "x": 15.000001271565758,
+              "y": 274,
+              "width": 60.00000000000001,
+              "height": 19
+            }
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "每手1次 倍率…\n本场第1次出牌",
+            "id": "controlled/workshop-5/shop/0/1/joker/0",
+            "hit": false,
+            "bounds": {
+              "x": 15.000001271565758,
+              "y": 318,
+              "width": 94,
+              "height": 34
+            }
+          },
+          {
+            "name": "shop/offer-identity",
+            "text": "普通·原版",
+            "id": "controlled/workshop-5/shop/0/1/joker/0",
+            "hit": false,
+            "bounds": {
+              "x": 15.000001271565758,
+              "y": 297,
+              "width": 60.00000000000001,
+              "height": 17
+            }
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "4金 · 详情",
+            "id": "controlled/workshop-5/shop/0/1/joker/0",
+            "hit": false,
+            "bounds": {
+              "x": 15.000001271565758,
+              "y": 358,
+              "width": 75,
+              "height": 19
+            }
+          },
+          {
+            "name": "offer/controlled/workshop-5/shop/0/1/joker/0",
+            "hit": true,
+            "bounds": {
+              "x": 14.666666666666664,
+              "y": 160,
+              "width": 88,
+              "height": 221
+            }
+          },
+          {
+            "name": "shop/offer-name",
+            "text": "虚位以待",
+            "id": "controlled/workshop-5/shop/0/1/joker/1",
+            "hit": false,
+            "bounds": {
+              "x": 116,
+              "y": 274,
+              "width": 60,
+              "height": 19
+            }
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "手牌上限+1\n进场时",
+            "id": "controlled/workshop-5/shop/0/1/joker/1",
+            "hit": false,
+            "bounds": {
+              "x": 116,
+              "y": 318,
+              "width": 75,
+              "height": 34
+            }
+          },
+          {
+            "name": "shop/offer-identity",
+            "text": "特别·原版",
+            "id": "controlled/workshop-5/shop/0/1/joker/1",
+            "hit": false,
+            "bounds": {
+              "x": 116,
+              "y": 297,
+              "width": 60,
+              "height": 17
+            }
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "6金 · 详情",
+            "id": "controlled/workshop-5/shop/0/1/joker/1",
+            "hit": false,
+            "bounds": {
+              "x": 116,
+              "y": 358,
+              "width": 75,
+              "height": 19
+            }
+          },
+          {
+            "name": "offer/controlled/workshop-5/shop/0/1/joker/1",
+            "hit": true,
+            "bounds": {
+              "x": 116,
+              "y": 160,
+              "width": 88,
+              "height": 221
+            }
+          },
+          {
+            "name": "shop/offer-name",
+            "text": "朱砂点绛",
+            "id": "controlled/workshop-5/shop/0/1/joker/2",
+            "hit": false,
+            "bounds": {
+              "x": 217.00001017252606,
+              "y": 274,
+              "width": 60,
+              "height": 19
+            }
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "每张符合条…\n♥/♦计分",
+            "id": "controlled/workshop-5/shop/0/1/joker/2",
+            "hit": false,
+            "bounds": {
+              "x": 217.00001017252606,
+              "y": 318,
+              "width": 82,
+              "height": 34
+            }
+          },
+          {
+            "name": "shop/offer-identity",
+            "text": "普通·原版",
+            "id": "controlled/workshop-5/shop/0/1/joker/2",
+            "hit": false,
+            "bounds": {
+              "x": 217.00001017252606,
+              "y": 297,
+              "width": 60,
+              "height": 17
+            }
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "4金 · 详情",
+            "id": "controlled/workshop-5/shop/0/1/joker/2",
+            "hit": false,
+            "bounds": {
+              "x": 217.00001017252606,
+              "y": 358,
+              "width": 75,
+              "height": 19
+            }
+          },
+          {
+            "name": "offer/controlled/workshop-5/shop/0/1/joker/2",
+            "hit": true,
+            "bounds": {
+              "x": 217.33333333333331,
+              "y": 160,
+              "width": 88,
+              "height": 221
+            }
+          },
+          {
+            "name": "action/reroll",
+            "text": "刷新\n3金币",
+            "hit": true,
+            "bounds": {
+              "x": 90,
+              "y": 56,
+              "width": 72,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/start-stage",
+            "text": "进入牌桌",
+            "hit": true,
+            "bounds": {
+              "x": 12,
+              "y": 476,
+              "width": 296,
+              "height": 56
+            }
+          },
+          {
+            "name": "action/build",
+            "text": "培养建议 ›",
+            "hit": true,
+            "bounds": {
+              "x": 204,
+              "y": 424,
+              "width": 104,
+              "height": 44
+            }
+          }
+        ]
+      },
+      "status": "PASS"
+    }
+  ],
+  "status": "PASS"
+}

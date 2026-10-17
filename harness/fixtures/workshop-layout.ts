@@ -7,8 +7,8 @@ import {makeCheckpoint,readCheckpoint} from '../../src/application/checkpoint';
 import {R2_HAND_TYPES} from '../../src/domain/evaluateR2';
 import type {Action,R2RunState} from '../../src/domain/run';
 /** Public engineering sample, after a real domain command; never an untouched or natural opening. */
-export function workshopLayoutFixture(n=0,duplicate=false,expanded=false){
- let s=createRun({rulesVersion:'r2',characterId:'laohuan',seed:'workshop-layout',runId:'controlled/workshop-'+n,r2Identity:newRunIdentity('laohuan','group'),openingRoute:'group',modeConfig:{mode:'standard',difficulty:0,challengeId:null,programsEnabled:false}});
+export function workshopLayoutFixture(n=0,duplicate=false,expanded=false,programsEnabled=false){
+ let s=createRun({rulesVersion:'r2',characterId:'laohuan',seed:'workshop-layout',runId:'controlled/workshop-'+n,r2Identity:newRunIdentity('laohuan','group'),openingRoute:'group',modeConfig:{mode:'standard',difficulty:0,challengeId:null,programsEnabled}});
  const next=applyCommand(s,{runId:s.runId,commandId:s.runId+'/sample-reroll',expectedSeq:s.commandSeq,action:{type:'RerollShop'}});if(!next.ok)throw Error(next.code);s=next.state;
  s.gold=40;s.jokers=r2JokerDefinitionsFor(s).slice(0,n).map(d=>r2CreateJoker(d.id,'held/'+d.id,6,'none',s));if(expanded)s.longTermItems=['U05'];const entrySeq=s.shop!.basicChoice!.shopSeq;makeR2Shop(s,true);s.shop!.basicChoice!.shopSeq=entrySeq;
  const id=duplicate?'T08':'T17';s.shop!.toolOffers[0].definitionId=id;s.shop!.toolOffers[0].price=r2ToolPrice(id,s);s.consumables=[];s.handLevels.pair=1;

@@ -2736,5 +2736,15 @@
     "sourceCopy": "f135ca11826be4c1b836b8b01453dc91b79085dd",
     "scope": "**14:37 本场获胜结算布局独立整改（进行中）：** 从已发布e82c7df8独立分支接续。先完成真实1366×768、1920×1080、390×844基线截图：旧900px封顶且整组从顶部约12px起、1920底部约518px止，固定顶对齐是下半屏留白根因。仅Intermission及专用布局/滚动模块改为实际总高度居中，宽屏左右组合、手机纵向超高可滑动；继续按钮48px以上，长数值/奖励不断行截失。GameScene、ShopScene、源牌、音频及领域/存档不动。补PC常见尺寸与手机窄长内容的实际截图/继续完整事务、针对性检查与一次最终构建；按授权普通dev/main发布，不扩无关矩阵/CI/自然长局。父级指定f135ca11的苏轼封禁副组具体提示一并普通合入，复用其20项窄测/type与六英雄正式新开局原生证据，不重跑六人。P08及三目标仍未通过。",
     "evidence": "docs/production/evidence/intermission-centered-layout-2026-10-17/README.md"
+  },
+  "shopCategoryRefreshFollowup": {
+    "status": "dev_ready_for_integration",
+    "baseMain": "8ebff2a2470ca37d64bafc99827bbf4bcc456cb9",
+    "branch": "dev/shop-header-refresh-groups-20261017",
+    "latestUserDecision": "14:04 PC四分类切换共享大展示区；14:06边缘箭头展开唯一菜单；14:09排序给用途、培养降为次级；14:22/27/34单击直接详情仅商店，不新增普遍tooltip、不改对战悬停拖动。",
+    "scope": "明确金币与铜钱图标、紧凑带标签背包、刷新实价确认及幂等输入、PC共享展示区与三路互斥自选、共享菜单小改；不改GameScene、规则存档或美术资源。",
+    "plan": "docs/production/SHOP_CATEGORY_REFINEMENT_20261017.md",
+    "evidence": "docs/production/evidence/shop-header-refresh-groups-2026-10-17/README.md",
+    "delivery": "49项相关测试、类型构建通过；1180/1366/390三组原生交互及320补查通过，含刷新取消/双击、真实三路升级与触摸长按排序。计划总校验与main均有相同15条P08历史记录错误，本批不改。普通dev推送交集成，P08及人验保持。"
   }
 }

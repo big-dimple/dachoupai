@@ -29,16 +29,22 @@ export async function tapUI(page,key,name,touch=false){
   await page.evaluate(()=>new Promise((resolve,reject)=>{const game=window.__harness.game,timer=setTimeout(()=>{game.events.off('poststep',done);reject(Error('Phaser post-tap timeout'));},5000),done=()=>{clearTimeout(timer);resolve();};game.events.once('poststep',done);}));
 }
 /** Low-frequency table actions follow the actual D27 menu route. */
+export async function openRunMenu(page,touch=false){
+  const tap=async locator=>touch?locator.tap():locator.click();
+  if(await page.locator('.run-menu-modal').evaluate(dialog=>dialog.open))return;
+  const dock=page.locator('.run-menu-dock');if(await dock.count()&&await dock.getAttribute('aria-expanded')!=='true')await tap(dock);
+  await tap(page.locator('.run-menu-toggle'));
+}
 export async function openMenuSection(page,section,touch=false){
   const tap=async locator=>touch?locator.tap():locator.click();
-  if(!await page.locator('.run-menu-modal').evaluate(dialog=>dialog.open))await tap(page.locator('.run-menu-toggle'));
+  await openRunMenu(page,touch);
   assert.ok(['settings','playback'].includes(section),'known menu section');
   const details=page.locator('.run-menu-'+section+'-tools');
   if(!await details.evaluate(element=>element.open))await tap(details.locator('summary'));
 }
 export async function tapMenuAction(page,label,touch=false){
   const tap=async locator=>touch?locator.tap():locator.click();
-  if(!await page.locator('.run-menu-modal').evaluate(dialog=>dialog.open))await tap(page.locator('.run-menu-toggle'));
+  await openRunMenu(page,touch);
   if(['快进当前手','回看上一手'].includes(label))await openMenuSection(page,'playback',touch);
   await tap(page.getByRole('button',{name:label,exact:true}));
 }
