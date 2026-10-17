@@ -123,7 +123,6 @@ export function presentBossPreparation(dialog: DetailDialog, run: R2RunState, op
   const seal = node('div', 'boss-preparation-seal', '压轴');
   seal.setAttribute('aria-hidden', 'true');
   const challenge = node('div', 'boss-preparation-challenge');
-  challenge.append(node('p', 'boss-preparation-scope', facts.scope));
   const target = node('p', 'boss-preparation-target');
   target.append(node('span', '', '决战目标'), node('strong', '', heatText(facts.targetHeat)));
   challenge.append(target);

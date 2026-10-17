@@ -1,0 +1,15 @@
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+page.evaluate: Error: Run invariant: program snapshot
+    at check (http://127.0.0.1:5621/src/domain/r2Run.ts:129:27)
+    at assertR2Invariants (http://127.0.0.1:5621/src/domain/r2Run.ts:180:3)
+    at assertRunInvariants (http://127.0.0.1:5621/src/domain/run.ts:258:43)
+    at eval (eval at evaluate (:311:30), <anonymous>:10:3)
+    at async <anonymous>:337:30
+    at D:\ai\dachoupai\dachoupai\.codex-remote-attachments\shop-purchase-copy-fix-20261017\docs\production\evidence\shop-purchase-consistency-2026-10-17\browser-check.mjs:16:27 {
+  log: []
+}
+
+Node.js v22.20.0
