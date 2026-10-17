@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "taskId": "P08",
+  "taskStatus": "in_progress",
+  "phase": "PARTIAL_SOURCES_MERGED_WAITING_REMAINDER",
+  "baseCommit": "212e23d547d4fcfdd886f9dfe80699318e77a738",
+  "integratedProductCommit": "689251951120d69d24daae5b8d91545f350d4ed3",
+  "branch": "dev/feedback-batch-integration-20261017",
+  "sources": [
+    {
+      "name": "numeric-melody",
+      "commit": "5273a1fa3099d29aba7a1300de7560c3d644ed1b",
+      "status": "MERGED_EXACT_OWNER_PATHS"
+    },
+    {
+      "name": "score-burst-footer",
+      "commit": "deee66633965266c558704bf05b419ea0e45e4c5",
+      "status": "MERGED_EXACT_OWNER_PATHS"
+    }
+  ],
+  "checks": [
+    {
+      "name": "Changed-path owner blobs and protected roots",
+      "status": "PASS",
+      "method": "Static Git object comparison only",
+      "evidence": "source-bindings.json"
+    },
+    {
+      "name": "Audio/visual arrival API compatibility",
+      "status": "PASS",
+      "method": "Static inspection only",
+      "note": "scoreImpact(presentation,eventId,kind,tier,chain) unchanged. GameScene remains exact deee source; calls after transfer/arrival. ScoreEnergy changes only peak and beat durations, not numeric kind/tier/chain classification. Audio recipes, private voice budgets and source footprints remain audio-source exact."
+    },
+    {
+      "name": "New combined unit/type/build/browser run",
+      "status": "NOT_RUN",
+      "reason": "Wait for all source owners, then one concentrated integration batch. No owner unit rerun or new matrix at this phase."
+    }
+  ],
+  "reusedEvidence": {
+    "audio": "113 source contracts/type/build and3.56s SFX-only OfflineAudioContext render at exact audio source, not combined acceptance.",
+    "visual": "Owner reports51 checks/type/build and local-only short frame observations in its README; no private/local screenshots copied or uploaded.",
+    "footer": "Owner75 component/layout cases and9 wiring cancellation cases/type/build as scoped in source README, not added into a new aggregate total."
+  },
+  "waitingSources": [
+    {
+      "owner": "01a147f7",
+      "scope": "商店推荐/模糊/风格与T18价差",
+      "status": "WAITING_SHA"
+    },
+    {
+      "owner": "01a147eb",
+      "scope": "六英雄显示名/技能共性及GameScene最小接线",
+      "status": "WAITING_SHA"
+    },
+    {
+      "owner": "01a147ee",
+      "scope": "Boss备战页及ShopScene音乐时序接线",
+      "status": "WAITING_SHA"
+    },
+    {
+      "owner": "01a147f5",
+      "scope": "手机结算",
+      "status": "WAITING_SHA"
+    }
+  ],
+  "hearing": {
+    "heard": false,
+    "parentPlaybackAttempt": "Parent reports audio input unsupported; no successful listening occurred.",
+    "boundary": "WAV/parameters are software evidence only; subjective do-re-mi/punch, live BGM mix and device listening remain NOT_RUN."
+  },
+  "ownership": "No new hand edits in GameScene, ShopScene, hero-name or mobile-settlement windows. Incoming exact SHA/patches will be merged in owner order; do not replace whole scenes.",
+  "publication": {
+    "mode": "Partial dev checkpoint only",
+    "main": "PENDING until remaining sources and concentrated integration checks complete",
+    "authorization": "User authorized today fixes; latest parent explicitly says no main until all source owners deliver.",
+    "restrictions": "No force push, CI/domain query, deployment, natural long game or repeated matrix."
+  }
+}

@@ -1,0 +1,246 @@
+{
+  "baseCommit": "212e23d547d4fcfdd886f9dfe80699318e77a738",
+  "integratedProductCommit": "689251951120d69d24daae5b8d91545f350d4ed3",
+  "branch": "dev/feedback-batch-integration-20261017",
+  "sources": [
+    {
+      "name": "numeric-melody",
+      "sha": "5273a1fa3099d29aba7a1300de7560c3d644ed1b",
+      "ownerEvidence": "../score-melody-audio-2026-10-17/README.md",
+      "paths": 22,
+      "bindings": [
+        {
+          "path": "docs/production/evidence/score-melody-audio-2026-10-17/BOSS_HANDOFF.md",
+          "sourceBlob": "ce3fff074968fb6b71bc3bf5bd4d5341e8e44fc0",
+          "integratedBlob": "ce3fff074968fb6b71bc3bf5bd4d5341e8e44fc0"
+        },
+        {
+          "path": "docs/production/evidence/score-melody-audio-2026-10-17/README.md",
+          "sourceBlob": "5b5a9994876ae8c1e79c1c21c02acf89f592f1aa",
+          "integratedBlob": "5b5a9994876ae8c1e79c1c21c02acf89f592f1aa"
+        },
+        {
+          "path": "docs/production/evidence/score-melody-audio-2026-10-17/after.json",
+          "sourceBlob": "4f163703958f7fb0206fbc1c9d57fae110269dea",
+          "integratedBlob": "4f163703958f7fb0206fbc1c9d57fae110269dea"
+        },
+        {
+          "path": "docs/production/evidence/score-melody-audio-2026-10-17/after.wav",
+          "sourceBlob": "3523c8034cd098f5a9b12e17f93be78b658e6258",
+          "integratedBlob": "3523c8034cd098f5a9b12e17f93be78b658e6258"
+        },
+        {
+          "path": "docs/production/evidence/score-melody-audio-2026-10-17/before.json",
+          "sourceBlob": "ec7494d2ddd44c9f8e07b496b07f65d9a8609c9c",
+          "integratedBlob": "ec7494d2ddd44c9f8e07b496b07f65d9a8609c9c"
+        },
+        {
+          "path": "docs/production/evidence/score-melody-audio-2026-10-17/before.wav",
+          "sourceBlob": "3f0114435e425462a52fc446c38dc3cc0f19be6a",
+          "integratedBlob": "3f0114435e425462a52fc446c38dc3cc0f19be6a"
+        },
+        {
+          "path": "docs/production/evidence/score-melody-audio-2026-10-17/checks/build-PASS.txt",
+          "sourceBlob": "c9458c692142502dd968ba00c5918f38758a01fe",
+          "integratedBlob": "c9458c692142502dd968ba00c5918f38758a01fe"
+        },
+        {
+          "path": "docs/production/evidence/score-melody-audio-2026-10-17/checks/built-source-info.json",
+          "sourceBlob": "a8173cea4e43b280dc92330584908f6ed8747d99",
+          "integratedBlob": "a8173cea4e43b280dc92330584908f6ed8747d99"
+        },
+        {
+          "path": "docs/production/evidence/score-melody-audio-2026-10-17/checks/concentrated-original-FAIL.txt",
+          "sourceBlob": "0aa6bd738f1ffca6415b872c045013cc56bfff51",
+          "integratedBlob": "0aa6bd738f1ffca6415b872c045013cc56bfff51"
+        },
+        {
+          "path": "docs/production/evidence/score-melody-audio-2026-10-17/checks/necessary-repair-PASS.txt",
+          "sourceBlob": "b2e2e22b8cf158d9a1a747fc59aad06a53980650",
+          "integratedBlob": "b2e2e22b8cf158d9a1a747fc59aad06a53980650"
+        },
+        {
+          "path": "docs/production/evidence/score-melody-audio-2026-10-17/checks/probe-setup-note.txt",
+          "sourceBlob": "5dba8aae434014d4004c7f1b5d20fbdf87766065",
+          "integratedBlob": "5dba8aae434014d4004c7f1b5d20fbdf87766065"
+        },
+        {
+          "path": "docs/production/evidence/score-melody-audio-2026-10-17/checks/typecheck-PASS.txt",
+          "sourceBlob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+          "integratedBlob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+        },
+        {
+          "path": "docs/production/evidence/score-melody-audio-2026-10-17/metrics-and-binding.json",
+          "sourceBlob": "370dda29579efacd3614e647079245fc82b7b29c",
+          "integratedBlob": "370dda29579efacd3614e647079245fc82b7b29c"
+        },
+        {
+          "path": "docs/production/evidence/score-melody-audio-2026-10-17/render-short-trace.mjs",
+          "sourceBlob": "decc3de20ac9c93bfe3867c166b4bdfe58e9111b",
+          "integratedBlob": "decc3de20ac9c93bfe3867c166b4bdfe58e9111b"
+        },
+        {
+          "path": "docs/production/evidence/score-melody-audio-2026-10-17/status.json",
+          "sourceBlob": "f7b08082e1c472c8f0f5176a52b6b04c2ba70561",
+          "integratedBlob": "f7b08082e1c472c8f0f5176a52b6b04c2ba70561"
+        },
+        {
+          "path": "src/audio/AudioEngine.ts",
+          "sourceBlob": "e2a5695e26d3da9a3a46237ca993562a4f68e5eb",
+          "integratedBlob": "e2a5695e26d3da9a3a46237ca993562a4f68e5eb"
+        },
+        {
+          "path": "src/audio/foley.ts",
+          "sourceBlob": "3bee74507aa73623bbb1b8479cfc1f8cd7bbe6ed",
+          "integratedBlob": "3bee74507aa73623bbb1b8479cfc1f8cd7bbe6ed"
+        },
+        {
+          "path": "src/audio/mixPolicy.ts",
+          "sourceBlob": "f07765853bb359166454305c9d014e403437d182",
+          "integratedBlob": "f07765853bb359166454305c9d014e403437d182"
+        },
+        {
+          "path": "tests/audio-mix-policy.test.ts",
+          "sourceBlob": "12179353dbd7616450139509bb7a35fad3744daf",
+          "integratedBlob": "12179353dbd7616450139509bb7a35fad3744daf"
+        },
+        {
+          "path": "tests/audio-sample-loading.test.ts",
+          "sourceBlob": "d3e64091eef355affa890bf251fd8664baf57979",
+          "integratedBlob": "d3e64091eef355affa890bf251fd8664baf57979"
+        },
+        {
+          "path": "tests/score-melody-audio.test.ts",
+          "sourceBlob": "739ef0a874e7ee5262836d6e10e81b6b7ef0a391",
+          "integratedBlob": "739ef0a874e7ee5262836d6e10e81b6b7ef0a391"
+        },
+        {
+          "path": "tests/score-recorded-audio.test.ts",
+          "sourceBlob": "8cdc0d90e024fc77b73d7c427a1b25cb50533143",
+          "integratedBlob": "8cdc0d90e024fc77b73d7c427a1b25cb50533143"
+        }
+      ]
+    },
+    {
+      "name": "score-burst-footer",
+      "sha": "deee66633965266c558704bf05b419ea0e45e4c5",
+      "ownerEvidence": "../hand-action-footer-2026-10-17/README.md",
+      "paths": 19,
+      "bindings": [
+        {
+          "path": "docs/production/evidence/hand-action-footer-2026-10-17/GameScene.integration.patch",
+          "sourceBlob": "04ae1047062c5202b036945abc51e9cbbf1ec399",
+          "integratedBlob": "04ae1047062c5202b036945abc51e9cbbf1ec399"
+        },
+        {
+          "path": "docs/production/evidence/hand-action-footer-2026-10-17/README.md",
+          "sourceBlob": "78b57667b2a5bcb0b9ca8ea2e23ae4ebb4e4cd76",
+          "integratedBlob": "78b57667b2a5bcb0b9ca8ea2e23ae4ebb4e4cd76"
+        },
+        {
+          "path": "docs/production/evidence/hand-action-footer-2026-10-17/components.png",
+          "sourceBlob": "349cef2042ac205f9a774d497299f408f913dca8",
+          "integratedBlob": "349cef2042ac205f9a774d497299f408f913dca8"
+        },
+        {
+          "path": "docs/production/evidence/hand-action-footer-2026-10-17/report.json",
+          "sourceBlob": "75b8cacdbd399c8522d00b1ae67b33115f3afef0",
+          "integratedBlob": "75b8cacdbd399c8522d00b1ae67b33115f3afef0"
+        },
+        {
+          "path": "docs/production/evidence/score-posture-pressure-2026-10-17/README.md",
+          "sourceBlob": "6425d599b9f5eca95432deb8455233376c41b524",
+          "integratedBlob": "6425d599b9f5eca95432deb8455233376c41b524"
+        },
+        {
+          "path": "src/game/GameScene.ts",
+          "sourceBlob": "df2276421e098bbaa8075934c091423f14e03e56",
+          "integratedBlob": "df2276421e098bbaa8075934c091423f14e03e56"
+        },
+        {
+          "path": "src/game/HandActionControls.ts",
+          "sourceBlob": "99fb889591d298aa6ae719e37a91b8ff6da07327",
+          "integratedBlob": "99fb889591d298aa6ae719e37a91b8ff6da07327"
+        },
+        {
+          "path": "src/game/HeroClimaxContribution.ts",
+          "sourceBlob": "b7a3872d7f8dfcb19d2aeb33986ffea0413981e7",
+          "integratedBlob": "b7a3872d7f8dfcb19d2aeb33986ffea0413981e7"
+        },
+        {
+          "path": "src/game/HeroClimaxStage.ts",
+          "sourceBlob": "17300585f335a6b7e5c7dbeff56ff4fa9fc7c14f",
+          "integratedBlob": "17300585f335a6b7e5c7dbeff56ff4fa9fc7c14f"
+        },
+        {
+          "path": "src/game/ScoreEnergy.ts",
+          "sourceBlob": "84adc08b7f6e20bd6d21703da228f7bde6c0bc04",
+          "integratedBlob": "84adc08b7f6e20bd6d21703da228f7bde6c0bc04"
+        },
+        {
+          "path": "src/game/ScorePosture.ts",
+          "sourceBlob": "fb26d76741b881040cef30de0abc1f95615c5635",
+          "integratedBlob": "fb26d76741b881040cef30de0abc1f95615c5635"
+        },
+        {
+          "path": "src/game/ScoreTextLayout.ts",
+          "sourceBlob": "314d7ff8266394f5b2a758eb4cc0e10d13a2f7fc",
+          "integratedBlob": "314d7ff8266394f5b2a758eb4cc0e10d13a2f7fc"
+        },
+        {
+          "path": "src/game/layout.ts",
+          "sourceBlob": "0c2a817934dbcb59792beee002c7e12d711a11ff",
+          "integratedBlob": "0c2a817934dbcb59792beee002c7e12d711a11ff"
+        },
+        {
+          "path": "tests/hand-action-controls.test.ts",
+          "sourceBlob": "8e0324607eded2405dcd2f1b77f403753f25f002",
+          "integratedBlob": "8e0324607eded2405dcd2f1b77f403753f25f002"
+        },
+        {
+          "path": "tests/hero-climax.test.ts",
+          "sourceBlob": "5385901f29c54e52a6051b4217aad12ad92e7497",
+          "integratedBlob": "5385901f29c54e52a6051b4217aad12ad92e7497"
+        },
+        {
+          "path": "tests/layout.test.ts",
+          "sourceBlob": "b171be4871b41d6a6c2854a78545fbcaa2e76ddc",
+          "integratedBlob": "b171be4871b41d6a6c2854a78545fbcaa2e76ddc"
+        },
+        {
+          "path": "tests/score-energy.test.ts",
+          "sourceBlob": "a8d87ee4b290c5ede763213195d53768fb657d1d",
+          "integratedBlob": "a8d87ee4b290c5ede763213195d53768fb657d1d"
+        },
+        {
+          "path": "tests/score-posture.test.ts",
+          "sourceBlob": "20f54d1e0227669b8bd953212a9dadeff24648b1",
+          "integratedBlob": "20f54d1e0227669b8bd953212a9dadeff24648b1"
+        },
+        {
+          "path": "tests/score-text-layout.test.ts",
+          "sourceBlob": "1b22fa44b5451494e0758b8462e729dfa28528a3",
+          "integratedBlob": "1b22fa44b5451494e0758b8462e729dfa28528a3"
+        }
+      ]
+    }
+  ],
+  "changedPathOverlap": [],
+  "protectedRoots": [
+    "src/domain",
+    "src/content",
+    "src/application",
+    "src/platform",
+    "public",
+    "art",
+    "package.json",
+    "package-lock.json"
+  ],
+  "protectedRootsUnchanged": true,
+  "gameSceneExactSource": "deee66633965266c558704bf05b419ea0e45e4c5",
+  "gameSceneBlob": "df2276421e098bbaa8075934c091423f14e03e56",
+  "merges": [
+    "689251951120d69d24daae5b8d91545f350d4ed3 15842a7c0dc0758aa2be5d6496180b5c76ef112b deee66633965266c558704bf05b419ea0e45e4c5 Integrate score bursts and compact footer deee6663 [skip ci]",
+    "15842a7c0dc0758aa2be5d6496180b5c76ef112b 212e23d547d4fcfdd886f9dfe80699318e77a738 5273a1fa3099d29aba7a1300de7560c3d644ed1b Integrate numeric score melody 5273a1fa [skip ci]"
+  ]
+}
