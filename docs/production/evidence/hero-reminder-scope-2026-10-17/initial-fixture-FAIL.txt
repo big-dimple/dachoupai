@@ -1,0 +1,24 @@
+
+ RUN  v4.1.11 C:/Users/wanghongping/AppData/Local/Temp/dachoupai-windows-integration-20261017
+
+ 鉂?tests/hero-play-reminder.test.ts (23 tests | 1 failed) 1166ms
+   脳 late run reminds on every explicit attempt; close and return preserve the draft 15ms
+
+鈳幆鈳幆鈳幆鈳?Failed Tests 1 鈳幆鈳幆鈳幆鈳?
+ FAIL  tests/hero-play-reminder.test.ts > late run reminds on every explicit attempt; close and return preserve the draft
+Error: Run invariant: program snapshot
+ 鉂?check src/domain/r2Run.ts:153:70
+
+ 鉂?assertR2Invariants src/domain/r2Run.ts:192:3
+ 鉂?Module.applyCommand src/domain/run.ts:206:5
+ 鉂?send tests/hero-play-reminder.test.ts:22:51
+ 鉂?lateRun tests/hero-play-reminder.test.ts:92:388
+ 鉂?tests/hero-play-reminder.test.ts:106:26
+
+鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆[1/1]鈳?
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 22 passed (23)
+   Start at  10:57:05
+   Duration  7.39s (transform 5.45s, setup 0ms, import 5.96s, tests 1.17s, environment 0ms)
+

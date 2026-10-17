@@ -2,7 +2,9 @@
 
 ## 当前统一执行计划
 
-**2026-10-17 Windows 整批开发候选：** `070cc16f0d04c7da03850dd62fd34cef450d8227`，接续 `5afce4e4`，已合 `fc681cf7` 高光预算、`36ba1e41` AI/开战与 bundle `f82b3cf9` 底栏。范围为加载去鱼、卡图/高光、音频、AI/开战、弃牌—理牌三块—出牌及独立技能/既有提醒；最终48项、类型/构建和72高光产物预算/hash通过，原生交叉实际结果与来源复用见[整批回执](evidence/windows-batch-integration-2026-10-17/README.md)。仅普通 dev 交付，未合main/查CI/域名/部署；提醒仍是已加入引导的新局首两场每场一次，不是长局每手强制。P08仍in_progress，其他评审项/正式门及真人设备听感未签。以下“仅文档/待实施”描述评审来源当时状态，不能覆盖本段整批事实。
+**技能提醒最新补正：** 产品 `473a727888d11479e15e3a77bffd5cbe6647c5a0` 承接整批1d80；默认在每次当前有资格且未用主动技能的出牌尝试前提醒，明确继续只放行本次，返回/关闭保留选择；取消首两场/每场一次/引导登记屏蔽，保留独立“不再提醒”。24项短测、受影响构建和类型通过，[精确证据](evidence/hero-reminder-scope-2026-10-17/README.md)。仅同一dev普通推送，不合main或长玩。
+
+**2026-10-17 Windows 整批开发候选：** `070cc16f0d04c7da03850dd62fd34cef450d8227`，接续 `5afce4e4`，已合 `fc681cf7` 高光预算、`36ba1e41` AI/开战与 bundle `f82b3cf9` 底栏。范围为加载去鱼、卡图/高光、音频、AI/开战、弃牌—理牌三块—出牌及独立技能/既有提醒；最终48项、类型/构建和72高光产物预算/hash通过，原生交叉实际结果与来源复用见[整批回执](evidence/windows-batch-integration-2026-10-17/README.md)。仅普通 dev 交付，未合main/查CI/域名/部署；提醒范围已由上述最新补正覆盖，不再受原首两场/每场一次限制。P08仍in_progress，其他评审项/正式门及真人设备听感未签。以下“仅文档/待实施”描述评审来源当时状态，不能覆盖本段整批事实。
 
 **唯一排程与状态入口，2026-10-17新加坡批次评审与整改排程。** 被测产品 `7d7921e76ca794a14e715e3eac3b4d66143862ff`，比较旧 `ba49d4536a21c647a6710b047053def874d29ace`。先读[综合评审](reviews/SINGAPORE_REVIEW_20261017.md)、[待实施整改计划](reviews/REMEDIATION_PLAN_20261017.md)与[原始证据](evidence/singapore-review-2026-10-17/README.md)；机器状态在[plan.json](plan.json)。原作者交付说明/status不改写，评审前当前段已[原样归档](history/DELIVERY_PLAN-current-before-singapore-review-20261017.md)。
 

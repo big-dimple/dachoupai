@@ -1,0 +1,75 @@
+{
+  "taskId": "P08",
+  "testedCommit": "473a727888d11479e15e3a77bffd5cbe6647c5a0",
+  "date": "2026-10-17",
+  "baseCommit": "1d80ead53cab2e931a4f25543d827ab20fffafe4",
+  "status": "PASS",
+  "scope": "Existing HeroPlayReminder default on for every eligible explicit play attempt; one validated confirmation bypasses only that attempt. No tutorial/enrollment/stage receipt suppression.",
+  "checks": [
+    {
+      "name": "early/late/legacy eligible profiles, opt-out, selection guards, return/close, single explicit PlayHand and repeated clicks",
+      "command": "npx --no-install vitest run tests/hero-play-reminder.test.ts",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 24,
+      "evidence": "targeted-24-PASS.txt"
+    },
+    {
+      "name": "affected production build",
+      "command": "npm run build",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "build-PASS.txt"
+    },
+    {
+      "name": "final test/source typecheck",
+      "command": "npm run typecheck",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "typecheck-PASS.txt"
+    }
+  ],
+  "sourceBindings": {
+    "src/game/GameScene.ts": {
+      "worktreeSHA256": "86388da9a7997f373796bdfcf8ec251a839a60e7c13a223643a58f8decb8f4f7",
+      "gitBlobSHA256": "86388da9a7997f373796bdfcf8ec251a839a60e7c13a223643a58f8decb8f4f7",
+      "normalizedMatch": true
+    },
+    "src/game/HeroPlayReminder.ts": {
+      "worktreeSHA256": "ffc6c4c3d49475ed4f556414bfbb9ba55c729bd298e79076ded32bca8d808532",
+      "gitBlobSHA256": "ffc6c4c3d49475ed4f556414bfbb9ba55c729bd298e79076ded32bca8d808532",
+      "normalizedMatch": true
+    },
+    "tests/hero-play-reminder.test.ts": {
+      "worktreeSHA256": "e7732614099f63a05202cc8e2f2be71519d5ecf2209bdd7d56ce55efd2655d2f",
+      "gitBlobSHA256": "e7732614099f63a05202cc8e2f2be71519d5ecf2209bdd7d56ce55efd2655d2f",
+      "normalizedMatch": true
+    }
+  },
+  "buildInfo": {
+    "version": "C03",
+    "builtAt": "2026-10-17T02:57:31.974Z",
+    "revision": "1d80ead53cab2e931a4f25543d827ab20fffafe4",
+    "sourceStatus": "dirty",
+    "modified": true,
+    "modifiedFileCount": 3,
+    "modifiedFiles": [
+      "src/game/GameScene.ts",
+      "src/game/HeroPlayReminder.ts",
+      "tests/hero-play-reminder.test.ts"
+    ]
+  },
+  "buildScope": "Build ran at base HEAD with these runtime files modified. Runtime files unchanged after build; canonical blobs bound above to product. Final test-only additions followed by typecheck. Not a clean-HEAD build.",
+  "preserved": "domain/application/platform/audio/public/layout/shortcut/dialog/CSS unchanged",
+  "preferences": "Existing independent skill disabled=true is preserved. Legacy per-run stage receipt entries no longer suppress; tutorial opt-out still affects tutorial only, not this separate skill decision.",
+  "baselineFailure": "initial-fixture-FAIL.txt: 22/23 passed; late fixture omitted program snapshot. Fixed only fixture modeConfig to programsEnabled=false, no product or invariants relaxed.",
+  "humanReview": {
+    "status": "NOT_RUN"
+  },
+  "limitations": [
+    "No new browser matrix or natural/long play; prior 1d80 native evidence remains at original version.",
+    "Physical device, listening and overall P08 acceptance remain open."
+  ],
+  "mainPushed": false,
+  "ciQueried": false
+}

@@ -1,5 +1,7 @@
 # Windows 整批整合：开发候选
 
+**后续提醒补正：** [hero-reminder-scope](../hero-reminder-scope-2026-10-17/README.md) 已取消本记录当时的首两场/每场一次限制；本文件其余原测试按070cc/1d80版本保留。
+
 被测产品 `070cc16f0d04c7da03850dd62fd34cef450d8227`，分支 `dev/windows-integration-20261017`。原主工作区保持 `main@ba49d453` 且干净；只读远端 main 核对为 `7d7921e76ca794a14e715e3eac3b4d66143862ff`。本批只普通 dev push，未合 main、未强推、未查 CI/域名或部署。P08 仍为 in_progress。
 
 本候选顺序接续 `5afce4e4`（评审、去鱼、卡图、音频），合入高光预算 `fc681cf7`、AI/开战正确性 `36ba1e41` 与底栏 `f82b3cf9`。后两项来自同一 GameScene 负责人；本地没有重写公共场景。底栏原产品 `86f253e0` 与证据提交通过 Library bundle 保留原 SHA：1,029,871 bytes，SHA256 `5cb633042d2d286cd5371b23e58f6e509998f31694c007507fc402d0c65f5aea`，本地文件可读、hash 和 `git bundle verify` 均通过，前置为 `36ba1e41`。

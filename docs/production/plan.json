@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "auditCommit": "7d7921e76ca794a14e715e3eac3b4d66143862ff",
   "currentTask": "P08",
-  "selectionPolicy": "2026-10-17 Windows 本地整批整合：dev/windows-integration-20261017，产品 070cc16f0d04c7da03850dd62fd34cef450d8227；范围为 AI/开战、底栏理牌三块与独立技能/既有提醒、音频、卡图/高光预算与加载去鱼。来源与实际短交叉见 windows-batch-integration 证据。只普通 dev push，不合 main、强推、查 CI/域名或部署；其它评审项与正式门不自动完成。",
+  "selectionPolicy": "2026-10-17 Windows 本地整批整合：dev/windows-integration-20261017，产品 070cc16f0d04c7da03850dd62fd34cef450d8227；范围为 AI/开战、底栏理牌三块与独立技能/既有提醒、音频、卡图/高光预算与加载去鱼。来源与实际短交叉见 windows-batch-integration 证据。只普通 dev push，不合 main、强推、查 CI/域名或部署；其它评审项与正式门不自动完成。 当前提醒补正见hero-reminder-scope-2026-10-17：不再限引导登记/首两场/每场一次，独立不再提醒偏好保留。",
   "resumeContract": {
     "candidateCommit": "4bf6a7d63d7738d3c415d09439a1bdca878dc685",
     "gateTask": "A01",
@@ -38,8 +38,9 @@
       ],
       "package": "docs/production/WORK_PACKAGES.md#p08",
       "humanGate": false,
-      "completionScope": "本批整合产品 070cc16f0d04c7da03850dd62fd34cef450d8227 已接续5afce并合入fc681/36ba/f82，48项最终短交叉、类型与构建、72高光产物预算/hash通过；已有来源证据按精确 Git blob 复用。当前本地原生状态见本批status，不把环境FAIL洗成产品通过；P08仍in_progress，真人/设备/听感/长局及其它评审项未签。",
+      "completionScope": "本批整合产品 070cc16f0d04c7da03850dd62fd34cef450d8227 已接续5afce并合入fc681/36ba/f82，48项最终短交叉、类型与构建、72高光产物预算/hash通过；已有来源证据按精确 Git blob 复用。当前本地原生状态见本批status，不把环境FAIL洗成产品通过；P08仍in_progress，真人/设备/听感/长局及其它评审项未签。 后续主动技能提醒补正产品 473a727888d11479e15e3a77bffd5cbe6647c5a0：默认覆盖所有合格出牌尝试，24项短测/受影响构建/类型通过，旧首两场限制撤销；本次未重跑整批或长局。",
       "evidence": [
+        "docs/production/evidence/hero-reminder-scope-2026-10-17/status.json",
         "docs/production/evidence/windows-batch-integration-2026-10-17/status.json",
         "docs/production/evidence/singapore-review-2026-10-17/status.json",
         "docs/production/evidence/cards-bgm-tangsong-refresh-2026-10-17/status.json",
@@ -1530,11 +1531,12 @@
       "numericalProposalImplemented": false
     },
     "windowsBatchIntegration": {
-      "candidateCommit": "070cc16f0d04c7da03850dd62fd34cef450d8227",
+      "candidateCommit": "473a727888d11479e15e3a77bffd5cbe6647c5a0",
       "branch": "dev/windows-integration-20261017",
       "evidence": "docs/production/evidence/windows-batch-integration-2026-10-17/status.json",
       "status": "dev_candidate_verified",
-      "mainPushed": false
+      "mainPushed": false,
+      "reminderFollowup": "docs/production/evidence/hero-reminder-scope-2026-10-17/status.json"
     }
   }
 }
