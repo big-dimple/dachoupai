@@ -2,6 +2,8 @@
 
 基线 `93447772`。本次只改 `src/game/r2ToolInfo.ts` 中 U08 对应的 `deletion-floor` 说明，不改领域、目录、数值、存档或 ShopScene。批量文案负责人 `01a147eb-03f4-758d-849d-92c7e371e037` 已确认该分支未被占用，可独立修改并须保留“本局”范围；其当前 `63145adf` 批量出口提交不改 r2ToolInfo。本改动以main已有的本局措辞为基线，仅局部修改。工具名称通过已有 `cardDefinitionName(getR2Tool(...))` 获取，随统一名称映射显示，未重新写死旧名或新名。
 
+名称纠正（只读复核 `4fef9dd4`）：此前报告将T02称作“忘招”、S01称作“以牌换彩”，两者均无当前映射依据，撤回这两个称呼。当前T02玩家展示名为**精简节目**，S01为**献纸**；**忘招是S05**，效果为一种牌型升3级、另一种降1级，不删扑克牌，不受极简手册影响。依据是 [r2-tools.json](../../../../src/content/r2-tools.json) 的工具定义、[tangsongCardNames.ts](../../../../src/game/tangsongCardNames.ts) 的 `cardDisplayName`（这三个ID没有覆盖映射，读取定义名称）及 [r2ToolInfo.ts](../../../../src/game/r2ToolInfo.ts) 的 `toolInfo` 名称出口。产品补丁本来就动态读取T02/S01名称，没有把上述报告误名写入运行时。本次纠正只改本证据，不重测、不改玩法或产品代码。
+
 ## 可直接回复玩家
 
 它是“让牌组更薄”的长期物品。平时用工具删牌，整副扑克牌至少要留20张；买了极简手册，本局可以继续删到16张。买入本身不会删牌，之后还要自己用删牌工具，把不需要的杂牌删掉。保留的核心牌占比更高，便更容易凑出想要的组合。
@@ -15,7 +17,7 @@
 | 问题 | 实际规则与源码 |
 | --- | --- |
 | 默认与持有后下限 | [r2-tools.json](../../../../src/content/r2-tools.json)：`deckDeletionFloor=20`、`minimalDeckFloor=16`；U08 的操作为 `deletion-floor`、floor16、lifetime run、不可出售、不可重复持有 |
-| 影响哪些方式 | [r2ToolCommands.ts](../../../../src/domain/r2ToolCommands.ts) 的 `delete-cards` 仅 T02（当前主线旧名精简节目，统一新名忘招）；[r2SpectralTools.ts](../../../../src/domain/r2SpectralTools.ts) 的 `random-enhancement` 仅 S01（当前主线旧名献纸，统一新名以牌换彩）的扑克牺牲成本。限制看所有区域中尚未永久移除的整副扑克，不是手牌数或仅抽牌堆 |
+| 影响哪些方式 | [r2ToolCommands.ts](../../../../src/domain/r2ToolCommands.ts) 的 `delete-cards` 仅 T02精简节目；[r2SpectralTools.ts](../../../../src/domain/r2SpectralTools.ts) 的 `random-enhancement` 仅 S01献纸的扑克牺牲成本。限制看所有区域中尚未永久移除的整副扑克，不是手牌数或仅抽牌堆。S05忘招调整牌型等级，不受此限制 |
 | 不影响什么 | 玻璃破碎由 [scoreR2.ts](../../../../src/domain/scoreR2.ts) 结算，未读主动删牌下限。S07谢幕镀彩牺牲的是唐宋牌，未读扑克张数下限。普通弃牌没有永久删除扑克，也不受此物品影响；改点数、染色、复制及其他工具不因U08获得倍率或热度 |
 | 生效范围 | [r2Run.ts](../../../../src/domain/r2Run.ts) 购买后将U08写入 `longTermItems`，后续每次主动删牌读取；本局持有持续生效，跨场保留，非一次性消耗或全账号永久升级；不会自动删牌 |
 | 是否保证能出牌 | T02场内删除不得删光 `handOrder`；S01牺牲后也须仍有手牌。代码保障的是不能在该操作后将手牌清空，不能声称保证后续每手能成五张牌型、无限续抽或一定过关。[c01-tools.test.ts](../../../../tests/c01-tools.test.ts) 已有实际剩1张手牌的合法边界用例。资源目录的 `handMinimum=5` 是手牌容量的下界，不是另一条整副扑克至少5张的保护；玻璃仍可破至16以下，最终无牌可出仍会失败 |
