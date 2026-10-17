@@ -1,0 +1,80 @@
+{
+  "head": "932fad1b43087a5609a40e4c68140d5145c2b5d8",
+  "browser": "143.0.3650.80",
+  "scope": "One controlled current-identity public import; native cards, hero shortcut and play. Actual saved assisted hand, source-factor impact and hero release instrumentation forwards original calls unchanged. No natural play, full hero matrix, human hearing/aesthetics or physical-device claim.",
+  "errors": [],
+  "sourceFiles": {
+    "src/game/GameScene.ts": "2c1fc3b4b20398dcd38a717d86d9b721e85bebd53133f8182d124db021ea4889",
+    "src/game/JokerScoreStrike.ts": "ed2b9cdadcaf12ea63ae2f4e2b44a1a41eb9f720ae6b7327813a3825014bb769",
+    "src/game/HeroTargetAttachment.ts": "821884eeaed743fe9151d929f35ba578794531ea4585453648f9ca66f3c0f296"
+  },
+  "pending": {
+    "assistIds": [
+      "spades-7",
+      "spades-8"
+    ],
+    "attachment": {
+      "key": "[\"controlled/score-energy/multiply\",0,[\"spades-2\",\"spades-3\",\"spades-4\",\"spades-5\",\"spades-6\"],[\"spades-7\",\"spades-8\"]]",
+      "targetId": "spades-7",
+      "targetIds": [
+        "spades-7",
+        "spades-8"
+      ],
+      "kind": "assist",
+      "label": "助",
+      "resolvedLabel": "已助",
+      "releaseReason": "amo.assist.",
+      "generation": 1,
+      "phase": "travel",
+      "elapsed": 49.99999999999999,
+      "clock": 49.99999999999999
+    }
+  },
+  "observed": {
+    "impacts": [
+      {
+        "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/28",
+        "source": "controlled/source-process/0",
+        "H": "309",
+        "M": "≈33.13",
+        "phase": "impact",
+        "oldTextures": 1
+      },
+      {
+        "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/29",
+        "source": "controlled/source-process/2",
+        "H": "309",
+        "M": "≈49.69",
+        "phase": "impact",
+        "oldTextures": 1
+      },
+      {
+        "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/30",
+        "source": "controlled/source-process/3",
+        "H": "349",
+        "M": "≈49.69",
+        "phase": "impact",
+        "oldTextures": 1
+      },
+      {
+        "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/31",
+        "source": "controlled/source-process/4",
+        "H": "439",
+        "M": "≈49.69",
+        "phase": "impact",
+        "oldTextures": 1
+      },
+      {
+        "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/32",
+        "source": "controlled/source-process/4",
+        "H": "439",
+        "M": "≈74.53",
+        "phase": "impact",
+        "oldTextures": 1
+      }
+    ],
+    "heroReleases": []
+  },
+  "status": "FAIL",
+  "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n0 !== 1\n\n    at file:///C:/Users/wanghongping/AppData/Local/Temp/dachoupai-hero-gift-integration-20261017/harness/joker-score-strike-integration.mjs:42:95\n    at runNextTicks (node:internal/process/task_queues:65:5)\n    at process.processImmediate (node:internal/timers:453:9)\n    at process.callbackTrampoline (node:internal/async_hooks:130:17)"
+}

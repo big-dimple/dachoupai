@@ -1,0 +1,8 @@
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+0 !== 1
+
+    at file:///C:/Users/wanghongping/AppData/Local/Temp/dachoupai-hero-gift-integration-20261017/harness/joker-score-strike-integration.mjs:42:95
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at process.processImmediate (node:internal/timers:453:9)
+    at process.callbackTrampoline (node:internal/async_hooks:130:17)

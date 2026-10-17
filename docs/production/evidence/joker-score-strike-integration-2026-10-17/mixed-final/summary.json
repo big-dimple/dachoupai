@@ -1,0 +1,105 @@
+{
+  "head": "1099ad96d7ba4f8d6fbd31689ceaecbc4bb3bec2",
+  "browser": "143.0.3650.80",
+  "scope": "One controlled current-identity public import; native cards, hero shortcut and play. Actual saved assisted hand, source-factor impact and hero release instrumentation forwards original calls unchanged. No natural play, full hero matrix, human hearing/aesthetics or physical-device claim.",
+  "errors": [],
+  "sourceFiles": {
+    "src/game/GameScene.ts": "2c1fc3b4b20398dcd38a717d86d9b721e85bebd53133f8182d124db021ea4889",
+    "src/game/JokerScoreStrike.ts": "ed2b9cdadcaf12ea63ae2f4e2b44a1a41eb9f720ae6b7327813a3825014bb769",
+    "src/game/HeroTargetAttachment.ts": "1fd2fd258118414d17a7663647acecf18e24475f6453f4490b1af0140cbbf780"
+  },
+  "pending": {
+    "assistIds": [
+      "spades-7",
+      "spades-8"
+    ],
+    "attachment": {
+      "key": "[\"controlled/score-energy/multiply\",0,[\"spades-2\",\"spades-3\",\"spades-4\",\"spades-5\",\"spades-6\"],[\"spades-7\",\"spades-8\"]]",
+      "targetId": "spades-7",
+      "targetIds": [
+        "spades-7",
+        "spades-8"
+      ],
+      "kind": "assist",
+      "label": "助",
+      "resolvedLabel": "已助",
+      "releaseReason": "amo.assist.",
+      "generation": 1,
+      "phase": "travel",
+      "elapsed": 66.66666666666666,
+      "clock": 66.66666666666666
+    }
+  },
+  "observed": {
+    "impacts": [
+      {
+        "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/28",
+        "source": "controlled/source-process/0",
+        "H": "309",
+        "M": "≈33.13",
+        "phase": "impact",
+        "oldTextures": 1
+      },
+      {
+        "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/29",
+        "source": "controlled/source-process/2",
+        "H": "309",
+        "M": "≈49.69",
+        "phase": "impact",
+        "oldTextures": 1
+      },
+      {
+        "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/30",
+        "source": "controlled/source-process/3",
+        "H": "349",
+        "M": "≈49.69",
+        "phase": "impact",
+        "oldTextures": 1
+      },
+      {
+        "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/31",
+        "source": "controlled/source-process/4",
+        "H": "439",
+        "M": "≈49.69",
+        "phase": "impact",
+        "oldTextures": 1
+      },
+      {
+        "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/32",
+        "source": "controlled/source-process/4",
+        "H": "439",
+        "M": "≈74.53",
+        "phase": "impact",
+        "oldTextures": 1
+      }
+    ],
+    "heroReleases": [
+      {
+        "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/34",
+        "state": {
+          "key": "[\"controlled/score-energy/multiply\",0,[\"spades-2\",\"spades-3\",\"spades-4\",\"spades-5\",\"spades-6\"],[\"spades-7\",\"spades-8\"]]",
+          "targetId": "spades-7",
+          "targetIds": [
+            "spades-7",
+            "spades-8"
+          ],
+          "kind": "assist",
+          "label": "助",
+          "resolvedLabel": "已助",
+          "releaseReason": "amo.assist.",
+          "generation": 1,
+          "phase": "release",
+          "elapsed": 0,
+          "clock": 19288.67666666667,
+          "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/34",
+          "failed": false
+        }
+      }
+    ]
+  },
+  "cleanup": {
+    "oldTextures": 0,
+    "activeStrikes": 0
+  },
+  "status": "PASS"
+}

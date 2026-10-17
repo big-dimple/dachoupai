@@ -1,0 +1,27 @@
+
+ RUN  v4.1.11 C:/Users/wanghongping/AppData/Local/Temp/dachoupai-hero-gift-integration-20261017
+
+ ❯ tests/score-table-haptics.test.ts (5 tests | 1 failed) 77ms
+   × the final score haptic waits for the same saved total to reach award, not enqueue or convergence 14ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/score-table-haptics.test.ts > the final score haptic waits for the same saved total to reach award, not enqueue or convergence
+TypeError: this.scoreTotal.setAlpha is not a function
+ ❯ GameScene.award src/game/GameScene.ts:2143:21
+    2141|     this.breakdownText.setText(readableScoreFormula(score.accumulator.…
+    2142|     presentation.credited=true;this.updateHud();
+    2143|     this.scoreTotal.setAlpha(1);
+       |                     ^
+    2144|     this.scoreTotal.setData('eventId',score.events.find(event=>event.p…
+    2145|     const finalId=score.events.find(event=>event.phase==='finalScore')…
+ ❯ tests/score-table-haptics.test.ts:34:121
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  1 failed | 12 passed (13)
+   Start at  23:27:57
+   Duration  7.11s (transform 14.27s, setup 0ms, import 18.24s, tests 170ms, environment 0ms)
+

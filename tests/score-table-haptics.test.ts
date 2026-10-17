@@ -25,7 +25,7 @@ it('GameScene actual impact forwards positive multipliers only, including hero e
  const abort=new AbortController();abort.abort();await scene.impactAccumulator(multiply[0],180,{...context,signal:abort.signal});expect(scope.multiplierArrived).not.toHaveBeenCalled();
 });
 it('the final score haptic waits for the same saved total to reach award, not enqueue or convergence',async()=>{
- const {scene,scope,context}=setup(),data=new Map<string,unknown>(),text:any={setText:vi.fn(()=>text),setColor:()=>text,setData:(k:string,v:unknown)=>{data.set(k,v);return text;}};
+ const {scene,scope,context}=setup(),data=new Map<string,unknown>(),text:any={setText:vi.fn(()=>text),setColor:()=>text,setAlpha:()=>text,setData:(k:string,v:unknown)=>{data.set(k,v);return text;}};
  let release!:()=>void;
  Object.assign(scene,{stage:{targetHeat:f.state.stage!.targetHeat},scoreTotal:text,scoreHeat:text,scoreMult:text,resultText:text,breakdownText:text,
   convergeScore:()=>new Promise<void>(r=>release=r),setAccumulator:vi.fn(),setDisplayedProduct:(v:string)=>text.setText(v),updateHud:vi.fn(),keepScoreReadable:vi.fn(),wait:async()=>{}});

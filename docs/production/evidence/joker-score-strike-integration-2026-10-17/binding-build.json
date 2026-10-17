@@ -1,0 +1,207 @@
+{
+  "taskId": "P08",
+  "testedCommit": "1099ad96d7ba4f8d6fbd31689ceaecbc4bb3bec2",
+  "baseCommit": "9b6061d9fb9a6a45e47890c062e61ffceeb4a82c",
+  "sourceCommit": "5172b9313b2888617e5fd7b347f7b00fd43cc7e8",
+  "sourceProduct": "9969b9e6144ef5442dd6dfbcd636b53a96821167",
+  "amoSource": "0da40ebf6e80516d3ef42bc884535d02d3581e71",
+  "amoProduct": "0676e0d9f8d4eda2092dbd5265e985971293eaba",
+  "sourceBindings": [
+    {
+      "path": "src/game/JokerScoreStrike.ts",
+      "sourceCommit": "5172b9313b2888617e5fd7b347f7b00fd43cc7e8",
+      "sourceBlob": "ab25f073f6c37f5c7d82bf17d3132201ceb59b3f",
+      "integratedBlob": "ab25f073f6c37f5c7d82bf17d3132201ceb59b3f"
+    },
+    {
+      "path": "src/game/ScorePhrase.ts",
+      "sourceCommit": "5172b9313b2888617e5fd7b347f7b00fd43cc7e8",
+      "sourceBlob": "a2f17262a525636a9129d5ad8f2fd19614981445",
+      "integratedBlob": "a2f17262a525636a9129d5ad8f2fd19614981445"
+    },
+    {
+      "path": "src/game/ScoreTableCredit.ts",
+      "sourceCommit": "5172b9313b2888617e5fd7b347f7b00fd43cc7e8",
+      "sourceBlob": "e7d5bfa29effbfdec421c9a629ddf3cec054d3bd",
+      "integratedBlob": "e7d5bfa29effbfdec421c9a629ddf3cec054d3bd"
+    },
+    {
+      "path": "src/game/inkwaveSpring.ts",
+      "sourceCommit": "5172b9313b2888617e5fd7b347f7b00fd43cc7e8",
+      "sourceBlob": "c49b81ed24ca9e468a2e06c6d98b7b01b8e99abd",
+      "integratedBlob": "c49b81ed24ca9e468a2e06c6d98b7b01b8e99abd"
+    },
+    {
+      "path": "src/game/scorePresentation.ts",
+      "sourceCommit": "5172b9313b2888617e5fd7b347f7b00fd43cc7e8",
+      "sourceBlob": "0a0b282464bb968c5956fc4d41e2efd731a4002d",
+      "integratedBlob": "0a0b282464bb968c5956fc4d41e2efd731a4002d"
+    },
+    {
+      "path": "src/game/HeroTargetAttachment.ts",
+      "sourceCommit": "0da40ebf6e80516d3ef42bc884535d02d3581e71",
+      "sourceBlob": "0bf3c9e5f82ea14c9c450f09598c9dc0a14112e8",
+      "integratedBlob": "0bf3c9e5f82ea14c9c450f09598c9dc0a14112e8"
+    },
+    {
+      "path": "src/game/HeroTargetAttachmentState.ts",
+      "sourceCommit": "0da40ebf6e80516d3ef42bc884535d02d3581e71",
+      "sourceBlob": "5977895645ae14b9a8ba10fba51cf202d05eaec8",
+      "integratedBlob": "5977895645ae14b9a8ba10fba51cf202d05eaec8"
+    },
+    {
+      "path": "src/game/AssistInkGeometry.ts",
+      "sourceCommit": "0da40ebf6e80516d3ef42bc884535d02d3581e71",
+      "sourceBlob": "f71c294bcc05e579b8e423958e303a3a320a1313",
+      "integratedBlob": "f71c294bcc05e579b8e423958e303a3a320a1313"
+    }
+  ],
+  "gameSceneMethodBindings": [
+    {
+      "method": "handLayoutWindow",
+      "sameAs": "9b6061d9fb9a6a45e47890c062e61ffceeb4a82c",
+      "sha256": "0648c6747e75957cddfde6baf5a5dca49b907ce4a2975237f2490b6b5937941b"
+    },
+    {
+      "method": "syncHeroTargetAttachment",
+      "sameAs": "9b6061d9fb9a6a45e47890c062e61ffceeb4a82c",
+      "sha256": "13269bacee4825feda24b1053860c720e676b3026e3627e791166a076ee8e727"
+    },
+    {
+      "method": "playSavedRefillPortrait",
+      "sameAs": "9b6061d9fb9a6a45e47890c062e61ffceeb4a82c",
+      "sha256": "58427827705e6456e1f02b2e2c887244d16568c7bee556d7a0e945895e9ac4b1"
+    },
+    {
+      "method": "showLaohuanPayoff",
+      "sameAs": "9b6061d9fb9a6a45e47890c062e61ffceeb4a82c",
+      "sha256": "fe33bcecebd4a695062032f80540c51b778bc555d0e52545a74778f0c44c0ebd"
+    },
+    {
+      "method": "animateRole",
+      "sameAs": "9b6061d9fb9a6a45e47890c062e61ffceeb4a82c",
+      "sha256": "4cb95935acb102bff526012ecc7aa8edf581ed80b8663ca614f34c84b4269e33"
+    },
+    {
+      "method": "refreshScoreFire",
+      "sameAs": "5172b9313b2888617e5fd7b347f7b00fd43cc7e8",
+      "sha256": "a0bd7efb1ee43c191d7b55e909696a9787390930665f417fc27688d2692a9955"
+    },
+    {
+      "method": "pulseAccumulator",
+      "sameAs": "5172b9313b2888617e5fd7b347f7b00fd43cc7e8",
+      "sha256": "f65b115d18d778bbc8fc88dd872eb8d4809abfed01d2a25db663017d11ad4a9f"
+    },
+    {
+      "method": "impactAccumulator",
+      "sameAs": "5172b9313b2888617e5fd7b347f7b00fd43cc7e8",
+      "sha256": "dd1f1888618bb685acd035111e541ab6988f02ecccb98ff5e8e6c1614f30ff67"
+    },
+    {
+      "method": "showScoreEvent",
+      "sameAs": "5172b9313b2888617e5fd7b347f7b00fd43cc7e8",
+      "sha256": "62b68b492fa4add733840896b13913cd0702f98069d153e22eb414400e35369a"
+    },
+    {
+      "method": "award",
+      "sameAs": "5172b9313b2888617e5fd7b347f7b00fd43cc7e8",
+      "sha256": "62d96035e9fcf688bb4a98fdc3002443bc84fe2d52851e88971d0f32bb48410d"
+    },
+    {
+      "method": "convergeScore",
+      "sameAs": "5172b9313b2888617e5fd7b347f7b00fd43cc7e8",
+      "sha256": "f9028e101a569070c1d702499d19ebd5ae187593efc9b840e14fd497ec40c143"
+    },
+    {
+      "section": "this.targetAttachment=new HeroTargetAttachment",
+      "sameAs": "9b6061d9fb9a6a45e47890c062e61ffceeb4a82c",
+      "sha256": "7de09edba0589ea9435ce1f9a0b003f72350b716fe2929522a661abf7b4a08ec"
+    },
+    {
+      "section": "const attachment=replay?undefined:savedHeroAttachment",
+      "sameAs": "9b6061d9fb9a6a45e47890c062e61ffceeb4a82c",
+      "sha256": "f13d282fd72cde06d4d5cf7723e8b8f3a55d834fa8035c07ec347615cd1da8c4"
+    }
+  ],
+  "protectedSameAsBase": [
+    "src/game/ShopScene.ts",
+    "src/game/ShopJokerGalleryArt.ts",
+    "src/game/IntermissionScene.ts",
+    "src/game/IntermissionLayout.ts",
+    "src/game/IntermissionScroll.ts",
+    "src/game/AssistRestrictionCopy.ts",
+    "src/game/HeroAbilityCue.ts",
+    "src/game/HeroSkillGuide.ts",
+    "src/game/HeroAttachmentFacts.ts",
+    "src/game/BootScene.ts",
+    "src/game/LoadingProgress.ts",
+    "src/game/LoadingScreen.ts",
+    "src/game/LoadingScreen.css",
+    "src/game/SceneResources.ts",
+    "src/game/OwnedJokerScoreMotion.ts",
+    "src/game/HeroPortraitLayout.ts",
+    "src/game/HeroPortraitScoreMotion.ts",
+    "src/game/StageGiftDelivery.ts",
+    "src/game/SavedStageGift.ts",
+    "src/game/RunMenu.ts",
+    "src/style.css",
+    "src/audio",
+    "src/domain",
+    "src/content",
+    "public",
+    "art/sources"
+  ],
+  "status": "scoped_checks_pass",
+  "scope": "Automatic three-way GameScene merge, source strike methods exact5172 and existing six-hero/refill sections exact9b606; no old whole-scene replacement. Source39 with AV/cancel/destroy and source13 Su sample checks reused at original versions, human intensity/hearing/physical acceptance remain open.",
+  "checks": {
+    "crossInitial": {
+      "files": 3,
+      "passed": 12,
+      "failed": 1,
+      "failure": "score table haptic mock lacked setAlpha; original FAIL retained"
+    },
+    "hapticsFixtureFixed": {
+      "files": 1,
+      "passed": 5,
+      "scope": "Only add mock setAlpha; original award/arrival assertions unchanged; other2files8pass reused"
+    },
+    "mixedBrowser": {
+      "status": "PASS",
+      "cases": 1,
+      "viewport": "1366x768 Edge143",
+      "jokerImpacts": 5,
+      "heroReleases": 1,
+      "nativeInput": "cards, Su shortcut, play",
+      "canonical": "full state/journal/storage",
+      "cleanup": {
+        "oldTextures": 0,
+        "activeStrikes": 0
+      }
+    },
+    "typecheck": "PASS",
+    "productionBuild": {
+      "status": "PASS",
+      "modules": 356,
+      "runtimeClean": true,
+      "testFixtureAndHarnessDirtyAtBuild": true
+    },
+    "sourceReused": {
+      "strikeTests": 39,
+      "scope": "SourcePC/390/4x/reduced/3phasecancel/old glyph destroy AV and state evidence retained at source version, not rerun as matrix",
+      "amoTests": 13,
+      "amoScope": "390controlled contrast/internal zero pixels/reduced cleanup, source sample only, no six hero expansion"
+    }
+  },
+  "budget": {
+    "files": 397,
+    "bytes": 37154089,
+    "limitBytes": 20000000,
+    "status": "FAIL"
+  },
+  "acceptance": {
+    "P08": "in_progress",
+    "idealSmokeIntensity": false,
+    "humanDirectionWeightHearing": false,
+    "physicalDevice": false
+  }
+}
