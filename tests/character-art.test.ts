@@ -6,7 +6,7 @@ const catalog=CHARACTER_ART as CharacterArtAsset[],approved=[...catalog];
 afterEach(()=>{catalog.splice(0,catalog.length,...approved);vi.unstubAllGlobals();vi.restoreAllMocks();});
 const register=()=>{catalog.splice(0);const a:CharacterArtAsset={id:'amo',purpose:'portrait',key:characterArtKey('amo','portrait'),path:'test-approved-art.webp',url:'https://game.example/test-approved-art.webp',width:615,height:768,bytes:64,sha256:'test-fixture',format:'webp'};catalog.push(a);return a;};
 it('all six identities resolve approved assets, with optional focus outside the startup faces',()=>{
- expect(catalog).toHaveLength(24);for(const c of CHARACTERS)for(const p of ['avatar','selection','portrait','focus'] as const){const a=characterArt(c.id,p)!;expect(a).toBeDefined();expect(a.url).toContain('/assets/tangsong-portraits/');expect(a.bytes).toBeLessThanOrEqual(128*1024);expect(a.width*a.height).toBeLessThanOrEqual(600000);expect(characterArtKey(c.id,p)).toContain(c.id);}
+ expect(catalog).toHaveLength(30);for(const c of CHARACTERS)for(const p of ['avatar','selection','portrait','focus','eyes'] as const){const a=characterArt(c.id,p)!;expect(a).toBeDefined();expect(a.url).toContain(p==='eyes'?'/assets/tangsong-eyes/':'/assets/tangsong-portraits/');expect(a.bytes).toBeLessThanOrEqual(128*1024);expect(a.width*a.height).toBeLessThanOrEqual(600000);expect(characterArtKey(c.id,p)).toContain(c.id);if(p==='eyes')expect(a.width/a.height).toBe(8/3);}
 });
 it('every derived hero image uses its own content hash to invalidate replaced artwork',()=>{
  for(const asset of approved)expect(new URL(asset.url,'https://game.example').searchParams.get('v')).toBe(asset.sha256.slice(0,12));
