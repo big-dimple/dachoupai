@@ -1,0 +1,15 @@
+node:internal/fs/promises:641
+  return new FileHandle(await PromisePrototypeThen(
+                        ^
+
+Error: ENOENT: no such file or directory, open 'D:\ai\dachoupai\dachoupai\.codex-remote-attachments\shop-purchase-copy-fix-20261017\docs\production\evidence\shop-purchase-consistency-2026-10-17\controlled-checkpoint.json'
+    at async open (node:internal/fs/promises:641:25)
+    at async readFile (node:internal/fs/promises:1245:14)
+    at async file:///D:/ai/dachoupai/dachoupai/.codex-remote-attachments/shop-purchase-copy-fix-20261017/docs/production/evidence/prebattle-flow-2026-10-17/browser-check.mjs:8:23 {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\ai\\dachoupai\\dachoupai\\.codex-remote-attachments\\shop-purchase-copy-fix-20261017\\docs\\production\\evidence\\shop-purchase-consistency-2026-10-17\\controlled-checkpoint.json'
+}
+
+Node.js v22.20.0

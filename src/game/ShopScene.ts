@@ -6,7 +6,7 @@ import {createShopOfferValue,createShopIdentityTags} from './ShopJokerPresentati
 import {warmTableImages} from './StageImageWarmup';
 import {warmShopToolImages,warmShopToolPanel} from './ShopToolImageWarmup';
 import {showHeroExplanation} from './HeroExplanation';
-import {presentBossPreparation} from './BossPreparationPresentation';
+import {bossRulesSeen,presentBossPreparation} from './BossPreparationPresentation';
 import {isR2CoreBuild,isR2SuitChoice,R2_SUIT_DYE_IDS,r2BasicChoiceBasePrice} from '../domain/r2GroupUpgrade';
 import type {R2PracticeQuote} from '../domain/r2Practice';
 import {shopPracticeServices,shopPracticeQuota,shopPracticeConfirmation,shopPracticeAction,shopPracticeSavedReceipt,shopPracticeEffect,type ShopPracticeReceipt} from './ShopPracticeService';
@@ -48,7 +48,7 @@ import {cardDisplayName} from './tangsongCardNames';
 import Phaser from 'phaser';
 import {r2JokerCapacity} from '../domain/r2Resources';
 import {r2RunModeConfig,R2_MODE_CATALOG} from '../content/r2Modes';
-import {programStatus,showPrograms} from './ProgramDialog';
+import {programEntryLabel,programStatus,showPrograms} from './ProgramDialog';
 import {AudioEngine} from '../audio/AudioEngine';
 import {r2PaidRerollPrice,salePrice,r2Pool,r2PurchasePrice,r2PurchaseDiscount,r2ToolAcquisitionPool,type R2Offer} from '../domain/r2Shop';
 import {s04IssueText,s04QualificationText} from './S04Qualification';
@@ -347,7 +347,7 @@ export class ShopScene extends Phaser.Scene {
     v.text(p.x+16,p.top+58,stage.name,16,'#3F606B',pc.left.width-32);
     v.text(p.x+16,p.top+86,'目标 '+heatText(stage.targetHeat),18,'#26313A',pc.left.width-32);
     this.goldText=v.text(p.x+16,p.top+124,'金币 '+this.run.gold,28,'#26313A',pc.left.width-32).setName('shop/gold').setFontStyle('bold');
-    v.button({...p.chapter,x:p.chapter.x+12,width:p.chapter.width-24},this.run.program&&!this.run.program.choiceMade?'本章节目 · 待选':'本章节目','action/chapter',()=>this.inspectChapter());
+    v.button({...p.chapter,x:p.chapter.x+12,width:p.chapter.width-24},programEntryLabel(this.run),'action/chapter',()=>this.inspectChapter());
     v.text(pc.ownedRail.x,p.top+12,(buildGrowthProgress(this.run)[0]?.metric??`当前构筑 ${this.run.jokers.length}/${r2JokerCapacity(this.run)} · 从左至右触发`),16,'#26313A').setName('shop/owned-heading');
     v.button(p.build,this.lastPurchaseReceipt?'购物结果':this.buildLabel(),'action/build',()=>this.lastPurchaseReceipt?this.openPurchaseReceipt():this.inspectJourney());this.drawOwned(p);
     const entry=shopInventoryEntry(p.tabs,pc.inventoryEntry);
@@ -875,7 +875,9 @@ export class ShopScene extends Phaser.Scene {
     if(this.scene.isActive())showDeckInspection(this.dialog,this.run);
   }
   private inspectChapter():void {
-    void presentStageSelection(this.dialog,this.run,this);
+    const owner=runController(this),run=this.run,lifecycle=this.lifecycle;
+    const valid=()=>this.scene.isActive()&&this.lifecycle===lifecycle&&runController(this)===owner&&owner?.state===run&&this.run===run&&run.phase==='shop';
+    showPrograms(this.dialog,run,this.ready,(action,seq)=>this.send(action,seq),{valid,directory:()=>{if(valid())void presentStageSelection(this.dialog,run,this);}});
   }
   private inspectOffer(id:string,makeCards=false):void {
     if(id===basicChoiceSeat(this.run)?.offerId){this.inspectBasicChoice();return;}
@@ -1053,7 +1055,7 @@ export class ShopScene extends Phaser.Scene {
 
         if(previous.shop!.rerollCount!==this.run.shop!.rerollCount){this.selectedOfferId=undefined;this.audio.reroll();this.pendingRerollFlip=this.shelfKind!=='items';}
       }
-      if(action.type==='LeaveShop'){this.audio.select();paperSceneStart(this,'game',carriedTool?{carriedTool}:undefined);}
+      if(action.type==='LeaveShop'){this.audio.select();const entry={...(carriedTool?{carriedTool}:{}),...(bossRulesSeen(this.run)?{preparedBossOwner:runController(this)}:{})};paperSceneStart(this,'game',Object.keys(entry).length?entry:undefined);}
       else if(action.type==='SkipStage'){
         const s=this.run.stage!;paperSceneStart(this,'intermission',{cleared:true,stageIndex:s.index,stageHeat:s.heat,handsLeft:s.handsLeft,goldEarned:s.goldEarned} satisfies IntermissionResult);
       }

@@ -3,7 +3,7 @@ import type {DetailDialog} from '../src/game/DetailDialog';
 import {applyCommand, createRun, type R2RunState} from '../src/domain/run';
 import {R2_BOSSES} from '../src/domain/r2Chapter';
 import {newRunIdentity} from '../src/game/RunLaunch';
-import {bossPreparationFacts, createBossPreparationHistory, presentBossPreparation, BOSS_PREPARATION_SEEN_KEY} from '../src/game/BossPreparationPresentation';
+import {bossPreparationFacts,bossRulesKey,bossRulesSeen,trackBossRulesVisible,createBossPreparationHistory,presentBossPreparation,BOSS_PREPARATION_SEEN_KEY} from '../src/game/BossPreparationPresentation';
 
 /** DOM tree and native-dialog boundary only; browser layout and listening are separate checks. */
 class Element {
@@ -15,6 +15,10 @@ class Element {
   scrollTop = 0;
   connected = false;
   onclick: (() => unknown) | undefined;
+  private listeners=new Map<string,Set<()=>void>>();
+  addEventListener(type:string,listener:()=>void){if(!this.listeners.has(type))this.listeners.set(type,new Set());this.listeners.get(type)!.add(listener);}
+  removeEventListener(type:string,listener:()=>void){this.listeners.get(type)?.delete(listener);}
+  dispatch(type:string){for(const listener of this.listeners.get(type)??[])listener();}
   private text = '';
   constructor(readonly tag: string) {}
   classList = {add: (name: string) => {this.className += ' ' + name;}};
@@ -46,6 +50,7 @@ class Dialog {
   close(expected?: Element) {
     if (!this.current || expected && !this.active(expected)) return;
     this.current.open = false;this.current.parent = undefined;
+    this.current.dispatch('close');
     const after = this.onClose;this.current = undefined;this.onClose = undefined;after?.();
   }
 }
@@ -95,6 +100,20 @@ describe('public Boss preparation facts', () => {
 });
 
 describe('one visible announcement per complete run identity and Boss stage', () => {
+  it('shares the exact identity across preparation, stage-ready and resumed battle without touching the run',()=>{
+    let run=bossShop();const seen=history(),key=bossRulesKey(run)!;seen.mark(key);
+    for(const type of ['LeaveShop','EnterStage'] as const){const result=applyCommand(run,{runId:run.runId,commandId:'rules/'+run.commandSeq,expectedSeq:run.commandSeq,action:{type}});if(!result.ok)throw Error(result.code);run=result.state;expect(bossRulesKey(run)).toBe(key);expect(bossRulesSeen(run,seen)).toBe(true);}
+    const before=structuredClone(run);expect(bossRulesSeen(structuredClone(run),history())).toBe(true);expect(run).toEqual(before);
+    expect(bossRulesSeen({...run,contentHash:'another-profile'},seen)).toBe(false);expect(bossRulesSeen({...run,stage:{...run.stage!,boss:{definitionId:'B01',disabledSuit:null}}},seen)).toBe(run.stage?.boss?.definitionId==='B01');
+  });
+  it('an unseen restored rule is recorded only while its live dialog is visible, and closing cancels the late mark',()=>{
+    const run=bossShop(),seen=history(),dialog=new Dialog();let valid=true;
+    const modal=dialog.open('rules','',[],{closeLabel:'close',onClose:()=>{}});
+    documentState.hidden=true;trackBossRulesVisible(run,modal as unknown as HTMLDialogElement,()=>valid,seen);flush();expect(bossRulesSeen(run,seen)).toBe(false);
+    documentState.hidden=false;for(const listener of listeners)listener();valid=false;flush();expect(bossRulesSeen(run,seen)).toBe(false);
+    valid=true;trackBossRulesVisible(run,modal as unknown as HTMLDialogElement,()=>valid,seen);dialog.close();flush();expect(bossRulesSeen(run,seen)).toBe(false);
+    const visible=dialog.open('rules','',[],{closeLabel:'close',onClose:()=>{}});trackBossRulesVisible(run,visible as unknown as HTMLDialogElement,()=>true,seen);flush();expect(bossRulesSeen(run,seen)).toBe(true);
+  });
   it('persists optional UI history across reload/retry and separates later Bosses and profiles', () => {
     const run = bossShop(), key = bossPreparationFacts(run)!.key;
     history().mark(key);expect(history().has(bossPreparationFacts(structuredClone(run))!.key)).toBe(true);
