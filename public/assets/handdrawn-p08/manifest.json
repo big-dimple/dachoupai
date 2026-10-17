@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "originalArtworkCount": 81,
   "runtimeFileCount": 165,
-  "runtimeBytes": 10054634,
+  "runtimeBytes": 10112306,
   "sourceCommit": "c618cee93089bb2e556f16567709b0ea23abbcb9",
   "assets": [
     {
@@ -1485,21 +1485,26 @@
       "outputs": [
         {
           "purpose": "thumbnail",
-          "path": "cards/c06.thumbnail.webp",
+          "path": "cards/c06-v3-45e28c8be0e9.thumbnail.webp",
           "width": 128,
           "height": 160,
-          "bytes": 6224,
-          "sha256": "c380aad61c616d3f68954b3d80d095f967e7e1497fc3af682df2f10e52295f9f"
+          "bytes": 8492,
+          "sha256": "45e28c8be0e9b99889849355026f8442c30a9e3662a761c7f1083165ed2a7493"
         },
         {
           "purpose": "detail",
-          "path": "cards/c06.detail.webp",
+          "path": "cards/c06-v3-2cac9ea20520.detail.webp",
           "width": 615,
           "height": 768,
-          "bytes": 99968,
-          "sha256": "0253f789d564ef9e96719f8aefe17c3dcbb4b4ad371b60e1ce7e42df7faf2e19"
+          "bytes": 155372,
+          "sha256": "2cac9ea20520b03c13de76a42dbb55fb5229990e209ecda1975d3c192c55c07e"
         }
-      ]
+      ],
+      "replacementSource": {
+        "sourceManifestPath": "art/sources/qingchuyulan-art-20261017/manifest.json",
+        "sourceManifestSHA256": "a248d6f72527d6e60c2ab9e01d1ede2b3eaf57ae6be562988c75d2a4ae62d863",
+        "hashPolicy": "UTF-8 pretty JSON plus LF"
+      }
     },
     {
       "id": "d03",

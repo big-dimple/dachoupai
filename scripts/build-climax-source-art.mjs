@@ -5,11 +5,13 @@ import {createHash} from 'node:crypto';
 import assert from 'node:assert/strict';
 
 const directory='public/assets/handdrawn-climax',check=process.argv.includes('--check');
+const idIndex=process.argv.indexOf('--id'),selectedId=idIndex<0?undefined:process.argv[idIndex+1];
 const hash=bytes=>createHash('sha256').update(bytes).digest('hex');
 const source=JSON.parse(await readFile('public/assets/handdrawn-p08/manifest.json','utf8'));
-const manifest={schemaVersion:1,purpose:'climax-source',maxBytes:96*1024,maxDimension:768,derivedMaxWidth:320,derivedMaxHeight:400,quality:86,assets:[]};
+const manifest=selectedId?JSON.parse(await readFile(directory+'/manifest.json','utf8')):{schemaVersion:1,purpose:'climax-source',maxBytes:96*1024,maxDimension:768,derivedMaxWidth:320,derivedMaxHeight:400,quality:86,assets:[]};
+if(idIndex>=0)assert.ok(selectedId&&source.assets.some(a=>a.id===selectedId&&a.category==='functional-card'),'known --id required');
 if(!check)await mkdir(directory,{recursive:true});
-for(const card of source.assets.filter(a=>a.category==='functional-card')){
+for(const card of source.assets.filter(a=>a.category==='functional-card'&&(!selectedId||a.id===selectedId))){
  const detail=card.outputs.find(o=>o.purpose==='detail'),sourcePath='assets/handdrawn-p08/'+detail.path,original=await readFile('public/'+sourcePath);
  assert.equal(hash(original),detail.sha256,'detail bytes must match the current artwork registry');
  const input=await sharp(original).metadata();assert.deepEqual([input.width,input.height],[detail.width,detail.height]);
@@ -22,7 +24,9 @@ for(const card of source.assets.filter(a=>a.category==='functional-card')){
   else await writeFile('public/'+path,bytes);
  }
  assert.ok(bytes.length<=manifest.maxBytes&&width<=manifest.maxDimension&&height<=manifest.maxDimension,'keep the existing stage transfer/pixel ceilings');
- manifest.assets.push({id:card.id,kind,sourcePath,sourceSHA256:detail.sha256,path,width,height,bytes:bytes.length,sha256:hash(bytes),geometry:{fit:'inside',entireSourceSampled:true,noUpscale:true,sourceCropPixels:{left:0,top:0,width:detail.width,height:detail.height}}});
+ const record={id:card.id,kind,sourcePath,sourceSHA256:detail.sha256,path,width,height,bytes:bytes.length,sha256:hash(bytes),geometry:{fit:'inside',entireSourceSampled:true,noUpscale:true,sourceCropPixels:{left:0,top:0,width:detail.width,height:detail.height}}};
+ if(selectedId){const index=manifest.assets.findIndex(a=>a.id===selectedId);assert.ok(index>=0,'existing stage ID required');manifest.assets[index]=record;}
+ else manifest.assets.push(record);
 }
 assert.equal(manifest.assets.length,72);
 if(check)assert.deepEqual(JSON.parse(await readFile(directory+'/manifest.json','utf8')),manifest);

@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "batch": "qingchuyulan-art-20261017",
+  "baseCommit": "f81724b57736c7d4f299cf1d95705a7ba3ef9497",
+  "id": "c06",
+  "displayName": "青出于蓝",
+  "domainName": "越染越深",
+  "sourceOriginalName": "青出于蓝.png",
+  "sourceFilename": "c06-qingchuyulan-original.png",
+  "sourceSHA256": "7b530adb5ede95719ad37f4813e90f0ad42faa657763b7f5c60152a3f3b963e9",
+  "sourceBytes": 3937366,
+  "sourceWidth": 1122,
+  "sourceHeight": 1402,
+  "pixelReview": "Viewed original pixels: blue-dye apprentice displays a deep-blue patterned cloth beside his teacher, with indigo plants, vats and complete gold border; mapped by current display-name ID and prior source receipt.",
+  "geometry": {
+    "fit": "contain",
+    "entireSourceSampled": true,
+    "noStretch": true,
+    "sourceCropPixels": {
+      "left": 0,
+      "top": 0,
+      "width": 1122,
+      "height": 1402
+    },
+    "background": "#F3EADB"
+  },
+  "encoder": {
+    "sharp": "0.35.5",
+    "libwebp": "1.6.0",
+    "effort": 6
+  },
+  "previous": {
+    "outputs": [
+      {
+        "purpose": "thumbnail",
+        "path": "cards/c06.thumbnail.webp",
+        "width": 128,
+        "height": 160,
+        "bytes": 6224,
+        "sha256": "c380aad61c616d3f68954b3d80d095f967e7e1497fc3af682df2f10e52295f9f"
+      },
+      {
+        "purpose": "detail",
+        "path": "cards/c06.detail.webp",
+        "width": 615,
+        "height": 768,
+        "bytes": 99968,
+        "sha256": "0253f789d564ef9e96719f8aefe17c3dcbb4b4ad371b60e1ce7e42df7faf2e19"
+      }
+    ],
+    "sourceReceiptPath": "art/sources/handdrawn-runtime-20261017-half1/manifest.json"
+  },
+  "outputs": [
+    {
+      "purpose": "thumbnail",
+      "path": "cards/c06-v3-45e28c8be0e9.thumbnail.webp",
+      "width": 128,
+      "height": 160,
+      "bytes": 8492,
+      "sha256": "45e28c8be0e9b99889849355026f8442c30a9e3662a761c7f1083165ed2a7493"
+    },
+    {
+      "purpose": "detail",
+      "path": "cards/c06-v3-2cac9ea20520.detail.webp",
+      "width": 615,
+      "height": 768,
+      "bytes": 155372,
+      "sha256": "2cac9ea20520b03c13de76a42dbb55fb5229990e209ecda1975d3c192c55c07e"
+    }
+  ]
+}
