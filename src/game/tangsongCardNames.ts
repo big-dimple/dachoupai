@@ -94,3 +94,11 @@ export const TANGSONG_CARD_NAMES: Readonly<Record<string, string>> = Object.free
 export function cardDisplayName(definitionId: string, defaultName?: string): string {
   return TANGSONG_CARD_NAMES[definitionId] ?? defaultName ?? definitionId;
 }
+
+/** UI-only name projection; the original definition remains the rule/hash input. */
+type CardNameSource={readonly id:string;readonly name:string};
+export function cardDefinitionName(definition:CardNameSource):string;
+export function cardDefinitionName(definition:CardNameSource|null|undefined):string|undefined;
+export function cardDefinitionName(definition:CardNameSource|null|undefined):string|undefined {
+  return definition?cardDisplayName(definition.id,definition.name):undefined;
+}

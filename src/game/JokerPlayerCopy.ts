@@ -1,3 +1,4 @@
+import {cardDefinitionName} from './tangsongCardNames';
 import {jokerPlainCopy} from './JokerPlainCopy';
 import {R2_ROUTE_GROWTH_IDS,R2_ROUTE_GROWTH_JOKERS} from '../content/r2RouteGrowthJokers';
 import {JOKER_ROUTE_GROWTH_TEMPLATES} from './JokerRouteGrowthTemplates';
@@ -126,7 +127,7 @@ export function jokerPlayerCopy(definition:R2JokerDefinition,instance:R2JokerIns
   }
   if(grouped&&definition.hooks.some(h=>h.condition.kind==='largest-scoring-rank-group')){
    const requests=body.filter(e=>e.operation==='retrigger-card');
-   if(requests.length)state.push('本次再次计分来源：'+definition.name+' → '+requests.map(e=>{const c=ctx.hand.find(c=>c.id===e.targetCardId);return(c?rankLabel(c.rank)+SUIT_SYMBOL[c.suit]:'已记录牌')+' ×'+fractionText(e.value);}).join('、'));
+   if(requests.length)state.push('本次再次计分来源：'+cardDefinitionName(definition)+' → '+requests.map(e=>{const c=ctx.hand.find(c=>c.id===e.targetCardId);return(c?rankLabel(c.rank)+SUIT_SYMBOL[c.suit]:'已记录牌')+' ×'+fractionText(e.value);}).join('、'));
   }
   if(editionActive)state.push('本手版次效果单独结算，不计入本体增益');
   const growthRead=body.find(e=>e.operation==='read-growth'||e.operation==='consume-growth'),coefficientRead=body.find(e=>e.operation==='read-coefficient');

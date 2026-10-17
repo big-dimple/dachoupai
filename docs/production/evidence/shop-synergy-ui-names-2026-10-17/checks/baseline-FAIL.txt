@@ -1,0 +1,57 @@
+
+ RUN  v4.1.11 C:/Users/wanghongping/AppData/Local/Temp/dachoupai-windows-integration-20261017
+
+ 鉂?tests/shop-synergy-conditions.test.ts (6 tests | 5 failed) 58ms
+   脳 opposed e08/f04 cash gates never gain a synergy badge at 3 gold 26ms
+   脳 opposed e08/f04 cash gates never gain a synergy badge at 20 gold 8ms
+   脳 opposed e08/f04 cash gates never gain a synergy badge at 30 gold 6ms
+   脳 buying a growing heat card must not highlight retained e08 after its cash gate is lost 5ms
+   脳 a candidate cash gate uses purchase cost, not the money still held before buying 6ms
+
+鈳幆鈳幆鈳幆鈳?Failed Tests 5 鈳幆鈳幆鈳幆鈳?
+ FAIL  tests/shop-synergy-conditions.test.ts > opposed e08/f04 cash gates never gain a synergy badge at 3 gold
+ FAIL  tests/shop-synergy-conditions.test.ts > opposed e08/f04 cash gates never gain a synergy badge at 20 gold
+ FAIL  tests/shop-synergy-conditions.test.ts > opposed e08/f04 cash gates never gain a synergy badge at 30 gold
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ 鉂?tests/shop-synergy-conditions.test.ts:9:268
+
+
+鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆[1/5]鈳?
+ FAIL  tests/shop-synergy-conditions.test.ts > buying a growing heat card must not highlight retained e08 after its cash gate is lost
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ 鉂?tests/shop-synergy-conditions.test.ts:10:223
+
+
+鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆[2/5]鈳?
+ FAIL  tests/shop-synergy-conditions.test.ts > a candidate cash gate uses purchase cost, not the money still held before buying
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ 鉂?tests/shop-synergy-conditions.test.ts:11:217
+
+
+
+鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆[3/5]鈳?
+ Test Files  1 failed (1)
+      Tests  5 failed | 1 passed (6)
+   Start at  11:18:01
+   Duration  1.75s (transform 1.24s, setup 0ms, import 1.39s, tests 58ms, environment 0ms)

@@ -1,3 +1,4 @@
+import {cardDisplayName} from '../src/game/tangsongCardNames';
 import {it,expect} from 'vitest';
 import {settlementFacts,settlementPlan} from '../src/game/SettlementPresentation';
 import {settlementReady,climaxSettlementReady,repeatedSettlementReady,retriggerSettlementReady,growthSettlementReady,dualRouteSettlementReady,supportSettlementReady} from '../harness/fixtures/settlement';
@@ -36,7 +37,7 @@ it('uncapped c04 keeps actual hand reading distinct from the source instance sav
 it('hero, joker factors, final cumulative M and prior run seniority remain distinct',()=>{
  const run=settle('billion'),f=settlementFacts(run,true);
  expect(f.heroCopy).toBe('燃30金 · ×4');expect(f.card?.id).toBe('f10');expect(f.cardCopy).toBe('×3');
- expect(f.chain).toEqual(['冷场救火 ×3','包场 ×1.8','独家戏 ×1.5']);
+ expect(f.chain).toEqual([(cardDisplayName('f10')+" ×3"),(cardDisplayName('e08')+" ×1.8"),(cardDisplayName('a06')+" ×1.5")]);
  expect(f.routeCopy).toBe('本局资历 S21 · ×≈426.88');
  expect(f.trace?.finalScore).toBe('733884590');expect(f.cardCopy).not.toContain('1312852');
  expect(f.routeCopy).not.toContain('S22'); // This clear does not backfeed its new seniority into the hand.
@@ -65,7 +66,7 @@ it('current bounded save shows its real cap rather than legacy uncapped seniorit
 });
 it('an actual e11 1.3 reading belongs to the source while Amo has no triggered ability',()=>{
  const fixture=supportSettlementReady(),run=energySend(fixture.state,fixture.action),before=structuredClone(run),facts=settlementFacts(run,true);
- expect(readCheckpoint(makeCheckpoint(run,[])).ok).toBe(true);expect(facts.card?.id).toBe('e11');expect(facts.card?.name).toBe('长期捧场');expect(facts.cardCopy).toBe('×1.3');expect(facts.hero).toBeUndefined();expect(facts.heroCopy).toBe('本局角色');expect(run).toEqual(before);
+ expect(readCheckpoint(makeCheckpoint(run,[])).ok).toBe(true);expect(facts.card?.id).toBe('e11');expect(facts.card?.name).toBe((cardDisplayName('e11')));expect(facts.cardCopy).toBe('×1.3');expect(facts.hero).toBeUndefined();expect(facts.heroCopy).toBe('本局角色');expect(run).toEqual(before);
 });
 it.each([{x:193,y:102,width:980,height:422},{x:12,y:116,width:366,height:452},{x:12,y:116,width:296,height:348},{x:12,y:76,width:446,height:194}])('contained hero and full-width number regions remain separate at %j',b=>{
  const p=settlementPlan(b,b.height<200);

@@ -1,3 +1,4 @@
+import {cardDisplayName} from '../src/game/tangsongCardNames';
 import {afterEach,beforeEach,it,expect,vi} from 'vitest';
 import {showBuildJourney} from '../src/game/BuildJourneyDialog';
 import type {DetailDialog} from '../src/game/DetailDialog';
@@ -17,7 +18,7 @@ it('three unselected previews never pass the first unrelated stock off as a matc
  expect(JSON.stringify(s)).toBe(before);
 });
 it('a genuine all-route support can be shown but is explicitly labeled general support',()=>{
- const s=buildJourneyPlan(true);s.shop!.offers=[{offerId:'actual/d03',definitionId:'d03',price:4,consumed:false}];for(const card of previews(s)){expect(card.body).toContain('等得住');expect(card.body).toContain('通用辅助');}
+ const s=buildJourneyPlan(true);s.shop!.offers=[{offerId:'actual/d03',definitionId:'d03',price:4,consumed:false}];for(const card of previews(s)){expect(card.body).toContain(cardDisplayName('d03'));expect(card.body).toContain('通用辅助');}
 });
 it('carried growth is a held support example, never a matching zero-growth same-name offer',()=>{
  const s=buildJourneyPlan(true),j=r2CreateJoker('b10','carried',4,undefined,s);j.growth.heat={n:'20',d:'1'};s.jokers=[j];s.shop!.offers=[{offerId:'fresh/b10',definitionId:'b10',price:4,consumed:false}];

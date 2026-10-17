@@ -1,0 +1,420 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "task": "P08",
+  "taskStatus": "in_progress",
+  "branch": "dev/shop-synergy-copy-20261017",
+  "baseCommit": "f81724b57736c7d4f299cf1d95705a7ba3ef9497",
+  "runtimeCommit": "6479d4377e843bfcde211efdbca89fef35431cf7",
+  "result": "PASS_IN_SCOPE",
+  "publication": "普通dev推送由最终交付SHA确认；无main/CI/部署动作",
+  "scope": [
+    "按实际购款余额核对已持/新购卡的可知条件；不再从名字、角色或泛化热度/倍率词推断强联动",
+    "购买收据、替换比较、条件/实际来源、成长/回看等UI边界按ID投影tangsongCardNames；原规则定义对象保持"
+  ],
+  "checks": {
+    "targeted": {
+      "uniqueFiles": 43,
+      "uniqueCases": 373,
+      "finalResult": "PASS",
+      "phases": [
+        {
+          "log": "checks/targeted-related.txt",
+          "files": 14,
+          "passed": 80
+        },
+        {
+          "log": "checks/related-ui-FAIL.txt",
+          "files": 29,
+          "passed": 274,
+          "failed": 19,
+          "note": "19项旧显示名期待；保留原FAIL"
+        },
+        {
+          "log": "checks/related-ui-recheck.txt",
+          "files": 11,
+          "passed": 113,
+          "failed": 3,
+          "note": "三个旧名未匹配到正确技术ID，补正期待；保留原FAIL"
+        },
+        {
+          "log": "checks/related-ui-final.txt",
+          "files": 2,
+          "passed": 14,
+          "failed": 0
+        }
+      ],
+      "deduplication": "29个补充文件的18个未失败文件177项，加11个重核文件116项，共293；另14文件80项，共373。未重跑全套。"
+    },
+    "originalRegressions": {
+      "conditionCases": {
+        "pass": 1,
+        "fail": 5,
+        "log": "checks/baseline-FAIL.txt"
+      },
+      "uiNameCases": {
+        "pass": 0,
+        "fail": 3,
+        "log": "checks/names-baseline-FAIL.txt"
+      },
+      "earlierUiExpectations": {
+        "pass": 72,
+        "fail": 8,
+        "log": "checks/old-name-expectations-FAIL.txt"
+      }
+    },
+    "typecheck": {
+      "command": "tsc --noEmit",
+      "exitCode": 0,
+      "log": "checks/final-typecheck.txt"
+    },
+    "productionBuild": {
+      "command": "vite build",
+      "exitCode": 0,
+      "log": "checks/production-build-final.txt",
+      "warning": "existing >500kB chunk advisory"
+    },
+    "native": {
+      "result": "PASS",
+      "browser": "153.0.8010.12",
+      "viewport": "390x844",
+      "report": "native/report.json",
+      "controlledFixture": "native/controlled-checkpoints.json",
+      "buy": {
+        "gold": 19,
+        "oneCommand": true,
+        "fullDomainAndStorageEqual": true
+      },
+      "readOnly": [
+        "inspectCompareCancelNoMutation",
+        "receiptReadOnly",
+        "reviewReadOnly"
+      ],
+      "sourceHashesEqual": true,
+      "priorFailures": [
+        "native/page-load-FAIL.json",
+        "checks/native-menu-FAIL.txt"
+      ],
+      "note": "首次开发页加载超时未开始购买；静态构建首轮第二次导入选择器误收起菜单，修脚本后通过；未据此改产品。最终短用例内一笔真实BuyOffer，无自然长局。"
+    },
+    "diffCheck": {
+      "exitCode": 0
+    },
+    "protected": {
+      "unchangedComparedTo": "f81724b57736c7d4f299cf1d95705a7ba3ef9497",
+      "paths": [
+        "src/domain",
+        "src/application",
+        "src/platform",
+        "src/audio",
+        "src/content",
+        "public",
+        "src/game/GameScene.ts",
+        "src/game/HeroPlayReminder.ts",
+        "src/game/CharacterArt.ts",
+        "package.json",
+        "package-lock.json"
+      ]
+    }
+  },
+  "bindings": [
+    {
+      "file": "src/game/BuildGrowthProgress.ts",
+      "blob": "f826ba22126916c6b0cfb374c5a10a45ea0bfb0b",
+      "sha256": "42e92c903b36ed5d2f26627577f2ed980579182fc322f57711aeb29e8042f911"
+    },
+    {
+      "file": "src/game/BuildJourney.ts",
+      "blob": "99f201f829ef2d0cf8c3f476f2b6685627be9e3a",
+      "sha256": "61a473749bbd0b3a54f80a16ddf3d6d761cc6aa872db763f23c70b2d39f6160b"
+    },
+    {
+      "file": "src/game/BuildJourneyDialog.ts",
+      "blob": "e6e21a98bce17df0fccbbc286d3d8895b4a42b8f",
+      "sha256": "e5f13dff524d338e56a882ada41febec1ffdad10a90c1bba114dea4e0a13b72e"
+    },
+    {
+      "file": "src/game/ConsumableDialog.ts",
+      "blob": "14aa924973ff73577be723e658ae731bf48424d4",
+      "sha256": "c1b8712e71e4be9ab47caca00f5f5103c314867d578d027c69adc0f4e2f02d61"
+    },
+    {
+      "file": "src/game/FinaleKeepsake.ts",
+      "blob": "7f585ce3d8bf33720b01e377425b2d9d597c0050",
+      "sha256": "968c236cace0f8ae7c8f06d570e6a1aa75ebed02a3af0e03dbb3086998ccab85"
+    },
+    {
+      "file": "src/game/GrowthOpportunity.ts",
+      "blob": "95941192654ac0cc406d0a58223c95e669cc30d6",
+      "sha256": "d3165f20753be49c9efc0965b45e07fd8a735e9c44553825c56dd40444ffc562"
+    },
+    {
+      "file": "src/game/IntermissionScene.ts",
+      "blob": "02bfb57ebfab0dfb71400f3b7c12f25b6d1b790d",
+      "sha256": "ceb871fffc7d77c19c394b024b63aa77c14560fca2dfd4aeb1403bb704226cea"
+    },
+    {
+      "file": "src/game/JokerComboGrowthTemplates.ts",
+      "blob": "605bdd9e8f37dd3bf1ca487c9d37117b5fd71997",
+      "sha256": "266827a2042cfe12bc083ff22956691c51de39a8cec991784cb258d20ca6dd1d"
+    },
+    {
+      "file": "src/game/JokerExperience.ts",
+      "blob": "10aea861d7bdcf4231e412a7690a896628940e06",
+      "sha256": "71aa425aae89ad6dc9261e48078f79818e61c6136ca4b0cce42dc5aaf7d1fd5d"
+    },
+    {
+      "file": "src/game/JokerGroupUpgradeTemplates.ts",
+      "blob": "c46b423605a84d204b9305c6fc11213a06a58f39",
+      "sha256": "4a66098aa33669300e270233caab27962594aa00459e1162431ef80d2cf14037"
+    },
+    {
+      "file": "src/game/JokerGrowthCausality.ts",
+      "blob": "18d6188427a079139fe27b0268367c64626fdc4a",
+      "sha256": "8db71e95c77ec26169a56e07604a378ed84df53e9acaa39ff50ceec2c5e0047a"
+    },
+    {
+      "file": "src/game/JokerMemory.ts",
+      "blob": "10675526f4823554d084e59f9d8cabf51d7ecb9a",
+      "sha256": "312936653c7369401410c90ec00d71a6110786f24df8574e133350aee2bbb89d"
+    },
+    {
+      "file": "src/game/JokerPlayerCopy.ts",
+      "blob": "ec6511407a4dba3c76bec914eae376db099970b0",
+      "sha256": "75a341c21e1425804db6178be2354d393967cb0874c9e22063342afc4a89846f"
+    },
+    {
+      "file": "src/game/OpeningRouteDemo.ts",
+      "blob": "338f8d0dc8c706d55b2076504bd4fdef73324fac",
+      "sha256": "c3edc4dd356ccdde49e510d14aaff0bea8ebb4921f49c2feb930fa5603885bc1"
+    },
+    {
+      "file": "src/game/PurchasePaymentFacts.ts",
+      "blob": "52eb20140586c05191773804300eea08f2d6dcfe",
+      "sha256": "d981f70aba296dfb6bb57f0459f0ac51ad99d0210b26bcf8be59e3ed3addc417"
+    },
+    {
+      "file": "src/game/RouteStarter.ts",
+      "blob": "077e9898c4bec9c3da3a51e4997b61bd8695be77",
+      "sha256": "bfe931ec3185f72f35fa2aa16b46e148dfc33fd1bae64a31b0a9872f9d15598f"
+    },
+    {
+      "file": "src/game/SavedBossImpact.ts",
+      "blob": "498d66c1b08ef0747881afe990faaf2e3ed5983b",
+      "sha256": "a7c2c680ee3222ae6e7e96c8380ad85cca16b98a3dfc649aca4fdc525bfda8a1"
+    },
+    {
+      "file": "src/game/SavedGrowthChange.ts",
+      "blob": "e20e8100db57ac6cd285182bbac4bc7700a26316",
+      "sha256": "b4ec4ddecfa20293a159b33d4d95fedd77ec0931efa3fba8eaa55b9b0a1011c7"
+    },
+    {
+      "file": "src/game/SavedToolResult.ts",
+      "blob": "666be9cff8c27ff8301e755fecd0b83e70d15e44",
+      "sha256": "ebea278cf89b48439d483b4166370c49e6aaf8965bbe8b1bc408387e34c0c636"
+    },
+    {
+      "file": "src/game/ScoreReview.ts",
+      "blob": "58e14c7062a0030d04a6e08932dcab696ebb969a",
+      "sha256": "2817d65799864aab3d136ce2b9ddd75b3e1e615d0f658d828ec1900c28e01bfb"
+    },
+    {
+      "file": "src/game/SettlementPresentation.ts",
+      "blob": "4eee7518cac522b289011a18dcd84d371fac6f37",
+      "sha256": "f0d20014456db7fb9429b067ccc47957b06775395517c8aaf6d1bba7f2e87ed3"
+    },
+    {
+      "file": "src/game/ShopJokerPresentation.ts",
+      "blob": "33a14dcb516263312f89ed1cc7de77b44271b044",
+      "sha256": "e0ce948d0ac5cae042df29004474e19305109b2a4df6cdd7df36574f942cb35a"
+    },
+    {
+      "file": "src/game/ShopPurchaseReceipt.ts",
+      "blob": "46a7099782a20d61a1dfa3e5a04b45a93dc061b7",
+      "sha256": "b0281a9659053b9e8c50cde4105bb23202b08ce2477f4e801c53c45457f275db"
+    },
+    {
+      "file": "src/game/ShopPurchaseValue.ts",
+      "blob": "1fee7b0660401d51af7b726dde53e0def1325bbd",
+      "sha256": "ebfbacc3e35989fa9cad9a686589ae68a6ed6cf39328cedf644803a25619b17f"
+    },
+    {
+      "file": "src/game/ShopRecommendation.ts",
+      "blob": "a8268cd598029098a04be6f78fe0187d68f2ee44",
+      "sha256": "af832ad0e70707ed918c831e69fea604bf0054ca978fc3d19e681ecbb5b31d0d"
+    },
+    {
+      "file": "src/game/ShopRouteRelations.ts",
+      "blob": "07ed1ff4e6a467304a3c9d06f9c4be355a94ce1b",
+      "sha256": "5428279863342cd8365c957b8548917d286616b2eab6fa00502b54a39a3dec35"
+    },
+    {
+      "file": "src/game/ShopScene.ts",
+      "blob": "1664bac9a2c9759dccf73fe7d4779f4396f1b853",
+      "sha256": "b06935e3e8303f13249f82780a02975c91c3e7713a26eecbc28a22d53e3e6219"
+    },
+    {
+      "file": "src/game/ShopSynergy.ts",
+      "blob": "32ce929daeb1f733cf7c3a4bff4ca984fb5ca890",
+      "sha256": "5fd7395dc0109b3ba2e7953635158c13f96522d7ce3a1d44125d2d16a4fc324c"
+    },
+    {
+      "file": "src/game/StageGiftReceipt.ts",
+      "blob": "258fd4261f642f6b5ec39ff9711ba2d8231ac7c9",
+      "sha256": "03aad6738d4fd2cc5acfa07e754b099b29d063f560722272b5d9f8261e9004f8"
+    },
+    {
+      "file": "src/game/ToolPermanentValue.ts",
+      "blob": "a8f68e93e8eb0aa47a3cde911ebe620e9aa2114b",
+      "sha256": "4fbee5c80ee5e6a87ceec3f9712b73aba57181ff61496364082e068c75f0ec08"
+    },
+    {
+      "file": "src/game/XiemuBurnCopy.ts",
+      "blob": "7d7a7fbe32415b57474bdc703648f2f0a77b718b",
+      "sha256": "d383dbc73efd95f6890611602d7580af90478115e123fdfc62686b2d74f02a02"
+    },
+    {
+      "file": "src/game/characters.ts",
+      "blob": "1c79b99c2f5a0ca5792c8bc5a214761dac02e50f",
+      "sha256": "10965549fab463b85641192528421b579a63d5384e46bef2f60577afb078da75"
+    },
+    {
+      "file": "src/game/r2Help.ts",
+      "blob": "fa9e96aa4bb065415305afa0736eeeea80c5983e",
+      "sha256": "b0cc2a2949b73d6fa4ff96009194b02167289f9b1f364e0453584168cb64eb3f"
+    },
+    {
+      "file": "src/game/stageNotice.ts",
+      "blob": "b1b21f546e17c879a55bf4939fee1606e1a6763a",
+      "sha256": "354b2e266e385f338ea0fdadd296047bc58e959e4281217bf0dffb5346abee13"
+    },
+    {
+      "file": "src/game/tangsongCardNames.ts",
+      "blob": "bf259262dabc79290234b110f406a59a909de5cf",
+      "sha256": "e45ae4cfe8601a2fd395ec45b5c2148b19ddbf53cbb6b7a7dd627285e47de421"
+    },
+    {
+      "file": "tests/build-fallback.test.ts",
+      "blob": "545684b8a1a633e130551d19f7cb1909155f557d",
+      "sha256": "28440f3423cc2ac43428e894e85eada7c22a562cd5621d2a8b6d4a543bfd9ac1"
+    },
+    {
+      "file": "tests/build-journey-dialog.test.ts",
+      "blob": "430d8fff21e956aebd3e0890c3217d38d059680b",
+      "sha256": "0e13b066354c07fab5054619fda553973befdc2115ae505229ca43f87a90ed88"
+    },
+    {
+      "file": "tests/build-journey.test.ts",
+      "blob": "cf2624acfa046b0d4e76576aba43390929628be0",
+      "sha256": "30a47aa237d2f5df9e7997244e71e4c6396dfd8d4a2c35a5f851bff20efe750d"
+    },
+    {
+      "file": "tests/c02-source-copy.test.ts",
+      "blob": "7a80ba54e20dd518e16834d4a0b02dda2c1d789f",
+      "sha256": "463d6e5bfaebe7c73ee244d7cf9d2fb50c9f26cb5356c123240d046af6059732"
+    },
+    {
+      "file": "tests/joker-experience.test.ts",
+      "blob": "bebf6f4ca3dccdc055bcf1534ecbab6ab20af1d3",
+      "sha256": "f96d1034479ac0c3674c0ae59d7653ec329730acef4608558e8841ed7ad3bb75"
+    },
+    {
+      "file": "tests/joker-growth-causality.test.ts",
+      "blob": "1324e4c8035c163503899363463fda4db2c4470b",
+      "sha256": "db1a7c34851531f51683971775452dea363a98cc617625ab9739352493c8266d"
+    },
+    {
+      "file": "tests/saved-boss-impact.test.ts",
+      "blob": "93fb49cb64bd24ccb7e42c28763a0f835c14f8f3",
+      "sha256": "7a2f2dc2136407af5eb240ce8f0778fc8f90119a6ba2d86cdc4880c3e2546de9"
+    },
+    {
+      "file": "tests/score-review.test.ts",
+      "blob": "8c97c5caa9154957b676b256da857fa28a5fcad0",
+      "sha256": "fdd493ddfb19e6aa665f8ecc9b3f2a8ca21e6c675ed1ea825a23c3251e7d439c"
+    },
+    {
+      "file": "tests/settlement-presentation.test.ts",
+      "blob": "5224cdf5def46e355e588fe7cd896b39f3b472ed",
+      "sha256": "20bac8411259309db1e93b0d522e8c6904e6441d4d44ad6f72e63f831d24d3af"
+    },
+    {
+      "file": "tests/shop-current-decisions.test.ts",
+      "blob": "067bd9120d8d4c57ea4412aa289aad1b548bbd0a",
+      "sha256": "c2328386ad77d5cb02fffc1be6990149dd98865de90aa815006216bde2aa503e"
+    },
+    {
+      "file": "tests/shop-post-purchase-condition.test.ts",
+      "blob": "e075a6bb9f0bf0216f0f62ac190aaf8d3c7a7eff",
+      "sha256": "43fcbfd7ca6cce82232f87e0c885afb49343337fdbe81e4116c4fcf0b21d9cae"
+    },
+    {
+      "file": "tests/shop-recommendation.test.ts",
+      "blob": "b1297dd8f85e7c8294fac03c428123bd4f66d8c5",
+      "sha256": "4221fc25127fe9a941eec9eda5e30836e6b34f4da6b07fefdf323a975e87074b"
+    },
+    {
+      "file": "tests/shop-route-relations.test.ts",
+      "blob": "ecc31d3f822ecdb3ed6fd4ed9b260b8ec6657752",
+      "sha256": "b8e1b36cdaebd723f8fa5ac16e1e74fe28597b31880e3f498a9b8ec04c4a284f"
+    },
+    {
+      "file": "tests/shop-synergy.test.ts",
+      "blob": "40e3d3e5906b7df185fcedd06b96fce676cf6d45",
+      "sha256": "584edc00ca5db704204f05126e61c5e64a31bff8b978ad9afa907811b93256b4"
+    },
+    {
+      "file": "tests/stage-gift-receipt.test.ts",
+      "blob": "757c7968bb53e4c56361d7c2028262349fcd9d67",
+      "sha256": "a398fafcf9da2f037159eddc0254ea356b677dde68f9387edb95ea211fbdee5e"
+    },
+    {
+      "file": "tests/xiemu-cash-choice.test.ts",
+      "blob": "c827ba7e3c2c55feb927b2b4d890ad9c1cdce16d",
+      "sha256": "92fce75ae344d7ec0c6eb730f202d63f091fd8db6abc5d7b61d997d360607f2d"
+    },
+    {
+      "file": "tests/shop-synergy-conditions.test.ts",
+      "blob": "35f431810f0d01d35c782de0a3c9358e846344a8",
+      "sha256": "4715a405d11d4d2baa8d217d0ae64782407660045f14f7be928828a97cf06080"
+    },
+    {
+      "file": "tests/tangsong-ui-boundaries.test.ts",
+      "blob": "653df8e17cd7c53ab04676ea6744f683febc472d",
+      "sha256": "f3d9c94fb78265f299609a22e52496f27cf915af9b083450a024840bde6dbc18"
+    }
+  ],
+  "buildBinding": {
+    "revisionAtBuild": "f81724b57736c7d4f299cf1d95705a7ba3ef9497",
+    "sourceStatus": "dirty",
+    "explanation": "类型、生产/E2E构建及原生验证先于产品提交；最终35个src原始SHA256和本提交Git blob映射随bindings保留。只合并重复导入后重做最终构建，行为测试不重复全跑。"
+  },
+  "limits": [
+    "只识别always、hand-type-in和金币精确/上下限等有把握的条件；未知条件与未指定替换不宣称联动",
+    "不是额外加成、英雄适配或强度保证；条件仍按各自时点检查",
+    "未改domain/hash/技术ID/存档/价格/概率/目标/倍率，也未改GameScene、交互音频、技能提醒和既有美术",
+    "51新图不作为本批前置；无自然长局、听感、真人或物理设备验收；P08仍in_progress"
+  ],
+  "evidenceHashes": {
+    "checks/baseline-FAIL.txt": "6daadc14caf049cf7561a41b429fffe8705a3607f1acd2031ecaedba1521217a",
+    "checks/names-baseline-FAIL.txt": "46735f3f7dd83c90673e14428f0915c8aa5f8f1585a83f413a29ff9fe1848ac9",
+    "checks/old-name-expectations-FAIL.txt": "edfdcf266b29ede2161aafaf900870c50338ef4bf268b564a6c8f4477127114e",
+    "checks/related-ui-FAIL.txt": "fe5b168ee0cc4313e95c896b656ddadd08d9bdf2292ba24d9823a3e20c56a71a",
+    "checks/related-ui-recheck.txt": "cd1db8537553c00b78a7ebfc2dacb04189d7267d7b5177c056182512d69d3295",
+    "checks/related-ui-final.txt": "3b3cab33e511998b86a70efc298599b290b9bf6dadb4c75dd61f18cef0840155",
+    "checks/targeted-related.txt": "13e06122e4703d6c4f9277e3f223504ca70e93194cd3f91196758af553eff551",
+    "checks/final-typecheck.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "checks/production-build-final.txt": "ac32e2d1e2e1da151145c06b204ce697abdbdb52cc02471daf772f41d4c9d6c5",
+    "checks/e2e-build.txt": "0340a63e77fde46fec5ddd3716454c9cf1cdb0ef4e5b11327e217e6369e864c6",
+    "checks/native-startup-FAIL.txt": "c037d106ac7dc55b3bb86a9454d46174d62e5e8c9889c6e64da06c20dbf2ffcc",
+    "checks/native-menu-FAIL.txt": "538ae3220b015df4f65cbe36f6daf592ba45037649aa7bdbb27f058a5a2d08dc",
+    "checks/native.txt": "ed535ac0be520cc173a3fba7eea8a774fa9387640d32ba881187aea580e76761",
+    "native/report.json": "4a870145a3c98571d50845c9878b7583db23d3ce54804825990125aed17a2179",
+    "native/controlled-checkpoints.json": "7a2c82aa5bfb3a1139abe8933acac868ee1beca293f295d10b41a1e09deb8739",
+    "native/purchase-conditions.png": "09e0612db13bba21a40bce8fd318a7ac8db516cea21a799e1b27a201db4ba221",
+    "native/comparison.png": "abb9fd7c26432f2d7a946f3d02a2c9a42964aea7a118dd4d0fa079c9a58ae666",
+    "native/receipt.png": "e46894b7b27a86371f7d4b913f6cf640636bbef6bf74b380f2cd863981eca670",
+    "native/saved-review.png": "6e319fe2f23ad30815a623ed224bc17e809fc34615e562a6180038019f6d9f1a"
+  },
+  "captureNormalization": "证据终端文本仅裁去文件末尾多余空行；失败断言、实际数值、状态和原始FAIL均保留；忽略shots中的原始捕获未改。"
+}

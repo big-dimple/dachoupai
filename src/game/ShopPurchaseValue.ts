@@ -1,3 +1,4 @@
+import {cardDefinitionName} from './tangsongCardNames';
 import {applyCommand,type R2RunState,type Action} from '../domain/run';
 import type {R2Offer} from '../domain/r2Shop';
 import {r2PurchasePrice} from '../domain/r2Shop';
@@ -94,7 +95,7 @@ export function shopPurchaseValue(state:R2RunState,offer:R2Offer,focus?:BuildFoc
  const after=result.state,fresh=after.jokers.find(j=>!sale.jokers.some(k=>k.instanceId===j.instanceId));
  const refund=sale.gold-state.gold,net=state.gold-after.gold;
  const interest=(s:R2RunState)=>Math.min(r2InterestCap(s),Math.floor(s.gold/5));
- const losses=[...shopPurchaseConditionLosses(state,offer,sold),...(sold?['失去来源：'+r2JokerDefinitionFor(state,sold.definitionId).name+'；'+r2JokerStateText(sold,r2JokerDefinitionFor(state,sold.definitionId))+'；版次 '+editionLabel(sold.edition),...shopSaleConsequences(state,sold)]:[])];
+ const losses=[...shopPurchaseConditionLosses(state,offer,sold),...(sold?['失去来源：'+cardDefinitionName(r2JokerDefinitionFor(state,sold.definitionId))+'；'+r2JokerStateText(sold,r2JokerDefinitionFor(state,sold.definitionId))+'；版次 '+editionLabel(sold.edition),...shopSaleConsequences(state,sold)]:[])];
  const interestLoss=interest(after)<interest(state);
  const rows=base.calibrated?purchaseValueWindow(state,after,focus):[];
  const negative=rows.some(r=>BigInt(r.delta.maximum)<0n),positive=rows.some(r=>BigInt(r.delta.minimum)>0n),allPositive=rows.length>=2&&rows.every(r=>BigInt(r.delta.minimum)>0n);

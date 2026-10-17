@@ -1,3 +1,4 @@
+import {cardDefinitionName} from './tangsongCardNames';
 import type {R2RunState} from '../domain/run';
 import {r2PurchasePrice,type R2Offer} from '../domain/r2Shop';
 import {r2JokerDefinitionFor} from '../domain/r2ContentProfiles';
@@ -7,7 +8,7 @@ export interface PurchasePaymentFacts {original:number;paid:number;saved:number;
 /** Read declared current-profile modifiers; a nominal source is never an allocated actual saving. */
 export function purchaseDiscountSources(state:R2RunState):DiscountSource[]{
  const first=state.shop?.purchases===0,sources:DiscountSource[]=[];
- for(const j of state.jokers){const d=r2JokerDefinitionFor(state,j.definitionId);for(const m of d.modifiers??[])if(m.kind==='first-purchase-discount')sources.push({name:d.name,nominal:m.amount,kind:'joker',definitionId:d.id,instanceId:j.instanceId,scope:'first-purchase',available:first});}
+ for(const j of state.jokers){const d=r2JokerDefinitionFor(state,j.definitionId);for(const m of d.modifiers??[])if(m.kind==='first-purchase-discount')sources.push({name:cardDefinitionName(d),nominal:m.amount,kind:'joker',definitionId:d.id,instanceId:j.instanceId,scope:'first-purchase',available:first});}
  for(const item of R2_LONG_TERM_ITEMS)if(state.longTermItems.includes(item.id)&&item.operation.kind==='first-purchase-discount')sources.push({name:item.name,nominal:item.operation.amount,kind:'item',definitionId:item.id,scope:'first-purchase',available:first});
  if(state.purchaseCoupons>0)sources.push({name:'暖场跳场券',nominal:2,kind:'coupon',scope:'coupon',available:true});return sources;
 }

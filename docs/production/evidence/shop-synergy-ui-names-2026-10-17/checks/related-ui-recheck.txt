@@ -1,0 +1,74 @@
+
+ RUN  v4.1.11 C:/Users/wanghongping/AppData/Local/Temp/dachoupai-windows-integration-20261017
+
+ ❯ tests/joker-experience.test.ts (7 tests | 2 failed) 110ms
+   × shared actual ledger distinguishes reads, saved growth and individual retrigger objects without writes 34ms
+   × all gift sources preserve ordered distinct names and overflow destinations 11ms
+ ❯ tests/build-journey-dialog.test.ts (7 tests | 1 failed) 106ms
+   × a genuine all-route support can be shown but is explicitly labeled general support 12ms
+
+ Test Files  2 failed | 9 passed (11)
+      Tests  3 failed | 113 passed (116)
+   Start at  11:31:37
+   Duration  4.40s (transform 21.25s, setup 0ms, import 30.85s, tests 1.58s, environment 2ms)
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/build-journey-dialog.test.ts > a genuine all-route support can be shown but is explicitly labeled general support
+AssertionError: expected '保留同点牌，试两对、三条等成组。\n现货 · 通用辅助：陈年佳酿 · 实付…' to contain '等得住'
+
+- Expected
++ Received
+
+- 等得住
++ 保留同点牌，试两对、三条等成组。
++ 现货 · 通用辅助：陈年佳酿 · 实付4金
+
+ ❯ tests/build-journey-dialog.test.ts:21:164
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  tests/joker-experience.test.ts > shared actual ledger distinguishes reads, saved growth and individual retrigger objects without writes
+AssertionError: expected [] to have a length of 1 but got +0
+
+- Expected
++ Received
+
+- 1
++ 0
+
+ ❯ tests/joker-experience.test.ts:16:68
+     14|  expect(rows.some(r=>r?.effect==='读取已有 10 热度')).toBe(true);expect(rows…
+     15|  expect(rows.some(r=>r?.destination.includes('该手后已存 20'))).toBe(true);…
+     16|  expect(savedExperienceCards(s,trace).filter(r=>r.title==='再说一遍')).toH…
+       |                                                                    ^
+     17| });
+     18| it('caps and zero reads produce no fake benefit, while source rules re…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  tests/joker-experience.test.ts > all gift sources preserve ordered distinct names and overflow destinations
+AssertionError: expected '锦上添花 · 方片染 ×1\n原因：成功过关时 · 本场已成功打出顺子／同…' to contain '赠票'
+
+- Expected
++ Received
+
+- 赠票
++ 锦上添花 · 方片染 ×1
++ 原因：成功过关时 · 本场已成功打出顺子／同花全部普通型；当前未提交与同花顺不算
++ 去向：道具箱 · 该次库存 0 → 1
++ 下一步：打开道具箱，选择工具→目标牌→确认使用。
++
++ 倾囊相授 · 练一招 ×1
++ 原因：成功过关时 · 持有期间每2次实际过关的赠品事件
++ 去向：道具箱 · 该次库存 1 → 2
++ 下一步：打开道具箱，选择工具→目标牌→确认使用。
++
++ 当前余额 30 金；查看不重复领奖。
+
+ ❯ tests/joker-experience.test.ts:44:124
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯

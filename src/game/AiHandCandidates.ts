@@ -50,7 +50,7 @@ export class AiHandCandidateCache {
  update(input:AiHandInput,ready:(result:AiHandResult)=>void):AiHandResult {
   const key=aiHandKey(input);if(this.current?.key===key)return this.current;this.dispose();const generation=this.generation;this.current={key,status:'working',ordered:[],examined:0};let c:ReturnType<typeof collector>;
   try{c=collector(publicSnapshot(input),key);}catch(e){return this.current={key,status:'unsupported',ordered:[],examined:0,reason:String(e)};}
-  const tick=()=>{this.timer=undefined;if(generation!==this.generation)return;const start=performance.now();try{for(let i=0;i<8&&performance.now()-start<4;i++){if(!c.next()){this.current=c.result();ready(this.current);return;}}}catch(e){this.current={key,status:'unsupported',ordered:[],examined:0,reason:String(e)};ready(this.current);return;}this.timer=setTimeout(tick,0);};this.timer=setTimeout(tick,0);return this.current;
+  const tick=()=>{this.timer=undefined;if(generation!==this.generation)return;const start=performance.now();try{for(let i=0;i<64&&performance.now()-start<4;i++){if(!c.next()){this.current=c.result();ready(this.current);return;}}}catch(e){this.current={key,status:'unsupported',ordered:[],examined:0,reason:String(e)};ready(this.current);return;}this.timer=setTimeout(tick,0);};this.timer=setTimeout(tick,0);return this.current;
  }
  dispose():void {this.generation++;if(this.timer!==undefined)clearTimeout(this.timer);this.timer=undefined;this.current=undefined;}
 }

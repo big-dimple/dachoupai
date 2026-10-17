@@ -1,3 +1,4 @@
+import {cardDisplayName} from '../src/game/tangsongCardNames';
 import {it,expect} from 'vitest';
 import {experiencePlan} from '../harness/fixtures/joker-experience';
 import {stageGiftPlan,giftSend} from '../harness/fixtures/stage-gift';
@@ -12,7 +13,7 @@ it('shared actual ledger distinguishes reads, saved growth and individual retrig
  const s=played(),before=JSON.stringify(s),trace=s.lastTrace!,rows=trace.events.map(e=>savedBenefit(s,trace,e)).filter(Boolean);
  expect(rows.some(r=>r?.effect==='读取已有 10 热度')).toBe(true);expect(rows.some(r=>r?.effect==='读取已有 0.25 倍率')).toBe(true);
  expect(rows.some(r=>r?.destination.includes('该手后已存 20'))).toBe(true);expect(rows.filter(r=>r?.effect.includes('再计分 1 次'))).toHaveLength(2);
- expect(savedExperienceCards(s,trace).filter(r=>r.title==='再说一遍')).toHaveLength(1);expect(JSON.stringify(s)).toBe(before);
+ expect(savedExperienceCards(s,trace).filter(r=>r.title===cardDisplayName('b06'))).toHaveLength(1);expect(JSON.stringify(s)).toBe(before);
 });
 it('caps and zero reads produce no fake benefit, while source rules remain available',()=>{
  const p=experiencePlan(true),s=giftSend(p.state,{type:'PlayHand',selectedIds:p.first});
@@ -40,7 +41,7 @@ it('real gifts and overflow report acquired destination; normal and repeated sou
 it('all gift sources preserve ordered distinct names and overflow destinations',()=>{
  const p=stageGiftPlan();p.state.jokers.push({instanceId:'owned/e10',definitionId:'e10',paidPrice:6,growth:{},counters:{stageClears:1}});p.state.stage!.initialJokerIds=p.state.jokers.map(j=>j.instanceId);
  const s=giftSend(giftSend(p.state,{type:'PlayHand',selectedIds:p.first}),{type:'PlayHand',selectedIds:p.second}),receipt=stageGiftReceipt(s)!;
- expect(receipt.title).toBe('过关赠品 · 已保存的来源');expect(receipt.body).toContain('换一身');expect(receipt.body).toContain('赠票');expect(receipt.body).toContain('每2次实际过关');expect(s.consumables).toHaveLength(2);
+ expect(receipt.title).toBe('过关赠品 · 已保存的来源');expect(receipt.body).toContain((cardDisplayName('c12')));expect(receipt.body).toContain(cardDisplayName('e10'));expect(receipt.body).toContain('每2次实际过关');expect(s.consumables).toHaveLength(2);
 });
 it('first-layer growth feedback retains cap clipping and zero-headroom facts',()=>{
  for(const amount of [95,100]){

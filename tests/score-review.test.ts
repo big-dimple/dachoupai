@@ -1,3 +1,4 @@
+import {cardDisplayName} from '../src/game/tangsongCardNames';
 import {describe,expect,it} from 'vitest';
 import {createRun} from '../src/domain/run';
 import {newRunIdentity} from '../src/game/RunLaunch';
@@ -33,12 +34,12 @@ describe('saved score review display only',()=>{
  it('counts operation executions, not matching conditions, and separates same-named instances',()=>{
   const state=run(),j=r2CreateJoker('c07','one',8,undefined,state),j2=r2CreateJoker('c07','two',8,undefined,state);
   const {trace}=fixture({jokers:[j,j2]});const review=formatScoreReview(state,trace);
-  const cards=review.cards.filter(c=>c.title.startsWith(r2JokerDefinitionsFor(state).find(d=>d.id==='c07')!.name));expect(cards.length).toBe(2);
+  const cards=review.cards.filter(c=>c.title.startsWith(cardDisplayName('c07')));expect(cards.length).toBe(2);
   for(const card of cards){expect(card.body).toContain('额外再计分 1 次 · 实际触发 1 次');}
   const repeated=fixture({jokers:[r2CreateJoker('c02','red-one',4,undefined,state),r2CreateJoker('c02','red-two',4,undefined,state)]});
-  const red=formatScoreReview(state,repeated.trace).cards.filter(c=>c.title.startsWith('红线'));expect(red).toHaveLength(2);for(const card of red)expect(card.body).toContain('+8 热度 · 实际触发 5 次');
+  const red=formatScoreReview(state,repeated.trace).cards.filter(c=>c.title.startsWith((cardDisplayName('c02'))));expect(red).toHaveLength(2);for(const card of red)expect(card.body).toContain('+8 热度 · 实际触发 5 次');
   const zero=fixture({jokers:[r2CreateJoker('b10','unmet',4,undefined,state)]});
-  expect(formatScoreReview(zero.state,zero.trace).cards.some(c=>c.title.includes(r2JokerDefinitionsFor(state).find(d=>d.id==='b10')!.name)&&c.body.includes('实际触发'))).toBe(false);
+  expect(formatScoreReview(zero.state,zero.trace).cards.some(c=>c.title.includes(cardDisplayName('b10'))&&c.body.includes('实际触发'))).toBe(false);
  });
  it('distinguishes random checks/misses, retriggers, and after-hand growth from scoring',()=>{
   const {state,trace}=fixture({jokers:[r2CreateJoker('c04','growth',4,undefined,run())]});
@@ -56,7 +57,7 @@ describe('saved score review display only',()=>{
  it('keeps saved attribution after selling a source or changing current cash',()=>{
   const state=run(),j=r2CreateJoker('c04','sold',4,undefined,state),{trace}=fixture({jokers:[j]});
   const before=formatScoreReview(state,trace);state.jokers=[];state.gold=0;
-  expect(formatScoreReview(state,trace)).toEqual(before);expect(before.cards.some(c=>c.title.startsWith('搭台阶'))).toBe(true);
+  expect(formatScoreReview(state,trace)).toEqual(before);expect(before.cards.some(c=>c.title.startsWith((cardDisplayName('c04'))))).toBe(true);
  });
  it('marks big integer approximation and leaves exact integer receipt in diagnostics',()=>{
   expect(reviewScoreText('1234567890123456')).toBe('≈1.23e15');expect(reviewScoreText('1230000000000000')).toBe('1.23e15');expect(reviewScoreText('123456')).toBe('123,456');

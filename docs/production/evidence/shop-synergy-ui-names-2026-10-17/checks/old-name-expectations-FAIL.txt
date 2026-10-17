@@ -1,0 +1,121 @@
+
+ RUN  v4.1.11 C:/Users/wanghongping/AppData/Local/Temp/dachoupai-windows-integration-20261017
+
+ 鉂?tests/score-review.test.ts (7 tests | 2 failed) 76ms
+     脳 counts operation executions, not matching conditions, and separates same-named instances 14ms
+     脳 keeps saved attribution after selling a source or changing current cash 10ms
+ 鉂?tests/stage-gift-receipt.test.ts (4 tests | 1 failed) 69ms
+   脳 names the actual saved tool and destination without mutating the run 34ms
+ 鉂?tests/shop-route-relations.test.ts (8 tests | 2 failed) 75ms
+   脳 shows deterministic retained on-sale changes using the current undefined profile 12ms
+   脳 shows deterministic retained on-sale changes using the current group-upgrade-v1 profile 3ms
+ 鉂?tests/shop-post-purchase-condition.test.ts (7 tests | 3 failed) 223ms
+   脳 buying zero-growth b10 accounts for the retained Baochang loss 29ms
+   脳 full slots require the specified actual sale, preserve growth/discount consequences and clear on changing selection 48ms
+   脳 full Joker slots do not suppress a legal tool purchase warning for retained Baochang 6ms
+
+鈳幆鈳幆鈳幆鈳?Failed Tests 8 鈳幆鈳幆鈳幆鈳?
+ FAIL  tests/score-review.test.ts > saved score review display only > counts operation executions, not matching conditions, and separates same-named instances
+AssertionError: expected +0 to be 2 // Object.is equality
+
+- Expected
++ Received
+
+- 2
++ 0
+
+ 鉂?tests/score-review.test.ts:36:137
+     34|   const state=run(),j=r2CreateJoker('c07','one',8,undefined,state),j2=鈥?     35|   const {trace}=fixture({jokers:[j,j2]});const review=formatScoreRevie鈥?     36|   const cards=review.cards.filter(c=>c.title.startsWith(r2JokerDefinit鈥?       |                                                                                                                                         ^
+     37|   for(const card of cards){expect(card.body).toContain('棰濆鍐嶈鍒?1 娆?路 瀹為檯鈥?     38|   const repeated=fixture({jokers:[r2CreateJoker('c02','red-one',4,unde鈥?
+鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆[1/8]鈳?
+ FAIL  tests/score-review.test.ts > saved score review display only > keeps saved attribution after selling a source or changing current cash
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ 鉂?tests/score-review.test.ts:59:114
+     57|   const state=run(),j=r2CreateJoker('c04','sold',4,undefined,state),{t鈥?     58|   const before=formatScoreReview(state,trace);state.jokers=[];state.go鈥?     59|   expect(formatScoreReview(state,trace)).toEqual(before);expect(before鈥?       |                                                                                                                  ^
+     60|  });
+     61|  it('marks big integer approximation and leaves exact integer receipt 鈥?
+鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆[2/8]鈳?
+ FAIL  tests/shop-post-purchase-condition.test.ts > buying zero-growth b10 accounts for the retained Baochang loss
+AssertionError: expected '浠ヤ繚鐣欎笉涔颁负鍩虹嚎锛涘疄浠?閲戯紝宸插彂鐢熻繑閲?閲戯紝鍑€鏀嚭4閲戯紱浣欓23鈫?9閲戙€傗€? to contain '鍖呭満涔板悗19閲戯紝鏆備笉瑙﹀彂'
+
+- Expected
++ Received
+
+- 鍖呭満涔板悗19閲戯紝鏆備笉瑙﹀彂
++ 浠ヤ繚鐣欎笉涔颁负鍩虹嚎锛涘疄浠?閲戯紝宸插彂鐢熻繑閲?閲戯紝鍑€鏀嚭4閲戯紱浣欓23鈫?9閲戙€?+ 褰撳墠鍒╂伅妗?鈫?锛屼粎鎸夎繃鍏虫椂浣欓缁撶畻锛屼笉璁℃湭鏉ユ敹鍏ャ€?+ 鏂板疄渚嬶細鏃犳垚闀挎垨浣跨敤璁℃暟
++ 璐閲戝竵23鈫?9锛涗竴鎺峰崈閲戜拱鍚?9閲戯紝鏆備笉瑙﹀彂鍊嶇巼脳1.8锛堥渶鏈墜寮€濮嬮噾甯佽嚦灏?0锛涙湰鎵嬫柊鏀跺叆涓嶆敼鍙樿祫鏍硷級锛涜繖杞厛鐣欓噾銆?+ 涓€娆℃潯浠跺鐓э紙鍏紑鐗岀粍鏍蜂緥锛岄潪涓嬩竴鎵嬮娴嬶紱鍋囧畾涓嬪満棣栨墜銆佹湭寮冪墝銆佸彧鎵撴墍鍒楃墝涓斾笉鐣欑墝锛涗富鍔ㄦ妧鑳芥湭鐢級锛?+ 鏅€氬崟寮?2鈾ｏ細淇濈暀 39 鈫?鍙樻洿 22锛涘垎宸?-17
++ 璺嚎鏉′欢鎵?7鈾?7鈾︼細淇濈暀 220 鈫?鍙樻洿 122锛涘垎宸?-98
++ 鍙鏈墜宸叉湁鍊硷紱鎵嬪悗鎴愰暱銆佹湭鏉ユ娊鐗屻€佹敹鍏ュ拰瀛樻椿娆℃暟鏈煡銆?+ 鎺ㄨ崘杩橀渶鍏奸【瀹炰粯銆佸凡鏈夋潵婧愬拰姘镐箙浠ｄ环锛涙潯浠跺鍒嗕笉淇濊瘉鍥炴湰鎴栭€氬叧銆?+ 鎸佺画闀跨儹搴︼紱鎴愮粍鍚庡闀?路 涓嬫墜鐢熸晥銆備换浣曟垚缁勭墝鍨嬬粨绠楀悗鐑害鎴愰暱+10锛屼笂闄?100锛屼笅娆¤捣鐢熸晥锛涙瘡鎵嬩换鎰忕墝鍨嬪潎鍔犲叆宸叉湁鎴愰暱锛岃法鍦轰繚鐣欍€?+ 缁勫悎璁板綍锛氬皻鏃犱袱寮犵幇鎸佺墝鍏卞悓璁″垎銆?+ 杩囧叧鍔犳垚锛氭垚鍔熸竻鍦?娆★紱鎴愮粍 0娆?/ 脳1锛涢『瀛?0娆?/ 脳1锛涘悓鑺?0娆?/ 脳1銆?+ 鏈墜鍙彇瀹為檯鎵€灞炴棌鏈€楂樺洜瀛愪竴娆★紝鍗曟棌涓婇檺脳4锛涢珮鐗屆?銆傛瘡鏃忓墠涓夋鍚堟牸娓呭満鍥犲瓙涓?锛涙竻鍦哄悗鍏ヨ处锛屼笅鎵嬬敓鏁堛€傚嚭鍞笉娓呴浂锛屼拱鍗栦笉澧炲姞鍔犳垚銆?+ 鍙喘涔?+ 鐩存帴涔板叆
++ 璐閲戝竵23鈫?9锛涗竴鎺峰崈閲戜拱鍚?9閲戯紝鏆備笉瑙﹀彂鍊嶇巼脳1.8锛堥渶鏈墜寮€濮嬮噾甯佽嚦灏?0锛涙湰鎵嬫柊鏀跺叆涓嶆敼鍙樿祫鏍硷級锛涜繖杞厛鐣欓噾銆?
+ 鉂?tests/shop-post-purchase-condition.test.ts:39:206
+
+
+鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆[3/8]鈳?
+ FAIL  tests/shop-post-purchase-condition.test.ts > full slots require the specified actual sale, preserve growth/discount consequences and clear on changing selection
+AssertionError: expected '鐐圭煶鎴愰噾 路 鍞悗锛氭棤鎴愰暱鎴栦娇鐢ㄨ鏁?鈫?鍊嶇巼鎴愰暱 0.5\n椴滆。鎬掗┈ 路鈥? to contain '鏃х墿鏂扮敤'
+
+- Expected
++ Received
+
+- 鏃х墿鏂扮敤
++ 鐐圭煶鎴愰噾 路 鍞悗锛氭棤鎴愰暱鎴栦娇鐢ㄨ鏁?鈫?鍊嶇巼鎴愰暱 0.5
++ 椴滆。鎬掗┈ 路 璐悗锛氭棤鎴愰暱鎴栦娇鐢ㄨ鏁?鈫?鐑害鎴愰暱 8
+
+ 鉂?tests/shop-post-purchase-condition.test.ts:52:39
+     50|   expect(shopReplacementCompactFacts(s,sold,tx).join('\n')).toContain(鈥?     51|   if(gold<20)expect(g.detail).toContain('鏆備笉瑙﹀彂');else expect(g.purchase鈥?     52|   expect(tx.growthEffects.join('\n')).toContain('鏃х墿鏂扮敤');expect(tx.grow鈥?       |                                       ^
+     53|  }
+     54|  expect(shopOfferGuidance(s,o)).toMatchObject({replaceId:undefined,pur鈥?
+鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆[4/8]鈳?
+ FAIL  tests/shop-post-purchase-condition.test.ts > full Joker slots do not suppress a legal tool purchase warning for retained Baochang
+AssertionError: expected '璐閲戝竵23鈫?9锛涗竴鎺峰崈閲戜拱鍚?9閲戯紝鏆備笉瑙﹀彂鍊嶇巼脳1.8锛堥渶鏈墜寮€濮嬮噾鈥? to contain '鍖呭満涔板悗19閲戯紝鏆備笉瑙﹀彂'
+
+Expected: "鍖呭満涔板悗19閲戯紝鏆備笉瑙﹀彂"
+Received: "璐閲戝竵23鈫?9锛涗竴鎺峰崈閲戜拱鍚?9閲戯紝鏆備笉瑙﹀彂鍊嶇巼脳1.8锛堥渶鏈墜寮€濮嬮噾甯佽嚦灏?0锛涙湰鎵嬫柊鏀跺叆涓嶆敼鍙樿祫鏍硷級锛涜繖杞厛鐣欓噾銆?
+
+ 鉂?tests/shop-post-purchase-condition.test.ts:63:145
+     61|  const {s}=setup(23);s.jokers=['e08','b02','e01','e05','e06'].map((id,鈥?     62|  const o={offerId:'public/tool',definitionId:'T01',price:4,consumed:fa鈥?     63|  expect(shopPurchaseCashFacts(s,o)).toMatchObject({status:'assessed',g鈥?       |                                                                                                                                                 ^
+     64| });
+     65| it('discounted purchase uses the real threshold, while ordinary high /鈥?
+鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆[5/8]鈳?
+ FAIL  tests/shop-route-relations.test.ts > shows deterministic retained on-sale changes using the current undefined profile
+AssertionError: expected '{"saleEffects":["钖伀鐩镐紶锛堢2妲斤級淇濈暀锛氱郴鏁?脳1.5 鈥? to contain '闀挎湡鎹у満'
+
+Expected: "闀挎湡鎹у満"
+Received: "{"saleEffects":["钖伀鐩镐紶锛堢2妲斤級淇濈暀锛氱郴鏁?脳1.5 鈫?脳1銆?,"钖伀鐩镐紶锛氭湰娆″嚭鍞皢浣夸笅涓€鍦衡€滄湰鍦烘湭鍑哄敭鈥濈殑杩囧叧鎴愰暱鏉′欢涓嶆弧瓒筹紱涓嶄細鍦ㄨ繖閲岃幏寰楄繃鍏虫垚闀裤€?,"鐐圭煶鎴愰噾锛堢3妲斤級淇濈暀锛氬€嶇巼鎴愰暱 +0.5 鈫?+1锛堜笂闄?锛夈€?],"held":{"kind":"direct","label":"璺嚎鐩存帴鏉′欢","tag":"涓荤嚎","body":"璺嚎鐩存帴鏉′欢 路 鏄庣‘鏉′欢娑夊強鍚岀偣鎴愮粍銆俓n鎭颁负瀵瑰瓙鏃讹紝缁撶畻鍚庣儹搴︽垚闀?+5锛屼笂闄?0锛屼粠涓嬩竴鎵嬬敓鏁堬紱姣忔墜浠绘剰鐗屽瀷鍔犲叆宸叉湁鎴愰暱銆俓n瀹為檯鐗屽瀷鏄瀛愶紙绮剧‘鐗屽瀷锛屼笉鑷姩鍖呭惈鍏朵粬鍨嬶級\n鐢ㄩ€斾笉琛ㄧず宸插彂鍔ㄦ垨鏈€浼橈紱浠嶆寜瀹為檯鏉′欢銆佸皝绂佸拰淇濆瓨浜嬩欢妫€鏌ャ€?},"offer":{"kind":"support","label":"閫氱敤杈呭姪","tag":"杈呭姪","body":"閫氱敤杈呭姪 路 涓嶄笓灞炴煇涓€绉嶇墝鍨嬨€俓n鏈満棣栨鎴愬姛寮冪墝杩旇繕1娆″純鐗岋紱浠呬竴娆★紝杩旇繕浠嶇畻浣跨敤杩囧純鐗屻€俓n鏈満鎴愬姛寮冪墝娆℃暟涓?锛涜鍒嗕笌浜嬩欢鏃剁偣鍒嗗埆璇诲彇\n鐢ㄩ€斾笉琛ㄧず宸插彂鍔ㄦ垨鏈€浼橈紱浠嶆寜瀹為檯鏉′欢銆佸皝绂佸拰淇濆瓨浜嬩欢妫€鏌ャ€?},"loss":"鍑哄敭灏嗗け鍘汇€岀倝鐏函闈掋€嶇殑鏁堟灉銆佺増娆″拰褰撳墠瀹炰緥锛氭棤鎴愰暱鎴栦娇鐢ㄨ鏁癨n宸茬Н鏀?+0 鐑害锛涗粠褰撳墠淇濆瓨鍊肩户缁煿鍏汇€傚悓鍚嶆柊璐墝浠庢柊瀹炰緥鍒濆€煎紑濮嬶紝涓嶇户鎵挎垚闀裤€?,"connections":"鏈褰曚笌鐜版寔鍏跺畠鐗屽湪涓婃墜鍏卞悓瑙﹀彂锛涜繖涓嶄唬琛ㄦ病鏈夐厤鍚堟満浼氥€?,"money":"褰撳墠浣欓 6 閲戯紱璇ョ墝鍩虹鍗栦环 2 閲戯紱鐜拌揣銆屽皬璇曠墰鍒€銆嶅綋鍓嶅疄浠?8 閲戙€傚嚭鍞拰璐拱鍒嗗埆纭锛屼氦鏄撴潵婧愩€佷紭鎯犲拰鍞悗浣欓浠ュ疄闄呬繚瀛樼粨鏋滈噸绠椼€?}"
+
+ 鉂?tests/shop-route-relations.test.ts:36:15
+
+
+鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆[6/8]鈳?
+ FAIL  tests/shop-route-relations.test.ts > shows deterministic retained on-sale changes using the current group-upgrade-v1 profile
+AssertionError: expected '{"saleEffects":["钖伀鐩镐紶锛堢2妲斤級淇濈暀锛氱郴鏁?脳1.5 鈥? to contain '闀挎湡鎹у満'
+
+Expected: "闀挎湡鎹у満"
+Received: "{"saleEffects":["钖伀鐩镐紶锛堢2妲斤級淇濈暀锛氱郴鏁?脳1.5 鈫?脳1銆?,"钖伀鐩镐紶锛氭湰娆″嚭鍞皢浣夸笅涓€鍦衡€滄湰鍦烘湭鍑哄敭鈥濈殑杩囧叧鎴愰暱鏉′欢涓嶆弧瓒筹紱涓嶄細鍦ㄨ繖閲岃幏寰楄繃鍏虫垚闀裤€?,"鐐圭煶鎴愰噾锛堢3妲斤級淇濈暀锛氬€嶇巼鎴愰暱 +0.5 鈫?+1锛堜笂闄?锛夈€?],"held":{"kind":"direct","label":"璺嚎鐩存帴鏉′欢","tag":"涓荤嚎","body":"璺嚎鐩存帴鏉′欢 路 鏄庣‘鏉′欢娑夊強鍚岀偣鎴愮粍銆俓n浠讳綍鎴愮粍鐗屽瀷缁撶畻鍚庣儹搴︽垚闀?10锛屼笂闄?100锛屼笅娆¤捣鐢熸晥锛涙瘡鎵嬩换鎰忕墝鍨嬪潎鍔犲叆宸叉湁鎴愰暱锛岃法鍦轰繚鐣欍€俓n瀹為檯鐗屽瀷鏄瀛愶紡涓ゅ锛忎笁鏉★紡钁姦锛忓洓鏉★紡浜旀潯锛忓悓鑺辫懌鑺︼紡鍚岃姳浜旀潯锛堢簿纭墝鍨嬶紝涓嶈嚜鍔ㄥ寘鍚叾浠栧瀷锛塡n鐢ㄩ€斾笉琛ㄧず宸插彂鍔ㄦ垨鏈€浼橈紱浠嶆寜瀹為檯鏉′欢銆佸皝绂佸拰淇濆瓨浜嬩欢妫€鏌ャ€?},"offer":{"kind":"support","label":"閫氱敤杈呭姪","tag":"杈呭姪","body":"閫氱敤杈呭姪 路 涓嶄笓灞炴煇涓€绉嶇墝鍨嬨€俓n姣忎釜绌哄ぇ涓戠墝妲藉姞12鐑害锛屾渶澶?涓┖妲姐€俓n\n鐢ㄩ€斾笉琛ㄧず宸插彂鍔ㄦ垨鏈€浼橈紱浠嶆寜瀹為檯鏉′欢銆佸皝绂佸拰淇濆瓨浜嬩欢妫€鏌ャ€?},"loss":"鍑哄敭灏嗗け鍘汇€岀倝鐏函闈掋€嶇殑鏁堟灉銆佺増娆″拰褰撳墠瀹炰緥锛氭棤鎴愰暱鎴栦娇鐢ㄨ鏁癨n宸茬Н鏀?+0 鐑害锛涗粠褰撳墠淇濆瓨鍊肩户缁煿鍏汇€傚悓鍚嶆柊璐墝浠庢柊瀹炰緥鍒濆€煎紑濮嬶紝涓嶇户鎵挎垚闀裤€?,"connections":"鏈褰曚笌鐜版寔鍏跺畠鐗屽湪涓婃墜鍏卞悓瑙﹀彂锛涜繖涓嶄唬琛ㄦ病鏈夐厤鍚堟満浼氥€?,"money":"褰撳墠浣欓 6 閲戯紱璇ョ墝鍩虹鍗栦环 2 閲戯紱鐜拌揣銆屾棤涓敓鏈夈€嶅綋鍓嶅疄浠?6 閲戙€傚嚭鍞拰璐拱鍒嗗埆纭锛屼氦鏄撴潵婧愩€佷紭鎯犲拰鍞悗浣欓浠ュ疄闄呬繚瀛樼粨鏋滈噸绠椼€?}"
+
+ 鉂?tests/shop-route-relations.test.ts:36:15
+
+
+鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆[7/8]鈳?
+ FAIL  tests/stage-gift-receipt.test.ts > names the actual saved tool and destination without mutating the run
+AssertionError: expected '閿︿笂娣昏姳璧犳柟鐗囨煋脳1 路 宸插叆閬撳叿绠? to contain '鎹竴韬禒鏂圭墖鏌撁?'
+
+Expected: "鎹竴韬禒鏂圭墖鏌撁?"
+Received: "閿︿笂娣昏姳璧犳柟鐗囨煋脳1 路 宸插叆閬撳叿绠?
+
+ 鉂?tests/stage-gift-receipt.test.ts:5:190
+
+
+鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆[8/8]鈳?
+
+ Test Files  4 failed | 10 passed (14)
+      Tests  8 failed | 72 passed (80)
+   Start at  11:23:31
+   Duration  7.36s (transform 29.98s, setup 0ms, import 44.26s, tests 1.51s, environment 2ms)

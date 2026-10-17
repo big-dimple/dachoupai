@@ -1,3 +1,4 @@
+import {cardDefinitionName} from './tangsongCardNames';
 import {coefficientLabelCandidates} from './JokerLabel';
 import type {SelectionReadiness} from './JokerExperience';
 import type {R2RunState} from '../domain/r2Run';
@@ -57,7 +58,7 @@ export function growthOpportunityForDefinition(d:R2JokerDefinition,joker:R2Joker
  const compactLabel={ready:action==='discard'?'弃牌可蓄':'可成长',prepare:'先接续',unmet:'不成长',capped:'成长满',waiting:action==='clear'?'关末检查':action==='shop'?'交易后长':op.kind==='update-score-growth'?'比分后查':'结果后查',used:'本场已长'}[status];
  const resets=d.hooks.some(h=>h.operations.some(o=>o.kind==='reset-coefficient'))?'出售会重置系数；买回不恢复本场资格。':op.key==='pendingHeat'?'下一次实际读取后消耗；场末清空。':op.kind==='update-score-growth'?'未超过上手归零；封顶仍可能归零。':'';
  const summary='现存'+prefix+fractionText(stored.toJSON())+' '+unit+'；'+compactLabel+(status==='ready'?'，'+amount:'');
- return {stored:stored.toJSON(),cap:cap.toJSON(),delta:delta.compare(zero)>0?delta.toJSON():zero.toJSON(),capped,status,label,compactLabel,reason,name:d.name,operation:op.kind,key:op.key,unit,prefix,action,summary,
+ return {stored:stored.toJSON(),cap:cap.toJSON(),delta:delta.compare(zero)>0?delta.toJSON():zero.toJSON(),capped,status,label,compactLabel,reason,name:cardDefinitionName(d),operation:op.kind,key:op.key,unit,prefix,action,summary,
  body:'现存'+prefix+fractionText(stored.toJSON())+' '+unit+' · 上限'+(coefficient?'×':'')+fractionText(cap.toJSON())+'\n'+label+'：'+reason+(status==='ready'?'\n'+amount:'')+'\n'+(resets?resets+'\n':'')+(ctx.scoringLimited?'本手计分停用；成长仍按独立阶段条件检查。\n':'')+'只有成功保存才兑现；新成长从后续读取生效。'};
 }
 type GrowthWrite=Extract<Operation,{kind:'add-growth'|'add-coefficient'|'multiply-coefficient-once'|'update-score-growth'}>;

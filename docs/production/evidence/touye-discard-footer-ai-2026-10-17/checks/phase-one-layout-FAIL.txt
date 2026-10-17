@@ -1,0 +1,94 @@
+
+ RUN  v4.1.11 C:/Users/wanghongping/AppData/Local/Temp/dachoupai-windows-integration-20261017
+
+ ❯ tests/layout.test.ts (53 tests | 5 failed) 153ms
+     × keeps three sorting targets and two primary targets within the dynamic safe viewport 10ms
+     × 320×568 safe0/0 reserves usable submit/discard sizes and all nine seats 1ms
+     × 390×740 safe0/0 reserves usable submit/discard sizes and all nine seats 1ms
+     × 844×300 safe12/12 reserves usable submit/discard sizes and all nine seats 1ms
+     × 844×300 safe12/34 reserves usable submit/discard sizes and all nine seats 1ms
+
+ Test Files  1 failed | 5 passed (6)
+      Tests  5 failed | 121 passed (126)
+   Start at  11:44:10
+   Duration  8.99s (transform 20.61s, setup 0ms, import 25.04s, tests 4.70s, environment 1ms)
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/layout.test.ts > CSS layout contract > keeps three sorting targets and two primary targets within the dynamic safe viewport
+AssertionError: expected 110 to be 74 // Object.is equality
+
+- Expected
++ Received
+
+- 74
++ 110
+
+ ❯ tests/layout.test.ts:103:32
+    101|       }
+    102|       for(let i=0;i<controls.length;i++)for(let j=i+1;j<controls.lengt…
+    103|       expect(l.buttons.rank.x).toBe(l.tools.x);expect(l.buttons.ai.x).…
+       |                                ^
+    104|       expect(l.tableActions.discard.x+l.tableActions.discard.width).to…
+    105|       expect(l.tools.x+l.tools.width).toBeLessThan(l.tableActions.play…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+ FAIL  tests/layout.test.ts > bottom discard — sorting — play row and independent skill > 320×568 safe0/0 reserves usable submit/discard sizes and all nine seats
+AssertionError: expected 62 to be 67 // Object.is equality
+
+- Expected
++ Received
+
+- 67
++ 62
+
+ ❯ tests/layout.test.ts:170:42
+    168|     const l=layout({width,height},{top,bottom,left:0,right:0},undefine…
+    169|     expect(l.visibleCardCount).toBe(9);expect(l.handOverflow).toBe(fal…
+    170|     expect(l.tableActions.discard.width).toBe(discard);expect(l.tableA…
+       |                                          ^
+    171|     expect(l.tableActions.discard.x+l.tableActions.discard.width).toBe…
+    172|     expect(l.buttons.ai.x+l.buttons.ai.width).toBeLessThan(l.tableActi…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+
+ FAIL  tests/layout.test.ts > bottom discard — sorting — play row and independent skill > 390×740 safe0/0 reserves usable submit/discard sizes and all nine seats
+AssertionError: expected 93 to be 129 // Object.is equality
+
+- Expected
++ Received
+
+- 129
++ 93
+
+ ❯ tests/layout.test.ts:170:90
+    168|     const l=layout({width,height},{top,bottom,left:0,right:0},undefine…
+    169|     expect(l.visibleCardCount).toBe(9);expect(l.handOverflow).toBe(fal…
+    170|     expect(l.tableActions.discard.width).toBe(discard);expect(l.tableA…
+       |                                                                                          ^
+    171|     expect(l.tableActions.discard.x+l.tableActions.discard.width).toBe…
+    172|     expect(l.buttons.ai.x+l.buttons.ai.width).toBeLessThan(l.tableActi…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/5]⎯
+
+ FAIL  tests/layout.test.ts > bottom discard — sorting — play row and independent skill > 844×300 safe12/12 reserves usable submit/discard sizes and all nine seats
+ FAIL  tests/layout.test.ts > bottom discard — sorting — play row and independent skill > 844×300 safe12/34 reserves usable submit/discard sizes and all nine seats
+AssertionError: expected 232 to be 210 // Object.is equality
+
+- Expected
++ Received
+
+- 210
++ 232
+
+ ❯ tests/layout.test.ts:170:42
+    168|     const l=layout({width,height},{top,bottom,left:0,right:0},undefine…
+    169|     expect(l.visibleCardCount).toBe(9);expect(l.handOverflow).toBe(fal…
+    170|     expect(l.tableActions.discard.width).toBe(discard);expect(l.tableA…
+       |                                          ^
+    171|     expect(l.tableActions.discard.x+l.tableActions.discard.width).toBe…
+    172|     expect(l.buttons.ai.x+l.buttons.ai.width).toBeLessThan(l.tableActi…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/5]⎯

@@ -27,3 +27,5 @@ it.each(['command','playSelected','discardSelected'] as const)('%s that fails th
  await invoke(scene,operation);expect(dispatchRun).not.toHaveBeenCalled();expect(scene.aiCursor).toBe(cursor);expect(scene.refreshSelection).not.toHaveBeenCalled();
  await vi.runAllTimersAsync();expect(oldReady).toHaveBeenCalledOnce();expect(newReady).not.toHaveBeenCalled();expect(cache.result?.status).toBe('ready');
 });
+
+it.each(['command','playSelected','discardSelected'] as const)('%s reuses completed facts after a failed/no-op action while preserving the busy gate',async operation=>{vi.useFakeTimers();const{scene,cache,oldReady,newReady}=setup();await vi.runAllTimersAsync();const finished=cache.result;expect(finished?.status).toBe('ready');vi.mocked(dispatchRun).mockImplementation(async()=>{expect(scene.playing).toBe(true);expect(cache.result).toBe(finished);return{ok:false,code:'stale-sequence'} as never;});await invoke(scene,operation);expect(dispatchRun).toHaveBeenCalledOnce();expect(cache.result).toBe(finished);expect(scene.aiCursor).toBeUndefined();expect(newReady).not.toHaveBeenCalled();expect(oldReady).toHaveBeenCalledOnce();});

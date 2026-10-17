@@ -1,3 +1,4 @@
+import {cardDefinitionName} from './tangsongCardNames';
 import type {R2JokerDefinition,R2JokerInstance,Operation} from '../content/r2Schema';
 import {getR2Joker} from '../domain/r2Shop';
 import type {DomainEvent} from '../domain/run';
@@ -140,7 +141,7 @@ export function r2ScoreOperationText(event:ScoreEvent,definition?:R2JokerDefinit
   if(event.operation==='lucky-gold-cap')return '幸运金币本手已达'+value+'金上限';
   if(event.operation==='chance-heat-check'){
     const source=definition??getR2Joker(event.sourceDefinitionId),chance=source.hooks.flatMap(hook=>hook.operations).find(operation=>operation.kind==='chance-add-heat');
-    return source.name+' · '+(event.value.n==='1'?'命中':'未命中')+'（每手1次，概率'+(chance?.kind==='chance-add-heat'?chance.probability.n+'/'+chance.probability.d:'未知')+'）';
+    return cardDefinitionName(source)+' · '+(event.value.n==='1'?'命中':'未命中')+'（每手1次，概率'+(chance?.kind==='chance-add-heat'?chance.probability.n+'/'+chance.probability.d:'未知')+'）';
   }
   if(event.operation==='glass-check')return event.value.n==='1'?'玻璃裂纹（碎裂概率1/4）':'玻璃完好（碎裂概率1/4）';
   if(event.operation==='destroy-card')return '玻璃碎裂 · 永久离开牌组';
@@ -200,5 +201,5 @@ export function r2TransactionText(event:JokerTransaction,source:R2JokerDefinitio
   else if(event.operation==='refund-hand')effect='返还 '+amount+' 次出牌（本场一次）';
   else if(event.operation==='destroy-joker')effect='销毁此实例';
   else effect=(event.definitionId==='c05'?'待用热度':'成长')+' +'+amount+' · 后续出牌生效';
-  return source.name+' · '+effect;
+  return cardDefinitionName(source)+' · '+effect;
 }

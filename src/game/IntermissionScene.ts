@@ -1,3 +1,4 @@
+import {cardDefinitionName} from './tangsongCardNames';
 import {warmNextSceneImages} from './StageImageWarmup';
 import {heroText} from './HeroIdentity';
 import {formatScoreReview} from './ScoreReview';
@@ -194,7 +195,7 @@ export class IntermissionScene extends Phaser.Scene {
   private jokerDefinition(id:string){return r2JokerDefinitionFor(runController(this)!.state,id);}
   private traceSources(trace:ScoreTrace):string[] {
     const character=getCharacter(runController(this)!.state.characterId);
-    return [...new Set(trace.events.filter(e=>(e.sourceType==='joker'||e.sourceType==='character')&&e.phase!=='afterHand'&&(e.before.H.n!==e.after.H.n||e.before.H.d!==e.after.H.d||e.before.M.n!==e.after.M.n||e.before.M.d!==e.after.M.d||e.operation==='retrigger-card'&&BigInt(e.value.n)>0n)).map(e=>e.sourceType==='character'?(savedTouyeWager(trace)||character.name):this.jokerDefinition(e.sourceDefinitionId).name))];
+    return [...new Set(trace.events.filter(e=>(e.sourceType==='joker'||e.sourceType==='character')&&e.phase!=='afterHand'&&(e.before.H.n!==e.after.H.n||e.before.H.d!==e.after.H.d||e.before.M.n!==e.after.M.n||e.before.M.d!==e.after.M.d||e.operation==='retrigger-card'&&BigInt(e.value.n)>0n)).map(e=>e.sourceType==='character'?(savedTouyeWager(trace)||character.name):cardDefinitionName(this.jokerDefinition(e.sourceDefinitionId))))];
   }
   private stopCelebration():void {
     this.outcomeMotion?.dispose();this.outcomeMotion=undefined;
@@ -262,7 +263,7 @@ export class IntermissionScene extends Phaser.Scene {
   private inspectResult():void {
     const run=runController(this)!.state,stage={...getR2Stage(this.result.stageIndex,run.tourMode,run.difficulty,run)!,targetHeat:run.stage!.targetHeat};
     const last=stageOutcome(run.stage!,run.lastTrace).last,impact=last?savedBossImpact(run,last):'';
-    this.dialog.open('本场详情',`${run.tourMode==='endless'?'无尽 · ':''}${stage.name}\n热度 ${heatText(this.result.stageHeat)} / ${heatText(stage.targetHeat)}\n${this.result.cleared?'过关收益':'本场收益'} ${this.result.goldEarned} 金 · 余额 ${run.gold} 金\n剩余出牌 ${this.result.handsLeft} · 剩余弃牌 ${run.stage?.discardsLeft??0}\n\n当前构筑：`+(run.jokers.map(j=>this.jokerDefinition(j.definitionId).name).join('、')||'空')+'\n\n'+(run.stage?.boss?'本场压轴：'+heroText(r2BossText(run.stage.boss)):'本场为普通场。')+(impact?'\n\n'+impact:''),[...(last?[{label:'回看最后一手',run:()=>this.inspectLastHand()}]:[]),...(run.phase==='run-lost'?[{label:'再战建议',run:()=>this.inspectFailure()}]:[])]);
+    this.dialog.open('本场详情',`${run.tourMode==='endless'?'无尽 · ':''}${stage.name}\n热度 ${heatText(this.result.stageHeat)} / ${heatText(stage.targetHeat)}\n${this.result.cleared?'过关收益':'本场收益'} ${this.result.goldEarned} 金 · 余额 ${run.gold} 金\n剩余出牌 ${this.result.handsLeft} · 剩余弃牌 ${run.stage?.discardsLeft??0}\n\n当前构筑：`+(run.jokers.map(j=>cardDefinitionName(this.jokerDefinition(j.definitionId))).join('、')||'空')+'\n\n'+(run.stage?.boss?'本场压轴：'+heroText(r2BossText(run.stage.boss)):'本场为普通场。')+(impact?'\n\n'+impact:''),[...(last?[{label:'回看最后一手',run:()=>this.inspectLastHand()}]:[]),...(run.phase==='run-lost'?[{label:'再战建议',run:()=>this.inspectFailure()}]:[])]);
   }
   private inspectLastHand():void {
     const run=runController(this)!.state,trace=stageOutcome(run.stage!,run.lastTrace).last;if(!trace)return;

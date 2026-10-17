@@ -1,0 +1,49 @@
+warning: in the working copy of 'src/game/BuildGrowthProgress.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/game/BuildJourney.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/game/BuildJourneyDialog.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/game/ConsumableDialog.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/game/FinaleKeepsake.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/game/GrowthOpportunity.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/game/IntermissionScene.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/game/JokerComboGrowthTemplates.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/game/JokerExperience.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/game/JokerGroupUpgradeTemplates.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/game/JokerGrowthCausality.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/game/JokerMemory.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/game/JokerPlayerCopy.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/game/OpeningRouteDemo.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/game/PurchasePaymentFacts.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/game/RouteStarter.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/game/SavedBossImpact.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/game/SavedGrowthChange.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/game/SavedToolResult.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/game/ScoreReview.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/game/SettlementPresentation.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/game/ShopJokerPresentation.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/game/ShopPurchaseReceipt.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/game/ShopPurchaseValue.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/game/ShopRecommendation.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/game/ShopRouteRelations.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/game/ShopSynergy.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/game/StageGiftReceipt.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/game/ToolPermanentValue.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/game/XiemuBurnCopy.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/game/characters.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/game/r2Help.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/game/stageNotice.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/game/tangsongCardNames.ts', LF will be replaced by CRLF the next time Git touches it
+node:internal/process/promises:394
+    triggerUncaughtException(err, true /* fromPromise */);
+    ^
+
+page.waitForEvent: Timeout 15000ms exceeded while waiting for event "filechooser"
+=========================== logs ===========================
+waiting for event "filechooser"
+============================================================
+    at load (C:\Users\wanghongping\AppData\Local\Temp\dachoupai-windows-integration-20261017\shots\shop-synergy-copy\native.mjs:7:314)
+    at async file:///C:/Users/wanghongping/AppData/Local/Temp/dachoupai-windows-integration-20261017/shots/shop-synergy-copy/native.mjs:14:2 {
+  log: [],
+  name: 'TimeoutError'
+}
+
+Node.js v22.20.0

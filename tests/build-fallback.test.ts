@@ -1,3 +1,4 @@
+import {cardDisplayName} from '../src/game/tangsongCardNames';
 import {expect,it} from 'vitest';
 import {buildFallback,publicRepairExample} from '../src/game/BuildFallback';
 import {buildJourneyFacts} from '../src/game/BuildJourney';
@@ -29,7 +30,7 @@ it('a real random duplicate uses that actual offer price, and a sold duplicate i
 it('slot capacity and held cash thresholds block a purchase suggestion while keeping an owned tool usable',()=>{
  const full=missingCoreFixture('group');full.consumables.push({instanceId:'full',definitionId:'T01'});expect(buildFallback(full,'group')!.choice).toBeUndefined();expect(buildFallback(full,'group')!.reason).toContain('已满');
  const held=missingCoreFixture('group');held.consumables.push({instanceId:'owned/T08',definitionId:'T08'});expect(buildFallback(held,'group')!.choice!.source).toBe('held');
- const risk=missingCoreFixture('group');risk.gold=21;risk.jokers.push(r2CreateJoker('e08','controlled/e08',0,undefined,risk));expect(buildFallback(risk,'group')!.choice).toBeUndefined();expect(buildFallback(risk,'group')!.reason).toContain('包场');
+ const risk=missingCoreFixture('group');risk.gold=21;risk.jokers.push(r2CreateJoker('e08','controlled/e08',0,undefined,risk));expect(buildFallback(risk,'group')!.choice).toBeUndefined();expect(buildFallback(risk,'group')!.reason).toContain((cardDisplayName('e08')));
 });
 it('phase, absent shop, rank caps and invalid current targets do not fabricate an executable repair',()=>{
  const s=missingCoreFixture('group');s.phase='stage-ready';expect(buildFallback(s,'group')).toBeUndefined();s.phase='shop';s.shop=null;expect(buildFallback(s,'group')).toBeUndefined();
