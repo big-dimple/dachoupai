@@ -2,7 +2,7 @@
 
 本页承接[统一计划](DELIVERY_PLAN.md)与[机器状态](plan.json)，逐项区分开发、整合、行为验证和用户体验验收。[跨轮需求/决策/承诺台账](REQUIREMENTS_DECISIONS_COMMITMENTS.md)保持，原整合前清单可按[92dc27ea原文](https://github.com/big-dimple/dachoupai/blob/92dc27ea2642267478d96182bad3fc74418db974/docs/production/CURRENT_BATCH_20261017.md)追溯，不据旧“待交付”重开开发。
 
-当前共用放大/理牌批基线main `a73d9ec2faae6e537e77a975f02e0a2cef220074`；9ec861ad+d98b72f2无冲突合入dev/zoom-sort-integration-20261017，产品`fb6f699c8ac9d0db9d684ed68f3d6596ccfee9ac`，26源路径一致；GameScene/ShopScene/public/manifest/原图保持a73，保全部9e015/战前/b05修复。[同一回执](evidence/feedback-batch-integration-2026-10-17/README.md)/[当前精确绑定](evidence/feedback-batch-integration-2026-10-17/zoom-sort.json)。复用152/35及有限来源短流程，新增当前注册resolver3项、类型/323模块构建通过；原FAIL不覆盖，不重跑矩阵。用户授权普通dev/main push，完整SHA以实际回执为准，不等01a148ba未完新商店布局/购后流程，也不把它签完成。整包预算/历史缺证/当前合版自然与人验仍开放，P08仍in_progress。
+当前独立眼神/已押/小图批基线main `43725f697b58ebb64bfa47197512d2d39fe46a48`；初始efbed眼图+b8c89已押+fd7c小图提示无冲突合入dev/eyes-followups-integration-20261017，产品`884c6387abba3e060907870d3bd03cee3c3c2c41`，56源路径一致，43725/b05/战前修复保留。[同一回执](evidence/feedback-batch-integration-2026-10-17/README.md)/[部分绑定与缺陷](evidence/feedback-batch-integration-2026-10-17/eyes-followups.json)。复用50/93/150及各自有限源流程，不重跑六人完整演出；当前main停43725。父级见主数值峰值模糊及红线贴/穿累计倍率标签，由原负责人只修两点，等最终眼图替代SHA齐后才必要集中检查并普通main合批，不发布已知瑕疵。临时drawing/settling场景提示未接，整套商店仍另批未完，P08/人验/正式门保持。
 
 |项与用户原意|开发交付|整合|行为验证|用户体验验收/剩余边界|
 |---|---|---|---|---|
@@ -14,14 +14,14 @@
 |6 章节与节目单开战前入口|67b的ShopScene/ProgramDialog.showPrograms、presentStageSelection和GameScene待战入口；原ChooseProgram(id/null)、取消仅关、owner/序号/迟到守卫与真实挑战封角保持|H14已同版合入d2029a56，Shop/目录/stage-ready三入口，发布按回执|精确复用来源68项与接受/不接/取消/待战/Q11关闭有限原生流程，不签全模式矩阵|艺术源齐且必要整合检查通过；合版自然可达/真人理解仍待，稍后开战仍保当前局|
 |7 短确认、长规则与统一卡图放大|4d991详情收高与折叠已发布；本批9ec的DetailDialog/公共CardArtZoomModal继承原确认/折叠，真实注册卡图统一入口，失败回退无虚假放大提示|两源完整合入fb6f699c，无场景/素材改动，详见新增第16项|复用来源152项和10短组件流程，补当前注册resolver3与类型/构建；原首次焦点FAIL保留|未签当前完整Shop/Game旅程、全部123浏览器/真机或所有复杂规则；新商店仍独立未完|
 |8 结算累计、连续来源与手机内容节奏|早批3b6109cf的stageTotal；236acc4c的`IntermissionScene`与`SettlementPresentation.settlementFacts/settlementContentHeight/drawSettlement`。过关/失败结算按内容收高、英雄/来源/奖励连续，红封去重，利息与奖励合组，下一步集中|已合，两个手机文件与236逐字节相同；名称模块在另一文件窗口完整保留|本批settlement/score-review/stage-gift交叉通过；手机来源44相关项/类型构建与4局部看图只按父级回执复用，源仅2产品文件|先前dot1451累计/765末手仅签2cc24a50；当前候选手机节奏和用户感知待验，不伪造源截图日志|
-|9 秦琼提醒、理牌与AI、六技能真名|既有紧凑提醒/取消保选/技能名不改；d98的HandActionControls/SceneView/HandSortButtonVisual只精修理牌三项细短分隔、mouse视觉2px抬/浅底细阴影、字体光学对齐，固定hit/触控清理/低动态保留|与公共放大合至fb6f699c，GameScene及原几何/字体资产与a73相同|精确复用来源35检查与有限DPR2牌桌mouse/touch/真实ReorderHand回执，最终类型/构建通过；源GameScene上下文是9e015不冒称当前浏览器重测|当前合版自然理牌感受/物理手机/真人观感待验；新商店布局与购后流程不在本批|
+|9 秦琼提醒/已押、理牌AI与技能真名|既有43725理牌/提醒保持；b8c89的HeroSkillPresentation/HeroAbilityCue/TouyeWagerCopy按真实commit.target投影已押实际目标/出牌后结算，不再红色待完成，非行动机会|已合当前dev884c6387，无GameScene/ShopScene修改；核心已押显示沿现有调用生效|来源7文件93项/type-build精确复用，保存/恢复/不同选牌及旧身份等原保护保留；本批不重测整套|drawing/settling临时参数的GameScene接线尚未涵盖，01a148ba另接；等最终眼图SHA合批，整套商店未完不纳入|
 |10 统一卡名与精简文案|6479/6a67正名和去重已发布；e978的T18换货券短文案保留；本批43216be2修ShopDecisionCopy把固定+50漏算成成长0的展示根因，ShopScene合并重复推荐/价格/配合块，购买用语统一|精确源已合b191，定义/hash/成长/价格不变|来源60项与有限受控购买回执复用，当前只增类型/构建；不把旧321/365算作本批新测|复杂多阶段/旧身份全部长规则未逐卡全覆盖；c04真实计分固定收益原机制不变，真人阅读待验|
-|11 高光真实贡献与数值落位|09249的HeroClimax/Stage及保存贡献arrival不变，本小批不改演出|前批已发a470，本小批保持|父级a470自然见普通来源连线/数字增量；原owner短帧与本地软件证据按原版本保留|此次自然没有触发全屏眼神高光，不能将局部增量签成完整眼神高光；听感/真机仍待|
+|11 高光真实贡献与独立眼神|efbed初候选的CharacterArt/portraits/HeroClimaxStage/SceneResources/StageImageWarmup接6个真实2048×768透明原图的768×288完整派生，单英雄提前准备；原计分与来源保留|已合dev884c6387，56源路径含秦琼/小图无冲突；最终眼图SHA待替代，未main|复用源50项/type-build/6人受控PlayHand与12张charge-impact图，眼区像素稳定、来源为真实保存f09；不重复整套|父级确认峰值主数模糊、红线贴/穿累计倍率标签两问题待原负责人修；不能据50PASS签可读性，main明确暂缓|
 |12 c06青出于蓝新图|早批3897abbc：`jokerArt`/`ClimaxSourceArt`同ID版本映射，缩略/HD/高光在各入口使用指定新PNG|早批已发布，12/12路径绑定保持，旧版资源保留|原字节/活跃映射/预算通过，本批source-stage-art复核；旧dot新缩略/详情/高清返回已观察|当前候选运行观感和用户美术仍待；不删除旧资源凑清理，不代签全部72来源链|
 |13 后台图片预热计数静默|早批2c3bfe5c：GameScene/加载入口的E2E+imageDebug=1诊断门与`imageWarmupStatus`；正常进场不挂预热诊断层，后台队列/传输不变|早批已发main2cc24a50，当前GameScene保最终owner|原4入口+17队列/加载回归及生产无“图片预热”证据复用；本批不为该未改功能再跑矩阵|目标设备实际等待未签，默认静默不等于取消预热|
 |14 T18正名与短文案（最新覆盖）|e978f295：`cardDisplayName`/`toolInfo`/`RouteFitCue.toolPurpose`及库存/奖励/回看边界显示“换货券 / 刷新一次商店商品”；删除ShopRerollEconomyCopy及对应UI/样式，购买/查看时仅通常价格与必要条件|已合；旧“免费逛摊”保留在规则定义中维持hash，T18/4金/优惠价/效果/素材不改|本批名称/标签/价格/货架短效果与c01-economy真实刷新回归通过；两次旧名断言FAIL保留|原新增“与直接刷新比较/节省/多花/已持有成本”方案由用户覆盖，不能再当验收目标；当前自然商店理解待验|
 |15 b05凤鸣朝阳完整新图与当前来源整改|2e22aa31保70340归档的用户风鸣朝阳.png完整1122×1402，contain缩略/详情新hash；2229将currentSource与历史分层；整合d202仅补b05高光48,306B新绑定|两源43路径逐blob相同，其他80条美术/71条高光不动，9e015修复保留|复用来源48检查/原图字节/来源核对；跨源首轮旧高光绑定13PASS/1FAIL保留，单资源修复后14PASS、单图复现与最终type/build通过|当前72源绑定已修；历史9项derivatives-only/旧72原文件缺证、完整dist44.51MB超20MB、b05自然观感/听感/真机和正式门仍未签|
-|16 注册插画共用放大|9ec的CardArtSource/portraitCardArt识别72唐宋牌+39工具升级+12长期物品，DetailDialog→openCardArtZoom；黑底完整contain、44px关闭/ESC/焦点返回/失败重试，没真实高清不出入口，615×768既有详情复用|16源路径相同，与d98的10路径无交集；b05-v3当前hash/完整原图和高光资产均保a73|来源152+10短流程按原范围复用，当前3项逐注册URL对兼容检查、类型/323模块构建通过；不相加重复数|当前合版新b05像素观感/全部123浏览器/物理设备与真人验收待；未新建更高像素管线，不签未完新商店布局/购后流程|
+|16 注册插画共用放大与60px提示去遮挡|43725公共123图放大保持；fd7c的DetailDialog/CSS将图内黑底字移到图下单行，整图原生透明按钮、ARIA键盘/Escape/关闭焦点与失败回退保持，提示不增加Tab目标|已合dev884c6387，13增量路径与源相同，resolver/资源/b05与main一致|复用150定向/type-build及10短组件，实际60px前后/大图源证据；原真实遮挡与隐藏页观察器FAIL保留|非新商店布局/工具主流程整改；当前main43725，等眼图两点修复最终SHA一起发布，真人/物理设备待验|
 
 ## 图片详情收尾交付
 

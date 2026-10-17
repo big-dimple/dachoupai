@@ -1,5 +1,16 @@
 # 本轮反馈整合回执 · 2026-10-17
 
+## 独立眼神、秦琼已押与小图提示：仅 dev 待最终眼图修复
+
+基线main `43725f697b58ebb64bfa47197512d2d39fe46a48`；当前产品`884c6387abba3e060907870d3bd03cee3c3c2c41`，分支dev/eyes-followups-integration-20261017。已正常合入初始眼图efbed42b、秦琼b8c89e8c、小图fd7c888d，无冲突；三源56增量路径完整保留，[逐路径/原运行指纹与当前等待](eyes-followups.json)。43725的理牌/共用放大、b05完整PNG及53/19高光绑定、67b战前和9e015修复不回退；GameScene/ShopScene/规则/存档/音频未改。
+
+[眼图来源](../dedicated-hero-eyes-2026-10-17/README.md)逐张查看6个2048×768透明PNG，映射amo苏轼/touye秦琼/laohuan辛弃疾/erxiang刘娥/azao文成/xiemu花蕊。原字节17,915,262B归档；等比完整768×288派生685,752B/单张<=128KiB、内容hash和选定英雄进牌桌前准备。原50检查/类型构建、6人受控真实PlayHand/f09贡献的12张charge/impact图按原范围复用，不是自然获得f09或六主动技能验收。**父级复看两张impact帧发现主数值峰值模糊、红线贴/穿累计倍率标签；原高光负责人仅修这两点，最终SHA将替代efbed。当前眼区稳定/来源真实的软件证据不等于这两项可读性已通过。** 原图已交付/入dev不再写成“独立眼原画待素材”，也不扩展为用户美术批准。
+
+[秦琼来源](../touye-locked-skill-state-2026-10-17/README.md)93定向/type-build精确复用：按真实保存commit.target显示“已押实际目标 · 出牌后结算”，非红色待完成/非行动机会；恢复和改选不改原目标，旧身份和辛弃疾pending各自保持。核心静态显示通过现有调用生效。drawing/settling接口虽有定义，**“换牌中/结算中”GameScene临时阶段尚未接线**，由01a148ba另接，当前不涵盖/不冒称已生效；不与未完成整套商店混成当前依赖。
+
+[小图来源](../art-zoom-small-image-2026-10-17/README.md)150定向/type-build及10短组件流程精确复用：移除图内黑字底，图下单行“点图放大”；60px前后/大图源软件图已看，整图原生透明按钮/ARIA键盘/Escape/关闭焦点/失败回退保留，提示装饰不多一个Tab目标。原遮挡与隐藏页观察器FAIL保留；不改工具/购买主流程。
+
+当前只做来源逐blob/指纹和43725/b05保护范围静态兼容核对；没有冲突，不重复50/93/150或六人完整演出，整合type/build留到最终眼图SHA齐后一次必要检查。**只普通dev检查点，main保持43725f69，明确不发布已知显示瑕疵版本。** 不等整套商店重排；它仍未交付且不纳入。预算超标/历史缺证、真人身份一致性/理解、自然眼神、heard=false/真机与C04/A03/V01/L01保持未验，P08仍in_progress。
 ## 共用放大与理牌精修整合
 
 基线main `a73d9ec2faae6e537e77a975f02e0a2cef220074`；来源9ec861adce4e8e088d638dc36800ff9cac304ad7和d98b72f2c7a63de0d384a21cd00dbabf58255468已无冲突合入dev/zoom-sort-integration-20261017，最终产品`fb6f699c8ac9d0db9d684ed68f3d6596ccfee9ac`。两路26增量路径与来源blob全部一致；GameScene、ShopScene、规则/数值/存档/音频、public/原图/manifest、包锁与a73保持，完整b05原图、当前hash及48,306B高光不回退。[精确绑定与检查](zoom-sort.json)。已获准普通dev/main合批push，实际远端完整main SHA以成功推送回执为准，不等未完成商店下一批，无CI/域名/部署。

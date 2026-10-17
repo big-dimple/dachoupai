@@ -1,0 +1,465 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "taskId": "P08",
+  "taskStatus": "in_progress",
+  "phase": "PARTIAL_DEV_EYES_WITH_KNOWN_VISUAL_ISSUES_WAITING_FINAL_SOURCES",
+  "baseCommit": "43725f697b58ebb64bfa47197512d2d39fe46a48",
+  "integratedProductCommit": "884c6387abba3e060907870d3bd03cee3c3c2c41",
+  "branch": "dev/eyes-followups-integration-20261017",
+  "sourceBrowserBindings": [
+    {
+      "path": "src/game/CharacterArt.ts",
+      "ownerSHA256": "148a2b821459f829faf01744c6d08fff230f986d50b97862f01e33861501495f",
+      "matches": [
+        "CRLF",
+        "workingFile"
+      ],
+      "hashes": {
+        "gitLF": "de7e6e7f96affc9566f20aa9963088ca417c81800ecde813ae7ddd580bb1447f",
+        "CRLF": "148a2b821459f829faf01744c6d08fff230f986d50b97862f01e33861501495f",
+        "workingFile": "148a2b821459f829faf01744c6d08fff230f986d50b97862f01e33861501495f"
+      }
+    },
+    {
+      "path": "src/game/HeroClimaxStage.ts",
+      "ownerSHA256": "cfe8e04497f3aa1f76f523dd8ad52e5ec1bae83b2f31026e1ad63d78f6e70ca2",
+      "matches": [
+        "CRLF",
+        "workingFile"
+      ],
+      "hashes": {
+        "gitLF": "ed560a1459fe8d8670265ec0013ea85e11434feb88793fcc45fcaf2bbaf0c3eb",
+        "CRLF": "cfe8e04497f3aa1f76f523dd8ad52e5ec1bae83b2f31026e1ad63d78f6e70ca2",
+        "workingFile": "cfe8e04497f3aa1f76f523dd8ad52e5ec1bae83b2f31026e1ad63d78f6e70ca2"
+      }
+    },
+    {
+      "path": "src/game/portraits.ts",
+      "ownerSHA256": "7484a09c71509c6298940001b6856241ecc05c0bb5f6d30829559239d126b55d",
+      "matches": [
+        "CRLF",
+        "workingFile"
+      ],
+      "hashes": {
+        "gitLF": "cfdbe43401d1d6207b800ae17b9e06c4742ff884fbe3adeb6a3a211c13bf0496",
+        "CRLF": "7484a09c71509c6298940001b6856241ecc05c0bb5f6d30829559239d126b55d",
+        "workingFile": "7484a09c71509c6298940001b6856241ecc05c0bb5f6d30829559239d126b55d"
+      }
+    },
+    {
+      "path": "src/game/SceneResources.ts",
+      "ownerSHA256": "92607c6a458568c9135d824c03814f0a928a1909814767a56bf594a78c47748d",
+      "matches": [
+        "CRLF",
+        "workingFile"
+      ],
+      "hashes": {
+        "gitLF": "95c0821aca98b9e5b75e50a28ae0909556fd0f3aaceab21d0080d203aaf1910c",
+        "CRLF": "92607c6a458568c9135d824c03814f0a928a1909814767a56bf594a78c47748d",
+        "workingFile": "92607c6a458568c9135d824c03814f0a928a1909814767a56bf594a78c47748d"
+      }
+    },
+    {
+      "path": "src/game/StageImageWarmup.ts",
+      "ownerSHA256": "6925f6f17ee99a1a53e6149298cf9a6544006ee78fe3c028cbfdf800b338ec27",
+      "matches": [
+        "CRLF",
+        "workingFile"
+      ],
+      "hashes": {
+        "gitLF": "26de1cead793ba8d8ced2a2706af675e212f9a1133236023184e5374081b35b2",
+        "CRLF": "6925f6f17ee99a1a53e6149298cf9a6544006ee78fe3c028cbfdf800b338ec27",
+        "workingFile": "6925f6f17ee99a1a53e6149298cf9a6544006ee78fe3c028cbfdf800b338ec27"
+      }
+    },
+    {
+      "path": "public/assets/tangsong-eyes/manifest.json",
+      "ownerSHA256": "13adf93fb29a49b3b02233770df7b6ef2e3008f8b3a84641b7077a29cee116f3",
+      "matches": [
+        "gitLF"
+      ],
+      "hashes": {
+        "gitLF": "13adf93fb29a49b3b02233770df7b6ef2e3008f8b3a84641b7077a29cee116f3",
+        "CRLF": "cfcd478d98477f05694a9bb4f58adee2e2e75cb86086fe9d4f858ff3113a2cf0",
+        "workingFile": "cfcd478d98477f05694a9bb4f58adee2e2e75cb86086fe9d4f858ff3113a2cf0"
+      }
+    },
+    {
+      "path": "art/sources/tangsong-eyes-20261017/manifest.json",
+      "ownerSHA256": "6cc9d7306984b5c93eaa4b24078817919c79f959ea3f04ffb39923336ad439eb",
+      "matches": [
+        "gitLF"
+      ],
+      "hashes": {
+        "gitLF": "6cc9d7306984b5c93eaa4b24078817919c79f959ea3f04ffb39923336ad439eb",
+        "CRLF": "13a5cb69f01d9b4ea2b2b024155734a6fdf92e59bc936e7418663dcf281a7ed8",
+        "workingFile": "13a5cb69f01d9b4ea2b2b024155734a6fdf92e59bc936e7418663dcf281a7ed8"
+      }
+    },
+    {
+      "path": "scripts/build-dedicated-hero-eyes.mjs",
+      "ownerSHA256": "590e2f5fa3e15ae6273830c2318c56c8a1956bb88410dca298fad8695dd757a3",
+      "matches": [
+        "gitLF"
+      ],
+      "hashes": {
+        "gitLF": "590e2f5fa3e15ae6273830c2318c56c8a1956bb88410dca298fad8695dd757a3",
+        "CRLF": "d639b12c4bcbf8e5c456d8172aed0e8ce8207bf74a0b69c6b834769be14ad432",
+        "workingFile": "d639b12c4bcbf8e5c456d8172aed0e8ce8207bf74a0b69c6b834769be14ad432"
+      }
+    }
+  ],
+  "compatibility": {
+    "protectedDiff": [],
+    "scope": "Latest43725 common resolver/zoom/sorting,67b battle flow,b05 PNG/current p08 and48306B climax/portrait sources remain exact. DetailDialog hint changes only from fd7; Qin UI states only from b8. No GameScene patch."
+  },
+  "checksReused": {
+    "source": "Six related files50 tests/type-build; six controlled390x844 actual PlayHand/f09 multiplier cases with12 charge/impact screenshots. Not natural ownership or six active skills.",
+    "integration": "Static exact-source/compatibility only. No new six-person run, type/build or matrix; final concentrated checks deferred until all replacement/fix SHAs arrive.",
+    "boundary": "Source50 software PASS and stable eye pixels do not clear parent review of main-number peak blur and red source line crossing/touching accumulated multiplier label.",
+    "touye": "b8c89:7 files93 checks/type-build; saved locked target projection comes through existing GameScene caller. Explicit drawing/settling scene draft wiring remains NOT_INCLUDED, assigned01a148ba.",
+    "zoomHint": "fd7:150 detail-dialog checks/type-build and10 finite component flows; real60px before/after and large art viewed by owner, original overlap/hidden-pane observer FAILs preserved."
+  },
+  "knownVisualIssues": [
+    {
+      "issue": "Main numeric peak is blurry",
+      "status": "PENDING same highlight owner final replacement SHA",
+      "evidence": "Parent reviewed two committed impact frames; specific character IDs not supplied. No invented new screenshot."
+    },
+    {
+      "issue": "Red contribution line touches/crosses accumulated multiplier label",
+      "status": "PENDING same owner narrow repair; no whole-performance redesign",
+      "evidence": "Same parent frame review; original source evidence retained."
+    }
+  ],
+  "waitingSources": [
+    {
+      "scope": "Final eyes/highlight SHA replacing efbed after only2 reported display repairs",
+      "owner": "existing highlight owner",
+      "sha": null
+    }
+  ],
+  "publication": {
+    "mode": "Normal dev checkpoint only",
+    "mainRemains": "43725f697b58ebb64bfa47197512d2d39fe46a48",
+    "mainStatus": "HELD by explicit user instruction; do not publish known visual defects",
+    "authorization": "All three current sources may be merged and pushed dev. Main explicitly held until final eyes candidate repairs known blur/line overlap; two smaller candidates now received. Full Shop overhaul not a dependency.",
+    "restrictions": "No force/CI/domain/deploy/natural long game; no concurrent highlight source rewrite."
+  },
+  "remaining": [
+    "Final eyes replacement SHA for2 visible defects, then necessary concentrated integration checks",
+    "Parent integrated natural run, identity/art acceptance, reading clarity, hearing=false and physical devices",
+    "Whole-dist budget and historical original gaps remain; C04/A03/V01/L01 and P08 completion not unlocked",
+    "Unfinished full Shop rearrangement is separate next work, not merged or signed complete",
+    "Qin drawing/settling temporary GameScene提示 wiring not in this batch source; assigned01a148ba separately, saved already-wagered target core is implemented."
+  ],
+  "sources": [
+    {
+      "sha": "efbed42b95f3a14ebf2049f5655418fc3628a163",
+      "incrementBase": "a73d9ec2faae6e537e77a975f02e0a2cef220074",
+      "paths": 37,
+      "bindings": [
+        {
+          "path": "art/sources/tangsong-eyes-20261017/amo.png",
+          "sourceBlob": "6bf903ef9705b0fde7e71dfc9153ad1adaa52032",
+          "integratedBlob": "6bf903ef9705b0fde7e71dfc9153ad1adaa52032"
+        },
+        {
+          "path": "art/sources/tangsong-eyes-20261017/azao.png",
+          "sourceBlob": "aadc9de1648c327780a9bd8e72a43717b0637206",
+          "integratedBlob": "aadc9de1648c327780a9bd8e72a43717b0637206"
+        },
+        {
+          "path": "art/sources/tangsong-eyes-20261017/erxiang.png",
+          "sourceBlob": "0e471e54feb8dc01b8983b4de10b41dc40ad15d1",
+          "integratedBlob": "0e471e54feb8dc01b8983b4de10b41dc40ad15d1"
+        },
+        {
+          "path": "art/sources/tangsong-eyes-20261017/laohuan.png",
+          "sourceBlob": "c37e10414bdaca00ee631419eb72b02c728914f7",
+          "integratedBlob": "c37e10414bdaca00ee631419eb72b02c728914f7"
+        },
+        {
+          "path": "art/sources/tangsong-eyes-20261017/manifest.json",
+          "sourceBlob": "12e42b89c76fa4517a6c69349ec4508087aee2cf",
+          "integratedBlob": "12e42b89c76fa4517a6c69349ec4508087aee2cf"
+        },
+        {
+          "path": "art/sources/tangsong-eyes-20261017/touye.png",
+          "sourceBlob": "f794e5865564e9822abe3ede945dcb23bca9a37b",
+          "integratedBlob": "f794e5865564e9822abe3ede945dcb23bca9a37b"
+        },
+        {
+          "path": "art/sources/tangsong-eyes-20261017/xiemu.png",
+          "sourceBlob": "f83220ad3fae83c55c2140c927f2c2a476e74b23",
+          "integratedBlob": "f83220ad3fae83c55c2140c927f2c2a476e74b23"
+        },
+        {
+          "path": "docs/production/evidence/dedicated-hero-eyes-2026-10-17/README.md",
+          "sourceBlob": "76f5b1edb25a451f646d4ee9e34a63bf5da66fb2",
+          "integratedBlob": "76f5b1edb25a451f646d4ee9e34a63bf5da66fb2"
+        },
+        {
+          "path": "docs/production/evidence/dedicated-hero-eyes-2026-10-17/runtime.json",
+          "sourceBlob": "668439626c4712be2a6922f2bea793a81e7f4c8d",
+          "integratedBlob": "668439626c4712be2a6922f2bea793a81e7f4c8d"
+        },
+        {
+          "path": "docs/production/evidence/dedicated-hero-eyes-2026-10-17/screens/amo-charge.png",
+          "sourceBlob": "fcd2cda34abc91d4a89b5f0d0ce8d8a28a395b2a",
+          "integratedBlob": "fcd2cda34abc91d4a89b5f0d0ce8d8a28a395b2a"
+        },
+        {
+          "path": "docs/production/evidence/dedicated-hero-eyes-2026-10-17/screens/amo-impact.png",
+          "sourceBlob": "4593a98381f4be6cdd478a8501098d2c1ac91063",
+          "integratedBlob": "4593a98381f4be6cdd478a8501098d2c1ac91063"
+        },
+        {
+          "path": "docs/production/evidence/dedicated-hero-eyes-2026-10-17/screens/azao-charge.png",
+          "sourceBlob": "168830ce3acf2101620e82b6474478ebcddfb7a5",
+          "integratedBlob": "168830ce3acf2101620e82b6474478ebcddfb7a5"
+        },
+        {
+          "path": "docs/production/evidence/dedicated-hero-eyes-2026-10-17/screens/azao-impact.png",
+          "sourceBlob": "dd81dc3a8efe92e38d166d9bf3eec30c0695d02e",
+          "integratedBlob": "dd81dc3a8efe92e38d166d9bf3eec30c0695d02e"
+        },
+        {
+          "path": "docs/production/evidence/dedicated-hero-eyes-2026-10-17/screens/erxiang-charge.png",
+          "sourceBlob": "50692a7da2c52350cb2c5cf3a8505b39424ead06",
+          "integratedBlob": "50692a7da2c52350cb2c5cf3a8505b39424ead06"
+        },
+        {
+          "path": "docs/production/evidence/dedicated-hero-eyes-2026-10-17/screens/erxiang-impact.png",
+          "sourceBlob": "1c3d505cbe2643bea3185497e868bcf4b31db7b0",
+          "integratedBlob": "1c3d505cbe2643bea3185497e868bcf4b31db7b0"
+        },
+        {
+          "path": "docs/production/evidence/dedicated-hero-eyes-2026-10-17/screens/laohuan-charge.png",
+          "sourceBlob": "e52630533a0a218f71986031013ce9310a0ec9c5",
+          "integratedBlob": "e52630533a0a218f71986031013ce9310a0ec9c5"
+        },
+        {
+          "path": "docs/production/evidence/dedicated-hero-eyes-2026-10-17/screens/laohuan-impact.png",
+          "sourceBlob": "bab8890696c5e673356b53a86c2f1136da76904a",
+          "integratedBlob": "bab8890696c5e673356b53a86c2f1136da76904a"
+        },
+        {
+          "path": "docs/production/evidence/dedicated-hero-eyes-2026-10-17/screens/touye-charge.png",
+          "sourceBlob": "037224e2b97a3adca4c4662025f37770fecc3fd2",
+          "integratedBlob": "037224e2b97a3adca4c4662025f37770fecc3fd2"
+        },
+        {
+          "path": "docs/production/evidence/dedicated-hero-eyes-2026-10-17/screens/touye-impact.png",
+          "sourceBlob": "a6b89771d809e3f48e0deffcc063984542b0c80e",
+          "integratedBlob": "a6b89771d809e3f48e0deffcc063984542b0c80e"
+        },
+        {
+          "path": "docs/production/evidence/dedicated-hero-eyes-2026-10-17/screens/xiemu-charge.png",
+          "sourceBlob": "cc8fdecd1698de98a18a1c8dedc2933a51c60d2a",
+          "integratedBlob": "cc8fdecd1698de98a18a1c8dedc2933a51c60d2a"
+        },
+        {
+          "path": "docs/production/evidence/dedicated-hero-eyes-2026-10-17/screens/xiemu-impact.png",
+          "sourceBlob": "1d10068a1096b6d57bb94578f8277355baf93a35",
+          "integratedBlob": "1d10068a1096b6d57bb94578f8277355baf93a35"
+        },
+        {
+          "path": "public/assets/tangsong-eyes/amo.eyes-14056db36a63.webp",
+          "sourceBlob": "0f4bfb56c55ad7fb61e007a25474b334deed4f95",
+          "integratedBlob": "0f4bfb56c55ad7fb61e007a25474b334deed4f95"
+        },
+        {
+          "path": "public/assets/tangsong-eyes/azao.eyes-f6d4675e5bc3.webp",
+          "sourceBlob": "97adbb4d8e88e19d8221f880c945371604d993e6",
+          "integratedBlob": "97adbb4d8e88e19d8221f880c945371604d993e6"
+        },
+        {
+          "path": "public/assets/tangsong-eyes/erxiang.eyes-3a23269ca3b5.webp",
+          "sourceBlob": "d12936926f0ca35d43c96b8a3f40623fa095ff69",
+          "integratedBlob": "d12936926f0ca35d43c96b8a3f40623fa095ff69"
+        },
+        {
+          "path": "public/assets/tangsong-eyes/laohuan.eyes-375b308030e5.webp",
+          "sourceBlob": "611036a116e505302db7b035f33ce13c7b4f958e",
+          "integratedBlob": "611036a116e505302db7b035f33ce13c7b4f958e"
+        },
+        {
+          "path": "public/assets/tangsong-eyes/manifest.json",
+          "sourceBlob": "bf7be41295022eaafb71f4784b059d5113a05785",
+          "integratedBlob": "bf7be41295022eaafb71f4784b059d5113a05785"
+        },
+        {
+          "path": "public/assets/tangsong-eyes/touye.eyes-12194e100f85.webp",
+          "sourceBlob": "425f96c1fe5c53127d45895fc2ac8c0ad7e0a2a9",
+          "integratedBlob": "425f96c1fe5c53127d45895fc2ac8c0ad7e0a2a9"
+        },
+        {
+          "path": "public/assets/tangsong-eyes/xiemu.eyes-8b93601ca4cc.webp",
+          "sourceBlob": "5fbacf008e47c0230c5317a6ffeb1bea96c30d2d",
+          "integratedBlob": "5fbacf008e47c0230c5317a6ffeb1bea96c30d2d"
+        },
+        {
+          "path": "scripts/build-dedicated-hero-eyes.mjs",
+          "sourceBlob": "e651b48d0413765e6b11cf103a717a1cf6b31e41",
+          "integratedBlob": "e651b48d0413765e6b11cf103a717a1cf6b31e41"
+        },
+        {
+          "path": "src/game/CharacterArt.ts",
+          "sourceBlob": "a7570fd262eaec934a575121c3b7539d62cc81c4",
+          "integratedBlob": "a7570fd262eaec934a575121c3b7539d62cc81c4"
+        },
+        {
+          "path": "src/game/HeroClimaxStage.ts",
+          "sourceBlob": "2d4d15af8349f2ab668d0e2ecea1e0e615b8359e",
+          "integratedBlob": "2d4d15af8349f2ab668d0e2ecea1e0e615b8359e"
+        },
+        {
+          "path": "src/game/SceneResources.ts",
+          "sourceBlob": "9b7cff44237f0d9eee6baaa8bb46abeabbeccbec",
+          "integratedBlob": "9b7cff44237f0d9eee6baaa8bb46abeabbeccbec"
+        },
+        {
+          "path": "src/game/StageImageWarmup.ts",
+          "sourceBlob": "97181d2537cb0701c2749e32146c3441fa52576c",
+          "integratedBlob": "97181d2537cb0701c2749e32146c3441fa52576c"
+        },
+        {
+          "path": "src/game/portraits.ts",
+          "sourceBlob": "80841aa551a0744bea3b7d135932839cdcd6d009",
+          "integratedBlob": "80841aa551a0744bea3b7d135932839cdcd6d009"
+        },
+        {
+          "path": "tests/character-art.test.ts",
+          "sourceBlob": "9997f9194b824947c4184e430147198bc8d8e61a",
+          "integratedBlob": "9997f9194b824947c4184e430147198bc8d8e61a"
+        },
+        {
+          "path": "tests/hero-climax.test.ts",
+          "sourceBlob": "e2be189d192d8a1cfef669328815de75ef6b6cbf",
+          "integratedBlob": "e2be189d192d8a1cfef669328815de75ef6b6cbf"
+        },
+        {
+          "path": "tests/scene-resources.test.ts",
+          "sourceBlob": "415a6bba6bc955cac71107416c913123fba987cd",
+          "integratedBlob": "415a6bba6bc955cac71107416c913123fba987cd"
+        }
+      ],
+      "evidence": "../dedicated-hero-eyes-2026-10-17/README.md"
+    },
+    {
+      "name": "touye-locked-state",
+      "sha": "b8c89e8cf7b9d4bfa53ee3b9c96bedaa735fb94e",
+      "incrementBase": "43725f697b58ebb64bfa47197512d2d39fe46a48",
+      "paths": 6,
+      "bindings": [
+        {
+          "path": "docs/production/evidence/touye-locked-skill-state-2026-10-17/README.md",
+          "sourceBlob": "68cb67ac2728ddba0b6a7d3f0e6a16b1029e3219",
+          "integratedBlob": "68cb67ac2728ddba0b6a7d3f0e6a16b1029e3219"
+        },
+        {
+          "path": "src/game/HeroAbilityCue.ts",
+          "sourceBlob": "97b545e692932fc94d3b67fdaca1ec212745ba2c",
+          "integratedBlob": "97b545e692932fc94d3b67fdaca1ec212745ba2c"
+        },
+        {
+          "path": "src/game/HeroSkillPresentation.ts",
+          "sourceBlob": "7aad2672f964bb691de04f38f145249ccde361a3",
+          "integratedBlob": "7aad2672f964bb691de04f38f145249ccde361a3"
+        },
+        {
+          "path": "src/game/TouyeWagerCopy.ts",
+          "sourceBlob": "5eba4e74e9fa833dbcca58ac4d7c61c01179b090",
+          "integratedBlob": "5eba4e74e9fa833dbcca58ac4d7c61c01179b090"
+        },
+        {
+          "path": "tests/hero-ability-cue.test.ts",
+          "sourceBlob": "237109b4c2fedde1748054f86b64a4679b4d38e2",
+          "integratedBlob": "237109b4c2fedde1748054f86b64a4679b4d38e2"
+        },
+        {
+          "path": "tests/touye-locked-state.test.ts",
+          "sourceBlob": "ccb45b3877856bd8bcdb7bdcd31b649e104eb8a1",
+          "integratedBlob": "ccb45b3877856bd8bcdb7bdcd31b649e104eb8a1"
+        }
+      ],
+      "evidence": "../touye-locked-skill-state-2026-10-17/README.md"
+    },
+    {
+      "name": "small-image-zoom-hint",
+      "sha": "fd7c888d3a2737d0ab14a3c069d7e804c982ec2e",
+      "incrementBase": "9ec861adce4e8e088d638dc36800ff9cac304ad7",
+      "paths": 13,
+      "bindings": [
+        {
+          "path": "docs/production/evidence/art-zoom-small-image-2026-10-17/390-catalog-detail.png",
+          "sourceBlob": "a23a5cd058c4a34d2d800c69d34fb5137efea1a9",
+          "integratedBlob": "a23a5cd058c4a34d2d800c69d34fb5137efea1a9"
+        },
+        {
+          "path": "docs/production/evidence/art-zoom-small-image-2026-10-17/390-t16-use-before.png",
+          "sourceBlob": "9d57ae43d7b3afbea590fb0a45cb14f61999cb67",
+          "integratedBlob": "9d57ae43d7b3afbea590fb0a45cb14f61999cb67"
+        },
+        {
+          "path": "docs/production/evidence/art-zoom-small-image-2026-10-17/390-t16-use.png",
+          "sourceBlob": "0ad1b199f33980a07854ced17e176762cb752b10",
+          "integratedBlob": "0ad1b199f33980a07854ced17e176762cb752b10"
+        },
+        {
+          "path": "docs/production/evidence/art-zoom-small-image-2026-10-17/60px-trigger-before.png",
+          "sourceBlob": "1389057b1c1cf7f3a9821c8bb8b39c54a0c15984",
+          "integratedBlob": "1389057b1c1cf7f3a9821c8bb8b39c54a0c15984"
+        },
+        {
+          "path": "docs/production/evidence/art-zoom-small-image-2026-10-17/60px-trigger.png",
+          "sourceBlob": "5ea03692a828143bdb0134b39835a086c76b2b34",
+          "integratedBlob": "5ea03692a828143bdb0134b39835a086c76b2b34"
+        },
+        {
+          "path": "docs/production/evidence/art-zoom-small-image-2026-10-17/README.md",
+          "sourceBlob": "5e4e9476d33cf64312838f90f9ea9830b26aebc5",
+          "integratedBlob": "5e4e9476d33cf64312838f90f9ea9830b26aebc5"
+        },
+        {
+          "path": "docs/production/evidence/art-zoom-small-image-2026-10-17/browser.json",
+          "sourceBlob": "6534c984c3ad635f403558fc71517f3c3d0b84e7",
+          "integratedBlob": "6534c984c3ad635f403558fc71517f3c3d0b84e7"
+        },
+        {
+          "path": "docs/production/evidence/art-zoom-small-image-2026-10-17/hidden-pane-observer-FAIL.json",
+          "sourceBlob": "f51e7bcb37abc445bf7e16d0f5a855c678ca3fd5",
+          "integratedBlob": "f51e7bcb37abc445bf7e16d0f5a855c678ca3fd5"
+        },
+        {
+          "path": "docs/production/evidence/art-zoom-small-image-2026-10-17/overlap-baseline-FAIL.json",
+          "sourceBlob": "3c5da735e62b6d2c682218355f8d8a71b7b5532b",
+          "integratedBlob": "3c5da735e62b6d2c682218355f8d8a71b7b5532b"
+        },
+        {
+          "path": "harness/goods-art-zoom.mjs",
+          "sourceBlob": "3d4e8baa6dcd8197cef68c6a3e43cba32de74e0a",
+          "integratedBlob": "3d4e8baa6dcd8197cef68c6a3e43cba32de74e0a"
+        },
+        {
+          "path": "src/game/DetailDialog.css",
+          "sourceBlob": "db2384a53c817f753e5335cd16729999425a7d1c",
+          "integratedBlob": "db2384a53c817f753e5335cd16729999425a7d1c"
+        },
+        {
+          "path": "src/game/DetailDialog.ts",
+          "sourceBlob": "8e1e131ff6ba8f689bf1671fab63630a82ff73a3",
+          "integratedBlob": "8e1e131ff6ba8f689bf1671fab63630a82ff73a3"
+        },
+        {
+          "path": "tests/detail-dialog.test.ts",
+          "sourceBlob": "af689e2da7a46dd1aaf0ac061f09366769c0267b",
+          "integratedBlob": "af689e2da7a46dd1aaf0ac061f09366769c0267b"
+        }
+      ],
+      "evidence": "../art-zoom-small-image-2026-10-17/README.md"
+    }
+  ]
+}

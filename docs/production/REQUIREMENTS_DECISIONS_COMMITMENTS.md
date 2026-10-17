@@ -4,6 +4,12 @@
 
 本轮逐项 owner、文件窗口及“开发 / 整合 / 行为验证 / 用户体验验收”四状态见 [当前逐项清单](CURRENT_BATCH_20261017.md)。唯一排程仍为 [DELIVERY_PLAN](DELIVERY_PLAN.md#当前统一执行计划) / [plan.json](plan.json)；本台账负责防漏和证据追溯，不自动新增工作包、改数值或解锁历史暂停项。P08 保持 `in_progress`。
 
+## 当前独立眼神/已押/小图批：只 dev，等待眼图最终修复
+
+main43725保持；efbed初眼图+b8c89秦琼已押+fd7c小图提示无冲突合入dev产品`884c6387abba3e060907870d3bd03cee3c3c2c41`，56源路径与来源相同，43725共用放大/理牌、b05完整图和高光、67b战前均保留。[部分回执](evidence/feedback-batch-integration-2026-10-17/eyes-followups.json)/[原逐项表9/11/16](CURRENT_BATCH_20261017.md)。复用50/93/150及各自有界源流程，不重跑六人完整演出；源PASS不覆盖父级发现的峰值主数模糊/红线贴或穿累计倍率标签。原高光负责人只修两点，最终SHA替代efbed之前不main；两小修已齐，不等整套新商店。
+
+六张独立透明眼原图已交付入dev，不能继续当素材缺失；真人同人一致性/观感未批准。秦琼核心“已押实际目标 · 出牌后结算”会沿现有调用生效，drawing/settling临时GameScene提示由01a148ba另接、当前未涵盖。原图/机制/数值/存档/音频不改，预算/历史缺证及自然/听感/真机/正式门保持，P08仍in_progress。
+
 ## 当前共用放大/理牌批
 
 已发布并由父级核实main a73d9ec2；9ec861ad公共详情放大与d98b72f2理牌精修无冲突合入产品`fb6f699c8ac9d0db9d684ed68f3d6596ccfee9ac`，26源路径完全一致、GameScene/ShopScene/manifest/原图保持a73。共用72+39+12真实注册图的黑底contain/关闭焦点/失败重试及理牌细分隔/轻抬/固定触区/触控清理/低动态/字形对齐已接入；[现有逐项表7/9/16](CURRENT_BATCH_20261017.md)与[精确回执](evidence/feedback-batch-integration-2026-10-17/zoom-sort.json)更新。复用来源152/35和短流程，新增现行b05等注册resolver3、类型/323模块构建通过；旧源上下文与当前合版区分，原FAIL保留，不重跑矩阵或把数目相加。

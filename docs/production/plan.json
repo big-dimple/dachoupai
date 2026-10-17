@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "auditCommit": "7d7921e76ca794a14e715e3eac3b4d66143862ff",
   "currentTask": "P08",
-  "selectionPolicy": "当前共用放大/理牌批9ec+d98正常合入fb6f699c8ac9d0db9d684ed68f3d6596ccfee9ac，26源路径一致，GameScene/ShopScene/manifest/原图保持a73、b05新hash兼容；复用152/35和来源短流程，仅增resolver3/类型323模块构建通过。已授权普通dev/main push，不等01a148ba未完商店重排/布局/购后流程，不签它完成。现有615x768详情复用，整包预算/历史图源缺证/源FAIL与自然/真人/听感/设备/正式门保持，P08仍in_progress，无CI/部署。",
+  "selectionPolicy": "当前仅dev：main43725，efbed初眼图+b8c89已押+fd7c小图无冲突合入884c6387abba3e060907870d3bd03cee3c3c2c41，56源路径一致保最新43725/b05/战前。复用50/93/150与源有限流程，不重跑六人；父级两帧有主数值峰值模糊/红线碰累计倍率标签，等原高光负责人两点修复最终SHA替代efbed，再必要集中检查普通main合批，不发布当前已知瑕疵。drawing/settling临时GameScene提示未涵盖、01a148ba另接；整套商店另批未完不纳入且不等待。P08/预算/缺证/自然/听感/真机/正式门保持。",
   "resumeContract": {
     "candidateCommit": "4bf6a7d63d7738d3c415d09439a1bdca878dc685",
     "gateTask": "A01",
@@ -38,8 +38,9 @@
       ],
       "package": "docs/production/WORK_PACKAGES.md#p08",
       "humanGate": false,
-      "completionScope": "当前合批产品fb6f699c8ac9d0db9d684ed68f3d6596ccfee9ac：公共CardArtSource/DetailDialog/ZoomModal覆盖72唐宋牌39工具升级12长期物品，真实URL对/黑底完整contain/关闭焦点/失败恢复；HandActionControls/SceneView/HandSortButtonVisual精修理牌分隔、2px视觉反馈/固定hit/触控清理/低动态/字体对齐。26来源路径一致，GameScene/ShopScene/manifest/原图保a73；复用152/35及有限源短流程，当前resolver3/类型323模块构建通过，b05-v3兼容。已授权普通dev/main发布，01a148ba新商店布局/购后流程未完成且未纳入。现有615x768详情，无更高像素管线；整包预算/历史缺证/源FAIL及新合版自然/听感false/真人/设备/正式门保持，P08仍in_progress。",
+      "completionScope": "当前dev产品884c6387abba3e060907870d3bd03cee3c3c2c41含efbed六独立透明眼原图/完整等比派生与提前加载、b8c89真实已押目标非待办状态、fd7c60px图下放大提示，56源路径一致保43725/b05/战前。源50/93/150与有限流程复用，不重复六人演出；无GameScene/ShopScene改动。父级数值峰值模糊/红线穿或贴累计倍率标签两点尚待原owner最终眼图SHA，当前main明确停43725，齐后必要检查再普通合批。drawing/settling临时GameScene参数未接，另交01a148ba；整套商店未完成不纳入/不等待。新6眼素材不再缺失但真人身份/观感未签，P08/预算/历史缺证/自然/听感false/真机及正式门保持。",
       "evidence": [
+        "docs/production/evidence/feedback-batch-integration-2026-10-17/eyes-followups.json",
         "docs/production/evidence/feedback-batch-integration-2026-10-17/zoom-sort.json",
         "docs/production/evidence/feedback-batch-integration-2026-10-17/prebattle-art.json",
         "docs/production/evidence/feedback-batch-integration-2026-10-17/dot-followup.json",
