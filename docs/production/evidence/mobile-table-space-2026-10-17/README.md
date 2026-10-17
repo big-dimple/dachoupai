@@ -25,4 +25,8 @@
 
 首个基线观察脚本使用旧菜单入口超时，保留[原失败报告](first-menu-observer-FAIL.json.gz)，随后使用现main的原生折叠菜单入口。一次候选因执行器连接中断未获完整回执，不用于签收；最终报告独立通过。
 
-本页先交截图与几何，随后补同版PC/手机/4×来源撞分与hover/调序回归。不重跑六人、长局、CI或部署；物理设备、主观视觉和听感仍待验。
+产品 bdafa60443b4a20cb1b95950facb10e8da45597e。随后的一次同版相关回归已通过：PC、390、4×各5笔真实H/M撞击、旧字/新值顺序、清理及领域oracle；PC hover/键盘、PC与手机长按调序、手机点按通过。数据与几何全部核对到该提交源码。
+
+实际canvas与同一WebAudio连续音画：[PC](strike-pc/av-continuous.webm)、[390](strike-phone/av-continuous.webm)、[4×](strike-fast/av-continuous.webm)。[手机命中](strike-phone/ordinary-hit.png)、[手机新值/回撤](strike-phone/multiply-pop.png)、[回归汇总](strike-summary.json)、[原始报告](strike-report.json.gz)，各目录附逐帧记录。WebM含实际VP8+Opus，未试听。
+
+不重跑六人、长局、CI或部署；本批未重跑取消/后台/销毁，它们保留各自先前证据范围。物理设备、主观视觉和听感仍待验。
