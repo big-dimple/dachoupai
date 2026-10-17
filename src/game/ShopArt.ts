@@ -1,13 +1,23 @@
 import type Phaser from 'phaser';
 import type {Box} from './layout';
 import type {SceneView} from './SceneView';
-import type {shopLayout} from './ShopLayout';
+import {shopOfferCopy,type shopLayout} from './ShopLayout';
+import {shopHeroBackground} from './ShopOfferLayout';
+import type {CharacterId} from './characters';
+import {selectionPortraitKey} from './portraits';
 import {PAPER_THEME as T} from './theme';
 
 /** The same dark ink header leads into a cool paper shop, without recoloring card art. */
-export function drawShopBackdrop(scene:Phaser.Scene,view:SceneView,p:ReturnType<typeof shopLayout>):void {
+export function drawShopBackdrop(scene:Phaser.Scene,view:SceneView,p:ReturnType<typeof shopLayout>,hero?:CharacterId):void {
+ if(hero&&(p.pc||p.portrait)){
+  const key=selectionPortraitKey(hero);
+  if(scene.textures.exists(key)){
+   const image=scene.add.image(0,0,key),b=shopHeroBackground(view.layout.width,view.layout.height,p.top,0,image.width/image.height,p.portrait);
+   view.add(image.setPosition(b.x+b.width/2,b.y+b.height/2).setScale(b.width/image.width).setAlpha(b.alpha).setName('shop/hero-backdrop'));
+  }
+ }
  if(p.pc)return;
- view.add(scene.add.rectangle(0,0,view.layout.width,view.layout.height,0xefeee5).setOrigin(0).setName('shop-art/backdrop'));
+ if(!p.portrait)view.add(scene.add.rectangle(0,0,view.layout.width,view.layout.height,0xefeee5).setOrigin(0).setName('shop-art/backdrop'));
  view.add(scene.add.graphics().fillStyle(0x203f3b,1).fillRect(0,Math.max(0,p.top-8),view.layout.width,50).lineStyle(1,0xb7a36d,.8).lineBetween(p.x,p.top+42,p.x+p.w,p.top+42).setName('shop-art/ink-header'));
 }
 
@@ -24,11 +34,13 @@ export function shopSheet(scene:Phaser.Scene,view:SceneView,name:string,b:Box,co
 export function drawShopArt(scene:Phaser.Scene,view:SceneView,p:ReturnType<typeof shopLayout>):void {
   const pc=p.pc;
   if(pc){
-    shopSheet(scene,view,'program',pc.left,T.paperLight,true);
+    // Hero art lives underneath the workplane; local text protection is drawn by the scene.
     shopSheet(scene,view,'owned',{...pc.ownedRail,height:pc.ownedRail.height+16},T.jadeSoft);
     shopSheet(scene,view,'stock',pc.shopPanel,T.paperLight,true);
     shopSheet(scene,view,'actions',{x:pc.actionRail.x-6,y:pc.shopPanel.y+6,width:pc.actionRail.width+12,height:pc.shopPanel.height-12},T.jadeSoft);
   }else if(p.portrait){
+    const copy=shopOfferCopy(p,p.shelf[0],true);
+    view.add(scene.add.graphics().fillStyle(T.paperLight,.9).fillRoundedRect(p.x-4,copy.y,p.w+8,104,6).setName('shop-art/info-band'));
     // Merchandise and the single primary action lead; quiet rails keep breathing space.
     const rails=scene.add.graphics().lineStyle(1,T.divider,.55);
     if(!p.inventoryCollapsed)rails.lineBetween(p.x,p.slots[0].y-20,p.x+p.w,p.slots[0].y-20);

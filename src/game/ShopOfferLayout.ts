@@ -1,4 +1,6 @@
 import type {Box} from './layout';
+import {JOKER_RARITY,type JokerRarity} from './JokerRarity';
+import type {Edition} from '../cards/types';
 
 export const SHOP_CATEGORIES={
   jokers:{title:'唐宋牌',summary:'加入随身牌，按条件触发'},
@@ -7,6 +9,33 @@ export const SHOP_CATEGORIES={
 } as const;
 
 export interface ShopOfferGeometry {art:Box;title:Box;summary:Box;price:Box;reason:Box;identity?:Box}
+
+/** A repeated category is not a second effect; full rules remain in details. */
+export function shopOfferSynopsis(now:string,later:string):string {
+  const first=now.trim().replace(/^每手一次，/,'每手1次 '),second=later.trim();
+  return !second||first===second||first.startsWith(second+' · ')?first:first+'\n'+second;
+}
+
+/** The saved rarity and edition remain visible outside artwork. */
+export function shopIdentityText(rarity:JokerRarity,edition:Edition='none',compact=false):string {
+  const editions={none:'普通版',foil:'闪箔版',holographic:'全息版',polychrome:'多彩版'};
+  return JOKER_RARITY[rarity].label+(compact&&edition==='none'?'':' · '+(compact?editions[edition].replace('版',''):editions[edition]));
+}
+
+/** Held cards use their real image ratio; their identity never overlays the picture. */
+export function shopHeldGeometry(card:Box,portrait:boolean){
+  const aspect=4/5,artHeight=Math.min(card.width/aspect,card.height-(portrait?36:18)),artWidth=artHeight*aspect;
+  const art={x:card.x+(card.width-artWidth)/2,y:card.y,width:artWidth,height:artHeight};
+  const name={x:card.x,y:portrait?art.y+art.height+2:card.y-18,width:card.width,height:16};
+  const identity={x:card.x,y:portrait?name.y+18:art.y+art.height+2,width:card.width,height:16};
+  return {art,name,identity};
+}
+
+/** A complete, low-opacity image under the shop, with no source cropping or image edits. */
+export function shopHeroBackground(width:number,height:number,top:number,bottom:number,aspect:number,portrait:boolean){
+  const y=top+(portrait?44:0),availableHeight=Math.max(0,height-bottom-y),artHeight=Math.min(availableHeight,width/aspect),artWidth=artHeight*aspect;
+  return {x:portrait?(width-artWidth)/2:Math.min(24,(width-artWidth)/2),y:y+(availableHeight-artHeight)/2,width:artWidth,height:artHeight,alpha:.18};
+}
 
 /** One top-aligned grid per goods row; text length never moves the picture or price. */
 export function shopOfferGeometry(tile:Box,kind:keyof typeof SHOP_CATEGORIES):ShopOfferGeometry|undefined {
