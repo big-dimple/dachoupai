@@ -29,7 +29,7 @@ async function loadImage(game:Phaser.Game,asset:WarmImage,signal:AbortSignal):Pr
 function queue(scene:Phaser.Scene):ImageWarmupQueue {
   const game=scene.game;let q=queues.get(game);if(q)return q;
   let status:ReturnType<typeof imageWarmupStatus>|undefined;
-  q=new ImageWarmupQueue((asset,signal)=>loadImage(game,asset,signal),()=>status?.refresh(),200);queues.set(game,q);const lowLoad=()=>['title','character-select','shop'].some(key=>game.scene.isActive(key));status=imageWarmupStatus(q,lowLoad);
+  q=new ImageWarmupQueue((asset,signal)=>loadImage(game,asset,signal),()=>status?.refresh(),200);queues.set(game,q);const lowLoad=()=>['title','character-select','shop'].some(key=>game.scene.isActive(key));const diagnostics=import.meta.env.MODE==='e2e'&&new URLSearchParams(globalThis.location?.search??'').get('imageDebug')==='1';status=diagnostics?imageWarmupStatus(q,lowLoad):undefined;
   const recovered=(key:string)=>q!.markLoaded(key);game.textures.on('addtexture',recovered);
   let visible=lowLoad();const stageChanged=()=>{retireShop(game);const next=lowLoad();if(next!==visible){visible=next;status?.refresh();}};game.events.on('poststep',stageChanged);
   game.events.once('destroy',()=>{game.events.off('poststep',stageChanged);game.textures.off('addtexture',recovered);shops.get(game)?.controller.abort();shops.delete(game);q!.dispose();status?.destroy();queues.delete(game);});return q;
