@@ -1,0 +1,19 @@
+{
+  "head": "38bd514a655cd1c507fdc5d135fd7f71c4cac94f",
+  "browser": "151.0.7922.173",
+  "scope": "Validator-approved controlled owned-card fixture, actual import/select/play/highlight path. Exact native source texture and HTTP bytes, complete state/journal/storage retained. Software Chromium; no physical/human/natural-rate claim.",
+  "cases": [
+    {
+      "width": 1366,
+      "height": 900,
+      "kind": "multiply",
+      "errors": [],
+      "requests": [],
+      "responses": [],
+      "status": "FAIL",
+      "error": "page.waitForFunction: Timeout 25000ms exceeded.\n    at point (/workspace/dachoupai/harness/ui.mjs:7:14)\n    at async tapUI (/workspace/dachoupai/harness/ui.mjs:27:11)\n    at async file:///workspace/dachoupai/harness/climax-source-assets.mjs:30:119"
+    }
+  ],
+  "status": "FAIL",
+  "error": "page.waitForFunction: Timeout 25000ms exceeded.\n    at point (/workspace/dachoupai/harness/ui.mjs:7:14)\n    at async tapUI (/workspace/dachoupai/harness/ui.mjs:27:11)\n    at async file:///workspace/dachoupai/harness/climax-source-assets.mjs:30:119"
+}

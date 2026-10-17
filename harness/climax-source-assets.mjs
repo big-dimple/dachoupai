@@ -15,10 +15,12 @@ const {heroClimaxFixture,energySend}=await server.ssrLoadModule('/harness/fixtur
 const {makeCheckpoint,readCheckpoint}=await server.ssrLoadModule('/src/application/checkpoint.ts');
 const browser=await chromium.launch({executablePath:'/usr/bin/chromium',args:['--disable-gpu','--disable-software-rasterizer']});
 const report={head:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),browser:browser.version(),scope:'Validator-approved controlled owned-card fixture, actual import/select/play/highlight path. Exact native source texture and HTTP bytes, complete state/journal/storage retained. Software Chromium; no physical/human/natural-rate claim.',cases:[]};
+const comparisonOnly=process.argv.includes('--comparison-only');
+if(comparisonOnly){const previous=JSON.parse(await readFile(out+'/browser-report.json','utf8'));assert.equal(previous.head,report.head);assert.equal(previous.cases.length,3);assert.ok(previous.cases.every(c=>c.status==='PASS'));Object.assign(report,previous);delete report.error;}
 const saved=p=>p.evaluate(async()=>{const c=window.__harness.game.registry.get('runController');return {state:c.state,journal:c.journal,storage:await c.store.read()};});
 const settled=p=>p.waitForFunction(()=>{const game=window.__harness.game,s=game.scene.getScene('game');return game.scene.isActive('intermission')||s.ready&&!s.playing&&!s.presentation&&s.cardViews.every(v=>!v.dealing&&!s.tweens.isTweening(v.container));});
 try{
- for(const spec of [{width:1366,height:900,kind:'multiply'},{width:390,height:844,kind:'multiply'},{width:740,height:320,kind:'multiply'}]){
+ for(const spec of comparisonOnly?[]:[{width:1366,height:900,kind:'multiply'},{width:390,height:844,kind:'multiply'},{width:740,height:320,kind:'multiply'}]){
   const context=await browser.newContext({viewport:{width:spec.width,height:spec.height},hasTouch:spec.width<800,deviceScaleFactor:1}),page=await context.newPage(),row={...spec,errors:[],requests:[],responses:[]},responses=[];report.cases.push(row);
   page.on('pageerror',e=>row.errors.push(String(e)));page.on('dialog',d=>d.accept());page.setDefaultTimeout(25000);
   page.on('request',r=>{if(paths.has(new URL(r.url()).pathname))row.requests.push(r.url());});
@@ -47,12 +49,12 @@ try{
  }
  // Inspect the complete stage composition beside its untouched detail at the same display size.
  {
-  const page=await browser.newPage({viewport:{width:1366,height:900}});await page.goto('about:blank');await page.evaluate(async assets=>{
+  const page=await browser.newPage({viewport:{width:1366,height:900}});await page.route('**/climax-comparison.html',route=>route.fulfill({contentType:'text/html',body:'<!doctype html><html><body></body></html>'}));await page.goto('http://127.0.0.1:5592/climax-comparison.html');await page.evaluate(async assets=>{
    document.body.replaceChildren();document.body.style.cssText='margin:0;background:#111;color:#eee;font:16px sans-serif;padding:20px;display:flex;gap:22px;align-items:flex-start';
    for(const a of assets){const box=document.createElement('section'),title=document.createElement('p');title.textContent=a.id+' · '+a.width+'×'+a.height+' · '+a.bytes+' B';box.append(title);const images=document.createElement('div');images.style.cssText='display:flex;gap:8px';for(const [label,url] of [['原详情',a.sourcePath],['高光专用',a.path]]){const figure=document.createElement('figure'),image=document.createElement('img'),caption=document.createElement('figcaption');figure.style.margin='0';image.src='http://127.0.0.1:5592/'+url;image.style.cssText='width:190px;height:300px;object-fit:contain;background:#000';caption.textContent=label;figure.append(image,caption);images.append(figure);}box.append(images);document.body.append(box);}
    await Promise.all([...document.images].map(i=>i.decode()));
   },['f09','a11','e04'].map(id=>manifest.assets.find(a=>a.id===id)));
-  await page.screenshot({path:out+'/detail-and-stage-comparison.png'});await page.close();
+  await page.screenshot({path:out+'/detail-and-stage-comparison.png'});await page.close();report.comparison='PASS';
  }
  report.status='PASS';
 }catch(e){report.status='FAIL';report.error=String(e.stack);process.exitCode=1;}

@@ -1,0 +1,53 @@
+{
+  "head": "38bd514a655cd1c507fdc5d135fd7f71c4cac94f",
+  "browser": "151.0.7922.173",
+  "scope": "Validator-approved controlled owned-card fixture, actual import/select/play/highlight path. Exact native source texture and HTTP bytes, complete state/journal/storage retained. Software Chromium; no physical/human/natural-rate claim.",
+  "cases": [
+    {
+      "width": 1366,
+      "height": 900,
+      "kind": "multiply",
+      "errors": [],
+      "requests": [
+        "http://127.0.0.1:5592/assets/handdrawn-climax/f09-4536ea2eba0d.webp?v=4536ea2eba0df4a317e9eb428c72a4ddb557a2a67e2779892fb303ab6a742735"
+      ],
+      "responses": [
+        {
+          "url": "http://127.0.0.1:5592/assets/handdrawn-climax/f09-4536ea2eba0d.webp?v=4536ea2eba0df4a317e9eb428c72a4ddb557a2a67e2779892fb303ab6a742735",
+          "bytes": 57192,
+          "sha256": "4536ea2eba0df4a317e9eb428c72a4ddb557a2a67e2779892fb303ab6a742735"
+        }
+      ],
+      "highlight": {
+        "id": "f09",
+        "sourceKey": "climax-source/f09",
+        "natural": [
+          320,
+          400
+        ],
+        "bounds": {
+          "type": 5,
+          "x": 931,
+          "y": 362,
+          "width": 58,
+          "height": 72.5
+        },
+        "phase": "strike"
+      },
+      "savedAndColdRestore": "PASS",
+      "status": "PASS"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "kind": "growth",
+      "errors": [],
+      "requests": [],
+      "responses": [],
+      "status": "FAIL",
+      "error": "page.waitForFunction: Timeout 25000ms exceeded.\n    at /workspace/dachoupai/harness/climax-source-assets.mjs:34:15"
+    }
+  ],
+  "status": "FAIL",
+  "error": "page.waitForFunction: Timeout 25000ms exceeded.\n    at /workspace/dachoupai/harness/climax-source-assets.mjs:34:15"
+}

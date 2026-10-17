@@ -1,0 +1,41 @@
+{
+  "productCommit": "49d962bf56417e42ea07adb181c5fa0fe87395b7",
+  "nativeCasesPassed": 3,
+  "pageErrors": 0,
+  "sourceStageTests": {
+    "passed": 14,
+    "failed": 0
+  },
+  "targetedTests": {
+    "passed": 172,
+    "failed": 0
+  },
+  "fullSuite": {
+    "passed": 3806,
+    "failed": 3,
+    "sourceStageFailures": 0
+  },
+  "preserved": [
+    "art/sources",
+    "public/assets/handdrawn-p08",
+    "public/assets/handdrawn-tools",
+    "src/game/GameScene.ts",
+    "src/game/ShopScene.ts",
+    "src/audio/AudioEngine.ts",
+    "src/game/CardArtZoomModal.ts",
+    "src/game/DetailDialog.ts",
+    "src/game/jokerArt.ts",
+    "src/style.css",
+    "src/domain",
+    "src/platform",
+    "src/application"
+  ],
+  "screenshots": {
+    "1366-multiply-native.png": "1222ff8faae039fbce98a93c9ab70263418ab6fb47c16e1eb2a84ad005ef0021",
+    "1366-native-FAIL.png": "c3fc66ae2f9f63b3ca384394d33730349521d51af13898b1d46f5498cfc4055e",
+    "390-multiply-native.png": "2f9c13ac35f00c8b7d8644202b52810bad511f16536384267d14e1c884ac4bea",
+    "390-native-FAIL.png": "1381792248afe865d990ce25c420da67c647b30e9c83b2b20d82b20063d0db38",
+    "740-multiply-native.png": "9b2baa34658c142c749ad24023a1d5085274da392cc09a89290b03fadfb79c98",
+    "detail-and-stage-comparison.png": "f07f1a133d39633df0a8d309c40a4c8fb84840b32e2a7c1da727764667d49300"
+  }
+}
