@@ -1,5 +1,7 @@
 # 六英雄真实扑克牌目标持续附着
 
+**当前验收状态：六人基础附着已接，视觉强度待评估；用户要求的持续墨气/烟雾包围与明显受益关联尚未验收，不签用户目标完成。** 下列PASS仅表示目标绑定、时点、动态确实运行和清理检查成立，像素变化不代表正常手机尺寸下视觉强度达标。下一步只评苏轼可见性强化样例，未批准向六人推广。
+
 基线 `e82c7df8d3e004cb9ad5a86b27389496d397b2ad`；分支 `dev/hero-target-attachments-20261017`。苏轼优先提交 `e34a9330a94a24ea70c433674b5dfacfa1ccab78`，六人基础产品 `f0deb61c3a0db50321347e6c94537957a0c088c9`，最终秦琼窄标签修正产品 **`614e10e7dba186a75819669e1f6a6fbba3a82028`**。只提交开发分支，交 root 顺序整合；未操作 main、CI 或域名。
 
 目标语义依据 [功能 owner 的目标合同](https://github.com/big-dimple/dachoupai/blob/8a1d8d6b5ad718cd08af78e08d966980eed19c32/docs/production/HERO_CARD_ATTACHMENT_TARGETS_20261017.md)。复用刘娥既有 `HeroTargetAttachment / HeroTargetAttachmentState`，只扩充真实实例集合、整手括号与已保存事件投影；GameScene 是局部接线，未改 ShopScene。扑克牌自身的 hover/拖拽姿态、源牌导演时钟、计分等待与原画资源保持原样，没有新增规则、倍率、稀有度、存档字段或 RNG。

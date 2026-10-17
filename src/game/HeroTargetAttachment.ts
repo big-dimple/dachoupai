@@ -1,6 +1,7 @@
 import type Phaser from 'phaser';
 import type {EffectContext} from '../core/EffectQueue';
-import {HeroTargetAttachmentState,attachmentEdgePoint,ATTACHMENT_TRAVEL_MS,ATTACHMENT_RELEASE_MS,type AttachmentDraft,type AttachmentMotion} from './HeroTargetAttachmentState';
+import {HeroTargetAttachmentState,attachmentEdgePoint,ATTACHMENT_TRAVEL_MS,ATTACHMENT_RELEASE_MS,ASSIST_INJECTION_MS,type AttachmentDraft,type AttachmentMotion} from './HeroTargetAttachmentState';
+import {assistInkCurls,clearInkRuns,type InkBox,type InkPoint} from './AssistInkGeometry';
 import {textDensity} from './TextRaster';
 import {UI_FONT} from './theme';
 
@@ -29,6 +30,7 @@ export class HeroTargetAttachment {
   private readonly state=new HeroTargetAttachmentState();
   private readonly marks=new Map<string,Mark>();
   private flight?:Phaser.GameObjects.Graphics;
+  private assistInk?:Phaser.GameObjects.Graphics;
   private from?:{x:number;y:number};
   private blurred=false;
   private destroyed=false;
@@ -62,7 +64,24 @@ export class HeroTargetAttachment {
   clear():void {this.state.clear();this.from=undefined;this.disposeVisuals();}
   private hide():void {this.state.suspend();this.disposeVisuals();}
   private removeMark(id:string):void {const mark=this.marks.get(id);mark?.edge.destroy();mark?.label?.destroy();this.marks.delete(id);}
-  private disposeVisuals():void {for(const id of [...this.marks.keys()])this.removeMark(id);this.flight?.destroy();this.flight=undefined;}
+  private disposeVisuals():void {for(const id of [...this.marks.keys()])this.removeMark(id);this.flight?.destroy();this.flight=undefined;this.assistInk?.destroy();this.assistInk=undefined;}
+  private inkBox(root:Phaser.GameObjects.Container,container:Phaser.GameObjects.Container,width:number,height:number):InkBox {
+    const parent=root.getWorldTransformMatrix(),matrix=container.getWorldTransformMatrix(),points=[[-width/2,-height/2],[width/2,-height/2],[-width/2,height/2],[width/2,height/2]].map(([x,y])=>{const world=matrix.transformPoint(x,y);return parent.applyInverse(world.x,world.y);}),left=Math.min(...points.map(p=>p.x)),top=Math.min(...points.map(p=>p.y));return{x:left,y:top,width:Math.max(...points.map(p=>p.x))-left,height:Math.max(...points.map(p=>p.y))-top};
+  }
+  private inkProtected(root:Phaser.GameObjects.Container):InkBox[] {
+    const boxes:InkBox[]=[],matrix=root.getWorldTransformMatrix();
+    const walk=(list:Phaser.GameObjects.GameObject[])=>{for(const object of list){const o=object as Phaser.GameObjects.Container;if(!o.active||!o.visible)continue;
+      if(o.getData('cardFace'))boxes.push(this.inkBox(root,o,Number(o.getData('width')),Number(o.getData('height'))));
+      if(o.name==='selection/draft-role'){const b=(o as unknown as Phaser.GameObjects.Text).getBounds(),a=matrix.applyInverse(b.x,b.y),c=matrix.applyInverse(b.right,b.bottom);boxes.push({x:a.x,y:a.y,width:c.x-a.x,height:c.y-a.y});}
+      if(o.list)walk(o.list);
+    }};walk(root.list);
+    for(const b of this.options.labelExclusions?.()??[]){const a=matrix.applyInverse(b.x,b.y),c=matrix.applyInverse(b.x+b.width,b.y+b.height);boxes.push({x:a.x,y:a.y,width:c.x-a.x,height:c.y-a.y});}return boxes;
+  }
+  private inkStroke(graphics:Phaser.GameObjects.Graphics,points:InkPoint[],protectedBoxes:InkBox[],alpha:number):number {
+    let segments=0;for(const [width,opacity,color]of [[8,.13,0x274b51],[4.2,.29,0x326c74],[1.65,.84,0x214d56]])for(const run of clearInkRuns(points,protectedBoxes,width/2+1)){
+      graphics.lineStyle(width, color,opacity*alpha).beginPath();run.forEach((p,i)=>i?graphics.lineTo(p.x,p.y):graphics.moveTo(p.x,p.y));graphics.strokePath();segments+=run.length-1;
+    }return segments;
+  }
   private avoidControls(label:Phaser.GameObjects.Text,card:AttachmentCard,group:boolean):void {
     const exclusions=this.options.labelExclusions?.()??[],overlaps=(b:{x:number;y:number;width:number;height:number})=>exclusions.some(a=>b.x<a.x+a.width&&b.x+b.width>a.x&&b.y<a.y+a.height&&b.y+b.height>a.y);
     if(!overlaps(label.getBounds()))return;
@@ -82,6 +101,13 @@ export class HeroTargetAttachment {
     const visible=new Set(targets.map(t=>t.id));for(const id of this.marks.keys())if(!visible.has(id))this.removeMark(id);
     if(!targets.length){this.hide();return;}
     const full=this.options.motion()==='full',releasing=state.phase==='release',release=releasing?Math.min(1,state.elapsed/ATTACHMENT_RELEASE_MS):0;
+    const inkProtected=state.kind==='assist'&&full?this.inkProtected(root):[];
+    if(state.kind==='assist'&&full){
+      if(!this.assistInk?.active){this.assistInk=this.scene.add.graphics().setName('hero/assist-ink');root.add(this.assistInk);}
+      this.assistInk.clear();let segments=0;
+      for(const {card}of members){const box=this.inkBox(root,card.container,card.width,card.height);for(const [index,path]of assistInkCurls(box,state.clock).entries())segments+=this.inkStroke(this.assistInk,path,inkProtected,(1-release)*(.78+.22*Math.sin(state.clock/470+index)**2));}
+      this.assistInk.setData('memberIds',ids).setData('clock',state.clock).setData('segments',segments).setData('phase',state.phase);
+    }else {this.assistInk?.destroy();this.assistInk=undefined;}
     for(const {id,card} of targets){
       const {container,width,height}=card,center=card.center??{x:0,y:0};let mark=this.marks.get(id);
       if(!mark||mark.container!==container||!mark.edge.active){
@@ -105,7 +131,7 @@ export class HeroTargetAttachment {
         }else if(state.kind==='group'){
           for(const side of [-1,1])for(const end of [-1,1])edge.lineStyle(1.6,ink,.8*(1-release)).beginPath().moveTo(side*(width/2+4),end*(height/2-6)).lineTo(side*(width/2+4),end*(height/2+4)).lineTo(side*(width/2-8),end*(height/2+4)).strokePath();
         }else edge.lineStyle(1.2,ink,.5*(1-release)).strokeRoundedRect(-width/2-3,-height/2-3,width+6,height+6,7).lineStyle(2,ink,.95*(1-release)).beginPath().moveTo(width/2+1,-9).lineTo(width/2+5,-5).lineTo(width/2+1,-1).strokePath();
-        if(full&&state.phase!=='travel')for(let ribbon=0;ribbon<3;ribbon++){
+        if(full&&state.phase!=='travel'&&state.kind!=='assist')for(let ribbon=0;ribbon<3;ribbon++){
           const perimeter=2*(width+height+12),head=state.clock/1600+ribbon/3,len=Math.min(42,perimeter*.1)/perimeter;
           for(let tail=0;tail<3;tail++){
             edge.lineStyle(tail===0?2.4:1.2,tail===0?ink:PALE,(tail===0?.95:.5)*(1-release)).beginPath();
@@ -117,7 +143,13 @@ export class HeroTargetAttachment {
     }
     if(state.phase==='travel'&&full&&this.from){
       if(!this.flight?.active){this.flight=this.scene.add.graphics().setName('hero/target-travel');root.add(this.flight);}
-      const ink=this.flight,t=Math.min(1,state.elapsed/ATTACHMENT_TRAVEL_MS);ink.clear().setData('progress',t).setData('generation',state.generation);
+      const ink=this.flight,t=Math.min(1,state.elapsed/(state.kind==='assist'?ASSIST_INJECTION_MS:ATTACHMENT_TRAVEL_MS));ink.clear().setData('progress',t).setData('generation',state.generation);
+      if(state.kind==='assist'){
+        const matrix=root.getWorldTransformMatrix(),start=matrix.applyInverse(this.from.x,this.from.y);let segments=0;
+        for(const {card}of members){const box=this.inkBox(root,card.container,card.width,card.height),end={x:box.x+box.width/2,y:box.y-9},mid={x:(start.x+end.x)/2,y:Math.min(start.y,end.y)-22},curve=(v:number)=>({x:(1-v)**2*start.x+2*(1-v)*v*mid.x+v*v*end.x,y:(1-v)**2*start.y+2*(1-v)*v*mid.y+v*v*end.y});
+          const base=Array.from({length:31},(_,i)=>curve(i/30)),trail=Array.from({length:19},(_,i)=>curve(Math.max(0,t-.48)+Math.min(t,.48)*i/18));segments+=this.inkStroke(ink,base,inkProtected,.35*Math.sin(t*Math.PI));segments+=this.inkStroke(ink,trail,inkProtected,1-t*.35);
+        }ink.setData('targetIds',ids).setData('segments',segments);return;
+      }
       // At most three heads, shared by the actual selected instances.
       targets.slice(0,3).forEach(({card})=>{
         const center=card.center??{x:0,y:0},end=card.container.getWorldTransformMatrix().transformPoint(center.x+card.width/2+3,center.y-card.height*.18),start=this.from!,mid={x:(start.x+end.x)/2,y:Math.max(6,Math.min(start.y,end.y)-32)},u=1-t;

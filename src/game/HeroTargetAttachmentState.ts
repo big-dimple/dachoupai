@@ -10,6 +10,7 @@ export interface AttachmentState extends AttachmentDraft {
   generation:number;phase:'travel'|'idle'|'committed'|'release';elapsed:number;clock:number;eventId?:string;failed?:boolean;
 }
 export const ATTACHMENT_TRAVEL_MS=190,ATTACHMENT_RELEASE_MS=220;
+export const ASSIST_INJECTION_MS=420;
 
 /** UI ownership only. Qualification and saved outcomes come from the existing domain. */
 export class HeroTargetAttachmentState {
@@ -70,7 +71,7 @@ export class HeroTargetAttachmentState {
     const state=this.current;if(!state)return;
     const dt=Math.max(0,Math.min(50,delta));state.elapsed+=dt;
     if(this.motion==='full')state.clock+=dt;
-    if(state.phase==='travel'&&state.elapsed>=ATTACHMENT_TRAVEL_MS){state.phase='idle';state.elapsed=0;}
+    if(state.phase==='travel'&&state.elapsed>=(state.kind==='assist'?ASSIST_INJECTION_MS:ATTACHMENT_TRAVEL_MS)){state.phase='idle';state.elapsed=0;}
     if(state.phase==='release'&&state.elapsed>=ATTACHMENT_RELEASE_MS)this.clear();
   }
 
