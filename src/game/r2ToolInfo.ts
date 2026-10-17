@@ -251,7 +251,7 @@ function itemDescription(item:R2LongTermDefinition):string {
     case 'joker-offer-count':effect=`本局后续开店与刷新时，唐宋牌货位${op.base}→${op.base+op.amount}；当前已生成货架不补货。`;break;
     case 'paid-reroll-discount':effect=`本局后续每次付费刷新价格−${op.amount}金，至少${op.minimum}金；免费刷新照常免费。`;break;
     case 'consumable-slots':effect=`购入即生效：本局工具库存容量+${op.amount}，最多${limits.consumableSlotsMaximum}格。失去其他扩容来源时，其余工具仍须装得下。`;break;
-    case 'deletion-floor':effect=`购入起，本局主动删牌与幻灵牺牲的牌组下限降为${op.floor}张；仍须保留当前场合法行动。玻璃破碎可以继续低于此下限。`;break;
+    case 'deletion-floor':effect=`本局可将整副扑克删至${op.floor}张（原为${limits.deckDeletionFloor}张），删掉杂牌后更易抽到核心牌。买入不会自动删牌，需使用${cardDefinitionName(getR2Tool('T02'))}删牌，或用${cardDefinitionName(getR2Tool('S01'))}删除1张扑克来换取随机增强。场内不能因此删光手牌；玻璃牌破碎不受此限制，仍可少于${op.floor}张。不直接增加热度或倍率。`;break;
     case 'boss-most-used-hand-upgrade':effect=`本局每次Boss成功过关时，将本章使用最多的已发现牌型升${op.levels}级；并列按牌型表从低到高选择，已到${limits.handLevelMaximum}级则跳过、不重选，已确定的计分保持原结果。`;break;
     case 'first-purchase-discount':effect=`本局每间商店第一次成功购买价格−${op.amount}金，至少${op.minimum}金，可与唐宋牌优惠叠加。采购证自身这次购买不享受自身优惠；取消与失败不占用首购资格。`;break;
     case 'item-offer-count':effect=`本局后续开店时，长期道具货位${op.base}→${op.base+op.amount}；当前货架不补货，刷新也不重抽该货架。`;break;
