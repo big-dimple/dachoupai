@@ -1,0 +1,4697 @@
+{
+  "head": "a8cf70f73b39f5e2e43d80acfb4dfcae68042115",
+  "dirty": " M src/game/GameScene.ts\n M src/game/StageTableArt.ts\n M src/game/layout.ts\n M tests/layout.test.ts\n M tests/stage-table-art.test.ts\n?? docs/production/OWNED_SCORE_EXPERIENCE_20261017.md\n?? harness/owned-joker-score-motion.mjs\n?? src/game/OwnedJokerScoreMotion.ts\n?? tests/owned-joker-score-motion.test.ts\n",
+  "scope": "One compiled build, actual public checkpoint import, native selection and PlayAssistedHand. Domain oracle exact state/journal comparison; real render-boundary card transforms and audio call times. Controlled inventory, no natural acquisition, physical phone, hearing or subjective feel acceptance.",
+  "cases": [
+    {
+      "key": "pc",
+      "width": 1366,
+      "height": 768,
+      "dpr": 1,
+      "cues": [
+        {
+          "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/4",
+          "sourceInstanceId": "controlled/source-process/0",
+          "tier": "ordinary",
+          "label": "再触发"
+        },
+        {
+          "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/5",
+          "sourceInstanceId": "controlled/source-process/1",
+          "tier": "ordinary",
+          "label": "再触发"
+        },
+        {
+          "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/13",
+          "sourceInstanceId": "controlled/source-process/0",
+          "tier": "ordinary",
+          "label": "再触发"
+        },
+        {
+          "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/14",
+          "sourceInstanceId": "controlled/source-process/1",
+          "tier": "ordinary",
+          "label": "再触发"
+        },
+        {
+          "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/18",
+          "sourceInstanceId": "controlled/source-process/0",
+          "tier": "ordinary",
+          "label": "再触发"
+        },
+        {
+          "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/21",
+          "sourceInstanceId": "controlled/source-process/0",
+          "tier": "ordinary",
+          "label": "再触发"
+        },
+        {
+          "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/24",
+          "sourceInstanceId": "controlled/source-process/0",
+          "tier": "ordinary",
+          "label": "再触发"
+        },
+        {
+          "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/25",
+          "sourceInstanceId": "controlled/source-process/1",
+          "tier": "ordinary",
+          "label": "再触发"
+        },
+        {
+          "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/28",
+          "sourceInstanceId": "controlled/source-process/0",
+          "tier": "multiplier",
+          "label": "+2"
+        },
+        {
+          "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/29",
+          "sourceInstanceId": "controlled/source-process/2",
+          "tier": "multiply",
+          "label": "×1.5"
+        },
+        {
+          "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/30",
+          "sourceInstanceId": "controlled/source-process/3",
+          "tier": "ordinary",
+          "label": "+40"
+        },
+        {
+          "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/31",
+          "sourceInstanceId": "controlled/source-process/4",
+          "tier": "ordinary",
+          "label": "+90"
+        },
+        {
+          "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/32",
+          "sourceInstanceId": "controlled/source-process/4",
+          "tier": "multiply",
+          "label": "×1.5"
+        }
+      ],
+      "expectedPhase": "stage-cleared",
+      "errors": [],
+      "importMenu": "关闭\n本局与设置\n\n没有进行中的局，请选择角色。\n\n返回游戏\n图鉴查询\n全屏游玩\n想多看一点？可在这里全屏游玩。\n关闭提示\n画面、声音与触觉\n回看与演出\n进度与存档\n开始新局保存并退出导出本局导出保留数据导入本局\n本局与版本",
+      "stateExact": true,
+      "events": [
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/4",
+          "source": "controlled/source-process/0",
+          "tier": "ordinary",
+          "phases": [
+            "windup",
+            "impact",
+            "rebound",
+            "rest"
+          ],
+          "positive": 3.599999999999909,
+          "negative": -2.6315402317744656,
+          "first": 6133.5,
+          "last": 11833.29999999702,
+          "impactAt": 6234.899999991059,
+          "reboundAt": 6303.29999999702
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/5",
+          "source": "controlled/source-process/1",
+          "tier": "ordinary",
+          "phases": [
+            "windup",
+            "impact",
+            "rebound",
+            "rest"
+          ],
+          "positive": 2.5779129338922075,
+          "negative": -3.599999999999909,
+          "first": 6633.199999988079,
+          "last": 12333.29999999702,
+          "impactAt": 6734.699999988079,
+          "reboundAt": 6801.5
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/13",
+          "source": "controlled/source-process/0",
+          "tier": "ordinary",
+          "phases": [
+            "windup",
+            "impact",
+            "rebound",
+            "rest"
+          ],
+          "positive": 3.599999999999909,
+          "negative": -2.6745897372675245,
+          "first": 11850.59999999404,
+          "last": 14683.39999999106,
+          "impactAt": 11949.09999999404,
+          "reboundAt": 12020.79999999702
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/14",
+          "source": "controlled/source-process/1",
+          "tier": "ordinary",
+          "phases": [
+            "windup",
+            "impact",
+            "rebound",
+            "rest"
+          ],
+          "positive": 2.514159886030484,
+          "negative": -3.599999999999909,
+          "first": 12349.5,
+          "last": 18649.19999998808,
+          "impactAt": 12450.39999999106,
+          "reboundAt": 12517.29999999702
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/18",
+          "source": "controlled/source-process/0",
+          "tier": "ordinary",
+          "phases": [
+            "windup",
+            "impact",
+            "rebound",
+            "rest"
+          ],
+          "positive": 3.599999999999909,
+          "negative": -2.5779129338922075,
+          "first": 14700.29999999702,
+          "last": 16417.19999998808,
+          "impactAt": 14800.59999999404,
+          "reboundAt": 14866.79999999702
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/21",
+          "source": "controlled/source-process/0",
+          "tier": "ordinary",
+          "phases": [
+            "windup",
+            "impact",
+            "rebound",
+            "rest"
+          ],
+          "positive": 3.599999999999909,
+          "negative": -2.6315402317744656,
+          "first": 16434.39999999106,
+          "last": 18149.69999998808,
+          "impactAt": 16532.39999999106,
+          "reboundAt": 16599.79999999702
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/24",
+          "source": "controlled/source-process/0",
+          "tier": "ordinary",
+          "phases": [
+            "windup",
+            "impact",
+            "rebound",
+            "rest"
+          ],
+          "positive": 3.599999999999909,
+          "negative": -2.514159886030484,
+          "first": 18166.59999999404,
+          "last": 20383.39999999106,
+          "impactAt": 18267,
+          "reboundAt": 18333.19999998808
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/25",
+          "source": "controlled/source-process/1",
+          "tier": "ordinary",
+          "phases": [
+            "windup",
+            "impact",
+            "rebound",
+            "rest"
+          ],
+          "positive": 2.6745897372675245,
+          "negative": -3.599999999999909,
+          "first": 18666.09999999404,
+          "last": 24899.89999999106,
+          "impactAt": 18765.5,
+          "reboundAt": 18833.89999999106
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/28",
+          "source": "controlled/source-process/0",
+          "tier": "multiplier",
+          "phases": [
+            "windup",
+            "impact",
+            "rebound",
+            "rest"
+          ],
+          "positive": 4.680000000000064,
+          "negative": -3.4929697814588963,
+          "first": 20399.09999999404,
+          "last": 24899.89999999106,
+          "impactAt": 20633.09999999404,
+          "reboundAt": 20717.09999999404
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/29",
+          "source": "controlled/source-process/2",
+          "tier": "multiply",
+          "phases": [
+            "windup",
+            "impact",
+            "rebound",
+            "rest"
+          ],
+          "positive": 6.1200000000000045,
+          "negative": -4.615871875000039,
+          "first": 21049.19999998808,
+          "last": 24899.89999999106,
+          "impactAt": 21382.29999999702,
+          "reboundAt": 21482.79999999702
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/30",
+          "source": "controlled/source-process/3",
+          "tier": "ordinary",
+          "phases": [
+            "windup",
+            "impact",
+            "rebound",
+            "rest"
+          ],
+          "positive": 2.6427728720982486,
+          "negative": -3.599999999999909,
+          "first": 21916.79999999702,
+          "last": 24899.89999999106,
+          "impactAt": 22148.69999998808,
+          "reboundAt": 22216.89999999106
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/31",
+          "source": "controlled/source-process/4",
+          "tier": "ordinary",
+          "phases": [
+            "windup",
+            "impact",
+            "rebound",
+            "rest"
+          ],
+          "positive": 3.599999999999909,
+          "negative": -2.6965968365952904,
+          "first": 22532.39999999106,
+          "last": 23133.39999999106,
+          "impactAt": 22765.89999999106,
+          "reboundAt": 22832.19999998808
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/32",
+          "source": "controlled/source-process/4",
+          "tier": "multiply",
+          "phases": [
+            "windup",
+            "impact",
+            "rebound",
+            "rest"
+          ],
+          "positive": 6.1200000000000045,
+          "negative": -4.59639409179681,
+          "first": 23148.5,
+          "last": 24899.89999999106,
+          "impactAt": 23482.29999999702,
+          "reboundAt": 23582.79999999702
+        }
+      ],
+      "audio": [
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/0",
+          "kind": "add",
+          "at": 3588.5,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/0",
+          "numericPhase": "base-impact",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/1",
+          "kind": "add",
+          "at": 4319,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/1",
+          "numericPhase": "impact",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/2",
+          "kind": "flight",
+          "at": 4651.0999999940395,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/2",
+          "numericPhase": "windup",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/2",
+          "kind": "key",
+          "at": 4884.5999999940395,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/2",
+          "numericPhase": "impact",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/3",
+          "kind": "flight",
+          "at": 5269.29999999702,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/3",
+          "numericPhase": "windup",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/3",
+          "kind": "multiply",
+          "at": 5601.5999999940395,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/3",
+          "numericPhase": "impact",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/4",
+          "kind": "add",
+          "at": 6217.5999999940395,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/4",
+          "numericPhase": "impact",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/5",
+          "kind": "add",
+          "at": 6717.399999991059,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/5",
+          "numericPhase": "impact",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/6",
+          "kind": "add",
+          "at": 7335.699999988079,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/6",
+          "numericPhase": "impact",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/7",
+          "kind": "flight",
+          "at": 7667.5,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/7",
+          "numericPhase": "windup",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/7",
+          "kind": "key",
+          "at": 7901,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/7",
+          "numericPhase": "impact",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/8",
+          "kind": "flight",
+          "at": 8285.09999999404,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/8",
+          "numericPhase": "windup",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/8",
+          "kind": "multiply",
+          "at": 8618.29999999702,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/8",
+          "numericPhase": "impact",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/9",
+          "kind": "flight",
+          "at": 9135.59999999404,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/9",
+          "numericPhase": "windup",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/9",
+          "kind": "key",
+          "at": 9369.29999999702,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/9",
+          "numericPhase": "impact",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/10",
+          "kind": "flight",
+          "at": 9750.59999999404,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/10",
+          "numericPhase": "windup",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/10",
+          "kind": "key",
+          "at": 9985.5,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/10",
+          "numericPhase": "impact",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/11",
+          "kind": "flight",
+          "at": 10369.699999988079,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/11",
+          "numericPhase": "windup",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/11",
+          "kind": "multiply",
+          "at": 10703.5,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/11",
+          "numericPhase": "impact",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/12",
+          "kind": "flight",
+          "at": 11219.89999999106,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/12",
+          "numericPhase": "windup",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/12",
+          "kind": "key",
+          "at": 11451.699999988079,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/12",
+          "numericPhase": "impact",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/13",
+          "kind": "add",
+          "at": 11934,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/13",
+          "numericPhase": "impact",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/14",
+          "kind": "add",
+          "at": 12434.09999999404,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/14",
+          "numericPhase": "impact",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/15",
+          "kind": "flight",
+          "at": 12834.89999999106,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/15",
+          "numericPhase": "windup",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/15",
+          "kind": "key",
+          "at": 13067.79999999702,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/15",
+          "numericPhase": "impact",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/16",
+          "kind": "flight",
+          "at": 13450.199999988079,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/16",
+          "numericPhase": "windup",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/16",
+          "kind": "key",
+          "at": 13685.199999988079,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/16",
+          "numericPhase": "impact",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/17",
+          "kind": "flight",
+          "at": 14067.199999988079,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/17",
+          "numericPhase": "windup",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/17",
+          "kind": "key",
+          "at": 14302,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/17",
+          "numericPhase": "impact",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/18",
+          "kind": "add",
+          "at": 14784.199999988079,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/18",
+          "numericPhase": "impact",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/19",
+          "kind": "flight",
+          "at": 15183.59999999404,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/19",
+          "numericPhase": "windup",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/19",
+          "kind": "key",
+          "at": 15417,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/19",
+          "numericPhase": "impact",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/20",
+          "kind": "flight",
+          "at": 15800.39999999106,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/20",
+          "numericPhase": "windup",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/20",
+          "kind": "key",
+          "at": 16035.09999999404,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/20",
+          "numericPhase": "impact",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/21",
+          "kind": "add",
+          "at": 16517.09999999404,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/21",
+          "numericPhase": "impact",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/22",
+          "kind": "flight",
+          "at": 16918,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/22",
+          "numericPhase": "windup",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/22",
+          "kind": "key",
+          "at": 17151.59999999404,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/22",
+          "numericPhase": "impact",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/23",
+          "kind": "flight",
+          "at": 17534.09999999404,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/23",
+          "numericPhase": "windup",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/23",
+          "kind": "key",
+          "at": 17767.5,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/23",
+          "numericPhase": "impact",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/24",
+          "kind": "add",
+          "at": 18249.29999999702,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/24",
+          "numericPhase": "impact",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/25",
+          "kind": "add",
+          "at": 18750.09999999404,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/25",
+          "numericPhase": "impact",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/26",
+          "kind": "flight",
+          "at": 19150.09999999404,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/26",
+          "numericPhase": "windup",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/26",
+          "kind": "key",
+          "at": 19384.5,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/26",
+          "numericPhase": "impact",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/27",
+          "kind": "flight",
+          "at": 19767.79999999702,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/27",
+          "numericPhase": "windup",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/27",
+          "kind": "key",
+          "at": 20001.19999998808,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/27",
+          "numericPhase": "impact",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/28",
+          "kind": "flight",
+          "at": 20384.79999999702,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/28",
+          "numericPhase": "windup",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/28",
+          "kind": "key",
+          "at": 20617.59999999404,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/28",
+          "numericPhase": "impact",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/29",
+          "kind": "flight",
+          "at": 21036.19999998808,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/29",
+          "numericPhase": "windup",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/29",
+          "kind": "multiply",
+          "at": 21367.29999999702,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/29",
+          "numericPhase": "impact",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/30",
+          "kind": "flight",
+          "at": 21900.09999999404,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/30",
+          "numericPhase": "windup",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/30",
+          "kind": "key",
+          "at": 22134.59999999404,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/30",
+          "numericPhase": "impact",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/31",
+          "kind": "flight",
+          "at": 22516.29999999702,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/31",
+          "numericPhase": "windup",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/31",
+          "kind": "key",
+          "at": 22749.79999999702,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/31",
+          "numericPhase": "impact",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/32",
+          "kind": "flight",
+          "at": 23134.89999999106,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/32",
+          "numericPhase": "windup",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/32",
+          "kind": "multiply",
+          "at": 23466.89999999106,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/32",
+          "numericPhase": "impact",
+          "signal": false
+        },
+        {
+          "id": "award",
+          "kind": "award",
+          "at": 24152.69999998808,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/34",
+          "numericPhase": "award",
+          "signal": false
+        }
+      ],
+      "frames": 1337,
+      "violations": [],
+      "images": [
+        {
+          "key": "ordinary-right",
+          "at": 6234.899999991059,
+          "playing": true,
+          "presentation": true,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/4",
+          "numericPhase": "impact",
+          "H": "217",
+          "M": "10.5",
+          "cards": [
+            {
+              "source": "controlled/source-process/0",
+              "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/4",
+              "phase": "impact",
+              "tier": "ordinary",
+              "outer": [
+                449,
+                136.8,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                3.1197468074957726,
+                -6.9805108337699835,
+                3.599999999999909,
+                1.025,
+                1.025
+              ],
+              "frame": {
+                "x": 394.2395000398159,
+                "y": 52.00000255703927,
+                "width": 115.76050187349324,
+                "height": 155.63897193670272
+              },
+              "hit": {
+                "x": 397,
+                "y": 64.00000000000001,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "rays": 1,
+              "values": [
+                "再7♣"
+              ]
+            },
+            {
+              "source": "controlled/source-process/1",
+              "outer": [
+                589,
+                136.8,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 537,
+                "y": 64.00000305175782,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "hit": {
+                "x": 537,
+                "y": 64.00000000000001,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "rays": 0,
+              "values": []
+            },
+            {
+              "source": "controlled/source-process/2",
+              "outer": [
+                729,
+                136.8,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 677,
+                "y": 64.00000305175782,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "hit": {
+                "x": 677,
+                "y": 64.00000000000001,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "rays": 0,
+              "values": []
+            },
+            {
+              "source": "controlled/source-process/3",
+              "outer": [
+                869,
+                136.8,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 817,
+                "y": 64.00000305175782,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "hit": {
+                "x": 817,
+                "y": 64.00000000000001,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "rays": 0,
+              "values": []
+            },
+            {
+              "source": "controlled/source-process/4",
+              "outer": [
+                1009,
+                136.8,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 957,
+                "y": 64.00000305175782,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "hit": {
+                "x": 957,
+                "y": 64.00000000000001,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "rays": 0,
+              "values": []
+            }
+          ]
+        },
+        {
+          "key": "ordinary-center",
+          "at": 6266.899999991059,
+          "playing": true,
+          "presentation": true,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/4",
+          "numericPhase": "impact",
+          "H": "217",
+          "M": "10.5",
+          "cards": [
+            {
+              "source": "controlled/source-process/0",
+              "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/4",
+              "phase": "impact",
+              "tier": "ordinary",
+              "outer": [
+                449,
+                136.8,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                -0.398934275773267,
+                -5.187674858223063,
+                -0.3191474206186058,
+                1.0185274102079396,
+                1.0185274102079396
+              ],
+              "frame": {
+                "x": 395.22544877044857,
+                "y": 57.16967294551432,
+                "width": 106.75125089660287,
+                "height": 148.8853245191276
+              },
+              "hit": {
+                "x": 397,
+                "y": 64.00000000000001,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "rays": 1,
+              "values": [
+                "再7♣"
+              ]
+            },
+            {
+              "source": "controlled/source-process/1",
+              "outer": [
+                589,
+                136.8,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 537,
+                "y": 64.00000305175782,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "hit": {
+                "x": 537,
+                "y": 64.00000000000001,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "rays": 0,
+              "values": []
+            },
+            {
+              "source": "controlled/source-process/2",
+              "outer": [
+                729,
+                136.8,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 677,
+                "y": 64.00000305175782,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "hit": {
+                "x": 677,
+                "y": 64.00000000000001,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "rays": 0,
+              "values": []
+            },
+            {
+              "source": "controlled/source-process/3",
+              "outer": [
+                869,
+                136.8,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 817,
+                "y": 64.00000305175782,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "hit": {
+                "x": 817,
+                "y": 64.00000000000001,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "rays": 0,
+              "values": []
+            },
+            {
+              "source": "controlled/source-process/4",
+              "outer": [
+                1009,
+                136.8,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 957,
+                "y": 64.00000305175782,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "hit": {
+                "x": 957,
+                "y": 64.00000000000001,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "rays": 0,
+              "values": []
+            }
+          ]
+        },
+        {
+          "key": "ordinary-left",
+          "at": 6285.199999988079,
+          "playing": true,
+          "presentation": true,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/4",
+          "numericPhase": "impact",
+          "H": "217",
+          "M": "10.5",
+          "cards": [
+            {
+              "source": "controlled/source-process/0",
+              "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/4",
+              "phase": "impact",
+              "tier": "ordinary",
+              "outer": [
+                449,
+                136.8,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                -3.2894252897180905,
+                -4.239829867674858,
+                -2.6315402317744656,
+                1.0151422495274103,
+                1.0151422495274103
+              ],
+              "frame": {
+                "x": 389.5857715845108,
+                "y": 56.31213843822479,
+                "width": 112.24959940910344,
+                "height": 152.49608445167542
+              },
+              "hit": {
+                "x": 397,
+                "y": 64.00000000000001,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "rays": 1,
+              "values": [
+                "再7♣"
+              ]
+            },
+            {
+              "source": "controlled/source-process/1",
+              "outer": [
+                589,
+                136.8,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 537,
+                "y": 64.00000305175782,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "hit": {
+                "x": 537,
+                "y": 64.00000000000001,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "rays": 0,
+              "values": []
+            },
+            {
+              "source": "controlled/source-process/2",
+              "outer": [
+                729,
+                136.8,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 677,
+                "y": 64.00000305175782,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "hit": {
+                "x": 677,
+                "y": 64.00000000000001,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "rays": 0,
+              "values": []
+            },
+            {
+              "source": "controlled/source-process/3",
+              "outer": [
+                869,
+                136.8,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 817,
+                "y": 64.00000305175782,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "hit": {
+                "x": 817,
+                "y": 64.00000000000001,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "rays": 0,
+              "values": []
+            },
+            {
+              "source": "controlled/source-process/4",
+              "outer": [
+                1009,
+                136.8,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 957,
+                "y": 64.00000305175782,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "hit": {
+                "x": 957,
+                "y": 64.00000000000001,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "rays": 0,
+              "values": []
+            }
+          ]
+        },
+        {
+          "key": "multiplier-right",
+          "at": 20633.09999999404,
+          "playing": true,
+          "presentation": true,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/28",
+          "numericPhase": "impact",
+          "H": "309",
+          "M": "≈33.13",
+          "cards": [
+            {
+              "source": "controlled/source-process/0",
+              "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/28",
+              "phase": "impact",
+              "tier": "multiplier",
+              "outer": [
+                449,
+                136.8,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                1.3561664147208035,
+                -5.504008918299732,
+                4.680000000000064,
+                1.0325,
+                1.0325
+              ],
+              "frame": {
+                "x": 390.71233438849447,
+                "y": 51.999995166063314,
+                "width": 119.28767253160481,
+                "height": 158.59198964834212
+              },
+              "hit": {
+                "x": 397,
+                "y": 64.00000000000001,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "rays": 1,
+              "values": [
+                "+2"
+              ]
+            },
+            {
+              "source": "controlled/source-process/1",
+              "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/25",
+              "phase": "rest",
+              "tier": "ordinary",
+              "outer": [
+                589,
+                136.8,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 537,
+                "y": 64.00000305175782,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "hit": {
+                "x": 537,
+                "y": 64.00000000000001,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "rays": 0,
+              "values": []
+            },
+            {
+              "source": "controlled/source-process/2",
+              "outer": [
+                729,
+                136.8,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 677,
+                "y": 64.00000305175782,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "hit": {
+                "x": 677,
+                "y": 64.00000000000001,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "rays": 0,
+              "values": []
+            },
+            {
+              "source": "controlled/source-process/3",
+              "outer": [
+                869,
+                136.8,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 817,
+                "y": 64.00000305175782,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "hit": {
+                "x": 817,
+                "y": 64.00000000000001,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "rays": 0,
+              "values": []
+            },
+            {
+              "source": "controlled/source-process/4",
+              "outer": [
+                1009,
+                136.8,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 957,
+                "y": 64.00000305175782,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "hit": {
+                "x": 957,
+                "y": 64.00000000000001,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "rays": 0,
+              "values": []
+            }
+          ]
+        },
+        {
+          "key": "multiplier-center",
+          "at": 20666.09999999404,
+          "playing": true,
+          "presentation": true,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/28",
+          "numericPhase": "impact",
+          "H": "309",
+          "M": "≈33.13",
+          "cards": [
+            {
+              "source": "controlled/source-process/0",
+              "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/28",
+              "phase": "impact",
+              "tier": "multiplier",
+              "outer": [
+                449,
+                136.8,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                1.1010575976874815,
+                -7.146800237812128,
+                0.8808460781499434,
+                1.0255242865636147,
+                1.0255242865636147
+              ],
+              "frame": {
+                "x": 395.6323559001088,
+                "y": 54.18404635041952,
+                "width": 108.93737560212617,
+                "height": 150.93830378353596
+              },
+              "hit": {
+                "x": 397,
+                "y": 64.00000000000001,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "rays": 1,
+              "values": [
+                "+2"
+              ]
+            },
+            {
+              "source": "controlled/source-process/1",
+              "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/25",
+              "phase": "rest",
+              "tier": "ordinary",
+              "outer": [
+                589,
+                136.8,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 537,
+                "y": 64.00000305175782,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "hit": {
+                "x": 537,
+                "y": 64.00000000000001,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "rays": 0,
+              "values": []
+            },
+            {
+              "source": "controlled/source-process/2",
+              "outer": [
+                729,
+                136.8,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 677,
+                "y": 64.00000305175782,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "hit": {
+                "x": 677,
+                "y": 64.00000000000001,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "rays": 0,
+              "values": []
+            },
+            {
+              "source": "controlled/source-process/3",
+              "outer": [
+                869,
+                136.8,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 817,
+                "y": 64.00000305175782,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "hit": {
+                "x": 817,
+                "y": 64.00000000000001,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "rays": 0,
+              "values": []
+            },
+            {
+              "source": "controlled/source-process/4",
+              "outer": [
+                1009,
+                136.8,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 957,
+                "y": 64.00000305175782,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "hit": {
+                "x": 957,
+                "y": 64.00000000000001,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "rays": 0,
+              "values": []
+            }
+          ]
+        },
+        {
+          "key": "multiplier-left",
+          "at": 20683.19999998808,
+          "playing": true,
+          "presentation": true,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/28",
+          "numericPhase": "impact",
+          "H": "309",
+          "M": "≈33.13",
+          "cards": [
+            {
+              "source": "controlled/source-process/0",
+              "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/28",
+              "phase": "impact",
+              "tier": "multiplier",
+              "outer": [
+                449,
+                136.8,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                -2.456340290021459,
+                -6.232580261593341,
+                -1.9650722320172918,
+                1.0222592152199763,
+                1.0222592152199763
+              ],
+              "frame": {
+                "x": 390.8655542105436,
+                "y": 54.367937913537034,
+                "width": 111.35623288750651,
+                "height": 152.39898135066028
+              },
+              "hit": {
+                "x": 397,
+                "y": 64.00000000000001,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "rays": 1,
+              "values": [
+                "+2"
+              ]
+            },
+            {
+              "source": "controlled/source-process/1",
+              "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/25",
+              "phase": "rest",
+              "tier": "ordinary",
+              "outer": [
+                589,
+                136.8,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 537,
+                "y": 64.00000305175782,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "hit": {
+                "x": 537,
+                "y": 64.00000000000001,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "rays": 0,
+              "values": []
+            },
+            {
+              "source": "controlled/source-process/2",
+              "outer": [
+                729,
+                136.8,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 677,
+                "y": 64.00000305175782,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "hit": {
+                "x": 677,
+                "y": 64.00000000000001,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "rays": 0,
+              "values": []
+            },
+            {
+              "source": "controlled/source-process/3",
+              "outer": [
+                869,
+                136.8,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 817,
+                "y": 64.00000305175782,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "hit": {
+                "x": 817,
+                "y": 64.00000000000001,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "rays": 0,
+              "values": []
+            },
+            {
+              "source": "controlled/source-process/4",
+              "outer": [
+                1009,
+                136.8,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 957,
+                "y": 64.00000305175782,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "hit": {
+                "x": 957,
+                "y": 64.00000000000001,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "rays": 0,
+              "values": []
+            }
+          ]
+        },
+        {
+          "key": "multiply-right",
+          "at": 21382.29999999702,
+          "playing": true,
+          "presentation": true,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/29",
+          "numericPhase": "impact",
+          "H": "309",
+          "M": "≈49.69",
+          "cards": [
+            {
+              "source": "controlled/source-process/0",
+              "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/28",
+              "phase": "rest",
+              "tier": "multiplier",
+              "outer": [
+                449,
+                136.8,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 397,
+                "y": 64.00000305175782,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "hit": {
+                "x": 397,
+                "y": 64.00000000000001,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "rays": 0,
+              "values": []
+            },
+            {
+              "source": "controlled/source-process/1",
+              "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/25",
+              "phase": "rest",
+              "tier": "ordinary",
+              "outer": [
+                589,
+                136.8,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 537,
+                "y": 64.00000305175782,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "hit": {
+                "x": 537,
+                "y": 64.00000000000001,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "rays": 0,
+              "values": []
+            },
+            {
+              "source": "controlled/source-process/2",
+              "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/29",
+              "phase": "impact",
+              "tier": "multiply",
+              "outer": [
+                729,
+                136.8,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                -4.859415171403228,
+                6.1200000000000045,
+                1.0258146572655287,
+                1.0258146572655287
+              ],
+              "frame": {
+                "x": 668.0000025510788,
+                "y": 52.000001168251046,
+                "width": 121.9999948978425,
+                "height": 159.88116221427913
+              },
+              "hit": {
+                "x": 677,
+                "y": 64.00000000000001,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "rays": 1,
+              "values": [
+                "×1.5"
+              ]
+            },
+            {
+              "source": "controlled/source-process/3",
+              "outer": [
+                869,
+                136.8,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 817,
+                "y": 64.00000305175782,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "hit": {
+                "x": 817,
+                "y": 64.00000000000001,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "rays": 0,
+              "values": []
+            },
+            {
+              "source": "controlled/source-process/4",
+              "outer": [
+                1009,
+                136.8,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 957,
+                "y": 64.00000305175782,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "hit": {
+                "x": 957,
+                "y": 64.00000000000001,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "rays": 0,
+              "values": []
+            }
+          ]
+        },
+        {
+          "key": "multiply-center",
+          "at": 21432.39999999106,
+          "playing": true,
+          "presentation": true,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/29",
+          "numericPhase": "impact",
+          "H": "309",
+          "M": "≈49.69",
+          "cards": [
+            {
+              "source": "controlled/source-process/0",
+              "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/28",
+              "phase": "rest",
+              "tier": "multiplier",
+              "outer": [
+                449,
+                136.8,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 397,
+                "y": 64.00000305175782,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "hit": {
+                "x": 397,
+                "y": 64.00000000000001,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "rays": 0,
+              "values": []
+            },
+            {
+              "source": "controlled/source-process/1",
+              "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/25",
+              "phase": "rest",
+              "tier": "ordinary",
+              "outer": [
+                589,
+                136.8,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 537,
+                "y": 64.00000305175782,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "hit": {
+                "x": 537,
+                "y": 64.00000000000001,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "rays": 0,
+              "values": []
+            },
+            {
+              "source": "controlled/source-process/2",
+              "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/29",
+              "phase": "impact",
+              "tier": "multiply",
+              "outer": [
+                729,
+                136.8,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0.49749348958333256,
+                -9.1109375,
+                0.3979947916666333,
+                1.0325390625,
+                1.0325390625
+              ],
+              "frame": {
+                "x": 675.2846220090985,
+                "y": 52.14907889217139,
+                "width": 108.42575109899053,
+                "height": 151.07997026741504
+              },
+              "hit": {
+                "x": 677,
+                "y": 64.00000000000001,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "rays": 1,
+              "values": [
+                "×1.5"
+              ]
+            },
+            {
+              "source": "controlled/source-process/3",
+              "outer": [
+                869,
+                136.8,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 817,
+                "y": 64.00000305175782,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "hit": {
+                "x": 817,
+                "y": 64.00000000000001,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "rays": 0,
+              "values": []
+            },
+            {
+              "source": "controlled/source-process/4",
+              "outer": [
+                1009,
+                136.8,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 957,
+                "y": 64.00000305175782,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "hit": {
+                "x": 957,
+                "y": 64.00000000000001,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "rays": 0,
+              "values": []
+            }
+          ]
+        },
+        {
+          "key": "multiply-left",
+          "at": 21449.59999999404,
+          "playing": true,
+          "presentation": true,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/29",
+          "numericPhase": "impact",
+          "H": "309",
+          "M": "≈49.69",
+          "cards": [
+            {
+              "source": "controlled/source-process/0",
+              "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/28",
+              "phase": "rest",
+              "tier": "multiplier",
+              "outer": [
+                449,
+                136.8,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 397,
+                "y": 64.00000305175782,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "hit": {
+                "x": 397,
+                "y": 64.00000000000001,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "rays": 0,
+              "values": []
+            },
+            {
+              "source": "controlled/source-process/1",
+              "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/25",
+              "phase": "rest",
+              "tier": "ordinary",
+              "outer": [
+                589,
+                136.8,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 537,
+                "y": 64.00000305175782,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "hit": {
+                "x": 537,
+                "y": 64.00000000000001,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "rays": 0,
+              "values": []
+            },
+            {
+              "source": "controlled/source-process/2",
+              "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/29",
+              "phase": "impact",
+              "tier": "multiply",
+              "outer": [
+                729,
+                136.8,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                -2.870363118489586,
+                -7.771006673870858,
+                -2.2962904947917195,
+                1.029454890625,
+                1.029454890625
+              ],
+              "frame": {
+                "x": 669.6381691068411,
+                "y": 51.99999826252461,
+                "width": 112.98293913006773,
+                "height": 154.05798687338824
+              },
+              "hit": {
+                "x": 677,
+                "y": 64.00000000000001,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "rays": 1,
+              "values": [
+                "×1.5"
+              ]
+            },
+            {
+              "source": "controlled/source-process/3",
+              "outer": [
+                869,
+                136.8,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 817,
+                "y": 64.00000305175782,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "hit": {
+                "x": 817,
+                "y": 64.00000000000001,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "rays": 0,
+              "values": []
+            },
+            {
+              "source": "controlled/source-process/4",
+              "outer": [
+                1009,
+                136.8,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 957,
+                "y": 64.00000305175782,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "hit": {
+                "x": 957,
+                "y": 64.00000000000001,
+                "width": 104,
+                "height": 145.60000000000002
+              },
+              "rays": 0,
+              "values": []
+            }
+          ]
+        }
+      ],
+      "clean": [],
+      "status": "PASS"
+    },
+    {
+      "key": "phone",
+      "width": 390,
+      "height": 740,
+      "dpr": 2,
+      "cues": [
+        {
+          "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/4",
+          "sourceInstanceId": "controlled/source-process/0",
+          "tier": "ordinary",
+          "label": "再触发"
+        },
+        {
+          "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/5",
+          "sourceInstanceId": "controlled/source-process/1",
+          "tier": "ordinary",
+          "label": "再触发"
+        },
+        {
+          "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/13",
+          "sourceInstanceId": "controlled/source-process/0",
+          "tier": "ordinary",
+          "label": "再触发"
+        },
+        {
+          "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/14",
+          "sourceInstanceId": "controlled/source-process/1",
+          "tier": "ordinary",
+          "label": "再触发"
+        },
+        {
+          "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/18",
+          "sourceInstanceId": "controlled/source-process/0",
+          "tier": "ordinary",
+          "label": "再触发"
+        },
+        {
+          "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/21",
+          "sourceInstanceId": "controlled/source-process/0",
+          "tier": "ordinary",
+          "label": "再触发"
+        },
+        {
+          "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/24",
+          "sourceInstanceId": "controlled/source-process/0",
+          "tier": "ordinary",
+          "label": "再触发"
+        },
+        {
+          "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/25",
+          "sourceInstanceId": "controlled/source-process/1",
+          "tier": "ordinary",
+          "label": "再触发"
+        },
+        {
+          "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/28",
+          "sourceInstanceId": "controlled/source-process/0",
+          "tier": "multiplier",
+          "label": "+2"
+        },
+        {
+          "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/29",
+          "sourceInstanceId": "controlled/source-process/2",
+          "tier": "multiply",
+          "label": "×1.5"
+        },
+        {
+          "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/30",
+          "sourceInstanceId": "controlled/source-process/3",
+          "tier": "ordinary",
+          "label": "+40"
+        },
+        {
+          "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/31",
+          "sourceInstanceId": "controlled/source-process/4",
+          "tier": "ordinary",
+          "label": "+90"
+        },
+        {
+          "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/32",
+          "sourceInstanceId": "controlled/source-process/4",
+          "tier": "multiply",
+          "label": "×1.5"
+        }
+      ],
+      "expectedPhase": "stage-cleared",
+      "errors": [],
+      "importMenu": "关闭\n本局与设置\n\n没有进行中的局，请选择角色。\n\n返回游戏\n图鉴查询\n全屏游玩\n想多看一点？可在这里全屏游玩。\n关闭提示\n画面、声音与触觉\n回看与演出\n进度与存档\n开始新局保存并退出导出本局导出保留数据导入本局\n本局与版本",
+      "stateExact": true,
+      "events": [
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/4",
+          "source": "controlled/source-process/0",
+          "tier": "ordinary",
+          "phases": [
+            "windup",
+            "impact",
+            "rebound",
+            "rest"
+          ],
+          "positive": 3.599999999999909,
+          "negative": -2.7357510753130327,
+          "first": 6145.70000000298,
+          "last": 11844.70000000298,
+          "impactAt": 6246.5,
+          "reboundAt": 6323.29999999702
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/5",
+          "source": "controlled/source-process/1",
+          "tier": "ordinary",
+          "phases": [
+            "windup",
+            "impact",
+            "rebound",
+            "rest"
+          ],
+          "positive": 2.514159886030484,
+          "negative": -3.599999999999909,
+          "first": 6644.5,
+          "last": 12345,
+          "impactAt": 6746.4000000059605,
+          "reboundAt": 6811.79999999702
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/13",
+          "source": "controlled/source-process/0",
+          "tier": "ordinary",
+          "phases": [
+            "windup",
+            "impact",
+            "rebound",
+            "rest"
+          ],
+          "positive": 3.599999999999909,
+          "negative": -2.514159886030484,
+          "first": 11862.90000000596,
+          "last": 14695.09999999404,
+          "impactAt": 11961.79999999702,
+          "reboundAt": 12028.29999999702
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/14",
+          "source": "controlled/source-process/1",
+          "tier": "ordinary",
+          "phases": [
+            "windup",
+            "impact",
+            "rebound",
+            "rest"
+          ],
+          "positive": 2.5779129338922075,
+          "negative": -3.599999999999909,
+          "first": 12361.5,
+          "last": 18661.40000000596,
+          "impactAt": 12461.70000000298,
+          "reboundAt": 12528.29999999702
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/18",
+          "source": "controlled/source-process/0",
+          "tier": "ordinary",
+          "phases": [
+            "windup",
+            "impact",
+            "rebound",
+            "rest"
+          ],
+          "positive": 3.599999999999909,
+          "negative": -2.440733130599142,
+          "first": 14711.09999999404,
+          "last": 16427.59999999404,
+          "impactAt": 14812.09999999404,
+          "reboundAt": 14878.5
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/21",
+          "source": "controlled/source-process/0",
+          "tier": "ordinary",
+          "phases": [
+            "windup",
+            "impact",
+            "rebound",
+            "rest"
+          ],
+          "positive": 3.599999999999909,
+          "negative": -2.514159886030484,
+          "first": 16445.09999999404,
+          "last": 18161.59999999404,
+          "impactAt": 16545.59999999404,
+          "reboundAt": 16611.70000000298
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/24",
+          "source": "controlled/source-process/0",
+          "tier": "ordinary",
+          "phases": [
+            "windup",
+            "impact",
+            "rebound",
+            "rest"
+          ],
+          "positive": 3.599999999999909,
+          "negative": -2.5779129338922075,
+          "first": 18178.29999999702,
+          "last": 20395.29999999702,
+          "impactAt": 18278.79999999702,
+          "reboundAt": 18345
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/25",
+          "source": "controlled/source-process/1",
+          "tier": "ordinary",
+          "phases": [
+            "windup",
+            "impact",
+            "rebound",
+            "rest"
+          ],
+          "positive": 2.6745897372675245,
+          "negative": -3.599999999999909,
+          "first": 18678.40000000596,
+          "last": 24944.90000000596,
+          "impactAt": 18777.59999999404,
+          "reboundAt": 18844.40000000596
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/28",
+          "source": "controlled/source-process/0",
+          "tier": "multiplier",
+          "phases": [
+            "windup",
+            "impact",
+            "rebound",
+            "rest"
+          ],
+          "positive": 4.680000000000064,
+          "negative": -3.291136253023865,
+          "first": 20411.29999999702,
+          "last": 24944.90000000596,
+          "impactAt": 20645.79999999702,
+          "reboundAt": 20725.29999999702
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/29",
+          "source": "controlled/source-process/2",
+          "tier": "multiply",
+          "phases": [
+            "windup",
+            "impact",
+            "rebound",
+            "rest"
+          ],
+          "positive": 6.1200000000000045,
+          "negative": -4.59665833333338,
+          "first": 21061.70000000298,
+          "last": 24945,
+          "impactAt": 21395.20000000298,
+          "reboundAt": 21498.70000000298
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/30",
+          "source": "controlled/source-process/3",
+          "tier": "ordinary",
+          "phases": [
+            "windup",
+            "impact",
+            "rebound",
+            "rest"
+          ],
+          "positive": 2.6965968365952904,
+          "negative": -3.599999999999909,
+          "first": 21945.09999999404,
+          "last": 24945,
+          "impactAt": 22177.90000000596,
+          "reboundAt": 22244.20000000298
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/31",
+          "source": "controlled/source-process/4",
+          "tier": "ordinary",
+          "phases": [
+            "windup",
+            "impact",
+            "rebound",
+            "rest"
+          ],
+          "positive": 3.599999999999909,
+          "negative": -2.6965968365952904,
+          "first": 22561.29999999702,
+          "last": 23160.90000000596,
+          "impactAt": 22795.70000000298,
+          "reboundAt": 22861.40000000596
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/32",
+          "source": "controlled/source-process/4",
+          "tier": "multiply",
+          "phases": [
+            "windup",
+            "impact",
+            "rebound",
+            "rest"
+          ],
+          "positive": 6.1200000000000045,
+          "negative": -4.615871875000039,
+          "first": 23178.09999999404,
+          "last": 24945,
+          "impactAt": 23511.20000000298,
+          "reboundAt": 23611.79999999702
+        }
+      ],
+      "audio": [
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/0",
+          "kind": "add",
+          "at": 3600.7999999970198,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/0",
+          "numericPhase": "base-impact",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/1",
+          "kind": "add",
+          "at": 4330,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/1",
+          "numericPhase": "impact",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/2",
+          "kind": "flight",
+          "at": 4663.29999999702,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/2",
+          "numericPhase": "windup",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/2",
+          "kind": "key",
+          "at": 4896.0999999940395,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/2",
+          "numericPhase": "impact",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/3",
+          "kind": "flight",
+          "at": 5280.0999999940395,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/3",
+          "numericPhase": "windup",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/3",
+          "kind": "multiply",
+          "at": 5614.79999999702,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/3",
+          "numericPhase": "impact",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/4",
+          "kind": "add",
+          "at": 6230.20000000298,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/4",
+          "numericPhase": "impact",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/5",
+          "kind": "add",
+          "at": 6729.5999999940395,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/5",
+          "numericPhase": "impact",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/6",
+          "kind": "add",
+          "at": 7347.20000000298,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/6",
+          "numericPhase": "impact",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/7",
+          "kind": "flight",
+          "at": 7678.70000000298,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/7",
+          "numericPhase": "windup",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/7",
+          "kind": "key",
+          "at": 7913.29999999702,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/7",
+          "numericPhase": "impact",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/8",
+          "kind": "flight",
+          "at": 8297.20000000298,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/8",
+          "numericPhase": "windup",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/8",
+          "kind": "multiply",
+          "at": 8630.29999999702,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/8",
+          "numericPhase": "impact",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/9",
+          "kind": "flight",
+          "at": 9145.59999999404,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/9",
+          "numericPhase": "windup",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/9",
+          "kind": "key",
+          "at": 9381,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/9",
+          "numericPhase": "impact",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/10",
+          "kind": "flight",
+          "at": 9763.59999999404,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/10",
+          "numericPhase": "windup",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/10",
+          "kind": "key",
+          "at": 9995.90000000596,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/10",
+          "numericPhase": "impact",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/11",
+          "kind": "flight",
+          "at": 10378.70000000298,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/11",
+          "numericPhase": "windup",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/11",
+          "kind": "multiply",
+          "at": 10714.59999999404,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/11",
+          "numericPhase": "impact",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/12",
+          "kind": "flight",
+          "at": 11228.59999999404,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/12",
+          "numericPhase": "windup",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/12",
+          "kind": "key",
+          "at": 11464.20000000298,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/12",
+          "numericPhase": "impact",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/13",
+          "kind": "add",
+          "at": 11945.20000000298,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/13",
+          "numericPhase": "impact",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/14",
+          "kind": "add",
+          "at": 12445.70000000298,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/14",
+          "numericPhase": "impact",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/15",
+          "kind": "flight",
+          "at": 12845.70000000298,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/15",
+          "numericPhase": "windup",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/15",
+          "kind": "key",
+          "at": 13078.90000000596,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/15",
+          "numericPhase": "impact",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/16",
+          "kind": "flight",
+          "at": 13462.40000000596,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/16",
+          "numericPhase": "windup",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/16",
+          "kind": "key",
+          "at": 13695.70000000298,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/16",
+          "numericPhase": "impact",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/17",
+          "kind": "flight",
+          "at": 14079.79999999702,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/17",
+          "numericPhase": "windup",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/17",
+          "kind": "key",
+          "at": 14312.90000000596,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/17",
+          "numericPhase": "impact",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/18",
+          "kind": "add",
+          "at": 14796.09999999404,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/18",
+          "numericPhase": "impact",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/19",
+          "kind": "flight",
+          "at": 15195.09999999404,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/19",
+          "numericPhase": "windup",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/19",
+          "kind": "key",
+          "at": 15429.29999999702,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/19",
+          "numericPhase": "impact",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/20",
+          "kind": "flight",
+          "at": 15812.20000000298,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/20",
+          "numericPhase": "windup",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/20",
+          "kind": "key",
+          "at": 16046.5,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/20",
+          "numericPhase": "impact",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/21",
+          "kind": "add",
+          "at": 16528.29999999702,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/21",
+          "numericPhase": "impact",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/22",
+          "kind": "flight",
+          "at": 16928.70000000298,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/22",
+          "numericPhase": "windup",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/22",
+          "kind": "key",
+          "at": 17161.79999999702,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/22",
+          "numericPhase": "impact",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/23",
+          "kind": "flight",
+          "at": 17545.09999999404,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/23",
+          "numericPhase": "windup",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/23",
+          "kind": "key",
+          "at": 17778.79999999702,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/23",
+          "numericPhase": "impact",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/24",
+          "kind": "add",
+          "at": 18261.40000000596,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/24",
+          "numericPhase": "impact",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/25",
+          "kind": "add",
+          "at": 18762,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/25",
+          "numericPhase": "impact",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/26",
+          "kind": "flight",
+          "at": 19162,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/26",
+          "numericPhase": "windup",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/26",
+          "kind": "key",
+          "at": 19395.79999999702,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/26",
+          "numericPhase": "impact",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/27",
+          "kind": "flight",
+          "at": 19779.20000000298,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/27",
+          "numericPhase": "windup",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/27",
+          "kind": "key",
+          "at": 20013.29999999702,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/27",
+          "numericPhase": "impact",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/28",
+          "kind": "flight",
+          "at": 20396.59999999404,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/28",
+          "numericPhase": "windup",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/28",
+          "kind": "key",
+          "at": 20629.90000000596,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/28",
+          "numericPhase": "impact",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/29",
+          "kind": "flight",
+          "at": 21047.59999999404,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/29",
+          "numericPhase": "windup",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/29",
+          "kind": "multiply",
+          "at": 21379.5,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/29",
+          "numericPhase": "impact",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/30",
+          "kind": "flight",
+          "at": 21930,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/30",
+          "numericPhase": "windup",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/30",
+          "kind": "key",
+          "at": 22162.29999999702,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/30",
+          "numericPhase": "impact",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/31",
+          "kind": "flight",
+          "at": 22544.79999999702,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/31",
+          "numericPhase": "windup",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/31",
+          "kind": "key",
+          "at": 22779.20000000298,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/31",
+          "numericPhase": "impact",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/32",
+          "kind": "flight",
+          "at": 23162.59999999404,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/32",
+          "numericPhase": "windup",
+          "signal": false
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/32",
+          "kind": "multiply",
+          "at": 23495.20000000298,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/32",
+          "numericPhase": "impact",
+          "signal": false
+        },
+        {
+          "id": "award",
+          "kind": "award",
+          "at": 24181.29999999702,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/34",
+          "numericPhase": "award",
+          "signal": false
+        }
+      ],
+      "frames": 1337,
+      "violations": [],
+      "images": [
+        {
+          "key": "ordinary-right",
+          "at": 6246.5,
+          "playing": true,
+          "presentation": true,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/4",
+          "numericPhase": "impact",
+          "H": "217",
+          "M": "10.5",
+          "cards": [
+            {
+              "source": "controlled/source-process/0",
+              "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/4",
+              "phase": "impact",
+              "tier": "ordinary",
+              "outer": [
+                43.8,
+                110.52,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0.9433253603760221,
+                0,
+                3.599999999999909,
+                0.9804240743081067,
+                0.9804240743081067
+              ],
+              "frame": {
+                "x": 10.886648702919487,
+                "y": 64.99999538034201,
+                "width": 67.71335115373134,
+                "height": 91.0400025254488
+              },
+              "hit": {
+                "x": 11.999999999999996,
+                "y": 66,
+                "width": 63.599999999999994,
+                "height": 89.03999999999999
+              },
+              "rays": 1,
+              "values": [
+                "再7♣"
+              ]
+            },
+            {
+              "source": "controlled/source-process/1",
+              "outer": [
+                119.39999999999999,
+                110.52,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 87.60000152587891,
+                "y": 65.99999664306641,
+                "width": 63.60000000000001,
+                "height": 89.03999999999998
+              },
+              "hit": {
+                "x": 87.6,
+                "y": 66,
+                "width": 63.599999999999994,
+                "height": 89.03999999999999
+              },
+              "rays": 0,
+              "values": []
+            },
+            {
+              "source": "controlled/source-process/2",
+              "outer": [
+                195,
+                110.52,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 163.2,
+                "y": 65.99999664306641,
+                "width": 63.60000000000002,
+                "height": 89.03999999999998
+              },
+              "hit": {
+                "x": 163.2,
+                "y": 66,
+                "width": 63.599999999999994,
+                "height": 89.03999999999999
+              },
+              "rays": 0,
+              "values": []
+            },
+            {
+              "source": "controlled/source-process/3",
+              "outer": [
+                270.59999999999997,
+                110.52,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 238.8000061035156,
+                "y": 65.99999664306641,
+                "width": 63.60000000000002,
+                "height": 89.03999999999998
+              },
+              "hit": {
+                "x": 238.79999999999995,
+                "y": 66,
+                "width": 63.60000000000002,
+                "height": 89.03999999999999
+              },
+              "rays": 0,
+              "values": []
+            },
+            {
+              "source": "controlled/source-process/4",
+              "outer": [
+                346.2,
+                110.52,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 314.40001220703124,
+                "y": 65.99999664306641,
+                "width": 63.60000000000002,
+                "height": 89.03999999999998
+              },
+              "hit": {
+                "x": 314.4,
+                "y": 66,
+                "width": 63.60000000000002,
+                "height": 89.03999999999999
+              },
+              "rays": 0,
+              "values": []
+            }
+          ]
+        },
+        {
+          "key": "ordinary-center",
+          "at": 6279.79999999702,
+          "playing": true,
+          "presentation": true,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/4",
+          "numericPhase": "impact",
+          "H": "217",
+          "M": "10.5",
+          "cards": [
+            {
+              "source": "controlled/source-process/0",
+              "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/4",
+              "phase": "impact",
+              "tier": "ordinary",
+              "outer": [
+                43.8,
+                110.52,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                -0.607344661790087,
+                0,
+                -0.48587572943210944,
+                1.0163422071875927,
+                1.0163422071875927
+              ],
+              "frame": {
+                "x": 10.490432272404433,
+                "y": 64.99999568834902,
+                "width": 65.40444276720285,
+                "height": 91.04000190943476
+              },
+              "hit": {
+                "x": 11.999999999999996,
+                "y": 66,
+                "width": 63.599999999999994,
+                "height": 89.03999999999999
+              },
+              "rays": 1,
+              "values": [
+                "再7♣"
+              ]
+            },
+            {
+              "source": "controlled/source-process/1",
+              "outer": [
+                119.39999999999999,
+                110.52,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 87.60000152587891,
+                "y": 65.99999664306641,
+                "width": 63.60000000000001,
+                "height": 89.03999999999998
+              },
+              "hit": {
+                "x": 87.6,
+                "y": 66,
+                "width": 63.599999999999994,
+                "height": 89.03999999999999
+              },
+              "rays": 0,
+              "values": []
+            },
+            {
+              "source": "controlled/source-process/2",
+              "outer": [
+                195,
+                110.52,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 163.2,
+                "y": 65.99999664306641,
+                "width": 63.60000000000002,
+                "height": 89.03999999999998
+              },
+              "hit": {
+                "x": 163.2,
+                "y": 66,
+                "width": 63.599999999999994,
+                "height": 89.03999999999999
+              },
+              "rays": 0,
+              "values": []
+            },
+            {
+              "source": "controlled/source-process/3",
+              "outer": [
+                270.59999999999997,
+                110.52,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 238.8000061035156,
+                "y": 65.99999664306641,
+                "width": 63.60000000000002,
+                "height": 89.03999999999998
+              },
+              "hit": {
+                "x": 238.79999999999995,
+                "y": 66,
+                "width": 63.60000000000002,
+                "height": 89.03999999999999
+              },
+              "rays": 0,
+              "values": []
+            },
+            {
+              "source": "controlled/source-process/4",
+              "outer": [
+                346.2,
+                110.52,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 314.40001220703124,
+                "y": 65.99999664306641,
+                "width": 63.60000000000002,
+                "height": 89.03999999999998
+              },
+              "hit": {
+                "x": 314.4,
+                "y": 66,
+                "width": 63.60000000000002,
+                "height": 89.03999999999999
+              },
+              "rays": 0,
+              "values": []
+            }
+          ]
+        },
+        {
+          "key": "ordinary-left",
+          "at": 6301.70000000298,
+          "playing": true,
+          "presentation": true,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/4",
+          "numericPhase": "impact",
+          "H": "217",
+          "M": "10.5",
+          "cards": [
+            {
+              "source": "controlled/source-process/0",
+              "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/4",
+              "phase": "impact",
+              "tier": "ordinary",
+              "outer": [
+                43.8,
+                110.52,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                -1.255504221393572,
+                0,
+                -2.7357510753130327,
+                0.9898435533170793,
+                0.9898435533170793
+              ],
+              "frame": {
+                "x": 8.999999027550217,
+                "y": 64.99999689668417,
+                "width": 67.08899120271207,
+                "height": 91.03999949276448
+              },
+              "hit": {
+                "x": 11.999999999999996,
+                "y": 66,
+                "width": 63.599999999999994,
+                "height": 89.03999999999999
+              },
+              "rays": 1,
+              "values": [
+                "再7♣"
+              ]
+            },
+            {
+              "source": "controlled/source-process/1",
+              "outer": [
+                119.39999999999999,
+                110.52,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 87.60000152587891,
+                "y": 65.99999664306641,
+                "width": 63.60000000000001,
+                "height": 89.03999999999998
+              },
+              "hit": {
+                "x": 87.6,
+                "y": 66,
+                "width": 63.599999999999994,
+                "height": 89.03999999999999
+              },
+              "rays": 0,
+              "values": []
+            },
+            {
+              "source": "controlled/source-process/2",
+              "outer": [
+                195,
+                110.52,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 163.2,
+                "y": 65.99999664306641,
+                "width": 63.60000000000002,
+                "height": 89.03999999999998
+              },
+              "hit": {
+                "x": 163.2,
+                "y": 66,
+                "width": 63.599999999999994,
+                "height": 89.03999999999999
+              },
+              "rays": 0,
+              "values": []
+            },
+            {
+              "source": "controlled/source-process/3",
+              "outer": [
+                270.59999999999997,
+                110.52,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 238.8000061035156,
+                "y": 65.99999664306641,
+                "width": 63.60000000000002,
+                "height": 89.03999999999998
+              },
+              "hit": {
+                "x": 238.79999999999995,
+                "y": 66,
+                "width": 63.60000000000002,
+                "height": 89.03999999999999
+              },
+              "rays": 0,
+              "values": []
+            },
+            {
+              "source": "controlled/source-process/4",
+              "outer": [
+                346.2,
+                110.52,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 314.40001220703124,
+                "y": 65.99999664306641,
+                "width": 63.60000000000002,
+                "height": 89.03999999999998
+              },
+              "hit": {
+                "x": 314.4,
+                "y": 66,
+                "width": 63.60000000000002,
+                "height": 89.03999999999999
+              },
+              "rays": 0,
+              "values": []
+            }
+          ]
+        },
+        {
+          "key": "multiplier-right",
+          "at": 20645.79999999702,
+          "playing": true,
+          "presentation": true,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/28",
+          "numericPhase": "impact",
+          "H": "309",
+          "M": "≈33.13",
+          "cards": [
+            {
+              "source": "controlled/source-process/0",
+              "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/28",
+              "phase": "impact",
+              "tier": "multiplier",
+              "outer": [
+                43.8,
+                110.52,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0.5613547952934681,
+                0,
+                4.680000000000064,
+                0.9692087043932599,
+                0.9692087043932599
+              ],
+              "frame": {
+                "x": 10.12270901143551,
+                "y": 64.99999580681325,
+                "width": 68.47729163289068,
+                "height": 91.04000167250632
+              },
+              "hit": {
+                "x": 11.999999999999996,
+                "y": 66,
+                "width": 63.599999999999994,
+                "height": 89.03999999999999
+              },
+              "rays": 1,
+              "values": [
+                "+2"
+              ]
+            },
+            {
+              "source": "controlled/source-process/1",
+              "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/25",
+              "phase": "rest",
+              "tier": "ordinary",
+              "outer": [
+                119.39999999999999,
+                110.52,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 87.60000152587891,
+                "y": 65.99999664306641,
+                "width": 63.60000000000001,
+                "height": 89.03999999999998
+              },
+              "hit": {
+                "x": 87.6,
+                "y": 66,
+                "width": 63.599999999999994,
+                "height": 89.03999999999999
+              },
+              "rays": 0,
+              "values": []
+            },
+            {
+              "source": "controlled/source-process/2",
+              "outer": [
+                195,
+                110.52,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 163.2,
+                "y": 65.99999664306641,
+                "width": 63.60000000000002,
+                "height": 89.03999999999998
+              },
+              "hit": {
+                "x": 163.2,
+                "y": 66,
+                "width": 63.599999999999994,
+                "height": 89.03999999999999
+              },
+              "rays": 0,
+              "values": []
+            },
+            {
+              "source": "controlled/source-process/3",
+              "outer": [
+                270.59999999999997,
+                110.52,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 238.8000061035156,
+                "y": 65.99999664306641,
+                "width": 63.60000000000002,
+                "height": 89.03999999999998
+              },
+              "hit": {
+                "x": 238.79999999999995,
+                "y": 66,
+                "width": 63.60000000000002,
+                "height": 89.03999999999999
+              },
+              "rays": 0,
+              "values": []
+            },
+            {
+              "source": "controlled/source-process/4",
+              "outer": [
+                346.2,
+                110.52,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 314.40001220703124,
+                "y": 65.99999664306641,
+                "width": 63.60000000000002,
+                "height": 89.03999999999998
+              },
+              "hit": {
+                "x": 314.4,
+                "y": 66,
+                "width": 63.60000000000002,
+                "height": 89.03999999999999
+              },
+              "rays": 0,
+              "values": []
+            }
+          ]
+        },
+        {
+          "key": "multiplier-center",
+          "at": 20679.59999999404,
+          "playing": true,
+          "presentation": true,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/28",
+          "numericPhase": "impact",
+          "H": "309",
+          "M": "≈33.13",
+          "cards": [
+            {
+              "source": "controlled/source-process/0",
+              "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/28",
+              "phase": "impact",
+              "tier": "multiplier",
+              "outer": [
+                43.8,
+                110.52,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                1.1010575976874815,
+                0,
+                0.8808460781499434,
+                1.0114745874951876,
+                1.0114745874951876
+              ],
+              "frame": {
+                "x": 12.047705951631066,
+                "y": 64.99999737054111,
+                "width": 65.70670449078085,
+                "height": 91.0399985450506
+              },
+              "hit": {
+                "x": 11.999999999999996,
+                "y": 66,
+                "width": 63.599999999999994,
+                "height": 89.03999999999999
+              },
+              "rays": 1,
+              "values": [
+                "+2"
+              ]
+            },
+            {
+              "source": "controlled/source-process/1",
+              "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/25",
+              "phase": "rest",
+              "tier": "ordinary",
+              "outer": [
+                119.39999999999999,
+                110.52,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 87.60000152587891,
+                "y": 65.99999664306641,
+                "width": 63.60000000000001,
+                "height": 89.03999999999998
+              },
+              "hit": {
+                "x": 87.6,
+                "y": 66,
+                "width": 63.599999999999994,
+                "height": 89.03999999999999
+              },
+              "rays": 0,
+              "values": []
+            },
+            {
+              "source": "controlled/source-process/2",
+              "outer": [
+                195,
+                110.52,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 163.2,
+                "y": 65.99999664306641,
+                "width": 63.60000000000002,
+                "height": 89.03999999999998
+              },
+              "hit": {
+                "x": 163.2,
+                "y": 66,
+                "width": 63.599999999999994,
+                "height": 89.03999999999999
+              },
+              "rays": 0,
+              "values": []
+            },
+            {
+              "source": "controlled/source-process/3",
+              "outer": [
+                270.59999999999997,
+                110.52,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 238.8000061035156,
+                "y": 65.99999664306641,
+                "width": 63.60000000000002,
+                "height": 89.03999999999998
+              },
+              "hit": {
+                "x": 238.79999999999995,
+                "y": 66,
+                "width": 63.60000000000002,
+                "height": 89.03999999999999
+              },
+              "rays": 0,
+              "values": []
+            },
+            {
+              "source": "controlled/source-process/4",
+              "outer": [
+                346.2,
+                110.52,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 314.40001220703124,
+                "y": 65.99999664306641,
+                "width": 63.60000000000002,
+                "height": 89.03999999999998
+              },
+              "hit": {
+                "x": 314.4,
+                "y": 66,
+                "width": 63.60000000000002,
+                "height": 89.03999999999999
+              },
+              "rays": 0,
+              "values": []
+            }
+          ]
+        },
+        {
+          "key": "multiplier-left",
+          "at": 20701.5,
+          "playing": true,
+          "presentation": true,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/28",
+          "numericPhase": "impact",
+          "H": "309",
+          "M": "≈33.13",
+          "cards": [
+            {
+              "source": "controlled/source-process/0",
+              "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/28",
+              "phase": "impact",
+              "tier": "multiplier",
+              "outer": [
+                43.8,
+                110.52,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                -1.2972186959821812,
+                0,
+                -2.621517419055067,
+                0.9911190918382552,
+                0.9911190918382552
+              ],
+              "frame": {
+                "x": 8.999999720007182,
+                "y": 64.99999677821995,
+                "width": 67.00556238859892,
+                "height": 91.03999972969291
+              },
+              "hit": {
+                "x": 11.999999999999996,
+                "y": 66,
+                "width": 63.599999999999994,
+                "height": 89.03999999999999
+              },
+              "rays": 1,
+              "values": [
+                "+2"
+              ]
+            },
+            {
+              "source": "controlled/source-process/1",
+              "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/25",
+              "phase": "rest",
+              "tier": "ordinary",
+              "outer": [
+                119.39999999999999,
+                110.52,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 87.60000152587891,
+                "y": 65.99999664306641,
+                "width": 63.60000000000001,
+                "height": 89.03999999999998
+              },
+              "hit": {
+                "x": 87.6,
+                "y": 66,
+                "width": 63.599999999999994,
+                "height": 89.03999999999999
+              },
+              "rays": 0,
+              "values": []
+            },
+            {
+              "source": "controlled/source-process/2",
+              "outer": [
+                195,
+                110.52,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 163.2,
+                "y": 65.99999664306641,
+                "width": 63.60000000000002,
+                "height": 89.03999999999998
+              },
+              "hit": {
+                "x": 163.2,
+                "y": 66,
+                "width": 63.599999999999994,
+                "height": 89.03999999999999
+              },
+              "rays": 0,
+              "values": []
+            },
+            {
+              "source": "controlled/source-process/3",
+              "outer": [
+                270.59999999999997,
+                110.52,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 238.8000061035156,
+                "y": 65.99999664306641,
+                "width": 63.60000000000002,
+                "height": 89.03999999999998
+              },
+              "hit": {
+                "x": 238.79999999999995,
+                "y": 66,
+                "width": 63.60000000000002,
+                "height": 89.03999999999999
+              },
+              "rays": 0,
+              "values": []
+            },
+            {
+              "source": "controlled/source-process/4",
+              "outer": [
+                346.2,
+                110.52,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 314.40001220703124,
+                "y": 65.99999664306641,
+                "width": 63.60000000000002,
+                "height": 89.03999999999998
+              },
+              "hit": {
+                "x": 314.4,
+                "y": 66,
+                "width": 63.60000000000002,
+                "height": 89.03999999999999
+              },
+              "rays": 0,
+              "values": []
+            }
+          ]
+        },
+        {
+          "key": "multiply-right",
+          "at": 21395.20000000298,
+          "playing": true,
+          "presentation": true,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/29",
+          "numericPhase": "impact",
+          "H": "309",
+          "M": "≈49.69",
+          "cards": [
+            {
+              "source": "controlled/source-process/0",
+              "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/28",
+              "phase": "rest",
+              "tier": "multiplier",
+              "outer": [
+                43.8,
+                110.52,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 11.999999237060546,
+                "y": 65.99999664306641,
+                "width": 63.599999999999994,
+                "height": 89.03999999999998
+              },
+              "hit": {
+                "x": 11.999999999999996,
+                "y": 66,
+                "width": 63.599999999999994,
+                "height": 89.03999999999999
+              },
+              "rays": 0,
+              "values": []
+            },
+            {
+              "source": "controlled/source-process/1",
+              "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/25",
+              "phase": "rest",
+              "tier": "ordinary",
+              "outer": [
+                119.39999999999999,
+                110.52,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 87.60000152587891,
+                "y": 65.99999664306641,
+                "width": 63.60000000000001,
+                "height": 89.03999999999998
+              },
+              "hit": {
+                "x": 87.6,
+                "y": 66,
+                "width": 63.599999999999994,
+                "height": 89.03999999999999
+              },
+              "rays": 0,
+              "values": []
+            },
+            {
+              "source": "controlled/source-process/2",
+              "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/29",
+              "phase": "impact",
+              "tier": "multiply",
+              "outer": [
+                195,
+                110.52,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0.06520282590305726,
+                0,
+                6.1200000000000045,
+                0.9551686416297366,
+                0.9551686416297366
+              ],
+              "frame": {
+                "x": 160.33040442168712,
+                "y": 64.99999770224095,
+                "width": 69.46959276795388,
+                "height": 91.03999788165093
+              },
+              "hit": {
+                "x": 163.2,
+                "y": 66,
+                "width": 63.599999999999994,
+                "height": 89.03999999999999
+              },
+              "rays": 1,
+              "values": [
+                "×1.5"
+              ]
+            },
+            {
+              "source": "controlled/source-process/3",
+              "outer": [
+                270.59999999999997,
+                110.52,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 238.8000061035156,
+                "y": 65.99999664306641,
+                "width": 63.60000000000002,
+                "height": 89.03999999999998
+              },
+              "hit": {
+                "x": 238.79999999999995,
+                "y": 66,
+                "width": 63.60000000000002,
+                "height": 89.03999999999999
+              },
+              "rays": 0,
+              "values": []
+            },
+            {
+              "source": "controlled/source-process/4",
+              "outer": [
+                346.2,
+                110.52,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 314.40001220703124,
+                "y": 65.99999664306641,
+                "width": 63.60000000000002,
+                "height": 89.03999999999998
+              },
+              "hit": {
+                "x": 314.4,
+                "y": 66,
+                "width": 63.60000000000002,
+                "height": 89.03999999999999
+              },
+              "rays": 0,
+              "values": []
+            }
+          ]
+        },
+        {
+          "key": "multiply-center",
+          "at": 21445.09999999404,
+          "playing": true,
+          "presentation": true,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/29",
+          "numericPhase": "impact",
+          "H": "309",
+          "M": "≈49.69",
+          "cards": [
+            {
+              "source": "controlled/source-process/0",
+              "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/28",
+              "phase": "rest",
+              "tier": "multiplier",
+              "outer": [
+                43.8,
+                110.52,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 11.999999237060546,
+                "y": 65.99999664306641,
+                "width": 63.599999999999994,
+                "height": 89.03999999999998
+              },
+              "hit": {
+                "x": 11.999999999999996,
+                "y": 66,
+                "width": 63.599999999999994,
+                "height": 89.03999999999999
+              },
+              "rays": 0,
+              "values": []
+            },
+            {
+              "source": "controlled/source-process/1",
+              "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/25",
+              "phase": "rest",
+              "tier": "ordinary",
+              "outer": [
+                119.39999999999999,
+                110.52,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 87.60000152587891,
+                "y": 65.99999664306641,
+                "width": 63.60000000000001,
+                "height": 89.03999999999998
+              },
+              "hit": {
+                "x": 87.6,
+                "y": 66,
+                "width": 63.599999999999994,
+                "height": 89.03999999999999
+              },
+              "rays": 0,
+              "values": []
+            },
+            {
+              "source": "controlled/source-process/2",
+              "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/29",
+              "phase": "impact",
+              "tier": "multiply",
+              "outer": [
+                195,
+                110.52,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0.7076554361979177,
+                7.105427357601002e-15,
+                0.566124348958283,
+                1.0153455240004978,
+                1.0153455240004978
+              ],
+              "frame": {
+                "x": 162.97461127325892,
+                "y": 64.999995688349,
+                "width": 65.4660911741853,
+                "height": 91.0400019094348
+              },
+              "hit": {
+                "x": 163.2,
+                "y": 66,
+                "width": 63.599999999999994,
+                "height": 89.03999999999999
+              },
+              "rays": 1,
+              "values": [
+                "×1.5"
+              ]
+            },
+            {
+              "source": "controlled/source-process/3",
+              "outer": [
+                270.59999999999997,
+                110.52,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 238.8000061035156,
+                "y": 65.99999664306641,
+                "width": 63.60000000000002,
+                "height": 89.03999999999998
+              },
+              "hit": {
+                "x": 238.79999999999995,
+                "y": 66,
+                "width": 63.60000000000002,
+                "height": 89.03999999999999
+              },
+              "rays": 0,
+              "values": []
+            },
+            {
+              "source": "controlled/source-process/4",
+              "outer": [
+                346.2,
+                110.52,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 314.40001220703124,
+                "y": 65.99999664306641,
+                "width": 63.60000000000002,
+                "height": 89.03999999999998
+              },
+              "hit": {
+                "x": 314.4,
+                "y": 66,
+                "width": 63.60000000000002,
+                "height": 89.03999999999999
+              },
+              "rays": 0,
+              "values": []
+            }
+          ]
+        },
+        {
+          "key": "multiply-left",
+          "at": 21466.29999999702,
+          "playing": true,
+          "presentation": true,
+          "numericId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/29",
+          "numericPhase": "impact",
+          "H": "309",
+          "M": "≈49.69",
+          "cards": [
+            {
+              "source": "controlled/source-process/0",
+              "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/28",
+              "phase": "rest",
+              "tier": "multiplier",
+              "outer": [
+                43.8,
+                110.52,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 11.999999237060546,
+                "y": 65.99999664306641,
+                "width": 63.599999999999994,
+                "height": 89.03999999999998
+              },
+              "hit": {
+                "x": 11.999999999999996,
+                "y": 66,
+                "width": 63.599999999999994,
+                "height": 89.03999999999999
+              },
+              "rays": 0,
+              "values": []
+            },
+            {
+              "source": "controlled/source-process/1",
+              "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/25",
+              "phase": "rest",
+              "tier": "ordinary",
+              "outer": [
+                119.39999999999999,
+                110.52,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 87.60000152587891,
+                "y": 65.99999664306641,
+                "width": 63.60000000000001,
+                "height": 89.03999999999998
+              },
+              "hit": {
+                "x": 87.6,
+                "y": 66,
+                "width": 63.599999999999994,
+                "height": 89.03999999999999
+              },
+              "rays": 0,
+              "values": []
+            },
+            {
+              "source": "controlled/source-process/2",
+              "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/29",
+              "phase": "impact",
+              "tier": "multiply",
+              "outer": [
+                195,
+                110.52,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                -1.217439721457815,
+                0,
+                -2.8402462239582746,
+                0.988683064921872,
+                0.988683064921872
+              ],
+              "frame": {
+                "x": 160.20000215411187,
+                "y": 64.99999684929848,
+                "width": 67.16512020349501,
+                "height": 91.03999958753583
+              },
+              "hit": {
+                "x": 163.2,
+                "y": 66,
+                "width": 63.599999999999994,
+                "height": 89.03999999999999
+              },
+              "rays": 1,
+              "values": [
+                "×1.5"
+              ]
+            },
+            {
+              "source": "controlled/source-process/3",
+              "outer": [
+                270.59999999999997,
+                110.52,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 238.8000061035156,
+                "y": 65.99999664306641,
+                "width": 63.60000000000002,
+                "height": 89.03999999999998
+              },
+              "hit": {
+                "x": 238.79999999999995,
+                "y": 66,
+                "width": 63.60000000000002,
+                "height": 89.03999999999999
+              },
+              "rays": 0,
+              "values": []
+            },
+            {
+              "source": "controlled/source-process/4",
+              "outer": [
+                346.2,
+                110.52,
+                0,
+                1,
+                1
+              ],
+              "inner": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "frame": {
+                "x": 314.40001220703124,
+                "y": 65.99999664306641,
+                "width": 63.60000000000002,
+                "height": 89.03999999999998
+              },
+              "hit": {
+                "x": 314.4,
+                "y": 66,
+                "width": 63.60000000000002,
+                "height": 89.03999999999999
+              },
+              "rays": 0,
+              "values": []
+            }
+          ]
+        }
+      ],
+      "clean": [],
+      "status": "PASS"
+    }
+  ],
+  "browser": "153.0.8010.12",
+  "status": "PASS"
+}
