@@ -1,3 +1,4 @@
+import {playerText} from './Brand';
 import {cardDefinitionName} from './tangsongCardNames';
 import {jokerPlainCopy} from './JokerPlainCopy';
 import {R2_ROUTE_GROWTH_IDS,R2_ROUTE_GROWTH_JOKERS} from '../content/r2RouteGrowthJokers';
@@ -65,12 +66,12 @@ export function jokerPlayerCopy(definition:R2JokerDefinition,instance:R2JokerIns
  const grouped=R2_GROUP_UPGRADE_IDS.includes(definition.id)&&R2_GROUP_UPGRADE_JOKERS.includes(definition);
  const route=R2_ROUTE_GROWTH_IDS.includes(definition.id)&&R2_ROUTE_GROWTH_JOKERS.includes(definition);
  const template=route?JOKER_ROUTE_GROWTH_TEMPLATES[definition.id]:grouped?JOKER_GROUP_UPGRADE_TEMPLATES[definition.id]:combo?JOKER_COMBO_GROWTH_TEMPLATES[definition.id]:R2_ASSIST_ADAPTED_IDS.includes(definition.id)&&R2_ASSIST_JOKERS.includes(definition)?JOKER_ASSIST_TEMPLATES[definition.id]:copyTemplates[definition.id];
- if(!template)return{condition:'查看这张牌的条件与效果。',value:'完整规则见下方。',state:instance?'按实际出牌与交易判断':'尚未购买，买入后才会生效',flavor:'',rules:definition.description,summary:'条件与效果 · 查看',compact:memory.short,narrow:memory.short,benefit:'条件与效果',playerCopy:true};
+ if(!template)return{condition:'查看这张牌的条件与效果。',value:'完整规则见下方。',state:instance?'按实际出牌与交易判断':'尚未购买，买入后才会生效',flavor:'',rules:playerText(definition.description),summary:'条件与效果 · 查看',compact:memory.short,narrow:memory.short,benefit:'条件与效果',playerCopy:true};
  const values:Record<string,string>={};for(const[key,binding]of Object.entries(template.bindings))values[key]=formatted(bindingValue(binding.source,definition),binding.format);
  const growth=instance?{...r2GrowthMinimums(definition),...instance.growth}:{};
  for(const key of ['heat','multiplier','pendingHeat','coefficient'])values['saved_'+key]=fractionText(growth[key]??zero);
  Object.assign(values,{remaining:String(memory.remaining??''),remainingUses:String(memory.remainingUses??''),usage_scope:ctx.inStage?'本场':'下场',entry_hand_limit_state:ctx.inStage&&ctx.entryHandLimit!==undefined?'本场入场时手牌上限：'+ctx.entryHandLimit:'下次进场时判断',previous_hand_type:ctx.previousHandTypeKnown===false?'未知（旧记录未保存）':ctx.previousHandType?HAND_LABELS[ctx.previousHandType]:'没有上一手',reward_progress:memory.savedShort,current_context_value:instance?r2JokerValue(instance,ctx,definition):''});
- const render=(text:string)=>text.replace(/\{([\w]+)\}/g,(_,key)=>values[key]??'见完整规则');
+ const render=(text:string)=>playerText(text.replace(/\{([\w]+)\}/g,(_,key)=>values[key]??'见完整规则'));
  const main=render(template.main).replaceAll('整手倍率','本次出牌的倍率'),limits=template.limits.map(render),rules=template.rules.map(render),state:string[]=[];
  const random=definition.hooks.some(h=>h.operations.some(o=>o.kind==='chance-add-heat'));
  if(!instance)state.push('尚未购买，买入后才会生效');

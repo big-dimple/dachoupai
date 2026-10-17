@@ -1,3 +1,4 @@
+import {playerText} from './Brand';
 import type {R2RunState} from '../domain/r2Run';
 import type {R2Offer} from '../domain/r2Shop';
 import {r2JokerDefinitionFor} from '../domain/r2ContentProfiles';
@@ -18,7 +19,7 @@ export function shopInvestment(state:R2RunState,offer:R2Offer,kind:'jokers'|'too
   if(add?.kind==='add-multiplier')return {role:'倍率',short:'倍率 · 首手+'+fractionText(add.value),effect:'仅本场第一手倍率 +'+fractionText(add.value)+'；后续手不获得这项加成。',next:'后续手不获得这项加成；每场重置，不保证过关。'};
   const ops=hooks.flatMap(h=>h.operations),growth=ops.some(o=>['add-growth','add-coefficient','multiply-coefficient-once','update-score-growth'].includes(o.kind));
   const role=growth?'培养':ops.some(o=>o.kind==='add-multiplier'||o.kind==='multiply-multiplier'||o.kind==='read-coefficient'||o.kind==='read-growth'&&o.target==='multiplier')?'倍率':ops.some(o=>o.kind==='add-heat'||o.kind==='read-growth'&&o.target==='heat')?'热度':'条件';
-  return {role,short:role+' · '+d.description,effect:d.description,next:growth?'已有值读取与新增条件分别看；购入不追补过去成长。':'按商品条件与封禁结算；购入不等于已发动。'};
+  return {role,short:role+' · '+playerText(d.description),effect:playerText(d.description),next:growth?'已有值读取与新增条件分别看；购入不追补过去成长。':'按商品条件与封禁结算；购入不等于已发动。'};
  }
  const t=R2_TOOLS.find(t=>t.id===offer.definitionId);if(!t)return;
  const op=t.operation;

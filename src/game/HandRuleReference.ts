@@ -11,9 +11,9 @@ import {isR2ActiveMultTiming,isR2RouteGrowth,isR2ErxiangHandoff,isR2LaohuanRefil
 type HandRuleIdentity=Pick<R2RunState,'contentVersion'|'contentHash'|'characterId'>;
 /** Saved version/hash govern timing; the chosen hero never opts an old save into a new clock. */
 export function handScoringOrder(identity?:HandRuleIdentity):string {
- const profile=identity&&r2RulesetFor(identity),start='当前等级牌型基础 → 逐有效计分牌的普通点数、强化、版次、该牌大丑牌与重触发 → 留手强化／大丑牌';
- if(!identity||!profile)return start+'。角色与整手大丑牌的具体先后，以该局已保存身份和计分记录为准。';
- const whole='按持有顺序的整手大丑牌及各自版次（逆场按相反顺序）',route=isR2RouteGrowth(identity)?' → 本手相关族加成':'';
+ const profile=identity&&r2RulesetFor(identity),start='当前等级牌型基础 → 逐有效计分牌的普通点数、强化、版次、该牌唐宋牌与重触发 → 留手强化／唐宋牌';
+ if(!identity||!profile)return start+'。角色与整手唐宋牌的具体先后，以该局已保存身份和计分记录为准。';
+ const whole='按持有顺序的整手唐宋牌及各自版次（逆场按相反顺序）',route=isR2RouteGrowth(identity)?' → 本手相关族加成':'';
  if(isR2ActiveMultTiming(identity)&&['touye','xiemu','azao'].includes(identity.characterId)){
    const effect=identity.characterId==='touye'?heroSkillName('touye')+'结果倍率（有押注时）':identity.characterId==='xiemu'?heroSkillTitle('xiemu')+'倍率（本手实际支付金币时）':heroSkillTitle('azao')+'倍率（本手实际释放时）';
    const ordinary=identity.characterId==='touye'?heroText(' → 骰爷普通加成（未押约时）'):'';

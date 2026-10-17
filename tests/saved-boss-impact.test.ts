@@ -13,7 +13,7 @@ const boss=(definitionId:NonNullable<ScoreInput['boss']>['definitionId'])=>({def
 describe('saved Boss scoring impact, current identity',()=>{
  it('names actual ordinary-point targets without denying their other effects',()=>{
   const t=score({boss:boss('B02'),ordinaryPointsSuppressedIds:hand.slice(3).map(c=>c.id)}),before=JSON.stringify({run,t}),copy=savedBossImpact(run,t);
-  expect(copy).toContain('低调点');expect(copy).toContain('10♦、Q♦ 普通点数归零');expect(copy).toContain('仍可成型和触发大丑牌效果');expect(copy).not.toContain('计分失效');expect(JSON.stringify({run,t})).toBe(before);
+  expect(copy).toContain('低调点');expect(copy).toContain('10♦、Q♦ 普通点数归零');expect(copy).toContain('仍可成型和触发唐宋牌效果');expect(copy).not.toContain('计分失效');expect(JSON.stringify({run,t})).toBe(before);
  });
  it('does not claim suppression if the saved hand has no suppressed targets',()=>expect(savedBossImpact(run,score({boss:boss('B02'),selectedIds:hand.slice(0,3).map(c=>c.id)}))).toBe(''));
  it('reads a real base reduction and distinguishes repeated from first/different hands',()=>{

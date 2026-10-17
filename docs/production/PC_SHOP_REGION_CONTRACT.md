@@ -2,7 +2,7 @@
 
 输入 main：`51c356a187aff776dfa81eed826df8e032d848d6`。状态：单一工程样板待用户观感验收，不是 W1/W3 整体通过。
 
-用户否决第一次仅扩宽货架的结果。本次只调整 PC 商店区域关系：左侧章节、目标、金币及章节入口；右上已有五张大丑牌按触发顺序横排，单一构筑详情与工具包入口、长期物品数量；右下统一商店面板，左列进入牌桌和真实换牌费用，右上三张大丑牌，右下工具与长期物品同时可见。取消 PC 分类页签和重复物品入口。手机继续原有结构。
+用户否决第一次仅扩宽货架的结果。本次只调整 PC 商店区域关系：左侧章节、目标、金币及章节入口；右上已有五张唐宋牌按触发顺序横排，单一构筑详情与工具包入口、长期物品数量；右下统一商店面板，左列进入牌桌和真实换牌费用，右上三张唐宋牌，右下工具与长期物品同时可见。取消 PC 分类页签和重复物品入口。手机继续原有结构。
 
 参考父任务实际查看的 [Balatro 官方 press kit](https://www.playbalatro.com/press-kit/) 与 [UI 图](https://www.playbalatro.com/press-kit/Screenshots/Balatro_ui_3840x2160_2.png)、[截图](https://www.playbalatro.com/press-kit/Screenshots/Balatro_screenshot_2.jpg) 的区域关系，不复制其素材。当前执行者未声称亲自查看这些官方像素；旧 review-shop1912 的 Library scope_violation 不重试、不换路径取同一文件。本轮截图来自修改后的实际运行页面。
 

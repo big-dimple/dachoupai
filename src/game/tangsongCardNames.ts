@@ -1,5 +1,5 @@
 /**
- * 《唐宋牌》全部 72 张大丑牌／唐宋牌标准展示名字典
+ * 《唐宋牌》全部 72 张卡牌标准展示名字典
  * 1:1 严格对齐 72 张手绘卡牌美术原画命名（A01-F12）
  */
 export const TANGSONG_CARD_NAMES: Readonly<Record<string, string>> = Object.freeze({

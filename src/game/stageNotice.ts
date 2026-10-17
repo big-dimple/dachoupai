@@ -59,7 +59,7 @@ function enteredNotice(run:StageNoticeInput,selectedIds:readonly string[]=[]):St
     case 'B01':
       return {...notice,title:'贵宾场 · 弃牌耗'+discardCost+'次',description:discardCost===2?'第一手前，每次弃牌消耗2次额度。':'第一手已打出，每次弃牌消耗1次额度。',symbol:discardCost===2?'×2':'○',warning:discardCost===2};
     case 'B02':
-      return {...notice,title:'低调点 · 第4/5张无普通点数',description:'按手牌顺序，第4/5张仅普通点数归零；仍成型，明确的大丑牌效果正常。',symbol:'4/5'};
+      return {...notice,title:'低调点 · 第4/5张无普通点数',description:'按手牌顺序，第4/5张仅普通点数归零；仍成型，明确的唐宋牌效果正常。',symbol:'4/5'};
     case 'B03': {
       const suit=boss.disabledSuit?stageSuitLabel(boss.disabledSuit):'公开花色';
       return {...notice,title:'单色灯 · '+suit+'失效',description:'本场'+suit+'不加点数或计分牌效果，仍参与牌型。',details:'本场公开花色：'+suit+'。\n'+notice.details,symbol:boss.disabledSuit?SUIT_SYMBOL[boss.disabledSuit]:'!'};
@@ -69,7 +69,7 @@ function enteredNotice(run:StageNoticeInput,selectedIds:readonly string[]=[]):St
     case 'B05': {
       const previous=stage.previousHandType?HAND_LABELS[stage.previousHandType]:null;
       return {...notice,title:'回音墙 · '+(previous?'再出'+previous+'基础½':'首手不减半'),
-        description:'重复上手牌型时，等级后的基础热度减半；牌点数、增强和大丑牌热度正常。',
+        description:'重复上手牌型时，等级后的基础热度减半；牌点数、增强和唐宋牌热度正常。',
         details:(previous?'上手牌型：'+previous+'。\n':'本场尚未出牌。\n')+notice.details,symbol:'½'};
     }
     case 'B06':
@@ -77,7 +77,7 @@ function enteredNotice(run:StageNoticeInput,selectedIds:readonly string[]=[]):St
     case 'B07':
       return {...notice,title:'验票员 · 弃牌先付1金',description:'每次弃牌另扣1金；金币不足仍可正常出牌。',discardGoldCost:1,symbol:'−1金'};
     case 'B08':
-      return {...notice,title:'静场 · 角色计分/押注停用',description:'角色初始等级与非计分过关奖励保留；用牌型、增强和大丑牌计分。',wagerDisabled:true,symbol:'静'};
+      return {...notice,title:'静场 · 角色计分/押注停用',description:'角色初始等级与非计分过关奖励保留；用牌型、增强和唐宋牌计分。',wagerDisabled:true,symbol:'静'};
     case 'B09':
       return {...notice,title:'快板 · 出牌−1',description:'本场初始'+stage.initialHands+'次出牌，最低2次；返手和救场按原规则执行。',symbol:'−1次'};
     case 'B10':
@@ -85,9 +85,9 @@ function enteredNotice(run:StageNoticeInput,selectedIds:readonly string[]=[]):St
     case 'B11':
       return {...notice,title:'谢客 · 手牌上限'+stage.handLimit,description:'每次出牌后容量减1，最低5张；只影响补牌，不额外删除持牌。',symbol:'↓'};
     case 'B12':
-      return {...notice,title:'挑剔 · 基础热度½',description:'牌型等级先算基础再减半；牌点数、增强和大丑牌热度正常。',symbol:'½'};
+      return {...notice,title:'挑剔 · 基础热度½',description:'牌型等级先算基础再减半；牌点数、增强和唐宋牌热度正常。',symbol:'½'};
     case 'B13':
-      return {...notice,title:'逆着来 · 大丑牌计分右→左',description:'本体与本槽版次一起反序；计分牌、持牌和成长时点顺序不变。',jokerScoreDirection:'right-to-left',symbol:'←'};
+      return {...notice,title:'逆着来 · 唐宋牌计分右→左',description:'本体与本槽版次一起反序；计分牌、持牌和成长时点顺序不变。',jokerScoreDirection:'right-to-left',symbol:'←'};
     case 'B14': {
       const amount=((BigInt(stage.initialTargetHeat)+19n)/20n).toString(),label=heatText(amount);
       return {...notice,title:'催场 · 弃牌目标+'+label,description:'每次成功弃牌固定+'+label+'目标；返还额度也算一次，不复利。',

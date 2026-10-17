@@ -63,7 +63,7 @@ export function presentOpponentEntrance(dialog:DetailDialog,run:R2RunState,scene
 export function showOpponentChoices(dialog:DetailDialog,run:R2RunState,choices:readonly OpponentChoice[],choose:(choice:OpponentChoice)=>void,extra:()=>void,canChoose:()=>boolean):void {
   const stage=run.stage!,previous=stage.previousHandType;
   const d=dialog.open('回音墙 · 这一手怎么接',
-    '重复上手牌型，只减等级后的牌型基础热度。牌点数、增强、大丑牌热度正常。切换不保证本手更高或过关。',
+    '重复上手牌型，只减等级后的牌型基础热度。牌点数、增强、唐宋牌热度正常。切换不保证本手更高或过关。',
     [{label:'规则 / 物品',run:extra}],{closeLabel:'自己选牌',summaryBody:'目标 '+heatText(stage.targetHeat)+' · 剩'+stage.handsLeft+'次出牌',effectBody:previous?'上手 '+HAND_LABELS[previous]+' → 再出同型基础½':'本场还没有上手 · 首手基础不减半',collapseRules:true,rulesLabel:'完整限制'});
   decorate(d,previous?'同一招硬闯，还是换一招？':'先让我听听你的招。');d.dataset.opponentPhase='choices';
   const options=document.createElement('section');options.className='opponent-options';options.setAttribute('aria-label','当前手牌已成型应对');

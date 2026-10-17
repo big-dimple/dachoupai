@@ -1,3 +1,4 @@
+import {playerText} from './Brand';
 import type {R2RunState} from '../domain/run';
 import type {R2Offer} from '../domain/r2Shop';
 import type {R2JokerInstance} from '../content/r2Schema';
@@ -24,7 +25,7 @@ export function shopDecisionCopy(run:R2RunState,offer:R2Offer,sold?:R2JokerInsta
  const read=d.hooks.flatMap(h=>h.operations).find(o=>o.kind==='read-growth');
  const growth=d.hooks.find(h=>h.operations.some(o=>o.kind==='add-growth'));
  const gain=growth?.operations.find(o=>o.kind==='add-growth');
- let now=plain?.effectLine??plain?.tile.split('\n').slice(0,2).join(' · ')??d.description;
+ let now=plain?.effectLine??plain?.tile.split('\n').slice(0,2).join(' · ')??playerText(d.description);
  let later=plain?.timingLine?.split('；')[0]??plain?.tile.split('\n')[0]??'';
  let kind='条件收益',purchaseAbility:CardAbilityCopy|undefined;
  if(read?.kind==='read-growth'&&gain?.kind==='add-growth'&&read.key===gain.key&&!plain?.fallback){

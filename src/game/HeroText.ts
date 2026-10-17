@@ -15,7 +15,7 @@ export const HERO_QUICK_COPY:Record<CharacterId,{effect:string;tags:readonly str
 /** Keep implementation terms in the document, out of the player-facing rules. */
 export function heroDetailRules(id:CharacterId):string {
  const hero=heroTextSpec(id);
- return [hero.skillSummary,...hero.detailRules].join('\n\n').replaceAll('现行AMO_ASSIST_TYPES集合','现行合格牌型').replaceAll('pending-refill','待选补牌').replaceAll('Joker','大丑牌')
+ return [hero.skillSummary,...hero.detailRules].join('\n\n').replaceAll('现行AMO_ASSIST_TYPES集合','现行合格牌型').replaceAll('pending-refill','待选补牌').replaceAll('Joker','唐宋牌')
   .replaceAll('B08静场','静场').replaceAll('Q01等','所有')
   .replace('为同一事务','一起确认')
   .replace('；旧身份的未成目标资格/随机押注仍按自身规则，禁止套用此新局说明','')

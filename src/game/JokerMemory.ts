@@ -17,7 +17,7 @@ import {JOKER_COMPACT}from'./JokerCompact';
 import type {R2SelectionFacts}from'../domain/r2SelectionFacts';
 import{r2ScoreConditionMatches,r2TransactionConditionMatches,type R2ScoreConditionContext,type R2TransactionConditionContext}from'../domain/r2Conditions';
 import{HAND_LABELS}from'../content/handLabels';import{fractionText,readableFractionText}from'./scoreText';import{R2_OFFER_USE,r2JokerStateText}from'./r2Help';import type{CardAbilityCopy}from'./CardCopy';
-const phaseLabels:Record<HookPhase,string>={onCardScore:'计分牌逐张时',onHeldCard:'保留牌逐张时',jokerScore:'整手大丑牌时',afterHand:'实际结算后',onDiscard:'成功弃牌后',onStageClear:'实际过关时',onBuyOffer:'成功购买后',onSellJoker:'成功出售后',onReroll:'成功刷新后',beforeFailure:'失败前检查时'};
+const phaseLabels:Record<HookPhase,string>={onCardScore:'计分牌逐张时',onHeldCard:'保留牌逐张时',jokerScore:'整手唐宋牌时',afterHand:'实际结算后',onDiscard:'成功弃牌后',onStageClear:'实际过关时',onBuyOffer:'成功购买后',onSellJoker:'成功出售后',onReroll:'成功刷新后',beforeFailure:'失败前检查时'};
 export type MemoryStatus='待选牌'|'条件满足'|'当前未满足'|'事件时检查'|'计分受限';
 export interface JokerMemoryContext {
  inStage:boolean;hand:readonly PlayingCard[];facts?:R2SelectionFacts;disabledIds:readonly string[];
@@ -61,7 +61,7 @@ export function r2ConditionDescription(c:Condition):string {
   case'discard-same-suit':return'一次成功弃至少'+c.minimum+'张且全同花色；出牌选择不判断';
   case'stage-played-maximum':return'本场至少成功出过一手，且所有成功出牌都不超过'+c.maximum+'张';
   case'stage-hand-types-all':return'本场已成功打出'+typeNames(c.values)+'全部普通型；当前未提交与同花顺不算';
-  case'no-joker-sale-this-stage':return'本场及进场前准备商店没有售过大丑牌；买回不恢复';
+  case'no-joker-sale-this-stage':return'本场及进场前准备商店没有售过唐宋牌；买回不恢复';
   case'hand-type-unfinished':return'实际结算'+typeNames(c.values)+'且尚未过关，结果时检查';
   case'exhausted-hands':return'实际耗尽出牌且尚有可用手牌时，失败前检查';
  }

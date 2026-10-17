@@ -172,7 +172,7 @@ export function installRunMenu(game:Phaser.Game,getActions:()=>RunMenuActions|un
   let infoView:'run'|'version'='run';
   const refreshInfo=()=>{if(infoView!=='run')return;const state=session.state();info.textContent=state?'角色 '+characterForRun(state).name+' · '+characterForRun(state).passiveName+'\n'+characterForRun(state).passiveDescription+'\nSEED '+state.seed+'\n规则 '+state.rulesVersion+' · 内容 '+state.contentVersion:'当前没有进行中的局。';};
   button('局详情',()=>{infoView='run';refreshInfo();},infoTools);
-  button('版本信息',()=>{infoView='version';info.textContent=`${formatBuildInfo(buildInfo)}\n当前可玩内容：${R2_JOKERS.length}张大丑牌、${R2_AVAILABLE_CHAPTERS}章。`;},infoTools);infoTools.append(info);
+  button('版本信息',()=>{infoView='version';info.textContent=`${formatBuildInfo(buildInfo)}\n当前可玩内容：${R2_JOKERS.length}张唐宋牌、${R2_AVAILABLE_CHAPTERS}章。`;},infoTools);infoTools.append(info);
   function refreshState():void {
     refreshInfo();
     const run=session.run,pending=session.pendingRun,saving=pending??run;
