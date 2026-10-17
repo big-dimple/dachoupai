@@ -6,6 +6,7 @@ import {hasActualBenefit} from './JokerExperience';
 import {scoreContributions} from './ScoreContribution';
 import {readableFractionText} from './scoreText';
 import {UI_FONT} from './theme';
+import {OWNED_SCORE_SPRING} from './inkwaveSpring';
 
 export type OwnedJokerMotionTier='ordinary'|'multiplier'|'multiply';
 export interface OwnedJokerMotionCue {eventId:string;sourceInstanceId:string;tier:OwnedJokerMotionTier;label:string}
@@ -33,18 +34,16 @@ export function ownedJokerScoreLayer(scene:Phaser.Scene,marker:Marker):Marker {
 }
 
 export function ownedJokerMotionDuration(tier:OwnedJokerMotionTier,beat?:ScoreBeat,speed=1):number {
- // The first opposite landing is at .24; even fast-forward speed keeps two beats distinct.
- return Math.max(beat?.impact??0,tier==='multiply'?400:tier==='multiplier'?290:230,50/.24*speed);
+ if(beat?.phrase)return beat.impact;
+ return Math.max(beat?.impact??0,tier==='multiply'?400:tier==='multiplier'?290:230,50/OWNED_SCORE_SPRING.reboundAt*speed);
 }
 
-/** Deliberate alternating sway, one rebound, then rest; no looping random shake. */
-export function ownedJokerScorePose(t:number,tier:OwnedJokerMotionTier,ordinal=0):OwnedJokerPose {
- const p=Math.max(0,Math.min(1,t)),power=tier==='multiply'?1.7:tier==='multiplier'?1.3:1,dir=ordinal%2?-1:1;
+/** Damped physical impulse, sampled with bounded substeps in inkwaveSpring. */
+export function ownedJokerScorePose(t:number,tier:OwnedJokerMotionTier,ordinal=0,weight=1):OwnedJokerPose {
+ const p=Math.max(0,Math.min(1,t)),power=(tier==='multiply'?1.7:tier==='multiplier'?1.3:1)*weight,dir=ordinal%2?-1:1;
  if(p===1)return {x:0,y:0,angle:0,scale:1};
- const knots=[[0,1],[.24,-.76],[.48,.38],[.72,-.12],[1,0]];
- const index=Math.max(0,knots.findIndex((k,i)=>i<knots.length-1&&p>=k[0]&&p<=knots[i+1][0]));
- const a=knots[index],b=knots[index+1],u=(p-a[0])/(b[0]-a[0]),ease=u*u*(3-2*u),sway=a[1]+(b[1]-a[1])*ease;
- return {x:dir*4.5*power*sway,y:-7*power*(1-p)**2,angle:dir*3.6*power*sway,scale:1+.025*power*(1-p)**2};
+ const sway=OWNED_SCORE_SPRING.value(p);
+ return {x:dir*4.5*power*sway,y:-7*power*Math.abs(sway),angle:dir*4.8*power*sway,scale:1+.025*power*sway};
 }
 
 /** Rotation is fitted to its own safe lane, including the very tight phone rack. */
@@ -94,7 +93,7 @@ export function playOwnedJokerScoreMotion(scene:Phaser.Scene,marker:Marker,cue:O
  const phase=(value:'windup'|'impact'|'rebound'|'rest')=>{marker.setData('scoreMotionEventId',cue.eventId).setData('scoreMotionPhase',value).setData('scoreMotionTier',cue.tier);options.onPhase?.(value);};
  const pose=(value:OwnedJokerPose)=>{if(!visual.active)return;const p=fitOwnedJokerPose(value,width,height,options.portrait);visual.setPosition(rest.x+p.x,rest.y+p.y).setAngle(rest.angle+p.angle).setScale(rest.scaleX*p.scale,rest.scaleY*p.scale);return p;};
  const draw=(progress:number,p?:OwnedJokerPose)=>{
-  if(!fx.active)return;fx.clear();const alpha=(options.reducedMotion?.45:.75)*(1-progress);
+  if(!fx.active)return;fx.clear();const alpha=(options.reducedMotion?.45:.75)*(options.beat?.phrase?.accentWeight??1)*(1-progress);
   fx.lineStyle(cue.tier==='multiply'?2:1,color,alpha).strokeRoundedRect(-width/2,-height/2,width,height,4);
   if(p){history.unshift(p);history.length=Math.min(history.length,3);}
   history.slice(1).forEach((h,i)=>{fx.lineStyle(1,color,alpha*.2/(i+1));for(const side of [-1,1]){const x=Math.max(-bounds.x,Math.min(bounds.x,side*width/2+h.x));fx.lineBetween(x,-height*.28,x,height*.28);}});
@@ -107,7 +106,7 @@ export function playOwnedJokerScoreMotion(scene:Phaser.Scene,marker:Marker,cue:O
  owner.promise=(async()=>{
   try{
    phase('windup');
-   if(!options.reducedMotion)void runTween(Math.max(30,(options.beat?.windup??55)+(options.beat?.flight??110)),t=>pose({x:0,y:0,angle:-1.4*t,scale:1-.035*t}));
+   if(!options.reducedMotion)void runTween(Math.max(18,options.beat?.windup??55),t=>{const weight=options.beat?.phrase?.accentWeight??1;pose({x:0,y:0,angle:-1.4*t*weight,scale:1-.035*t*weight});});
    draw(.65);
    await Promise.race([options.arrival,canceled]);if(stopped||options.context.signal.aborted||!visual.active)return;
    tween?.remove();ownedJokerScoreLayer(scene,marker);phase('impact');
@@ -117,7 +116,7 @@ export function playOwnedJokerScoreMotion(scene:Phaser.Scene,marker:Marker,cue:O
     if(original?.active){label=scene.add.text(original.x,original.y,cue.label,{fontFamily:UI_FONT,fontSize:'14px',color:cue.tier==='ordinary'?'#397965':'#b8473a',backgroundColor:'#fff9e9',resolution:Math.max(1,1/scene.scale.zoom)}).setOrigin(original.originX,original.originY).setName('owned-joker/score-value');
      if(label.width<=Number(original.getData('labelRoom')??width-6)&&label.height<=20){wasVisible=original.visible;original.setVisible(false);visual.add(label);}else {label.destroy();label=undefined;original=undefined;}}
    }
-   const update=(t:number)=>{const p=options.reducedMotion?undefined:pose(ownedJokerScorePose(t,cue.tier,ordinal));draw(t,p);if(!rebounded&&t>=.24){rebounded=true;phase('rebound');}if(label?.active)label.setAlpha(1-t*.25);};
+   const update=(t:number)=>{const p=options.reducedMotion?undefined:pose(ownedJokerScorePose(t,cue.tier,ordinal,options.beat?.phrase?.accentWeight??1));draw(t,p);if(!rebounded&&t>=OWNED_SCORE_SPRING.reboundAt){rebounded=true;phase('rebound');}if(label?.active)label.setAlpha(1-t*.25);};
    update(0);await Promise.race([runTween(options.reducedMotion?Math.min(180,options.beat?.impact??180):ownedJokerMotionDuration(cue.tier,options.beat,options.speed),update),canceled]);
   }finally{
    options.context.signal.removeEventListener('abort',cancel);marker.off('destroy',cancel);scene.events.off('shutdown',cancel);scene.events.off('destroy',cancel);if(typeof document!=='undefined')document.removeEventListener('visibilitychange',hidden);

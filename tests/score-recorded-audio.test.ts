@@ -7,6 +7,14 @@ import {numberImpact} from '../src/game/ScoreEnergy';
 import type {PlayingCard, Rank} from '../src/cards/types';
 const fixture=()=>{vi.stubGlobal('document',{hidden:false});const sources:any[]=[];const param=()=>({value:1,cancelScheduledValues:vi.fn(),setValueAtTime:vi.fn(),setTargetAtTime:vi.fn(),linearRampToValueAtTime:vi.fn()});const gain=()=>({gain:param(),connect:vi.fn(),disconnect:vi.fn()});const engine=new AudioEngine(),inside=engine as any;inside.context={currentTime:1,state:'running',createGain:gain,createBufferSource:()=>{const node={buffer:null,playbackRate:param(),start:vi.fn(),stop:vi.fn(),connect:vi.fn(),disconnect:vi.fn(),onended:null};sources.push(node);return node;}};inside.gains={master:gain(),sfx:gain(),ui:gain(),music:gain()};inside.unlocked=true;for(const name of [...FOLEY_SAMPLES.map(a=>a.name),'cloth2'])inside.scoreSamples.set(name,{name,duration:.3});return {engine,inside,sources};};
 afterEach(()=>vi.unstubAllGlobals());
+it('phrase weak multiplication keeps one lighter strike and cached rebound, while zero weight consumes silently',()=>{
+ const {engine,inside,sources}=fixture(),show={},signal=new AbortController();
+ engine.scoreImpact(show,'weak','multiply',3,9,{pulse:7,accentWeight:.4,paired:true,signal:signal.signal});
+ expect(sources.length).toBeGreaterThan(0);expect(sources.every(s=>!s.buffer.name.includes('Glass'))).toBe(true);
+ const first=[...inside.voices].map((v:any)=>v.nominalGain);inside.context.currentTime+=.08;engine.scoreRebound(show,'weak');expect([...inside.voices].some((v:any)=>v.semantic==='scoreRebound')).toBe(true);
+ expect(first.every((n:number)=>Number.isFinite(n)&&n>0)).toBe(true);const count=sources.length;engine.scoreRebound(show,'weak');expect(sources).toHaveLength(count);
+ signal.abort();expect(inside.voices.size).toBe(0);engine.scoreImpact(show,'silent','multiply',3,0,{pulse:8,accentWeight:0});engine.scoreImpact(show,'silent','multiply',3,0,{pulse:8,accentWeight:1});expect(sources).toHaveLength(count);
+});
 it('ordinary wood and multiplication glass/low-body layers remain separately cancellable',()=>{const {engine,inside,sources}=fixture(),show={};engine.scoreImpact(show,'one','add',0,0);expect(sources.map(s=>s.buffer.name)).toEqual(['impactWood_light_000','impactBell_heavy_003']);engine.scoreImpact(show,'two','multiply',3,3);expect(sources.slice(2).map(s=>s.buffer.name)).toEqual(['impactGlass_heavy_002','impactSoft_heavy_000','impactGlass_heavy_002']);expect(sources[2].playbackRate.value).toBeCloseTo(.94*noteRate(3));expect(sources[3].playbackRate.value).toBeCloseTo(.78*noteRate(3));expect(inside.voices.size).toBe(5);engine.cancelPresentation();expect(inside.voices.size).toBe(0);expect(sources.every(s=>s.disconnect.mock.calls.length===1)).toBe(true);});
 
 it.each([0,1,2,99])('multiplication pulse %i stays in the low register through every actual layer', step=>{

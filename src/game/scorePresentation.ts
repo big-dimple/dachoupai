@@ -16,7 +16,12 @@ export function scorePacketSymbol(event:ScoreEvent):'+H'|'+M'|'×M'|'÷H'|undefi
   if(event.before.H.n!==event.after.H.n||event.before.H.d!==event.after.H.d)return '+H';
 }
 
-export type ScoreBeat={windup:number;flight:number;impact:number;rest:number;strength:'light'|'medium'|'role'|'multiply'|'retrigger'};
+export interface ScorePhraseGesture {
+ role:'opening'|'run'|'accent'|'receipt'|'notice'|'settle';pulse:number;accentWeight:number;paired:boolean;
+ /** Effective presentation milliseconds, before Phaser applies the selected speed. */
+ start:number;arrival:number;end:number;
+}
+export type ScoreBeat={windup:number;flight:number;impact:number;rest:number;strength:'light'|'medium'|'role'|'multiply'|'retrigger';phrase?:ScorePhraseGesture};
 
 /** Zero-based presented trace position, never chain length or a rule clock. Long chains retain every beat. */
 export function scoreBeat(event:ScoreEvent,ordinal=0):ScoreBeat {
