@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "auditCommit": "7d7921e76ca794a14e715e3eac3b4d66143862ff",
   "currentTask": "P08",
-  "selectionPolicy": "最高优先级80b8/f320阻断修复与已就绪3c整手节奏已合8d6aa988；一次类型341构建PASS，源19/78及精确函数证据复用，不扩测试集合；立即正常main/eyes发布。指定音乐保持8eb，英雄/c12独立dev020e暂不夹入，不等视觉，不再加旧局恢复工作（用户都新开局）。P08三目标/预算/人验正式门仍未过，ca843整分支不合。",
+  "selectionPolicy": "用户已读3c90完整证据并明确授权：英雄/c12功能批正常main发布，保留a061辛弃疾/整手/指定音乐；复用按版本12组及金币局部补验/345构建，不新增矩阵、不等待01a147f6另一任务原生6英雄回归。手机小立绘/空白/教学行/技能叠框待改，整体美术与P08三目标/预算/人验正式门未通过；不合ca843整分支。",
   "resumeContract": {
     "candidateCommit": "4bf6a7d63d7738d3c415d09439a1bdca878dc685",
     "gateTask": "A01",
@@ -38,7 +38,7 @@
       ],
       "package": "docs/production/WORK_PACKAGES.md#p08",
       "humanGate": false,
-      "completionScope": "辛弃疾候选阻断f320/80b8及整手节奏3c已合8d6aa988，显示7候选按7座位，规则存档不变；指定音频8eb保持。一次类型341构建PASS，源19/78原范围复用，不扩大验证或另加旧局恢复工作；英雄/c12独立020e未入本main，不等待视觉再发。4x后段200→233ms未持续渐密，P08及三体验目标/真人听感/物理设备/正式门仍未过；397文件37102547B预算FAIL。",
+      "completionScope": "英雄/c12来源3c90（代码fb729、345构建）已获完整证据审阅并正常main采用，保a061辛弃疾阻断/3c整手/指定音乐。六英雄保存收益实际反馈及c12成功源牌→道具箱/满包→金、失败取消不假飞/查询入口删除按功能范围交付；12并版及金币1局部按原版本复用，不扩矩阵、不等另一任务原生6英雄结束。手机仅安全空位小图，留白/教学行/技能叠框仍待；整体美术、4x后段渐密、三目标/P08/听感/真机/正式门未通过。397文件37122217B预算FAIL，旧FAIL与原SHA保持，用户都新局不另加旧局工作。",
       "evidence": [
         "docs/production/evidence/feedback-batch-integration-2026-10-17/eyes-followups.json",
         "docs/production/evidence/feedback-batch-integration-2026-10-17/zoom-sort.json",
@@ -2419,6 +2419,22 @@
       ],
       "remaining": "4x tail200to233ms not continuously denser;experience/human/device open",
       "status": "VERIFIED_IMMEDIATE_PUBLICATION"
+    },
+    "heroPortraitAndC12Scene": {
+      "source": "3c90ac3a6e9cfedff9bbaba706ba1a87e745d5ed",
+      "product": "fb7290fd04dc5d957517d51d0dc5dd07178b0fe4",
+      "status": "FUNCTIONAL_DELIVERY_IN_NORMAL_MAIN_AND_EYES_RELEASE",
+      "typeAndBuild": "PASS345 modules reused",
+      "nativeEvidence": "12combined atd0aa and1goldcloseout at020e reused separately,no new full matrix",
+      "giftQueryRemoved": true,
+      "mobileLargePortraitAndWhitespace": "not accepted;small safe decoration only",
+      "sourceDirectorRefillAndSelectedMusicRetained": true,
+      "fullDist": {
+        "files": 397,
+        "bytes": 37122217,
+        "limit": 20000000,
+        "status": "FAIL"
+      }
     }
   },
   "shopStructureFollowup": {
@@ -2668,17 +2684,20 @@
       "3a0984cfbf2c69262d66256d9738ed3b8df60448",
       "9c3db534da1108406ab2642877949270c5463b61"
     ],
-    "status": "DEV_IMPLEMENTED_VERIFIED_SCOPED_NOT_PUBLISHED_MAIN",
+    "status": "FUNCTIONAL_DELIVERY_IN_NORMAL_MAIN_AND_EYES_RELEASE",
     "scope": "PC complete hero portrait and real saved six-hero response;bounded mobile decoration;saved c12 source to inventory/overflow gold;gift query removed in dev only",
     "sourceDirectorQueueAndMotion": "do not change",
     "native": "12 combined d0aa plus1gold020e local closeout;not summed;no new full native matrix after f320",
-    "publication": "independent dev review;main remainsa061 with urgent fix and phrase,hero/c12 excluded",
+    "publication": "user reviewed complete3c90 receipt and authorized normalmain;reuse scoped evidence,no new full matrix,do not wait for separate01a147f6 native6hero task;finalSHA in remote push receipt",
     "product": "fb7290fd04dc5d957517d51d0dc5dd07178b0fe4",
     "retainsMain": "a061a7c2a0d10dad1da8647fa747011dd1df493b",
     "evidence": "docs/production/evidence/hero-gift-scene-integration-2026-10-17/README.md",
     "typeAndBuild": "PASS345 modules",
     "sourceDirectorProtected": "five modules and main loop/source methods exactly3c;no own timing changes",
-    "humanArtAccepted": false
+    "humanArtAccepted": false,
+    "releaseSource": "3c90ac3a6e9cfedff9bbaba706ba1a87e745d5ed",
+    "mobile": "bounded small portrait and central whitespace still pending;not overall art acceptance",
+    "wholeArtAccepted": false
   },
   "urgentRefillPhraseFollowup": {
     "baseMain": "8ebff2a2470ca37d64bafc99827bbf4bcc456cb9",
