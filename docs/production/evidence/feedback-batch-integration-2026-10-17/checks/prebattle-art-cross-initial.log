@@ -1,0 +1,25 @@
+
+ RUN  v4.1.11 C:/Users/wanghongping/AppData/Local/Temp/dachoupai-windows-integration-20261017
+
+ ❯ tests/source-stage-art.test.ts (14 tests | 1 failed) 164ms
+   × all 72 real stage files preserve their current same-ID source and exact decoded metadata within the unchanged budget 71ms
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 13 passed (14)
+   Start at  15:32:17
+   Duration  668ms (transform 129ms, setup 0ms, import 232ms, tests 164ms, environment 0ms)
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/source-stage-art.test.ts > all 72 real stage files preserve their current same-ID source and exact decoded metadata within the unchanged budget
+AssertionError: expected '4ca14fb60f315926245f1d95e8acbba716798…' to be '808bf2fbfd262662b2c678e3dfec1ae5d3fb5…' // Object.is equality
+
+Expected: "808bf2fbfd262662b2c678e3dfec1ae5d3fb511325f5d62bcef0be50336a3ec7"
+Received: "4ca14fb60f315926245f1d95e8acbba7167983c49aca444c9e915790b9dfcb58"
+
+ ❯ tests/source-stage-art.test.ts:18:31
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+

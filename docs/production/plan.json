@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "auditCommit": "7d7921e76ca794a14e715e3eac3b4d66143862ff",
   "currentTask": "P08",
-  "selectionPolicy": "2026-10-17dot反馈小批：main a470实际可见，有限自然两场和未验边界见同一台账；6a044ee1提醒+43216be2购买/Boss版式正常合入b1916e6c6b00bdf6635882755b671ce7a4e8892c，26源路径逐blob一致；复用31/60来源检查，只补类型/321模块构建通过，无重复矩阵。按用户授权正常dev/main合入push，不等CI/不部署/不强推，实际main SHA见回执。H16跨三处Boss规则仅登记，H14/H15保留，P08仍in_progress、heard=false及正式门不解锁。",
+  "selectionPolicy": "当前共用放大/理牌批9ec+d98正常合入fb6f699c8ac9d0db9d684ed68f3d6596ccfee9ac，26源路径一致，GameScene/ShopScene/manifest/原图保持a73、b05新hash兼容；复用152/35和来源短流程，仅增resolver3/类型323模块构建通过。已授权普通dev/main push，不等01a148ba未完商店重排/布局/购后流程，不签它完成。现有615x768详情复用，整包预算/历史图源缺证/源FAIL与自然/真人/听感/设备/正式门保持，P08仍in_progress，无CI/部署。",
   "resumeContract": {
     "candidateCommit": "4bf6a7d63d7738d3c415d09439a1bdca878dc685",
     "gateTask": "A01",
@@ -38,8 +38,10 @@
       ],
       "package": "docs/production/WORK_PACKAGES.md#p08",
       "humanGate": false,
-      "completionScope": "当前小批产品b1916e6c6b00bdf6635882755b671ce7a4e8892c收紧秦琼提醒首层/规则折叠，保每手资格/三操作/取消恢复/不再提醒；修c04固定条件+50被成长读取0覆盖的展示，统一成长/时机/上限和购买去重/用语，Boss页按内容约460高且页内规则一处。26源路径完全相同，复用来源31/60及受控短购买23→19/取消结果，仅新增类型/321模块构建通过。a470自然秦琼第2章正场1705/1350末手1092、Boss1874/1800末手145，只签实际来源线/数字增量/底栏/技能名/弃牌，未自然触发眼神高光且听感不支持。新小修自然复看/真人理解/真机与正式门待验；H16跨模块三次规则只登记，H14/H15保持；P08仍in_progress。",
+      "completionScope": "当前合批产品fb6f699c8ac9d0db9d684ed68f3d6596ccfee9ac：公共CardArtSource/DetailDialog/ZoomModal覆盖72唐宋牌39工具升级12长期物品，真实URL对/黑底完整contain/关闭焦点/失败恢复；HandActionControls/SceneView/HandSortButtonVisual精修理牌分隔、2px视觉反馈/固定hit/触控清理/低动态/字体对齐。26来源路径一致，GameScene/ShopScene/manifest/原图保a73；复用152/35及有限源短流程，当前resolver3/类型323模块构建通过，b05-v3兼容。已授权普通dev/main发布，01a148ba新商店布局/购后流程未完成且未纳入。现有615x768详情，无更高像素管线；整包预算/历史缺证/源FAIL及新合版自然/听感false/真人/设备/正式门保持，P08仍in_progress。",
       "evidence": [
+        "docs/production/evidence/feedback-batch-integration-2026-10-17/zoom-sort.json",
+        "docs/production/evidence/feedback-batch-integration-2026-10-17/prebattle-art.json",
         "docs/production/evidence/feedback-batch-integration-2026-10-17/dot-followup.json",
         "docs/production/evidence/feedback-batch-integration-2026-10-17/status.json",
         "docs/production/evidence/card-detail-integration-2026-10-17/status.json",

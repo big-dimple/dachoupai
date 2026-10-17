@@ -1,0 +1,353 @@
+{
+  "baseCommit": "a73d9ec2faae6e537e77a975f02e0a2cef220074",
+  "integratedProductCommit": "fb6f699c8ac9d0db9d684ed68f3d6596ccfee9ac",
+  "sources": [
+    {
+      "name": "common-art-zoom",
+      "sha": "9ec861adce4e8e088d638dc36800ff9cac304ad7",
+      "incrementBase": "9e015286d1d223afad0a6e6b2860fcfed1457faf",
+      "paths": 16,
+      "bindings": [
+        {
+          "path": "docs/production/evidence/common-art-zoom-2026-10-17/1366-permanent-item-zoom.png",
+          "sourceBlob": "4bf493ab48beb6a7212fa0de8fcfe2ca398f6d36",
+          "integratedBlob": "4bf493ab48beb6a7212fa0de8fcfe2ca398f6d36"
+        },
+        {
+          "path": "docs/production/evidence/common-art-zoom-2026-10-17/390-recoverable-detail-failure.png",
+          "sourceBlob": "8d5e249ce4cca78db0d1472fc257f25e4cdfc8d2",
+          "integratedBlob": "8d5e249ce4cca78db0d1472fc257f25e4cdfc8d2"
+        },
+        {
+          "path": "docs/production/evidence/common-art-zoom-2026-10-17/390-tool-zoom.png",
+          "sourceBlob": "218074f9d0bee393bd1cc22a4aa188464008a0f0",
+          "integratedBlob": "218074f9d0bee393bd1cc22a4aa188464008a0f0"
+        },
+        {
+          "path": "docs/production/evidence/common-art-zoom-2026-10-17/README.md",
+          "sourceBlob": "eeef2e5bc740c0c6e646c3aa8435c1144dbd29d5",
+          "integratedBlob": "eeef2e5bc740c0c6e646c3aa8435c1144dbd29d5"
+        },
+        {
+          "path": "docs/production/evidence/common-art-zoom-2026-10-17/browser-FAIL.png",
+          "sourceBlob": "1361022e12c13e78d555ea4454043905243b03ca",
+          "integratedBlob": "1361022e12c13e78d555ea4454043905243b03ca"
+        },
+        {
+          "path": "docs/production/evidence/common-art-zoom-2026-10-17/browser-first-FAIL.json",
+          "sourceBlob": "1742fa4de9f47b3e4d04362e942a22ef985ad9de",
+          "integratedBlob": "1742fa4de9f47b3e4d04362e942a22ef985ad9de"
+        },
+        {
+          "path": "docs/production/evidence/common-art-zoom-2026-10-17/browser.json",
+          "sourceBlob": "bfab34f2eccee959b439a646ebc1a58194d5670c",
+          "integratedBlob": "bfab34f2eccee959b439a646ebc1a58194d5670c"
+        },
+        {
+          "path": "docs/production/evidence/common-art-zoom-2026-10-17/build.txt",
+          "sourceBlob": "6b371e546dea67653b3fe4a5b564c23ca4ef2bbc",
+          "integratedBlob": "6b371e546dea67653b3fe4a5b564c23ca4ef2bbc"
+        },
+        {
+          "path": "docs/production/evidence/common-art-zoom-2026-10-17/targeted-tests.txt",
+          "sourceBlob": "ab5e05222f8a452f1360b3ed987e39f46b6ee1d8",
+          "integratedBlob": "ab5e05222f8a452f1360b3ed987e39f46b6ee1d8"
+        },
+        {
+          "path": "harness/goods-art-zoom.mjs",
+          "sourceBlob": "24937c34521d96361b790267b3f86239a4865dd9",
+          "integratedBlob": "24937c34521d96361b790267b3f86239a4865dd9"
+        },
+        {
+          "path": "src/game/CardArtSource.ts",
+          "sourceBlob": "996ecd5c85c3389cea0f5f0fa5c728bc870e4ece",
+          "integratedBlob": "996ecd5c85c3389cea0f5f0fa5c728bc870e4ece"
+        },
+        {
+          "path": "src/game/CardArtZoomModal.ts",
+          "sourceBlob": "96f5d0be8ee0c83fdae573523fe7182a715b5cc3",
+          "integratedBlob": "96f5d0be8ee0c83fdae573523fe7182a715b5cc3"
+        },
+        {
+          "path": "src/game/DetailDialog.css",
+          "sourceBlob": "2e2527a7e3e39dc9776c35bbdf47d983d7a1cb95",
+          "integratedBlob": "2e2527a7e3e39dc9776c35bbdf47d983d7a1cb95"
+        },
+        {
+          "path": "src/game/DetailDialog.ts",
+          "sourceBlob": "c9235bf8a367897cfc6be4f28beb38057b6080ac",
+          "integratedBlob": "c9235bf8a367897cfc6be4f28beb38057b6080ac"
+        },
+        {
+          "path": "tests/card-art-source.test.ts",
+          "sourceBlob": "1f54178ffd352e20463d67e2a74971bc33b249f7",
+          "integratedBlob": "1f54178ffd352e20463d67e2a74971bc33b249f7"
+        },
+        {
+          "path": "tests/detail-dialog.test.ts",
+          "sourceBlob": "cb5804fcc3a322f170487a29714d3e890a885a8e",
+          "integratedBlob": "cb5804fcc3a322f170487a29714d3e890a885a8e"
+        }
+      ]
+    },
+    {
+      "name": "hand-sort-polish",
+      "sha": "d98b72f2c7a63de0d384a21cd00dbabf58255468",
+      "incrementBase": "9e015286d1d223afad0a6e6b2860fcfed1457faf",
+      "paths": 10,
+      "bindings": [
+        {
+          "path": "docs/production/evidence/hand-sort-polish-2026-10-17/README.md",
+          "sourceBlob": "b2a465aca7782f7e27213ab84c857652ab3d432a",
+          "integratedBlob": "b2a465aca7782f7e27213ab84c857652ab3d432a"
+        },
+        {
+          "path": "docs/production/evidence/hand-sort-polish-2026-10-17/pc-hover.png",
+          "sourceBlob": "2d360b061c8791ba5c119cb950a6b2dda9e99190",
+          "integratedBlob": "2d360b061c8791ba5c119cb950a6b2dda9e99190"
+        },
+        {
+          "path": "docs/production/evidence/hand-sort-polish-2026-10-17/pc-rest.png",
+          "sourceBlob": "9a4c4b597f099f28df2171480a2da474ba000313",
+          "integratedBlob": "9a4c4b597f099f28df2171480a2da474ba000313"
+        },
+        {
+          "path": "docs/production/evidence/hand-sort-polish-2026-10-17/phone-hover.png",
+          "sourceBlob": "ac99f73dc4d9a1b27352d068f443ecdf1cadd832",
+          "integratedBlob": "ac99f73dc4d9a1b27352d068f443ecdf1cadd832"
+        },
+        {
+          "path": "docs/production/evidence/hand-sort-polish-2026-10-17/phone-rest.png",
+          "sourceBlob": "48f444d2cb588029e817fd6afc50839c69a29d39",
+          "integratedBlob": "48f444d2cb588029e817fd6afc50839c69a29d39"
+        },
+        {
+          "path": "docs/production/evidence/hand-sort-polish-2026-10-17/report.json",
+          "sourceBlob": "f4cac6871e214e3ae52460e20e1c7f759cf806af",
+          "integratedBlob": "f4cac6871e214e3ae52460e20e1c7f759cf806af"
+        },
+        {
+          "path": "src/game/HandActionControls.ts",
+          "sourceBlob": "c5ea9fc6c8e692904afbad4a9f98a0eb41c768c7",
+          "integratedBlob": "c5ea9fc6c8e692904afbad4a9f98a0eb41c768c7"
+        },
+        {
+          "path": "src/game/HandSortButtonVisual.ts",
+          "sourceBlob": "6b849e168d63c72f6da1969d8af12abc0284fe1c",
+          "integratedBlob": "6b849e168d63c72f6da1969d8af12abc0284fe1c"
+        },
+        {
+          "path": "src/game/SceneView.ts",
+          "sourceBlob": "01f3eedbbcebb3cb6002f9e49b59f929958b20dd",
+          "integratedBlob": "01f3eedbbcebb3cb6002f9e49b59f929958b20dd"
+        },
+        {
+          "path": "tests/hand-sort-visual.test.ts",
+          "sourceBlob": "41c7826a8d405330d3edd9a5d1ab5838e9c7839c",
+          "integratedBlob": "41c7826a8d405330d3edd9a5d1ab5838e9c7839c"
+        }
+      ]
+    }
+  ],
+  "protectedDiff": [],
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "taskId": "P08",
+  "taskStatus": "in_progress",
+  "phase": "INTEGRATED_SCOPED_CHECKS_PASS",
+  "testedCommit": "fb6f699c8ac9d0db9d684ed68f3d6596ccfee9ac",
+  "branch": "dev/zoom-sort-integration-20261017",
+  "sourceBrowserBindings": [
+    {
+      "source": "common-art-zoom-2026-10-17",
+      "path": "src/game/CardArtSource.ts",
+      "expectedSHA256": "430fd4c92a36f626e64d9fa392ec54bb62439f7e15476eec93de096b8564fdf9",
+      "integratedHashes": {
+        "gitLF": "430fd4c92a36f626e64d9fa392ec54bb62439f7e15476eec93de096b8564fdf9",
+        "CRLF": "48f60e4ce4b71846d6ab66d1a72124e5c33130ee97fe88f4584e40929b00f40c",
+        "workingFile": "48f60e4ce4b71846d6ab66d1a72124e5c33130ee97fe88f4584e40929b00f40c"
+      },
+      "matchingRepresentations": [
+        "gitLF"
+      ],
+      "scope": "Source product unchanged"
+    },
+    {
+      "source": "common-art-zoom-2026-10-17",
+      "path": "src/game/CardArtZoomModal.ts",
+      "expectedSHA256": "edbdd7e9ef0a9fa8b25d03b506d79e847f412b703e2c68848dc1678f927171b4",
+      "integratedHashes": {
+        "gitLF": "ddf988e33bceb360abc2b1993d3e90c9a2ca5cec1bc983b3d9433a81c018dd83",
+        "CRLF": "edbdd7e9ef0a9fa8b25d03b506d79e847f412b703e2c68848dc1678f927171b4",
+        "workingFile": "edbdd7e9ef0a9fa8b25d03b506d79e847f412b703e2c68848dc1678f927171b4"
+      },
+      "matchingRepresentations": [
+        "CRLF",
+        "workingFile"
+      ],
+      "scope": "Source product unchanged"
+    },
+    {
+      "source": "common-art-zoom-2026-10-17",
+      "path": "src/game/DetailDialog.ts",
+      "expectedSHA256": "b696b46f87a23e22640c6b71db160cd39c7767934c13dc576a8885b0f604b9e6",
+      "integratedHashes": {
+        "gitLF": "c29b7b5a85583db8eb3a70117330facfde376bf206f84b2131499196c810901d",
+        "CRLF": "b696b46f87a23e22640c6b71db160cd39c7767934c13dc576a8885b0f604b9e6",
+        "workingFile": "b696b46f87a23e22640c6b71db160cd39c7767934c13dc576a8885b0f604b9e6"
+      },
+      "matchingRepresentations": [
+        "CRLF",
+        "workingFile"
+      ],
+      "scope": "Source product unchanged"
+    },
+    {
+      "source": "common-art-zoom-2026-10-17",
+      "path": "src/game/DetailDialog.css",
+      "expectedSHA256": "461a6dae69fa804f6c76f8c1dd1a293cc618dc77df847302d40f220b7526dcb0",
+      "integratedHashes": {
+        "gitLF": "678e56d9ee0ddf510ac56ed0726514c035a8ba9e467cd89ef521cdc53de6756c",
+        "CRLF": "461a6dae69fa804f6c76f8c1dd1a293cc618dc77df847302d40f220b7526dcb0",
+        "workingFile": "461a6dae69fa804f6c76f8c1dd1a293cc618dc77df847302d40f220b7526dcb0"
+      },
+      "matchingRepresentations": [
+        "CRLF",
+        "workingFile"
+      ],
+      "scope": "Source product unchanged"
+    },
+    {
+      "source": "hand-sort-polish-2026-10-17",
+      "path": "src/game/HandActionControls.ts",
+      "expectedSHA256": "22eb7e1226c6a4098196c603fb61751fb6e18d8a4ac942cc8fa01f43b48395b6",
+      "integratedHashes": {
+        "gitLF": "c39b750268f9e4676e58cd0d9bf6ef91f5636b20ad53f6b452cc9fb1fcadae48",
+        "CRLF": "22eb7e1226c6a4098196c603fb61751fb6e18d8a4ac942cc8fa01f43b48395b6",
+        "workingFile": "22eb7e1226c6a4098196c603fb61751fb6e18d8a4ac942cc8fa01f43b48395b6"
+      },
+      "matchingRepresentations": [
+        "CRLF",
+        "workingFile"
+      ],
+      "scope": "Source product unchanged"
+    },
+    {
+      "source": "hand-sort-polish-2026-10-17",
+      "path": "src/game/HandSortButtonVisual.ts",
+      "expectedSHA256": "38b3b1b770d4abd8ebe2c628ac2655ebaf7dc5abe968df47a4aef39ba13f1f78",
+      "integratedHashes": {
+        "gitLF": "38b3b1b770d4abd8ebe2c628ac2655ebaf7dc5abe968df47a4aef39ba13f1f78",
+        "CRLF": "16f2eddb4fb947b41ab4901970accb648b92cfef48342c65a0de0b93782d6fb1",
+        "workingFile": "16f2eddb4fb947b41ab4901970accb648b92cfef48342c65a0de0b93782d6fb1"
+      },
+      "matchingRepresentations": [
+        "gitLF"
+      ],
+      "scope": "Source product unchanged"
+    },
+    {
+      "source": "hand-sort-polish-2026-10-17",
+      "path": "src/game/SceneView.ts",
+      "expectedSHA256": "390e48b57eae96a2ff23552897018085ee1128232d5726a17e76a0353504041f",
+      "integratedHashes": {
+        "gitLF": "8449f3a4ba2aced96676a46bfd83ada9224fb1e0deb51bf61988a9c34d887eb3",
+        "CRLF": "390e48b57eae96a2ff23552897018085ee1128232d5726a17e76a0353504041f",
+        "workingFile": "390e48b57eae96a2ff23552897018085ee1128232d5726a17e76a0353504041f"
+      },
+      "matchingRepresentations": [
+        "CRLF",
+        "workingFile"
+      ],
+      "scope": "Source product unchanged"
+    },
+    {
+      "source": "hand-sort-polish-2026-10-17",
+      "path": "src/game/GameScene.ts",
+      "expectedSHA256": "42f93ced2f45a55f15749f6523ee51e7cd856d71bb5a5b8a5ed198bde9049fb7",
+      "integratedHashes": {
+        "gitLF": "3209219d3d9903846087249d8549d3a73970bc7c15db1d88fea9ae983970a5fa",
+        "CRLF": "c62c1f3753046ecb74c0a3e0ba0a1f337b356556b3c13644c40260161b646b52",
+        "workingFile": "c62c1f3753046ecb74c0a3e0ba0a1f337b356556b3c13644c40260161b646b52"
+      },
+      "matchingRepresentations": [],
+      "scope": "Browser context was9e015 GameScene; integrated67b GameScene intentionally retained unchanged from a73. Not part of sort source increment and not claimed identical source browser runtime."
+    }
+  ],
+  "b05Compatibility": {
+    "status": "PASS within resolver unit/current registry scope",
+    "id": "b05",
+    "displayName": "凤鸣朝阳",
+    "outputs": [
+      {
+        "purpose": "thumbnail",
+        "path": "cards/b05-v3-ee1848ebb107.thumbnail.webp",
+        "width": 128,
+        "height": 160,
+        "bytes": 7960,
+        "sha256": "ee1848ebb107e505ada50db8484a9ab6967d7716687b8cb8a3e11daefecf1604"
+      },
+      {
+        "purpose": "detail",
+        "path": "cards/b05-v3-808bf2fbfd26.detail.webp",
+        "width": 615,
+        "height": 768,
+        "bytes": 136794,
+        "sha256": "808bf2fbfd262662b2c678e3dfec1ae5d3fb511325f5d62bcef0be50336a3ec7"
+      }
+    ],
+    "manifestUnchangedFromBase": true,
+    "originalAndClimaxUnchangedFromBase": true,
+    "boundary": "Resolver3 cases enumerate current72 Joker pairs plus39 tools/12 items and reject absent/stale/mixed sources. No new b05 browser pixel acceptance; uses existing615x768 detail, not a higher-resolution pipeline."
+  },
+  "knownBudget": {
+    "files": 519,
+    "bytes": 44518174,
+    "budgetBytes": 20000000,
+    "status": "FAIL",
+    "scope": "Complete actual local dist incl retained old assets; known aggregate budget gap, not network transfer."
+  },
+  "checksReused": {
+    "zoom": "9ec861ad:152 related checks plus10 short component flows/type-build, source original focus FAIL and goods-art2 baseline FAIL retained.",
+    "sort": "d98b72f2:35 related/type-build and finite PC1366/phone390 DPR2 table checks, real touchReorderHand checkpoint equality; original no-op oracle FAIL explained in source.",
+    "boundary": "No total formed by adding overlapping owner tests; no new browser matrix/natural game."
+  },
+  "checks": [
+    {
+      "name": "current-registry resolver cross",
+      "status": "PASS",
+      "exitCode": 0,
+      "tests": 3,
+      "testedCommit": "fb6f699c8ac9d0db9d684ed68f3d6596ccfee9ac",
+      "log": "checks/zoom-sort-resolver-cross.log"
+    },
+    {
+      "name": "typecheck",
+      "status": "PASS",
+      "exitCode": 0,
+      "testedCommit": "fb6f699c8ac9d0db9d684ed68f3d6596ccfee9ac",
+      "log": "checks/zoom-sort-typecheck.log"
+    },
+    {
+      "name": "production-build",
+      "status": "PASS",
+      "exitCode": 0,
+      "modules": 323,
+      "testedCommit": "fb6f699c8ac9d0db9d684ed68f3d6596ccfee9ac",
+      "log": "checks/zoom-sort-build.log",
+      "warning": "Existing large chunk warning retained."
+    }
+  ],
+  "remaining": [
+    "Unfinished new Shop layout/reorder and post-purchase flow are next owner01a148ba batch; not merged or marked complete",
+    "New integrated natural runtime/123-image browser coverage, b05 zoom pixels, comprehension, physical device/listening and formal gates not accepted",
+    "Full dist budget remains exceeded, historical original-art gaps and source baseline goods-art/privacy failures remain as earlier records",
+    "Existing detail images615x768 reused; no new original/higher-resolution asset pipeline"
+  ],
+  "publication": {
+    "authorization": "User explicitly authorizes normal dev/main push after scoped checks, no waiting for unfinished Shop changes",
+    "expectedMain": "a73d9ec2faae6e537e77a975f02e0a2cef220074",
+    "releaseCommit": "Delivery commit containing this record; actual full remote main SHA confirmed by final push receipt",
+    "restrictions": "No force, CI/domain/deploy or natural long game."
+  }
+}

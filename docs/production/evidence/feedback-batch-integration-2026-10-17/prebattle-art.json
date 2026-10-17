@@ -1,0 +1,425 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "taskId": "P08",
+  "taskStatus": "in_progress",
+  "phase": "ALL_SOURCES_INTEGRATED_SCOPED_CHECKS_PASS_KNOWN_GAPS_RETAINED",
+  "baseCommit": "9e015286d1d223afad0a6e6b2860fcfed1457faf",
+  "integratedProductCommit": "d2029a560330671a62354c3374cfdfd7a5b2e0e5",
+  "testedCommit": "d2029a560330671a62354c3374cfdfd7a5b2e0e5",
+  "branch": "dev/prebattle-art-integration-20261017",
+  "sources": [
+    {
+      "name": "prebattle",
+      "sha": "67b4b2cdd10ce8b6ffcd1a10f6bdb55a9f6ab865",
+      "incrementBase": "43216be21d1ac551fb1ffdc55ad4bb67eebb0cc5",
+      "paths": 26,
+      "bindings": [
+        {
+          "path": "docs/production/evidence/prebattle-flow-2026-10-17/README.md",
+          "sourceBlob": "582269a55a277c7e3f4108faebfeff09771f35b5",
+          "integratedBlob": "582269a55a277c7e3f4108faebfeff09771f35b5"
+        },
+        {
+          "path": "docs/production/evidence/prebattle-flow-2026-10-17/boss-direct-entry.png",
+          "sourceBlob": "b3900a16e722cddc543bbab69d86af564afe90a8",
+          "integratedBlob": "b3900a16e722cddc543bbab69d86af564afe90a8"
+        },
+        {
+          "path": "docs/production/evidence/prebattle-flow-2026-10-17/browser-check.json",
+          "sourceBlob": "8a50536d5e3291fa2a418c7243129dfd99eebf2a",
+          "integratedBlob": "8a50536d5e3291fa2a418c7243129dfd99eebf2a"
+        },
+        {
+          "path": "docs/production/evidence/prebattle-flow-2026-10-17/browser-check.mjs",
+          "sourceBlob": "b812e09026bc34eb30986b3a77706927bc28eef3",
+          "integratedBlob": "b812e09026bc34eb30986b3a77706927bc28eef3"
+        },
+        {
+          "path": "docs/production/evidence/prebattle-flow-2026-10-17/browser-check.txt",
+          "sourceBlob": "86c7d845435db5216e740734a4e87bd6bbdb64d7",
+          "integratedBlob": "86c7d845435db5216e740734a4e87bd6bbdb64d7"
+        },
+        {
+          "path": "docs/production/evidence/prebattle-flow-2026-10-17/browser-setup-fail.txt",
+          "sourceBlob": "9a23ab12cdff841073d4849b334cb933b8d8d4dd",
+          "integratedBlob": "9a23ab12cdff841073d4849b334cb933b8d8d4dd"
+        },
+        {
+          "path": "docs/production/evidence/prebattle-flow-2026-10-17/build-check.txt",
+          "sourceBlob": "c3c202f3a076a6c1a94ba7e69892429e748223a6",
+          "integratedBlob": "c3c202f3a076a6c1a94ba7e69892429e748223a6"
+        },
+        {
+          "path": "docs/production/evidence/prebattle-flow-2026-10-17/challenge-program-off.png",
+          "sourceBlob": "ee095ed9203b18c64e1ec087addf176f7e0c737b",
+          "integratedBlob": "ee095ed9203b18c64e1ec087addf176f7e0c737b"
+        },
+        {
+          "path": "docs/production/evidence/prebattle-flow-2026-10-17/focused-check.txt",
+          "sourceBlob": "dc2316211642c8f39ad8f9d75df9f096c8f957b5",
+          "integratedBlob": "dc2316211642c8f39ad8f9d75df9f096c8f957b5"
+        },
+        {
+          "path": "docs/production/evidence/prebattle-flow-2026-10-17/manual-rules-initial-fail.json",
+          "sourceBlob": "265453ca9974178170a848c56916d1149698be94",
+          "integratedBlob": "265453ca9974178170a848c56916d1149698be94"
+        },
+        {
+          "path": "docs/production/evidence/prebattle-flow-2026-10-17/manual-rules-initial-fail.png",
+          "sourceBlob": "9803f30b31c091149c428fc58de392d9146be78c",
+          "integratedBlob": "9803f30b31c091149c428fc58de392d9146be78c"
+        },
+        {
+          "path": "docs/production/evidence/prebattle-flow-2026-10-17/manual-rules-initial-fail.txt",
+          "sourceBlob": "69923a9f60eff47245ae6168b12cc25ffa7166d7",
+          "integratedBlob": "69923a9f60eff47245ae6168b12cc25ffa7166d7"
+        },
+        {
+          "path": "docs/production/evidence/prebattle-flow-2026-10-17/program-phone.png",
+          "sourceBlob": "34ddfcd60f4aa2cb0ac460799ce2a2573fe6dfaf",
+          "integratedBlob": "34ddfcd60f4aa2cb0ac460799ce2a2573fe6dfaf"
+        },
+        {
+          "path": "docs/production/evidence/prebattle-flow-2026-10-17/restore-entry-initial-fail.json",
+          "sourceBlob": "4325a5ed0a038b9368fd25b3b624c05b6d81d0bc",
+          "integratedBlob": "4325a5ed0a038b9368fd25b3b624c05b6d81d0bc"
+        },
+        {
+          "path": "docs/production/evidence/prebattle-flow-2026-10-17/restore-entry-initial-fail.png",
+          "sourceBlob": "110df5d4135aaa7052c64834248d1675683c3f6e",
+          "integratedBlob": "110df5d4135aaa7052c64834248d1675683c3f6e"
+        },
+        {
+          "path": "docs/production/evidence/prebattle-flow-2026-10-17/restore-entry-initial-fail.txt",
+          "sourceBlob": "44cc241bc52899678449778c68cd1780a8d83b68",
+          "integratedBlob": "44cc241bc52899678449778c68cd1780a8d83b68"
+        },
+        {
+          "path": "docs/production/evidence/shop-purchase-consistency-2026-10-17/README.md",
+          "sourceBlob": "69dbd0d66127569abcf8bd4cb7afff32aecfa64e",
+          "integratedBlob": "69dbd0d66127569abcf8bd4cb7afff32aecfa64e"
+        },
+        {
+          "path": "src/game/BlindSelectPresentation.ts",
+          "sourceBlob": "d00864ccc830a62c72a4d44a0ad86d491e3ef5cd",
+          "integratedBlob": "d00864ccc830a62c72a4d44a0ad86d491e3ef5cd"
+        },
+        {
+          "path": "src/game/BossPreparationPresentation.ts",
+          "sourceBlob": "4fc80bec5d6d4142f758f8e6bd2535ae281ca42e",
+          "integratedBlob": "4fc80bec5d6d4142f758f8e6bd2535ae281ca42e"
+        },
+        {
+          "path": "src/game/GameScene.ts",
+          "sourceBlob": "4243d6ce1283e3b77c8b68244b54ca45737b949d",
+          "integratedBlob": "4243d6ce1283e3b77c8b68244b54ca45737b949d"
+        },
+        {
+          "path": "src/game/OpponentPresentation.ts",
+          "sourceBlob": "27ad672b981b0160dac6d4cc7a3ac6d3de625c9c",
+          "integratedBlob": "27ad672b981b0160dac6d4cc7a3ac6d3de625c9c"
+        },
+        {
+          "path": "src/game/ProgramDialog.ts",
+          "sourceBlob": "4b8f804757278da2ba4df4dbf48da354b2272929",
+          "integratedBlob": "4b8f804757278da2ba4df4dbf48da354b2272929"
+        },
+        {
+          "path": "src/game/ShopScene.ts",
+          "sourceBlob": "a0f18a436daffeefb8f1572a3f7148123fc1a834",
+          "integratedBlob": "a0f18a436daffeefb8f1572a3f7148123fc1a834"
+        },
+        {
+          "path": "tests/blind-select-presentation.test.ts",
+          "sourceBlob": "daf6fe6c47a99f2dfb05f99812ddb65bd6ac0d15",
+          "integratedBlob": "daf6fe6c47a99f2dfb05f99812ddb65bd6ac0d15"
+        },
+        {
+          "path": "tests/boss-preparation-presentation.test.ts",
+          "sourceBlob": "a60950dfdb7c49afdccf822d302bb0e652d3a71c",
+          "integratedBlob": "a60950dfdb7c49afdccf822d302bb0e652d3a71c"
+        },
+        {
+          "path": "tests/program-dialog.test.ts",
+          "sourceBlob": "42b6dda951a4fd4d4c8fa6f015563745c782ad08",
+          "integratedBlob": "42b6dda951a4fd4d4c8fa6f015563745c782ad08"
+        }
+      ]
+    },
+    {
+      "name": "provenance-and-b05",
+      "sha": "2e22aa3137db107f508de7dc0b2ee5bbe53c1ece",
+      "incrementBase": "a470da228a85283eabc00811f610ba6a41a38738",
+      "paths": 17,
+      "bindings": [
+        {
+          "path": "art/sources/fengmingchaoyang-art-20261017/b05-fengmingchaoyang-original.png",
+          "sourceBlob": "d23ccb0f8f04e551b933aadb58bf8b5ae087c543",
+          "integratedBlob": "d23ccb0f8f04e551b933aadb58bf8b5ae087c543"
+        },
+        {
+          "path": "art/sources/fengmingchaoyang-art-20261017/manifest.json",
+          "sourceBlob": "45dc72dd0458cf9dd83a649454a07758a36efd84",
+          "integratedBlob": "45dc72dd0458cf9dd83a649454a07758a36efd84"
+        },
+        {
+          "path": "docs/production/evidence/b05-fengmingchaoyang-2026-10-17/README.md",
+          "sourceBlob": "2199058472f6496e8e3cc3ccba5e1a09c417c94d",
+          "integratedBlob": "2199058472f6496e8e3cc3ccba5e1a09c417c94d"
+        },
+        {
+          "path": "docs/production/evidence/b05-fengmingchaoyang-2026-10-17/checks.json",
+          "sourceBlob": "e6efb806a208d546b9fd86a76c10b200faa2e8d9",
+          "integratedBlob": "e6efb806a208d546b9fd86a76c10b200faa2e8d9"
+        },
+        {
+          "path": "docs/production/evidence/handdrawn-provenance-2026-10-17/README.md",
+          "sourceBlob": "a2f8eec9c0ee73e3edfa21cb908fcae839ace6e2",
+          "integratedBlob": "a2f8eec9c0ee73e3edfa21cb908fcae839ace6e2"
+        },
+        {
+          "path": "public/assets/handdrawn-p08/cards/b05-v3-808bf2fbfd26.detail.webp",
+          "sourceBlob": "92466bc547c3501ff52061f2eefa7108c218be75",
+          "integratedBlob": "92466bc547c3501ff52061f2eefa7108c218be75"
+        },
+        {
+          "path": "public/assets/handdrawn-p08/cards/b05-v3-ee1848ebb107.thumbnail.webp",
+          "sourceBlob": "15944f397ce68c14990d34f955b173e00f5e978f",
+          "integratedBlob": "15944f397ce68c14990d34f955b173e00f5e978f"
+        },
+        {
+          "path": "public/assets/handdrawn-p08/manifest.json",
+          "sourceBlob": "c21ba7555418e15bfe5a403a7502c953c9d7dd41",
+          "integratedBlob": "c21ba7555418e15bfe5a403a7502c953c9d7dd41"
+        },
+        {
+          "path": "scripts/build-handdrawn-batch.mjs",
+          "sourceBlob": "3c33a2b9c4909abdf807df22429e51a990b18830",
+          "integratedBlob": "3c33a2b9c4909abdf807df22429e51a990b18830"
+        },
+        {
+          "path": "scripts/build-handdrawn-cards-20261017-half2.mjs",
+          "sourceBlob": "37e0ef2b1a9cae408ae2ddd07788b2d43ee335b1",
+          "integratedBlob": "37e0ef2b1a9cae408ae2ddd07788b2d43ee335b1"
+        },
+        {
+          "path": "scripts/build-handdrawn-cards-20261017.mjs",
+          "sourceBlob": "ee7f4ffef0b9afc2edfe6125587b2c6819d0aab9",
+          "integratedBlob": "ee7f4ffef0b9afc2edfe6125587b2c6819d0aab9"
+        },
+        {
+          "path": "scripts/handdrawn-provenance.mjs",
+          "sourceBlob": "0d78e9627d4c7d4a59febed36dca8d8a0dd9b6c6",
+          "integratedBlob": "0d78e9627d4c7d4a59febed36dca8d8a0dd9b6c6"
+        },
+        {
+          "path": "scripts/replace-qingchuyulan-art-20261017.mjs",
+          "sourceBlob": "b5edfd1b6e25d4a2048ecd423f06c6e13536ee19",
+          "integratedBlob": "b5edfd1b6e25d4a2048ecd423f06c6e13536ee19"
+        },
+        {
+          "path": "tests/b05-art.test.ts",
+          "sourceBlob": "b4506f042040f22d354b2b191307c2568407c0e4",
+          "integratedBlob": "b4506f042040f22d354b2b191307c2568407c0e4"
+        },
+        {
+          "path": "tests/handdrawn-art.test.ts",
+          "sourceBlob": "202b7913683c35980fdccc565b129ff8482a77a3",
+          "integratedBlob": "202b7913683c35980fdccc565b129ff8482a77a3"
+        },
+        {
+          "path": "tests/handdrawn-provenance.test.mjs",
+          "sourceBlob": "f5a1c9cdf7ae295e0b7f89eba62d95c000731779",
+          "integratedBlob": "f5a1c9cdf7ae295e0b7f89eba62d95c000731779"
+        },
+        {
+          "path": "tests/joker-art.test.ts",
+          "sourceBlob": "adbe5a96845b27aae8668c5f0b66c8cfcf0b629e",
+          "integratedBlob": "adbe5a96845b27aae8668c5f0b66c8cfcf0b629e"
+        }
+      ]
+    }
+  ],
+  "priorDevCheckpoint": "658fbaa53785ee43542935d5861540a8f7cb08a0",
+  "prebattleBrowserBindings": [
+    {
+      "path": "src/game/BossPreparationPresentation.ts",
+      "ownerFileSHA256": "c9a37315b80f37b09b27f3cd108a77cdc33dbd398d66840cac0f7e84a2eed582",
+      "integratedGitLF_SHA256": "461cba794c7e45b4a4a89d4100e0ad9bde03ef54ce676df6f4b31a2ee5b2a72f",
+      "integratedCRLF_SHA256": "c9a37315b80f37b09b27f3cd108a77cdc33dbd398d66840cac0f7e84a2eed582",
+      "workingFileExact": true
+    },
+    {
+      "path": "src/game/BlindSelectPresentation.ts",
+      "ownerFileSHA256": "abf21efbf0c5e5a77c2b6b6eb4780ffb3c2dc14e09e52dd01782581c4279767a",
+      "integratedGitLF_SHA256": "801e97caa0eae3478e6214f7e9abe27c028156b81a54673499df7371fb87fd68",
+      "integratedCRLF_SHA256": "abf21efbf0c5e5a77c2b6b6eb4780ffb3c2dc14e09e52dd01782581c4279767a",
+      "workingFileExact": true
+    },
+    {
+      "path": "src/game/OpponentPresentation.ts",
+      "ownerFileSHA256": "a92c0e88f4a0c3f6bcba6245c7129d9542fd7222418c2260c2cf03445ec4bb19",
+      "integratedGitLF_SHA256": "1c6269a05ff68f73e03e23bc2663f65e4f17bf99e330ef42afe3b48a81a03046",
+      "integratedCRLF_SHA256": "a92c0e88f4a0c3f6bcba6245c7129d9542fd7222418c2260c2cf03445ec4bb19",
+      "workingFileExact": true
+    },
+    {
+      "path": "src/game/GameScene.ts",
+      "ownerFileSHA256": "c62c1f3753046ecb74c0a3e0ba0a1f337b356556b3c13644c40260161b646b52",
+      "integratedGitLF_SHA256": "3209219d3d9903846087249d8549d3a73970bc7c15db1d88fea9ae983970a5fa",
+      "integratedCRLF_SHA256": "c62c1f3753046ecb74c0a3e0ba0a1f337b356556b3c13644c40260161b646b52",
+      "workingFileExact": true
+    },
+    {
+      "path": "src/game/ShopScene.ts",
+      "ownerFileSHA256": "06723ab7a057559ab7f656c7d4f5b438f6612c47e33efc40f1d0b879b9dfbeb4",
+      "integratedGitLF_SHA256": "fd217754bfef1b75e720bf5c00c74e1927c83fc33a2a58c2d9aed281c0ff01df",
+      "integratedCRLF_SHA256": "06723ab7a057559ab7f656c7d4f5b438f6612c47e33efc40f1d0b879b9dfbeb4",
+      "workingFileExact": true
+    },
+    {
+      "path": "src/game/ProgramDialog.ts",
+      "ownerFileSHA256": "bbd3cd9bedde5059067f5aefe65cec4c31379e43f56cc5330f80d2f6a5103035",
+      "integratedGitLF_SHA256": "ccfe164305cc0989ac2bcde4d035ce95630e72dec1099e57ff21543cf493908c",
+      "integratedCRLF_SHA256": "bbd3cd9bedde5059067f5aefe65cec4c31379e43f56cc5330f80d2f6a5103035",
+      "workingFileExact": true
+    }
+  ],
+  "bindingCheckNote": "Initial raw Git LF hash comparison failed at BossPreparationPresentation; all six owner hashes are proven exact CRLF working-file hashes and exactly match this worktree. Source/integrated Git blobs separately identical. No file or owner evidence altered.",
+  "sourceChecksReused": {
+    "prebattle": "67b4b2cd:4 files68 directed; final controller/manual-entry changes covered by source final type/build and8 limited native flows; original failures retained.",
+    "art": "2e22aa31 includes2229b4cb and70340cc5:7 files48 related, final type/build/provenance72 current origins,74 originals,165 outputs,16 receipts; scope as source README.",
+    "boundary": "No new full unit suite, browser matrix or natural game. Integration keeps every source incremental blob exact."
+  },
+  "crossSourceFix": {
+    "cause": "New b05 detail808bf2... replaced4ca14f...; climax registry still bound old detail, so same-ID stale guard rejected the source.",
+    "sha": "d2029a560330671a62354c3374cfdfd7a5b2e0e5",
+    "paths": [
+      "public/assets/handdrawn-climax/manifest.json",
+      "public/assets/handdrawn-climax/b05-e4df8afc27d7.webp",
+      "tests/source-stage-art.test.ts"
+    ],
+    "b05": {
+      "id": "b05",
+      "kind": "stage-derivative",
+      "sourcePath": "assets/handdrawn-p08/cards/b05-v3-808bf2fbfd26.detail.webp",
+      "sourceSHA256": "808bf2fbfd262662b2c678e3dfec1ae5d3fb511325f5d62bcef0be50336a3ec7",
+      "path": "assets/handdrawn-climax/b05-e4df8afc27d7.webp",
+      "width": 320,
+      "height": 400,
+      "bytes": 48306,
+      "sha256": "e4df8afc27d757ab552004d29f9499532685c3b0d0c57430627e48993657e5c5",
+      "geometry": {
+        "fit": "inside",
+        "entireSourceSampled": true,
+        "noUpscale": true,
+        "sourceCropPixels": {
+          "left": 0,
+          "top": 0,
+          "width": 615,
+          "height": 768
+        }
+      }
+    },
+    "onlyChangedStageId": "b05",
+    "counts": {
+      "stageDerivatives": 53,
+      "detailReuse": 19,
+      "total": 72,
+      "maxBytes": 98304
+    },
+    "note": "New detail136794B needs its own bounded48306B stage derivative. Original threshold unchanged; count assertion52/20 becomes53/19. Other71 climax entries unchanged. New stage pixels locally viewed, not human acceptance."
+  },
+  "checks": [
+    {
+      "name": "cross-source initial source-stage-art",
+      "status": "FAIL",
+      "exitCode": 1,
+      "testedCommit": "b8da50901363930612134a304a34a78b75ce4747",
+      "tests": 14,
+      "passed": 13,
+      "failed": 1,
+      "log": "checks/prebattle-art-cross-initial.log"
+    },
+    {
+      "name": "affected source-stage-art regression",
+      "status": "PASS",
+      "exitCode": 0,
+      "tests": 14,
+      "log": "checks/prebattle-art-cross-regression.log",
+      "testedState": "b8da5090 plus declared b05 fix and count update, immediately before d2029a56; only test-comment spacing changed afterward; product assets exactly match d2029a56",
+      "boundFinalProductCommit": "d2029a560330671a62354c3374cfdfd7a5b2e0e5"
+    },
+    {
+      "name": "single b05 derivative reproducibility",
+      "status": "PASS",
+      "exitCode": 0,
+      "command": "node scripts/build-climax-source-art.mjs --id b05 --check",
+      "changedStageIDs": [
+        "b05"
+      ],
+      "maxSelectedBytes": 96814,
+      "maxDerivedBytes": 61570
+    },
+    {
+      "name": "typecheck",
+      "status": "PASS",
+      "exitCode": 0,
+      "command": "node node_modules/typescript/bin/tsc --noEmit",
+      "testedCommit": "d2029a560330671a62354c3374cfdfd7a5b2e0e5",
+      "log": "checks/prebattle-art-typecheck.log"
+    },
+    {
+      "name": "production build",
+      "status": "PASS",
+      "exitCode": 0,
+      "command": "node node_modules/vite/bin/vite.js build",
+      "testedCommit": "d2029a560330671a62354c3374cfdfd7a5b2e0e5",
+      "modules": 321,
+      "log": "checks/prebattle-art-build.log",
+      "warning": "Existing chunk>500kB warning retained."
+    },
+    {
+      "name": "full dist budget",
+      "status": "FAIL",
+      "observed": {
+        "testedCommit": "d2029a560330671a62354c3374cfdfd7a5b2e0e5",
+        "scope": "Actual complete local Vite dist directory; includes retained old assets, same assets-runtime aggregate basis. Not a network transfer measurement.",
+        "files": 519,
+        "bytes": 44514019,
+        "budgetBytes": 20000000,
+        "status": "FAIL"
+      },
+      "note": "Known existing aggregate failure, explicitly retained by user scope; no unrelated deletion or budget relaxation."
+    }
+  ],
+  "artProtection": {
+    "otherCurrentRecordsUnchanged": 80,
+    "sourceOriginalSHA256": "11055d52940eecf33d815a82b23f51171480723aaa2983e15edd37e68a6b1e45",
+    "sourceOriginalSize": [
+      1122,
+      1402
+    ],
+    "id": "b05",
+    "displayName": "凤鸣朝阳",
+    "userFilename": "风鸣朝阳.png",
+    "archiveCommit": "70340cc590a22882948490e6276808b9d12cca70",
+    "protectedDiff": [],
+    "compactReminderPreservedFrom": "6a044ee1e21f907212f3464ef7f05b0d7c53b703"
+  },
+  "remaining": [
+    "Full dist44514019B exceeds20000000B; retained old copies included, no cleanup in this batch",
+    "Historical original-art gaps:9 derivatives-only entries; prior72 originals missing11 mappings and61 original files despite receipts; current72 are bound separately",
+    "Source expanded checks retain baseline goods-art2 copy assertion FAILs and public-art-privacy2 Windows EPERM symlink FAILs; no retest or assertion changes in integration",
+    "Integrated natural prebattle/program/updated b05 runtime review, full eye climax, hearing=false, comprehension, physical devices and formal C04/A03/V01/L01 remain",
+    "Unfinished Shop overhaul/HD appreciation/sorting refinements belong next independent batch, not included"
+  ],
+  "publication": {
+    "authorization": "User explicitly requests final67b+2e22 batch normal main push with latest9e015 fixes retained; no wait for next-batch work.",
+    "mode": "Normal dev push then main fast-forward/push if baseline unchanged",
+    "expectedMain": "9e015286d1d223afad0a6e6b2860fcfed1457faf",
+    "releaseCommit": "Delivery commit containing this record; actual full main SHA after successful push is in final receipt.",
+    "restrictions": "No force, CI/domain/deploy or natural long game."
+  }
+}

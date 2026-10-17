@@ -1,5 +1,30 @@
 # 本轮反馈整合回执 · 2026-10-17
 
+## 共用放大与理牌精修整合
+
+基线main `a73d9ec2faae6e537e77a975f02e0a2cef220074`；来源9ec861adce4e8e088d638dc36800ff9cac304ad7和d98b72f2c7a63de0d384a21cd00dbabf58255468已无冲突合入dev/zoom-sort-integration-20261017，最终产品`fb6f699c8ac9d0db9d684ed68f3d6596ccfee9ac`。两路26增量路径与来源blob全部一致；GameScene、ShopScene、规则/数值/存档/音频、public/原图/manifest、包锁与a73保持，完整b05原图、当前hash及48,306B高光不回退。[精确绑定与检查](zoom-sort.json)。已获准普通dev/main合批push，实际远端完整main SHA以成功推送回执为准，不等未完成商店下一批，无CI/域名/部署。
+
+[共用放大来源](../common-art-zoom-2026-10-17/README.md)将CardArtSource/cardArtSource/portraitCardArt、DetailDialog和CardArtZoomModal统一用于72唐宋牌+39工具/升级+12长期物品。按当前注册的精确高清/缩略URL对认图，拒绝旧路径/跨卡混配/机制示意；黑底完整contain、44px关闭/Escape/焦点返回与解码失败重试保留，没有真实高清则不出入口。现有615×768详情被复用，未新增原始更高像素管线；原字节未改。来源152项和10短组件流程/type-build精确复用，源首次重试焦点FAIL及goods-art两条基线旧文案FAIL保留。
+
+[理牌来源](../hand-sort-polish-2026-10-17/README.md)在HandActionControls、SceneView、HandSortButtonVisual仅对三技术ID添两条低对比细短分隔；鼠标纸面/文字2px轻抬、浅底细阴影，固定44px hit不动，触控/失焦/后台/禁用清理，reduced motion位移0，字形按现有字体与crispText光学对齐。原排序/AI、键盘焦点与其他按钮保持，SelectionStageView排除；源35项/构建和有限PC/手机DPR2真实触控排序证据复用，原误判no-op的检查更正按源说明保留。
+
+当前合版只新增[resolver3项](checks/zoom-sort-resolver-cross.log)：实际现行72注册对包含b05-v3新路径/完整hash，并遍历39/12资源及拒绝过期/混配；配合manifest逐blob等于a73，不需要改resolver或新图。[类型](checks/zoom-sort-typecheck.log)与[323模块构建](checks/zoom-sort-build.log)通过，原大chunk警告保留。不重跑152/35或新浏览器矩阵，不机械相加检查数。来源放大4产品文件、理牌3产品文件指纹均可匹配；理牌报告还记录其9e015的GameScene浏览器上下文，与现a73/67b不同，JSON明确区分，不能把源旧牌桌短流程称当前合版自然/浏览器复测。
+
+已更新现有计划/逐项表，不宣称新商店布局/重排/购后流程完成；该路仍由01a148ba接线且不纳入本批。完整dist519文件/44,518,174B仍超20,000,000B，历史图源缺证与源基线FAIL按原回执开放。本批图像完整性/软件组件检查不代签新b05放大观感、全部123浏览器、真人阅读/听感/物理设备、自然眼神高光或正式门，P08仍in_progress。
+## 战前/新图批最终整合
+
+基线main `9e015286d1d223afad0a6e6b2860fcfed1457faf`；最终产品 `d2029a560330671a62354c3374cfdfd7a5b2e0e5`，分支dev/prebattle-art-integration-20261017。战前67b4b2cdd10ce8b6ffcd1a10f6bdb55a9f6ab865和艺术2e22aa3137db107f508de7dc0b2ee5bbe53c1ece已无冲突合入，两源43个增量路径全部与来源blob一致，6a044秦琼紧凑提醒及9e015购买修复保留。[精确回执/来源绑定](prebattle-art.json)。用户现已明确授权齐源后普通dev/main合批push，覆盖前一dev等待边界；实际完整main SHA以成功推送回执为准，不等新商店/高清鉴赏/理牌精修，也无CI/域名/部署。
+
+[战前来源](../prebattle-flow-2026-10-17/README.md)68项、最终type/build、8条有限短原生流程按精确源码复用：H14节目单的Shop/章节/待战入口、H16规则实际可见记录共享、离店沿原LeaveShop/EnterStage直接入场、未见恢复/主动查规则均已接线；序号/owner/首次入场封口和危险操作确认保留。来源六浏览器hash为CRLF工作字节，当前逐一精确匹配；初次直接比Git LF失败说明及两种hash仍在JSON，未改源报告。不是新合版自然或全Boss/模式验收。
+
+[最终艺术来源](../b05-fengmingchaoyang-2026-10-17/README.md)48项/构建/来源核对复用，含[2229的现行/历史来源分层](../handdrawn-provenance-2026-10-17/README.md)和70340cc5真实原图归档：b05展示名凤鸣朝阳，用户文件风鸣朝阳.png为1122×1402完整PNG，SHA25611055d52…a6b1e45，原字节保留；旧JPEG严格解码已确认截断且保留历史。新contain缩略/详情使用新内容hash URL，其他80条资源记录完全不动。schema v2 currentSource逐一绑定当前72原图，historicalSources明确旧来源；9项derivatives-only及上一代11缺映射/61缺原文件仍未补齐，不把现行来源通过签成全部历史闭合。
+
+必要跨源检查发现新b05详情换图后，高光清单仍指旧详情hash，保护会拒绝该旧绑定。[首轮原FAIL](checks/prebattle-art-cross-initial.log)：14项中13通过/1失败。只用既有build-climax-source-art --id b05重建完整源区域的320×400派生，48,306B、SHA256e4df8afc…657e5c5，绑定新详情808bf2fb…36a3ec7，其他71条高光记录不动；单图--check复现通过。专用派生/详情复用从52/20成为53/19，共72，96KiB/768px阈值完全保持，当前最大选用96,814B；不是扩大传输上限。测试只更新由新图导致的分类数，保全部文件/hash/几何/失效守卫。[仅失败文件14项回归通过](checks/prebattle-art-cross-regression.log)，未重跑68/48或浏览器矩阵。整合查看新派生完整凤凰/朝阳城景及四边，没有重新生成原画，不代签用户观感。
+
+最终清洁产品d2029a56的[类型检查](checks/prebattle-art-typecheck.log)和[321模块构建](checks/prebattle-art-build.log)通过。原回归在提交前执行，之后仅测试注释空格调整，产品资产与最终提交相同；JSON保留准确运行态。本地完整dist **519文件/44,514,019B，高于20,000,000B，FAIL未关闭**，沿assets-runtime全目录含保留旧副本口径，非网络传输测量；源分支替换前已有44,314,529B、新图源分支44,459,864B的超标，当前不删旧图或扩整包瘦身。首屏146项17.01MiB/20MiB是另一解码口径，只按来源48项证据引用，不能抵消整包FAIL。来源扩展检查goods-art两条旧文案断言/public-art-privacy两条Windows EPERM也仍按原FAIL保留，不宣称全量绿。
+
+P08保持in_progress。H14/H16软件实现与同版静态接线齐、H15当前72源绑定已修，但历史缺证/整包预算、新合版自然流程与b05运行观感、未自然触发眼神高光、heard=false/真人理解/物理设备及C04/A03/V01/L01正式门均未自动关闭。
+
 ## dot 自然试玩后的两路小修
 
 本小批基线main `a470da228a85283eabc00811f610ba6a41a38738`，两路正常合并产品 `b1916e6c6b00bdf6635882755b671ce7a4e8892c`，分支 `dev/dot-followup-integration-20261017`，无冲突。两来源26个增量文件全部逐blob相同；复用来源31项与60项，不新增/相加重复单测或浏览器矩阵；只补整合类型/321模块生产构建通过。[本小批精确绑定/检查/实测回执](dot-followup.json)、[类型](checks/dot-followup-typecheck.log)、[构建](checks/dot-followup-build.log)。现有大chunk警告保留，规则/数值/存档/GameScene/音频/public/包锁零改动。按最新授权正常dev/main合入push，实际完整main SHA以最终成功推送回执为准。
