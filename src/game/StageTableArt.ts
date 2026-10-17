@@ -35,9 +35,6 @@ export function drawStageTableArt(scene:Phaser.Scene,view:SceneView,characterId:
  }
  sheet('surface',plan.surface,T.jadeSoft,T.jade,true);
  sheet('program',plan.program,T.paper,T.brass);
- sheet('rack',plan.rack,T.paper,T.brass);
- sheet('hand',plan.hand,T.paperLight,T.brass,true);
- sheet('stage',plan.stage,T.paperLight,T.jade,true);
  const key=selectionPortraitKey(characterId),box=plan.portrait;
  if(box){
   const holder=view.add(scene.add.container(0,0).setName('table-art/character-holder'));

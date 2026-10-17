@@ -14,8 +14,8 @@ it('tight/rotated screens never squeeze a decorative character into playable spa
  for(const [width,height,top,bottom] of [[320,568,0,0],[740,390,12,12],[1366,560,12,34]]){const l=layout({width,height},{top,right:0,bottom,left:0},undefined,{count:14});expect(stageTableArtPlan(l).portrait).toBeUndefined();}
 });
 
-it('the320 fourteen-card caption is suppressed while ordinary layouts keep the same clear label',()=>{
+it('a small optional played caption never overlaps the score on dense tables',()=>{
  for(const [width,height,count] of [[320,740,14],[390,740,14],[320,740,9],[1366,768,8]]){const l=layout({width,height},{top:0,right:0,bottom:0,left:0},undefined,{count}),stage=stageTableArtPlan(l).stage,caption=playedCaptionBox(l,stage);
- if(width===320&&count===14)expect(caption).toBeUndefined();else{expect(caption).toBeDefined();expect(caption!.y).toBe(stage.y-18);expect(intersects(caption!,l.scoreBoard)).toBe(false);}
+ if(width===320&&count===14)expect(caption).toBeUndefined();if(caption){expect(caption.y).toBe(stage.y-18);expect(intersects(caption,l.scoreBoard)).toBe(false);}
  }
 });

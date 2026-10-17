@@ -85,7 +85,7 @@ function capacityLayout(viewport:{width:number;height:number},safe:Insets,reques
     return {visible,visual:box(cardX,rowY+22,cardWidth,cardHeight),hit:box(cardX,rowY,Math.min(cardWidth,rowLast?cardWidth:pitch||cardWidth),rowHeight)};
   });
   const handNavigation={previous:box(hand.x,hand.y+(hand.height-44)/2,44,44),next:box(hand.x+hand.width-44,hand.y+(hand.height-44)/2,44,44)};
-  const slotGap=portrait?8:14,slotWidth=Math.min(shortLandscape?34:landscape?48:portrait?90:104,(jokers.width-4*slotGap)/5),rackWidth=5*slotWidth+4*slotGap;
+  const slotGap=portrait?12:14,slotWidth=Math.min(shortLandscape?34:landscape?48:portrait?90:104,(jokers.width-4*slotGap)/5),rackWidth=5*slotWidth+4*slotGap;
   const slots=Array.from({length:5},(_,i)=>box(landscape?jokers.x+i*jokers.width/5+2:jokers.x+(jokers.width-rackWidth)/2+i*(slotWidth+slotGap),jokers.y,slotWidth,jokers.height));
   // Short horizontal screens keep the illustration vertical and its readable labels beside it.
   const jokerLabels=landscape?slots.map((slot,i)=>box(slot.x+slot.width+6,jokers.y,jokers.width/5-slot.width-12,jokers.height)):slots;
@@ -119,11 +119,11 @@ export function layout(viewport:{width:number;height:number},safe:Insets,request
     const actionW=portrait?mainW:Math.min(480,mainW),actionX=mainX+(mainW-actionW)/2;
     l.actions=box(actionX,l.status.y-60,actionW,56);
     l.hand=box(mainX,l.actions.y-4-handHeight,mainW,handHeight);
-    const rackWidthLimit=portrait?64:80;
-    l.jokers=box(mainX,portrait?l.hud.y+54:safe.top+64,mainW,rackWidthLimit*1.4);
-    const slotGap=6,slotWidth=Math.min(rackWidthLimit,(mainW-4*slotGap)/5),rackWidth=5*slotWidth+4*slotGap;
+    const rackWidthLimit=portrait?rows===2?60:64:104;
+    l.jokers=box(mainX,portrait?l.hud.y+58:safe.top+64,mainW,rackWidthLimit*1.4);
+    const slotGap=portrait?12:36,slotWidth=Math.min(rackWidthLimit,(mainW-4*slotGap)/5),rackWidth=5*slotWidth+4*slotGap;
     l.slots=Array.from({length:5},(_,i)=>box(mainX+(mainW-rackWidth)/2+i*(slotWidth+slotGap),l.jokers.y,slotWidth,slotWidth*1.4));l.jokerLabels=l.slots;
-    l.scoreBoard=portrait?box(mainX,l.jokers.y+91.6,mainW,Math.min(rows===2?120:132,scoreBudget)):box(x,l.hud.y+l.hud.height+12,224,164);
+    l.scoreBoard=portrait?box(mainX,l.jokers.y+slotWidth*1.4+8,mainW,Math.max(108,Math.min(rows===2?120:132,scoreBudget)-6)):box(x,l.hud.y+l.hud.height+12,224,164);
     const playedTop=portrait?l.scoreBoard.y+l.scoreBoard.height+20:l.jokers.y+l.jokers.height+22.4;
     l.playedArea=box(mainX,playedTop,mainW,l.hand.y-4-playedTop);
     l.preview=portrait?box(mainX,l.scoreBoard.y,mainW,l.hand.y-4-l.scoreBoard.y):l.playedArea;
