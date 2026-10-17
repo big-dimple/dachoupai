@@ -1,0 +1,1113 @@
+{
+  "version": "after",
+  "heard": false,
+  "scope": "Same existing controlled legal saved trace -> numberImpact -> actual AudioEngine, real OfflineAudioContext with production buses/compressor/ceiling. Audio-only prescribed scoreBeat arrivals; not natural acquisition, GameScene/action-peak recording, human audition or physical device.",
+  "sampleRate": 24000,
+  "duration": 10.862541666666667,
+  "settings": {
+    "music": 0,
+    "sfx": 0.8
+  },
+  "segments": [
+    {
+      "label": "simple",
+      "start": 0.25,
+      "end": 0.6950000000000001,
+      "speed": 1,
+      "finalScore": "27",
+      "events": 1,
+      "unchanged": true,
+      "peak": 0.17926055192947388,
+      "rms": 0.011015683877093299,
+      "clipped": 0
+    },
+    {
+      "label": "sources",
+      "start": 1.395,
+      "end": 6.175000000000001,
+      "speed": 1,
+      "finalScore": "2095",
+      "events": 8,
+      "unchanged": true,
+      "peak": 0.3216536343097687,
+      "rms": 0.025917867303283448,
+      "clipped": 0
+    },
+    {
+      "label": "late-4x",
+      "start": 6.875000000000001,
+      "end": 9.862500000000002,
+      "speed": 4,
+      "finalScore": "5480485",
+      "events": 20,
+      "unchanged": true,
+      "peak": 0.34063875675201416,
+      "rms": 0.050901840660311615,
+      "clipped": 0
+    }
+  ],
+  "hits": [
+    {
+      "eventId": "controlled/score-energy/ordinary/hand/controlled/score-energy/ordinary/command/4/event/1",
+      "segment": "simple",
+      "phase": "onCardScore",
+      "operation": "add-heat",
+      "sourceType": "card",
+      "sourceInstanceId": "spades-2",
+      "sourceDefinitionId": "rank-7",
+      "targetCardId": "spades-2",
+      "retriggerDepth": 0,
+      "kind": "add",
+      "arrival": 0.416,
+      "durationMs": 210,
+      "layers": [
+        {
+          "sample": "impactWood_light_000",
+          "rate": 0.8999999761581421,
+          "start": 0.416,
+          "end": 0.504,
+          "peak": 0.15625305098631817
+        },
+        {
+          "sample": "impactBell_heavy_003",
+          "rate": 0.7649999856948853,
+          "start": 0.43,
+          "end": 0.495,
+          "peak": 0.0433691188384837
+        }
+      ],
+      "activeNumeric": 1
+    },
+    {
+      "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/1",
+      "segment": "sources",
+      "phase": "onCardScore",
+      "operation": "add-heat",
+      "sourceType": "card",
+      "sourceInstanceId": "spades-2",
+      "sourceDefinitionId": "rank-7",
+      "targetCardId": "spades-2",
+      "retriggerDepth": 0,
+      "kind": "add",
+      "arrival": 1.5626666666666666,
+      "durationMs": 210,
+      "layers": [
+        {
+          "sample": "impactWood_light_001",
+          "rate": 0.8999999761581421,
+          "start": 1.5626666666666666,
+          "end": 1.6506666666666667,
+          "peak": 0.17186189118611886
+        },
+        {
+          "sample": "impactBell_heavy_003",
+          "rate": 0.7649999856948853,
+          "start": 1.5766666666666667,
+          "end": 1.6416666666666666,
+          "peak": 0.0433691188384837
+        }
+      ],
+      "activeNumeric": 1
+    },
+    {
+      "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/2",
+      "segment": "sources",
+      "phase": "onCardScore",
+      "operation": "add-heat",
+      "sourceType": "card",
+      "sourceInstanceId": "spades-3",
+      "sourceDefinitionId": "rank-7",
+      "targetCardId": "spades-3",
+      "retriggerDepth": 0,
+      "kind": "add",
+      "arrival": 2.005333333333333,
+      "durationMs": 210,
+      "layers": [
+        {
+          "sample": "impactWood_light_000",
+          "rate": 1.0102158784866333,
+          "start": 2.005333333333333,
+          "end": 2.110333333333333,
+          "peak": 0.16276359477741476
+        },
+        {
+          "sample": "impactSoft_heavy_000",
+          "rate": 0.8081727027893066,
+          "start": 2.023333333333333,
+          "end": 2.098333333333333,
+          "peak": 0.059175430798329494
+        },
+        {
+          "sample": "impactBell_heavy_003",
+          "rate": 0.8586834669113159,
+          "start": 2.033333333333333,
+          "end": 2.0883333333333334,
+          "peak": 0.0433691188384837
+        }
+      ],
+      "activeNumeric": 1
+    },
+    {
+      "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/3",
+      "segment": "sources",
+      "phase": "onCardScore",
+      "operation": "add-heat",
+      "sourceType": "card",
+      "sourceInstanceId": "spades-4",
+      "sourceDefinitionId": "rank-9",
+      "targetCardId": "spades-4",
+      "retriggerDepth": 0,
+      "kind": "add",
+      "arrival": 2.453333333333333,
+      "durationMs": 210,
+      "layers": [
+        {
+          "sample": "impactWood_heavy_000",
+          "rate": 1.133928894996643,
+          "start": 2.453333333333333,
+          "end": 2.5483333333333333,
+          "peak": 0.12356384597973441
+        },
+        {
+          "sample": "impactSoft_heavy_000",
+          "rate": 0.9071431756019592,
+          "start": 2.473333333333333,
+          "end": 2.5683333333333334,
+          "peak": 0.09862571799721583
+        },
+        {
+          "sample": "card-slide-1",
+          "rate": 1.133928894996643,
+          "start": 2.4883333333333333,
+          "end": 2.5483333333333333,
+          "peak": 0.04151184775224934
+        }
+      ],
+      "activeNumeric": 1
+    },
+    {
+      "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/4",
+      "segment": "sources",
+      "phase": "onCardScore",
+      "operation": "add-heat",
+      "sourceType": "card",
+      "sourceInstanceId": "spades-5",
+      "sourceDefinitionId": "rank-9",
+      "targetCardId": "spades-5",
+      "retriggerDepth": 0,
+      "kind": "add",
+      "arrival": 2.896,
+      "durationMs": 210,
+      "layers": [
+        {
+          "sample": "impactWood_light_000",
+          "rate": 0.8999999761581421,
+          "start": 2.896,
+          "end": 2.984,
+          "peak": 0.15625305098631817
+        },
+        {
+          "sample": "impactBell_heavy_003",
+          "rate": 0.7649999856948853,
+          "start": 2.9099999999999997,
+          "end": 2.9749999999999996,
+          "peak": 0.0433691188384837
+        }
+      ],
+      "activeNumeric": 1
+    },
+    {
+      "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/5",
+      "segment": "sources",
+      "phase": "jokerScore",
+      "operation": "multiply-multiplier",
+      "sourceType": "joker",
+      "sourceInstanceId": "controlled/source/0",
+      "sourceDefinitionId": "f09",
+      "retriggerDepth": 0,
+      "kind": "multiply",
+      "arrival": 3.456,
+      "durationMs": 360,
+      "layers": [
+        {
+          "sample": "impactGlass_heavy_002",
+          "rate": 0.9496029019355774,
+          "start": 3.456,
+          "end": 3.531,
+          "peak": 0.19327099002766432
+        },
+        {
+          "sample": "impactSoft_heavy_000",
+          "rate": 0.7879683375358582,
+          "start": 3.456,
+          "end": 3.596,
+          "peak": 0.15780114879554533
+        },
+        {
+          "sample": "impactGlass_heavy_002",
+          "rate": 0.8485813140869141,
+          "start": 3.491,
+          "end": 3.536,
+          "peak": 0.06442366334255477
+        }
+      ],
+      "activeNumeric": 2
+    },
+    {
+      "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/6",
+      "segment": "sources",
+      "phase": "jokerScore",
+      "operation": "multiply-multiplier",
+      "sourceType": "joker",
+      "sourceInstanceId": "controlled/source/1",
+      "sourceDefinitionId": "f06",
+      "retriggerDepth": 0,
+      "kind": "multiply",
+      "arrival": 4.208,
+      "durationMs": 360,
+      "layers": [
+        {
+          "sample": "impactGlass_heavy_002",
+          "rate": 1.0658931732177734,
+          "start": 4.208,
+          "end": 4.283,
+          "peak": 0.19327099002766432
+        },
+        {
+          "sample": "impactSoft_heavy_000",
+          "rate": 0.8844645619392395,
+          "start": 4.208,
+          "end": 4.348,
+          "peak": 0.15780114879554533
+        },
+        {
+          "sample": "impactGlass_heavy_002",
+          "rate": 0.9525003433227539,
+          "start": 4.243,
+          "end": 4.288,
+          "peak": 0.06442366334255477
+        }
+      ],
+      "activeNumeric": 2
+    },
+    {
+      "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/7",
+      "segment": "sources",
+      "phase": "jokerScore",
+      "operation": "multiply-multiplier",
+      "sourceType": "joker",
+      "sourceInstanceId": "controlled/source/2",
+      "sourceDefinitionId": "e08",
+      "retriggerDepth": 0,
+      "kind": "multiply",
+      "arrival": 4.96,
+      "durationMs": 360,
+      "layers": [
+        {
+          "sample": "impactGlass_heavy_002",
+          "rate": 0.8460000157356262,
+          "start": 4.96,
+          "end": 5.035,
+          "peak": 0.19327099002766432
+        },
+        {
+          "sample": "impactSoft_heavy_000",
+          "rate": 0.7020000219345093,
+          "start": 4.96,
+          "end": 5.1,
+          "peak": 0.15780114879554533
+        },
+        {
+          "sample": "impactGlass_heavy_002",
+          "rate": 0.7559999823570251,
+          "start": 4.995,
+          "end": 5.04,
+          "peak": 0.06442366334255477
+        }
+      ],
+      "activeNumeric": 2
+    },
+    {
+      "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/9",
+      "segment": "sources",
+      "phase": "characterScore",
+      "operation": "multiply-multiplier",
+      "sourceType": "character",
+      "sourceInstanceId": "controlled/score-energy/multiply/character",
+      "sourceDefinitionId": "amo",
+      "retriggerDepth": 0,
+      "kind": "multiply",
+      "arrival": 5.706666666666667,
+      "durationMs": 360,
+      "layers": [
+        {
+          "sample": "impactGlass_heavy_002",
+          "rate": 0.9496029019355774,
+          "start": 5.706666666666667,
+          "end": 5.781666666666667,
+          "peak": 0.19327099002766432
+        },
+        {
+          "sample": "impactSoft_heavy_000",
+          "rate": 0.7879683375358582,
+          "start": 5.706666666666667,
+          "end": 5.846666666666667,
+          "peak": 0.15780114879554533
+        },
+        {
+          "sample": "impactGlass_heavy_002",
+          "rate": 0.8485813140869141,
+          "start": 5.741666666666667,
+          "end": 5.786666666666667,
+          "peak": 0.06442366334255477
+        }
+      ],
+      "activeNumeric": 2
+    },
+    {
+      "eventId": "save/final/standard/0/hand/save/final/standard/0/command/4/event/2",
+      "segment": "late-4x",
+      "phase": "onCardScore",
+      "operation": "add-heat",
+      "sourceType": "card",
+      "sourceInstanceId": "save/final/card/3",
+      "sourceDefinitionId": "rank-14",
+      "targetCardId": "save/final/card/3",
+      "retriggerDepth": 0,
+      "kind": "add",
+      "arrival": 6.917333333333334,
+      "durationMs": 52.5,
+      "layers": [
+        {
+          "sample": "impactWood_light_001",
+          "rate": 0.8999999761581421,
+          "start": 6.917333333333334,
+          "end": 6.969833333333334,
+          "peak": 0.17186189118611886
+        },
+        {
+          "sample": "impactBell_heavy_003",
+          "rate": 0.7649999856948853,
+          "start": 6.925685606060607,
+          "end": 6.964464015151516,
+          "peak": 0.0433691188384837
+        }
+      ],
+      "activeNumeric": 1
+    },
+    {
+      "eventId": "save/final/standard/0/hand/save/final/standard/0/command/4/event/4",
+      "segment": "late-4x",
+      "phase": "onCardScore",
+      "operation": "multiply-multiplier",
+      "sourceType": "card",
+      "sourceInstanceId": "save/final/card/3",
+      "sourceDefinitionId": "save/final/card/3",
+      "targetCardId": "save/final/card/3",
+      "retriggerDepth": 0,
+      "kind": "multiply",
+      "arrival": 7.061333333333334,
+      "durationMs": 90,
+      "layers": [
+        {
+          "sample": "impactGlass_heavy_002",
+          "rate": 0.9496029019355774,
+          "start": 7.061333333333334,
+          "end": 7.1095476190476194,
+          "peak": 0.19327099002766432
+        },
+        {
+          "sample": "impactSoft_heavy_000",
+          "rate": 0.7879683375358582,
+          "start": 7.061333333333334,
+          "end": 7.1513333333333335,
+          "peak": 0.15780114879554533
+        },
+        {
+          "sample": "impactGlass_heavy_002",
+          "rate": 0.8485813140869141,
+          "start": 7.083833333333334,
+          "end": 7.118833333333334,
+          "peak": 0.06442366334255477
+        }
+      ],
+      "activeNumeric": 2
+    },
+    {
+      "eventId": "save/final/standard/0/hand/save/final/standard/0/command/4/event/5",
+      "segment": "late-4x",
+      "phase": "onCardScore",
+      "operation": "add-heat",
+      "sourceType": "card",
+      "sourceInstanceId": "save/final/card/3",
+      "sourceDefinitionId": "rank-14",
+      "targetCardId": "save/final/card/3",
+      "retriggerDepth": 1,
+      "kind": "add",
+      "arrival": 7.216,
+      "durationMs": 52.5,
+      "layers": [
+        {
+          "sample": "impactWood_heavy_000",
+          "rate": 1.133928894996643,
+          "start": 7.216,
+          "end": 7.2593695652173915,
+          "peak": 0.12356384597973441
+        },
+        {
+          "sample": "impactSoft_heavy_000",
+          "rate": 0.9071431756019592,
+          "start": 7.225130434782609,
+          "end": 7.2685,
+          "peak": 0.09862571799721583
+        },
+        {
+          "sample": "card-slide-2",
+          "rate": 1.133928894996643,
+          "start": 7.231978260869566,
+          "end": 7.266978260869566,
+          "peak": 0.03841192985301788
+        }
+      ],
+      "activeNumeric": 1
+    },
+    {
+      "eventId": "save/final/standard/0/hand/save/final/standard/0/command/4/event/6",
+      "segment": "late-4x",
+      "phase": "onCardScore",
+      "operation": "multiply-multiplier",
+      "sourceType": "card",
+      "sourceInstanceId": "save/final/card/3",
+      "sourceDefinitionId": "save/final/card/3",
+      "targetCardId": "save/final/card/3",
+      "retriggerDepth": 1,
+      "kind": "multiply",
+      "arrival": 7.36,
+      "durationMs": 90,
+      "layers": [
+        {
+          "sample": "impactGlass_heavy_002",
+          "rate": 0.8460000157356262,
+          "start": 7.36,
+          "end": 7.408214285714286,
+          "peak": 0.19327099002766432
+        },
+        {
+          "sample": "impactSoft_heavy_000",
+          "rate": 0.7020000219345093,
+          "start": 7.36,
+          "end": 7.45,
+          "peak": 0.15780114879554533
+        },
+        {
+          "sample": "impactGlass_heavy_002",
+          "rate": 0.7559999823570251,
+          "start": 7.3825,
+          "end": 7.4175,
+          "peak": 0.06442366334255477
+        }
+      ],
+      "activeNumeric": 2
+    },
+    {
+      "eventId": "save/final/standard/0/hand/save/final/standard/0/command/4/event/7",
+      "segment": "late-4x",
+      "phase": "onCardScore",
+      "operation": "add-heat",
+      "sourceType": "card",
+      "sourceInstanceId": "save/final/card/8",
+      "sourceDefinitionId": "rank-14",
+      "targetCardId": "save/final/card/8",
+      "retriggerDepth": 0,
+      "kind": "add",
+      "arrival": 7.514666666666667,
+      "durationMs": 52.5,
+      "layers": [
+        {
+          "sample": "impactWood_light_001",
+          "rate": 1.0102158784866333,
+          "start": 7.514666666666667,
+          "end": 7.567166666666667,
+          "peak": 0.17902280331887382
+        },
+        {
+          "sample": "impactSoft_heavy_000",
+          "rate": 0.8081727027893066,
+          "start": 7.523666666666667,
+          "end": 7.561166666666667,
+          "peak": 0.059175430798329494
+        },
+        {
+          "sample": "impactBell_heavy_003",
+          "rate": 0.8586834669113159,
+          "start": 7.528666666666667,
+          "end": 7.563666666666667,
+          "peak": 0.0433691188384837
+        }
+      ],
+      "activeNumeric": 1
+    },
+    {
+      "eventId": "save/final/standard/0/hand/save/final/standard/0/command/4/event/9",
+      "segment": "late-4x",
+      "phase": "onCardScore",
+      "operation": "multiply-multiplier",
+      "sourceType": "card",
+      "sourceInstanceId": "save/final/card/8",
+      "sourceDefinitionId": "save/final/card/8",
+      "targetCardId": "save/final/card/8",
+      "retriggerDepth": 0,
+      "kind": "multiply",
+      "arrival": 7.658666666666667,
+      "durationMs": 90,
+      "layers": [
+        {
+          "sample": "impactGlass_heavy_002",
+          "rate": 1.0658931732177734,
+          "start": 7.658666666666667,
+          "end": 7.706880952380953,
+          "peak": 0.19327099002766432
+        },
+        {
+          "sample": "impactSoft_heavy_000",
+          "rate": 0.8844645619392395,
+          "start": 7.658666666666667,
+          "end": 7.748666666666667,
+          "peak": 0.15780114879554533
+        },
+        {
+          "sample": "impactGlass_heavy_002",
+          "rate": 0.9525003433227539,
+          "start": 7.681166666666667,
+          "end": 7.716166666666667,
+          "peak": 0.06442366334255477
+        }
+      ],
+      "activeNumeric": 2
+    },
+    {
+      "eventId": "save/final/standard/0/hand/save/final/standard/0/command/4/event/10",
+      "segment": "late-4x",
+      "phase": "onCardScore",
+      "operation": "add-heat",
+      "sourceType": "card",
+      "sourceInstanceId": "save/final/card/8",
+      "sourceDefinitionId": "rank-14",
+      "targetCardId": "save/final/card/8",
+      "retriggerDepth": 1,
+      "kind": "add",
+      "arrival": 7.8133333333333335,
+      "durationMs": 52.5,
+      "layers": [
+        {
+          "sample": "impactWood_light_000",
+          "rate": 0.8999999761581421,
+          "start": 7.8133333333333335,
+          "end": 7.865833333333334,
+          "peak": 0.15625305098631817
+        },
+        {
+          "sample": "impactBell_heavy_003",
+          "rate": 0.7649999856948853,
+          "start": 7.821685606060607,
+          "end": 7.860464015151516,
+          "peak": 0.0433691188384837
+        }
+      ],
+      "activeNumeric": 1
+    },
+    {
+      "eventId": "save/final/standard/0/hand/save/final/standard/0/command/4/event/11",
+      "segment": "late-4x",
+      "phase": "onCardScore",
+      "operation": "multiply-multiplier",
+      "sourceType": "card",
+      "sourceInstanceId": "save/final/card/8",
+      "sourceDefinitionId": "save/final/card/8",
+      "targetCardId": "save/final/card/8",
+      "retriggerDepth": 1,
+      "kind": "multiply",
+      "arrival": 7.957333333333334,
+      "durationMs": 90,
+      "layers": [
+        {
+          "sample": "impactGlass_heavy_002",
+          "rate": 0.9496029019355774,
+          "start": 7.957333333333334,
+          "end": 8.005547619047618,
+          "peak": 0.19327099002766432
+        },
+        {
+          "sample": "impactSoft_heavy_000",
+          "rate": 0.7879683375358582,
+          "start": 7.957333333333334,
+          "end": 8.047333333333334,
+          "peak": 0.15780114879554533
+        },
+        {
+          "sample": "impactGlass_heavy_002",
+          "rate": 0.8485813140869141,
+          "start": 7.979833333333334,
+          "end": 8.014833333333334,
+          "peak": 0.06442366334255477
+        }
+      ],
+      "activeNumeric": 2
+    },
+    {
+      "eventId": "save/final/standard/0/hand/save/final/standard/0/command/4/event/12",
+      "segment": "late-4x",
+      "phase": "onCardScore",
+      "operation": "add-heat",
+      "sourceType": "card",
+      "sourceInstanceId": "save/final/card/14",
+      "sourceDefinitionId": "rank-14",
+      "targetCardId": "save/final/card/14",
+      "retriggerDepth": 0,
+      "kind": "add",
+      "arrival": 8.112,
+      "durationMs": 52.5,
+      "layers": [
+        {
+          "sample": "impactWood_heavy_000",
+          "rate": 1.133928894996643,
+          "start": 8.112,
+          "end": 8.155369565217391,
+          "peak": 0.12356384597973441
+        },
+        {
+          "sample": "impactSoft_heavy_000",
+          "rate": 0.9071431756019592,
+          "start": 8.121130434782609,
+          "end": 8.1645,
+          "peak": 0.09862571799721583
+        },
+        {
+          "sample": "card-slide-3",
+          "rate": 1.133928894996643,
+          "start": 8.127978260869565,
+          "end": 8.162978260869565,
+          "peak": 0.044640596237627964
+        }
+      ],
+      "activeNumeric": 1
+    },
+    {
+      "eventId": "save/final/standard/0/hand/save/final/standard/0/command/4/event/14",
+      "segment": "late-4x",
+      "phase": "onCardScore",
+      "operation": "multiply-multiplier",
+      "sourceType": "card",
+      "sourceInstanceId": "save/final/card/14",
+      "sourceDefinitionId": "save/final/card/14",
+      "targetCardId": "save/final/card/14",
+      "retriggerDepth": 0,
+      "kind": "multiply",
+      "arrival": 8.256,
+      "durationMs": 90,
+      "layers": [
+        {
+          "sample": "impactGlass_heavy_002",
+          "rate": 0.8460000157356262,
+          "start": 8.256,
+          "end": 8.304214285714286,
+          "peak": 0.19327099002766432
+        },
+        {
+          "sample": "impactSoft_heavy_000",
+          "rate": 0.7020000219345093,
+          "start": 8.256,
+          "end": 8.346,
+          "peak": 0.15780114879554533
+        },
+        {
+          "sample": "impactGlass_heavy_002",
+          "rate": 0.7559999823570251,
+          "start": 8.278500000000001,
+          "end": 8.313500000000001,
+          "peak": 0.06442366334255477
+        }
+      ],
+      "activeNumeric": 2
+    },
+    {
+      "eventId": "save/final/standard/0/hand/save/final/standard/0/command/4/event/15",
+      "segment": "late-4x",
+      "phase": "onCardScore",
+      "operation": "add-heat",
+      "sourceType": "card",
+      "sourceInstanceId": "save/final/card/14",
+      "sourceDefinitionId": "rank-14",
+      "targetCardId": "save/final/card/14",
+      "retriggerDepth": 1,
+      "kind": "add",
+      "arrival": 8.410666666666666,
+      "durationMs": 52.5,
+      "layers": [
+        {
+          "sample": "impactWood_light_000",
+          "rate": 1.0102158784866333,
+          "start": 8.410666666666666,
+          "end": 8.463166666666666,
+          "peak": 0.16276359477741476
+        },
+        {
+          "sample": "impactSoft_heavy_000",
+          "rate": 0.8081727027893066,
+          "start": 8.419666666666666,
+          "end": 8.457166666666666,
+          "peak": 0.059175430798329494
+        },
+        {
+          "sample": "impactBell_heavy_003",
+          "rate": 0.8586834669113159,
+          "start": 8.424666666666665,
+          "end": 8.459666666666665,
+          "peak": 0.0433691188384837
+        }
+      ],
+      "activeNumeric": 1
+    },
+    {
+      "eventId": "save/final/standard/0/hand/save/final/standard/0/command/4/event/16",
+      "segment": "late-4x",
+      "phase": "onCardScore",
+      "operation": "multiply-multiplier",
+      "sourceType": "card",
+      "sourceInstanceId": "save/final/card/14",
+      "sourceDefinitionId": "save/final/card/14",
+      "targetCardId": "save/final/card/14",
+      "retriggerDepth": 1,
+      "kind": "multiply",
+      "arrival": 8.554666666666666,
+      "durationMs": 90,
+      "layers": [
+        {
+          "sample": "impactGlass_heavy_002",
+          "rate": 1.0658931732177734,
+          "start": 8.554666666666666,
+          "end": 8.602880952380952,
+          "peak": 0.19327099002766432
+        },
+        {
+          "sample": "impactSoft_heavy_000",
+          "rate": 0.8844645619392395,
+          "start": 8.554666666666666,
+          "end": 8.644666666666666,
+          "peak": 0.15780114879554533
+        },
+        {
+          "sample": "impactGlass_heavy_002",
+          "rate": 0.9525003433227539,
+          "start": 8.577166666666667,
+          "end": 8.612166666666667,
+          "peak": 0.06442366334255477
+        }
+      ],
+      "activeNumeric": 2
+    },
+    {
+      "eventId": "save/final/standard/0/hand/save/final/standard/0/command/4/event/17",
+      "segment": "late-4x",
+      "phase": "onCardScore",
+      "operation": "add-heat",
+      "sourceType": "card",
+      "sourceInstanceId": "save/final/card/0",
+      "sourceDefinitionId": "rank-14",
+      "targetCardId": "save/final/card/0",
+      "retriggerDepth": 0,
+      "kind": "add",
+      "arrival": 8.709333333333333,
+      "durationMs": 52.5,
+      "layers": [
+        {
+          "sample": "impactWood_light_001",
+          "rate": 0.8999999761581421,
+          "start": 8.709333333333333,
+          "end": 8.761833333333334,
+          "peak": 0.17186189118611886
+        },
+        {
+          "sample": "impactBell_heavy_003",
+          "rate": 0.7649999856948853,
+          "start": 8.717685606060606,
+          "end": 8.756464015151515,
+          "peak": 0.0433691188384837
+        }
+      ],
+      "activeNumeric": 1
+    },
+    {
+      "eventId": "save/final/standard/0/hand/save/final/standard/0/command/4/event/19",
+      "segment": "late-4x",
+      "phase": "onCardScore",
+      "operation": "multiply-multiplier",
+      "sourceType": "card",
+      "sourceInstanceId": "save/final/card/0",
+      "sourceDefinitionId": "save/final/card/0",
+      "targetCardId": "save/final/card/0",
+      "retriggerDepth": 0,
+      "kind": "multiply",
+      "arrival": 8.853333333333333,
+      "durationMs": 90,
+      "layers": [
+        {
+          "sample": "impactGlass_heavy_002",
+          "rate": 0.9496029019355774,
+          "start": 8.853333333333333,
+          "end": 8.90154761904762,
+          "peak": 0.19327099002766432
+        },
+        {
+          "sample": "impactSoft_heavy_000",
+          "rate": 0.7879683375358582,
+          "start": 8.853333333333333,
+          "end": 8.943333333333333,
+          "peak": 0.15780114879554533
+        },
+        {
+          "sample": "impactGlass_heavy_002",
+          "rate": 0.8485813140869141,
+          "start": 8.875833333333334,
+          "end": 8.910833333333334,
+          "peak": 0.06442366334255477
+        }
+      ],
+      "activeNumeric": 2
+    },
+    {
+      "eventId": "save/final/standard/0/hand/save/final/standard/0/command/4/event/20",
+      "segment": "late-4x",
+      "phase": "onCardScore",
+      "operation": "add-heat",
+      "sourceType": "card",
+      "sourceInstanceId": "save/final/card/0",
+      "sourceDefinitionId": "rank-14",
+      "targetCardId": "save/final/card/0",
+      "retriggerDepth": 1,
+      "kind": "add",
+      "arrival": 9.008,
+      "durationMs": 52.5,
+      "layers": [
+        {
+          "sample": "impactWood_heavy_000",
+          "rate": 1.133928894996643,
+          "start": 9.008,
+          "end": 9.05136956521739,
+          "peak": 0.12356384597973441
+        },
+        {
+          "sample": "impactSoft_heavy_000",
+          "rate": 0.9071431756019592,
+          "start": 9.017130434782608,
+          "end": 9.0605,
+          "peak": 0.09862571799721583
+        },
+        {
+          "sample": "card-slide-1",
+          "rate": 1.133928894996643,
+          "start": 9.023978260869564,
+          "end": 9.058978260869564,
+          "peak": 0.04151184775224934
+        }
+      ],
+      "activeNumeric": 1
+    },
+    {
+      "eventId": "save/final/standard/0/hand/save/final/standard/0/command/4/event/21",
+      "segment": "late-4x",
+      "phase": "onCardScore",
+      "operation": "multiply-multiplier",
+      "sourceType": "card",
+      "sourceInstanceId": "save/final/card/0",
+      "sourceDefinitionId": "save/final/card/0",
+      "targetCardId": "save/final/card/0",
+      "retriggerDepth": 1,
+      "kind": "multiply",
+      "arrival": 9.152,
+      "durationMs": 90,
+      "layers": [
+        {
+          "sample": "impactGlass_heavy_002",
+          "rate": 0.8460000157356262,
+          "start": 9.152,
+          "end": 9.200214285714285,
+          "peak": 0.19327099002766432
+        },
+        {
+          "sample": "impactSoft_heavy_000",
+          "rate": 0.7020000219345093,
+          "start": 9.152,
+          "end": 9.241999999999999,
+          "peak": 0.15780114879554533
+        },
+        {
+          "sample": "impactGlass_heavy_002",
+          "rate": 0.7559999823570251,
+          "start": 9.1745,
+          "end": 9.2095,
+          "peak": 0.06442366334255477
+        }
+      ],
+      "activeNumeric": 2
+    },
+    {
+      "eventId": "save/final/standard/0/hand/save/final/standard/0/command/4/event/22",
+      "segment": "late-4x",
+      "phase": "onCardScore",
+      "operation": "add-heat",
+      "sourceType": "card",
+      "sourceInstanceId": "save/final/card/17",
+      "sourceDefinitionId": "rank-14",
+      "targetCardId": "save/final/card/17",
+      "retriggerDepth": 0,
+      "kind": "add",
+      "arrival": 9.306666666666667,
+      "durationMs": 52.5,
+      "layers": [
+        {
+          "sample": "impactWood_light_001",
+          "rate": 1.0102158784866333,
+          "start": 9.306666666666667,
+          "end": 9.359166666666667,
+          "peak": 0.17902280331887382
+        },
+        {
+          "sample": "impactSoft_heavy_000",
+          "rate": 0.8081727027893066,
+          "start": 9.315666666666667,
+          "end": 9.353166666666667,
+          "peak": 0.059175430798329494
+        },
+        {
+          "sample": "impactBell_heavy_003",
+          "rate": 0.8586834669113159,
+          "start": 9.320666666666666,
+          "end": 9.355666666666666,
+          "peak": 0.0433691188384837
+        }
+      ],
+      "activeNumeric": 1
+    },
+    {
+      "eventId": "save/final/standard/0/hand/save/final/standard/0/command/4/event/24",
+      "segment": "late-4x",
+      "phase": "onCardScore",
+      "operation": "multiply-multiplier",
+      "sourceType": "card",
+      "sourceInstanceId": "save/final/card/17",
+      "sourceDefinitionId": "save/final/card/17",
+      "targetCardId": "save/final/card/17",
+      "retriggerDepth": 0,
+      "kind": "multiply",
+      "arrival": 9.450666666666667,
+      "durationMs": 90,
+      "layers": [
+        {
+          "sample": "impactGlass_heavy_002",
+          "rate": 1.0658931732177734,
+          "start": 9.450666666666667,
+          "end": 9.498880952380953,
+          "peak": 0.19327099002766432
+        },
+        {
+          "sample": "impactSoft_heavy_000",
+          "rate": 0.8844645619392395,
+          "start": 9.450666666666667,
+          "end": 9.540666666666667,
+          "peak": 0.15780114879554533
+        },
+        {
+          "sample": "impactGlass_heavy_002",
+          "rate": 0.9525003433227539,
+          "start": 9.473166666666668,
+          "end": 9.508166666666668,
+          "peak": 0.06442366334255477
+        }
+      ],
+      "activeNumeric": 2
+    },
+    {
+      "eventId": "save/final/standard/0/hand/save/final/standard/0/command/4/event/25",
+      "segment": "late-4x",
+      "phase": "onCardScore",
+      "operation": "add-heat",
+      "sourceType": "card",
+      "sourceInstanceId": "save/final/card/17",
+      "sourceDefinitionId": "rank-14",
+      "targetCardId": "save/final/card/17",
+      "retriggerDepth": 1,
+      "kind": "add",
+      "arrival": 9.605333333333334,
+      "durationMs": 52.5,
+      "layers": [
+        {
+          "sample": "impactWood_light_000",
+          "rate": 0.8999999761581421,
+          "start": 9.605333333333334,
+          "end": 9.657833333333334,
+          "peak": 0.15625305098631817
+        },
+        {
+          "sample": "impactBell_heavy_003",
+          "rate": 0.7649999856948853,
+          "start": 9.613685606060606,
+          "end": 9.652464015151516,
+          "peak": 0.0433691188384837
+        }
+      ],
+      "activeNumeric": 1
+    },
+    {
+      "eventId": "save/final/standard/0/hand/save/final/standard/0/command/4/event/26",
+      "segment": "late-4x",
+      "phase": "onCardScore",
+      "operation": "multiply-multiplier",
+      "sourceType": "card",
+      "sourceInstanceId": "save/final/card/17",
+      "sourceDefinitionId": "save/final/card/17",
+      "targetCardId": "save/final/card/17",
+      "retriggerDepth": 1,
+      "kind": "multiply",
+      "arrival": 9.749333333333333,
+      "durationMs": 90,
+      "layers": [
+        {
+          "sample": "impactGlass_heavy_002",
+          "rate": 0.9496029019355774,
+          "start": 9.749333333333333,
+          "end": 9.797547619047618,
+          "peak": 0.19327099002766432
+        },
+        {
+          "sample": "impactSoft_heavy_000",
+          "rate": 0.7879683375358582,
+          "start": 9.749333333333333,
+          "end": 9.839333333333332,
+          "peak": 0.15780114879554533
+        },
+        {
+          "sample": "impactGlass_heavy_002",
+          "rate": 0.8485813140869141,
+          "start": 9.771833333333333,
+          "end": 9.806833333333334,
+          "peak": 0.06442366334255477
+        }
+      ],
+      "activeNumeric": 2
+    }
+  ],
+  "peakLayerOverlap": 3,
+  "peak": 0.34063875675201416,
+  "rms": 0.03279432936697137,
+  "clipped": 0,
+  "binding": {
+    "base": "7f40cd1b07d2fac8c0cddfb0860ba79fb27ba5b6",
+    "headAtRender": "7f40cd1b07d2fac8c0cddfb0860ba79fb27ba5b6",
+    "sha256NormalizedLF": {
+      "src/audio/AudioEngine.ts": "da900cc6c5e902ef18fbca634cec28fa85b51373c69275e5e83f335377ebb732",
+      "src/audio/foley.ts": "56a44733f94a08c54722127984934161434895ac42c498862420bc72732cc3c4",
+      "src/audio/mixPolicy.ts": "44cd0ea5121dc2d9feecac951163afe79fd6b3125d9e02b1e7516596aaf506b0"
+    }
+  }
+}

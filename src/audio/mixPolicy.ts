@@ -1,11 +1,15 @@
 import type {FoleyKind} from './foley';
 import {MAX_INTEGER_DIGITS,Rational} from '../domain/rational';
 import type {ScoreTrace} from '../domain/scoreR2';
+import {actualMultiplier} from '../domain/openingShow';
 /** Voices overlapping in time, including already scheduled tails. Future deal
  * trains retain their beats; the existing 32-node retention limit is a backstop. */
 export const EFFECT_VOICE_BUDGET = 16;
 export const ACCENT_TAIL_FLOOR = .38;
-// The octave step multiplies each recipe's original pitch (up to 1.15x).
+// Numeric arrivals share this cap across all three materials and multiplication.
+export const SCORE_VOICE_BUDGET = 6;
+export const SCORE_GAIN_BUDGET = .12; // Sum of admitted pre-bus layer gains.
+// Decoder safety ceiling for all material/UI callers; numeric rates stay below1.14.
 export const MAX_RECORDED_RATE = 2.3;
 /** Only called at the committed final award. Never infer an amount from tier,
  * accumulated heat, a target, or provisional multiplication. */
@@ -17,18 +21,16 @@ export function awardForScore(presentation:object):FoleyKind {
   const digits=score.replace(/^0+/, '').length;
   return digits>=13?'awardTrillion':digits>=9?'awardHundredMillion':digits>=7?'awardMillion':'award';
 }
-/** Eight finite pitch steps, chain 0..7; the last step is one octave (2x).
- * Recipe layer rates retain their timbre within MAX_RECORDED_RATE. */
+/** Legacy material callers also stay in a narrow register, never a high octave. */
 export function chainRate(chain:number):number {
-  const c = Math.max(0, Math.min(7, Number.isFinite(chain) ? Math.floor(chain) : 0));
-  const rates = [1.0, 1.12, 1.25, 1.35, 1.5, 1.68, 1.88, 2.0];
+  const c = Math.max(0, Math.min(2, Number.isFinite(chain) ? Math.floor(chain) : 0));
+  const rates = [.94, 1, 1.06];
   return rates[c];
 }
 
-/** One major scale for the numeric arrival route. Material/UI chainRate above
- * remains compatible; a fixed recorded bell gives these intervals a stable root. */
-export const SCORE_NOTE_SEMITONES = [0,2,4,5,7,9,11,12] as const;
-const noteStep=(value:number)=>Math.max(0,Math.min(7,Number.isFinite(value)?Math.floor(value):0));
+/** Three short rising pulses repeat; a long hand cannot park at a high octave. */
+export const SCORE_NOTE_SEMITONES = [0,2,4] as const;
+const noteStep=(value:number)=>Math.max(0,Number.isFinite(value)?Math.floor(value):0)%3;
 
 /** The saved positive accumulator events form one phrase for the whole hand.
  * Do not restart when cards give way to a joker or the first multiplication.
@@ -53,5 +55,15 @@ export function scoreStrikeStep(presentation:object,eventId:string,chain=0):numb
 }
 export function scoreStrikeRate(presentation:object,eventId:string,kind:'add'|'key'|'multiply'|'award'|'flight',chain=0):number {
  if(kind==='award'||kind==='flight')return 1;
- return 2**(SCORE_NOTE_SEMITONES[scoreStrikeStep(presentation,eventId,chain)]/12);
+ return .9*2**(SCORE_NOTE_SEMITONES[scoreStrikeStep(presentation,eventId,chain)]/12);
+}
+
+/** Saved arithmetic owns the accent, even if a visual caller labels it a key.
+ * Small compatibility callers without snapshots retain their explicit kind. */
+export function scoreArrivalKind(presentation:object,eventId:string,kind:'add'|'key'|'multiply'):'add'|'key'|'multiply' {
+ const events=(presentation as {score?:Partial<ScoreTrace>}).score?.events;
+ const event=Array.isArray(events)?events.find(e=>e.eventId===eventId):undefined;
+ if(!event?.before?.M||!event.after?.M)return kind;
+ if(actualMultiplier(event))return 'multiply';
+ return kind==='multiply'?'key':kind;
 }

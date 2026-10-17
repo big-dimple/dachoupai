@@ -12,8 +12,10 @@ const paper=(duration:number,gain:number,delay=0)=>air(layer(slides,duration,gai
 const body=(duration:number,gain:number,delay=0,rate=.82)=>low({...layer(['impactSoft_heavy_000'],duration,gain,delay,rate),attack:.003,hold:.25},720,200);
 const bell=(duration:number,gain:number,delay=0,rate=1)=>low({...layer(['impactBell_heavy_003','impactBell_heavy_000'],duration,gain,delay,rate),attack:.006,hold:.22},2800,1500);
 const strike=(gain:number,delay=0)=>low({...layer(wood,.16,gain,delay),attack:.0005,hold:.48},3700,2200);
-const scoreNote=(duration:number,gain:number)=>low({...layer(['impactBell_heavy_003'],duration,gain),attack:.0015,hold:.52},3400,2000);
-const scoreWood=(duration:number,gain:number,delay=0)=>low({...layer(wood,duration,gain,delay),attack:.0005,hold:.25},3700,2400);
+const scoreNote=(duration:number,gain:number,delay=0)=>low({...layer(['impactBell_heavy_003'],duration,gain,delay,.85),attack:.002,hold:.15},2200,1100);
+const scoreWood=(duration:number,gain:number,delay=0)=>low({...layer(wood,duration,gain,delay),attack:.0015,hold:.25},2800,1500);
+const crystal=(duration:number,gain:number,delay=0,rate=.94)=>low({...layer(['impactGlass_heavy_002'],duration,gain,delay,rate),attack:.002,hold:.12},4600,1900);
+const multiplierLayers=()=>[crystal(.075,.027),body(.14,.032,0,.78),crystal(.045,.009,.035,.84)];
 // One material palette. Priority: texture 0, gesture 1, source/transaction 2,
 // chain accent 3, committed award/ending 4. Recorded bodies only, no oscillators.
 export const FOLEY = {
@@ -36,14 +38,16 @@ export const FOLEY = {
  role:recipe([low(layer(['impactWood_heavy_000'],.20,.034),2400),bell(.30,.019,.06)],.16,2,3),
  joker:recipe([low(layer(['impactSoft_medium_000'],.14,.028),1500),low(layer(['chip-lay-2'],.10,.012,.045),2800)],.10,4,2),
  boss:recipe([body(.26,.036,0,.75),paper(.15,.014,.075)],.2,2,3),
- multiply:recipe([body(.25,.045),bell(.34,.023,.035),air(layer(['card-fan-1'],.16,.011,.08))],.12,6,3),
- // Numeric arrivals keep one pitched CC0 bell; alternating wood/bell roots
- // defeated the old rate steps. No new sample, oscillator or BGM layer.
- // Primary note always lands now; secondary beats stay inside this short hit.
- scoreAdd:recipe([scoreNote(.20,.028),scoreWood(.055,.009)],0,8,2),
- scoreKey:recipe([scoreNote(.24,.031),scoreWood(.075,.013,.035)],0,8,3),
- scoreBurst:recipe([scoreNote(.27,.035),body(.08,.021),paper(.09,.006,.045)],0,9,3),
- scoreMultiply:recipe([scoreNote(.30,.038),body(.085,.026),scoreWood(.095,.012,.065)],0,9,3),
+ multiply:recipe(multiplierLayers(),.12,6,3),
+ // Thin / medium / full short pulses. Wood carries ordinary arrivals; the quiet
+ // bell is trimmed to a click. Only real multiplication adds fractured glass.
+ scoreAdd:recipe([scoreWood(.088,.024),scoreNote(.065,.006,.014)],0,6,2),
+ scoreKey:recipe([scoreWood(.105,.025),body(.075,.012,.018,.8),scoreNote(.055,.006,.028)],0,6,3),
+ scoreBurst:recipe([low(layer(['impactWood_heavy_000'],.095,.025),2400,1000),body(.095,.020,.02,.8),paper(.060,.006,.035)],0,6,3),
+ scoreMultiply:recipe(multiplierLayers(),0,6,3),
+ // Explicit owned-source double beat: the motion emits rebound separately.
+ scoreDoubleImpact:recipe([crystal(.065,.025),body(.075,.030,0,.78)],0,4,3),
+ scoreRebound:recipe([low({...layer(wood,.060,.019,0,.88),attack:.0015,hold:.18},2400,1300)],0,3,2),
  // Inkwave679d2db audio.js726–734 body/air/tail structure already adapted here (MIT).
  key:recipe([body(.40,.047,0,.76),air(layer(['cloth2'],.26,.021,.02,1.1)),low(layer(['impactWood_heavy_000'],.14,.025,.05,.9),2100),bell(.43,.022,.12,.84)],.20,4,3),
  award:recipe([body(.26,.039),low(layer(['chips-collide-1'],.18,.025,.045),3000),bell(.35,.022,.09)],.25,3,4),
