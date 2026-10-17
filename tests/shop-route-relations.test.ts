@@ -22,13 +22,13 @@ it('every held source remains visible after freely changing focus without changi
 });
 it('replacement reports actual lost growth and public prices without a net-score promise or command',()=>{
  const s=buildJourneyPlan(),j=s.jokers[0],o=s.shop!.offers.find(o=>!o.consumed)!;const before=JSON.stringify(s),f=shopReplacementFacts(s,o,j,'group');
- expect(f.loss).toContain('20');expect(f.loss).toContain('不继承成长');expect(f.money).toContain('当前余额 15');expect(f.money).toContain('分别确认');expect(f.connections).toContain('未记录');expect(JSON.stringify(s)).toBe(before);
+ expect(f.loss).toContain('20');expect(f.loss).toContain('不继承成长');expect(f.money).toContain('当前余额 15');expect(f.money).toContain('分别确认');expect(f.connections).toContain('上手没有共同触发记录');expect(JSON.stringify(s)).toBe(before);
 });
 it('saved co-sources use exact held instance identities, not another same-name card or an invented synergy',()=>{
  const p=buildTransitionPlan('straight'),s=journeySend(p.state,{type:'PlayHand',selectedIds:p.selected}),j=s.jokers[0],other=r2CreateJoker(j.definitionId,'new-instance',4,undefined,s);s.jokers.push(other);
  const o={offerId:'public/b04',definitionId:'b04',price:4,consumed:false};
- expect(shopReplacementFacts(s,o,j,'straight').connections).toContain('未记录');
- expect(shopReplacementFacts(s,o,other,'straight').connections).toContain('未记录');
+ expect(shopReplacementFacts(s,o,j,'straight').connections).toContain('上手没有共同触发记录');
+ expect(shopReplacementFacts(s,o,other,'straight').connections).toContain('上手没有共同触发记录');
 });
 it.each([undefined,'group-upgrade-v1'] as const)('shows deterministic retained on-sale changes using the current %s profile',profile=>{
  const s=createRun({seed:'trade-review',runId:'trade-review',characterId:'erxiang',rulesVersion:'r2',...(profile?{r2Profile:profile}:{})});

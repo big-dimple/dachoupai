@@ -28,7 +28,7 @@ it('complete conditional compact phrases survive fitting, or expose a conditions
 });
 it.each(['e11','f12','d09','b03'])('%s neutral growth read records no score gain, separately explains new afterHand growth',id=>{
  const {trace,copy}=actual(id);expect(copy.bodyActive).toBe(true);
- expect(copy.state).toContain(id==='e11'||id==='f12'?'本次按×1结算':'本次按+0结算');
+ expect(copy.state).toContain(id==='e11'||id==='f12'?'本手成长加成×1':'本手成长加成+0');
  expect(copy.state).not.toMatch(/已有实际效果|已有计分增益/);
  const growth=trace.events.find(e=>e.sourceDefinitionId===id&&e.operation==='add-growth');
  if(id==='b03'){expect(growth?.phase).toBe('afterHand');expect(copy.state).toContain('出牌结算后成长 +0.25，新增从下一次出牌生效');}
@@ -43,7 +43,7 @@ it('positive current score growth and capped zero growth are distinct',()=>{
 });
 it('edition alone is never attributed to the body; sealing and probability miss remain factual',()=>{
  const j={...r2CreateJoker('a06','a06',0),edition:'foil' as const};
- const only=actual('a06',j);expect(only.copy.editionActive).toBe(true);expect(only.copy.bodyActive).toBe(false);expect(only.copy.state).toContain('没有本体计分加成记录');expect(only.copy.state).toContain('版次效果单独结算');
+ const only=actual('a06',j);expect(only.copy.editionActive).toBe(true);expect(only.copy.bodyActive).toBe(false);expect(only.copy.state).toContain('未获得这张牌的计分加成');expect(only.copy.state).toContain('版次效果单独结算');
  const sealed=actual('a06',j,{challengeDisabledJokerId:j.instanceId},true);expect(sealed.copy.bodyActive).toBe(false);expect(sealed.copy.editionActive).toBe(false);expect(sealed.copy.state).toContain('当前计分加成暂停');
  let miss;for(let state=1;state<100;state++){const result=actual('f08',undefined,{rng:{algorithm:'fnv1a-mulberry32-v1',state}});if(result.copy.state?.includes('没抽中')){miss=result;break;}}
  expect(miss?.copy.bodyActive).toBe(false);expect(miss?.copy.state).not.toContain('计分增益');
@@ -53,7 +53,7 @@ it('a retrigger request capped at zero and a lifetime destruction still retain r
  const capped=trace.events.filter(e=>e.sourceInstanceId===jokers[4].instanceId);expect(capped.find(e=>e.operation==='retrigger-card')?.value.n).toBe('0');
  const copy=jokerMemoryAbility(def('a11'),jokers[4],ctx,trace.events);expect(copy.bodyActive).toBe(true);expect(copy.state).toContain('本牌本次未增加次数');expect(copy.state).not.toContain('已有计分增益');
  const life=r2CreateJoker('f06','life',0);life.counters={handsScored:3};const destroyed=actual('f06',life,{challengeDisabledJokerId:life.definitionId},true);
- expect(destroyed.trace.events.some(e=>e.operation==='destroy-joker')).toBe(true);expect(destroyed.copy.bodyActive).toBe(true);expect(destroyed.copy.state).toContain('本手有本体结算记录');
+ expect(destroyed.trace.events.some(e=>e.operation==='destroy-joker')).toBe(true);expect(destroyed.copy.bodyActive).toBe(true);expect(destroyed.copy.state).toContain('本手已结算');
 });
 it('real clear transactions distinguish coefficient growth for next play from current x1 and keep economy events',()=>{
  let state=createRun({runId:'clear-copy',seed:'clear-copy',characterId:'amo',rulesVersion:'r2',modeConfig:{mode:'standard',difficulty:3,challengeId:null,programsEnabled:false}});
@@ -63,8 +63,8 @@ it('real clear transactions distinguish coefficient growth for next play from cu
  while(state.stage!.handsLeft>1){send({type:'PlayHand',selectedIds:state.handOrder.slice(0,2)});expect(state.phase).toBe('await-input');}
  state.handLevels={'high-card':30};send({type:'PlayHand',selectedIds:[state.handOrder[0]]});expect(state.phase).toBe('stage-cleared');
  const context=publicJokerMemoryContext(state,{hand:[],scoringLimited:false,deckSize:52,jokerSlots:5,jokerCount:3});
- for(const id of ['e11','f12']){const j=state.jokers.find(j=>j.definitionId===id)!,copy=jokerMemoryAbility(def(id),j,context,state.lastTrace!.events);expect(copy.state).toContain('本次按×1结算');expect(copy.state).toContain('过关后成长 +');expect(copy.state).toContain('新增从下一次出牌生效');expect(copy.state).not.toContain('已有计分增益');}
- const economy=jokerMemoryAbility(def('e07'),state.jokers[2],context,state.lastTrace!.events);expect(economy.bodyActive).toBe(true);expect(economy.state).toContain('本手有本体结算记录');
+ for(const id of ['e11','f12']){const j=state.jokers.find(j=>j.definitionId===id)!,copy=jokerMemoryAbility(def(id),j,context,state.lastTrace!.events);expect(copy.state).toContain('本手成长加成×1');expect(copy.state).toContain('过关后成长 +');expect(copy.state).toContain('新增从下一次出牌生效');expect(copy.state).not.toContain('已有计分增益');}
+ const economy=jokerMemoryAbility(def('e07'),state.jokers[2],context,state.lastTrace!.events);expect(economy.bodyActive).toBe(true);expect(economy.state).toContain('本手已结算');
 });
 it('all72 render for all three exact profiles, with adapted thresholds only in 843f',()=>{
  const prototype=createRun({runId:'assist-copy',seed:'assist-copy',characterId:'amo',rulesVersion:'r2',r2Profile:'amo-assist-v1'});

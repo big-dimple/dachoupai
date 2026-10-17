@@ -19,7 +19,7 @@ it('new c04 retains its immediate +50 body while future growth stays outside the
  expect(v.rows[1]).toMatchObject({keep:{minimum:'660'},change:{minimum:'860'},delta:{minimum:'200',maximum:'200'}});expect(shopRecommendation(s,o,'straight').stars).toBe(3);
 });
 it('f06 counts four available consumptions without forecasting four successful triggers',()=>{
- const s=fixture(),o=stock(s,'f06'),v=shopPurchaseValue(s,o,'group')!;expect(v).toMatchObject({status:'assessed',paid:8,net:8,remaining:4,ceiling:3});expect(shopRecommendation(s,o,'group').stars).toBe(2);expect(v.detail).toContain('不预支全部次数');
+ const s=fixture(),o=stock(s,'f06'),v=shopPurchaseValue(s,o,'group')!;expect(v).toMatchObject({status:'assessed',paid:8,net:8,remaining:4,ceiling:3});expect(shopRecommendation(s,o,'group').stars).toBe(2);expect(v.detail).toContain('每手仍需满足条件');
 });
 it('selected mature sale compares against keeping it, and a business sale separately loses future eligibility',()=>{
  const s=held(fixture('straight',8),['c04','jiedongfeng','e11','e01','e04']);s.jokers[0].growth={heat:{n:'100',d:'1'}};s.jokers[0].edition='foil';s.jokers[0].paidPrice=6;s.jokers[2].growth={coefficient:{n:'3',d:'2'}};const o=stock(s,'f06'),before=structuredClone(s);
@@ -57,7 +57,7 @@ it.each([
  const {state,offer,sold}=resourceLossFixture(id),before=structuredClone(state);
  const value=shopPurchaseValue(state,offer,'group',sold);if(value?.status!=='assessed')throw Error('transaction');
  expect(value).toMatchObject({allPositive:true,interestLoss:false,lostInvestment:false,unmeasuredLoss:true,ceiling:2});
- expect(value.detail).toContain(label);expect(value.detail).toContain('是否兑现未知');
+ expect(value.detail).toContain(label);expect(value.detail).toContain('分差未包含这些效果');
  expect(shopRecommendation(state,offer,'group',sold)).toMatchObject({stars:2,reason:'替换有未估代价'});
  expect(state).toEqual(before);
 });
@@ -72,7 +72,7 @@ it('public random intervals are conservative and ignore hidden draw order and ru
  if(a?.status!=='assessed')throw Error('transaction');expect(a.rows.some(r=>BigInt(r.delta.minimum)<=0n&&BigInt(r.delta.maximum)>0n)).toBe(true);expect(a.allPositive).toBe(false);expect(before.gold).toBe(s.gold);
 });
 it('fresh coefficient is not mislabeled as accumulated growth, and omitted held/slot benefits prevent promotion',()=>{
- const s=held(fixture(),['a06','d01']),o=stock(s,'e08');const a=shopPurchaseValue(s,o,'group',s.jokers[0]);expect(a).toMatchObject({lostInvestment:false});const b=shopPurchaseValue(s,o,'group',s.jokers[1]);expect(b).toMatchObject({unmeasuredLoss:true,ceiling:2});expect(b?.detail).toContain('不能据此认定净补强');
+ const s=held(fixture(),['a06','d01']),o=stock(s,'e08');const a=shopPurchaseValue(s,o,'group',s.jokers[0]);expect(a).toMatchObject({lostInvestment:false});const b=shopPurchaseValue(s,o,'group',s.jokers[1]);expect(b).toMatchObject({unmeasuredLoss:true,ceiling:2});expect(b?.detail).toContain('不能只看加分就决定替换');
 });
 it('stale shop stage and lastTrace are not treated as the next opening hand',()=>{
  const s=fixture(),o=stock(s,'f06'),a=shopPurchaseValue(s,o,'group');
@@ -90,7 +90,7 @@ it.each(['S03','S04','S07'])('%s shows permanent cost and actual selected use wi
  if(id==='S04'){s.deckInstances=s.deckInstances.filter(c=>c.suit==='hearts'||c.suit==='spades');s.drawPile=s.deckInstances.map(c=>c.id);}
  s.jokers[0].growth={heat:{n:'100',d:'1'}};s.jokers[0].edition='foil';s.jokers[0].paidPrice=r2Price('c04','foil',s);s.consumables=[{instanceId:'tool',definitionId:id}];const before=structuredClone(s);
  const action={type:'UseConsumable' as const,instanceId:'tool',targetIds:id==='S03'?['spades-7']:id==='S07'?[s.jokers[1].instanceId]:[],...(id==='S04'?{suit:'hearts' as const}:{}),...(id==='S07'?{sacrificeId:s.jokers[0].instanceId}:{})};
- const text=toolPermanentValue(s,id,action);expect(text).toContain('使用净支出0金');expect(text).toContain('以保留不用为基线');expect(text).toContain('非下一手预测');expect(s).toEqual(before);
+ const text=toolPermanentValue(s,id,action);expect(text).toContain('使用需付0金');expect(text).toContain('不再收取购买费用');expect(text).toContain('不代表下一手会抽到');expect(s).toEqual(before);
  if(id==='S07'){expect(text).toContain('不返出售金币');expect(text).toContain('热度成长 100');s.jokers[1].edition='polychrome';expect(toolPermanentValue(s,id,action)).toContain('target-already-polychrome');}
 });
 it('uses an owned four-straight prerequisite and removes it for a selected sale',()=>{

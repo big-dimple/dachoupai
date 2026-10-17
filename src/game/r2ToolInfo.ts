@@ -158,7 +158,7 @@ function operationText(tool:R2ToolDefinition):string {
       return `赋予${enhancement.name}：${enhancementText(enhancement)}。替换原增强，保留版次。`;
     }
     case 'add-gold':return `金币+${op.amount}，不增加本手热度或倍率。`;
-    case 'restore-discard':return `本场剩余弃牌+${op.amount}，最多恢复至入场弃牌预算，保留已用弃牌记录；须实际用过弃牌。`;
+    case 'restore-discard':return `本场弃牌次数+${op.amount}，最多恢复至入场次数，保留已用弃牌记录；须实际用过弃牌。`;
     case 'free-reroll':return '本次免费刷新大丑牌和工具货架，不刷新长期道具货架。刷新次数照常增加，但不触发付费刷新成长，也不支付付费刷新价格。';
     case 'random-enhancement':return '每张受赠扑克独立随机获得一种增强，保留原版次。按商店可见有效牌组顺序，或待出牌时当前手牌顺序分配，不按目标点击顺序分配。';
     case 'random-edition':return '随机获得闪箔、全息或多彩版次，增强与版次各占一层。扑克保留点数、花色和增强；大丑牌保留稀有度、购入价、成长与计数。';
@@ -181,12 +181,15 @@ function costText(cost:R2ToolCost):string {
     default:return impossible(cost);
   }
 }
-function toolCost(tool:R2ToolDefinition,price=tool.price):string {
-  const purchase=tool.shopWeight===0?'仅公开奖励，不可购买':`商店基准售价：${price}金`;
+export function toolUseCost(tool:R2ToolDefinition):string {
   const costs=tool.costs.map(costText);
   if(tool.operation.kind==='exchange-hand-levels')costs.push(`牺牲方等级−${tool.operation.loss}`);
   if(tool.operation.kind==='clear-deck-specials')costs.push('清除全牌组全部增强与特殊版次');
-  return `${purchase}\n额外使用代价：${costs.length?costs.join('，'):'无额外金币或牺牲代价'}。成功后消耗${limits.singleUse}件工具。`;
+  return `使用代价：${costs.length?costs.join('，'):'不额外花金币或牺牲牌'}。成功后消耗${limits.singleUse}件工具。`;
+}
+function toolCost(tool:R2ToolDefinition,price=tool.price):string {
+  const purchase=tool.shopWeight===0?'奖励获得，不可购买':`售价：${price}金`;
+  return `${purchase}\n${toolUseCost(tool)}`;
 }
 function toolRisk(tool:R2ToolDefinition):string {
   const risks:string[]=[];
@@ -195,23 +198,23 @@ function toolRisk(tool:R2ToolDefinition):string {
   }
   if(tool.operation.kind==='random-enhancement'){
     const total=tool.operation.choices.reduce((sum,choice)=>sum+choice.weight,0);
-    risks.push('公开概率：'+tool.operation.choices.map(choice=>{
+    risks.push('概率：'+tool.operation.choices.map(choice=>{
       const enhancement=enhancementDefinition(choice.id);
       return `${enhancement.name}${choice.weight}/${total}（${enhancementText(enhancement)}）`;
     }).join('、')+'。增强结果使用后才揭晓。');
   }
   if(tool.operation.kind==='random-edition'){
     const total=tool.operation.choices.reduce((sum,choice)=>sum+choice.weight,0);
-    risks.push('公开概率：'+tool.operation.choices.map(choice=>`${editionLabel(choice.id)}${choice.weight}/${total}（${mathText(editionDefinition(choice.id).effect!)}）`).join('、')+'。结果使用后才揭晓，版次不改变稀有度。扑克版次在增强后、大丑牌逐牌效果在自身能力后触发；仅有效计分来源触发，持牌不触发版次。');
+    risks.push('概率：'+tool.operation.choices.map(choice=>`${editionLabel(choice.id)}${choice.weight}/${total}（${mathText(editionDefinition(choice.id).effect!)}）`).join('、')+'。结果使用后才揭晓，版次不改变稀有度。扑克版次在增强后、大丑牌逐牌效果在自身能力后触发；仅有效计分来源触发，持牌不触发版次。');
   }
   if(tool.caps.includes('deckDeletionFloor'))risks.push(`主动删除或牺牲后牌组至少${limits.deckDeletionFloor}张，持有极简手册时至少${limits.minimalDeckFloor}张，当前场须仍有合法行动。此下限不保护玻璃破碎。`);
-  if(tool.caps.includes('actualResourceChange'))risks.push('须存在下一场且实际资源变化完整生效，达到上限或下限后被抵消的变化不能使用；当前场资源保持入场预算。');
+  if(tool.caps.includes('actualResourceChange'))risks.push('下场的次数或手牌上限须能按说明改变；已达上下限时不能使用，当前场不变。');
   if(tool.caps.includes('jokerMaximum'))risks.push(`须有空大丑牌槽，最多${limits.jokerMaximum}张；奖池为空时不能使用。`);
   if(tool.caps.includes('postConsumptionCapacity'))risks.push('牺牲后按真实剩余大丑牌重算库存容量，消费此工具后其余工具仍须装得下。');
   if(tool.operation.kind==='set-enhancement')risks.push('每张只有一个增强层，替换会永久失去原增强；确认页须核对被替换的效果。失效牌不触发增强。');
   const firstBoss=tool.rewardSources.find(source=>source.source==='first-boss-clear');
   if(firstBoss)risks.push(`仅本局首次Boss成功过关赠送一件，工具库存满则转${firstBoss.overflowGold}金，本局只发一次。`);
-  risks.push('取消、过期、非法目标、没有变化或代价不足均不消费工具与资源。');
+  risks.push('取消、目标不可用、没有变化或付不起代价时，工具与金币都不消耗。');
   return risks.join('');
 }
 
@@ -229,8 +232,8 @@ function itemDescription(item:R2LongTermDefinition):string {
   const op=item.operation;let effect:string;
   switch(op.kind){
     case 'hand-limit':effect=`下一场入场手牌上限+${op.amount}，最多${limits.handMaximum}张，当前场不补手牌。`;break;
-    case 'discard-limit':effect=`下一场入场弃牌次数+${op.amount}，当前场预算不增加。`;break;
-    case 'hands-limit':effect=`下一场入场出牌次数+${op.amount}，当前场预算不增加。`;break;
+    case 'discard-limit':effect=`下一场入场弃牌次数+${op.amount}，当前场次数不增加。`;break;
+    case 'hands-limit':effect=`下一场入场出牌次数+${op.amount}，当前场次数不增加。`;break;
     case 'interest-cap':effect=`每次过关结算利息上限+${op.amount}金，在奖励前读取；不会直接赠送金币，须有足够存款产生利息。`;break;
     case 'joker-offer-count':effect=`后续开店与刷新时大丑牌货位${op.base}→${op.base+op.amount}，当前已生成货架不补货。`;break;
     case 'paid-reroll-discount':effect=`后续付费刷新价格−${op.amount}金，至少${op.minimum}金；免费刷新照常免费。`;break;

@@ -35,7 +35,7 @@ function supportedConditions(d:R2JokerDefinition,j:R2JokerInstance,gold:number){
 }
 /** Condition intersection at the real purchase price, never a strength or activation promise. */
 export function findShopSynergy(run:R2RunState,candidateDefId:string):ShopSynergyResult {
- const result:ShopSynergyResult={hasSynergy:false,heldInstanceIds:[],matches:[],heroSynergy:false,tag:'条件交集',reason:''};
+ const result:ShopSynergyResult={hasSynergy:false,heldInstanceIds:[],matches:[],heroSynergy:false,tag:'可配合',reason:''};
  if(run?.phase!=='shop'||!run.shop||!candidateDefId)return result;
  let definitions;try{definitions=r2JokerDefinitionsFor(run);}catch{return result;}
  const d=definitions.find(d=>d.id===candidateDefId),offer=run.shop.offers.find(o=>o.definitionId===candidateDefId&&!o.consumed);
@@ -43,7 +43,7 @@ export function findShopSynergy(run:R2RunState,candidateDefId:string):ShopSynerg
  result.tradeoff=shopCandidateTradeoff(run,candidateDefId);
  if(run.jokers.some(j=>j.definitionId===candidateDefId))return {...result,reason:'已持同名牌；不能按重复买入推断配合。'};
  const cash=shopPurchaseCashFacts(run,offer);
- if(cash.status!=='assessed')return {...result,reason:'先指定替换对象，再核对出售与购买后的条件。'};
+ if(cash.status!=='assessed')return {...result,reason:'先选要换掉的牌，再看卖出、买入后的条件。'};
  if(cash.goldAfterPurchase<0)return {...result,reason:'当前金币不足；不把暂不可买的牌标成联动。'};
  const fresh=r2CreateJoker(d.id,'synergy/'+offer.offerId,cash.price,offer.edition,run),jokers=[...run.jokers,fresh];
  const disabled=new Set(r2ScoringDisabledJokerIds(run.stageIndex%3===2?run.boss:null,jokers,definitions,[],run.chapterDisabledJokerId));
@@ -52,12 +52,12 @@ export function findShopSynergy(run:R2RunState,candidateDefId:string):ShopSynerg
   if(disabled.has(j.instanceId))continue;const held=definitions.find(d=>d.id===j.definitionId);if(!held)continue;
   const common=[...new Set(supportedConditions(held,j,cash.goldAfterPurchase).flatMap(a=>conditions.flatMap(b=>a.filter(t=>b.includes(t)))))];
   if(!common.length)continue;result.heldInstanceIds.push(j.instanceId);
-  const name=cardDefinitionName(held),shared=common.length===R2_HAND_TYPES.length?'条件可同时满足':'同走'+common.slice(0,2).map(t=>HAND_LABELS[t]).join('／')+(common.length>2?'等':''),reason='与已持「'+name+'」的条件'+(common.length===R2_HAND_TYPES.length?'可同时满足': '交集含'+common.map(t=>HAND_LABELS[t]).join('／'))+'；仍须按各自时点触发，不代表额外加成。';
+  const name=cardDefinitionName(held),shared=common.length===R2_HAND_TYPES.length?'可满足各自条件':'都可用于'+common.slice(0,2).map(t=>HAND_LABELS[t]).join('／')+(common.length>2?'等':''),reason='与已持「'+name+'」'+(common.length===R2_HAND_TYPES.length?'可满足各自条件': '都可用于'+common.map(t=>HAND_LABELS[t]).join('／'))+'；分别按各自条件和时机生效。';
   result.matches.push({instanceId:j.instanceId,name,shortReason:shared,reason});reasons.push(reason);
  }
  result.hasSynergy=!!result.heldInstanceIds.length;
  const losses=shopPurchaseConditionLosses(run,offer);
  result.cashNote='购后'+cash.goldAfterPurchase+'金';
- result.reason='按实际购款'+run.gold+'→'+cash.goldAfterPurchase+'金核对；'+(reasons.length?reasons.join(' '):'未核实可共同满足的条件，各自查看规则。')+(losses.length?'\n'+losses.join('\n'):'');
+ result.reason='买后金币'+run.gold+'→'+cash.goldAfterPurchase+'金；'+(reasons.length?reasons.join(' '):'暂未确认配合，先看各自条件。')+(losses.length?'\n'+losses.join('\n'):'');
  return result;
 }

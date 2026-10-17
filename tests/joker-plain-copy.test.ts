@@ -31,7 +31,7 @@ it('four-card cardinality exceptions, entry snapshot and shared lifetime remain 
  const p=copy('d06');expect(p.line).toContain('进场');expect(p.essential).toContain('进场');const j=r2CreateJoker('f06','life',0);j.counters={...j.counters,handsScored:3};const life=jokerMemoryAbility(def('f06'),j,ctx()).plain!;expect(life.tile).toContain('总共4手');expect(life.status).toContain('还可用1手');expect(life.essential).toContain('换场不重置');
 });
 it('new growth is for later plays while already saved growth is the current contribution',()=>{
- const identity=identities.at(-1)!,d=r2JokerDefinitionsFor(identity).find(d=>d.id==='b10')!,j=r2CreateJoker('b10','grow',4,undefined,identity);j.growth.heat={n:'40',d:'1'};const p=jokerAbilityCopyForRun(identity,'b10',j,ctx()).plain!;expect(p.line).toContain('成长最多+10');expect(p.status).toContain('本次用已存热度+40');expect(p.line).toContain('新增下次用');expect(p.essential).toContain('普通顺子、普通同花不增长');expect(p.details).toContain('出售后丢失');
+ const identity=identities.at(-1)!,d=r2JokerDefinitionsFor(identity).find(d=>d.id==='b10')!,j=r2CreateJoker('b10','grow',4,undefined,identity);j.growth.heat={n:'40',d:'1'};const p=jokerAbilityCopyForRun(identity,'b10',j,ctx()).plain!;expect(p.line).toContain('成长最多+10');expect(p.status).toContain('已存热度+40');expect(p.line).toContain('新增下次用');expect(p.essential).toContain('普通顺子、普通同花不增长');expect(p.details).toContain('出售后丢失');
 });
 it('complex rescue, reset and reward rotation keep complete main and essential timing by default',()=>{
  const identity=identities.at(-1)!;for(const id of ['f10','a06','e11','c12','e10','f05']){const c=jokerAbilityCopyForRun(identity,id,r2CreateJoker(id,id,0,undefined,identity),ctx()),p=c.plain!;expect(p.fallback).toBe(true);expect(p.line).toBe(c.condition);expect(p.essential).toBe(c.value);}
@@ -69,7 +69,7 @@ it('growth headroom and capped default facts agree with actual trace in each con
    const facts=r2SelectionFacts({hand,selectedIds:hand.slice(0,2).map(c=>c.id),jokers:[j],definitions,disabledIds:[]}),context=ctx({facts});const before=JSON.stringify({j,context});
    const trace=scoreR2Hand({rulesVersion:'r2',runId:'cap',rootId:'cap/1',hand,disabledIds:[],selectedIds:facts.playedIds,jokers:[j],definitions,characterId:'neutral',handLevels:{},playIndex:1,handsBeforePlay:4,previousHandType:null,wager:false,rng:{algorithm:'fnv1a-mulberry32-v1',state:41}});
    const event=trace.events.find(e=>e.sourceInstanceId===j.instanceId&&e.operation==='add-growth')!;const delta=Number(event.value.n)/Number(event.value.d),p=jokerAbilityCopyForRun(identity,id,j,context).plain!;
-   expect(p.status).toContain('上限'+cap);expect(p.line).toMatch(/上限|最多攒|已封顶/);
+   expect([p.effectLine,p.status].filter(Boolean).join('；')).toContain('上限'+cap);expect(p.line).toMatch(/上限|最多攒|已封顶/);
    if(delta===0){expect(p.status).toContain('已封顶，不再新增');expect(p.status).not.toContain('可在结算后增长');}
    else expect(p.status).toContain('最多新增+'+delta);
    expect(JSON.stringify({j,context})).toBe(before);

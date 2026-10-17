@@ -13,7 +13,7 @@ beforeEach(()=>vi.stubGlobal('document',{querySelector:()=>null}));afterEach(()=
 function previews(s:ReturnType<typeof buildJourneyPlan>){const open=vi.fn();showBuildJourney({open} as unknown as DetailDialog,s,{tools:()=>{},tool:()=>{},source:()=>{},deck:()=>{},continue:()=>{},continueLabel:'继续',ready:true},true);return (open.mock.calls[0][3] as {cards:ExperienceCard[]}).cards;}
 it('three unselected previews never pass the first unrelated stock off as a matching route example',()=>{
  const s=buildJourneyPlan(true);s.shop!.offers=[{offerId:'actual/b10',definitionId:'b10',price:4,consumed:false}];const before=JSON.stringify(s),cards=previews(s);
- expect(cards[0].body).toContain('现货');expect(cards[0].body).toContain('路线直接条件');
+ expect(cards[0].body).toContain('现货');expect(cards[0].body).toContain('适合当前打法');
  for(const card of cards.slice(1)){expect(card.body).not.toContain('现货：练对子');expect(card.body).toContain('暂无');expect(card.body).toContain('示意');}
  expect(JSON.stringify(s)).toBe(before);
 });

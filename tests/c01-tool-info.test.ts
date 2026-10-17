@@ -44,8 +44,8 @@ describe('C01 public tool and item details',()=>{
     });
   });
   it('separates purchase price, extra gold and lasting next-stage penalties',()=>{
-    expect(toolInfo('S02').cost).toMatch(/基准售价：8金[\s\S]*额外使用代价：5金/);
-    expect(toolInfo('S05').cost).toMatch(/基准售价：6金[\s\S]*额外使用代价：3金/);
+    expect(toolInfo('S02').cost).toMatch(/售价：8金[\s\S]*使用代价：5金/);
+    expect(toolInfo('S05').cost).toMatch(/售价：6金[\s\S]*使用代价：3金/);
     expect(detail('S03')).toMatch(/下一场[\s\S]*永久[\s\S]*出牌次数[\s\S]*−1/);
     expect(detail('S03')).toContain('累计最多2');expect(detail('S03')).toContain('至少2');
     expect(detail('S04')).toMatch(/下一场[\s\S]*永久[\s\S]*手牌上限[\s\S]*−1/);

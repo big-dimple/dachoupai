@@ -14,7 +14,7 @@ export function routeFitCue(state:R2RunState,kind:'jokers'|'tools'|'items',id:st
  const matches=relation?relation.kind==='direct'||relation.kind==='support':toolSupportsFocus(id,focus);
  const j=kind==='jokers'?(state.jokers.find(j=>j.instanceId===instanceId)??r2CreateJoker(id,'display/'+id,0,'none',state)):undefined;
  const label=j?'适用：'+jokerApplicableRoutes(state,j).map(f=>({group:'同点',straight:'顺子',flush:'同花'})[f]).join('/') :ROUTE_TONE[focus].label;
- return matches?{...ROUTE_TONE[focus],label,focus,reason:relation?.body??'改牌或升型可服务该方向；目标与代价需自行确认。'}:undefined;
+ return matches?{...ROUTE_TONE[focus],label,focus,reason:relation?.body??'可用于当前打法；用前选好目标、查看费用。'}:undefined;
 }
 export function markRouteDetail(host:HTMLElement,cue:ReturnType<typeof routeFitCue>):void {
  if(!cue)return;host.dataset.routeFit=cue.focus;host.style.setProperty('--route-fit',cue.css);const tag=document.createElement('p');tag.className='route-fit-caption';tag.textContent=cue.label;host.querySelector('.dialog-header')?.append(tag);
@@ -29,11 +29,11 @@ export function toolPurpose(state:R2RunState,id:string):string {
  case 'delete-cards':return '永久删掉偏离方向的牌，缩小牌组；不保证下一手抽中核心。';
  case 'set-enhancement':return op.enhancement==='voice-paper'?'受益牌留在手中才加倍率，打出它不读取留牌加成。':op.enhancement==='gold-paper'?'过关时受益牌有效留在手中才给金币，不提高本手分数。':'给会参与计分的牌加增强；对子／两对也可用，无须同花。';
  case 'copy-card':return '复制已有好牌，可增加同点或同花色数量；原牌保留。';
- case 'random-enhancement':return '用一张牌换另外一至两张的随机增强；每张独立抽取，保存后揭晓。';
- case 'random-edition':return '为选中对象增加随机版次；保存后揭晓，不能预选结果。';
+ case 'random-enhancement':return '用一张牌换另外一至两张的随机增强；每张独立随机，使用后揭晓。';
+ case 'random-edition':return '为所选牌增加随机版次，使用后揭晓。';
  case 'set-deck-suit':{const facts=r2S04Facts(state);if(facts.restricted)return `第${facts.minimumChapter}章起，先铺到至少${facts.required}/${facts.living}张目标色，再整副收尾；永久手牌容量−1。`;return '集中花色，点数保留；不会保证下一手成型。';}
  case 'set-suit':return '集中花色，点数保留；不会保证下一手成型。';
  case 'upgrade-hand':return '升级已发现的对应牌型，增加基础值；改牌与升型可以分步培养。';
- default:return '按下方实际对象与代价确认；用后查看保存结果。';
+ default:return '选好目标，查看费用后确认使用。';
  }
 }

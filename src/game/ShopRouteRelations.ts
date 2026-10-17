@@ -128,11 +128,10 @@ export function shopRouteRelation(state:R2RunState,j:R2JokerInstance,focus:Build
  for(const m of d.modifiers??[])if(m.kind==='four-straight')routes.add('straight');else if(m.kind==='four-flush')routes.add('flush');
  const general=d.hooks.some(h=>!conditionRoutes(h.condition).length&&h.operations.some(o=>o.kind==='read-growth'||o.kind==='consume-growth'?Number(j.growth[o.key]?.n??0)>0:true))||!!d.modifiers?.some(m=>m.kind!=='four-straight'&&m.kind!=='four-flush');
  const kind=!focus?'unfocused':routes.has(focus)?'direct':general||!routes.size?'support':'other';
- const label=kind==='direct'?'路线直接条件':kind==='support'?'通用辅助':kind==='other'?'其它路线机会':'尚未选方向';
+ const label=kind==='direct'?'适合当前打法':kind==='support'?'通用辅助':kind==='other'?'可用于其他打法':'尚未选方向';
  const tag=kind==='direct'?'主线':kind==='support'?'辅助':kind==='other'?'转向':'待选';
- const conditions=[...new Set(d.hooks.filter(h=>h.condition.kind!=='always').map(h=>r2ConditionDescription(h.condition)))].join('；');
  const opportunity=[...routes].map(f=>labels[f]).join('／');
- return {kind,label,tag,body:label+' · '+(opportunity?'明确条件涉及'+opportunity+'。':'不专属某一种牌型。')+'\n'+d.description+'\n'+conditions+'\n用途不表示已发动或最优；仍按实际条件、封禁和保存事件检查。'};
+ return {kind,label,tag,body:d.description+'\n'+(opportunity?'可用于'+opportunity+'。':'不专属某一种牌型。')};
 }
 export function shopOfferRelation(state:R2RunState,o:R2Offer,focus:BuildFocus|undefined){
  return shopRouteRelation(state,r2CreateJoker(o.definitionId,'preview/'+o.offerId,r2PurchasePrice(state,o),o.edition,state),focus);
@@ -172,7 +171,7 @@ export function shopReplacementFacts(state:R2RunState,offer:R2Offer,held:R2Joker
  const coSources=state.jokers.filter(j=>j.instanceId!==held.instanceId&&state.lastTrace?.events.some(e=>e.sourceType==='joker'&&e.sourceInstanceId===held.instanceId)&&state.lastTrace?.events.some(e=>e.sourceType==='joker'&&e.sourceInstanceId===j.instanceId)).map(j=>cardDefinitionName(r2JokerDefinitionFor(state,j.definitionId)));
  const ownConditions=d.hooks.map(h=>JSON.stringify(h.condition)).filter(c=>c!==JSON.stringify({kind:'always'}));
  const shared=state.jokers.filter(j=>j.instanceId!==held.instanceId&&r2JokerDefinitionFor(state,j.definitionId).hooks.some(h=>ownConditions.includes(JSON.stringify(h.condition)))).map(j=>cardDefinitionName(r2JokerDefinitionFor(state,j.definitionId)));
- return {saleEffects:shopSaleConsequences(state,held),held:shopRouteRelation(state,held,focus),offer:shopOfferRelation(state,offer,focus),loss:'出售将失去「'+cardDefinitionName(d)+'」的效果、版次和当前实例：'+r2JokerStateText(held,d)+(growth?'\n'+growth:'')+'。同名新购牌从新实例初值开始，不继承成长。',connections:(shared.length?'与'+shared.join('、')+'共享条件；共同满足仍分别检查，不保证额外加成。\n':'')+(coSources.length?'上手已保存来源也包括'+coSources.join('、')+'；出售会移除这张来源，不保证下一手仍共同触发。':'未记录与现持其它牌在上手共同触发；这不代表没有配合机会。'),money:'当前余额 '+state.gold+' 金；该牌基础卖价 '+salePrice(held.paidPrice)+' 金；现货「'+cardDefinitionName(other)+'」当前实付 '+r2PurchasePrice(state,offer)+' 金。出售和购买分别确认，交易来源、优惠和售后余额以实际保存结果重算。'};
+ return {saleEffects:shopSaleConsequences(state,held),held:shopRouteRelation(state,held,focus),offer:shopOfferRelation(state,offer,focus),loss:'出售将失去「'+cardDefinitionName(d)+'」的效果、版次和已存成长：'+r2JokerStateText(held,d)+(growth?'\n'+growth:'')+'。重买同名牌从初值开始，不继承成长。',connections:(shared.length?'与'+shared.join('、')+'共享条件；共同满足仍分别检查，不保证额外加成。\n':'')+(coSources.length?'上手还触发了'+coSources.join('、')+'；出售会移除这张来源，不保证下一手仍共同触发。':'上手没有共同触发记录；配合还要看各自条件。'),money:'当前余额 '+state.gold+' 金；该牌基础卖价 '+salePrice(held.paidPrice)+' 金；现货「'+cardDefinitionName(other)+'」当前实付 '+r2PurchasePrice(state,offer)+' 金。出售、购买分别确认；优惠和买后余额会随之变化。'};
 }
 /** Clone-only actual transaction facts. Never dispatch, save, score, draw or recommend a sale. */
 export function shopReplacementTransactionFacts(state:R2RunState,offer:R2Offer,held:R2JokerInstance){
@@ -188,7 +187,7 @@ export function shopReplacementTransactionFacts(state:R2RunState,offer:R2Offer,h
   if(JSON.stringify(afterSale.growth)!==JSON.stringify(afterBuy.growth))growthEffects.push(cardDefinitionName(d)+' · 购后：'+r2JokerStateText(afterSale,d)+' → '+r2JokerStateText(afterBuy,d));
  }
  const cashLosses=shopPurchaseConditionLosses(state,offer,held);
- const summary=`指定替换 · 先售后买：${state.gold}→${sold.state.gold}金；售后实付${price}金`+(bought.ok?`；买后${bought.state.gold}金。新牌在末槽，从初值开始。`:'；购买当前不可执行：'+bought.code+'。')+'\n失去版次：'+editionEffectText(held.edition).split('。')[0]+'；新牌版次：'+editionEffectText(offer.edition).split('。')[0]+(cashLosses.length?'\n'+cashLosses.join('\n'):'');
+ const summary=`指定替换 · 先售后买：${state.gold}→${sold.state.gold}金；售后实付${price}金`+(bought.ok?`；买后${bought.state.gold}金。新牌放在末槽，成长从初值开始。`:'；购买当前不可执行：'+bought.code+'。')+'\n失去版次：'+editionEffectText(held.edition).split('。')[0]+'；新牌版次：'+editionEffectText(offer.edition).split('。')[0]+(cashLosses.length?'\n'+cashLosses.join('\n'):'');
  return {status:bought.ok?'ready' as const:'blocked' as const,summary,growthEffects,cashLosses,refund:sold.state.gold-state.gold,price,goldAfterSale:sold.state.gold,goldAfterPurchase:bought.ok?bought.state.gold:undefined};
 }
 /** Comparison first layer: actual money and nonzero losses, full rules stay in details. */
@@ -204,7 +203,7 @@ export function shopReplacementCompactFacts(state:R2RunState,held:R2JokerInstanc
  if(lifetime?.kind==='expire-after-hands'&&(held.counters?.handsScored??0)>0)rows.push(`现牌余${Math.max(0,lifetime.limit-(held.counters?.handsScored??0))}手`);
  if(held.counters?.stageClears)rows.push(`失去：过关进度${held.counters.stageClears}/2`);
  rows.push(...transaction.growthEffects.map(row=>{
-  const short=row.replaceAll('无成长或使用计数','0').replaceAll('热度成长','热度').replaceAll('倍率成长','倍率').replaceAll('乘法系数','系数').replaceAll(' · ','').replaceAll(' → ','→');
+  const short=row.replaceAll('热度成长','热度').replaceAll('倍率成长','倍率').replaceAll('乘法系数','系数').replaceAll(' · ','').replaceAll(' → ','→');
   return short.replace(/(热度|倍率|系数) /g,'$1').replace(/0→(热度|倍率|系数)/g,'$10→').replace(/→(热度|倍率|系数)/g,'→');
  }));
  if(!state.shop?.soldJoker)for(const other of state.jokers.filter(j=>j.instanceId!==held.instanceId)){

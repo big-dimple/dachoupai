@@ -9,7 +9,7 @@ import {r2ResourceHeatValue,r2ScoreOperationText} from './r2Help';
 import {R2_GROUP_HAND_TYPES} from '../domain/r2GroupHands';
 import {jokerDetailSteps,type JokerDetailSteps} from './JokerDetailSteps';
 
-export interface JokerPlainCopy {line:string;tile:string;status:string;essential:string;details:string;fallback:boolean;steps?:JokerDetailSteps}
+export interface JokerPlainCopy {line:string;tile:string;status:string;essential:string;details:string;fallback:boolean;effectLine?:string;timingLine?:string;steps?:JokerDetailSteps}
 type Memory=ReturnType<typeof jokerMemory>;
 const names=(types:readonly (keyof typeof HAND_LABELS)[])=>types.length===R2_GROUP_HAND_TYPES.length&&types.every(t=>R2_GROUP_HAND_TYPES.includes(t))?'对子等同点组合':types.map(t=>HAND_LABELS[t]).join('/');
 const allBeyondPair=(types:readonly (keyof typeof HAND_LABELS)[])=>types.length===Object.keys(HAND_LABELS).length-2&&Object.keys(HAND_LABELS).filter(t=>t!=='high-card'&&t!=='pair').every(t=>types.includes(t as keyof typeof HAND_LABELS));
@@ -114,28 +114,28 @@ export function jokerPlainCopy(d:R2JokerDefinition,j:R2JokerInstance|undefined,c
   const c=hooks[0]?.condition;
   if(ctx.scoringLimited&&j)status='当前计分暂停；其他时点照各自条件。'+(m.remaining!==undefined?'还可用'+m.remaining+'手。':'');
   else if(m.remaining!==undefined)status='还可用'+m.remaining+'手（跨场共用）';
-  else if(m.remainingUses!==undefined)status=(ctx.inStage?'本场':'下场')+'还可用'+m.remainingUses+'次；成功事件后兑现';
-  else if(!fallback&&hooks[0]?.operations[0].kind==='read-growth'){const o=hooks[0].operations[0];status=j?'本次用已存'+unit(o.target)+'+'+fractionText(growth[o.key])+'；新增到对应时点检查':'未购买；新购保存'+unit(o.target)+'+'+fractionText(growth[o.key]);if(ctx.facts&&hooks[1]?.condition.kind==='hand-type-in')status+='；所选'+HAND_LABELS[ctx.facts.type]+(hooks[1].condition.values.includes(ctx.facts.type)?'可在结算后增长':'不增长');}
+  else if(m.remainingUses!==undefined)status=(ctx.inStage?'本场':'下场')+'还可用'+m.remainingUses+'次；用过后扣次数';
+  else if(!fallback&&hooks[0]?.operations[0].kind==='read-growth'){const o=hooks[0].operations[0];status=j?'本次用已存'+unit(o.target)+'+'+fractionText(growth[o.key])+'':'未购买；买入后'+unit(o.target)+'成长从+'+fractionText(growth[o.key])+'开始';if(ctx.facts&&hooks[1]?.condition.kind==='hand-type-in')status+='；所选'+HAND_LABELS[ctx.facts.type]+(hooks[1].condition.values.includes(ctx.facts.type)?'可在结算后增长':'不增长');}
   else if(!fallback&&(c?.kind==='resource-minimum'||c?.kind==='resource-maximum'||c?.kind==='resource'&&c.resource==='gold')){
    const met=c.kind==='resource-minimum'?ctx.gold>=c.minimum:c.kind==='resource-maximum'?ctx.gold<=c.maximum:ctx.gold===c.equals;
-   status='现在'+ctx.gold+'金 · '+(met?'金币条件目前够':'金币条件未满足')+(c.kind==='resource-minimum'&&!met?'，还差'+(c.minimum-ctx.gold)+'金':'')+(j?'；出牌前重查':'；未购，买后重查');
+   status='现在'+ctx.gold+'金 · '+(met?'金币条件目前够':'金币条件未满足')+(c.kind==='resource-minimum'&&!met?'，还差'+(c.minimum-ctx.gold)+'金':'')+(j?'；出牌开始时判断':'；买入后按余额判断');
   }else if(!fallback&&ctx.facts&&(m.hooks[0]?.status==='当前未满足'||c?.kind==='hand-type-in'&&!c.values.includes(ctx.facts.type)))status=gap();
   else if(!fallback&&m.hooks[0]?.status==='条件满足')status='所选符合；成功出牌后才生效';
-  else if(!fallback&&!j)status='未购买；'+(hooks.some(h=>['onDiscard','onStageClear','afterHand'].includes(h.phase))?'到对应时点才检查':'买入后才生效');
+  else if(!fallback&&!j)status='未购买；'+(hooks.some(h=>['onDiscard','onStageClear','afterHand'].includes(h.phase))?'到牌面说明的时机生效':'买入后才生效');
   else if(!fallback&&m.status==='待选牌')status='选好牌后查条件';
   else if(!fallback&&m.status==='静态仍有效')status='持有时有效';
-  else if(!fallback&&hooks.length===1)status='到对应时点检查；尚未兑现';
+  else if(!fallback&&hooks.length===1)status='按牌面条件生效';
  }
  if(!events&&j){
   const opportunity=growthOpportunityForDefinition(d,j,ctx);
   if(opportunity){
    const read=hooks.flatMap(h=>h.operations).find(o=>o.kind==='read-growth');
-   if(opportunity.action==='play'&&opportunity.operation==='add-growth'){const saved=(ctx.scoringLimited?'已存':'本次用已存')+(read?.kind==='read-growth'?unit(read.target):'成长')+'+'+fractionText(opportunity.stored)+(ctx.scoringLimited?'（本手不计入）':'');status=(ctx.scoringLimited?'本手计分停用；':'')+saved+'；上限'+fractionText(opportunity.cap)+'；'+(opportunity.status==='capped'?'已封顶，不再新增':opportunity.status==='ready'?'所选符合，成功结算后最多新增+'+fractionText(opportunity.delta)+'，下次用':opportunity.status==='unmet'?'所选不增长；'+opportunity.reason:opportunity.reason);}
+   if(opportunity.action==='play'&&opportunity.operation==='add-growth'){const saved='已存'+(read?.kind==='read-growth'?unit(read.target):'成长')+'+'+fractionText(opportunity.stored)+(ctx.scoringLimited?'（本手不计入）':'');status=(ctx.scoringLimited?'本手计分停用；':'')+saved+'；上限'+fractionText(opportunity.cap)+(opportunity.status==='waiting'?'':'；'+(opportunity.status==='capped'?'已封顶，不再新增':opportunity.status==='ready'?'本手后最多新增+'+fractionText(opportunity.delta)+'，下一手用':opportunity.reason));}
    else status=(ctx.scoringLimited?'本手计分停用；':'')+opportunity.summary;
   }
  }
  const resourceHeat=hooks.length===1&&hooks[0].operations.length===1?hooks[0].operations[0]:undefined;
- if(!events&&(resourceHeat?.kind==='add-heat-per-gold'||resourceHeat?.kind==='add-heat-per-empty-slot')&&!ctx.scoringLimited){status=(resourceHeat.kind==='add-heat-per-gold'?'现在'+ctx.gold+'金':'现在'+Math.max(0,ctx.jokerSlots-ctx.jokerCount)+'个空槽')+'；按当前条件热度+'+fractionText(r2ResourceHeatValue(resourceHeat,ctx))+'，上限'+fractionText(resourceHeat.cap)+(j?'；出牌前重查':'；未购，买后重查');}
+ if(!events&&(resourceHeat?.kind==='add-heat-per-gold'||resourceHeat?.kind==='add-heat-per-empty-slot')&&!ctx.scoringLimited){status=(resourceHeat.kind==='add-heat-per-gold'?'现在'+ctx.gold+'金':'现在'+Math.max(0,ctx.jokerSlots-ctx.jokerCount)+'个空槽')+'；按当前条件热度+'+fractionText(r2ResourceHeatValue(resourceHeat,ctx))+'，上限'+fractionText(resourceHeat.cap)+(j?'；出牌开始时判断':'；买入后按余额判断');}
  if(events&&j){
   const own=events.filter(e=>e.sourceType==='joker'&&e.sourceInstanceId===j.instanceId&&e.sourceDefinitionId===d.id&&!e.reasonKey.startsWith('edition.'));
   if(own.length)status=own.map(e=>{
@@ -169,12 +169,19 @@ export function jokerPlainCopy(d:R2JokerDefinition,j:R2JokerInstance|undefined,c
  }else{
   const read=hooks[0]?.operations[0],life=hooks.flatMap(h=>h.operations).find(o=>o.kind==='expire-after-hands');
   if(life?.kind==='expire-after-hands'&&read?.kind==='multiply-multiplier')tile='出牌倍率×'+fractionText(read.value)+'\n总共'+life.limit+'手';
-  else if(read?.kind==='read-coefficient')tile='多步条件\n倍率×'+(j?fractionText(growth[read.key]):'保存值')+'\n点牌查'+(d.id==='e11'&&!hooks.some(h=>h.operations.some(o=>o.kind==='reset-coefficient'))?'成长':'重置');
+  else if(read?.kind==='read-coefficient')tile='多步条件\n倍率×'+(j?fractionText(growth[read.key]):'已存值')+'\n点牌查'+(d.id==='e11'&&!hooks.some(h=>h.operations.some(o=>o.kind==='reset-coefficient'))?'成长':'重置');
   else if(legacyGrowth&&read?.kind==='read-growth'){const grow=hooks[1].operations[0];if(grow.kind==='add-growth'){const bounds=growthBounds(d,j,grow);tile='特定牌型\n'+(bounds.capped?unit(read.target)+'封顶'+fractionText(bounds.cap):unit(read.target)+'+'+fractionText(bounds.delta)+'顶'+fractionText(bounds.cap))+'\n'+(bounds.capped?'不再新增':'新增下次用');}}
-  else if(read?.kind==='read-growth')tile='多步成长\n'+unit(read.target)+'+保存值\n点牌查增减';
+  else if(read?.kind==='read-growth')tile='多步成长\n'+unit(read.target)+'+已存值\n点牌查增减';
   else tile='多步条件\n'+(read?.kind==='retrigger-card'?'再计'+read.count+'次':read?gain(read,hooks[0].phase,hooks[0].condition)??'分时点生效':'分时点生效')+'\n点牌查条件';
  }
 
- const visibleLimits=[...new Set(essential)].join('\n');
- return {line,tile,status,essential:visibleLimits,details:[main,...limits,state,rules].filter(Boolean).join('\n'),fallback,...(fallback?{steps:jokerDetailSteps(d,line,visibleLimits,status,rules)}:{})};
+ const growthRead=hooks[0]?.operations[0],simpleGrowth=!fallback&&hooks.length===2&&growthRead?.kind==='read-growth'&&hooks[1].operations[0]?.kind==='add-growth';
+ const visibleLimits=[...new Set(essential.flatMap(text=>simpleGrowth?text.split('；').filter(part=>!/^新增从下一手生效/.test(part)):text))].join('\n');
+ const timingLine=!fallback?condition+(simpleGrowth?'；新增下一手生效，已有成长'+(hooks[0].condition.kind==='always'?'每手可用':'按条件使用'):''):undefined;
+ let effectLine=effect;
+ if(simpleGrowth&&growthRead.kind==='read-growth'&&hooks[1].operations[0].kind==='add-growth'){
+  const bounds=growthBounds(d,j,hooks[1].operations[0]);effectLine=unit(growthRead.target)+'成长'+(bounds.capped?'已封顶':'最多+'+fractionText(bounds.delta))+'（上限'+fractionText(bounds.cap)+'）';
+  if(!events)status=status.replace('；上限'+fractionText(bounds.cap),'');
+ }
+ return {line,tile,status,essential:visibleLimits,details:[...new Set([main,...limits,rules,...(events?[state]:[])].filter(Boolean))].join('\n'),fallback,...(!fallback?{effectLine,timingLine}:{}),...(fallback?{steps:jokerDetailSteps(d,line,visibleLimits,status,rules)}:{})};
 }
