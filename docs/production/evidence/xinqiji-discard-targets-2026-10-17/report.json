@@ -1,0 +1,118 @@
+{
+  "baseSHA": "c4525b2c2faf77ad2df0b5486e0ea64276856d04",
+  "scope": "Only Xinqiji current identity; curated first-stage straight intent, actual PC and emulated portrait input, full state/journal/storage comparison. Not physical device or full hero coverage.",
+  "browser": "153.0.8010.12",
+  "rows": [
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "status": "PASS",
+      "checks": [
+        "reminder return opens empty discard draft; Escape preserves original straight and all state/journal/storage",
+        "direct skill also starts empty; explicit confirmation cancel consumes nothing",
+        "only newly chosen three cards are discarded; PC double click commits once; proposed straight remains in hand",
+        "requires exactly domain-required three candidates; ChooseRefill saves correct hand/rejects without another discard or skill use"
+      ],
+      "errors": [],
+      "beforeHash": "31d2a4670fdbab499070ad5fc782ddc265b09e31ec4b71c7427f7c307ffa2fc9",
+      "images": [
+        "1366-reminder-fresh-draft.png",
+        "1366-confirm-only-new-discard.png",
+        "1366-real-candidates-leave-three.png",
+        "1366-completed-straight-preserved.png"
+      ],
+      "discardCommand": {
+        "runId": "xinqiji-discard-handoff",
+        "commandId": "xinqiji-discard-handoff/command/4",
+        "expectedSeq": 3,
+        "action": {
+          "type": "DiscardHand",
+          "selectedIds": [
+            "diamonds-2",
+            "clubs-3",
+            "diamonds-4"
+          ],
+          "laohuanTrick": true
+        }
+      },
+      "refillCommand": {
+        "runId": "xinqiji-discard-handoff",
+        "commandId": "xinqiji-discard-handoff/command/5",
+        "expectedSeq": 4,
+        "action": {
+          "type": "ChooseRefill",
+          "selectedIds": [
+            "diamonds-14",
+            "diamonds-13",
+            "diamonds-12"
+          ]
+        }
+      },
+      "afterHash": "4dac09b6c63b4bb399bfa1720e046a794d3ba40825032167f0e3978470e60d13",
+      "required": 3,
+      "actualCandidates": 5
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "status": "PASS",
+      "checks": [
+        "reminder return opens empty discard draft; Escape preserves original straight and all state/journal/storage",
+        "direct skill also starts empty; explicit confirmation cancel consumes nothing",
+        "only newly chosen three cards are discarded; PC double click commits once; proposed straight remains in hand",
+        "requires exactly domain-required three candidates; ChooseRefill saves correct hand/rejects without another discard or skill use"
+      ],
+      "errors": [],
+      "beforeHash": "31d2a4670fdbab499070ad5fc782ddc265b09e31ec4b71c7427f7c307ffa2fc9",
+      "images": [
+        "390-reminder-fresh-draft.png",
+        "390-confirm-only-new-discard.png",
+        "390-real-candidates-leave-three.png",
+        "390-completed-straight-preserved.png"
+      ],
+      "discardCommand": {
+        "runId": "xinqiji-discard-handoff",
+        "commandId": "xinqiji-discard-handoff/command/4",
+        "expectedSeq": 3,
+        "action": {
+          "type": "DiscardHand",
+          "selectedIds": [
+            "diamonds-2",
+            "clubs-3",
+            "diamonds-4"
+          ],
+          "laohuanTrick": true
+        }
+      },
+      "refillCommand": {
+        "runId": "xinqiji-discard-handoff",
+        "commandId": "xinqiji-discard-handoff/command/5",
+        "expectedSeq": 4,
+        "action": {
+          "type": "ChooseRefill",
+          "selectedIds": [
+            "diamonds-14",
+            "diamonds-13",
+            "diamonds-12"
+          ]
+        }
+      },
+      "afterHash": "4dac09b6c63b4bb399bfa1720e046a794d3ba40825032167f0e3978470e60d13",
+      "required": 3,
+      "actualCandidates": 5
+    }
+  ],
+  "status": "PASS",
+  "sourceSHA256": {
+    "src/game/GameScene.ts": "063ecf9de7e7877fc071fa8c269f58b17047314c55caeab04d6742e1b421fa60",
+    "src/game/HeroDiscardChoice.ts": "61d55318687bebf0e80fedab579f419521745bacf83aa62609935d018b22777c",
+    "src/game/TouyeDiscardChoice.ts": "f9780135548f9232200a4b4b163e68ce4097327559b2cf71ccf3028075d33584",
+    "src/game/HeroSkillGuide.ts": "5958a74de95f6ef3ea7022b637e2c040d2264b06f3d5774b141a1694031ff22a",
+    "src/domain/r2Run.ts": "28d9b5df6cb03f3ea224318f0964a21aaeeb7df289d1ea34c7a01901326cfc0f",
+    "tests/fixtures/laohuan-discard-handoff.ts": "efa03577ad0d8b367fe6eb343f5e868dd37972269e86e2d059633e44cc5fb6c9"
+  }
+}

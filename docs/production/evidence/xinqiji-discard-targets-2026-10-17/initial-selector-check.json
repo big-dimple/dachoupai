@@ -1,0 +1,46 @@
+{
+  "baseSHA": "c4525b2c2faf77ad2df0b5486e0ea64276856d04",
+  "scope": "Only Xinqiji current identity; curated first-stage straight intent, actual PC and emulated portrait input, full state/journal/storage comparison. Not physical device or full hero coverage.",
+  "browser": "153.0.8010.12",
+  "rows": [
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "status": "FAIL",
+      "checks": [],
+      "errors": [],
+      "beforeHash": "31d2a4670fdbab499070ad5fc782ddc265b09e31ec4b71c7427f7c307ffa2fc9",
+      "images": [
+        "1366-reminder-fresh-draft.png",
+        "1366-FAIL.png"
+      ],
+      "failure": "locator.click: Error: strict mode violation: locator('.hero-discard-choice[open]').locator('[data-card-id=\"diamonds-2\"]') resolved to 2 elements:\n    1) <button type=\"button\" aria-label=\"弃牌候选 2♦\" aria-pressed=\"false\" data-card-id=\"diamonds-2\">…</button> aka getByRole('button', { name: '弃牌候选 2♦' })\n    2) <span data-red=\"true\" data-disabled=\"false\" data-card-id=\"diamonds-2\" class=\"candidate-card-face\">…</span> aka getByRole('button', { name: '弃牌候选 2♦' })\n\nCall log:\n\u001b[2m  - waiting for locator('.hero-discard-choice[open]').locator('[data-card-id=\"diamonds-2\"]')\u001b[22m\n\n    at dom (D:\\ai\\dachoupai\\dachoupai\\.codex-remote-attachments\\xinqiji-discard-targets\\harness\\laohuan-discard-handoff.mjs:24:87)\n    at D:\\ai\\dachoupai\\dachoupai\\.codex-remote-attachments\\xinqiji-discard-targets\\harness\\laohuan-discard-handoff.mjs:32:10"
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "status": "FAIL",
+      "checks": [],
+      "errors": [],
+      "beforeHash": "31d2a4670fdbab499070ad5fc782ddc265b09e31ec4b71c7427f7c307ffa2fc9",
+      "images": [
+        "390-reminder-fresh-draft.png",
+        "390-FAIL.png"
+      ],
+      "failure": "locator.tap: Error: strict mode violation: locator('.hero-discard-choice[open]').locator('[data-card-id=\"diamonds-2\"]') resolved to 2 elements:\n    1) <button type=\"button\" aria-label=\"弃牌候选 2♦\" aria-pressed=\"false\" data-card-id=\"diamonds-2\">…</button> aka getByRole('button', { name: '弃牌候选 2♦' })\n    2) <span data-red=\"true\" data-disabled=\"false\" data-card-id=\"diamonds-2\" class=\"candidate-card-face\">…</span> aka getByRole('button', { name: '弃牌候选 2♦' })\n\nCall log:\n\u001b[2m  - waiting for locator('.hero-discard-choice[open]').locator('[data-card-id=\"diamonds-2\"]')\u001b[22m\n\n    at dom (D:\\ai\\dachoupai\\dachoupai\\.codex-remote-attachments\\xinqiji-discard-targets\\harness\\laohuan-discard-handoff.mjs:24:73)\n    at D:\\ai\\dachoupai\\dachoupai\\.codex-remote-attachments\\xinqiji-discard-targets\\harness\\laohuan-discard-handoff.mjs:32:10"
+    }
+  ],
+  "status": "FAIL",
+  "sourceSHA256": {
+    "src/game/GameScene.ts": "063ecf9de7e7877fc071fa8c269f58b17047314c55caeab04d6742e1b421fa60",
+    "src/game/HeroDiscardChoice.ts": "61d55318687bebf0e80fedab579f419521745bacf83aa62609935d018b22777c",
+    "src/game/TouyeDiscardChoice.ts": "f9780135548f9232200a4b4b163e68ce4097327559b2cf71ccf3028075d33584",
+    "src/game/HeroSkillGuide.ts": "5958a74de95f6ef3ea7022b637e2c040d2264b06f3d5774b141a1694031ff22a",
+    "src/domain/r2Run.ts": "28d9b5df6cb03f3ea224318f0964a21aaeeb7df289d1ea34c7a01901326cfc0f",
+    "tests/fixtures/laohuan-discard-handoff.ts": "efa03577ad0d8b367fe6eb343f5e868dd37972269e86e2d059633e44cc5fb6c9"
+  }
+}
