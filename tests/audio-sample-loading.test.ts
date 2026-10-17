@@ -240,9 +240,9 @@ it('mute/background and unavailable clips consume cues, without playback on load
   engine.setSuspended(false); await engine.unlock();
   for (const id of ['missing', 'muted', 'background']) engine.scoreImpact(presentation, id, 'add');
   expect(sources).toHaveLength(0);
-  inside.context.currentTime += .1; // Preserve the existing ordinary-cue throttle.
+  inside.context.currentTime += .1; // A fresh event may use the newly loaded note and quiet wood.
   engine.scoreImpact(presentation, 'fresh', 'add');
-  expect(sources).toHaveLength(1);
+  expect(sources).toHaveLength(2);
   engine.setSuspended(true);
   expect(inside.voices.size).toBe(0);
 });
