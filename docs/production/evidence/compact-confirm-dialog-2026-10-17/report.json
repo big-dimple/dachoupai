@@ -1,0 +1,617 @@
+{
+  "base": "f81724b57736c7d4f299cf1d95705a7ba3ef9497",
+  "browser": "153.0.8010.12",
+  "cases": [
+    {
+      "viewport": {
+        "name": "pc",
+        "width": 1652,
+        "height": 924
+      },
+      "confirmation": {
+        "dialog": {
+          "x": 566,
+          "y": 337.625,
+          "width": 520,
+          "height": 248.75,
+          "top": 337.625,
+          "right": 1086,
+          "bottom": 586.375,
+          "left": 566
+        },
+        "body": {
+          "x": 587,
+          "y": 418.125,
+          "width": 478,
+          "height": 74.25,
+          "top": 418.125,
+          "right": 1065,
+          "bottom": 492.375,
+          "left": 587
+        },
+        "actions": {
+          "x": 567,
+          "y": 512.375,
+          "width": 518,
+          "height": 73,
+          "top": 512.375,
+          "right": 1085,
+          "bottom": 585.375,
+          "left": 567
+        },
+        "scroll": {
+          "height": 114,
+          "total": 114
+        },
+        "buttons": [
+          {
+            "label": "确认开始新局",
+            "x": 955,
+            "y": 525.375,
+            "width": 110,
+            "height": 48,
+            "top": 525.375,
+            "right": 1065,
+            "bottom": 573.375,
+            "left": 955
+          },
+          {
+            "label": "取消",
+            "x": 851,
+            "y": 525.375,
+            "width": 96,
+            "height": 48,
+            "top": 525.375,
+            "right": 947,
+            "bottom": 573.375,
+            "left": 851
+          }
+        ],
+        "focus": "取消",
+        "overflow": false
+      },
+      "longText": {
+        "dialog": {
+          "x": 566,
+          "y": 12,
+          "width": 520,
+          "height": 900,
+          "top": 12,
+          "right": 1086,
+          "bottom": 912,
+          "left": 566
+        },
+        "body": {
+          "x": 587,
+          "y": 92.5,
+          "width": 478,
+          "height": 1608.75,
+          "top": 92.5,
+          "right": 1065,
+          "bottom": 1701.25,
+          "left": 587
+        },
+        "actions": {
+          "x": 567,
+          "y": 838,
+          "width": 518,
+          "height": 73,
+          "top": 838,
+          "right": 1085,
+          "bottom": 911,
+          "left": 567
+        },
+        "scroll": {
+          "height": 766,
+          "total": 1649
+        },
+        "buttons": [
+          {
+            "label": "确认开始新局",
+            "x": 955,
+            "y": 851,
+            "width": 110,
+            "height": 48,
+            "top": 851,
+            "right": 1065,
+            "bottom": 899,
+            "left": 955
+          },
+          {
+            "label": "取消",
+            "x": 851,
+            "y": 851,
+            "width": 96,
+            "height": 48,
+            "top": 851,
+            "right": 947,
+            "bottom": 899,
+            "left": 851
+          }
+        ],
+        "focus": "取消",
+        "overflow": false
+      },
+      "structuredDetail": {
+        "height": 780,
+        "scroll": 1517,
+        "visible": 606
+      },
+      "realCatalog": {
+        "height": 780,
+        "total": 1122,
+        "visible": 614
+      },
+      "status": "PASS",
+      "checks": [
+        "keyboard focus cycles both ways and returns to its trigger",
+        "Enter/cancel/Escape preserve full state, journal and save slots",
+        "opening submits nothing",
+        "confirm creates and saves one new run with old checkpoint as backup; PC uses double click",
+        "reload restores confirmed state",
+        "long text, structured detail and real catalog scroll; catalog form focus works"
+      ]
+    },
+    {
+      "viewport": {
+        "name": "390",
+        "width": 390,
+        "height": 844,
+        "touch": true
+      },
+      "confirmation": {
+        "dialog": {
+          "x": 19,
+          "y": 305.625,
+          "width": 352,
+          "height": 232.75,
+          "top": 305.625,
+          "right": 371,
+          "bottom": 538.375,
+          "left": 19
+        },
+        "body": {
+          "x": 36,
+          "y": 378.125,
+          "width": 318,
+          "height": 74.25,
+          "top": 378.125,
+          "right": 354,
+          "bottom": 452.375,
+          "left": 36
+        },
+        "actions": {
+          "x": 20,
+          "y": 468.375,
+          "width": 350,
+          "height": 69,
+          "top": 468.375,
+          "right": 370,
+          "bottom": 537.375,
+          "left": 20
+        },
+        "scroll": {
+          "height": 106,
+          "total": 106
+        },
+        "buttons": [
+          {
+            "label": "确认开始新局",
+            "x": 168,
+            "y": 479.375,
+            "width": 186,
+            "height": 48,
+            "top": 479.375,
+            "right": 354,
+            "bottom": 527.375,
+            "left": 168
+          },
+          {
+            "label": "取消",
+            "x": 36,
+            "y": 479.375,
+            "width": 124,
+            "height": 48,
+            "top": 479.375,
+            "right": 160,
+            "bottom": 527.375,
+            "left": 36
+          }
+        ],
+        "focus": "取消",
+        "overflow": false
+      },
+      "longText": {
+        "dialog": {
+          "x": 19,
+          "y": 12,
+          "width": 352,
+          "height": 820,
+          "top": 12,
+          "right": 371,
+          "bottom": 832,
+          "left": 19
+        },
+        "body": {
+          "x": 36,
+          "y": 84.5,
+          "width": 318,
+          "height": 1608.75,
+          "top": 84.5,
+          "right": 354,
+          "bottom": 1693.25,
+          "left": 36
+        },
+        "actions": {
+          "x": 20,
+          "y": 762,
+          "width": 350,
+          "height": 69,
+          "top": 762,
+          "right": 370,
+          "bottom": 831,
+          "left": 20
+        },
+        "scroll": {
+          "height": 694,
+          "total": 1641
+        },
+        "buttons": [
+          {
+            "label": "确认开始新局",
+            "x": 168,
+            "y": 773,
+            "width": 186,
+            "height": 48,
+            "top": 773,
+            "right": 354,
+            "bottom": 821,
+            "left": 168
+          },
+          {
+            "label": "取消",
+            "x": 36,
+            "y": 773,
+            "width": 124,
+            "height": 48,
+            "top": 773,
+            "right": 160,
+            "bottom": 821,
+            "left": 36
+          }
+        ],
+        "focus": "取消",
+        "overflow": false
+      },
+      "structuredDetail": {
+        "height": 780,
+        "scroll": 1539,
+        "visible": 614
+      },
+      "realCatalog": {
+        "height": 780,
+        "total": 1203,
+        "visible": 622
+      },
+      "status": "PASS",
+      "checks": [
+        "keyboard focus cycles both ways and returns to its trigger",
+        "Enter/cancel/Escape preserve full state, journal and save slots",
+        "opening submits nothing",
+        "confirm creates and saves one new run with old checkpoint as backup; PC uses double click",
+        "reload restores confirmed state",
+        "long text, structured detail and real catalog scroll; catalog form focus works"
+      ]
+    },
+    {
+      "viewport": {
+        "name": "320",
+        "width": 320,
+        "height": 568,
+        "touch": true
+      },
+      "confirmation": {
+        "dialog": {
+          "x": 19,
+          "y": 155.25,
+          "width": 282,
+          "height": 257.5,
+          "top": 155.25,
+          "right": 301,
+          "bottom": 412.75,
+          "left": 19
+        },
+        "body": {
+          "x": 36,
+          "y": 227.75,
+          "width": 248,
+          "height": 99,
+          "top": 227.75,
+          "right": 284,
+          "bottom": 326.75,
+          "left": 36
+        },
+        "actions": {
+          "x": 20,
+          "y": 342.75,
+          "width": 280,
+          "height": 69,
+          "top": 342.75,
+          "right": 300,
+          "bottom": 411.75,
+          "left": 20
+        },
+        "scroll": {
+          "height": 131,
+          "total": 131
+        },
+        "buttons": [
+          {
+            "label": "确认开始新局",
+            "x": 140,
+            "y": 353.75,
+            "width": 144,
+            "height": 48,
+            "top": 353.75,
+            "right": 284,
+            "bottom": 401.75,
+            "left": 140
+          },
+          {
+            "label": "取消",
+            "x": 36,
+            "y": 353.75,
+            "width": 96,
+            "height": 48,
+            "top": 353.75,
+            "right": 132,
+            "bottom": 401.75,
+            "left": 36
+          }
+        ],
+        "focus": "取消",
+        "overflow": false
+      },
+      "longText": {
+        "dialog": {
+          "x": 19,
+          "y": 12,
+          "width": 282,
+          "height": 544,
+          "top": 12,
+          "right": 301,
+          "bottom": 556,
+          "left": 19
+        },
+        "body": {
+          "x": 36,
+          "y": 84.5,
+          "width": 248,
+          "height": 3217.5,
+          "top": 84.5,
+          "right": 284,
+          "bottom": 3302,
+          "left": 36
+        },
+        "actions": {
+          "x": 20,
+          "y": 486,
+          "width": 280,
+          "height": 69,
+          "top": 486,
+          "right": 300,
+          "bottom": 555,
+          "left": 20
+        },
+        "scroll": {
+          "height": 418,
+          "total": 3250
+        },
+        "buttons": [
+          {
+            "label": "确认开始新局",
+            "x": 140,
+            "y": 497,
+            "width": 144,
+            "height": 48,
+            "top": 497,
+            "right": 284,
+            "bottom": 545,
+            "left": 140
+          },
+          {
+            "label": "取消",
+            "x": 36,
+            "y": 497,
+            "width": 96,
+            "height": 48,
+            "top": 497,
+            "right": 132,
+            "bottom": 545,
+            "left": 36
+          }
+        ],
+        "focus": "取消",
+        "overflow": false
+      },
+      "structuredDetail": {
+        "height": 544,
+        "scroll": 1565,
+        "visible": 378
+      },
+      "realCatalog": {
+        "height": 544,
+        "total": 1250,
+        "visible": 386
+      },
+      "status": "PASS",
+      "checks": [
+        "keyboard focus cycles both ways and returns to its trigger",
+        "Enter/cancel/Escape preserve full state, journal and save slots",
+        "opening submits nothing",
+        "confirm creates and saves one new run with old checkpoint as backup; PC uses double click",
+        "reload restores confirmed state",
+        "long text, structured detail and real catalog scroll; catalog form focus works"
+      ]
+    },
+    {
+      "viewport": {
+        "name": "short",
+        "width": 844,
+        "height": 300,
+        "touch": true,
+        "safe": true
+      },
+      "confirmation": {
+        "dialog": {
+          "x": 166,
+          "y": 37.125,
+          "width": 520,
+          "height": 203.75,
+          "top": 37.125,
+          "right": 686,
+          "bottom": 240.875,
+          "left": 166
+        },
+        "body": {
+          "x": 183,
+          "y": 92.625,
+          "width": 486,
+          "height": 74.25,
+          "top": 92.625,
+          "right": 669,
+          "bottom": 166.875,
+          "left": 183
+        },
+        "actions": {
+          "x": 167,
+          "y": 178.875,
+          "width": 518,
+          "height": 61,
+          "top": 178.875,
+          "right": 685,
+          "bottom": 239.875,
+          "left": 167
+        },
+        "scroll": {
+          "height": 98,
+          "total": 98
+        },
+        "buttons": [
+          {
+            "label": "确认开始新局",
+            "x": 559,
+            "y": 185.875,
+            "width": 110,
+            "height": 48,
+            "top": 185.875,
+            "right": 669,
+            "bottom": 233.875,
+            "left": 559
+          },
+          {
+            "label": "取消",
+            "x": 455,
+            "y": 185.875,
+            "width": 96,
+            "height": 48,
+            "top": 185.875,
+            "right": 551,
+            "bottom": 233.875,
+            "left": 455
+          }
+        ],
+        "focus": "取消",
+        "overflow": false
+      },
+      "longText": {
+        "dialog": {
+          "x": 166,
+          "y": 24,
+          "width": 520,
+          "height": 230,
+          "top": 24,
+          "right": 686,
+          "bottom": 254,
+          "left": 166
+        },
+        "body": {
+          "x": 183,
+          "y": 79.5,
+          "width": 486,
+          "height": 1608.75,
+          "top": 79.5,
+          "right": 669,
+          "bottom": 1688.25,
+          "left": 183
+        },
+        "actions": {
+          "x": 167,
+          "y": 192,
+          "width": 518,
+          "height": 61,
+          "top": 192,
+          "right": 685,
+          "bottom": 253,
+          "left": 167
+        },
+        "scroll": {
+          "height": 125,
+          "total": 1633
+        },
+        "buttons": [
+          {
+            "label": "确认开始新局",
+            "x": 559,
+            "y": 199,
+            "width": 110,
+            "height": 48,
+            "top": 199,
+            "right": 669,
+            "bottom": 247,
+            "left": 559
+          },
+          {
+            "label": "取消",
+            "x": 455,
+            "y": 199,
+            "width": 96,
+            "height": 48,
+            "top": 199,
+            "right": 551,
+            "bottom": 247,
+            "left": 455
+          }
+        ],
+        "focus": "取消",
+        "overflow": false
+      },
+      "structuredDetail": {
+        "height": 230,
+        "scroll": 1517,
+        "visible": 85
+      },
+      "realCatalog": {
+        "height": 276,
+        "total": 1100,
+        "visible": 139
+      },
+      "status": "PASS",
+      "checks": [
+        "keyboard focus cycles both ways and returns to its trigger",
+        "Enter/cancel/Escape preserve full state, journal and save slots",
+        "opening submits nothing",
+        "confirm creates and saves one new run with old checkpoint as backup; PC uses double click",
+        "reload restores confirmed state",
+        "long text, structured detail and real catalog scroll; catalog form focus works"
+      ]
+    }
+  ],
+  "errors": [],
+  "scope": "Native UI creates an initial run and replacement confirmation. Supplementary controlled long text and catalog DOM check shared scrolling. Software browser only; no physical-device, source-screenshot pixel or long-run acceptance.",
+  "sourceSHA256": {
+    "src/game/DetailDialog.ts": "0747a4807fdf6199d3177ce025757ebf47a112d145ff6c723c26c5de8b5d9936",
+    "src/game/DetailDialog.css": "afa02c39d05387d8fba1e99f01d70fd58a81ccd36f5c8589cc44523f874af462"
+  },
+  "status": "PASS"
+}

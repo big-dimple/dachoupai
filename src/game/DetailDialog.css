@@ -1,0 +1,25 @@
+/* Only a plain message and its actions shrink to their content. Callers that
+   append catalog controls, forms or art retain the existing detail workspace. */
+.detail-dialog[open]:has(> .dialog-content > .dialog-scroll:only-child > .dialog-copy:only-child > .dialog-body):not(:has(.dialog-copy > :not(.dialog-body,.dialog-status),.dialog-body > :not(.suit-symbol))) {
+ width:min(520px,calc(100vw - var(--safe-left) - var(--safe-right) - 24px));
+ height:fit-content;
+ display:flex;
+ flex-direction:column;
+
+ & .dialog-content { flex:0 1 auto;padding:20px;overflow:auto; }
+ & .dialog-scroll { height:auto;overflow:visible;font-size:16px; }
+ & .dialog-body { line-height:1.65; }
+ & .dialog-actions { justify-content:flex-end; }
+ & .dialog-actions button { flex:0 1 auto;min-width:96px;min-height:48px; }
+ & .dialog-actions .dialog-primary { order:1; }
+
+ @media(max-width:560px) {
+  & .dialog-content { padding:16px; }
+  & .dialog-actions { display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr); }
+  & .dialog-actions button { min-width:0;padding:8px; }
+  & .dialog-close:only-child { grid-column:1/-1; }
+ }
+ @media(max-height:420px) {
+  & .dialog-content { padding:12px 16px; }
+ }
+}
