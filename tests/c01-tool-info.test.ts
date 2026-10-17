@@ -21,8 +21,8 @@ describe('C01 public tool and item details',()=>{
     expect(R2_TOOLS).toHaveLength(39);expect(R2_LONG_TERM_ITEMS).toHaveLength(12);
     for(const row of R2_TOOLS){
       const info=toolInfo(row.id);
-      expect(info.name).toBe(row.name);expect(info.family).toBe(row.family);
-      expect(info.label).toContain(toolFamilyLabel(row.family));expect(info.label).toContain(row.name);
+      expect(info.name).toBe(row.id==='T18'?'换货券':row.name);expect(info.family).toBe(row.family);
+      expect(info.label).toContain(toolFamilyLabel(row.family));expect(info.label).toContain(row.id==='T18'?'换货券':row.name);
       for(const field of [info.description,info.cost,info.risk,info.artUrl])expect(field.length).toBeGreaterThan(8);
       expect(`${info.description}${info.risk}`).not.toMatch(/待实现|暂无|TODO|rng|nextSeed|drawPile/i);
     }
@@ -76,7 +76,7 @@ describe('C01 public tool and item details',()=>{
     expect(detail('T16')).toContain('不可购买');expect(detail('T16')).toContain('首次Boss');
     expect(detail('T16')).toContain('2金');expect(detail('T16')).toContain('+5');
     expect(detail('T17')).toContain('入场');expect(detail('T17')).toContain('已用弃牌');
-    expect(detail('T18')).toContain('刷新次数');expect(detail('T18')).toContain('付费刷新成长');
+    expect(toolInfo('T18').name).toBe('换货券');expect(toolInfo('T18').summary).toBe('刷新一次商店商品');expect(detail('T18')).toContain('长期道具不变');
   });
   it('shows enhancement and edition as independent layers with public trigger timing',()=>{
     for(const enhancement of ENHANCEMENTS){

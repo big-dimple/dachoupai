@@ -53,7 +53,7 @@ export function r2MechanismBadge(definition:R2JokerDefinition){
   if(chance?.kind==='chance-add-heat')return {label:'每手概率',value:chance.probability.n+'/'+chance.probability.d+' · +'+fractionText(chance.value)+' 热度',paper:0xd8e9e3};
   const reward=operations.find(operation=>operation.kind==='reward-consumable-pool'||operation.kind==='reward-consumable-every-clears');
   if(reward?.kind==='reward-consumable-pool')return {label:'过关赠品',value:'随机花色染',paper:0xf2dfbc};
-  if(reward?.kind==='reward-consumable-every-clears')return {label:'过关赠票',value:'每'+reward.every+'次 · '+getR2Tool(reward.definitionId).name,paper:0xf2dfbc};
+  if(reward?.kind==='reward-consumable-every-clears')return {label:'过关赠票',value:'每'+reward.every+'次 · '+cardDefinitionName(getR2Tool(reward.definitionId)),paper:0xf2dfbc};
   const growth=operations.find(operation=>operation.kind==='add-growth'||operation.kind==='update-score-growth');
   if(growth?.kind==='add-growth'||growth?.kind==='update-score-growth')return {label:'成长',value:'+'+fractionText(growth.value),paper:0xdce9df};
   const repeat=operations.find(operation=>operation.kind==='retrigger-card');
@@ -126,7 +126,7 @@ export function r2JokerExtraHelp(definition:R2JokerDefinition):string {
   if(operations.some(operation=>operation.kind==='chance-add-heat'))notes.push('每个有效实例每手只判断一次；扑克重触发不增加判断，演出和回看不再抽随机结果。');
   if(operations.some(operation=>operation.kind==='refund-hand-limited'))notes.push('每场最多返还一次，先于耗尽失败判断；致胜四条、五条及扩展牌型不返还，实际出牌序号不回退。');
   const pool=operations.find(operation=>operation.kind==='reward-consumable-pool');
-  if(pool?.kind==='reward-consumable-pool')notes.push(pool.definitionIds.map(id=>getR2Tool(id).name).join('、')+'各1/'+pool.definitionIds.length+'；满槽转'+pool.fallbackGold+'金币仍消费一次奖励随机，失败或跳场不赠。');
+  if(pool?.kind==='reward-consumable-pool')notes.push(pool.definitionIds.map(id=>cardDefinitionName(getR2Tool(id))).join('、')+'各1/'+pool.definitionIds.length+'；满槽转'+pool.fallbackGold+'金币仍消费一次奖励随机，失败或跳场不赠。');
   if(operations.some(operation=>operation.kind==='reward-consumable-every-clears'))notes.push('固定赠票不消费奖励随机；0/1轮转跨场保存，失败或跳场不计数；满槽转2金币。');
   return notes.length?'\n'+notes.join('\n'):'';
 }
@@ -149,7 +149,7 @@ export function r2ScoreOperationText(event:ScoreEvent,definition?:R2JokerDefinit
   if(event.operation==='upgrade-hand')return (event.targetHandType?HAND_LABELS[event.targetHandType]:'牌型')+'升'+value+'级'+resource;
   if(event.operation==='reward-free-reroll')return '节目单兑现 · 下一商店免费换牌1次';
   if(event.operation==='program-reward-skipped')return '本章用过的牌型均满级 · 不重复升级';
-  const prize=event.rewardDefinitionId?getR2Tool(event.rewardDefinitionId).name:event.sourceType==='rule'&&event.sourceDefinitionId==='T16'?'小红包':'赠品';
+  const prize=event.rewardDefinitionId?cardDefinitionName(getR2Tool(event.rewardDefinitionId)):event.sourceType==='rule'&&event.sourceDefinitionId==='T16'?'小红包':'赠品';
   if(event.operation==='reward-consumable')return '获得'+prize+' · 库存 '+event.resourceBefore+' → '+event.resourceAfter;
   if(event.operation==='add-gold'&&event.rewardDefinitionId)return prize+' · 库存已满转 +'+value+' 金'+resource;
   if(event.operation==='add-gold'||event.operation==='add-gold-limited')return '+'+value+' 金'+resource;
@@ -188,8 +188,8 @@ export function r2TransactionText(event:JokerTransaction,source:R2JokerDefinitio
   const [n,d='1']=event.amount.split('/'),amount=fractionText({n,d});
   let effect:string;
   if(event.operation==='add-coefficient'||event.operation==='reset-coefficient')effect=coefficientChangeText(event.operation,event.growthBefore,event.growthAfter);
-  else if(event.operation==='reward-consumable')effect='获得'+getR2Tool(event.rewardDefinitionId!).name;
-  else if(event.operation==='add-gold'&&event.rewardDefinitionId)effect=getR2Tool(event.rewardDefinitionId).name+' · 库存已满转 +'+amount+' 金';
+  else if(event.operation==='reward-consumable')effect='获得'+cardDefinitionName(getR2Tool(event.rewardDefinitionId!));
+  else if(event.operation==='add-gold'&&event.rewardDefinitionId)effect=cardDefinitionName(getR2Tool(event.rewardDefinitionId))+' · 库存已满转 +'+amount+' 金';
   else if(event.operation==='increment-clear-cycle')effect='过关计数 '+event.resourceBefore+' → '+event.resourceAfter;
   else if(event.operation==='add-gold'||event.operation==='add-gold-limited')effect='+'+amount+' 金';
   else if(event.operation==='arm-rescue')effect='救火已备好 · 下一次出牌后消耗';

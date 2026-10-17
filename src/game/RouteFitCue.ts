@@ -1,3 +1,4 @@
+import {toolInfo} from './r2ToolInfo';
 import {R2_TOOLS} from '../content/r2Tools';
 import type {R2RunState} from '../domain/run';
 import {r2CreateJoker} from '../domain/r2Run';
@@ -25,6 +26,7 @@ export function toolPurpose(state:R2RunState,id:string):string {
  const op=R2_TOOLS.find(t=>t.id===id)?.operation,focus=currentBuildFocus(state,state.openingRoute);
  if(!op)return '';
  switch(op.kind){
+ case 'free-reroll':return toolInfo(id,state).summary;
  case 'shift-rank':return focus==='group'?'把相邻点数改成同点，培养对子／两对；不必等复制牌。':'微调点数，自己核对改后组合。';
  case 'delete-cards':return '永久删掉偏离方向的牌，缩小牌组；不保证下一手抽中核心。';
  case 'set-enhancement':return op.enhancement==='voice-paper'?'受益牌留在手中才加倍率，打出它不读取留牌加成。':op.enhancement==='gold-paper'?'过关时受益牌有效留在手中才给金币，不提高本手分数。':'给会参与计分的牌加增强；对子／两对也可用，无须同花。';

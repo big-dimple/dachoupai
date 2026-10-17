@@ -92,7 +92,7 @@ export const TANGSONG_CARD_NAMES: Readonly<Record<string, string>> = Object.free
  * 获取面向玩家的唐宋正名（若未收录则降级为默认名或ID）
  */
 export function cardDisplayName(definitionId: string, defaultName?: string): string {
-  return TANGSONG_CARD_NAMES[definitionId] ?? defaultName ?? definitionId;
+  return definitionId==='T18'?'换货券':TANGSONG_CARD_NAMES[definitionId] ?? defaultName ?? definitionId;
 }
 
 /** UI-only name projection; the original definition remains the rule/hash input. */

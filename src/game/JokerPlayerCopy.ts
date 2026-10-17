@@ -48,8 +48,8 @@ function bindingValue(source:string,definition:R2JokerDefinition):unknown {
   case'interest divisor (existing run literal)':return 5;
   case'scoring-position third-original (existing authoritative condition)':return 3;
   case'R2_ENHANCEMENTS voice-paper onHeldCard add-multiplier value':{const effect=R2_ENHANCEMENTS.find(e=>e.id==='voice-paper')?.effects.find(e=>e.kind==='add-multiplier'&&e.phase==='onHeldCard');return effect&&'value'in effect?effect.value:undefined;}
-  case'getR2Tool(operation.definitionId).name':{const op=ops.find(o=>o.kind==='reward-consumable-every-clears');return op?.kind==='reward-consumable-every-clears'?getR2Tool(op.definitionId).name:undefined;}
-  case'getR2Tool(operation.definitionIds[*]).name':case'1 / operation.definitionIds.length':case'operation.definitionIds.length':{const op=ops.find(o=>o.kind==='reward-consumable-pool');if(op?.kind!=='reward-consumable-pool')return undefined;return source==='operation.definitionIds.length'?op.definitionIds.length:source==='1 / operation.definitionIds.length'?'1/'+op.definitionIds.length:op.definitionIds.map(id=>getR2Tool(id).name).join('、');}
+  case'getR2Tool(operation.definitionId).name':{const op=ops.find(o=>o.kind==='reward-consumable-every-clears');return op?.kind==='reward-consumable-every-clears'?cardDefinitionName(getR2Tool(op.definitionId)):undefined;}
+  case'getR2Tool(operation.definitionIds[*]).name':case'1 / operation.definitionIds.length':case'operation.definitionIds.length':{const op=ops.find(o=>o.kind==='reward-consumable-pool');if(op?.kind!=='reward-consumable-pool')return undefined;return source==='operation.definitionIds.length'?op.definitionIds.length:source==='1 / operation.definitionIds.length'?'1/'+op.definitionIds.length:op.definitionIds.map(id=>cardDefinitionName(getR2Tool(id))).join('、');}
  }
 }
 function formatted(value:unknown,format:string):string {

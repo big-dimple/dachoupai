@@ -1,3 +1,4 @@
+import {cardDefinitionName} from './tangsongCardNames';
 import {r2ToolPrice} from '../domain/r2Shop';
 import type {R2ContentIdentity} from '../domain/r2ContentProfiles';
 import {SUIT_SYMBOL,type PlayingCard,type Edition} from '../cards/types';
@@ -120,7 +121,7 @@ function toolEffectSummary(tool:R2ToolDefinition):string {
  case 'set-enhancement':return enhancementSummary(enhancementDefinition(op.enhancement));
  case 'add-gold':return `获得${op.amount}金`;
  case 'restore-discard':return `恢复本场${op.amount}次弃牌，最多到入场次数`;
- case 'free-reroll':return '免费刷新一次大丑牌和工具货架';
+ case 'free-reroll':return '刷新一次商店商品';
  case 'random-enhancement':return '永久献出一张扑克，给受赠扑克随机增强';
  case 'random-edition':return '给选中的牌随机增加闪箔、全息或多彩版次';
  case 'set-deck-suit':return '把整个牌组改成一种花色';
@@ -159,7 +160,7 @@ function operationText(tool:R2ToolDefinition):string {
     }
     case 'add-gold':return `金币+${op.amount}，不增加本手热度或倍率。`;
     case 'restore-discard':return `本场弃牌次数+${op.amount}，最多恢复至入场次数，保留已用弃牌记录；须实际用过弃牌。`;
-    case 'free-reroll':return '本次免费刷新大丑牌和工具货架，不刷新长期道具货架。刷新次数照常增加，但不触发付费刷新成长，也不支付付费刷新价格。';
+    case 'free-reroll':return '刷新一次唐宋牌和工具，长期道具不变。';
     case 'random-enhancement':return '每张受赠扑克独立随机获得一种增强，保留原版次。按商店可见有效牌组顺序，或待出牌时当前手牌顺序分配，不按目标点击顺序分配。';
     case 'random-edition':return '随机获得闪箔、全息或多彩版次，增强与版次各占一层。扑克保留点数、花色和增强；大丑牌保留稀有度、购入价、成长与计数。';
     case 'set-deck-suit':return '整个有效牌组永久改为所选花色，保留点数、增强、版次以及各牌堆顺序；须至少一张确实改变花色。';
@@ -223,7 +224,7 @@ export function toolInfo(id:string,identity:R2ContentIdentity={}):ToolInfo {
   const tool=getR2Tool(id),price=r2ToolPrice(id,identity),finish=id==='S04'&&isR2S04Finish(identity),cacheKey=id+'/'+price+'/'+finish;
   const cached=toolCache.get(cacheKey);if(cached)return cached;
   const family=toolFamilyLabel(tool.family);
-  const info=Object.freeze({name:tool.name,family:tool.family,label:`${family} · ${tool.name}`,
+  const info=Object.freeze({name:cardDefinitionName(tool),family:tool.family,label:`${family} · ${cardDefinitionName(tool)}`,
     summary:(finish?`第${R2_S04_FINISH_CONTRACT.minimumChapter}章起，已有至少50%目标花色才可收尾；`:'')+toolSummary(tool),description:`${tool.phases.map(phase=>phase==='shop'?'商店':'待出牌').join(' / ')}可用。${targetText(tool)}${operationText(tool)}`+(finish?`第${R2_S04_FINISH_CONTRACT.minimumChapter}章起，目标花色须占存活牌组至少50%，销毁牌不计。获取和使用时分别重核；买后若未达标，可保留或放弃。店内染色跨过门槛不会自动换货，须按原价刷新或过关后等下一店；均不保证出现独幕。`:''),
     cost:toolCost(tool,price),risk:toolRisk(tool),artUrl:goodsArtUrl(id,'tool-card','thumbnail')??toolArt(tool),detailArtUrl:goodsArtUrl(id,'tool-card','detail'),fallbackArtUrl:toolArt(tool)});
   toolCache.set(cacheKey,info);return info;
@@ -313,7 +314,7 @@ function toolArt(tool:R2ToolDefinition):string {
     case 'set-enhancement':body=enhancementGlyph(op.enhancement);break;
     case 'add-gold':body=`<path d="M121 213h142v107H121ZM121 213l71 64 71-64" fill="${colors.red}" stroke="${colors.brass}"/><g stroke="${colors.brass}">${circle(229,318,31)}${circle(229,318,23)}</g>${text(229,326,`+${op.amount}`,17)}`;break;
     case 'restore-discard':body=`${cardShape(156,205,72,106)}<path d="M242 319a71 71 0 1 0-106-88m1-21-4 24 24-4" stroke="${colors.brass}" stroke-width="5"/>${text(193,278,`+${op.amount}`,27,colors.jade)}`;break;
-    case 'free-reroll':body=`<path d="M119 240h146v95H119ZM112 240l17-42h127l16 42M139 247v81m35-81v81m35-81v81m35-81v81" stroke="${colors.brass}"/><path d="M161 176a49 49 0 0 1 72-2m-18-4 20 7 3-20"/>${text(192,362,'免费',19)}`;break;
+    case 'free-reroll':body=`<path d="M119 240h146v95H119ZM112 240l17-42h127l16 42M139 247v81m35-81v81m35-81v81m35-81v81" stroke="${colors.brass}"/><path d="M161 176a49 49 0 0 1 72-2m-18-4 20 7 3-20"/>${text(192,362,'换货',19)}`;break;
     case 'random-enhancement':body=`${cardShape(132,209)}${cardShape(211,209)}<path d="M111 217l30-41-26-12 31-27m-36 185 24 13-9 26" stroke="${colors.brass}"/>${star(167,260,15)}${star(246,260,15)}${text(190,354,'七种机缘',16)}`;break;
     case 'random-edition':body=`<path d="M190 173l-68 126h135ZM190 173l-10 126M148 250l121-43M160 276l127-3M155 300l121 46" stroke="${colors.brass}"/><path d="M270 203l14-4M285 271l13 0M276 346l12 6" stroke="${colors.red}" stroke-width="6"/>${text(192,379,'三种版次',16)}`;break;
     case 'set-deck-suit':body=`<g transform="rotate(-20 191 300)">${cardShape(135,200)}</g>${cardShape(158,193)}<g transform="rotate(20 191 300)">${cardShape(183,200)}</g>${text(192,276,'♠',38,colors.ink)}${text(192,357,'全牌组',17)}`;break;
@@ -323,7 +324,7 @@ function toolArt(tool:R2ToolDefinition):string {
     case 'clear-deck-specials':body=`${cardShape(144,203)}${cardShape(189,216)}<path d="M132 327l109-97 17 19-109 97ZM131 329l-20 16 9 24 27-23" fill="${colors.brass}" stroke="${colors.paperLight}"/>${star(269,298,11)}${star(238,349,8)}${text(192,384,'净台',16)}`;break;
     default:return impossible(op);
   }
-  return framedArt(tool.id,tool.name,toolFamilyLabel(tool.family),body);
+  return framedArt(tool.id,cardDefinitionName(tool),toolFamilyLabel(tool.family),body);
 }
 function itemArt(item:R2LongTermDefinition):string {
   const op=item.operation;let glyph:string;

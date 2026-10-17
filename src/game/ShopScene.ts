@@ -44,7 +44,6 @@ import {requestJokerArt,jokerArtLoadState,retryJokerArt} from './JokerArtLoading
 import {JOKER_RARITY,createJokerRarityBadge,type JokerRarity} from './JokerRarity';
 import {findShopSynergy,shopCandidateTradeoff} from './ShopSynergy';
 import {ShopSynergyPreview} from './ShopSynergyPreview';
-import {shopRerollEconomyCopy} from './ShopRerollEconomyCopy';
 import {cardDisplayName} from './tangsongCardNames';
 import Phaser from 'phaser';
 import {r2JokerCapacity} from '../domain/r2Resources';
@@ -419,7 +418,7 @@ export class ShopScene extends Phaser.Scene {
     if(d)v.add(createShopRarityFrame(this,tile,d.rarity).setData('offerId',o.offerId));
     if(d)shopSheet(this,v,'offer-stage',{x:tile.x+4,y:tile.y+4,width:tile.width-8,height:face.height+10},PAPER_THEME.jadeSoft);
 
-    let summary=d?this.shopJokerSummary(d.id):o.definitionId==='T18'?shopRerollEconomyCopy(this.run,o).summary:info!.summary;
+    let summary=d?this.shopJokerSummary(d.id):info!.summary;
     if(d){const decision=shopOfferGuidance(this.run,o).decision;summary=decision.now+'\n'+decision.later;}
     const heroTradeoff=d?shopCandidateTradeoff(this.run,d.id):undefined;if(heroTradeoff)summary=heroTradeoff;
     const initialX=d?tile.x+10:face.x+face.width+10,initialY=d?face.y+face.height+2:tile.y+2,width=tile.x+tile.width-initialX-10;
@@ -588,7 +587,6 @@ export class ShopScene extends Phaser.Scene {
     showConsumables(this.dialog,this.run,this.ready,(a,seq)=>this.send(a,seq),id);
     const d=this.dialog.current;if(!d?.classList.contains('tool-detail'))return;
     d.classList.add('make-cards-tool');this.makeCardsReturn(d,'取消 · 保留工具');
-    if(this.run.consumables.find(c=>c.instanceId===id)?.definitionId==='T18'){const economy=document.createElement('p');economy.className='shop-reroll-economy';economy.textContent=shopRerollEconomyCopy(this.run).detail;d.querySelector('.dialog-scroll')?.prepend(economy);}
     const scroll=d.querySelector('.dialog-scroll')!,targets=scroll.querySelector('.tool-target-panel');
     if(targets){const notes=document.createElement('details'),title=document.createElement('summary');notes.className='make-cards-notes';title.textContent='工具卡与用途';notes.append(title);for(const node of scroll.querySelectorAll(':scope > .dialog-card-art,:scope > .dialog-intro'))notes.append(node);scroll.prepend(targets);scroll.append(notes);}
     if(purchase){
@@ -679,7 +677,7 @@ export class ShopScene extends Phaser.Scene {
   private drawGoodsOffer(o:R2Offer,raw:Box,short:boolean,portrait:boolean):void {
     if(isBasicChoiceSeat(o)){this.drawBasicChoiceSeat(o,raw);return;}
     const v=this.view,selected=this.selectedOfferId===o.offerId,b=raw,isTool=this.shelfKind==='tools',info=isTool?toolInfo(o.definitionId,this.run):itemInfo(o.definitionId),first=v.root.length;
-    const p=this.geometry(),copy={...shopOfferCopy(p,b)},summary=o.definitionId==='T18'?shopRerollEconomyCopy(this.run,o).summary:info.summary,probe=v.text(0,0,'',14,'#3F606B');
+    const p=this.geometry(),copy={...shopOfferCopy(p,b)},summary=info.summary,probe=v.text(0,0,'',14,'#3F606B');
     const wrapped=shopSummaryWrap(summary,copy.width,text=>{probe.setText(text);return probe.width;});probe.setText(wrapped);const purposeHeight=probe.height;probe.destroy();
     if(!p.copyBeside)copy.y=Math.min(copy.y,copy.priceY-27-purposeHeight);
     else copy.priceY=Math.min(b.y+b.height-24,Math.max(copy.priceY,copy.y+27+purposeHeight));
@@ -900,7 +898,7 @@ export class ShopScene extends Phaser.Scene {
     const purchaseBefore=new Set(this.run.consumables.map(c=>c.instanceId));
     const name=d?.name??info!.name,portrait=d?this.jokerPortrait(d.id):goodsArtPortrait(info!);
     const synergySummary=synergy?'\n配合：'+(synergy.tradeoff??(synergy.matches.length?synergy.matches.map(m=>'「'+m.name+'」'+m.shortReason).join('；'):'暂未确认配合，先看各自条件。')):'';
-    const plainSummary=(d||info)?`直接买入 · 实付 ${price} 金 · `+(after<0?`现有 ${this.run.gold} 金，差 ${-after} 金`:`余额 ${this.run.gold} → ${after} 金`)+synergySummary+(reason&&after>=0?'\n'+reason:'')+(discount?`\n优惠 ${discount} 金${this.run.purchaseCoupons?' · 使用1张减2金券':''}`:'')+shopPurchaseConditionLosses(this.run,o).map(loss=>'\n'+loss).join('')+(kind==='tools'&&toolPermanentValue(this.run,o.definitionId)?'\n'+toolPermanentValue(this.run,o.definitionId):'')+(o.definitionId==='T18'?'\n'+shopRerollEconomyCopy(this.run,o).detail:''):undefined;
+    const plainSummary=(d||info)?`直接买入 · 实付 ${price} 金 · `+(after<0?`现有 ${this.run.gold} 金，差 ${-after} 金`:`余额 ${this.run.gold} → ${after} 金`)+synergySummary+(reason&&after>=0?'\n'+reason:'')+(discount?`\n优惠 ${discount} 金${this.run.purchaseCoupons?' · 使用1张减2金券':''}`:'')+shopPurchaseConditionLosses(this.run,o).map(loss=>'\n'+loss).join('')+(kind==='tools'&&toolPermanentValue(this.run,o.definitionId)?'\n'+toolPermanentValue(this.run,o.definitionId):''):undefined;
     const buy=async(now:boolean)=>{if(!this.dialog.active(dialog)||!this.ready)return;dialog.dataset.purchaseIntent=now?'use':'store';if(await this.send({type:'BuyOffer',offerId:id},seq)){if(kind==='tools'&&this.dialog.active(dialog)){const gained=this.run.consumables.find(c=>!purchaseBefore.has(c.instanceId)&&c.definitionId===o.definitionId);if(gained){if(makeCards){if(now)this.purchasedMakeTool(gained.instanceId,'已购 '+info!.name+' · 实付 '+price+' 金 · 未使用');else this.storedMakeTool(info!.name,price);return;}const purchased=this.dialog.open(info!.name+' · 已购入',`购买已保存 · 余额 ${this.run.gold} 金\n道具箱 ${this.run.consumables.length}/${r2ConsumableCapacity(this.run)} · 尚未使用\n${toolPurpose(this.run,o.definitionId)}`, [{label:'立即使用',primary:true,run:()=>this.openMakeTool(gained.instanceId)},...(canCarryTool(this.run,gained.instanceId)?[{label:'带入牌桌 · 选手牌',disabled:!this.ready,run:()=>this.carryMakeTool(gained.instanceId,seq+1,purchased)}]:[]),{label:'查看道具箱',run:()=>{this.makeCardsView.pane='owned';this.inspectMakeCards();}}],{closeLabel:'回到经营'});purchased.classList.add('tool-purchased-result');}else this.dialog.close(dialog);}else this.dialog.close(dialog);}};
     const dialog=this.dialog.open(name+' · 购买详情',body,[...(d&&this.run.jokers.length?[{label:'比较替换',run:()=>this.inspectReplacement(id)}]:[]),...(makeCards&&kind==='tools'?[{label:`买来存着 · ${price}金`,disabled:!!reason,run:()=>buy(false)}]:[]),{label:d?`邀请 · ${price} 金`:makeCards?`买来使用 · ${price}金`:`购买 · ${price} 金`,primary:true,disabled:!!reason,run:()=>buy(true)}],{shopContext:'purchase',closeLabel:'取消',portrait,rarity:d?.rarity,...(d?{artLoad:this.jokerArtStatus(d.id)}:info?.detailArtUrl?{artLoad:{status:goodsArtLoadState(this,o.definitionId).status,readStatus:()=>goodsArtLoadState(this,o.definitionId).status,retry:()=>retryGoodsArt(this,o.definitionId,info.artUrl,()=>{this.paintGoodsArt(goodsArtKey(o.definitionId));this.dialog.refreshArtLoad();})}}:{}),summaryBody:plainSummary??(d?shopOfferRelation(this.run,o,currentBuildFocus(this.run,this.run.openingRoute)).label+' · ':'')+`实付 ${price} 金 · `+(after<0?`现有 ${this.run.gold} 金，差 ${-after} 金`:`余额 ${this.run.gold} → ${after} 金`)+'\n'+trade+(investment?'\n'+investment.next:'')+(d?.id==='f04'&&after>=0?'\n购后余额仅供参考；+3 条件在每手开始时检查。':'')+(reason?'\n'+reason:''),effectBody:d?shopOfferRelation(this.run,o,currentBuildFocus(this.run,this.run.openingRoute)).body:[info!.summary,o.definitionId==='S04'?s04QualificationText(this.run):undefined].filter(Boolean).join('\n'),editionBody:ability?this.jokerEditionSummary(o.edition,d!.id):undefined,ability,collapseRules:true});
     if(kind==='tools')dialog.classList.add('shop-tool-purchase');

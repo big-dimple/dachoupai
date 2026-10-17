@@ -23,3 +23,15 @@ it('a late missing root never substitutes another pitch or replays an old event'
 it('note ownership is deterministic per saved hand, independent of final total and call order, with an octave ceiling',()=>{
  const score=savedTrace(),events=score.events.filter(e=>numberImpact(e,'100000000',1)),show={score};const before=JSON.stringify(score),last=events.at(-1)!;expect(scoreStrikeRate(show,last.eventId,'multiply',1)).toBe(2);expect(scoreStrikeRate(show,events[0].eventId,'add',7)).toBe(1);expect(scoreStrikeRate({score:{...score,finalScore:'9'.repeat(50)}},last.eventId,'multiply',0)).toBe(2);expect(scoreStrikeRate({},'standalone','multiply',999)).toBe(2);expect(scoreStrikeStep(show,events[4].eventId,1)).toBe(4);expect(scoreStrikeRate(show,'award','award',99)).toBe(1);expect(scoreStrikeRate(show,last.eventId,'flight',99)).toBe(1);expect(JSON.stringify(score)).toBe(before);
 });
+
+it('normal, key, large-trigger and multiplication keep distinct material balances and within-hit rhythms at the same note arrival',()=>{
+ const rows=[{kind:'add',tier:0},{kind:'key',tier:1},{kind:'key',tier:3},{kind:'multiply',tier:3}].map(({kind,tier})=>{
+  const {engine,inside,sources}=fixture();engine.scoreImpact({},'layered-hit',kind as 'add'|'key'|'multiply',tier,0);const voices=[...inside.voices] as any[];
+  const offsets=sources.map(n=>n.start.mock.calls[0][0]-inside.context.currentTime),names=sources.map(n=>n.buffer.name),levels=voices.map(v=>v.peak);
+  expect(names[0]).toBe('impactBell_heavy_003');expect(offsets[0]).toBe(0);expect(sources[0].playbackRate.value).toBe(1);expect(new Set(levels).size).toBe(levels.length);expect(levels[0]).toBeGreaterThan(Math.max(...levels.slice(1)));
+  engine.cancelPresentation();expect(inside.voices.size).toBe(0);expect(sources.every(n=>n.disconnect.mock.calls.length===1)).toBe(true);return {names,offsets,levels};
+ });
+ expect(rows.map(r=>r.names.length)).toEqual([2,2,3,3]);expect(rows[0].names.every(n=>!n.includes('Soft'))).toBe(true);expect(rows[1].names.every(n=>!n.includes('Soft'))).toBe(true);
+ expect(rows[2].names).toContain('impactSoft_heavy_000');expect(rows[3].names).toContain('impactSoft_heavy_000');expect(rows[2].names.some(n=>n.startsWith('card-slide'))).toBe(true);expect(rows[3].names.some(n=>n.startsWith('impactWood'))).toBe(true);
+ expect(rows[0].offsets.every(t=>t===0)).toBe(true);expect(rows[1].offsets[1]).toBeCloseTo(.035);expect(rows[2].offsets[1]).toBe(0);expect(rows[2].offsets[2]).toBeCloseTo(.045);expect(rows[3].offsets[1]).toBe(0);expect(rows[3].offsets[2]).toBeCloseTo(.065);expect(rows[3].levels[1]).toBeGreaterThan(rows[2].levels[1]);
+});

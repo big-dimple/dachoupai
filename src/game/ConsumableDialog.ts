@@ -26,7 +26,7 @@ import {cardSpecialText,editionEffectText,editionLabel,itemInfo,toolInfo,goodsAr
 import {r2S04Facts} from '../domain/r2S04';
 import {s04IssueText,s04QualificationText} from './S04Qualification';
 
-export const SKIP_ITEM_LABELS:Record<string,string>=Object.fromEntries(R2_TOOLS.map(tool=>[tool.id,tool.name]));
+export const SKIP_ITEM_LABELS:Record<string,string>=Object.fromEntries(R2_TOOLS.map(tool=>[tool.id,cardDefinitionName(tool)]));
 const SUIT_NAMES:Record<Suit,string>={spades:'黑桃',hearts:'红桃',clubs:'梅花',diamonds:'方片'};
 const cardName=(card:PlayingCard)=>rankLabel(card.rank)+SUIT_SYMBOL[card.suit];
 const enhancementName=(card:PlayingCard)=>R2_ENHANCEMENTS.find(enhancement=>enhancement.id===card.enhancement)?.name??'无增强';

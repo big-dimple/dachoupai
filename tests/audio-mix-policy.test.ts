@@ -22,7 +22,7 @@ it('rejects absent, signed, non-digit, provisional or unbounded amounts without 
 });
 it('only the final award chooses absolute size; ordinary/key sounds cannot reveal a future final score',()=>{
  const {engine,inside,sources}=fixture(),show={score:{finalScore:'1000000000000'}};
- engine.scoreImpact(show,'key','key',3,4);expect(sources).toHaveLength(FOLEY.scoreKey.layers.length);
+ engine.scoreImpact(show,'key','key',3,4);expect(sources).toHaveLength(FOLEY.scoreBurst.layers.length);
  inside.context.currentTime+=1;const count=sources.length;engine.scoreImpact(show,'award','award',3);
  expect(sources.slice(count)).toHaveLength(6);expect(sources.slice(count).map(s=>s.start.mock.calls[0][0])).toEqual([2,2.07,2.17,2.29,2.36,2.45]);
  engine.cancelPresentation();engine.scoreImpact(show,'award','award',3);expect(sources).toHaveLength(count+6);

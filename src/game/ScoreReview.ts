@@ -56,7 +56,7 @@ function sourceName(run:R2RunState,trace:ScoreTrace,event:ScoreEvent):string {
   const enhancement=event.reasonKey.startsWith('enhancement.')?R2_ENHANCEMENTS.find(item=>item.id===event.reasonKey.split('.')[1])?.name:undefined;
   if(event.sourceType==='card')return enhancement??(edition?edition.slice(0,-3):'扑克普通点数');
   const known=R2_LONG_TERM_ITEMS.find(item=>item.id===event.sourceDefinitionId)?.name
-    ??R2_TOOLS.find(item=>item.id===event.sourceDefinitionId)?.name
+    ??cardDefinitionName(R2_TOOLS.find(item=>item.id===event.sourceDefinitionId))
     ??R2_MODE_CATALOG.programs.find(item=>item.id===event.sourceDefinitionId)?.name
     ??R2_BOSSES.find(item=>item.id===event.sourceDefinitionId)?.name;
   return known??(event.targetCardId?cardName(trace,event.targetCardId):'牌型规则');

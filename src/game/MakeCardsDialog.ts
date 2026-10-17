@@ -4,7 +4,6 @@ import {r2PurchasePrice,type R2Offer} from '../domain/r2Shop';
 import {r2ConsumableCapacity} from '../domain/r2Resources';
 import {basicChoiceRows} from './BasicToolChoice';
 import {toolInfo,toolFamilyLabel} from './r2ToolInfo';
-import {shopRerollEconomyCopy} from './ShopRerollEconomyCopy';
 import {toolPurpose} from './RouteFitCue';
 import {DetailDialog} from './DetailDialog';
 import type {ShopServiceEntry} from './ShopServiceDialog';
@@ -22,7 +21,7 @@ export function basicChoiceEntryLabel(run:R2RunState):string {
 
 export function makeCardsRows(run:R2RunState){
  const basic=basicChoiceRows(run);
- return {owned:run.consumables.map(c=>({id:c.instanceId,definitionId:c.definitionId,info:toolInfo(c.definitionId,run),purpose:c.definitionId==='T18'?shopRerollEconomyCopy(run).summary:basic.find(r=>r.id===c.definitionId)?.purpose??toolInfo(c.definitionId,run).summary,later:!R2_TOOLS.find(t=>t.id===c.definitionId)!.phases.includes('shop')})),
+ return {owned:run.consumables.map(c=>({id:c.instanceId,definitionId:c.definitionId,info:toolInfo(c.definitionId,run),purpose:basic.find(r=>r.id===c.definitionId)?.purpose??toolInfo(c.definitionId,run).summary,later:!R2_TOOLS.find(t=>t.id===c.definitionId)!.phases.includes('shop')})),
   basic:basic.filter(r=>!r.duplicate),
   offers:run.shop!.toolOffers.map(o=>({offer:o,info:toolInfo(o.definitionId,run),price:r2PurchasePrice(run,o)}))};
 }
@@ -47,7 +46,7 @@ export function showMakeCards(dialog:DetailDialog,run:R2RunState,ready:()=>boole
  const held=grid(sections.get('owned')!);for(const r of rows.owned)tile(held,r.id,r.info,r.purpose,r.later?'查看 · 留到牌桌':'选目标',undefined,()=>owned(r.id),true);
  if(!rows.owned.length){const p=document.createElement('p');p.className='make-cards-empty';p.textContent='暂无库存，先选购一件工具。';held.append(p);}
  const stock=sections.get('purchase')!;stock.querySelector('h3')!.textContent='本店现货';
- const random=grid(stock);random.classList.add('make-cards-stock');for(const r of rows.offers)tile(random,r.offer.offerId,r.info,r.offer.definitionId==='T18'?shopRerollEconomyCopy(run,r.offer).summary:toolPurpose(run,r.offer.definitionId),toolFamilyLabel(r.info.family)+' · '+r.price+' 金',r.offer.consumed?'已售':purchaseReason(r.offer),()=>offer(r.offer.offerId));
+ const random=grid(stock);random.classList.add('make-cards-stock');for(const r of rows.offers)tile(random,r.offer.offerId,r.info,toolPurpose(run,r.offer.definitionId),toolFamilyLabel(r.info.family)+' · '+r.price+' 金',r.offer.consumed?'已售':purchaseReason(r.offer),()=>offer(r.offer.offerId));
  if(!rows.offers.length){const empty=document.createElement('p');empty.className='make-cards-empty';empty.textContent='本店暂无随机现货，可查看下方基础自选。';random.append(empty);}
  if(services.length||serviceNotice){const h=document.createElement('h3'),note=document.createElement('p');h.textContent='升级牌型 · 商店服务';note.className='make-cards-quota';note.textContent=serviceNotice??'确认后当场升级 · 与基础改牌 / 染色共用本店1次';stock.append(h,note);const serviceGrid=grid(stock);serviceGrid.classList.add('shop-service-grid');for(const service of services){const b=document.createElement('button'),name=document.createElement('strong'),effect=document.createElement('span'),price=document.createElement('span');b.type='button';b.className='shop-service-card';b.dataset.serviceId=service.id;name.textContent=service.title;effect.textContent=service.summary;price.textContent=service.unavailable??'实付 '+service.price+' 金';b.append(name,effect,price);b.disabled=!!service.unavailable||!ready();b.onclick=()=>{if(!dialog.active(d)||!ready()||run.commandSeq!==seq)return;remember();view.focusId=service.id;service.choose();};serviceGrid.append(b);}}
  if(rows.basic.length){const h=document.createElement('h3'),quota=document.createElement('p');h.textContent='做牌自选 · 本店1件';quota.className='make-cards-quota';quota.textContent=run.shop!.basicChoice?.purchase?'本店自选已用 · 下一店恢复':serviceNotice?'升级 / 改牌 / 染色共用1次 · 工具可买来存着或现在用':'改牌 / 染色共用1次 · 买来存着或现在用';stock.append(h,quota);const choices=grid(stock);choices.classList.add('make-cards-basic');for(const r of rows.basic)tile(choices,r.id,r.info,r.purpose,r.price+' 金',r.reason,()=>basic(r.id));}

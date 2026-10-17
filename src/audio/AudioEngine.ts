@@ -332,7 +332,7 @@ export class AudioEngine {
     let seen=this.scoreCues.get(presentation);if(!seen){seen=new Set();this.scoreCues.set(presentation,seen);}const id='recorded/'+eventId+'/'+kind;
     if(seen.has(id)||seen.size>=1024)return;seen.add(id);if(!this.canPlay('sfx'))return;
     const rate=scoreStrikeRate(presentation,eventId,kind,chain);
-    const sound=kind==='award'?awardForScore(presentation):kind==='flight'?'flight':kind==='multiply'?'scoreMultiply':kind==='key'?'scoreKey':'scoreAdd';
+    const sound=kind==='award'?awardForScore(presentation):kind==='flight'?'flight':kind==='multiply'?'scoreMultiply':kind==='key'?(tier>=2?'scoreBurst':'scoreKey'):'scoreAdd';
     const voices=this.cue(sound,'sfx',rate,0,kind==='add'||kind==='flight'?1:1+bounded(tier,3)*.035);
     for(const voice of voices)voice.scoreAccent=true;
     if(voices.length)this.duckMusic(kind==='add'?.14:kind==='award'?Math.max(.4,...FOLEY[sound].layers.map(l=>(l.delay??0)+l.duration)):kind==='key'?.65:.4,kind==='key'||kind==='award'?.22:.35);
