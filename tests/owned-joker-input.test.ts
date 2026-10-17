@@ -1,17 +1,18 @@
 import type Phaser from 'phaser';
 import {afterEach,expect,it,vi} from 'vitest';
 import {OwnedJokerInput} from '../src/game/OwnedJokerInput';
+import {Haptics} from '../src/haptics/Haptics';
 vi.mock('../src/game/DetailDialog',()=>({modalBlocksCanvas:()=>false}));
 class Surface extends EventTarget {
  style:Record<string,string>={};hidden=false;className='';
  setAttribute(){}remove=vi.fn();hasPointerCapture(){return false;}
 }
-afterEach(()=>{vi.restoreAllMocks();vi.unstubAllGlobals();});
+afterEach(()=>{Haptics.shared.dispose();vi.useRealTimers();vi.restoreAllMocks();vi.unstubAllGlobals();});
 function setup(){
  let callback!:ResizeObserverCallback,rect={left:0,top:0,width:320,height:568};
  const surface=new Surface(),disconnect=vi.fn(),observe=vi.fn();
  vi.stubGlobal('window',new EventTarget());vi.stubGlobal('innerWidth',320);vi.stubGlobal('innerHeight',568);
- vi.stubGlobal('document',Object.assign(new EventTarget(),{createElement:()=>surface,querySelector:()=>null,body:{append:vi.fn()}}));
+ vi.stubGlobal('document',Object.assign(new EventTarget(),{visibilityState:'visible',createElement:()=>surface,querySelector:()=>null,body:{append:vi.fn()}}));
  vi.stubGlobal('ResizeObserver',class {constructor(next:ResizeObserverCallback){callback=next;}observe=observe;disconnect=disconnect;});
  const scene={game:{canvas:{getBoundingClientRect:()=>rect}},scale:{width:740,height:320,zoom:1},input:{enabled:true}};
  const options={ready:()=>true,inspectable:()=>true,cards:()=>[] as {id:string;x:number;y:number;width:number;height:number}[],cancelCanvas:vi.fn(),tap:vi.fn(),lift:vi.fn(),move:vi.fn(),drop:vi.fn(),cancel:vi.fn()};
@@ -33,11 +34,21 @@ it('cleared or destroyed rails cannot be revived by a queued canvas observation'
  f.input.destroy();f.input.destroy();f.settle();expect(f.disconnect).toHaveBeenCalledOnce();expect(f.surface.remove).toHaveBeenCalledOnce();expect(f.surface.style).toEqual(before);
 });
 
-function nativePointer(type:string,timeStamp:number){const e=new Event(type,{cancelable:true});Object.defineProperties(e,Object.fromEntries(Object.entries({pointerId:1,pointerType:'mouse',isPrimary:true,button:0,buttons:type==='pointerup'?0:1,clientX:50,clientY:50,timeStamp}).map(([k,v])=>[k,{value:v}])));return e;}
-function pressOwned(f:ReturnType<typeof setup>,stamp:number){f.options.cards=()=>[{id:'owned/1',x:0,y:0,width:740,height:320}];const e=nativePointer('pointerdown',stamp);window.dispatchEvent(e);f.surface.dispatchEvent(e);}
+function nativePointer(type:string,timeStamp:number,pointerType='mouse'){const e=new Event(type,{cancelable:true});Object.defineProperties(e,Object.fromEntries(Object.entries({pointerId:1,pointerType,isPrimary:true,button:0,buttons:type==='pointerup'?0:1,clientX:50,clientY:50,timeStamp}).map(([k,v])=>[k,{value:v}])));return e;}
+function pressOwned(f:ReturnType<typeof setup>,stamp:number,pointerType='mouse'){f.options.cards=()=>[{id:'owned/1',x:0,y:0,width:740,height:320}];const e=nativePointer('pointerdown',stamp,pointerType);window.dispatchEvent(e);f.surface.dispatchEvent(e);}
 it('opens a genuinely short owned-card click even when the release callback is delayed by a busy frame',()=>{
  const f=setup(),clock=vi.spyOn(performance,'now').mockReturnValue(1000);try{pressOwned(f,100);clock.mockReturnValue(1800);window.dispatchEvent(nativePointer('pointerup',180));expect(f.options.tap).toHaveBeenCalledExactlyOnceWith('owned/1');expect(f.options.lift).not.toHaveBeenCalled();expect(f.options.drop).not.toHaveBeenCalled();}finally{f.input.destroy();}
 });
 it('a genuine held owned card cannot become a tap when queued native events run close together',()=>{
  const f=setup(),clock=vi.spyOn(performance,'now').mockReturnValue(1000);try{pressOwned(f,100);clock.mockReturnValue(1010);window.dispatchEvent(nativePointer('pointerup',600));expect(f.options.tap).not.toHaveBeenCalled();expect(f.options.drop).not.toHaveBeenCalled();}finally{f.input.destroy();}
+});
+it('an activated touch hold uses the shared pickup beat and pointercancel actively stops it without a save beat',()=>{
+ vi.useFakeTimers();const f=setup(),vibrate=vi.fn(()=>true);vi.stubGlobal('navigator',{vibrate,userActivation:{hasBeenActive:true}});
+ try{pressOwned(f,0,'touch');vi.advanceTimersByTime(355);expect(f.options.lift).toHaveBeenCalledOnce();expect(vibrate).toHaveBeenCalledExactlyOnceWith([12]);window.dispatchEvent(nativePointer('pointercancel',356,'touch'));expect(vibrate.mock.calls).toEqual([[[12]],[0]]);vi.advanceTimersByTime(1000);expect(f.options.drop).not.toHaveBeenCalled();expect(vibrate).toHaveBeenCalledTimes(2);}finally{f.input.destroy();}
+});
+it('a first-touch hold without sticky activation and an explicit off choice both leave visual pickup intact and vibration silent',()=>{
+ for(const off of [false,true]){
+  vi.useFakeTimers();const f=setup(),vibrate=vi.fn(()=>true);vi.stubGlobal('navigator',{vibrate,userActivation:{hasBeenActive:off}});if(off)Haptics.shared.setEnabled(false);
+  try{pressOwned(f,0,'touch');vi.advanceTimersByTime(355);expect(f.options.lift).toHaveBeenCalledOnce();expect(vibrate).not.toHaveBeenCalled();}finally{f.input.destroy();Haptics.shared.dispose();vi.useRealTimers();}
+ }
 });

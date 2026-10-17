@@ -57,6 +57,7 @@ import {s04IssueText,s04QualificationText} from './S04Qualification';
 import type {R2RunState,Action,DomainEvent} from '../domain/run';
 import {getR2Stage,R2_LIMITS,r2InterestCap,r2ConsumableCapacity,r2CreateJoker} from '../domain/r2Run';
 import {dispatchRun,runController} from './runAdapter';
+import {Haptics,type HapticScope} from '../haptics/Haptics';
 import {reorderJokerIds,ownedJokerDropIndex} from './JokerReorder';
 import {OwnedJokerInput} from './OwnedJokerInput';
 import {OwnedJokerDragVisual,ownedOrderHint,ownedOrderReversed} from './OwnedJokerDragVisual';
@@ -132,6 +133,8 @@ export class ShopScene extends Phaser.Scene {
   private readonly dialog=new DetailDialog();
   private menuActions?:RunMenuActions;
   private readonly audio=AudioEngine.shared;
+  private hapticLife?:AbortController;
+  private transactionHaptic?:HapticScope;
   private readonly synergyPreview=new ShopSynergyPreview();
   private synergyOfferId?:string;
 
@@ -174,6 +177,12 @@ export class ShopScene extends Phaser.Scene {
     return shopLayout(l.width,l.height,l.hud.y,inset('bottom'),cols,this.run.jokers.some(j=>!!this.jokerCopy(j.definitionId)),!!firstChapterShopPrompt(this.run)&&this.ready,inset('left'),inset('right'));
   }
   create():void {
+    this.hapticLife?.abort();this.hapticLife=new AbortController();
+    const stopHaptics=()=>{this.hapticLife?.abort();this.transactionHaptic?.cancel();};
+    const cancelHaptics=()=>this.transactionHaptic?.cancel(),cancelHapticKey=(event:KeyboardEvent)=>{if(event.key==='Escape')cancelHaptics();};
+    window.addEventListener('keydown',cancelHapticKey,true);this.game.canvas.addEventListener('pointercancel',cancelHaptics);
+    this.events.once('destroy',stopHaptics);
+    this.events.once('shutdown',()=>{stopHaptics();this.events.off('destroy',stopHaptics);window.removeEventListener('keydown',cancelHapticKey,true);this.game.canvas.removeEventListener('pointercancel',cancelHaptics);});
     this.makeCardsView={pane:'purchase',positions:{owned:0,purchase:0}};
     this.comparisonView={scrollTop:0};
     this.savedPractice=undefined;this.practiceOrigin=undefined;
@@ -994,15 +1003,19 @@ export class ShopScene extends Phaser.Scene {
   private async send(action:Action,expectedSeq?:number,carriedTool?:ToolCarryIntent):Promise<boolean> {
     if(!this.ready)return false;
     const previous=this.run,oldGold=previous.gold,owner=this.dialog.current;this.busy=true;const lifecycle=this.lifecycle;
+    this.transactionHaptic?.cancel();const haptic=this.transactionHaptic=Haptics.shared.createScope(this.hapticLife?.signal);
+    const cancelHaptic=()=>haptic.cancel();owner?.addEventListener('close',cancelHaptic,{once:true});owner?.addEventListener('cancel',cancelHaptic,{once:true});
     const purchase=action.type==='BuyOffer'?this.findOffer(action.offerId):undefined;
     const buyIndex=action.type==='BuyOffer'?this.visibleOffers().findIndex(o=>o.offerId===action.offerId):-1;
     const buyBox=this.geometry().pc?this.pcOfferBoxes.get(action.type==='BuyOffer'?action.offerId:''):buyIndex>=0?this.geometry().shelf[buyIndex]:undefined;
     const landSlot=purchase?.kind==='jokers'?this.geometry().slots[Math.min(previous.jokers.length,r2JokerCapacity(previous)-1)]:purchase?this.geometry().items:undefined;
     const pendingDrag=action.type==='ReorderJokers'&&this.ownedDrag?.saving?this.ownedDrag:undefined,inputEnabled=this.input.enabled;
     if(pendingDrag)this.input.enabled=false;else this.render();
-    let reorderSaved=false;
+    let reorderSaved=false,savedCue:'placement'|'purchase'|undefined,receiptId='';
     try {
       const result=await dispatchRun(this,action,expectedSeq);if(lifecycle!==this.lifecycle||!this.scene.isActive())return false;
+      owner?.removeEventListener('close',cancelHaptic);owner?.removeEventListener('cancel',cancelHaptic);
+      if(owner&&!this.dialog.active(owner))haptic.cancel();
       if(!result.ok){
         this.audio.invalid();
         if(pendingDrag)this.notice=result.code==='save-failed'?'排序未保存 · 已恢复保存顺序 · 菜单重试': '排序未提交 · 已恢复保存顺序';
@@ -1011,6 +1024,11 @@ export class ShopScene extends Phaser.Scene {
         return false;
       }
       this.run=result.state;reorderSaved=!!pendingDrag;
+      if(!result.duplicate){
+        receiptId=result.receipt.commandId;
+        if(action.type==='ReorderJokers')savedCue='placement';
+        else if(action.type==='BuyOffer'||action.type==='BuyBasicTool')savedCue='purchase';
+      }
       if(!result.duplicate&&this.lastPurchaseReceipt&&!shopPurchaseReceiptExists(this.lastPurchaseReceipt,this.run))this.lastPurchaseReceipt=undefined;
       const transactions=result.events.filter((event):event is Extract<DomainEvent,{type:'joker-transaction'}>=>event.type==='joker-transaction');
       if(!result.duplicate&&transactions.length){this.pendingTransactions=transactions;this.lastTransactionNotes=transactions.map(event=>{const growth=transactionGrowthChange(previous,this.run,event);if(growth)this.transactionGrowthLines.set(event,transactionGrowthChange(previous,this.run,event,true)!);return growth??r2TransactionText(event,this.jokerDefinition(event.definitionId));});}
@@ -1048,7 +1066,17 @@ export class ShopScene extends Phaser.Scene {
       }
       if(action.type==='UseConsumable'&&!result.duplicate&&owner&&this.dialog.active(owner)){showSavedToolResult(this.dialog,previous,this.run,action,this.resultReduced);if(owner.classList.contains('make-cards-tool'))this.continueMakeCards();}
       return true;
-    }finally {if(lifecycle===this.lifecycle){this.busy=false;if(pendingDrag){pendingDrag.capture();this.ownedDrag=undefined;this.input.enabled=inputEnabled;}if(this.scene.isActive()&&this.run.phase==='shop'){this.render();pendingDrag?.settle(reorderSaved);this.afterRenderFx();}else pendingDrag?.destroy();}}
+    }finally {
+      owner?.removeEventListener('close',cancelHaptic);owner?.removeEventListener('cancel',cancelHaptic);
+      if(!savedCue)haptic.cancel();
+      if(lifecycle===this.lifecycle){
+        this.busy=false;if(pendingDrag){pendingDrag.capture();this.ownedDrag=undefined;this.input.enabled=inputEnabled;}
+        if(this.scene.isActive()&&this.run.phase==='shop'){
+          this.render();pendingDrag?.settle(reorderSaved,()=>haptic.saved('placement',receiptId));this.afterRenderFx();
+          if(savedCue&&!pendingDrag)haptic.saved(savedCue,receiptId);
+        }else{haptic.cancel();pendingDrag?.destroy();}
+      }else haptic.cancel();
+    }
   }
 }
 import {basicChoiceSeat,isBasicChoiceSeat,basicChoiceRows} from './BasicToolChoice';
