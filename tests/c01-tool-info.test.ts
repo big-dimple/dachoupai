@@ -57,7 +57,7 @@ describe('C01 public tool and item details',()=>{
     expect(sacrifice).toContain('未增强');expect(sacrifice).toContain('不同');
     expect(sacrifice).toMatch(/商店[\s\S]*牌组[\s\S]*顺序[\s\S]*待出牌[\s\S]*手牌[\s\S]*顺序/);
     expect(sacrifice).toContain('点击顺序');expect((sacrifice.match(/1\/7/g)??[]).length).toBe(7);
-    expect(edition).toContain('普通版次');expect(edition).toContain('扑克');expect(edition).toContain('大丑牌');
+    expect(edition).toContain('普通版次');expect(edition).toContain('扑克');expect(edition).toContain('唐宋牌');
     expect(edition).toMatch(/闪箔[\s\S]*5\/10/);expect(edition).toMatch(/全息[\s\S]*3\/10/);
     expect(edition).toMatch(/多彩[\s\S]*2\/10/);expect(edition).toContain('稀有度');expect(edition).toContain('购入价');
   });
@@ -107,6 +107,15 @@ describe('C01 public tool and item details',()=>{
     expect(itemInfo('U10').description).toContain('自身');expect(itemInfo('U11').description).toContain('1→2');
     expect(itemInfo('U12').description).toContain('跳过');expect(itemInfo('U12').description).toContain('不追补');
     expect(itemInfo('U12').description).toContain('未持有');
+  });
+  it('keeps duration and entry timing on the first layer of every long-term item',()=>{
+    for(const id of ['U01','U02','U03'])expect(itemInfo(id).summary).toContain('从下一场起，本局每场');
+    expect(itemInfo('U03').summary).toBe('从下一场起，本局每场出牌次数+1；当前场次数不变');
+    for(const item of R2_LONG_TERM_ITEMS)expect(itemInfo(item.id).summary).toContain('本局');
+    expect(itemInfo('U07').summary).toContain('购入即生效');
+    expect(itemInfo('U09').summary).toContain('每次Boss成功过关');
+    expect(itemInfo('U10').summary).toContain('每间商店第一次成功购买');
+    expect(itemInfo('U12').summary).toContain('每章一次');
   });
   it('returns small deterministic standalone vector emblems and 12 distinct hand constellations',()=>{
     const urls=[...R2_TOOLS.map(tool=>toolInfo(tool.id).fallbackArtUrl),...R2_LONG_TERM_ITEMS.map(item=>itemInfo(item.id).fallbackArtUrl)];
@@ -185,6 +194,6 @@ it('purchase summaries distinguish actual later payment and permanent sacrifice'
  expect(toolInfo('S05').summary).toContain('使用另付3金');
  expect(toolInfo('S06').summary).toContain('清空全部金币（至少持有5金）');
  expect(toolInfo('S01').summary).toContain('永久献出一张扑克');
- expect(toolInfo('S07').summary).toContain('永久献出一张大丑牌');
+ expect(toolInfo('S07').summary).toContain('永久献出一张唐宋牌');
  expect(toolInfo('T07').summary).toContain('不立即补牌');
 });

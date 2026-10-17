@@ -130,6 +130,16 @@ describe('C01 three distinct shop shelves and atomic purchases',()=>{
 });
 
 describe('C01 long-term resource and shop goldens',()=>{
+  it('U03 remains owned and adds a play on both the next entry and the following entry',()=>{
+    const plan=stagePlan(false,[['U03',16]]);
+    expect(plan.state.stage!.initialHands).toBe(5);
+    let state=send(plan.state,{type:'PlayHand',selectedIds:plan.finalIds});
+    expect(state.phase).toBe('stage-cleared');expect(state.longTermItems).toEqual(['U03']);
+    expect(state.stage!.handsLeft).toBe(state.stage!.initialHands-state.stage!.playIndex);
+    state=send(send(send(state,{type:'OpenShop'}),{type:'LeaveShop'}),{type:'EnterStage'});
+    expect(state.stage!.index).toBe(1);expect(state.longTermItems).toEqual(['U03']);
+    expect(state.stage).toMatchObject({initialHands:5,handsLeft:5});
+  });
   it.each([['U01',10,9,3,4],['U02',12,8,4,4],['U03',16,8,3,5]] as const)('%s at %s gold freezes next-stage hand=%s / discard=%s / play=%s budgets',(id,price,handLimit,discards,hands)=>{
     let state=buy(fixture(),'itemOffers',id,price);state=send(send(state,{type:'LeaveShop'}),{type:'EnterStage'});
     expect(state.handOrder).toHaveLength(handLimit);expect(state.stage).toMatchObject({handLimit,initialDiscards:discards,discardsLeft:discards,initialHands:hands,handsLeft:hands});
