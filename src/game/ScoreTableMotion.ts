@@ -13,7 +13,7 @@ export interface ScoreArrival {eventId:string;kind:ScoreArrivalKind;strength:'or
 /** Keep the saved trace; neutral receipts have no separate presentation slot. */
 export function isNeutralScoreReceipt(event:ScoreEvent):boolean {
  const unchanged=event.before.H.n===event.after.H.n&&event.before.H.d===event.after.H.d&&event.before.M.n===event.after.M.n&&event.before.M.d===event.after.M.d;
- return unchanged&&(event.sourceType==='rule'&&event.sourceDefinitionId==='route-growth'&&['route-factor','route-clear','route-clear-family'].includes(event.operation)||event.sourceType==='card'&&event.operation==='add-heat'&&event.value.n==='0');
+ return unchanged&&(event.sourceType==='rule'&&event.sourceDefinitionId==='route-growth'&&['route-factor','route-clear','route-clear-family'].includes(event.operation)||event.sourceType==='card'&&event.operation==='add-heat'&&event.value.n==='0'||event.operation==='read-growth'&&event.value.n==='0');
 }
 /** Notification data only. A future device adapter must report its real capability. */
 export function scoreArrival(event:ScoreEvent):ScoreArrival|undefined {

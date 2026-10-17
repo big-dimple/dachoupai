@@ -1,0 +1,36 @@
+
+ RUN  v4.1.11 D:/ai/dachoupai/dachoupai/.codex-remote-attachments/score-posture-pressure
+
+ ❯ tests/zero-growth-presentation.test.ts (2 tests | 1 failed) 87ms
+   × keeps the real zero heat receipt and +10 growth save but removes only the empty score beat 64ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/zero-growth-presentation.test.ts > keeps the real zero heat receipt and +10 growth save but removes only the empty score beat
+AssertionError: expected { H: { n: '56', d: '1' }, …(1) } to deeply equal { H: { n: '146', d: '1' }, …(1) }
+
+- Expected
++ Received
+
+@@ -1,9 +1,9 @@
+  {
+    "H": {
+      "d": "1",
+-     "n": "146",
++     "n": "56",
+    },
+    "M": {
+      "d": "2",
+      "n": "17",
+    },
+
+ ❯ tests/zero-growth-presentation.test.ts:23:28
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 3 passed (4)
+      Tests  1 failed | 25 passed (26)
+   Start at  18:53:55
+   Duration  1.52s (transform 2.73s, setup 0ms, import 3.81s, tests 273ms, environment 0ms)

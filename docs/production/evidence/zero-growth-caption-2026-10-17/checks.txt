@@ -1,0 +1,32 @@
+Commands:
+npm test -- --run tests/zero-growth-presentation.test.ts tests/score-table.test.ts tests/score-source-process.test.ts tests/joker-experience.test.ts
+npm run build
+
+
+ RUN  v4.1.11 D:/ai/dachoupai/dachoupai/.codex-remote-attachments/score-posture-pressure
+
+
+ Test Files  4 passed (4)
+      Tests  26 passed (26)
+   Start at  18:55:11
+   Duration  1.72s (transform 3.00s, setup 0ms, import 4.22s, tests 393ms, environment 1ms)
+
+
+> dachoupai@0.1.0 build
+> tsc --noEmit && vite build
+
+vite v7.3.6 building client environment for production...
+transforming...
+✓ 326 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/build-info.json                0.28 kB │ gzip:   0.21 kB
+dist/index.html                    14.39 kB │ gzip:   4.75 kB
+dist/assets/index-Y3ByiIW2.css    110.28 kB │ gzip:  19.97 kB
+dist/assets/index-CrkcfJNk.js   2,830.72 kB │ gzip: 821.36 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 6.79s
