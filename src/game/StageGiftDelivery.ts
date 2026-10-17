@@ -78,7 +78,11 @@ export class StageGiftDelivery {
         if(owned.signal.aborted||!scene.sys.settings.active||!root.active||this.options.blocked?.()){finish('cancelled');return;}
         const source=this.options.source(fact.sourceInstanceId),target=coin?this.options.gold():this.options.inventory();
         if(!source||!target){finish('missing-anchor');return;}
-        const from={x:source.x+source.width/2,y:source.y+source.height+5},to=center(target),elapsed=performance.now()-started,flight=reduced?1:Math.min(1,Math.max(0,(elapsed-WINDUP)/FLIGHT));
+        const viewportWidth=scene.scale.width/scene.scale.zoom;
+        // Land beside the real entry, keeping its existing quantity/currency text unobscured.
+        const to={x:target.x>=48?target.x-24:target.x+target.width+24,y:center(target).y};
+        to.x=Math.max(22,Math.min(viewportWidth-22,to.x));
+        const from={x:source.x+source.width/2,y:source.y+source.height+5},elapsed=performance.now()-started,flight=reduced?1:Math.min(1,Math.max(0,(elapsed-WINDUP)/FLIGHT));
         const arrival=reduced||elapsed>=WINDUP+FLIGHT,phase=arrival?'arrival':elapsed<WINDUP?'source':'flight';
         root.setData('phase',phase).setData('flight',flight).setData('elapsed',elapsed);
         halo.clear().lineStyle(3,color,arrival?.3:.95).strokeRoundedRect(source.x-3,source.y-3,source.width+6,source.height+6,8);
@@ -91,10 +95,10 @@ export class StageGiftDelivery {
         const end=stageGiftFlight(from,to,Math.max(0,flight-.04)),angle=Math.atan2(p.y-end.y,p.x-end.x);
         if(flight>0&&flight<1)path.fillStyle(color,1).fillTriangle(p.x,p.y,p.x-9*Math.cos(angle-.45),p.y-9*Math.sin(angle-.45),p.x-9*Math.cos(angle+.45),p.y-9*Math.sin(angle+.45));
         if(arrival){
-          payload.setPosition(to.x-28,to.y).setScale(reduced?1:1+.12*Math.sin(Math.PI*Math.min(1,(elapsed-WINDUP-FLIGHT)/180)));
+          payload.setPosition(to.x,to.y).setScale(reduced?1:1+.12*Math.sin(Math.PI*Math.min(1,(elapsed-WINDUP-FLIGHT)/180)));
           caption.setText(copy);
           const half=caption.width/2+6,width=scene.scale.width/scene.scale.zoom;
-          caption.setPosition(Math.min(width-half,Math.max(half,to.x)),target.y-caption.height/2-10);
+          caption.setPosition(Math.min(width-half,Math.max(half,center(target).x)),target.y-caption.height/2-10);
           if(caption.y-caption.height/2<4)caption.y=target.y+target.height+caption.height/2+8;
           if(!landed){landed=true;root.setData('arrived',true);this.options.arrived?.(fact);}
         }else{
@@ -105,7 +109,7 @@ export class StageGiftDelivery {
       };
       const timer=setTimeout(()=>finish('complete'),(reduced?READ:WINDUP+FLIGHT+READ)+250);
       owned.signal.addEventListener('abort',cancel,{once:true});scene.events.on('update',update);update();
-      if(!reduced&&!finished)void Promise.resolve(this.options.pulseSource(fact.sourceInstanceId,localContext,WINDUP+120)).catch(()=>finish('cancelled'));
+      if(!reduced&&!finished)void Promise.resolve().then(()=>this.options.pulseSource(fact.sourceInstanceId,localContext,WINDUP+120)).catch(()=>finish('cancelled'));
     });
   }
 }

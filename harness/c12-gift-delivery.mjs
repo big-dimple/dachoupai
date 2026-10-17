@@ -20,10 +20,11 @@ try{
     try{
       await page.goto('http://127.0.0.1:5193/harness/c12-gift-component.html?'+new URLSearchParams({...spec.full?{full:'1'}:{},...spec.reduced?{reduced:'1'}:{}}));
       await page.waitForFunction(()=>window.__c12Gift?.observed.status==='ready');
+      assert.ok(await page.evaluate(()=>window.__c12Gift.scene.textures.exists('p08-joker-c12')),'actual c12 art loaded; missing-texture placeholder is not evidence');
       const initial=await page.evaluate(()=>window.__c12Gift.observed.data);row.data={before:initial.before,after:initial.after,facts:initial.facts,duplicate:initial.duplicate.duplicate,restoredDuplicate:initial.restoredDuplicate.duplicate,noDuplicateWrite:initial.noDuplicateWrite};
       assert.equal(initial.firstResult.state.lastTrace.handType,'flush');assert.equal(initial.firstResult.state.lastTrace.finalScore,'700');assert.equal(initial.after.lastTrace.handType,'straight');assert.equal(initial.after.lastTrace.finalScore,'580');
       assert.equal(initial.facts.length,1);assert.equal(initial.facts[0].rewardDefinitionId,'T04');assert.equal(initial.facts[0].sourceInstanceId,'owned/c12');assert.equal(initial.facts[0].destination,spec.full?'gold':'tools');assert.ok(initial.noDuplicateWrite);
-      const action=page.getByRole('button',{name:'运行真实保存',exact:true});if(spec.touch)await action.tap();else await action.click();
+      const action=page.getByRole('button',{name:'播放已保存到账',exact:true});if(spec.touch)await action.tap();else await action.click();
       if(!spec.reduced){await page.waitForFunction(()=>window.__c12Gift.observed.frames.some(f=>f.source.y < -7));await page.screenshot({path:dir+'/source.png'});}
       if(spec.cancel){
         await page.waitForFunction(()=>window.__c12Gift.observed.frames.some(f=>f.phase==='flight'));
@@ -35,6 +36,7 @@ try{
       await page.waitForFunction(()=>window.__c12Gift.observed.status==='done');
       let observed=await page.evaluate(()=>window.__c12Gift.observed);assert.equal(observed.outcomes[0],spec.cancel?'cancelled':'complete');assert.equal(observed.arrivals.length,spec.cancel?0:1);
       if(!spec.cancel){assert.ok(observed.frames.some(f=>f.phase==='arrival'&&f.caption.includes(spec.full?'道具箱已满 +2金':'方片染 +1')&&f.caption.includes(spec.full?'30→32':'0→1/2')));assert.ok(observed.frames.some(f=>spec.full?f.gold==='金币 32':f.inventory==='道具箱 1/2'));}
+      for(const frame of observed.frames.filter(f=>f.phase==='arrival')){const a=frame.payload.bounds,b=frame.target;assert.ok(a.x+a.width<=b.x||a.x>=b.x+b.width||a.y+a.height<=b.y||a.y>=b.y+b.height,'arrival icon does not cover the real destination label');}
       if(spec.reduced){assert.ok(observed.frames.every(f=>f.source.y===0&&f.source.angle===0));assert.ok(!observed.frames.some(f=>f.phase==='flight'));}
       else assert.ok(observed.frames.some(f=>Math.abs(f.source.angle)>1));
       await page.getByRole('button',{name:'重复结算',exact:true}).click();await page.waitForFunction(()=>window.__c12Gift.observed.outcomes.length===2);
