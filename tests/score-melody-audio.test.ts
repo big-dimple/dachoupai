@@ -81,6 +81,13 @@ it('ordinary callers that did not opt into paired motion keep their single impac
  inside.context.currentTime+=.075;engine.scoreRebound(show,'legacy');expect(sources).toHaveLength(count);expect(count).toBeGreaterThan(0);
 });
 
+it('phrase pulse selects five samples without octave escalation, and weight follows the same event rebound',()=>{
+ const {engine,inside,sources}=fixture(),show={},names:string[]=[];
+ for(let i=0;i<11;i++){inside.context.currentTime+=.2;const before=sources.length;engine.scoreImpact(show,'phrase/'+i,'add',0,99,{pulse:i,accentWeight:.4,paired:true});names.push(sources[before].buffer.name);expect(sources[before].playbackRate.value).toBe(.75);engine.scoreRebound(show,'phrase/'+i);expect([...inside.voices].at(-1).nominalGain).toBeCloseTo(.019*.4);}
+ expect(new Set(names).size).toBe(5);expect(names[5]).toBe(names[0]);expect(names[10]).toBe(names[0]);
+ const count=sources.length;engine.scoreImpact(show,'silent-phrase','add',0,0,{pulse:0,accentWeight:0,paired:true});engine.scoreRebound(show,'silent-phrase');expect(sources).toHaveLength(count);
+});
+
 it.each(['cancel','mute','suspend','signal','silent'] as const)('a paired %s impact cannot leave a later orphan rebound',boundary=>{
  const {engine,inside,sources}=fixture(),show={},signal=new AbortController();
  if(boundary==='silent')engine.setVolume('sfx',0);

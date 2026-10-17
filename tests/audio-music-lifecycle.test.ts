@@ -1,6 +1,9 @@
 import {afterEach, beforeEach, expect, it, vi} from 'vitest';
 import {AudioEngine} from '../src/audio/AudioEngine';
 import {chainRate} from '../src/audio/mixPolicy';
+import bgmManifest from '../public/assets/audio/bgm/manifest.json';
+const savedTracks=[...bgmManifest.tracks];
+const tablePlaylist=()=>bgmManifest.tracks.push({...savedTracks.find(t=>t.id==='table-zuiyu')!,id:'test/table-fallback',scenes:['table']});
 
 const flush = async () => { for (let i = 0; i < 12; i++) await Promise.resolve(); };
 const deferred = () => {
@@ -43,7 +46,7 @@ beforeEach(() => {
   vi.useFakeTimers(); vi.stubGlobal('window', {});
   vi.stubGlobal('document', {hidden: false, baseURI: 'https://game.test/nested/'});
 });
-afterEach(() => { vi.useRealTimers(); vi.unstubAllGlobals(); });
+afterEach(() => { bgmManifest.tracks.splice(0,bgmManifest.tracks.length,...savedTracks);vi.useRealTimers(); vi.unstubAllGlobals(); });
 
 it('creates no music before a gesture and shares one pending play per requested track', async () => {
   const {engine, inside, media, begin, finish} = fixture();
@@ -58,12 +61,12 @@ it('creates no music before a gesture and shares one pending play per requested 
 
 it('music unmute retries a prior denial and same recording scene changes preserve playback position', async () => {
   const {engine, inside, begin, finish} = fixture();
-  engine.setScene('table'); const element = await begin();
+  engine.setScene('shop'); const element = await begin();
   element.attempts[0].reject(new DOMException('gesture required', 'NotAllowedError')); await flush();
   engine.musicMuted = true; engine.musicMuted = false; await flush(); await finish();
   const playing = inside.musicElement; playing.currentTime = 19;
   const calls = playing.play.mock.calls.length;
-  engine.setScene('success');
+  engine.setScene('failure');
   expect(inside.musicElement).toBe(playing); expect(playing.currentTime).toBe(19);
   expect(playing.play).toHaveBeenCalledTimes(calls); expect(playing.loop).toBe(true);
 });
@@ -99,7 +102,7 @@ it('old active media callbacks cannot fail or advance a later request that reuse
   expect(inside.musicElement).toBe(first);
   const plays = first.play.mock.calls.length;
   staleError(); staleEnded();
-  expect(inside.musicElement).toBe(first); expect(first.src).toContain('table-chinese-zuiyu');
+  expect(inside.musicElement).toBe(first); expect(first.src).toContain('table-tangsong-cyber-groove');
   expect(first.paused).toBe(false); expect(first.play).toHaveBeenCalledTimes(plays);
 });
 
@@ -156,17 +159,19 @@ it('a failed recording cannot permanently silence another scene or a later same-
 });
 
 it('a stalled first table track has a finite deadline and falls through once to the second track', async () => {
+  tablePlaylist();
   const {engine, inside, media, finish} = fixture();
   engine.setScene('table'); await engine.unlock();
   const first = inside.musicElement, obsolete = first.attempts[0];
   await vi.advanceTimersByTimeAsync(8001);
-  const second = inside.musicElement; expect(second.src).toContain('table-tango');
+  const second = inside.musicElement; expect(second.src).toContain('table-chinese-zuiyu');
   await finish(second); obsolete.resolve(); await flush();
   expect(inside.musicElement).toBe(second); expect(second.paused).toBe(false);
   expect(media.length).toBeLessThanOrEqual(2); expect(vi.getTimerCount()).toBe(0);
 });
 
 it('an unavailable playlist exhausts each track once without an automatic retry loop', async () => {
+  tablePlaylist();
   const {engine, inside, media} = fixture();
   engine.setScene('table'); await engine.unlock();
   await vi.advanceTimersByTimeAsync(100000);
@@ -176,13 +181,14 @@ it('an unavailable playlist exhausts each track once without an automatic retry 
 });
 
 it('natural playlist completion advances both directions; one-track scenes use native looping', async () => {
+  tablePlaylist();
   const {engine, inside, finish} = fixture();
   engine.setScene('table'); await engine.unlock(); await finish();
   const first = inside.musicElement; expect(first.loop).toBe(false); first.end();
-  expect(inside.musicElement.src).toContain('table-tango'); await finish();
-  inside.musicElement.end(); expect(inside.musicElement.src).toContain('table-chinese-zuiyu'); await finish();
-  engine.setScene('success'); expect(inside.musicElement).toBe(first); expect(first.loop).toBe(true);
-  const plays = first.play.mock.calls.length; first.end(); expect(first.play).toHaveBeenCalledTimes(plays);
+  expect(inside.musicElement.src).toContain('table-chinese-zuiyu'); await finish();
+  inside.musicElement.end(); expect(inside.musicElement.src).toContain('table-tangsong-cyber-groove'); await finish();
+  engine.setScene('success');await finish();const single=inside.musicElement;expect(single.loop).toBe(true);
+  const plays = single.play.mock.calls.length; single.end(); expect(single.play).toHaveBeenCalledTimes(plays);
 });
 
 it('keeps the old song during slow loading and uses complementary 250ms ramps with two reusable slots', async () => {

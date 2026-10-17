@@ -9,6 +9,7 @@ import {CLIMAX_SOURCE_ART, climaxSourceAsset} from '../src/game/ClimaxSourceArt'
 import {REWARD_COIN} from '../src/game/RewardCoin';
 import {FOLEY_SAMPLES} from '../src/audio/foley';
 import bgm from '../public/assets/audio/bgm/manifest.json';
+import gamefeel from '../public/assets/audio/gamefeel-rfc/sources.json';
 import recording from '../public/assets/audio/p06/recording.json';
 import cleanup from '../docs/production/evidence/runtime-asset-cleanup-2026-10-17/cleanup.json';
 
@@ -37,7 +38,7 @@ it('keeps every current card, tool, portrait, eye strip, head fallback and suppo
   expect(JOKER_ART).toHaveLength(72);expect(GOODS_ART).toHaveLength(51);
   expect(CHARACTER_ART).toHaveLength(30);expect(CHARACTER_ART.filter(a=>a.purpose==='eyes')).toHaveLength(6);
   expect(CHARACTER_ART.filter(a=>a.purpose==='focus')).toHaveLength(6);
-  const files=runtimeFiles();expect(files.size).toBe(cleanup.protected.runtimeFiles);
+  const files=runtimeFiles();expect(files.size).toBe(cleanup.protected.runtimeFiles+gamefeel.assets.length);
   for(const file of files){expect(fs.existsSync(file),file).toBe(true);expect(fs.statSync(file).size,file).toBeGreaterThan(0);}
 });
 

@@ -1,0 +1,64 @@
+{
+  "scope": "Actual AudioEngine native media loops/gates/context reuse plus controlled post-mix capture and real saved-trace OfflineAudioContext mixes. Not natural new-run/GameScene integration, physical device or subjective audition.",
+  "heard": false,
+  "browser": "153.0.8010.12",
+  "initial": {
+    "track": "assets/audio/gamefeel-rfc/table-tangsong-cyber-groove.mp3",
+    "samples": 30,
+    "expected": 30,
+    "settings": {
+      "music": 0.3,
+      "sfx": 0.8
+    },
+    "loop": true
+  },
+  "loops": [
+    {
+      "scene": "table",
+      "duration": 41.739116,
+      "loop": true,
+      "at": 41.649116,
+      "after": 0
+    },
+    {
+      "scene": "boss",
+      "duration": 45.714286,
+      "loop": true,
+      "at": 45.624286,
+      "after": 0
+    }
+  ],
+  "lifecycle": {
+    "sameContext": true,
+    "slots": 2,
+    "settings": {
+      "music": 0.3,
+      "sfx": 0.8
+    }
+  },
+  "mixes": [
+    {
+      "volume": 0.8,
+      "peak": 0.3348100483417511,
+      "clipped": 0,
+      "traceUnchanged": true
+    },
+    {
+      "volume": 1,
+      "peak": 0.4155486822128296,
+      "clipped": 0,
+      "traceUnchanged": true
+    }
+  ],
+  "recordingBytes": 22514,
+  "binding": {
+    "headAtCapture": "4a1f9227e137aaf57122ce812fb52d95eda0bf49",
+    "sha256NormalizedLF": {
+      "src/audio/AudioEngine.ts": "9f549cda5de0788a15e4005dc3f8a93659fee136a2f1cb36449713c60411be8d",
+      "src/audio/foley.ts": "c0ffa0a2993f532fefc43de93948994b2bdd369b8d4ebb2c5ee8f0c10bb36046",
+      "src/audio/mixPolicy.ts": "3abd98b483249c68703b4fa01dbaa2b54fd876b9e253c7d8a936476dafd74fdf",
+      "public/assets/audio/bgm/manifest.json": "e76ecbb44f3c4965fb4439fb217058989d7af5bdf8591e6097672eaa027661cf",
+      "public/assets/audio/gamefeel-rfc/sources.json": "f93d5aee900f9ceb93dffebba91f4ef28503e29252a0450a9de951c0fffbaf13"
+    }
+  }
+}

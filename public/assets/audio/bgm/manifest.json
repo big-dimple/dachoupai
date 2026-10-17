@@ -2,19 +2,19 @@
   "schemaVersion": 1,
   "tracks": [
     {
-      "id": "boss-dark-things",
-      "file": "boss-dark-things.mp3",
-      "title": "Dark Things Loop (Stranger Synth)",
-      "composer": "iamoneabe / Aron Elal",
-      "style": "Stranger Things Synthwave Tension",
+      "id": "boss-gamefeel-synth",
+      "file": "../gamefeel-rfc/boss-stranger-things-theme.mp3",
+      "title": "Stranger Things Theme (Singapore Synth)",
+      "composer": "Singapore RFC synthesis / Kyle Dixon & Michael Stein (theme)",
+      "style": "80s Synth Arpeggio",
       "scenes": [
         "boss"
       ],
-      "license": "CC0 1.0 Universal",
-      "durationSeconds": 32.03,
-      "runtimePath": "assets/audio/bgm/boss-dark-things.mp3",
-      "bytes": 384723,
-      "sha256": "bd99bc0d86649fe84cb416003d4309428a2a9b0fb5fdd4b8dfd98453abd7b9c4"
+      "license": "User-directed personal use; no separate upstream license supplied",
+      "durationSeconds": 45.714285714285715,
+      "runtimePath": "assets/audio/gamefeel-rfc/boss-stranger-things-theme.mp3",
+      "bytes": 1098440,
+      "sha256": "d291dac7ca024722129d4ddb7f68eb62b51b03abdeef8288b4c42c4ace119de4"
     },
     {
       "id": "menu-yangguan",
@@ -38,7 +38,6 @@
       "composer": "Traditional Tang/Song / Charlie Huang",
       "style": "Chinese Classical Guqin",
       "scenes": [
-        "table",
         "success"
       ],
       "license": "CC-BY-SA 3.0",
@@ -48,19 +47,19 @@
       "sha256": "edc667ee985f73e2e6f2cbcec39554856744dda2e816c53fe5f913ebb17dd125"
     },
     {
-      "id": "table-tango",
-      "file": "table-tango.mp3",
-      "title": "Tango de Manzana (Variazione Di Un Tango)",
-      "composer": "Kevin MacLeod (incompetech.com)",
-      "style": "Tango Chamber Variation",
+      "id": "table-gamefeel-groove",
+      "file": "../gamefeel-rfc/table-tangsong-cyber-groove.mp3",
+      "title": "Tang-Song Cyber Groove",
+      "composer": "Singapore RFC procedural composition",
+      "style": "Pentatonic Pluck / Lo-fi",
       "scenes": [
         "table"
       ],
-      "license": "CC-BY 3.0",
-      "durationSeconds": 182.44,
-      "runtimePath": "assets/audio/bgm/table-tango.mp3",
-      "bytes": 2190408,
-      "sha256": "0a274655d6da0747cbc28ee91439536605b129ce7ed2f6346fc39ed5ffa25dac"
+      "license": "User-directed personal use; no separate upstream license supplied",
+      "durationSeconds": 41.739115646258504,
+      "runtimePath": "assets/audio/gamefeel-rfc/table-tangsong-cyber-groove.mp3",
+      "bytes": 1003146,
+      "sha256": "6089d50cd6b0f7d736e77e410a608e5903cddbe89be85b920783f0d626bd62da"
     },
     {
       "id": "shop-serenade",
