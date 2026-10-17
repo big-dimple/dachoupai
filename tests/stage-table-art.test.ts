@@ -14,8 +14,23 @@ it('tight/rotated screens never squeeze a decorative character into playable spa
  for(const [width,height,top,bottom] of [[320,568,0,0],[740,390,12,12],[1366,560,12,34]]){const l=layout({width,height},{top,right:0,bottom,left:0},undefined,{count:14});expect(stageTableArtPlan(l).portrait).toBeUndefined();}
 });
 
-it('a small optional played caption never overlaps the score on dense tables',()=>{
- for(const [width,height,count] of [[320,740,14],[390,740,14],[320,740,9],[1366,768,8]]){const l=layout({width,height},{top:0,right:0,bottom:0,left:0},undefined,{count}),stage=stageTableArtPlan(l).stage,caption=playedCaptionBox(l,stage);
- if(width===320&&count===14)expect(caption).toBeUndefined();if(caption){expect(caption.y).toBe(stage.y-18);expect(intersects(caption,l.scoreBoard)).toBe(false);}
+it('keeps dense-table captions readable inside the actual free rail without covering score or controls',()=>{
+ const fontSize=14,longestCaption='候选补牌';
+ for(const [width,height,count] of [[320,740,14],[390,740,14],[320,740,9],[1366,768,8]]){
+  const l=layout({width,height},{top:0,right:0,bottom:0,left:0},undefined,{count}),stage=stageTableArtPlan(l).stage,caption=playedCaptionBox(l,stage);
+  // These phone bands have room; returning undefined everywhere must still fail.
+  if(l.mode==='portrait')expect(caption,`${width}px / ${count} cards retains its caption`).toBeDefined();
+  if(!caption){
+   const rail={x:stage.x,y:stage.y-18,width:80,height:18};
+   expect([l.hud,l.scoreBoard,...l.slots].some(b=>intersects(rail,b))).toBe(true);
+   continue;
+  }
+  expect(caption.x).toBeGreaterThanOrEqual(0);expect(caption.y).toBeGreaterThanOrEqual(0);
+  expect(caption.x+caption.width).toBeLessThanOrEqual(width);expect(caption.y+caption.height).toBeLessThanOrEqual(height);
+  // Reserve a complete 14px CJK line, including the four-character refill label.
+  expect(caption.width).toBeGreaterThanOrEqual(longestCaption.length*fontSize);expect(caption.height).toBeGreaterThanOrEqual(fontSize+4);
+  expect(caption.y).toBe(stage.y-18);
+  const protectedBoxes=[l.hud,l.scoreBoard,...l.slots,stage,l.hand,l.actions,gameToolInventoryBox(l),l.heroAction,l.helpEntry].filter((b):b is Box=>!!b);
+  for(const box of protectedBoxes)expect(intersects(caption,box)).toBe(false);
  }
 });

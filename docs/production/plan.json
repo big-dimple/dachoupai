@@ -2977,7 +2977,38 @@
       "no new Su Shi skill implementation",
       "no deployment verification",
       "no experience/hearing/physical-device approval"
-    ]
+    ],
+    "ciTriage": {
+      "testedCommit": "528df08dc4bac70c04f5581e2742e63a2bef253e",
+      "runs": [
+        39051225795,
+        39051225821
+      ],
+      "docs": "15 existing P08 invalid evidence record; complete output matched a9 baseline",
+      "browser": "build PASS; unchanged screenshot.mjs:45 waits for old exact 菜单 button and times out; no repair in this followup",
+      "domain": {
+        "passed": 4237,
+        "failed": 56,
+        "failedFiles": 18,
+        "merged138": "all pass also in CI",
+        "confirmedExistingHashFailure": "hand-action-controls frozen 212e23d5 hash fails on a9 baseline",
+        "confirmedNewAssertionMismatch": "stage-table-art 320x740/14 caption suppression assumption conflicts with authorized phone layout",
+        "other54": "not individually rerun on baseline; remain unattributed, many old copy/hash/mock failures"
+      },
+      "budget": "37163769B >20000000B remains open; not the direct failure shown by these jobs",
+      "captionFollowup": {
+        "branch": "dev/mobile-caption-contract-20261017",
+        "status": "targeted_test_passed_waiting_for_Su_Shi_batch_integration",
+        "baseCommit": "528df08dc4bac70c04f5581e2742e63a2bef253e",
+        "runtimeChanged": false,
+        "testFile": "tests/stage-table-art.test.ts",
+        "normalizedTestSha256": "4e761c9026e6ce724d43a70615fff31632c0d3bd45fd0f5e0ed3f017a0a0a50c",
+        "checks": "phone caption required, actual viewport bounds, no overlap with score/cards/hand/controls, room for four 14px CJK characters and 18px line height; blocked PC rail still suppressed",
+        "command": "npm test -- tests/stage-table-art.test.ts",
+        "passed": 8,
+        "evidence": "docs/production/evidence/mobile-table-space-2026-10-17/caption-contract-tests.txt"
+      }
+    }
   },
   "sushiExileImplementation": {
     "status": "ready_for_parent_integration",
