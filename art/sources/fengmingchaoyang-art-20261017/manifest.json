@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "batch": "fengmingchaoyang-art-20261017",
+  "baseCommit": "2229b4cb22da230cda241d7cd414e6726a4c1d7d",
+  "id": "b05",
+  "displayName": "凤鸣朝阳",
+  "domainName": "合唱班",
+  "sourceOriginalName": "风鸣朝阳.png",
+  "sourceFilename": "b05-fengmingchaoyang-original.png",
+  "sourceSHA256": "11055d52940eecf33d815a82b23f51171480723aaa2983e15edd37e68a6b1e45",
+  "sourceBytes": 3737032,
+  "sourceWidth": 1122,
+  "sourceHeight": 1402,
+  "pixelReview": "Viewed the complete 1122x1402 source: a gold-red phoenix with spread wings and long tail above a sunrise city, clouds, ribbons and a complete ornamental frame on all four edges; no grey missing strip. The user filename uses 风, while the display dictionary and original half1 receipt identify 凤鸣朝阳 as b05.",
+  "geometry": {
+    "fit": "contain",
+    "entireSourceSampled": true,
+    "noStretch": true,
+    "sourceCropPixels": {
+      "left": 0,
+      "top": 0,
+      "width": 1122,
+      "height": 1402
+    },
+    "background": "#F3EADB"
+  },
+  "encoder": {
+    "sharp": "0.35.5",
+    "libwebp": "1.6.0",
+    "thumbnailQuality": 80,
+    "detailQuality": 78,
+    "effort": 6
+  },
+  "previous": {
+    "currentSource": {
+      "receiptCommit": "fddb7378112304ead60d67a676e73bb4a3fe2ec0",
+      "sourceManifestPath": "art/sources/handdrawn-runtime-20261017-half1/manifest.json",
+      "sourceManifestSHA256": "a5a703a20c18ab3b9dca29b9a10cda15b50a22c37c7c804c07aaa8e09f8039b6",
+      "status": "source-verified"
+    },
+    "outputs": [
+      {
+        "width": 128,
+        "height": 160,
+        "bytes": 4492,
+        "sha256": "8d67df58e814b22e7ec17787c21c70b587b13cd8e1f690f5ac1e4703db6861b2",
+        "purpose": "thumbnail",
+        "path": "cards/b05.thumbnail.webp"
+      },
+      {
+        "width": 615,
+        "height": 768,
+        "bytes": 55626,
+        "sha256": "4ca14fb60f315926245f1d95e8acbba7167983c49aca444c9e915790b9dfcb58",
+        "purpose": "detail",
+        "path": "cards/b05.detail.webp"
+      }
+    ],
+    "sourceFilename": "17_b05_凤鸣朝阳.jpg",
+    "strictDecode": {
+      "status": "FAIL",
+      "error": "VipsJpeg: premature end of JPEG image",
+      "observation": "The old JPEG shows a grey missing region across its bottom."
+    }
+  },
+  "outputs": [
+    {
+      "purpose": "thumbnail",
+      "path": "cards/b05-v3-ee1848ebb107.thumbnail.webp",
+      "width": 128,
+      "height": 160,
+      "bytes": 7960,
+      "sha256": "ee1848ebb107e505ada50db8484a9ab6967d7716687b8cb8a3e11daefecf1604"
+    },
+    {
+      "purpose": "detail",
+      "path": "cards/b05-v3-808bf2fbfd26.detail.webp",
+      "width": 615,
+      "height": 768,
+      "bytes": 136794,
+      "sha256": "808bf2fbfd262662b2c678e3dfec1ae5d3fb511325f5d62bcef0be50336a3ec7"
+    }
+  ]
+}

@@ -1,0 +1,111 @@
+{
+  "taskId": "B05-fengmingchaoyang",
+  "sourcePipelineCommit": "2229b4cb22da230cda241d7cd414e6726a4c1d7d",
+  "sourceReceiptCommit": "70340cc590a22882948490e6276808b9d12cca70",
+  "testedHead": "70340cc590a22882948490e6276808b9d12cca70",
+  "testedWorkingTree": true,
+  "scope": "B05 runtime manifest, derived files and tests staged for the subsequent runtime commit; final SHA in delivery receipt",
+  "environment": {
+    "node": "v22.20.0",
+    "os": "win32",
+    "sharp": "0.35.5",
+    "libwebp": "1.6.0",
+    "browser": "NOT_RUN"
+  },
+  "sourceSHA256": "11055d52940eecf33d815a82b23f51171480723aaa2983e15edd37e68a6b1e45",
+  "sourceReceiptSHA256": "76459e0c50e2ba0763b7b5bdf81b71e00ca8de2c382406a28879983aed8d9e18",
+  "runtimeManifestSHA256": "743b2114cb5fda63ab1e1aec4784f968a4ab498842aeaa92663ac8c3cd286d63",
+  "outputs": [
+    {
+      "purpose": "thumbnail",
+      "path": "cards/b05-v3-ee1848ebb107.thumbnail.webp",
+      "width": 128,
+      "height": 160,
+      "bytes": 7960,
+      "sha256": "ee1848ebb107e505ada50db8484a9ab6967d7716687b8cb8a3e11daefecf1604"
+    },
+    {
+      "purpose": "detail",
+      "path": "cards/b05-v3-808bf2fbfd26.detail.webp",
+      "width": 615,
+      "height": 768,
+      "bytes": 136794,
+      "sha256": "808bf2fbfd262662b2c678e3dfec1ae5d3fb511325f5d62bcef0be50336a3ec7"
+    }
+  ],
+  "checks": [
+    {
+      "name": "focused-tests",
+      "status": "PASS",
+      "files": 7,
+      "tests": 48
+    },
+    {
+      "name": "B05-after-test-typing-fix",
+      "status": "PASS",
+      "tests": 3
+    },
+    {
+      "name": "build",
+      "status": "PASS",
+      "command": "npm run build",
+      "warning": "Existing Vite chunk-size warning retained."
+    },
+    {
+      "name": "git-provenance",
+      "status": "PASS",
+      "sourceVerified": 72,
+      "originalsVerified": 74,
+      "runtimeFiles": 165,
+      "receiptsVerified": 16
+    },
+    {
+      "name": "other-assets",
+      "status": "PASS",
+      "unchangedAssetRecords": 80,
+      "oldB05OutputsPreserved": true
+    },
+    {
+      "name": "source-publication",
+      "status": "PASS",
+      "sourcePNGPublished": false
+    }
+  ],
+  "activeHanddrawnRuntime": {
+    "files": 165,
+    "bytes": 10196942,
+    "baselineBytes": 10112306,
+    "deltaBytes": 84636
+  },
+  "registeredStartupImages": {
+    "status": "PASS",
+    "count": 146,
+    "externalImages": 142,
+    "externalImageBytes": 1372162,
+    "inlineSVGBytes": 1447,
+    "pixels": 4458496,
+    "estimatedRGBABytes": 17833984,
+    "budgetRGBABytes": 20971520,
+    "scope": "Actual startup registry and file measurements; no network or physical GPU measurement."
+  },
+  "publication": {
+    "status": "FAIL",
+    "files": 518,
+    "bytes": 44459864,
+    "baselineFiles": 516,
+    "baselineBytes": 44314529,
+    "deltaBytes": 145335,
+    "budgetBytes": 20000000,
+    "preexisting": true,
+    "scope": "All files in the actual Vite build output, including retained unused copies; same accounting as assets-runtime publication budget."
+  },
+  "notRun": [
+    "browser",
+    "long-session",
+    "human/physical-device",
+    "full-suite",
+    "CI",
+    "deployment",
+    "main-merge"
+  ]
+}
