@@ -25,9 +25,9 @@
 - `JokerExperience / SettlementHighlights` 的保存事件标题统一投影，仍检查真实事件和收益；普通秦琼 ×1.15 仍注明常规倍率，不宣称主动押注已使用。原始计分诊断与存档事件 ID 保持原样。
 - `HeroClimax.ts` 已通过 `savedSkillName` 和保存事件标题读取名称，本包未直接改任何 HeroClimax 文件。ShopScene 也未直接改，现有 `characterForRun / heroStageContinuity` 消费者可获得新名称。
 
-## 场景负责人最小接线：pending
+## 组件交接时的场景补丁（当时 pending）
 
-**GameScene 仍由 01a147f6 独占，本包未改该文件。** [GameScene-owner-only.patch](GameScene-owner-only.patch) 是以基线生成、仅供 owner 比对采纳的名称清理补丁；`git apply --check` 在本 worktree 的基线上通过，没有实际应用。不要整份复制场景，也不要直接覆盖 owner 的并行修改。
+本节保留组件交接时的边界：**组件作者未改 GameScene。** [GameScene-owner-only.patch](GameScene-owner-only.patch) 是以基线生成、仅供 owner 比对采纳的名称清理补丁；组件工作区只通过了 `git apply --check`。场景所有人的后续接入见文末；不要整份复制场景，也不要直接覆盖 owner 的并行修改。
 
 最关键的接线是：
 
@@ -38,10 +38,22 @@
 5. 按原命令门禁决定可执行操作；状态接口不写状态、不自动选牌或发动技能。条件未满足时仍须保留既有查看说明路径。旧被动身份继续查看自身规则。
 6. 补丁还列出取消选牌、规则展开标签、候选补牌标题、计分来源的旧称替换。原始 command / reasonKey / 数据字段和回看重放语义均不改。
 
-## 实际验证
+## 组件交接时的实际验证
 
 - 集中运行 24 个直接相关测试文件：226 项。首次 218 通过、8 失败；6 项是旧名称断言，2 项是旧 GameScene 测试桩缺 stage。同步名称断言并补齐当前场景字段后，只补跑这两个文件，13/13 通过；最终没有未解决的测试失败，没有削弱旧局时点／资格／保存／数值断言。
 - `npm run build`（含 TypeScript）通过；保留既有大 bundle 提示，产物与源文件 SHA-256 见 [checks.json](checks.json)。
 - `git diff --check`、共享补丁的只读应用检查通过。
 - src/domain、src/content、GameScene、ShopScene、全部 HeroClimax 文件与 public 没有 diff。
 - 本轮没有浏览器试玩、截图矩阵、CI、部署或自然长局。父级接入后的 dot 远端实际显示、按钮统一位置／样式／标识、触摸与键盘可达性仍为待验；不写成人机体验通过，不改 P08 状态。
+
+## 场景所有人接线（2026-10-17）
+
+在 `dev/score-posture-pressure-20261017` 的 `deee66633965266c558704bf05b419ea0e45e4c5`（含已接线底栏）上正常合并组件 `1eacdcd0a8d31bffa57fdd8433f4cb06176b42de`，合并点 `9c15123a`。先通过当前 GameScene 的 `git apply --check`，再逐处应用上述名称补丁并补齐统一控件。
+
+- 六人继续使用原 `layout.heroAction` 槽位和 44px 高触控区；按钮视觉标题为裸批准名，同一菱形标识与上下两行名称／状态。状态文本是按钮图层的子节点，结算隐藏及按压恢复沿用原生命周期；名称登记 `restY`，不会在松开后跳回状态行。
+- `heroAbilityCue(..., draft)` 消费真实 `erxiangTargetId / xiemuBurn / azaoRelease / assistCount`，直接使用 `label / status / state / ariaLabel`。状态独立显示可用、已用、条件未满足、已停用、已选择、待完成；读屏文案接入原 canvas aria-label。修正旧的 `label.split('·')` 调用，避免新裸名称让桌面角色提示变空。
+- 原 ready／opportunity／pending／chosen 命令门禁不变；头像及说明入口保留。秦琼弃牌草稿、取消／Escape 和 AI 计算键、取消、回调未改。独立计分姿态、来源连线、数字高光、眼部舞台、封禁模块、底栏模块及布局与 `deee6663` 无 diff；规则、存档、音频、资源没有修改。
+- 新接线验证只运行 `assist-entry-guards / touye-discard-handoff / ai-hand-action-cancellation` 三文件，共 17 项；首次 16 通过，新增断言误要求“已选择”刘娥刷新原本应保留的顶部提示，修正该断言并保留按钮 selected／草稿不变验证后，仅补跑该文件 5/5 通过。无未解决失败。组件 226 项及既有高光 51 项复用原证据，没有重复大矩阵。
+- `npm run build`（含 TypeScript）通过，317 modules；保留既有大 bundle 提示。`git diff --check` 通过。
+
+本段只签场景接线及相关回归，不新增浏览器矩阵、整局、CI 或部署。父级仍需完成 dot 远端实际显示与触摸／键盘可达性验收，P08 与真人／真机验收门保持。
