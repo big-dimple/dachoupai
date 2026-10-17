@@ -1,0 +1,40 @@
+<!doctype html><html lang="zh"><meta charset="utf-8"><title>计分与封禁 · 模块短场景</title>
+<style>body{margin:0;background:#17252a;color:#fff;font:16px system-ui}nav{height:42px;display:flex;gap:8px;align-items:center;padding:0 12px}button{padding:6px 12px}canvas{display:block}#detail{position:fixed;right:8px;top:48px;max-width:340px;background:#f7efd9;color:#26313a;padding:12px;z-index:3;white-space:pre-wrap;display:none}</style>
+<nav><button id="cards">逐张计分</button><button id="multiply">高光乘倍率</button><button id="heat">高光加热度</button><button id="boss">Boss受压</button><button id="reduced">减少动态</button><button id="fast">2倍速</button><button id="cancel">取消</button><span>独立模块运行 · 尚未接入 GameScene</span></nav><div id="stage"></div><aside id="detail"></aside>
+<script type="module">
+import Phaser from 'phaser';
+import {ScorePosture} from '/src/game/ScorePosture.ts';
+import {EffectQueue} from '/src/core/EffectQueue.ts';
+import {bossCardPressure,bossJokerPressure} from '/src/game/BossPressure.ts';
+import {mountBossPressure} from '/src/game/BossPressureView.ts';
+import {R2_JOKERS} from '/src/content/r2Schema.ts';
+import {heroClimaxFixture,energySend} from '/harness/fixtures/hero-climax.ts';
+import {keyHighlight} from '/src/game/JokerKeyHighlight.ts';
+import {heroClimaxValue,mountHeroClimax} from '/src/game/HeroClimax.ts';
+import {scoreContributions} from '/src/game/ScoreContribution.ts';
+import {CHARACTER_ART} from '/src/game/CharacterArt.ts';
+import {JOKER_ART} from '/src/game/jokerArt.ts';
+import {climaxSourceKey,CLIMAX_SOURCE_ART} from '/src/game/ClimaxSourceArt.ts';
+const w=Number(new URLSearchParams(location.search).get('w')||900),h=Number(new URLSearchParams(location.search).get('h')||660);
+let scene,root,climax,queue=new EffectQueue(),reduced=false;
+class Probe extends Phaser.Scene {
+ preload(){for(const a of CHARACTER_ART.filter(a=>a.id==='amo'))this.load.image(a.key,'/'+a.path);for(const a of JOKER_ART.filter(a=>['f09','f06','e08'].includes(a.id)))this.load.image(a.key,'/'+a.path);for(const a of CLIMAX_SOURCE_ART.filter(a=>['f09','f06','e08'].includes(a.id)))this.load.image(climaxSourceKey(a.id),'/'+a.path);}
+ create(){scene=this;window.probe={scene:this,queue,poses:[],samples:[],showCards,showClimax,showBoss,clear,snapshot};showCards();}
+}
+const game=new Phaser.Game({type:Phaser.CANVAS,width:w,height:h,parent:'stage',backgroundColor:'#f7efd9',scene:Probe,render:{antialias:true},audio:{noAudio:true}});
+function clear(){queue.clear();climax?.dispose();climax=undefined;root?.destroy();root=scene.add.container(0,0);document.querySelector('#detail').style.display='none';window.probe.poses=[];window.probe.samples=[];}
+function animate(config,context){return new Promise(resolve=>{if(context.signal.aborted){resolve();return;}let tween;const done=()=>{context.signal.removeEventListener('abort',cancel);resolve();},cancel=()=>{tween?.remove();done();};tween=scene.tweens.add({...config,onComplete:done});context.signal.addEventListener('abort',cancel,{once:true});});}
+function card(x,y,label){const group=scene.add.container(x,y),frame=scene.add.rectangle(0,0,90,128,0xfff9e9).setStrokeStyle(2,0x80551f);group.add([frame,scene.add.text(-35,-54,label,{font:'bold 23px Georgia',color:'#982e28'})]);root.add(group);return group;}
+ function showCards(){clear();const posture=new ScorePosture(animate),cards=[0,1,2].map((n)=>card(w/2-135+n*135,h/2,'789'[n]+'♥'));window.probe.poses=cards;root.add(scene.add.text(20,20,'真实 Phaser Tween / 18px · ±2.5° · 独立 EffectContext',{font:'18px sans-serif',color:'#26313a'}).setName('probe/title'));cards.forEach((source,ordinal)=>queue.enqueue(context=>posture.play(source,{context,arrival:Promise.resolve(),duration:420,ordinal,reducedMotion:reduced})));queue.drain();}
+function showClimax(kind='multiply'){
+ clear();const f=heroClimaxFixture('multiply'),state=energySend(f.state,{type:'PlayHand',selectedIds:f.selectedIds,assistIds:f.assistIds}),trace=state.lastTrace,key=keyHighlight(state,trace),value=heroClimaxValue(state,trace,key);
+ if(kind==='heat'){const event=trace.events.find(e=>scoreContributions(e).some(c=>c.kind==='heat'));const cue=scoreContributions(event).find(c=>c.kind==='heat');value.contribution=cue;value.label='本次加热度';value.before=value.after=cue.label;value.landingValue=cue.after.n;value.landingLabel='累计热度落位';value.note=cue.exact;key.fact={...key.fact,definitionId:'',title:'计分牌实际收益'};}
+ const stage=mountHeroClimax(scene,root,{x:0,y:0,width:w,height:h},key,value,reduced);climax=stage;window.probe.climax=stage;window.probe.cue=value.contribution;setTimeout(()=>{if(climax===stage)stage?.strike();},250);
+}
+function showBoss(){clear();const hand=[{id:'j',rank:11,suit:'hearts'},{id:'q',rank:12,suit:'spades'},{id:'a',rank:14,suit:'hearts'}],jokers=[{instanceId:'left',definitionId:'e02',paidPrice:4,growth:{}},{instanceId:'sealed',definitionId:'b10',paidPrice:4,growth:{}}],base={stageIndex:2,hand,selectedIds:hand.map(c=>c.id),jokers,definitions:R2_JOKERS,sealedJokerIds:[]};
+ const items=[...hand.map(c=>({label:({11:'J',12:'Q',14:'A'})[c.rank],pressure:bossCardPressure({...base,boss:{definitionId:'B04',disabledSuit:null}},c.id)})),{label:'成长',pressure:bossJokerPressure({...base,boss:{definitionId:'B06',disabledSuit:null}},'sealed')}];
+ items.forEach((item,i)=>{const source=card(w/2+(i-1.5)*132,h/2,item.label);if(item.pressure){mountBossPressure(scene,source,90,128,item.pressure);source.setSize(90,128).setInteractive().on('pointerdown',()=>{const detail=document.querySelector('#detail');detail.textContent=item.pressure.detail;detail.style.display='block';});}});
+ root.add(scene.add.text(20,20,'B04 · J/Q/K计分失效仍可成型；A正常 / B06 · 第2槽计分封禁',{font:'18px sans-serif',color:'#26313a'}));}
+function snapshot(){return {poses:window.probe.poses.map(c=>({y:c.y,angle:c.angle,scale:c.scaleX})),cue:window.probe.cue,shot:climax?.group.getData('shot'),readouts:climax?.group.list.flatMap(o=>o.list??[]).filter(o=>o.name==='hero/climax-readouts').flatMap(o=>o.list).map(o=>({name:o.name,text:o.text,x:o.x,y:o.y,scale:o.scaleX,bounds:o.getBounds()}))};}
+document.querySelector('#cards').onclick=showCards;document.querySelector('#multiply').onclick=()=>showClimax();document.querySelector('#heat').onclick=()=>showClimax('heat');document.querySelector('#boss').onclick=showBoss;document.querySelector('#cancel').onclick=()=>{queue.clear();climax?.reduce();};document.querySelector('#reduced').onclick=()=>{reduced=!reduced;showClimax();};document.querySelector('#fast').onclick=()=>{scene.tweens.timeScale=scene.tweens.timeScale===1?2:4;showClimax();};
+</script></html>

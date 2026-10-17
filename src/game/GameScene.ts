@@ -38,6 +38,9 @@ import {touyeChoice,touyeConfirmationCopy} from './TouyeWagerCopy';
 import {usesLaohuanRefill} from '../domain/r2LaohuanRefill';
 import {mountScoreLanding} from './ScoreLanding';
 import {numberImpact,impactBeat,numberPulse,type NumberImpact} from './ScoreEnergy';
+import {ScorePosture} from './ScorePosture';
+import {bossCardPressure,bossJokerPressure,type BossPressureContext} from './BossPressure';
+import {mountBossPressure} from './BossPressureView';
 import {readableMultiplierEffect} from './ScoreEventCaption';
 import {scoreSourceProcess,fitScoreSourceProcess,presentScoreSourceProcess,type ScoreSourceProcess} from './ScoreSourceProcess';
 import {starterSelection} from './RouteStarter';
@@ -216,6 +219,7 @@ export class GameScene extends Phaser.Scene {
   private azaoRelease=false;
   private xiemuBurn:XiemuBurnCost=0;
   private readonly effects = new EffectQueue();
+  private readonly scorePosture = new ScorePosture((config,context)=>this.animate(config,context));
   private readonly audio = AudioEngine.shared;
 
   private view!:SceneView;
@@ -596,6 +600,7 @@ export class GameScene extends Phaser.Scene {
       marker.add(createJokerRarityBadge(this,d.rarity,{x:b.width/2-31,y:artTop+artHeight-18,compact:true,resolution}).setData('definitionId',d.id).setData('surface','table'));
       current.setBackgroundColor(C.paperLight);marker.add([name,current]).setData('frame',r).setData('frameColor',disabled.has(j.instanceId)?T.red:rarityStyle.edge).setData('nameLabel',name).setData('valueLabel',current).setData('slotIndex',i);
       if(disabled.has(j.instanceId)){r.setStrokeStyle(2,T.red);marker.setData('bossDisabled',true);}
+      const pressure=bossJokerPressure({...this.bossPressureContext(),jokers},j.instanceId);if(pressure)mountBossPressure(this,marker,b.width,b.height,pressure);
       this.jokerViews.set(j.instanceId,marker);
       const hit=v.rect({x:b.x,y:b.y,width:b.width+(sideLabels?labelBox.width+6:0),height:b.height},T.ink).setFillStyle(T.ink,.001).setStrokeStyle();marker.setData('hit',hit);
       v.target(hit,'joker/'+j.instanceId,{tap:()=>this.inspectJoker(j.instanceId),detail:()=>this.inspectJoker(j.instanceId),enter:()=>this.hoverJoker(j.instanceId,true),leave:()=>this.hoverJoker(j.instanceId,false)});
@@ -607,6 +612,7 @@ export class GameScene extends Phaser.Scene {
     drawJokerMotif(this,marker,joker.definitionId,x,y,size,this.jokerDefinition(joker.definitionId));
   }
   private jokerRestriction(j:R2JokerInstance):string|undefined {
+    const pressure=bossJokerPressure(this.bossPressureContext(),j.instanceId);if(pressure)return pressure.detail;
     const score=this.presentation?.score,context=score?.bossContext;
     if(score&&context)return r2ScoringDisabledJokerIds(context.boss,score.sourceJokers,this.jokerDefinitions,context.sealedJokerIds,context.challengeDisabledJokerId).includes(j.instanceId)?'本手计分与版次停用；静态规则与其他阶段效果另按条件执行':undefined;
     const notice=stageNotice(this.run);return notice?.disabledJokerIds.includes(j.instanceId)?'当前计分与版次停用：'+notice.title+'；静态规则与其他阶段效果另按条件执行':undefined;
@@ -733,36 +739,18 @@ export class GameScene extends Phaser.Scene {
     if(this.textures.exists('p03-sheen')){
       sheen=this.add.image(0,0,'p03-sheen','0').setDisplaySize(b.width-4,b.height-4).setAlpha(0);c.add(sheen);
     }
-    const bossDefId = this.run?.boss?.definitionId;
-    const isBossDisabled = (this.run?.stageIndex !== undefined && this.run.stageIndex % 3 === 2) && (
-      (bossDefId === 'B03' && this.run.boss?.disabledSuit && card.suit === this.run.boss.disabledSuit) ||
-      (bossDefId === 'B04' && [11, 12, 13].includes(card.rank)) ||
-      (this.run.stage?.disabledIds?.includes(card.id) ?? false)
-    );
-    if (isBossDisabled) {
-      const disabledVeil = this.add.graphics();
-      disabledVeil.fillStyle(0x23201d, 0.44).fillRoundedRect(-b.width/2+1, -b.height/2+1, b.width-2, b.height-2, radius);
-      const chainGfx = this.add.graphics();
-      chainGfx.lineStyle(1.5, 0x8f837c, 0.72);
-      chainGfx.beginPath();
-      chainGfx.moveTo(-b.width*0.38, -b.height*0.38).lineTo(b.width*0.38, b.height*0.38);
-      chainGfx.moveTo(-b.width*0.38, b.height*0.38).lineTo(b.width*0.38, -b.height*0.38);
-      chainGfx.strokePath();
-      const sealW = Math.min(54, b.width - 10), sealH = 16, sealY = -b.height / 2 + 10;
-      const sealPlate = this.add.graphics();
-      sealPlate.fillStyle(0x7c2622, 0.94).fillRoundedRect(-sealW/2, sealY - sealH/2, sealW, sealH, 3);
-      sealPlate.lineStyle(1, 0xf6bbb2, 0.85).strokeRoundedRect(-sealW/2, sealY - sealH/2, sealW, sealH, 3);
-      const sealText = this.add.text(0, sealY, '🔒 封禁', {
-        fontFamily: UI_FONT,
-        fontSize: `${Math.max(9, Math.min(11, b.width * 0.11))}px`,
-        fontStyle: 'bold',
-        color: '#fff3f2',
-        resolution,
-      }).setOrigin(0.5);
-      c.add([disabledVeil, chainGfx, sealPlate, sealText]);
-      c.setData('bossDisabled', true);
-    }
-    return {card,container:c,background:bg,scoringMark,selectionMark,back,edgeGlow,faceGlow,sheen};
+    const view={card,container:c,background:bg,scoringMark,selectionMark,back,edgeGlow,faceGlow,sheen};this.refreshCardPressure(view);return view;
+  }
+  private bossPressureContext():BossPressureContext {
+    const score=this.presentation?.score;
+    return {boss:score?score.bossContext.boss:this.run.stage?.boss??null,stageIndex:score?(score.bossContext.boss?2:0):this.stage.index,
+      hand:score?.cards??this.hand,selectedIds:score?.sets.playedIds??[...this.selectedIds],jokers:score?.sourceJokers??this.run.jokers,definitions:this.jokerDefinitions,sealedJokerIds:score?.bossContext.sealedJokerIds??this.run.stage?.sealedJokerIds??[]};
+  }
+  private refreshCardPressure(view:CardView):void {
+    const pressure=bossCardPressure(this.bossPressureContext(),view.card.id),previous=view.container.getData('bossPressure');
+    if(previous?.kind===pressure?.kind&&previous?.detail===pressure?.detail)return;
+    (view.container.getData('bossPressureCleanup') as (()=>void)|undefined)?.();view.container.setData('bossDisabled',pressure?.kind==='scoring');
+    if(pressure)mountBossPressure(this,view.container,view.background.width,view.background.height,pressure);
   }
   /** Edition light stays on the rim so rank, pips and character art remain readable. */
   private editionTrim(container:Phaser.GameObjects.Container,width:number,height:number,edition:PlayingCard['edition'],joker=false):void {
@@ -903,7 +891,7 @@ export class GameScene extends Phaser.Scene {
     const preview=this.selectionPreview();
     if(usesErxiangHandoff(this.run)&&!this.presentation&&!this.playing&&this.erxiangTargetId&&!erxiangChoice(this.run,preview,this.erxiangTargetId).selected)this.erxiangTargetId=null;
     const active=this.presentation?.score.sets.activeScoringIds??preview?.activeScoringIds??[];
-    const disabledIds=r2DisabledCards(this.run.boss,this.stage.index,this.hand),suppressed=this.presentation?.score.events.filter(e=>e.operation==='ordinary-points-suppressed').map(e=>e.targetCardId)??r2ScoreContext(this.run,this.hand,[...this.selectedIds]).ordinaryPointsSuppressedIds;
+    const pressureInput=this.bossPressureContext(),disabledIds=pressureInput.boss?r2DisabledCards(pressureInput.boss,pressureInput.stageIndex,pressureInput.hand):[],suppressed=this.presentation?.score.events.filter(e=>e.operation==='ordinary-points-suppressed').map(e=>e.targetCardId)??r2ScoreContext(this.run,this.hand,[...this.selectedIds]).ordinaryPointsSuppressedIds;
     this.cardViews.forEach((v,i)=>{
       const selected=this.selectedIds.has(v.card.id),scoring=active.includes(v.card.id);
       v.container.setData('selected',selected).setData('activeScoring',scoring);
@@ -911,6 +899,7 @@ export class GameScene extends Phaser.Scene {
       v.selectionMark?.setText(assisted?'助':this.erxiangTargetId===v.card.id?'交':this.assistProfile?'主':'✓').setVisible(selected||assisted);
       if(this.assistProfile&&v.selectionMark)v.selectionMark.setPosition(-Number(v.container.getData('width'))/2+12,Number(v.container.getData('height'))/2+10).setBackgroundColor(assisted?C.paperLight:C.jadeSoft).setName('selection/draft-role').setData('cardId',v.card.id);
       const disabled=disabledIds.includes(v.card.id),pointsZero=suppressed.includes(v.card.id);v.background.setFillStyle(disabled?0xd2d0cb:T.paper);
+      this.refreshCardPressure(v);
       this.restingCard(v,i,animateId===v.card.id);
       if(assisted)v.background.setStrokeStyle(3,T.brass);
       v.scoringMark.setText(disabled?'失效':pointsZero?'点数0':'★').setVisible(disabled||pointsZero||scoring);
@@ -1244,13 +1233,8 @@ export class GameScene extends Phaser.Scene {
   private inspectCard(id:string):void {
     const c=this.hand.find(c=>c.id===id);if(!c)return;
     const notice=stageNotice(this.run,[...this.selectedIds]);
-    const bossDefId = this.run?.boss?.definitionId;
-    const isBossDisabled = (this.run?.stageIndex !== undefined && this.run.stageIndex % 3 === 2) && (
-      (bossDefId === 'B03' && this.run.boss?.disabledSuit && c.suit === this.run.boss.disabledSuit) ||
-      (bossDefId === 'B04' && [11, 12, 13].includes(c.rank)) ||
-      (this.run.stage?.disabledIds?.includes(c.id) ?? false)
-    );
-    const limitation=isBossDisabled?'\n⚠️ 【压轴禁令】该牌受本场 Boss 封禁压制：打出无法获得点数，但仍可参与组成牌型！':(notice?.disabledCardIds.includes(id)||notice?.ordinarySuppressedIds.includes(id)?'\n本场限制：'+notice.title+'。'+notice.description:'');
+    const pressure=bossCardPressure(this.bossPressureContext(),id);
+    const limitation=pressure?'\n'+pressure.detail:(notice?.disabledCardIds.includes(id)||notice?.ordinarySuppressedIds.includes(id)?'\n本场限制：'+notice.title+'。'+notice.description:'');
     const index=this.run.handOrder.indexOf(id),facts=this.selectionPreview();
     const assist=validAssistDraft(this.assistInput(),r2AssistAvailability(this.run).available,this.assistIds),group=assist?.assistIds.includes(id)?[...assist.assistIds]:undefined,revision=this.draftRevision();
     const current=()=>this.ready&&!this.presentation&&revision===this.draftRevision()&&(!group||group.length===this.assistIds.length&&group.every(id=>this.assistIds.includes(id)));
@@ -1733,26 +1717,11 @@ export class GameScene extends Phaser.Scene {
     if(event.value.n==='0'&&!risk)return false;
     return sets.activeScoringIds.includes(card.card.id)||['onHeldCard','onStageClear'].includes(event.phase)&&sets.heldIds.includes(card.card.id);
   }
-  private async illuminateCard(card:CardView,event:ScoreEvent,beat:ScoreBeat,context:EffectContext,impact:Promise<void>):Promise<void> {
-    const glow=card.faceGlow,edge=card.edgeGlow;if(!glow||!this.cardRespondsTo(event,card)||context.signal.aborted)return;
-    const edgeAlpha=edge?.alpha??0;glow.setAlpha(this.reducedMotion?0.5:0.85);edge?.setAlpha(1);
-    const origY=card.container.y,origSx=card.container.scaleX,origSy=card.container.scaleY;
-    try {
-      await impact;if(context.signal.aborted)return;
-      if(this.reducedMotion){await this.wait(beat.impact,context);return;}
-      const tilt=(card.card.rank%2===0?-2.5:2.5);
-      void this.animate({targets:card.container,y:origY-18,scaleX:origSx*1.08,scaleY:origSy*1.08,angle:tilt,duration:beat.impact*0.4,ease:'Back.easeOut'},context)
-        .then(()=>{if(card.container.active&&!context.signal.aborted)return this.animate({targets:card.container,y:origY,scaleX:origSx,scaleY:origSy,angle:0,duration:beat.impact*0.55,ease:'Bounce.easeOut'},context);});
-      if(event.retriggerDepth>0||event.operation==='retrigger-card'){
-        await this.animate({targets:glow,alpha:.2,duration:beat.impact/3},context);
-        await this.animate({targets:glow,alpha:1,duration:beat.impact/3},context);
-      }
-      await this.animate({targets:glow,alpha:0,duration:event.retriggerDepth>0||event.operation==='retrigger-card'?beat.impact/3:beat.impact,ease:'Sine.easeOut'},context);
-    } finally {
-      if(glow.active)glow.setAlpha(0);
-      if(edge?.active)edge.setAlpha(edgeAlpha);
-      if(card.container.active){card.container.setY(origY).setScale(origSx,origSy).setAngle(0);}
-    }
+  private illuminateCard(card:CardView,event:ScoreEvent,beat:ScoreBeat,context:EffectContext,impact:Promise<void>):Promise<void> {
+    if(context.signal.aborted||!this.cardRespondsTo(event,card))return Promise.resolve();
+    const ordinal=this.presentation?.score.sets.playedIds.indexOf(card.card.id)??0;
+    this.tweens.killTweensOf(card.container);
+    return this.scorePosture.play(card.container,{context,arrival:impact,duration:beat.impact,ordinal:Math.max(0,ordinal),reducedMotion:this.reducedMotion,faceGlow:card.faceGlow,edgeGlow:card.edgeGlow});
   }
   private floatNote(note:string,x:number,y:number,color:string,duration:number,context:EffectContext):Promise<void> {
     const group=this.view.add(this.add.container(x,y)),text=this.add.text(0,0,note,{fontFamily:UI_FONT,fontSize:this.view.layout.mode==='desktop'?'22px':'18px',fontStyle:'bold',color:C.ink,resolution:Math.max(1,1/this.scale.zoom)}).setOrigin(.5);
@@ -1917,10 +1886,9 @@ export class GameScene extends Phaser.Scene {
         const view=this.jokerViews.get(event.targetJokerInstanceId!);if(!view||context.signal.aborted)return;
         view.setData('bossDisabled',true).setData('frameColor',T.red);(view.getData('frame') as Phaser.GameObjects.Rectangle).setStrokeStyle(2,T.red);
         (view.getData('valueLabel') as Phaser.GameObjects.Text).setText(this.view.layout.mode==='landscape'?'计分封禁':'封禁').setColor(C.red);
+        const frame=view.getData('frame') as Phaser.GameObjects.Rectangle,input=this.bossPressureContext(),pressure=bossJokerPressure({...input,sealedJokerIds:[...new Set([...input.sealedJokerIds,event.targetJokerInstanceId!])]},event.targetJokerInstanceId!);if(pressure)mountBossPressure(this,view,frame.width,frame.height,pressure);
       }));
-    }else if(card&&cardResponds){
-      sourceEffects.push(this.focusSource(card.container,card.background,event.retriggerDepth?T.brass:T.jade,false,duration,context,timing,impact));
-    }else if(card&&event.sourceType==='rule'){
+    }else if(card&&!cardResponds&&event.sourceType==='rule'){
       sourceEffects.push(this.focusSource(card.container,card.background,T.red,false,duration,context,timing,impact));
     }else if(event.sourceType==='rule'&&(R2_LONG_TERM_ITEMS.some(item=>item.id===event.sourceDefinitionId)||R2_TOOLS.some(tool=>tool.id===event.sourceDefinitionId)||R2_MODE_CATALOG.programs.some(program=>program.id===event.sourceDefinitionId))){
       const b=this.goldText.getBounds(),halo=this.view.add(this.add.graphics().lineStyle(3,T.brass,.9).strokeRoundedRect(b.x-4,b.y-4,b.width+8,b.height+8,8));
@@ -1937,7 +1905,7 @@ export class GameScene extends Phaser.Scene {
     const impactCue=this.presentation?sourceImpact(this.presentation.score,event):undefined,impactSource=impactCue?this.jokerViews.get(impactCue.instanceId):undefined;
     const releaseSourceImpact=impactCue&&impactSource?mountSourceImpact(this,impactSource,impactCue,context.signal):undefined;
     restoreKey?.strike?.();
-    if(restoreKey?.strike&&number)number={...number,tier:number.tier===3?3:2,peak:1.48};
+    if(restoreKey?.strike&&number)number={...number,tier:number.tier===3?3:2,peak:number.kind==='multiply'?1.54:1.48};
     if(number||(sourceBenefit&&benefit)){if(!number&&sourceBenefit&&benefit&&this.presentation&&!this.presentation.replay)this.audio.scoreImpact(this.presentation,event.eventId,restoreKey?.strike?'key':'add',restoreKey?.strike?2:0);}
     else if(event.sourceType==='character')this.audio.sourceCue('character');
     else if(key?.kind==='multiply')this.audio.multiplier('multiply',index);
