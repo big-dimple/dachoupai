@@ -1,0 +1,199 @@
+{
+  "head": "e34a9330a94a24ea70c433674b5dfacfa1ccab78",
+  "sourceHashes": {
+    "src/game/GameScene.ts": "3091f7715f57f1c0b5d42f17d1c93d28c059e4879b5546fa8957e80edc89f088",
+    "src/game/HeroTargetAttachment.ts": "ef130ae8acbf389ff0fde3b5dd90fa114db04640bccf358a015b9e189886b191",
+    "src/game/HeroTargetAttachmentState.ts": "be16afbfe2bc2f77822e84f42a135633bc4753612a705fbd0670abe0b74675ab",
+    "src/game/HeroAttachmentFacts.ts": "cfa99471a3f74fb1e903cc7bcfad480e44ceb1ad2f081bc4a7c6be2ae274f08e"
+  },
+  "scope": "Actual GameScene and SavedRun public checkpoint import. Su Shi main/assist choices use native canvas and dialog input. Other heroes use controlled legal Scene drafts, then the real existing save/presentation path; not full native hero-input coverage, natural acquisition, hearing or physical-device acceptance.",
+  "cases": [
+    {
+      "key": "390-touye",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "errors": [],
+      "checks": [
+        ">=3.3 seconds continuous idle flow without input; actual exterior pixels change; state/journal/storage unchanged; exact instances only; labels avoid controls"
+      ],
+      "status": "FAIL",
+      "pending": [
+        {
+          "targetId": "clubs-8",
+          "kind": "wager",
+          "members": [
+            "clubs-8",
+            "diamonds-6"
+          ],
+          "phase": "idle",
+          "flow": 0.3016458333333329
+        },
+        {
+          "targetId": "diamonds-6",
+          "kind": "wager",
+          "members": [
+            "clubs-8",
+            "diamonds-6"
+          ],
+          "phase": "idle",
+          "flow": 0.3016458333333329
+        }
+      ],
+      "labels": [
+        {
+          "text": "新?",
+          "bounds": {
+            "type": 5,
+            "x": 237,
+            "y": 626.4000122070313,
+            "width": 26,
+            "height": 18
+          },
+          "intersectsControl": false
+        },
+        {
+          "text": "新·待判",
+          "bounds": {
+            "type": 5,
+            "x": 316,
+            "y": 642.4000122070313,
+            "width": 51,
+            "height": 18
+          },
+          "intersectsControl": false
+        }
+      ],
+      "samples": [
+        {
+          "elapsed": 0.01840000000083819,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "kind": "wager",
+              "members": [
+                "clubs-8",
+                "diamonds-6"
+              ],
+              "phase": "idle",
+              "flow": 0.3016458333333329
+            },
+            {
+              "targetId": "diamonds-6",
+              "kind": "wager",
+              "members": [
+                "clubs-8",
+                "diamonds-6"
+              ],
+              "phase": "idle",
+              "flow": 0.3016458333333329
+            }
+          ]
+        },
+        {
+          "elapsed": 1195.3078000000023,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "kind": "wager",
+              "members": [
+                "clubs-8",
+                "diamonds-6"
+              ],
+              "phase": "idle",
+              "flow": 0.05131458333333341
+            },
+            {
+              "targetId": "diamonds-6",
+              "kind": "wager",
+              "members": [
+                "clubs-8",
+                "diamonds-6"
+              ],
+              "phase": "idle",
+              "flow": 0.05131458333333341
+            }
+          ]
+        },
+        {
+          "elapsed": 2351.6117999999988,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "kind": "wager",
+              "members": [
+                "clubs-8",
+                "diamonds-6"
+              ],
+              "phase": "idle",
+              "flow": 0.8012708333333327
+            },
+            {
+              "targetId": "diamonds-6",
+              "kind": "wager",
+              "members": [
+                "clubs-8",
+                "diamonds-6"
+              ],
+              "phase": "idle",
+              "flow": 0.8012708333333327
+            }
+          ]
+        },
+        {
+          "elapsed": 3502.9564000000028,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "kind": "wager",
+              "members": [
+                "clubs-8",
+                "diamonds-6"
+              ],
+              "phase": "idle",
+              "flow": 0.5095895833333322
+            },
+            {
+              "targetId": "diamonds-6",
+              "kind": "wager",
+              "members": [
+                "clubs-8",
+                "diamonds-6"
+              ],
+              "phase": "idle",
+              "flow": 0.5095895833333322
+            }
+          ]
+        }
+      ],
+      "changedExteriorPixels": 1038,
+      "reducedExteriorPixels": 105,
+      "reduced": [
+        {
+          "targetId": "clubs-8",
+          "kind": "wager",
+          "members": [
+            "clubs-8",
+            "diamonds-6"
+          ],
+          "phase": "idle",
+          "flow": 0
+        },
+        {
+          "targetId": "diamonds-6",
+          "kind": "wager",
+          "members": [
+            "clubs-8",
+            "diamonds-6"
+          ],
+          "phase": "idle",
+          "flow": 0
+        }
+      ],
+      "failure": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n105 !== 0\n\n    at file:///D:/ai/dachoupai/dachoupai/.codex-remote-attachments/hero-target-attachments-20261017/harness/hero-attachments.mjs:49:635"
+    }
+  ],
+  "status": "RUNNING",
+  "browser": "153.0.8010.12"
+}

@@ -1,0 +1,1024 @@
+{
+  "head": "f0deb61c3a0db50321347e6c94537957a0c088c9",
+  "sourceHashes": {
+    "src/game/GameScene.ts": "3091f7715f57f1c0b5d42f17d1c93d28c059e4879b5546fa8957e80edc89f088",
+    "src/game/HeroTargetAttachment.ts": "7676191008fdcf8237ca1c8cc5a029d0f4a528e83f5051eec819a8debc44b5a6",
+    "src/game/HeroTargetAttachmentState.ts": "be16afbfe2bc2f77822e84f42a135633bc4753612a705fbd0670abe0b74675ab",
+    "src/game/HeroAttachmentFacts.ts": "cfa99471a3f74fb1e903cc7bcfad480e44ceb1ad2f081bc4a7c6be2ae274f08e"
+  },
+  "scope": "Actual GameScene and SavedRun public checkpoint import. Su Shi main/assist choices use native canvas and dialog input. Other heroes use controlled legal Scene drafts, then the real existing save/presentation path; not full native hero-input coverage, natural acquisition, hearing or physical-device acceptance.",
+  "cases": [
+    {
+      "key": "1366-touye",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "errors": [],
+      "checks": [
+        ">=3.3 seconds continuous idle flow without input; actual exterior pixels change; state/journal/storage unchanged; exact instances only; labels avoid controls",
+        "reduced motion keeps semantic static edges; no flowing phase or exterior pixel changes",
+        "hidden removes visuals; return resumes idle without replaying travel",
+        "actual command saved once; canonical state equals domain result; release follows actual source impact; completed presentation removes all edges"
+      ],
+      "status": "PASS",
+      "pending": [
+        {
+          "targetId": "clubs-8",
+          "kind": "wager",
+          "members": [
+            "clubs-8",
+            "diamonds-6"
+          ],
+          "phase": "idle",
+          "flow": 0.3017791666666655
+        },
+        {
+          "targetId": "diamonds-6",
+          "kind": "wager",
+          "members": [
+            "clubs-8",
+            "diamonds-6"
+          ],
+          "phase": "idle",
+          "flow": 0.3017791666666655
+        }
+      ],
+      "labels": [
+        {
+          "text": "新·待判",
+          "bounds": {
+            "type": 5,
+            "x": 950.6799755859375,
+            "y": 661.9999995117188,
+            "width": 51,
+            "height": 18
+          },
+          "intersectsControl": false
+        },
+        {
+          "text": "新·待判",
+          "bounds": {
+            "type": 5,
+            "x": 1058.51994140625,
+            "y": 677.9999995117188,
+            "width": 51,
+            "height": 18
+          },
+          "intersectsControl": false
+        }
+      ],
+      "rasterMask": {
+        "exclusions": [
+          {
+            "x": 252,
+            "y": 466.22400000000005,
+            "width": 132,
+            "height": 44
+          },
+          {
+            "x": 24,
+            "y": 642,
+            "width": 200,
+            "height": 44
+          },
+          {
+            "x": 807,
+            "y": 680,
+            "width": 162,
+            "height": 58
+          },
+          {
+            "x": 489,
+            "y": 680,
+            "width": 162,
+            "height": 58
+          },
+          {
+            "x": 657,
+            "y": 694,
+            "width": 48,
+            "height": 44
+          },
+          {
+            "x": 705,
+            "y": 694,
+            "width": 48,
+            "height": 44
+          },
+          {
+            "x": 753,
+            "y": 694,
+            "width": 48,
+            "height": 44
+          }
+        ],
+        "faces": [
+          {
+            "x": 948.6799755859375,
+            "y": 520.2239995117187,
+            "width": 99.84000000000003,
+            "height": 139.77600000000007
+          },
+          {
+            "x": 1056.51994140625,
+            "y": 536.2239995117187,
+            "width": 99.84000000000015,
+            "height": 139.77600000000007
+          }
+        ]
+      },
+      "samples": [
+        {
+          "elapsed": 0.016100000000733417,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "kind": "wager",
+              "members": [
+                "clubs-8",
+                "diamonds-6"
+              ],
+              "phase": "idle",
+              "flow": 0.3017791666666655
+            },
+            {
+              "targetId": "diamonds-6",
+              "kind": "wager",
+              "members": [
+                "clubs-8",
+                "diamonds-6"
+              ],
+              "phase": "idle",
+              "flow": 0.3017791666666655
+            }
+          ]
+        },
+        {
+          "elapsed": 1237.8343999999997,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "kind": "wager",
+              "members": [
+                "clubs-8",
+                "diamonds-6"
+              ],
+              "phase": "idle",
+              "flow": 0.09336249999999978
+            },
+            {
+              "targetId": "diamonds-6",
+              "kind": "wager",
+              "members": [
+                "clubs-8",
+                "diamonds-6"
+              ],
+              "phase": "idle",
+              "flow": 0.09336249999999978
+            }
+          ]
+        },
+        {
+          "elapsed": 2436.9334000000017,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "kind": "wager",
+              "members": [
+                "clubs-8",
+                "diamonds-6"
+              ],
+              "phase": "idle",
+              "flow": 0.8433187499999991
+            },
+            {
+              "targetId": "diamonds-6",
+              "kind": "wager",
+              "members": [
+                "clubs-8",
+                "diamonds-6"
+              ],
+              "phase": "idle",
+              "flow": 0.8433187499999991
+            }
+          ]
+        },
+        {
+          "elapsed": 3618.818699999996,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "kind": "wager",
+              "members": [
+                "clubs-8",
+                "diamonds-6"
+              ],
+              "phase": "idle",
+              "flow": 0.5932937499999968
+            },
+            {
+              "targetId": "diamonds-6",
+              "kind": "wager",
+              "members": [
+                "clubs-8",
+                "diamonds-6"
+              ],
+              "phase": "idle",
+              "flow": 0.5932937499999968
+            }
+          ]
+        }
+      ],
+      "changedExteriorPixels": 1402,
+      "reducedExteriorPixels": 0,
+      "reduced": [
+        {
+          "targetId": "clubs-8",
+          "kind": "wager",
+          "members": [
+            "clubs-8",
+            "diamonds-6"
+          ],
+          "phase": "idle",
+          "flow": 0
+        },
+        {
+          "targetId": "diamonds-6",
+          "kind": "wager",
+          "members": [
+            "clubs-8",
+            "diamonds-6"
+          ],
+          "phase": "idle",
+          "flow": 0
+        }
+      ],
+      "release": [
+        {
+          "at": 10564.79999999702,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "members": [
+                "clubs-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+              "labelText": "已参与"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 10591.09999999404,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "members": [
+                "clubs-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+              "labelText": "已参与"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 10601.199999988079,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "members": [
+                "clubs-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+              "labelText": "已参与"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 10615.59999999404,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "members": [
+                "clubs-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+              "labelText": "已参与"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 10634.39999999106,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "members": [
+                "clubs-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+              "labelText": "已参与"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 10649.09999999404,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "members": [
+                "clubs-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+              "labelText": "已参与"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 10665.199999988079,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "members": [
+                "clubs-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+              "labelText": "已参与"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 10681.89999999106,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "members": [
+                "clubs-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+              "labelText": "已参与"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+          "scorePhase": "rest"
+        },
+        {
+          "at": 10698.29999999702,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "members": [
+                "clubs-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+              "labelText": "已参与"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+          "scorePhase": "rest"
+        },
+        {
+          "at": 10714.39999999106,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "members": [
+                "clubs-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+              "labelText": "已参与"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+          "scorePhase": "rest"
+        },
+        {
+          "at": 10733.09999999404,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "members": [
+                "clubs-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+              "labelText": "已参与"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/6",
+          "scorePhase": "converge"
+        },
+        {
+          "at": 10748.89999999106,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "members": [
+                "clubs-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+              "labelText": "已参与"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/6",
+          "scorePhase": "converge"
+        },
+        {
+          "at": 10765.29999999702,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "members": [
+                "clubs-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+              "labelText": "已参与"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/6",
+          "scorePhase": "converge"
+        },
+        {
+          "at": 10788.29999999702,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "members": [
+                "clubs-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+              "labelText": "已参与"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/6",
+          "scorePhase": "award"
+        },
+        {
+          "at": 10800.699999988079,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "members": [
+                "clubs-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+              "labelText": "已参与"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/6",
+          "scorePhase": "award"
+        }
+      ],
+      "expectedEvent": {
+        "id": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+        "reason": "touye.won.three-kind",
+        "targetIds": [
+          "clubs-8"
+        ]
+      },
+      "cleanup": true
+    },
+    {
+      "key": "390-touye",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "errors": [],
+      "checks": [
+        ">=3.3 seconds continuous idle flow without input; actual exterior pixels change; state/journal/storage unchanged; exact instances only; labels avoid controls",
+        "reduced motion keeps semantic static edges; no flowing phase or exterior pixel changes",
+        "hidden removes visuals; return resumes idle without replaying travel",
+        "actual command saved once; canonical state equals domain result; release follows actual source impact; completed presentation removes all edges"
+      ],
+      "status": "PASS",
+      "pending": [
+        {
+          "targetId": "clubs-8",
+          "kind": "wager",
+          "members": [
+            "clubs-8",
+            "diamonds-6"
+          ],
+          "phase": "idle",
+          "flow": 0.30170416666666716
+        },
+        {
+          "targetId": "diamonds-6",
+          "kind": "wager",
+          "members": [
+            "clubs-8",
+            "diamonds-6"
+          ],
+          "phase": "idle",
+          "flow": 0.30170416666666716
+        }
+      ],
+      "labels": [
+        {
+          "text": "新?",
+          "bounds": {
+            "type": 5,
+            "x": 237,
+            "y": 626.4000122070313,
+            "width": 26,
+            "height": 18
+          },
+          "intersectsControl": false
+        },
+        {
+          "text": "新·待判",
+          "bounds": {
+            "type": 5,
+            "x": 316,
+            "y": 642.4000122070313,
+            "width": 51,
+            "height": 18
+          },
+          "intersectsControl": false
+        }
+      ],
+      "rasterMask": {
+        "exclusions": [
+          {
+            "x": 12,
+            "y": 592.4,
+            "width": 132,
+            "height": 44
+          },
+          {
+            "x": 266,
+            "y": 592.4,
+            "width": 112,
+            "height": 44
+          },
+          {
+            "x": 267,
+            "y": 756,
+            "width": 111,
+            "height": 58
+          },
+          {
+            "x": 12,
+            "y": 756,
+            "width": 111,
+            "height": 58
+          },
+          {
+            "x": 129,
+            "y": 770,
+            "width": 44,
+            "height": 44
+          },
+          {
+            "x": 173,
+            "y": 770,
+            "width": 44,
+            "height": 44
+          },
+          {
+            "x": 217,
+            "y": 770,
+            "width": 44,
+            "height": 44
+          }
+        ],
+        "faces": [
+          {
+            "x": 270.8571472167969,
+            "y": 646.4000122070313,
+            "width": 64,
+            "height": 89.59999999999991
+          },
+          {
+            "x": 314,
+            "y": 662.4000122070313,
+            "width": 64,
+            "height": 89.59999999999991
+          }
+        ]
+      },
+      "samples": [
+        {
+          "elapsed": 0.024899999996705446,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "kind": "wager",
+              "members": [
+                "clubs-8",
+                "diamonds-6"
+              ],
+              "phase": "idle",
+              "flow": 0.30170416666666716
+            },
+            {
+              "targetId": "diamonds-6",
+              "kind": "wager",
+              "members": [
+                "clubs-8",
+                "diamonds-6"
+              ],
+              "phase": "idle",
+              "flow": 0.30170416666666716
+            }
+          ]
+        },
+        {
+          "elapsed": 1265.293399999995,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "kind": "wager",
+              "members": [
+                "clubs-8",
+                "diamonds-6"
+              ],
+              "phase": "idle",
+              "flow": 0.093177083333334
+            },
+            {
+              "targetId": "diamonds-6",
+              "kind": "wager",
+              "members": [
+                "clubs-8",
+                "diamonds-6"
+              ],
+              "phase": "idle",
+              "flow": 0.093177083333334
+            }
+          ]
+        },
+        {
+          "elapsed": 2530.2804000000033,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "kind": "wager",
+              "members": [
+                "clubs-8",
+                "diamonds-6"
+              ],
+              "phase": "idle",
+              "flow": 0.8848395833333339
+            },
+            {
+              "targetId": "diamonds-6",
+              "kind": "wager",
+              "members": [
+                "clubs-8",
+                "diamonds-6"
+              ],
+              "phase": "idle",
+              "flow": 0.8848395833333339
+            }
+          ]
+        },
+        {
+          "elapsed": 3780.026899999997,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "kind": "wager",
+              "members": [
+                "clubs-8",
+                "diamonds-6"
+              ],
+              "phase": "idle",
+              "flow": 0.6764708333333328
+            },
+            {
+              "targetId": "diamonds-6",
+              "kind": "wager",
+              "members": [
+                "clubs-8",
+                "diamonds-6"
+              ],
+              "phase": "idle",
+              "flow": 0.6764708333333328
+            }
+          ]
+        }
+      ],
+      "changedExteriorPixels": 136,
+      "reducedExteriorPixels": 0,
+      "reduced": [
+        {
+          "targetId": "clubs-8",
+          "kind": "wager",
+          "members": [
+            "clubs-8",
+            "diamonds-6"
+          ],
+          "phase": "idle",
+          "flow": 0
+        },
+        {
+          "targetId": "diamonds-6",
+          "kind": "wager",
+          "members": [
+            "clubs-8",
+            "diamonds-6"
+          ],
+          "phase": "idle",
+          "flow": 0
+        }
+      ],
+      "release": [
+        {
+          "at": 9339,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "members": [
+                "clubs-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+              "labelText": "已成"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 9366.40000000596,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "members": [
+                "clubs-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+              "labelText": "已成"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 9379.70000000298,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "members": [
+                "clubs-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+              "labelText": "已成"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 9392.90000000596,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "members": [
+                "clubs-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+              "labelText": "已成"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 9406.29999999702,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "members": [
+                "clubs-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+              "labelText": "已成"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 9420.20000000298,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "members": [
+                "clubs-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+              "labelText": "已成"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 9437.90000000596,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "members": [
+                "clubs-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+              "labelText": "已成"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 9452.29999999702,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "members": [
+                "clubs-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+              "labelText": "已成"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 9469.90000000596,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "members": [
+                "clubs-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+              "labelText": "已成"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 9487.5,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "members": [
+                "clubs-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+              "labelText": "已成"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+          "scorePhase": "rest"
+        },
+        {
+          "at": 9503,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "members": [
+                "clubs-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+              "labelText": "已成"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+          "scorePhase": "rest"
+        },
+        {
+          "at": 9520.40000000596,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "members": [
+                "clubs-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+              "labelText": "已成"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+          "scorePhase": "rest"
+        },
+        {
+          "at": 9536.70000000298,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "members": [
+                "clubs-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+              "labelText": "已成"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/6",
+          "scorePhase": "converge"
+        },
+        {
+          "at": 9553.20000000298,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "members": [
+                "clubs-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+              "labelText": "已成"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/6",
+          "scorePhase": "converge"
+        },
+        {
+          "at": 9569.29999999702,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "members": [
+                "clubs-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+              "labelText": "已成"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/6",
+          "scorePhase": "converge"
+        },
+        {
+          "at": 9593.90000000596,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "members": [
+                "clubs-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+              "labelText": "已成"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/6",
+          "scorePhase": "award"
+        }
+      ],
+      "expectedEvent": {
+        "id": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+        "reason": "touye.won.three-kind",
+        "targetIds": [
+          "clubs-8"
+        ]
+      },
+      "cleanup": true
+    }
+  ],
+  "status": "PASS",
+  "browser": "153.0.8010.12"
+}

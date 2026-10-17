@@ -1,0 +1,1892 @@
+{
+  "head": "e34a9330a94a24ea70c433674b5dfacfa1ccab78",
+  "sourceHashes": {
+    "src/game/GameScene.ts": "3091f7715f57f1c0b5d42f17d1c93d28c059e4879b5546fa8957e80edc89f088",
+    "src/game/HeroTargetAttachment.ts": "ef130ae8acbf389ff0fde3b5dd90fa114db04640bccf358a015b9e189886b191",
+    "src/game/HeroTargetAttachmentState.ts": "be16afbfe2bc2f77822e84f42a135633bc4753612a705fbd0670abe0b74675ab",
+    "src/game/HeroAttachmentFacts.ts": "cfa99471a3f74fb1e903cc7bcfad480e44ceb1ad2f081bc4a7c6be2ae274f08e"
+  },
+  "scope": "Actual GameScene and SavedRun public checkpoint import. Su Shi main/assist choices use native canvas and dialog input. Other heroes use controlled legal Scene drafts, then the real existing save/presentation path; not full native hero-input coverage, natural acquisition, hearing or physical-device acceptance.",
+  "cases": [
+    {
+      "key": "390-touye",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "errors": [],
+      "checks": [
+        ">=3.3 seconds continuous idle flow without input; actual exterior pixels change; state/journal/storage unchanged; exact instances only; labels avoid controls",
+        "reduced motion keeps semantic static edges; no flowing phase or exterior pixel changes",
+        "hidden removes visuals; return resumes idle without replaying travel",
+        "actual command saved once; canonical state equals domain result; release follows actual source impact; completed presentation removes all edges"
+      ],
+      "status": "PASS",
+      "pending": [
+        {
+          "targetId": "clubs-8",
+          "kind": "wager",
+          "members": [
+            "clubs-8",
+            "diamonds-6"
+          ],
+          "phase": "idle",
+          "flow": 0.30164583333333334
+        },
+        {
+          "targetId": "diamonds-6",
+          "kind": "wager",
+          "members": [
+            "clubs-8",
+            "diamonds-6"
+          ],
+          "phase": "idle",
+          "flow": 0.30164583333333334
+        }
+      ],
+      "labels": [
+        {
+          "text": "新?",
+          "bounds": {
+            "type": 5,
+            "x": 237,
+            "y": 626.4000122070313,
+            "width": 26,
+            "height": 18
+          },
+          "intersectsControl": false
+        },
+        {
+          "text": "新·待判",
+          "bounds": {
+            "type": 5,
+            "x": 316,
+            "y": 642.4000122070313,
+            "width": 51,
+            "height": 18
+          },
+          "intersectsControl": false
+        }
+      ],
+      "rasterMask": {
+        "exclusions": [
+          {
+            "x": 12,
+            "y": 592.4,
+            "width": 132,
+            "height": 44
+          },
+          {
+            "x": 266,
+            "y": 592.4,
+            "width": 112,
+            "height": 44
+          },
+          {
+            "x": 267,
+            "y": 756,
+            "width": 111,
+            "height": 58
+          },
+          {
+            "x": 12,
+            "y": 756,
+            "width": 111,
+            "height": 58
+          },
+          {
+            "x": 129,
+            "y": 770,
+            "width": 44,
+            "height": 44
+          },
+          {
+            "x": 173,
+            "y": 770,
+            "width": 44,
+            "height": 44
+          },
+          {
+            "x": 217,
+            "y": 770,
+            "width": 44,
+            "height": 44
+          }
+        ],
+        "faces": [
+          {
+            "x": 270.8571472167969,
+            "y": 646.4000122070313,
+            "width": 64,
+            "height": 89.59999999999991
+          },
+          {
+            "x": 314,
+            "y": 662.4000122070313,
+            "width": 64,
+            "height": 89.59999999999991
+          }
+        ]
+      },
+      "samples": [
+        {
+          "elapsed": 0.01419999999779975,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "kind": "wager",
+              "members": [
+                "clubs-8",
+                "diamonds-6"
+              ],
+              "phase": "idle",
+              "flow": 0.30164583333333334
+            },
+            {
+              "targetId": "diamonds-6",
+              "kind": "wager",
+              "members": [
+                "clubs-8",
+                "diamonds-6"
+              ],
+              "phase": "idle",
+              "flow": 0.30164583333333334
+            }
+          ]
+        },
+        {
+          "elapsed": 1189.2315000000017,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "kind": "wager",
+              "members": [
+                "clubs-8",
+                "diamonds-6"
+              ],
+              "phase": "idle",
+              "flow": 0.05135625000000175
+            },
+            {
+              "targetId": "diamonds-6",
+              "kind": "wager",
+              "members": [
+                "clubs-8",
+                "diamonds-6"
+              ],
+              "phase": "idle",
+              "flow": 0.05135625000000175
+            }
+          ]
+        },
+        {
+          "elapsed": 2363.1016999999993,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "kind": "wager",
+              "members": [
+                "clubs-8",
+                "diamonds-6"
+              ],
+              "phase": "idle",
+              "flow": 0.8013312500000018
+            },
+            {
+              "targetId": "diamonds-6",
+              "kind": "wager",
+              "members": [
+                "clubs-8",
+                "diamonds-6"
+              ],
+              "phase": "idle",
+              "flow": 0.8013312500000018
+            }
+          ]
+        },
+        {
+          "elapsed": 3523.044799999996,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "kind": "wager",
+              "members": [
+                "clubs-8",
+                "diamonds-6"
+              ],
+              "phase": "idle",
+              "flow": 0.5096500000000012
+            },
+            {
+              "targetId": "diamonds-6",
+              "kind": "wager",
+              "members": [
+                "clubs-8",
+                "diamonds-6"
+              ],
+              "phase": "idle",
+              "flow": 0.5096500000000012
+            }
+          ]
+        }
+      ],
+      "changedExteriorPixels": 667,
+      "reducedExteriorPixels": 0,
+      "reduced": [
+        {
+          "targetId": "clubs-8",
+          "kind": "wager",
+          "members": [
+            "clubs-8",
+            "diamonds-6"
+          ],
+          "phase": "idle",
+          "flow": 0
+        },
+        {
+          "targetId": "diamonds-6",
+          "kind": "wager",
+          "members": [
+            "clubs-8",
+            "diamonds-6"
+          ],
+          "phase": "idle",
+          "flow": 0
+        }
+      ],
+      "release": [
+        {
+          "at": 9348.79999999702,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "members": [
+                "clubs-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 9371.40000000596,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "members": [
+                "clubs-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 9382.20000000298,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "members": [
+                "clubs-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 9398.40000000596,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "members": [
+                "clubs-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 9415.5,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "members": [
+                "clubs-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 9432.70000000298,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "members": [
+                "clubs-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 9448.5,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "members": [
+                "clubs-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 9466.20000000298,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "members": [
+                "clubs-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 9481.20000000298,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "members": [
+                "clubs-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+          "scorePhase": "rest"
+        },
+        {
+          "at": 9498.59999999404,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "members": [
+                "clubs-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+          "scorePhase": "rest"
+        },
+        {
+          "at": 9515.20000000298,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "members": [
+                "clubs-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+          "scorePhase": "rest"
+        },
+        {
+          "at": 9531.29999999702,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "members": [
+                "clubs-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/6",
+          "scorePhase": "converge"
+        },
+        {
+          "at": 9548.29999999702,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "members": [
+                "clubs-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/6",
+          "scorePhase": "converge"
+        }
+      ],
+      "expectedEvent": {
+        "id": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+        "reason": "touye.won.three-kind",
+        "targetIds": [
+          "clubs-8"
+        ]
+      },
+      "cleanup": true
+    },
+    {
+      "key": "390-laohuan",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "errors": [],
+      "checks": [
+        ">=3.3 seconds continuous idle flow without input; actual exterior pixels change; state/journal/storage unchanged; exact instances only; labels avoid controls",
+        "reduced motion keeps semantic static edges; no flowing phase or exterior pixel changes",
+        "hidden removes visuals; return resumes idle without replaying travel",
+        "actual command saved once; canonical state equals domain result; release follows actual source impact; completed presentation removes all edges"
+      ],
+      "status": "PASS",
+      "pending": [
+        {
+          "targetId": "diamonds-14",
+          "kind": "candidate",
+          "members": [
+            "diamonds-14",
+            "diamonds-13",
+            "diamonds-12",
+            "diamonds-11",
+            "diamonds-10"
+          ],
+          "phase": "idle",
+          "flow": 0.2391333333333333
+        },
+        {
+          "targetId": "diamonds-13",
+          "kind": "candidate",
+          "members": [
+            "diamonds-14",
+            "diamonds-13",
+            "diamonds-12",
+            "diamonds-11",
+            "diamonds-10"
+          ],
+          "phase": "idle",
+          "flow": 0.2391333333333333
+        },
+        {
+          "targetId": "diamonds-12",
+          "kind": "candidate",
+          "members": [
+            "diamonds-14",
+            "diamonds-13",
+            "diamonds-12",
+            "diamonds-11",
+            "diamonds-10"
+          ],
+          "phase": "idle",
+          "flow": 0.2391333333333333
+        },
+        {
+          "targetId": "diamonds-11",
+          "kind": "candidate",
+          "members": [
+            "diamonds-14",
+            "diamonds-13",
+            "diamonds-12",
+            "diamonds-11",
+            "diamonds-10"
+          ],
+          "phase": "idle",
+          "flow": 0.2391333333333333
+        },
+        {
+          "targetId": "diamonds-10",
+          "kind": "candidate",
+          "members": [
+            "diamonds-14",
+            "diamonds-13",
+            "diamonds-12",
+            "diamonds-11",
+            "diamonds-10"
+          ],
+          "phase": "idle",
+          "flow": 0.2391333333333333
+        }
+      ],
+      "labels": [
+        {
+          "text": "待留",
+          "bounds": {
+            "type": 5,
+            "x": 148,
+            "y": 626.4000122070313,
+            "width": 32,
+            "height": 18
+          },
+          "intersectsControl": false
+        },
+        {
+          "text": "待留",
+          "bounds": {
+            "type": 5,
+            "x": 148,
+            "y": 626.4000122070313,
+            "width": 32,
+            "height": 18
+          },
+          "intersectsControl": false
+        },
+        {
+          "text": "待留",
+          "bounds": {
+            "type": 5,
+            "x": 148,
+            "y": 626.4000122070313,
+            "width": 32,
+            "height": 18
+          },
+          "intersectsControl": false
+        },
+        {
+          "text": "待留",
+          "bounds": {
+            "type": 5,
+            "x": 165,
+            "y": 738.0000122070312,
+            "width": 32,
+            "height": 18
+          },
+          "intersectsControl": false
+        },
+        {
+          "text": "待留",
+          "bounds": {
+            "type": 5,
+            "x": 215.3333282470703,
+            "y": 738.0000122070312,
+            "width": 32,
+            "height": 18
+          },
+          "intersectsControl": false
+        }
+      ],
+      "rasterMask": {
+        "exclusions": [
+          {
+            "x": 12,
+            "y": 592.4,
+            "width": 132,
+            "height": 44
+          },
+          {
+            "x": 266,
+            "y": 592.4,
+            "width": 112,
+            "height": 44
+          },
+          {
+            "x": 267,
+            "y": 756,
+            "width": 111,
+            "height": 58
+          },
+          {
+            "x": 12,
+            "y": 756,
+            "width": 111,
+            "height": 58
+          },
+          {
+            "x": 129,
+            "y": 770,
+            "width": 44,
+            "height": 44
+          },
+          {
+            "x": 173,
+            "y": 770,
+            "width": 44,
+            "height": 44
+          },
+          {
+            "x": 217,
+            "y": 770,
+            "width": 44,
+            "height": 44
+          }
+        ],
+        "faces": [
+          {
+            "x": 12,
+            "y": 646.4000122070313,
+            "width": 64,
+            "height": 89.59999999999991
+          },
+          {
+            "x": 62.333335876464844,
+            "y": 646.4000122070313,
+            "width": 64,
+            "height": 89.59999999999991
+          },
+          {
+            "x": 112.66667175292969,
+            "y": 646.4000122070313,
+            "width": 64,
+            "height": 89.59999999999991
+          },
+          {
+            "x": 163,
+            "y": 646.4000122070313,
+            "width": 64,
+            "height": 89.59999999999991
+          },
+          {
+            "x": 213.3333282470703,
+            "y": 646.4000122070313,
+            "width": 64,
+            "height": 89.59999999999991
+          }
+        ]
+      },
+      "samples": [
+        {
+          "elapsed": 0.0014999999984866008,
+          "edges": [
+            {
+              "targetId": "diamonds-14",
+              "kind": "candidate",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "idle",
+              "flow": 0.2391333333333333
+            },
+            {
+              "targetId": "diamonds-13",
+              "kind": "candidate",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "idle",
+              "flow": 0.2391333333333333
+            },
+            {
+              "targetId": "diamonds-12",
+              "kind": "candidate",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "idle",
+              "flow": 0.2391333333333333
+            },
+            {
+              "targetId": "diamonds-11",
+              "kind": "candidate",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "idle",
+              "flow": 0.2391333333333333
+            },
+            {
+              "targetId": "diamonds-10",
+              "kind": "candidate",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "idle",
+              "flow": 0.2391333333333333
+            }
+          ]
+        },
+        {
+          "elapsed": 1174.7815999999948,
+          "edges": [
+            {
+              "targetId": "diamonds-14",
+              "kind": "candidate",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "idle",
+              "flow": 0.947187500000002
+            },
+            {
+              "targetId": "diamonds-13",
+              "kind": "candidate",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "idle",
+              "flow": 0.947187500000002
+            },
+            {
+              "targetId": "diamonds-12",
+              "kind": "candidate",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "idle",
+              "flow": 0.947187500000002
+            },
+            {
+              "targetId": "diamonds-11",
+              "kind": "candidate",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "idle",
+              "flow": 0.947187500000002
+            },
+            {
+              "targetId": "diamonds-10",
+              "kind": "candidate",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "idle",
+              "flow": 0.947187500000002
+            }
+          ]
+        },
+        {
+          "elapsed": 2339.178199999995,
+          "edges": [
+            {
+              "targetId": "diamonds-14",
+              "kind": "candidate",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "idle",
+              "flow": 0.697150000000002
+            },
+            {
+              "targetId": "diamonds-13",
+              "kind": "candidate",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "idle",
+              "flow": 0.697150000000002
+            },
+            {
+              "targetId": "diamonds-12",
+              "kind": "candidate",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "idle",
+              "flow": 0.697150000000002
+            },
+            {
+              "targetId": "diamonds-11",
+              "kind": "candidate",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "idle",
+              "flow": 0.697150000000002
+            },
+            {
+              "targetId": "diamonds-10",
+              "kind": "candidate",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "idle",
+              "flow": 0.697150000000002
+            }
+          ]
+        },
+        {
+          "elapsed": 3492.4024999999965,
+          "edges": [
+            {
+              "targetId": "diamonds-14",
+              "kind": "candidate",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "idle",
+              "flow": 0.40545000000000103
+            },
+            {
+              "targetId": "diamonds-13",
+              "kind": "candidate",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "idle",
+              "flow": 0.40545000000000103
+            },
+            {
+              "targetId": "diamonds-12",
+              "kind": "candidate",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "idle",
+              "flow": 0.40545000000000103
+            },
+            {
+              "targetId": "diamonds-11",
+              "kind": "candidate",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "idle",
+              "flow": 0.40545000000000103
+            },
+            {
+              "targetId": "diamonds-10",
+              "kind": "candidate",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "idle",
+              "flow": 0.40545000000000103
+            }
+          ]
+        }
+      ],
+      "changedExteriorPixels": 1112,
+      "reducedExteriorPixels": 0,
+      "reduced": [
+        {
+          "targetId": "diamonds-14",
+          "kind": "candidate",
+          "members": [
+            "diamonds-14",
+            "diamonds-13",
+            "diamonds-12",
+            "diamonds-11",
+            "diamonds-10"
+          ],
+          "phase": "idle",
+          "flow": 0
+        },
+        {
+          "targetId": "diamonds-13",
+          "kind": "candidate",
+          "members": [
+            "diamonds-14",
+            "diamonds-13",
+            "diamonds-12",
+            "diamonds-11",
+            "diamonds-10"
+          ],
+          "phase": "idle",
+          "flow": 0
+        },
+        {
+          "targetId": "diamonds-12",
+          "kind": "candidate",
+          "members": [
+            "diamonds-14",
+            "diamonds-13",
+            "diamonds-12",
+            "diamonds-11",
+            "diamonds-10"
+          ],
+          "phase": "idle",
+          "flow": 0
+        },
+        {
+          "targetId": "diamonds-11",
+          "kind": "candidate",
+          "members": [
+            "diamonds-14",
+            "diamonds-13",
+            "diamonds-12",
+            "diamonds-11",
+            "diamonds-10"
+          ],
+          "phase": "idle",
+          "flow": 0
+        },
+        {
+          "targetId": "diamonds-10",
+          "kind": "candidate",
+          "members": [
+            "diamonds-14",
+            "diamonds-13",
+            "diamonds-12",
+            "diamonds-11",
+            "diamonds-10"
+          ],
+          "phase": "idle",
+          "flow": 0
+        }
+      ],
+      "release": [
+        {
+          "at": 6926.0999999940395,
+          "edges": [
+            {
+              "targetId": "diamonds-14",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-13",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-12",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-11",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-10",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            }
+          ]
+        },
+        {
+          "at": 6947.20000000298,
+          "edges": [
+            {
+              "targetId": "diamonds-14",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-13",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-12",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-11",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-10",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            }
+          ]
+        },
+        {
+          "at": 6965.20000000298,
+          "edges": [
+            {
+              "targetId": "diamonds-14",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-13",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-12",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-11",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-10",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            }
+          ]
+        },
+        {
+          "at": 6975.79999999702,
+          "edges": [
+            {
+              "targetId": "diamonds-14",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-13",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-12",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-11",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-10",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            }
+          ]
+        },
+        {
+          "at": 6989.5,
+          "edges": [
+            {
+              "targetId": "diamonds-14",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-13",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-12",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-11",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-10",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            }
+          ]
+        },
+        {
+          "at": 7007.29999999702,
+          "edges": [
+            {
+              "targetId": "diamonds-14",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-13",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-12",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-11",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-10",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            }
+          ]
+        },
+        {
+          "at": 7022,
+          "edges": [
+            {
+              "targetId": "diamonds-14",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-13",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-12",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-11",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-10",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            }
+          ]
+        },
+        {
+          "at": 7038.5,
+          "edges": [
+            {
+              "targetId": "diamonds-14",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-13",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-12",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-11",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-10",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            }
+          ]
+        },
+        {
+          "at": 7055.0999999940395,
+          "edges": [
+            {
+              "targetId": "diamonds-14",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-13",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-12",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-11",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-10",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            }
+          ]
+        },
+        {
+          "at": 7073.5999999940395,
+          "edges": [
+            {
+              "targetId": "diamonds-14",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-13",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-12",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-11",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-10",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            }
+          ]
+        },
+        {
+          "at": 7088.29999999702,
+          "edges": [
+            {
+              "targetId": "diamonds-14",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-13",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-12",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-11",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-10",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            }
+          ]
+        },
+        {
+          "at": 7105.29999999702,
+          "edges": [
+            {
+              "targetId": "diamonds-14",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-13",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-12",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-11",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-10",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            }
+          ]
+        },
+        {
+          "at": 7123.29999999702,
+          "edges": [
+            {
+              "targetId": "diamonds-14",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-13",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-12",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-11",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-10",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            }
+          ]
+        }
+      ],
+      "expectedEvent": {
+        "kind": "saved ChooseRefill receipt, no ScoreEvent",
+        "targetIds": [
+          "diamonds-14",
+          "diamonds-13",
+          "diamonds-12",
+          "diamonds-11",
+          "diamonds-10"
+        ]
+      },
+      "cleanup": true
+    }
+  ],
+  "status": "PASS",
+  "browser": "153.0.8010.12"
+}
