@@ -8,8 +8,10 @@ import {heatText} from './scoreText';
 import {getCharacter} from './characters';
 import {PAPER_CSS as C} from './theme';
 import {DetailDialog} from './DetailDialog';
-import {dispatchRun} from './runAdapter';
+import {dispatchRun,runController} from './runAdapter';
 import {paperSceneStart} from './PaperFlow';
+import {gameSession} from './session';
+import type {IntermissionResult} from './IntermissionScene';
 
 function style(host: HTMLElement): void {
   const sheet = document.createElement('style');
@@ -332,32 +334,21 @@ export function presentStageSelection(dialog: DetailDialog, run: R2RunState, sce
 
   return new Promise(resolve => {
     let entered = false;
+    let closed = false;
+    let busy = false;
+    let retryPending = false;
+    const owner = scene && runController(scene);
     const currentStage = currentInChapter === 0 ? stage0 : currentInChapter === 1 ? stage1 : stage2;
     const dialogTitle = `第 ${chapter} 章 · 节目录`;
 
     const actions = inShop
-      ? [
-          {
-            label: '返回商店筹备',
-            primary: true,
-            run: () => {
-              dialog.close();
-            },
-          },
-        ]
+      ? []
       : [
           {
             label: isBoss ? '迎战强敌 ›' : `进入${currentStage.name} ›`,
             primary: true,
             run: () => {
-              entered = true;
-              dialog.close();
-            },
-          },
-          {
-            label: '稍后开战',
-            run: () => {
-              dialog.close();
+              if (!busy && !closed) {entered = true;dialog.close();}
             },
           },
         ];
@@ -368,7 +359,7 @@ export function presentStageSelection(dialog: DetailDialog, run: R2RunState, sce
       actions,
       {
         closeLabel: inShop ? '返回商店' : '稍后开战',
-        onClose: () => resolve(entered),
+        onClose: () => {closed = true;resolve(entered);},
         summaryBody: isBoss ? `⚠️ 压轴决战 · 目标 ${heatText(stage2.targetHeat)}` : `${currentStage.name} · 目标 ${heatText(currentStage.targetHeat)}`,
       }
     );
@@ -379,6 +370,48 @@ export function presentStageSelection(dialog: DetailDialog, run: R2RunState, sce
     // Build the visual Three-Blind cards layout
     const wrap = document.createElement('div');
     wrap.className = 'blind-dialog-inner';
+    const status = document.createElement('p');
+    status.className = 'blind-operation-status';
+    status.setAttribute('role', 'status');
+    status.hidden = true;
+    // Escape must not dismiss the only retry surface while its save is in flight.
+    d.addEventListener('cancel', event => {if (busy) {event.preventDefault();event.stopImmediatePropagation();}}, true);
+    const skipStage = async (button: HTMLButtonElement) => {
+      if (!scene || busy || closed || !dialog.active(d) || !scene.scene.isActive() || runController(scene) !== owner) return;
+      busy = true;
+      const buttons = [...d.querySelectorAll<HTMLButtonElement>('button')];
+      const disabled = buttons.map(b => b.disabled);
+      buttons.forEach(b => b.disabled = true);
+      const label = button.textContent;
+      button.textContent = '正在跳场…';status.hidden = true;
+      try {
+        const result = retryPending
+          ? {ok: await gameSession().retry(), state: owner!.state}
+          : await dispatchRun(scene, {type: 'SkipStage'}, run.commandSeq);
+        if (!result.ok) {
+          retryPending = retryPending || ('code' in result && result.code === 'save-failed');
+          status.textContent = retryPending ? '跳场尚未保存，重试将保存同一次结果。' : '跳场未完成，请重试；如存档暂停，请在菜单重试保存。';
+          status.hidden = false;
+          return;
+        }
+        // A late save may finish after this scene has been replaced.
+        if (runController(scene) !== owner || !scene.scene.isActive() || !result.state.stage?.skipResult) return;
+        const stage = result.state.stage;
+        dialog.close(d);
+        paperSceneStart(scene, 'intermission', {
+          cleared: true, stageIndex: stage.index, stageHeat: stage.heat,
+          handsLeft: stage.handsLeft, goldEarned: stage.goldEarned,
+        } satisfies IntermissionResult);
+      } catch {
+        status.textContent = '跳场未完成，请重试。';status.hidden = false;
+      } finally {
+        busy = false;
+        if (dialog.active(d)) {
+          buttons.forEach((b, i) => b.disabled = disabled[i]);
+          button.textContent = retryPending ? '重试保存并跳场' : label;
+        }
+      }
+    };
 
     const header = document.createElement('header');
     header.className = 'blind-header';
@@ -392,7 +425,7 @@ export function presentStageSelection(dialog: DetailDialog, run: R2RunState, sce
     subtitle.className = 'blind-header-subtitle';
     subtitle.textContent = `${character.name} 同席 · 当前金币 ${run.gold} 金 · ${inShop ? '正在商店筹备，可查验本章所有场次' : '筹备妥当即可入场'}`;
     header.append(tag, title, subtitle);
-    wrap.append(header);
+    wrap.append(header, status);
 
     const grid = document.createElement('div');
     grid.className = 'blind-cards-grid';
@@ -441,8 +474,7 @@ export function presentStageSelection(dialog: DetailDialog, run: R2RunState, sce
         btnEnter.type = 'button';
         btnEnter.textContent = '进入暖场 ›';
         btnEnter.onclick = () => {
-          entered = true;
-          dialog.close();
+          if (!busy && !closed) {entered = true;dialog.close();}
         };
         actions0.append(btnEnter);
       }
@@ -450,28 +482,8 @@ export function presentStageSelection(dialog: DetailDialog, run: R2RunState, sce
       btnSkip.className = 'blind-btn is-skip';
       btnSkip.type = 'button';
       btnSkip.textContent = '跳过此场（得券）';
-      btnSkip.onclick = async () => {
-        if (!scene) {
-          dialog.close();
-          return;
-        }
-        btnSkip.disabled = true;
-        btnSkip.textContent = '正在跳场…';
-        const res = await dispatchRun(scene, {type: 'SkipStage'});
-        if (res.ok) {
-          entered = false;
-          dialog.close();
-          paperSceneStart(scene, 'intermission', {
-            result: {
-              cleared: true,
-              stageIndex: res.state.stage!.index,
-              stageHeat: '0',
-              handsLeft: res.state.stage!.handsLeft,
-              goldEarned: 0,
-            },
-          });
-        }
-      };
+      btnSkip.disabled = !scene;
+      btnSkip.onclick = () => skipStage(btnSkip);
       actions0.append(btnSkip);
     } else {
       const btnDone = document.createElement('button');
@@ -527,8 +539,7 @@ export function presentStageSelection(dialog: DetailDialog, run: R2RunState, sce
         btnEnter.type = 'button';
         btnEnter.textContent = '进入正场 ›';
         btnEnter.onclick = () => {
-          entered = true;
-          dialog.close();
+          if (!busy && !closed) {entered = true;dialog.close();}
         };
         actions1.append(btnEnter);
       }
@@ -536,28 +547,8 @@ export function presentStageSelection(dialog: DetailDialog, run: R2RunState, sce
       btnSkip.className = 'blind-btn is-skip';
       btnSkip.type = 'button';
       btnSkip.textContent = '跳过此场（得道具）';
-      btnSkip.onclick = async () => {
-        if (!scene) {
-          dialog.close();
-          return;
-        }
-        btnSkip.disabled = true;
-        btnSkip.textContent = '正在跳场…';
-        const res = await dispatchRun(scene, {type: 'SkipStage'});
-        if (res.ok) {
-          entered = false;
-          dialog.close();
-          paperSceneStart(scene, 'intermission', {
-            result: {
-              cleared: true,
-              stageIndex: res.state.stage!.index,
-              stageHeat: '0',
-              handsLeft: res.state.stage!.handsLeft,
-              goldEarned: 0,
-            },
-          });
-        }
-      };
+      btnSkip.disabled = !scene;
+      btnSkip.onclick = () => skipStage(btnSkip);
       actions1.append(btnSkip);
     } else {
       const btnDone = document.createElement('button');
@@ -625,8 +616,7 @@ export function presentStageSelection(dialog: DetailDialog, run: R2RunState, sce
         if (inShop) {
           dialog.close();
         } else {
-          entered = true;
-          dialog.close();
+        if (!busy && !closed) {entered = true;dialog.close();}
         }
       };
       actions2.append(btnBoss);

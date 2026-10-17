@@ -1,0 +1,56 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/blind-select-presentation.test.ts (10 tests | 4 failed) 218ms
+     × passes the saved flat IntermissionResult for stage 0 exactly once 46ms
+     × passes the saved flat IntermissionResult for stage 1 exactly once 11ms
+     × save retry persists the same candidate without sending another SkipStage 6ms
+     × a late saved skip cannot navigate a replaced scene/controller 15ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/blind-select-presentation.test.ts > directory commands and settlement contract > passes the saved flat IntermissionResult for stage 0 exactly once
+ FAIL  tests/blind-select-presentation.test.ts > directory commands and settlement contract > passes the saved flat IntermissionResult for stage 1 exactly once
+Error: Run invariant: chapter boss history
+ ❯ check src/domain/r2Run.ts:153:70
+
+ ❯ assertR2Invariants src/domain/r2Run.ts:222:3
+ ❯ Module.applyCommand src/domain/run.ts:206:5
+ ❯ savedSkip tests/blind-select-presentation.test.ts:133:18
+ ❯ tests/blind-select-presentation.test.ts:137:37
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  tests/blind-select-presentation.test.ts > directory commands and settlement contract > save retry persists the same candidate without sending another SkipStage
+Error: Run invariant: chapter boss history
+ ❯ check src/domain/r2Run.ts:153:70
+
+ ❯ assertR2Invariants src/domain/r2Run.ts:222:3
+ ❯ Module.applyCommand src/domain/run.ts:206:5
+ ❯ savedSkip tests/blind-select-presentation.test.ts:133:18
+ ❯ tests/blind-select-presentation.test.ts:156:32
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  tests/blind-select-presentation.test.ts > directory commands and settlement contract > a late saved skip cannot navigate a replaced scene/controller
+Error: Run invariant: chapter boss history
+ ❯ check src/domain/r2Run.ts:153:70
+
+ ❯ assertR2Invariants src/domain/r2Run.ts:222:3
+ ❯ Module.applyCommand src/domain/run.ts:206:5
+ ❯ savedSkip tests/blind-select-presentation.test.ts:133:18
+ ❯ tests/blind-select-presentation.test.ts:169:33
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  4 failed | 24 passed (28)
+   Start at  02:03:54
+   Duration  5.79s (transform 6.91s, setup 0ms, import 10.01s, tests 3.76s, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
