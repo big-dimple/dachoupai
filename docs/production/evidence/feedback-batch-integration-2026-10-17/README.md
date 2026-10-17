@@ -1,12 +1,19 @@
 # 本轮反馈整合回执 · 2026-10-17
 
-## 战前/新图批：当前仅 dev 检查点
+## 战前/新图批最终整合
 
-基线main `9e015286d1d223afad0a6e6b2860fcfed1457faf`；战前来源 `67b4b2cdd10ce8b6ffcd1a10f6bdb55a9f6ab865` 已正常合入产品 `ed013a91bcd312852de3f91220f5916b647527dc`，分支dev/prebattle-art-integration-20261017，无冲突。来源增量以其父43216计算，全部26路径与源blob一致；已发6a044紧凑提醒保留。[部分绑定与发布边界](prebattle-art.json)。来源浏览器六产品hash是Windows CRLF工作文件hash，当前六文件原字节全部匹配；初次直接比Git LF曾失败，已保留说明和两种hash，未改文件或源证据。
+基线main `9e015286d1d223afad0a6e6b2860fcfed1457faf`；最终产品 `d2029a560330671a62354c3374cfdfd7a5b2e0e5`，分支dev/prebattle-art-integration-20261017。战前67b4b2cdd10ce8b6ffcd1a10f6bdb55a9f6ab865和艺术2e22aa3137db107f508de7dc0b2ee5bbe53c1ece已无冲突合入，两源43个增量路径全部与来源blob一致，6a044秦琼紧凑提醒及9e015购买修复保留。[精确回执/来源绑定](prebattle-art.json)。用户现已明确授权齐源后普通dev/main合批push，覆盖前一dev等待边界；实际完整main SHA以成功推送回执为准，不等新商店/高清鉴赏/理牌精修，也无CI/域名/部署。
 
-[来源68项、最终type/build、8短流程及原FAIL](../prebattle-flow-2026-10-17/README.md)按精确范围复用，不重复整套。H14节目入口/H16三处Boss规则已有dev软件修复：共用完整身份/场次真正可见历史，已见离店沿原LeaveShop/EnterStage直入；待战恢复保明确入场，未见恢复介绍、主动规则可查；Shop/目录/待战节目单仍走原ChooseProgram与owner/序号守卫。领域/存档/RNG/音频/public和包锁未改，不签全Boss/模式自然或人验。
+[战前来源](../prebattle-flow-2026-10-17/README.md)68项、最终type/build、8条有限短原生流程按精确源码复用：H14节目单的Shop/章节/待战入口、H16规则实际可见记录共享、离店沿原LeaveShop/EnterStage直接入场、未见恢复/主动查规则均已接线；序号/owner/首次入场封口和危险操作确认保留。来源六浏览器hash为CRLF工作字节，当前逐一精确匹配；初次直接比Git LF失败说明及两种hash仍在JSON，未改源报告。不是新合版自然或全Boss/模式验收。
 
-**main保持9e015286；等待艺术负责人在2229b4cb22da230cda241d7cd414e6726a4c1d7d上接用户“风鸣朝阳.png”的最终SHA，齐后再必要交叉/type/build和一起普通main push。** 新商店大重整/高清鉴赏是下一独立批次，不纳入。H15/新合版自然/听感/眼神高光/真机及正式门保持，P08仍in_progress。
+[最终艺术来源](../b05-fengmingchaoyang-2026-10-17/README.md)48项/构建/来源核对复用，含[2229的现行/历史来源分层](../handdrawn-provenance-2026-10-17/README.md)和70340cc5真实原图归档：b05展示名凤鸣朝阳，用户文件风鸣朝阳.png为1122×1402完整PNG，SHA25611055d52…a6b1e45，原字节保留；旧JPEG严格解码已确认截断且保留历史。新contain缩略/详情使用新内容hash URL，其他80条资源记录完全不动。schema v2 currentSource逐一绑定当前72原图，historicalSources明确旧来源；9项derivatives-only及上一代11缺映射/61缺原文件仍未补齐，不把现行来源通过签成全部历史闭合。
+
+必要跨源检查发现新b05详情换图后，高光清单仍指旧详情hash，保护会拒绝该旧绑定。[首轮原FAIL](checks/prebattle-art-cross-initial.log)：14项中13通过/1失败。只用既有build-climax-source-art --id b05重建完整源区域的320×400派生，48,306B、SHA256e4df8afc…657e5c5，绑定新详情808bf2fb…36a3ec7，其他71条高光记录不动；单图--check复现通过。专用派生/详情复用从52/20成为53/19，共72，96KiB/768px阈值完全保持，当前最大选用96,814B；不是扩大传输上限。测试只更新由新图导致的分类数，保全部文件/hash/几何/失效守卫。[仅失败文件14项回归通过](checks/prebattle-art-cross-regression.log)，未重跑68/48或浏览器矩阵。整合查看新派生完整凤凰/朝阳城景及四边，没有重新生成原画，不代签用户观感。
+
+最终清洁产品d2029a56的[类型检查](checks/prebattle-art-typecheck.log)和[321模块构建](checks/prebattle-art-build.log)通过。原回归在提交前执行，之后仅测试注释空格调整，产品资产与最终提交相同；JSON保留准确运行态。本地完整dist **519文件/44,514,019B，高于20,000,000B，FAIL未关闭**，沿assets-runtime全目录含保留旧副本口径，非网络传输测量；源分支替换前已有44,314,529B、新图源分支44,459,864B的超标，当前不删旧图或扩整包瘦身。首屏146项17.01MiB/20MiB是另一解码口径，只按来源48项证据引用，不能抵消整包FAIL。来源扩展检查goods-art两条旧文案断言/public-art-privacy两条Windows EPERM也仍按原FAIL保留，不宣称全量绿。
+
+P08保持in_progress。H14/H16软件实现与同版静态接线齐、H15当前72源绑定已修，但历史缺证/整包预算、新合版自然流程与b05运行观感、未自然触发眼神高光、heard=false/真人理解/物理设备及C04/A03/V01/L01正式门均未自动关闭。
+
 ## dot 自然试玩后的两路小修
 
 本小批基线main `a470da228a85283eabc00811f610ba6a41a38738`，两路正常合并产品 `b1916e6c6b00bdf6635882755b671ce7a4e8892c`，分支 `dev/dot-followup-integration-20261017`，无冲突。两来源26个增量文件全部逐blob相同；复用来源31项与60项，不新增/相加重复单测或浏览器矩阵；只补整合类型/321模块生产构建通过。[本小批精确绑定/检查/实测回执](dot-followup.json)、[类型](checks/dot-followup-typecheck.log)、[构建](checks/dot-followup-build.log)。现有大chunk警告保留，规则/数值/存档/GameScene/音频/public/包锁零改动。按最新授权正常dev/main合入push，实际完整main SHA以最终成功推送回执为准。

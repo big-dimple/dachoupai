@@ -2,7 +2,7 @@
 
 ## 当前统一执行计划
 
-**2026-10-17 战前/新图批仅dev：** main9e015保持；67b4b2cd无冲突合入dev/prebattle-art-integration-20261017产品`ed013a91bcd312852de3f91220f5916b647527dc`，26源路径/六浏览器工作文件hash一致，6a044提醒保留。H14节目入口/H16Boss跨处规则已有dev软件修复，精确复用68项/最终type-build/8短流程，不重跑整套。[部分回执](evidence/feedback-batch-integration-2026-10-17/prebattle-art.json)。等艺术2229b4cb接风鸣朝阳.png后的最终SHA，集中必要交叉/type/build再一起普通main push；新商店大重整/高清鉴赏是下一独立批次，明确不纳入。H15/新合版自然、听感/眼神/真机及正式门保持，P08仍in_progress。以下较早直接main范围按已发布回执读取，不覆盖本批等待艺术的范围。
+**2026-10-17 战前/新图批来源齐全：** 67b4b2cd+最终艺术2e22aa31（含2229来源整改/70340完整b05原图）已无冲突合入最终产品`d2029a560330671a62354c3374cfdfd7a5b2e0e5`，43源路径一致、9e015修复保留。H14/H16软件实现同版，H15当前72来源分层错绑已修，历史缺证保持；b05完整1122×1402PNG的新contain派生/hash与高光48,306B单资源修复接齐，其他80美术/71高光不动。来源68/48与8短流程精确复用，只补跨源14项（原FAIL保留→修单绑定后PASS）、单图复现、最终类型/321模块构建通过。[同一回执](evidence/feedback-batch-integration-2026-10-17/README.md)/[精确绑定](evidence/feedback-batch-integration-2026-10-17/prebattle-art.json)。用户现授权普通dev/main合批push，实际main SHA以回执为准，不等未完新商店/高清鉴赏/理牌精修，不查CI/域名/部署。完整dist519文件/44,514,019B超20,000,000B仍FAIL，历史缺证/源扩展四项基线FAIL保留；53专用/19复用高光守96KiB不抵消整包预算。新合版自然/听感false/眼神/人验/真机及正式门保持，P08仍in_progress。
 
 **2026-10-17 dot反馈两路小修：** 已发布main a470da22为父级dot实际可见版本；自然秦琼第2章正场1705/1350、Boss1874/1800，来源线/数值增量/底栏/技能真名/弃牌可见，未自然触发全屏眼神高光，heard=false。当前6a044ee1（紧凑提醒）+43216be2（c04固定+50与成长0并列/购买去重及用语/Boss页内容收高）无冲突整合产品`b1916e6c6b00bdf6635882755b671ce7a4e8892c`，26源路径逐blob一致，复用来源31/60定向及有限原生受控23→19/取消证据，仅补整合类型/321模块构建通过。[同一回执入口](evidence/feedback-batch-integration-2026-10-17/README.md)/[精确小批绑定](evidence/feedback-batch-integration-2026-10-17/dot-followup.json)；同一批次表/需求台账同步，不新开排程。用户授权普通dev/main合入push，完整main SHA以实际回执为准，不等CI/不部署。跨备战/章节/场内三次同规则H16只登记，H14/H15保留，P08与正式门/人验边界不变。
 
