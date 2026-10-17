@@ -176,7 +176,9 @@ export function jokerPlainCopy(d:R2JokerDefinition,j:R2JokerInstance|undefined,c
  }
 
  const growthRead=hooks[0]?.operations[0],simpleGrowth=!fallback&&hooks.length===2&&growthRead?.kind==='read-growth'&&hooks[1].operations[0]?.kind==='add-growth';
- const visibleLimits=[...new Set(essential.flatMap(text=>simpleGrowth?text.split('；').filter(part=>!/^新增从下一手生效/.test(part)):text))].join('\n');
+ const growthTypes=simpleGrowth&&hooks[1].condition.kind==='hand-type-in'?hooks[1].condition.values:[];
+ const flushTypesListed=growthTypes.includes('flush-house')&&growthTypes.includes('flush-five');
+ const visibleLimits=[...new Set(essential.flatMap(text=>simpleGrowth?text.split('；').filter(part=>!/^新增从下一手生效/.test(part)&&!(flushTypesListed&&part.trim()==='同花葫芦、同花五条也增加成长。')):text))].join('\n');
  const timingLine=!fallback?condition+(simpleGrowth?'；新增下一手生效，已有成长'+(hooks[0].condition.kind==='always'?'每手可用':'按条件使用'):''):undefined;
  let effectLine=effect;
  if(simpleGrowth&&growthRead.kind==='read-growth'&&hooks[1].operations[0].kind==='add-growth'){

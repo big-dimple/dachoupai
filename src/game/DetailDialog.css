@@ -23,3 +23,16 @@
   & .dialog-content { padding:12px 16px; }
  }
 }
+
+/* Desktop card inspection grows with its art/copy. The independent text-only
+   confirmation and mobile/interactive workspaces keep their existing rules. */
+@media(min-width:761px) and (min-height:501px) {
+ .detail-dialog--illustrated[open]:has(> .dialog-content > .dialog-card-art):not(.tool-detail,.shop-tool-purchase) {
+  height:fit-content;
+  display:flex;
+  flex-direction:column;
+
+  & > .dialog-content { flex:0 1 auto;grid-template-rows:minmax(0,1fr); }
+  & > .dialog-content > .dialog-scroll { height:auto;overflow:auto; }
+ }
+}

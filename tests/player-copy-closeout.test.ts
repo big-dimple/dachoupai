@@ -17,10 +17,14 @@ it('c06 separates one effect, growth timing and the actual zero or carried multi
  for(const stored of ['0','2']){
   j.growth.multiplier={n:stored,d:'1'};const before=structuredClone({s,j}),p=jokerAbilityCopyForRun(s,'c06',j,ctx).plain!;
   expect(p.effectLine).toContain('倍率成长');expect(p.effectLine).not.toMatch(/同花|下一手/);expect(p.timingLine).toContain('同花');expect(p.timingLine).toContain('新增下一手生效');expect(p.timingLine).toContain('已有成长每手可用');
-  expect(p.status).toBe('已存倍率+'+stored);expect(r2JokerStateText(j,d)).toContain('倍率成长 '+stored);expect(p.essential).toContain('同花葫芦、同花五条也增加成长');expect(p.details).toContain('出售后丢失');expect({s,j}).toEqual(before);
+  expect(p.status).toBe('已存倍率+'+stored);expect(r2JokerStateText(j,d)).toContain('倍率成长 '+stored);expect(p.timingLine).toContain('同花葫芦');expect(p.timingLine).toContain('同花五条');expect(p.essential).not.toContain('同花葫芦、同花五条也增加成长');expect(p.details).toContain('同花葫芦、同花五条也增加成长');expect(p.details).toContain('出售后丢失');expect({s,j}).toEqual(before);
  }
  const relation=shopRouteRelation(s,j,'flush');expect(relation.body.split(d.description)).toHaveLength(2);expect(relation.body).not.toMatch(/保存事件|用途不表示|对应动作|实例/);
  j.growth={};expect(r2JokerStateText(j,d)).toContain('倍率成长 0');
+});
+it('legacy c06 exclusions remain visible instead of being mistaken for duplicate inclusions',()=>{
+ const s=createRun({rulesVersion:'r2',r2Profile:'group-upgrade-v1',seed:'legacy-c06-exclusions',runId:'legacy-c06-exclusions',characterId:'erxiang'}),j=r2CreateJoker('c06','held',6,'none',s),ctx=publicJokerMemoryContext(s,{hand:[],scoringLimited:false,deckSize:52,jokerSlots:5,jokerCount:1});
+ const p=jokerAbilityCopyForRun(s,'c06',j,ctx).plain!;expect(p.essential).toContain('同花葫芦、同花五条不增加成长');expect(p.timingLine).not.toContain('同花葫芦');
 });
 it('a scoring ban stays explicit while growth timing remains visible',()=>{
  const s=setup(),j=r2CreateJoker('c06','held',6,'none',s),ctx=publicJokerMemoryContext(s,{hand:[],scoringLimited:true,deckSize:52,jokerSlots:5,jokerCount:1}),p=jokerAbilityCopyForRun(s,'c06',j,ctx).plain!;
