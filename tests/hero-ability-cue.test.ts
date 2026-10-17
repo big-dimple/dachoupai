@@ -7,6 +7,7 @@ import {touyeChoice} from '../src/game/TouyeWagerCopy';
 import {numberImpact} from '../src/game/ScoreEnergy';
 import {scoreBeat} from '../src/game/scorePresentation';
 import {createRun,applyCommand,type R2RunState,type Action} from '../src/domain/run';
+import {newRunIdentity as legacyIdentity} from '../harness/fixtures/legacy-assist-launch';
 import {newRunIdentity} from '../src/game/RunLaunch';
 import {CHARACTER_IDS,type CharacterId} from '../src/domain/characters';
 import {heroAbilityCue,savedHeroResult} from '../src/game/HeroAbilityCue';
@@ -18,13 +19,13 @@ const cards=['spades-8','hearts-8','clubs-7','diamonds-7','spades-13','hearts-13
 const main=cards.slice(0,4);
 function send(s:R2RunState,action:Action){const r=applyCommand(s,{runId:s.runId,commandId:'cue/'+s.commandSeq,expectedSeq:s.commandSeq,action});if(!r.ok)throw Error(r.code);expect(readCheckpoint(makeCheckpoint(r.state,[])).ok).toBe(true);return r.state;}
 function arrange(s:R2RunState,ids=cards){s=structuredClone(s);s.handOrder=[...ids];s.drawPile=s.deckInstances.map(c=>c.id).filter(id=>!ids.includes(id)&&!s.playedPile.includes(id)&&!s.discardPile.includes(id));expect(readCheckpoint(makeCheckpoint(s,[])).ok).toBe(true);return s;}
-function entered(id:CharacterId){return arrange(send(send(createRun({rulesVersion:'r2',characterId:id,runId:'cue-'+id,seed:'group-natural-17',r2Identity:newRunIdentity(id,'group'),openingRoute:'group'}),{type:'LeaveShop'}),{type:'EnterStage'}));}
+function entered(id:CharacterId,legacy=false){return arrange(send(send(createRun({rulesVersion:'r2',characterId:id,runId:'cue-'+id,seed:'group-natural-17',r2Identity:legacy?legacyIdentity(id,'group'):newRunIdentity(id,'group'),openingRoute:'group'}),{type:'LeaveShop'}),{type:'EnterStage'}));}
 function facts(s:R2RunState,ids=main){return r2SelectionFacts({hand:s.handOrder.map(id=>s.deckInstances.find(c=>c.id===id)!),selectedIds:ids,disabledIds:s.stage!.disabledIds,jokers:s.jokers,definitions:r2JokerDefinitionsFor(s)});}
 it('six public legal inputs only advertise the current valid operation, without mutation or guesses',()=>{
  for(const id of CHARACTER_IDS){let s=entered(id);if(id==='azao'){s=arrange(s,['spades-2','hearts-2','clubs-3','diamonds-3',...cards.slice(4)]);s=arrange(send(s,{type:'PlayHand',selectedIds:s.handOrder.slice(0,4)}));}if(id==='xiemu'){s.gold=10;expect(readCheckpoint(makeCheckpoint(s,[])).ok).toBe(true);}
   const before=structuredClone(s),ids=id==='erxiang'?cards.slice(0,2):main;
   expect(heroAbilityCue(s,facts(s,ids),ids,id==='amo')?.available).toBe(true);
-  expect(heroAbilityCue(s,facts(s,ids),ids,id==='amo')).toMatchObject({label:heroSkillName(id),status:'可用',state:'available'});
+  expect(heroAbilityCue(s,facts(s,ids),ids,id==='amo')).toMatchObject({label:id==='amo'?'贬谪':heroSkillName(id),status:'可用',state:'available'});
   expect(heroAbilityCue(s,facts(s,ids),ids,id==='amo')?.detail).toContain(id==='touye'||id==='laohuan'?'弃牌前':'出牌前');
   expect(heroAbilityCue(s)?.available).toBe(false);expect(s).toEqual(before);
  }
@@ -49,7 +50,7 @@ it('committed handoff and wager results explain actual sources; promises and alt
  const s=entered('erxiang'),a=send(s,{type:'PlayHand',selectedIds:cards.slice(0,2),erxiangTargetId:cards[0]}),t=a.lastTrace!,e=t.events.find(e=>e.reasonKey==='erxiang.handoff')!;
  expect(savedHeroResult(a)).toContain('8点热度 → 倍率');expect(savedBenefit(a,t,e)).toMatchObject({title:'刘娥 · 垂帘听政 · 已兑现',effect:'8点热度改加倍率（首次普通计分）'});
  expect(savedBenefit(a,t,{...e,eventId:'not-saved'})).toBeUndefined();
- const amo=entered('amo'),b=send(amo,{type:'PlayAssistedHand',selectedIds:main,assistIds:cards.slice(4,6)}),bt=b.lastTrace!,be=bt.events.find(e=>e.reasonKey==='amo.assist.pair')!;
+ const amo=entered('amo',true),b=send(amo,{type:'PlayAssistedHand',selectedIds:main,assistIds:cards.slice(4,6)}),bt=b.lastTrace!,be=bt.events.find(e=>e.reasonKey==='amo.assist.pair')!;
  expect(savedBenefit(b,bt,be)?.effect).toBe('副组2张已用 · 实际×2');expect(savedHeroResult(b)).toBe('苏轼 · 余音袅袅 · 副组2张已用 · 实际×2');
 });
 
@@ -64,6 +65,6 @@ it('actual lost wager keeps its recorded result and routes the existing characte
  let s=entered('touye');const ids=cards.slice(6),incoming=['clubs-8','diamonds-6'];s.drawPile=[...s.drawPile.filter(id=>!incoming.includes(id)),...[...incoming].reverse()];const pending=send(s,{type:'DiscardHand',selectedIds:ids,touyeBet:{target:'three-kind',snapshotToken:touyeChoice(s,ids).snapshotToken}}),after=send(pending,{type:'PlayHand',selectedIds:['diamonds-6']}),trace=after.lastTrace!,event=trace.events.find(e=>e.sourceType==='character')!;
  expect(trace.touyeWager!.outcome).toBe('lost');expect(numberImpact(event,after.stage!.targetHeat)).toBeUndefined();expect(savedBenefit(after,trace,event)?.effect).toContain('未成×0.85');expect(savedBenefit(after,trace,event)?.title).toBe('秦琼 · 跃马冲阵 · 已结算');
  const text=()=>{const data=new Map<string,unknown>(),n:any={active:true,width:0,text:'',setText(v:string){n.text=v;return n;},setData(k:string,v:unknown){data.set(k,v);return n;},getData(k:string){return data.get(k);}};for(const key of ['setName','setVisible','setColor','setFontSize','setWordWrapWidth','setScale','setPosition','setOrigin'])n[key]=()=>n;return n;};
- const game=Object.create(GameScene.prototype) as any;Object.defineProperty(game,'reducedMotion',{value:true});Object.assign(game,{run:after,presentation:{state:after,score:trace,replay:false},view:{layout:{mode:'portrait',status:{width:1000},scoreBoard:{x:0,y:0,width:366,height:132}}},scoreLabels:[text(),text().setText('当前倍率'),text()],statusText:text(),resultText:text(),breakdownText:text(),scoreTotal:text(),scoreMult:text(),scoreHeat:text(),settledCards:new Map(),cardViews:[],jokerViews:new Map(),audio:{scoreImpact:vi.fn(),sourceCue:vi.fn()},ensureTraceSource:vi.fn(),animateRole:vi.fn(async()=>{}),setAccumulator:vi.fn(),wait:vi.fn(async()=>{}),transferToAccumulator:vi.fn(async()=>{}),rollAccumulator:vi.fn(async()=>{}),pulseAccumulator:vi.fn(async()=>{}),impactAccumulator:vi.fn(async()=>{}),updateTraceSource:vi.fn()});
+ const game=Object.create(GameScene.prototype) as any;Object.defineProperty(game,'reducedMotion',{value:true});Object.assign(game,{run:after,presentation:{state:after,score:trace,replay:false,gifts:[]},view:{layout:{mode:'portrait',status:{width:1000},scoreBoard:{x:0,y:0,width:366,height:132}}},scoreLabels:[text(),text().setText('当前倍率'),text()],statusText:text(),resultText:text(),breakdownText:text(),scoreTotal:text(),scoreMult:text(),scoreHeat:text(),settledCards:new Map(),cardViews:[],jokerViews:new Map(),audio:{scoreImpact:vi.fn(),sourceCue:vi.fn()},ensureTraceSource:vi.fn(),animateRole:vi.fn(async()=>{}),setAccumulator:vi.fn(),wait:vi.fn(async()=>{}),transferToAccumulator:vi.fn(async()=>{}),rollAccumulator:vi.fn(async()=>{}),pulseAccumulator:vi.fn(async()=>{}),impactAccumulator:vi.fn(async()=>{}),updateTraceSource:vi.fn()});
  await game.showScoreEvent(event,0,scoreBeat(event),{signal:new AbortController().signal});expect(game.audio.scoreImpact).not.toHaveBeenCalled();expect(game.audio.sourceCue).toHaveBeenCalledExactlyOnceWith('character');expect(game.resultText.text).toContain('输约');expect(game.resultText.text).toContain('本次倍率 ×0.85');expect(game.resultText.getData('exactMultiplierCaption').text).toContain('实际 ×0.85');expect(game.scoreLabels[1].text).toBe('当前倍率');expect(game.resultText.getData('scoreSourceProcess')).toBeUndefined();expect(game.statusText.text).toContain('未成×0.85');
 });

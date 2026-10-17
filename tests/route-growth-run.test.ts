@@ -1,7 +1,7 @@
 import {afterEach,describe,expect,it,vi} from 'vitest';
 import {createRun,applyCommand,type Command,type R2RunState} from '../src/domain/run';
 import {assertR2Invariants,r2CreateJoker,r2ScoreContext,R2_RULESETS} from '../src/domain/r2Run';
-import {newRunIdentity,launchIdentity} from '../src/game/RunLaunch';
+import {newRunIdentity,launchIdentity} from '../harness/fixtures/legacy-assist-launch';
 import {CHARACTER_IDS} from '../src/domain/characters';
 import {isR2RouteGrowth,isR2RouteStarter,R2_ROUTE_STARTERS,type R2OpeningRoute} from '../src/domain/r2GroupUpgrade';
 import {r2RouteSnapshot,type R2RouteFamily} from '../src/domain/r2RouteGrowth';

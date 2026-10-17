@@ -10,7 +10,7 @@ export interface OpeningPlaySample {
 export function heroPlaySample(id:CharacterId):OpeningPlaySample {
  const s=heroSignature(id);
  const samples:Record<CharacterId,Omit<OpeningPlaySample,'tag'>>={
-  amo:{before:{label:'主手两对 · 红框是助攻对子',cards:['7♠','7♥','Q♣','Q♦','3♠','3♥'],marked:[4,5]},after:{label:'副组消耗 · 主手仍是两对',cards:['7♠','7♥','Q♣','Q♦'],marked:[]},result:s.beats[2].result,cost:'副组不计主手、不能留手 · 本场一次'},
+  amo:{before:{label:'选红框对子出牌 · 其余全部弃掉',cards:['7♠','7♥','Q♣','3♦','9♣','2♥','4♣','K♦'],marked:[0,1]},after:{label:'对子正常计分，再把得分×4',cards:['7♠','7♥'],marked:[0,1]},result:s.beats[2].result,cost:'至少弃1张余牌 · 之后正常补牌 · 每场一次'},
   touye:{before:{label:'选红框5张弃牌 → 押两对',cards:['7♠','7♥','Q♣','5♦','9♣','2♥','4♣','K♦'],marked:[3,4,5,6,7]},after:{label:'新摸Q♦参与两对 → 示例成功',cards:['7♠','7♥','Q♣','Q♦','3♥','5♣','8♦','A♠'],marked:[3,4,5,6,7]},result:'新牌成型×2 · 否则×0.85（非必中）',cost:'本场一次 · 押后不能再弃、用工具或调唐宋牌'},
   laohuan:{before:{label:'弃1张 → 看3张候选',cards:['7♠','9♥','Q♣'],marked:[0]},after:{label:'点选7♠ → 只补回1张',cards:['7♠'],marked:[0]},result:'多看最多2张 · 自己选',cost:s.cost+' · 未留候选本场不抽'},
   erxiang:{before:{label:'对子以上 → 点选红框8',cards:['8♠','8♥'],marked:[0]},after:{label:'仍计这张牌 · 普通热度转倍率',cards:['8♠','8♥'],marked:[0]},result:s.beats[2].result,cost:'失去这张普通热度 · 增强／版次保留 · 本场一次'},

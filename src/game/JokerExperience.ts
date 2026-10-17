@@ -44,6 +44,7 @@ export function savedBenefit(state:R2RunState,trace:ScoreTrace,e:ScoreEvent):Sav
  const skill=(status='已兑现')=>heroSkillTitle(state.characterId)+' · '+status;
  if(e.sourceType==='character'&&trace.events.some(saved=>saved===e||saved.eventId===e.eventId&&JSON.stringify(saved)===JSON.stringify(e))){
   const fact=(title:string,effect:string,condition:string,next:string):SavedBenefit=>({eventId:e.eventId,sourceInstanceId:e.sourceInstanceId,definitionId:'',title,effect,condition,destination:'本手真实结果 · 已保存',next});
+  if(trace.amoExile?.use&&e.reasonKey==='amo.exile')return fact('苏轼 · 贬谪 · 已使用','弃掉'+trace.amoExile.discardedIds.length+'张；本手得分 '+trace.amoExile.beforeScore+' → '+trace.amoExile.afterScore+'（×4）','出牌时弃掉其余手牌，每场一次','之后正常补牌；本场贬谪已用');
   const handoff=trace.erxiangHandoff;
   if(handoff?.targetId&&e.reasonKey==='erxiang.handoff'&&e.targetCardId===handoff.targetId)return fact(skill(),handoff.points+'点热度改加倍率（首次普通计分）','所选计分牌，本场一次','本场已用；增强、版次、后续重触保持');
   const wager=trace.touyeWager;

@@ -1,0 +1,409 @@
+{
+  "source": "7627e7ddc09f44a8412f4e944852969c15f9cf33",
+  "sourceStatus": "",
+  "build": {
+    "version": "C03",
+    "builtAt": "2026-10-17T17:30:44.735Z",
+    "revision": "7627e7ddc09f44a8412f4e944852969c15f9cf33",
+    "sourceStatus": "clean",
+    "modified": false,
+    "files": 397,
+    "bytes": 37174059,
+    "bundles": [
+      {
+        "path": "assets/index-CAW68Lod.js",
+        "bytes": 2921443,
+        "sha256": "053e8f0efe804a2bf003097903e2e3d83d827d5d5cd700a98ef366010983a6d7"
+      }
+    ]
+  },
+  "browser": "143.0.3650.80",
+  "scope": "Six formal current-identity new runs from native title/hero/route controls with URL seeds. No imported saves or patches to hands/resources/levels/RNG. Su Shi PC full motion, other five phone touch with reduced motion. Seed-selected scenarios; not natural player discovery, subjective visual/audio or physical acceptance.",
+  "tests": {
+    "files": 39,
+    "passed": 508,
+    "failed": 0,
+    "success": true,
+    "filesUnderTest": [
+      "ai-hero-score-context.test.ts",
+      "amo-exile-ui.test.ts",
+      "amo-exile.test.ts",
+      "amo-launch.test.ts",
+      "assist-entry-guards.test.ts",
+      "assist-recommendation.test.ts",
+      "assist-restriction-copy.test.ts",
+      "assist-route-growth-integration.test.ts",
+      "azao-charge.test.ts",
+      "c04-mode-save.test.ts",
+      "core-build.test.ts",
+      "erxiang-handoff.test.ts",
+      "hand-rule-order.test.ts",
+      "hero-ability-cue.test.ts",
+      "hero-attachment-facts.test.ts",
+      "hero-climax.test.ts",
+      "hero-opening-copy.test.ts",
+      "hero-payoff.test.ts",
+      "hero-play-reminder.test.ts",
+      "hero-skill-guide.test.ts",
+      "hero-skill-presentation.test.ts",
+      "hero-stage-continuity.test.ts",
+      "hero-target-attachment.test.ts",
+      "hero-text-contract.test.ts",
+      "laohuan-refill.test.ts",
+      "opening-signature.test.ts",
+      "recovery-save.test.ts",
+      "route-growth-facts.test.ts",
+      "route-growth-run.test.ts",
+      "route-growth-score.test.ts",
+      "route-starter.test.ts",
+      "s04-finish.test.ts",
+      "score-energy.test.ts",
+      "score-posture.test.ts",
+      "tangsong-identity.test.ts",
+      "tangsong-player-terms.test.ts",
+      "touye-new-core.test.ts",
+      "touye-wager.test.ts",
+      "xiemu-burn.test.ts"
+    ]
+  },
+  "typecheck": "PASS: tsc --noEmit",
+  "planCheck": "FAIL: 15 existing P08 invalid evidence records; no evidence gate changed",
+  "initialFullSuite": {
+    "files": 341,
+    "tests": 4306,
+    "passed": 4218,
+    "failed": 88,
+    "status": "FAIL, before current-entry/legacy-fixture fixes; not rerun or signed as passed",
+    "fileDisposition": [
+      {
+        "file": "amo-launch.test.ts",
+        "status": "PASS in final affected checks"
+      },
+      {
+        "file": "assist-entry-guards.test.ts",
+        "status": "PASS in final affected checks"
+      },
+      {
+        "file": "assist-recommendation.test.ts",
+        "status": "PASS in final affected checks"
+      },
+      {
+        "file": "assist-restriction-copy.test.ts",
+        "status": "PASS in final affected checks"
+      },
+      {
+        "file": "build-info.test.ts",
+        "status": "initial failure left open; not re-run here"
+      },
+      {
+        "file": "c02-chain.test.ts",
+        "status": "initial failure left open; not re-run here"
+      },
+      {
+        "file": "c04-mode-save.test.ts",
+        "status": "PASS in final affected checks"
+      },
+      {
+        "file": "c2-description-consistency.test.ts",
+        "status": "initial failure left open; not re-run here"
+      },
+      {
+        "file": "ci-gates.test.mjs",
+        "status": "initial failure left open; not re-run here"
+      },
+      {
+        "file": "core-build-window.test.ts",
+        "status": "initial failure left open; not re-run here"
+      },
+      {
+        "file": "core-build.test.ts",
+        "status": "PASS in final affected checks"
+      },
+      {
+        "file": "f06-recommendation.test.ts",
+        "status": "initial failure left open; not re-run here"
+      },
+      {
+        "file": "goods-art.test.ts",
+        "status": "initial failure left open; not re-run here"
+      },
+      {
+        "file": "group-upgrade-ui-copy.test.ts",
+        "status": "initial failure left open; not re-run here"
+      },
+      {
+        "file": "hand-action-controls.test.ts",
+        "status": "initial failure left open; not re-run here"
+      },
+      {
+        "file": "hand-rule-order.test.ts",
+        "status": "PASS in final affected checks"
+      },
+      {
+        "file": "hero-opening-copy.test.ts",
+        "status": "PASS in final affected checks"
+      },
+      {
+        "file": "hero-skill-presentation.test.ts",
+        "status": "PASS in final affected checks"
+      },
+      {
+        "file": "hero-stage-continuity.test.ts",
+        "status": "PASS in final affected checks"
+      },
+      {
+        "file": "make-cards-flow.test.ts",
+        "status": "initial failure left open; not re-run here"
+      },
+      {
+        "file": "opening-play-sample.test.ts",
+        "status": "initial failure left open; not re-run here"
+      },
+      {
+        "file": "opening-signature.test.ts",
+        "status": "PASS in final affected checks"
+      },
+      {
+        "file": "public-art-privacy.test.mjs",
+        "status": "initial failure left open; not re-run here"
+      },
+      {
+        "file": "r2-ui.test.ts",
+        "status": "initial failure left open; not re-run here"
+      },
+      {
+        "file": "recovery-save.test.ts",
+        "status": "PASS in final affected checks"
+      },
+      {
+        "file": "route-starter.test.ts",
+        "status": "PASS in final affected checks"
+      },
+      {
+        "file": "score-event-caption.test.ts",
+        "status": "initial failure left open; not re-run here"
+      },
+      {
+        "file": "shop-recommendation-evidence.test.ts",
+        "status": "initial failure left open; not re-run here"
+      },
+      {
+        "file": "shop-replacement-cash-risk.test.ts",
+        "status": "initial failure left open; not re-run here"
+      },
+      {
+        "file": "tangsong-identity.test.ts",
+        "status": "PASS in final affected checks"
+      },
+      {
+        "file": "tangsong-player-terms.test.ts",
+        "status": "PASS in final affected checks"
+      },
+      {
+        "file": "tool-inventory-entry.test.ts",
+        "status": "initial failure left open; not re-run here"
+      },
+      {
+        "file": "workshop-goals.test.ts",
+        "status": "initial failure left open; not re-run here"
+      }
+    ]
+  },
+  "native": [
+    {
+      "hero": "amo",
+      "status": "PASS",
+      "seed": "six-new-1",
+      "commands": 4,
+      "skillScore": "312",
+      "skillTrace": {
+        "use": true,
+        "beforeUsed": false,
+        "afterUsed": true,
+        "discardedIds": [
+          "spades-4",
+          "spades-12",
+          "hearts-5",
+          "hearts-11",
+          "hearts-7",
+          "diamonds-12"
+        ],
+        "beforeScore": "78",
+        "afterScore": "312"
+      },
+      "nextScore": "30",
+      "pageErrors": []
+    },
+    {
+      "hero": "erxiang",
+      "status": "PASS",
+      "seed": "six-new-1",
+      "commands": 4,
+      "skillScore": "148",
+      "skillTrace": {
+        "targetId": "hearts-2",
+        "beforeUsed": false,
+        "points": 2,
+        "afterUsed": true
+      },
+      "nextScore": "24",
+      "pageErrors": []
+    },
+    {
+      "hero": "azao",
+      "status": "PASS",
+      "seed": "six-new-3",
+      "commands": 8,
+      "skillScore": "315",
+      "skillTrace": {
+        "before": {
+          "charge": 1,
+          "previousQualifiedType": "two-pair"
+        },
+        "release": true,
+        "after": {
+          "charge": 0,
+          "previousQualifiedType": null
+        },
+        "multiplier": "1.5"
+      },
+      "nextScore": "27",
+      "pageErrors": []
+    },
+    {
+      "hero": "xiemu",
+      "status": "PASS",
+      "seed": "six-new-18",
+      "commands": 8,
+      "skillScore": "348",
+      "skillTrace": {
+        "cost": 10,
+        "goldBefore": 15,
+        "beforeUsed": false,
+        "goldAfter": 5,
+        "afterUsed": true,
+        "multiplier": 2
+      },
+      "nextScore": "30",
+      "pageErrors": []
+    },
+    {
+      "hero": "touye",
+      "status": "PASS",
+      "seed": "six-new-0",
+      "commands": 5,
+      "skillScore": "388",
+      "skillTrace": {
+        "commit": {
+          "target": "two-pair",
+          "snapshotToken": "json-fnv-v1:70cc801ef4eabcc2",
+          "stageIndex": 0,
+          "duePlayIndex": 1,
+          "discardCommandId": "run/six-new-0/touye/command/4",
+          "expectedSeq": 3,
+          "handBefore": [
+            {
+              "id": "spades-12",
+              "suit": "spades",
+              "rank": 12
+            },
+            {
+              "id": "hearts-7",
+              "suit": "hearts",
+              "rank": 7
+            },
+            {
+              "id": "spades-4",
+              "suit": "spades",
+              "rank": 4
+            },
+            {
+              "id": "spades-11",
+              "suit": "spades",
+              "rank": 11
+            },
+            {
+              "id": "hearts-14",
+              "suit": "hearts",
+              "rank": 14
+            },
+            {
+              "id": "hearts-10",
+              "suit": "hearts",
+              "rank": 10
+            },
+            {
+              "id": "clubs-8",
+              "suit": "clubs",
+              "rank": 8
+            },
+            {
+              "id": "diamonds-9",
+              "suit": "diamonds",
+              "rank": 9
+            }
+          ],
+          "rules": {
+            "fourStraight": false,
+            "fourFlush": false
+          },
+          "selectedIds": [
+            "spades-12",
+            "hearts-7",
+            "spades-4",
+            "spades-11",
+            "hearts-14"
+          ],
+          "refill": {
+            "handLimit": 8,
+            "handAfter": [
+              "hearts-10",
+              "clubs-8",
+              "diamonds-9",
+              "spades-7",
+              "diamonds-7",
+              "spades-5",
+              "spades-9",
+              "diamonds-2"
+            ],
+            "refilledIds": [
+              "spades-7",
+              "diamonds-7",
+              "spades-5",
+              "spades-9",
+              "diamonds-2"
+            ]
+          }
+        },
+        "outcome": "won",
+        "multiplier": "2",
+        "core": {
+          "contract": "new-core-v1",
+          "activeNewIds": [
+            "spades-7",
+            "diamonds-7",
+            "spades-9"
+          ],
+          "lossReason": null
+        }
+      },
+      "nextScore": "34",
+      "pageErrors": []
+    },
+    {
+      "hero": "laohuan",
+      "status": "PASS",
+      "seed": "six-new-0",
+      "commands": 5,
+      "skillScore": null,
+      "skillTrace": null,
+      "nextScore": "30",
+      "pageErrors": []
+    }
+  ],
+  "contentCli": {
+    "status": "NOT_COMPLETED",
+    "action": "node scripts/verify-content.mjs",
+    "reason": "No output before bounded stop in existing public-art privacy preflight; current-content proof not evaluated. Initial full-suite child invocations timed out too. Not retried and no gate changed."
+  }
+}

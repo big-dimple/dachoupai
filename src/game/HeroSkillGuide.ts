@@ -1,3 +1,5 @@
+import {usesAmoExile,amoExileChoice} from '../domain/r2AmoExile';
+import {AMO_EXILE_RULE} from './AmoExileCopy';
 import {heroSkillName,type HeroSkillDraft} from './HeroSkillPresentation';
 import type {R2RunState} from '../domain/r2Run';
 import {r2DiscardCost,r2UsesAssist} from '../domain/r2Run';
@@ -20,6 +22,7 @@ import {assistRestrictionForRun} from './AssistRestrictionCopy';
 export function heroSkillGuide(run:R2RunState,facts?:R2SelectionFacts,ids:readonly string[]=[],assistAvailable=false,draft:HeroSkillDraft={}){
  const enabled=r2RunModeConfig(run).characterAbilityEnabled,skill=heroSkillName(run.characterId);
  if(usesTouyeWager(run)){const c=touyeChoice(run,ids);return {active:true,step:c.pending?c.newCore?'第3步 · 用刚摸的牌成型后出牌':'已押下一手 · 接下来出牌':c.used?'本场'+skill+'已用':!c.enabled?'本场'+skill+'停用':!ids.length?'第1步 · 返回选1–5张弃牌':c.choices.some(x=>x.available)?'第2步 · 已选'+ids.length+'张弃牌，选下一手目标':c.common||'当前整手已能凑出这些目标，不能押',effect:c.pending?c.status:c.newCore?'下一手用新摸牌凑成所押牌型×2；否则×0.85':'下一手达成×2；未成×0.85',risk:c.newCore?'每场一次；已成型也可押。押后不能再弃牌或改牌；新牌只当配牌不算。不押×1.15。':'每场一次；押后不能再弃牌。不押时×1.15。'};}
+ if(usesAmoExile(run)){const c=amoExileChoice(run,ids);return {active:true,step:c.used?'本场贬谪已用':!c.enabled?'本场贬谪停用':!ids.length?'先选这手要打的牌':!c.discardedIds.length?'需要至少1张余牌可弃':draft.amoExile?'第3步 · 已选贬谪，出牌时弃掉'+c.discardedIds.length+'张，得分×4；返回牌桌确认出牌':'出牌前可选择弃掉余牌，得分×4',effect:AMO_EXILE_RULE,risk:'之后正常补牌；取消不消耗，确认出牌并保存成功才使用本场次数。'};}
  if(usesErxiangHandoff(run)){const c=erxiangChoice(run,facts,draft.erxiangTargetId);return {active:true,step:c.used?'本场'+skill+'已用':!c.enabled?'本场'+skill+'停用':c.selected?'第3步 · 已选'+c.selected.points+'点，返回牌桌确认出牌':c.candidates.length?'第2步 · 选一张计分牌':'第1步 · 返回选对子及以上',effect:'这张牌的普通点数改加倍率',risk:'每场一次；选好后正常出牌才消耗，增强与版次保留。'};}
  if(usesLaohuanRefill(run)){const used=run.stage?.laohuanTrickUsed;const reason=!enabled?'本场'+skill+'停用':used?'本场'+skill+'已用':!ids.length||ids.length>5?'第1步 · 返回选1–5张弃牌':run.stage!.discardsLeft<r2DiscardCost(run)?'弃牌次数不足':run.stage?.boss?.definitionId==='B07'&&run.gold<1?'弃牌需要1金币':'第2步 · 确认换牌';return {active:true,step:run.pendingRefill?'第3步 · 选'+run.pendingRefill.required+'张候选留下':reason,effect:'多看最多2张，自己决定留下哪些',risk:'每场一次；照付弃牌成本，未留候选本场不再抽。'};}
  if(usesXiemuBurn(run)){const c=xiemuChoice(run,facts?.type);return {active:true,step:c.used?'本场'+skill+'已用':!c.enabled?'本场'+skill+'停用':!c.qualified?'第1步 · 返回选两对及以上':!c.choices.some(x=>x.available)?'至少需要10金':draft.xiemuBurn&&c.choices.some(x=>x.available&&x.cost===draft.xiemuBurn)?'第3步 · 已选付'+draft.xiemuBurn+'金，返回牌桌确认出牌':'第2步 · 选择支付档，或保留金币',effect:'付10／20／30金，出牌倍率×2／3／4',risk:'每场一次；选档不扣，出牌才扣。持币收益与关末利息读余金。'};}
@@ -29,7 +32,7 @@ export function heroSkillGuide(run:R2RunState,facts?:R2SelectionFacts,ids:readon
 }
 
 export function heroOperationSteps(run:R2RunState,guide:ReturnType<typeof heroSkillGuide>,chosen=false){
- const labels=!guide.active?['满足技能条件','出牌时自动生效']:usesTouyeNewCore(run)?['选1–5张弃牌','押牌型并换牌','用新摸牌成型出牌']:usesTouyeWager(run)?['选要弃的牌','选押注目标','确认补牌']:usesErxiangHandoff(run)?['选对子及以上','选一张计分牌','确认出牌']:usesLaohuanRefill(run)?['选要弃的牌','确认换牌','从候选中留牌']:usesXiemuBurn(run)?['选两对及以上','选择支付档','确认出牌']:usesAzaoCharge(run)?['合格出牌蓄势','选择释放','确认出牌']:r2UsesAssist(run)?['选两对及以上主手','选剩余同点牌助攻','确认出牌']:['选择本手押注','确认出牌'];
+ const labels=usesAmoExile(run)?['选这手要打的牌','选择弃余牌×4','确认出牌']:!guide.active?['满足技能条件','出牌时自动生效']:usesTouyeNewCore(run)?['选1–5张弃牌','押牌型并换牌','用新摸牌成型出牌']:usesTouyeWager(run)?['选要弃的牌','选押注目标','确认补牌']:usesErxiangHandoff(run)?['选对子及以上','选一张计分牌','确认出牌']:usesLaohuanRefill(run)?['选要弃的牌','确认换牌','从候选中留牌']:usesXiemuBurn(run)?['选两对及以上','选择支付档','确认出牌']:usesAzaoCharge(run)?['合格出牌蓄势','选择释放','确认出牌']:r2UsesAssist(run)?['选两对及以上主手','选剩余同点牌助攻','确认出牌']:['选择本手押注','确认出牌'];
  if(usesTouyeWager(run)&&run.stage?.touyeWager?.resolution==='pending')return {labels:usesTouyeNewCore(run)?labels:['选要弃的牌','选押注目标','补牌完成 · 下一步出牌'],current:2};
  const blocked=/停用|已用|次数不足|需要.*金币|不能/.test(guide.step);
  const current=blocked?-1:chosen?labels.length-1:run.pendingRefill?2:guide.step.includes('第2步')||guide.step.startsWith('出牌前')?1:0;

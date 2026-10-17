@@ -1,3 +1,4 @@
+import {amoExileFacts,type AmoExileIntent,type AmoExileTrace} from './r2AmoExile';
 import {stableHash} from './hash';
 import {erxiangHandoffStep,type ErxiangHandoffIntent,type ErxiangHandoffTrace} from './r2ErxiangHandoff';
 import {touyeWagerStep,type TouyeCommit,type TouyeWagerTrace} from './r2TouyeWager';
@@ -35,6 +36,7 @@ export const SCORE_OPERATIONS = Object.freeze([
 export type ScoreOperation = typeof SCORE_OPERATIONS[number];
 export const R2_BASE_SCORES = R2_PUBLISHED_CONTENT.snapshot.hands as unknown as Record<R2HandType, readonly [number, Fraction, number, Fraction]>;
 export interface ScoreInput {
+  amoExile?:AmoExileIntent;
   /** Required for the exact C2 content profile; never inferred from Joker ownership. */
   routeGrowth?:R2RouteProgress;
   boundedClear?:true;
@@ -51,7 +53,7 @@ export interface ScoreInput {
   handLevels: Partial<Record<R2HandType, number>>; handRules?: HandRules;
   playIndex: number; handsBeforePlay: number; previousHandType: R2HandType | null; wager: boolean; rng: RngSnapshot;
   /** Omitted direct-score inputs retain the historical contract; saved runs pass their profile. */
-  amoScoreTiming?:'before-joker'|'after-joker'|'assist-v1';
+  amoScoreTiming?:'before-joker'|'after-joker'|'assist-v1'|'exile-v1';
   assistIds?:readonly string[];
   gold?:number; discardsUsed?:number; ordinaryPointsSuppressedIds?:readonly string[];
   jokerSlots?:number;
@@ -73,9 +75,10 @@ export interface ScoreEvent {
   programGoldBeforeReward?:number; goldBeforeRewards?:number;
 }
 interface ScoreTraceBase {
+  amoExile?:AmoExileTrace;
   routeGrowth?:R2RouteGrowthTrace;
   rulesVersion: 'r2'; rootId: string; handType: R2HandType; level: number;
-  sets: { playedIds: string[]; scoringIds: string[]; activeScoringIds: string[]; heldIds: string[] };
+  sets: { discardedIds?:string[]; playedIds: string[]; scoringIds: string[]; activeScoringIds: string[]; heldIds: string[] };
   finalScore: string; accumulator: Accumulator; events: ScoreEvent[]; jokers: R2JokerInstance[]; rng: RngSnapshot;
   goldDelta:number; destroyedCardIds:string[]; destroyedJokerIds:string[];
   cards:PlayingCard[]; sourceJokers:R2JokerInstance[];
@@ -121,7 +124,7 @@ function resolveScore(input: PublicScoreInput, policy: Extract<ResolvePolicy, {k
 function resolveScore(input: PublicScoreInput, policy: Extract<ResolvePolicy, {kind:'preview'}>): PreviewTrace;
 function resolveScore(input: PublicScoreInput, policy: ResolvePolicy): ScoreTrace | PreviewTrace {
   if (input.rulesVersion !== 'r2' || !input.runId || !input.rootId || ![...CHARACTER_IDS, 'neutral'].includes(input.characterId)) throw new Error('invalid-score-version-or-character');
-  if(input.amoScoreTiming!==undefined&&!['before-joker','after-joker','assist-v1'].includes(input.amoScoreTiming))throw new Error('invalid-character-score-timing');
+  if(input.amoScoreTiming!==undefined&&!['before-joker','after-joker','assist-v1','exile-v1'].includes(input.amoScoreTiming))throw new Error('invalid-character-score-timing');
   if (!Array.isArray(input.hand)) throw new Error('invalid-hand');
   if (input.hand.length > SCORE_LIMITS.handCount) throw new ScoreFault('hand-limit', Object.freeze([]));
   validateCardInstances(input.hand);
@@ -177,9 +180,18 @@ function resolveScore(input: PublicScoreInput, policy: ResolvePolicy): ScoreTrac
   const played = cards.filter(c => input.selectedIds.includes(c.id));
   if(input.assistIds!==undefined&&(input.amoScoreTiming!=='assist-v1'||input.characterId!=='amo'||input.boss?.definitionId==='B08'))throw Error('assist-unavailable');
   const assist=input.assistIds===undefined?null:r2AssistFacts({hand:cards,selectedIds:input.selectedIds,assistIds:input.assistIds,disabledIds:input.disabledIds,jokers,definitions:input.definitions,handRules:input.handRules});
-  const held = cards.filter(c => !input.selectedIds.includes(c.id)&&!assist?.assistIds.includes(c.id));
+  let exile:AmoExileTrace|undefined;
+  if(input.amoExile){
+    const intent=input.amoExile;
+    if(input.amoScoreTiming!=='exile-v1'||!['amo','neutral'].includes(input.characterId)||typeof intent.use!=='boolean'||typeof intent.beforeUsed!=='boolean')throw Error('invalid-amo-exile');
+    if(intent.use&&(intent.beforeUsed||input.characterId!=='amo'||input.boss?.definitionId==='B08'))throw Error('amo-exile-unavailable');
+    const discardedIds=intent.use?amoExileFacts({hand:cards,selectedIds:input.selectedIds,disabledIds:input.disabledIds,jokers,definitions:input.definitions,handRules:input.handRules}).discardedIds:[];
+    exile={...intent,afterUsed:intent.beforeUsed||intent.use,discardedIds,beforeScore:null,afterScore:null};
+  }else if(input.amoScoreTiming==='exile-v1')throw Error('missing-amo-exile-context');
+  const held = cards.filter(c => !input.selectedIds.includes(c.id)&&!assist?.assistIds.includes(c.id)&&!exile?.discardedIds.includes(c.id));
   const validHeld = held.filter(c => !input.disabledIds.includes(c.id));
-  const facts=r2SelectionFacts({hand:cards,selectedIds:input.selectedIds,jokers,definitions:input.definitions,handRules:input.handRules,disabledIds:input.disabledIds,ordinaryPointsSuppressedIds:input.ordinaryPointsSuppressedIds});
+  const originalFacts=r2SelectionFacts({hand:cards,selectedIds:input.selectedIds,jokers,definitions:input.definitions,handRules:input.handRules,disabledIds:input.disabledIds,ordinaryPointsSuppressedIds:input.ordinaryPointsSuppressedIds});
+  const facts=exile?.use?{...originalFacts,heldIds:[]}:originalFacts;
   const evaluated={type:facts.type,scoringIds:facts.scoringIds};
   if(input.touyeWager&&(!['touye','neutral'].includes(input.characterId)||input.wager))throw Error('invalid-touye-score');
   const touyeWager=input.touyeWager?touyeWagerStep(evaluated.type,input.touyeWager.commit,input.characterId==='touye'&&input.boss?.definitionId!=='B08',facts.activeScoringIds,input.touyeWager.newCore===true):undefined;
@@ -408,7 +420,12 @@ function resolveScore(input: PublicScoreInput, policy: ResolvePolicy): ScoreTrac
   if(boss?.definitionId!=='B08'&&input.characterId==='amo'&&input.amoScoreTiming==='after-joker'&&played.length===1)char('multiply-multiplier',new Rational(3n),{kind:'played-count',equals:1});
   if(assist){const value=new Rational(BigInt(assist.assistMultiplier));emit('characterScore',character,'multiply-multiplier',value,()=>{M=M.multiply(value);},{kind:'hand-type-in',values:[...AMO_ASSIST_TYPES]},undefined,0,undefined,{reasonKey:`amo.assist.${assist.assistKind}`});}
   deferredCharacter?.();
-  const final = H.multiply(M).floor();
+  if(exile?.use){
+    exile.beforeScore=H.multiply(M).floor().toString();
+    exile.afterScore=(BigInt(exile.beforeScore)*4n).toString();
+    emit('characterScore',character,'multiply-multiplier',new Rational(4n),()=>{M=M.multiply(new Rational(4n));},{kind:'always'},undefined,0,undefined,{reasonKey:'amo.exile'});
+  }
+  const final = exile?.use?BigInt(exile.afterScore!):H.multiply(M).floor();
   if (final < 0n) throw new ScoreFault('negative-score', events);
   emit('finalScore', rule, 'final-score', new Rational(final), () => {});
   resolvedFinal=final;
@@ -422,8 +439,8 @@ function resolveScore(input: PublicScoreInput, policy: ResolvePolicy): ScoreTrac
       {reasonKey:`enhancement.${card.enhancement}.destroy-card`});
   }
   hook('afterHand');
-  return immutable({ ...(routeGrowth?{routeGrowth}:{}),...(erxiangHandoff?{erxiangHandoff}:{}),...(touyeWager?{touyeWager}:{}),...(input.laohuanTrick?{laohuanTrick:true as const}:{}),...(xiemuBurn?{xiemuBurn}:{}),...(azaoCharge?{azaoCharge}:{}),rulesVersion:'r2', rootId:input.rootId, handType:evaluated.type, level,
-    sets:{playedIds:played.map(c=>c.id),scoringIds:evaluated.scoringIds,activeScoringIds:active.map(c=>c.id),heldIds:held.map(c=>c.id)},
+  return immutable({ ...(exile?{amoExile:exile}:{}),...(routeGrowth?{routeGrowth}:{}),...(erxiangHandoff?{erxiangHandoff}:{}),...(touyeWager?{touyeWager}:{}),...(input.laohuanTrick?{laohuanTrick:true as const}:{}),...(xiemuBurn?{xiemuBurn}:{}),...(azaoCharge?{azaoCharge}:{}),rulesVersion:'r2', rootId:input.rootId, handType:evaluated.type, level,
+    sets:{playedIds:played.map(c=>c.id),scoringIds:evaluated.scoringIds,activeScoringIds:active.map(c=>c.id),heldIds:held.map(c=>c.id),...(exile?{discardedIds:exile.discardedIds}:{})},
     ...(input.amoScoreTiming==='assist-v1'?{sets:{playedIds:played.map(c=>c.id),scoringIds:evaluated.scoringIds,activeScoringIds:active.map(c=>c.id),heldIds:held.map(c=>c.id),assistConsumedIds:assist?.assistIds??[]},assist:assist?{ids:assist.assistIds,kind:assist.assistKind,multiplier:assist.assistMultiplier}:null}:{}),finalScore:final.toString(),accumulator:snapshot(),events,jokers:jokers.filter(j=>!destroyedJokerIds.includes(j.instanceId)),
     ...(rng ? {rng:rng.snapshot()} : {}),goldDelta,destroyedCardIds,destroyedJokerIds,cards,sourceJokers,bossContext });
 }

@@ -4,7 +4,6 @@ import {CHARACTERS} from '../src/game/characters';
 import {erxiangHandoffStep} from '../src/domain/r2ErxiangHandoff';
 import {azaoChargeStep,emptyAzaoCharge} from '../src/domain/r2AzaoCharge';
 import {xiemuBurnStep} from '../src/domain/r2XiemuBurn';
-import {R2_ASSIST_CONTRACT} from '../src/domain/r2AssistIdentity';
 import {openingShopStep} from '../src/game/OpeningShopStep';
 import {openingShowcaseLayout} from '../src/game/OpeningShowcaseLayout';
 import {selectionLayout} from '../src/game/SelectionLayout';
@@ -16,7 +15,7 @@ import {openingRouteDemo} from '../src/game/OpeningRouteDemo';
 import {starterOffer} from '../src/game/RouteStarter';
 const run=()=>createRun({seed:'group-natural-17',runId:'signature',characterId:'erxiang',rulesVersion:'r2',r2Identity:newRunIdentity('erxiang','group'),openingRoute:'group'});
 function send(s:R2RunState,action:Parameters<typeof applyCommand>[1]['action']){const r=applyCommand(s,{runId:s.runId,commandId:'test/'+s.commandSeq,expectedSeq:s.commandSeq,action});expect(r.ok).toBe(true);if(!r.ok)throw Error(r.code);return r.state;}
-it('six examples refer to current new-game abilities and contain no invented strength ranking',()=>{for(const c of CHARACTERS){const s=heroSignature(c.id);expect(s.ability.id).toBe(c.id);expect(s.beats).toHaveLength(3);expect(s.ability.openingPlay.length).toBeGreaterThan(10);expect(JSON.stringify(s)).not.toMatch(/胜率|最强|五星|50%/);}expect(heroSignature('amo').beats[2].result).toContain('×'+R2_ASSIST_CONTRACT.pair);});
+it('six examples refer to current new-game abilities and contain no invented strength ranking',()=>{for(const c of CHARACTERS){const s=heroSignature(c.id);expect(s.ability.id).toBe(c.id);expect(s.beats).toHaveLength(3);expect(s.ability.openingPlay.length).toBeGreaterThan(10);expect(JSON.stringify(s)).not.toMatch(/胜率|最强|五星|50%/);}expect(heroSignature('amo').beats[2].result).toContain('×4');});
 it('demonstration numeric results agree with actual rule steps, including real costs',()=>{
  const cards=[{id:'a',rank:8 as const,suit:'spades' as const},{id:'b',rank:8 as const,suit:'hearts' as const}];const h=erxiangHandoffStep('pair',cards,['a','b'],[],{targetId:'a',beforeUsed:false},true);expect(heroSignature('erxiang').beats[2].result).toContain(String(h.points));
  const first=azaoChargeStep('two-pair',{before:emptyAzaoCharge(),release:false},true),second=azaoChargeStep('three-kind',{before:first.after,release:false},true),third=azaoChargeStep('two-pair',{before:second.after,release:true},true);expect(heroSignature('azao').beats[2].result).toContain('×'+third.multiplier);

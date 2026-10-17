@@ -2,7 +2,7 @@ import {completeControlledRouteHistory} from './fixtures/route-growth-history';
 import {expect,it} from 'vitest';
 import {createRun,applyCommand,type R2RunState,type Action} from '../src/domain/run';
 import {r2CreateJoker} from '../src/domain/r2Run';
-import {newRunIdentity} from '../src/game/RunLaunch';
+import {newRunIdentity} from '../harness/fixtures/legacy-assist-launch';
 import {assistPublicInput,rankAssistOptions,AssistRecommendationCache} from '../src/game/AssistRecommendation';
 import {heroShortcutReminder} from '../src/game/HeroActionShortcut';
 import {makeCheckpoint,readCheckpoint} from '../src/application/checkpoint';

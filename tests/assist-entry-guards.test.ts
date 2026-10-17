@@ -1,6 +1,6 @@
 import {afterEach,expect,it,vi} from 'vitest';
 import {createRun,applyCommand,type R2RunState,type Action} from '../src/domain/run';
-import {newRunIdentity} from '../src/game/RunLaunch';
+import {newRunIdentity} from '../harness/fixtures/legacy-assist-launch';
 import {AssistRecommendationCache,assistPublicInput} from '../src/game/AssistRecommendation';
 import {r2SelectionFacts} from '../src/domain/r2SelectionFacts';
 import {heroSkillName} from '../src/game/HeroSkillPresentation';

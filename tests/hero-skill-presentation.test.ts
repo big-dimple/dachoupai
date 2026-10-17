@@ -10,10 +10,10 @@ import {SELECTION_PRESENTATION} from '../src/game/SelectionPresentation';
 const approved={amo:'余音袅袅',touye:'跃马冲阵',laohuan:'众里寻他',erxiang:'垂帘听政',azao:'和亲',xiemu:'赏赐'};
 it('every hero exposes one approved name across current and historical display entry points without rewriting the save',()=>{
  for(const id of CHARACTER_IDS){
-  const run=createRun({rulesVersion:'r2',seed:'legacy-name',runId:'legacy-name/'+id,characterId:id}),before=JSON.stringify(run),name=approved[id];
+  const run=createRun({rulesVersion:'r2',seed:'legacy-name',runId:'legacy-name/'+id,characterId:id}),before=JSON.stringify(run),name=approved[id],currentName=id==='amo'?'贬谪':name;
   expect(heroSkillName(id)).toBe(name);expect(getCharacter(id).passiveName).toBe(name);
-  expect(characterForRun(run).passiveName).toBe(name);expect(characterForNewRun(id).passiveName).toBe(name);
-  expect(heroPlaySample(id).tag).toBe(name);expect(heroSignature(id).tag).toBe(name);expect(SELECTION_PRESENTATION[id].tag).toBe(name);
+  expect(characterForRun(run).passiveName).toBe(name);expect(characterForNewRun(id).passiveName).toBe(currentName);
+  expect(heroPlaySample(id).tag).toBe(currentName);expect(heroSignature(id).tag).toBe(currentName);expect(SELECTION_PRESENTATION[id].tag).toBe(currentName);
   expect(heroSkillTitle(id)).toBe(getCharacter(id).name+' · '+name);expect(JSON.stringify(run)).toBe(before);
  }
 });

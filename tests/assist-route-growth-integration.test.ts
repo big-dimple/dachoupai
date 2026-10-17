@@ -8,7 +8,7 @@ import {assertR2Invariants,r2CreateJoker,R2_RULESETS,r2ScoreContext} from '../sr
 import {isR2RouteGrowth,isR2RouteStarter} from '../src/domain/r2GroupUpgrade';
 import {r2RouteFamilies,r2RouteSnapshot} from '../src/domain/r2RouteGrowth';
 import {scoreR2Hand,previewR2Hand,type ScoreInput} from '../src/domain/scoreR2';
-import {newRunIdentity} from '../src/game/RunLaunch';
+import {newRunIdentity} from '../harness/fixtures/legacy-assist-launch';
 import {assistPublicInput,rankAssistOptions,AssistRecommendationCache} from '../src/game/AssistRecommendation';
 import {r2AssistAvailability} from '../src/domain/r2Assist';
 import {makeCheckpoint,readCheckpoint} from '../src/application/checkpoint';

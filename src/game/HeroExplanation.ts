@@ -31,7 +31,7 @@ export function heroExplanationCopy(id:CharacterId,run?:R2RunState,abilityEnable
   else if(run.phase==='await-input'||run.pendingRefill){const guide=heroSkillGuide(run);now=guide.step;effect=guide.effect;}
   else now='当前正在处理本局操作；完成后再到牌桌使用。';
  }
- return {hero,current,effect,when:current?conditions[id]:hero.openingPlay,now};
+ return {hero,current,effect,when:hero.passiveName==='贬谪'?hero.openingPlay:current?conditions[id]:hero.openingPlay,now};
 }
 
 const css=`
@@ -64,10 +64,10 @@ export function showHeroExplanation(dialog:DetailDialog,id:CharacterId,options:{
  story.className='card-rules hero-story';storyLabel.textContent='人物故事与宣言';motto.className='hero-motto';motto.textContent='“'+HERO_OPENING[id].taunt+'”';bio.className='hero-fact';bio.textContent=hero.intro;story.append(storyLabel,motto,bio);
  for(const [label,value] of [['做什么',copy.effect],...(!copy.current?[['何时能用',copy.when]]:[]),['现在',copy.now]]){const p=document.createElement('p'),title=document.createElement('strong');p.className='hero-fact';title.textContent=label;p.append(title,document.createTextNode(value));intro.append(p);}
  const theme=document.createElement('p');theme.className='hero-fact hero-theme';theme.textContent=hero.title;intro.append(theme,story);
- if(copy.current){
+ if(copy.current||hero.passiveName==='贬谪'){
   const example=document.createElement('details'),summary=document.createElement('summary');example.className='card-rules hero-example';summary.textContent='点开看一个技能例子';example.append(summary);
   // Examples are educational public cards, created only after the player asks to see them.
-  let mounted=false;example.addEventListener('toggle',()=>{if(!example.open||mounted)return;mounted=true;const list=document.createElement('ol');for(const beat of heroSignature(id).beats){const item=document.createElement('li'),cards=document.createElement('span'),result=document.createElement('small');cards.className='example-cards';cards.textContent=beat.cards.join('　');result.textContent=beat.result;item.append(document.createTextNode(beat.label+' '),cards,result);list.append(item);}const note=document.createElement('p');note.textContent='规则示例，不是本局手牌或预计得分。';example.append(list,note);});
+  let mounted=false;example.addEventListener('toggle',()=>{if(!example.open||mounted)return;mounted=true;const list=document.createElement('ol');for(const beat of heroSignature(id,options.run).beats){const item=document.createElement('li'),cards=document.createElement('span'),result=document.createElement('small');cards.className='example-cards';cards.textContent=beat.cards.join('　');result.textContent=beat.result;item.append(document.createTextNode(beat.label+' '),cards,result);list.append(item);}const note=document.createElement('p');note.textContent='规则示例，不是本局手牌或预计得分。';example.append(list,note);});
   intro.append(example);
  }
  // DetailDialog omits an empty intro; this explanation supplies its own compact first layer.

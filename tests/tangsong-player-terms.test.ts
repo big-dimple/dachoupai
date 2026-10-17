@@ -38,7 +38,7 @@ it('all six hero rules and every tool/item/edition display use the current card 
 
 it('projects all 72 cards for every saved ruleset without rewriting any definition, checkpoint or storage partition',()=>{
  for(const identity of R2_RULESETS){
-  const r2Identity={contentVersion:identity.contentVersion,contentHash:identity.contentHash},s=createRun({rulesVersion:'r2',characterId:identity.contentVersion===R2_ASSIST_VERSION?'amo':'touye',seed:'terms-old',runId:'terms/'+identity.contentVersion,r2Identity,...(isR2RouteStarter(r2Identity)?{openingRoute:'group' as const}:{})});
+  const r2Identity={contentVersion:identity.contentVersion,contentHash:identity.contentHash},s=createRun({rulesVersion:'r2',characterId:identity.contentVersion===R2_ASSIST_VERSION||identity.amoScoreTiming==='exile-v1'?'amo':'touye',seed:'terms-old',runId:'terms/'+identity.contentVersion,r2Identity,...(isR2RouteStarter(r2Identity)?{openingRoute:'group' as const}:{})});
   const definitions=r2JokerDefinitionsFor(s),checkpoint=makeCheckpoint(s,[]),key=r2ModeStorageKey(s,s.contentHash),before=JSON.stringify({s,definitions,checkpoint,key});
   expect(definitions).toHaveLength(72);expect(readCheckpoint(checkpoint).ok).toBe(true);clean(characterForRun(s));
   const ctx=publicJokerMemoryContext(s,{hand:[],scoringLimited:false,deckSize:s.deckInstances.length,jokerSlots:5,jokerCount:0});

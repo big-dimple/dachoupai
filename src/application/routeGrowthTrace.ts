@@ -52,7 +52,7 @@ export function assertRouteGrowthTrace(t:ScoreTrace,history:R2RouteHistory,stage
       const operation=definitions.find(d=>d.id===e.sourceDefinitionId)?.hooks.find(h=>h.phase===e.phase&&stableHash(h.condition)===stableHash(e.visibleCondition))?.operations.find(o=>o.kind===e.operation);
       if(!operation||operation.kind!=='read-growth'&&operation.kind!=='consume-growth')fail();
       if(operation!.kind==='read-growth'||operation!.kind==='consume-growth'){if(operation.target==='heat')H=H.add(amount);else M=M.add(amount);}
-    }else if(e.operation==='final-score'){finals++;if(e.phase!=='finalScore'||H.multiply(M).floor().toString()!==t.finalScore||amount.compare(new Rational(BigInt(t.finalScore))))fail();}
+    }else if(e.operation==='final-score'){finals++;if(e.phase!=='finalScore'||(t.amoExile?.use?(BigInt(t.amoExile.beforeScore!)*4n).toString():H.multiply(M).floor().toString())!==t.finalScore||amount.compare(new Rational(BigInt(t.finalScore))))fail();}
     if(H.compare(Rational.fromJSON(e.after.H))||M.compare(Rational.fromJSON(e.after.M)))fail();
   }
   if(finals!==1||H.compare(Rational.fromJSON(t.accumulator.H))||M.compare(Rational.fromJSON(t.accumulator.M)))fail();

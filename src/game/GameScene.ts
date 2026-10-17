@@ -1,3 +1,5 @@
+import {usesAmoExile,amoExileChoice,amoExileFacts} from '../domain/r2AmoExile';
+import {AMO_EXILE_DETAILS,savedAmoExileFormula} from './AmoExileCopy';
 import {heroSkillButton,heroSkillName,heroSkillTitle,type TouyeSkillPhase} from './HeroSkillPresentation';
 import {updateHeroSkillStatusText} from './HeroSkillStatusText';
 import {heroSidebarRows,shortHeroStatus} from './HeroSidebarLayout';
@@ -210,6 +212,7 @@ export class GameScene extends Phaser.Scene {
   private get handLayoutWindow(){return {count:this.run?this.hand.length:0,start:this.handStart};}
   private toolHand?:readonly PlayingCard[];
   private selectedIds = new Set<string>();
+  private amoExile=false;
   private assistIds:string[]=[];
   private assistPage=0;
   private readonly assistRecommendations=new AssistRecommendationCache();
@@ -331,7 +334,7 @@ export class GameScene extends Phaser.Scene {
     window.addEventListener('keydown',cancelPlacementKey,true);window.addEventListener('pointercancel',cancelPlacement,true);
     this.events.once('shutdown',()=>{window.removeEventListener('keydown',cancelPlacementKey,true);window.removeEventListener('pointercancel',cancelPlacement,true);});
     const lifecycle=++this.lifecycle;this.intent++;
-    this.shownOpponentKinds.clear();this.shownPayoffs.clear();this.refillHidden=false;this.effects.clear();this.erxiangTargetId=null;this.azaoRelease=false;this.xiemuBurn=0;this.jokerViews.clear();this.cardViews=[];this.selectedIds.clear();this.assistIds=[];this.assistPage=0;this.assistGestureStart=undefined;this.hoveredCardId=undefined;this.hoveredJokerId=undefined;this.jokerHoverPreview=undefined;this.playing=false;this.presentation=undefined;this.toolHand=undefined;this.statusMessage='';this.focusIndex=0;this.keyboardFocus=false;this.handStart=0;this.handNavigationButtons=[];
+    this.shownOpponentKinds.clear();this.shownPayoffs.clear();this.refillHidden=false;this.effects.clear();this.erxiangTargetId=null;this.azaoRelease=false;this.xiemuBurn=0;this.amoExile=false;this.jokerViews.clear();this.cardViews=[];this.selectedIds.clear();this.assistIds=[];this.assistPage=0;this.assistGestureStart=undefined;this.hoveredCardId=undefined;this.hoveredJokerId=undefined;this.jokerHoverPreview=undefined;this.playing=false;this.presentation=undefined;this.toolHand=undefined;this.statusMessage='';this.focusIndex=0;this.keyboardFocus=false;this.handStart=0;this.handNavigationButtons=[];
     const settings=()=>{
       const hintVisible=!!this.handHint;this.stopHandHint();if(hintVisible&&this.reducedMotion)this.showHandHint(false);
       this.tweens.timeScale=gameSession().speed;this.time.timeScale=gameSession().speed;
@@ -1035,6 +1038,7 @@ export class GameScene extends Phaser.Scene {
       const pending=this.pendingRefill,ids=[...this.selectedIds].filter(id=>pending.candidateIds.includes(id));
       this.targetAttachment?.preview(!this.refillHidden&&ids.length===pending.required?{key:key(ids),targetId:ids[0],targetIds:ids,kind:'candidate',label:'待留',resolvedLabel:'已留',releaseReason:'laohuan.refill'}:undefined);return;
     }
+    if(usesAmoExile(this.run)){const ids=this.selectionPreview()?.activeScoringIds??[];this.targetAttachment?.preview(this.amoExile&&amoExileChoice(this.run,[...this.selectedIds]).available&&ids.length?{key:key(ids),targetId:ids[0],targetIds:ids,kind:'group',label:'本手×4',resolvedLabel:'已×4',releaseReason:'amo.exile'}:undefined);return;}
     if(this.assistProfile){
       const assist=validAssistDraft(this.assistInput(),r2AssistAvailability(this.run).available,this.assistIds),ids=assist?.assistIds;
       this.targetAttachment?.preview(ids?.length?{key:JSON.stringify([this.run.runId,this.run.stage?.index,[...this.selectedIds].sort(),[...ids].sort()]),targetId:ids[0],targetIds:ids,kind:'assist',label:'助',resolvedLabel:'已助',releaseReason:'amo.assist.'}:undefined);return;
@@ -1065,7 +1069,8 @@ export class GameScene extends Phaser.Scene {
       const selected=this.selectedIds.has(v.card.id),scoring=active.includes(v.card.id);
       v.container.setData('selected',selected).setData('activeScoring',scoring);
       const assisted=(this.presentation?.score.sets.assistConsumedIds??this.assistIds).includes(v.card.id);
-      v.selectionMark?.setText(assisted?'助':this.erxiangTargetId===v.card.id?'交':this.assistProfile||usesErxiangHandoff(this.run)?'主':'✓').setVisible(selected||assisted);
+      const sacrificed=(this.presentation?.score.sets.discardedIds??(this.amoExile?amoExileChoice(this.run,[...this.selectedIds]).discardedIds:[])).includes(v.card.id);
+      v.selectionMark?.setText(sacrificed?'弃':assisted?'助':this.erxiangTargetId===v.card.id?'交':this.assistProfile||usesAmoExile(this.run)||usesErxiangHandoff(this.run)?'主':'✓').setVisible(selected||assisted||sacrificed);
       if(this.assistProfile&&v.selectionMark)v.selectionMark.setPosition(-Number(v.container.getData('width'))/2+12,Number(v.container.getData('height'))/2+10).setBackgroundColor(assisted?C.paperLight:C.jadeSoft).setName('selection/draft-role').setData('cardId',v.card.id);
       const disabled=disabledIds.includes(v.card.id),pointsZero=suppressed.includes(v.card.id);v.background.setFillStyle(disabled?0xd2d0cb:T.paper);
       this.refreshCardPressure(v);
@@ -1105,7 +1110,7 @@ export class GameScene extends Phaser.Scene {
   }
   private get assistProfile():boolean {return r2UsesAssist(this.run);}
   private get jokerDefinitions(){return r2JokerDefinitionsFor(this.run);}
-  private chosenHeroDraft():ChosenHeroDraft {return {erxiangTargetId:this.erxiangTargetId,azaoRelease:this.azaoRelease,xiemuBurn:this.xiemuBurn};}
+  private chosenHeroDraft():ChosenHeroDraft {return {amoExile:this.amoExile,erxiangTargetId:this.erxiangTargetId,azaoRelease:this.azaoRelease,xiemuBurn:this.xiemuBurn};}
   private jokerDefinition(id:string){const d=r2JokerDefinitionFor(this.run,id);return {...d,name:cardDisplayName(d.id,d.name)};}
   private draftRevision():string {return JSON.stringify([this.run.contentVersion,this.run.contentHash,r2HandRevision(this.candidateInput())]);}
   private assistInput(){return{...this.candidateInput(),selectedIds:[...this.selectedIds]};}
@@ -1226,9 +1231,9 @@ export class GameScene extends Phaser.Scene {
   private updateHeroControl():void {
     if(!this.roleFrame?.active)return;
     const savedAssistUsed=!!this.presentation&&this.assistProfile&&this.run.stage?.assistUsed===true;
-    const heroCue=savedAssistUsed?{...heroSkillButton(this.characterId,{available:false,used:true},'本场次数已用'),available:false,opportunity:false}:heroAbilityCue(this.run,this.selectionPreview(),[...this.selectedIds],this.assistProfile&&assistCandidates(this.assistInput(),r2AssistAvailability(this.run).available).length>0,{erxiangTargetId:this.erxiangTargetId,xiemuBurn:this.xiemuBurn,azaoRelease:this.azaoRelease,assistCount:this.assistIds.length,touyePhase:this.touyeSkillPhase});
+    const heroCue=savedAssistUsed?{...heroSkillButton(this.characterId,{available:false,used:true},'本场次数已用'),available:false,opportunity:false}:heroAbilityCue(this.run,this.selectionPreview(),[...this.selectedIds],this.assistProfile&&assistCandidates(this.assistInput(),r2AssistAvailability(this.run).available).length>0,{erxiangTargetId:this.erxiangTargetId,xiemuBurn:this.xiemuBurn,azaoRelease:this.azaoRelease,amoExile:this.amoExile,assistCount:this.assistIds.length,touyePhase:this.touyeSkillPhase});
     if(savedAssistUsed)this.roleText.setText(heroCue!.label+' · '+heroCue!.status);
-    const heroChosen=!!(this.erxiangTargetId||this.azaoRelease||this.xiemuBurn||this.assistIds.length);
+    const heroChosen=!!(this.amoExile||this.erxiangTargetId||this.azaoRelease||this.xiemuBurn||this.assistIds.length);
     if(this.assistProfile&&heroChosen&&!this.presentation&&!this.playing)this.roleText.setText(heroText('阿默·已选助攻×')+(this.assistIds.length===3?4:2));
     if(heroCue&&!this.presentation&&!this.playing&&!heroChosen)this.roleText.setText(heroCue.label);
     // Every update clears the readiness accent while saving, paused or presenting.
@@ -1279,7 +1284,7 @@ export class GameScene extends Phaser.Scene {
   }
   private aiInput():AiHandInput {
     const stage=this.run.stage!,context=r2ScoreContext(this.run,this.hand,[]);
-    return{...this.candidateInput(),boss:context.boss,sealedJokerIds:context.sealedJokerIds,challengeDisabledJokerId:context.challengeDisabledJokerId,score:aiScoreContext({...(context.boundedClear?{boundedClear:context.boundedClear}:{}),...(context.activeMultTiming?{activeMultTiming:context.activeMultTiming}:{}),...(context.routeGrowth?{routeGrowth:context.routeGrowth}:{}),...(context.erxiangHandoff?{erxiangHandoff:context.erxiangHandoff}:{}),...(context.touyeWager?{touyeWager:context.touyeWager}:{}),...(context.laohuanTrick?{laohuanTrick:context.laohuanTrick}:{}),...(context.xiemuBurn?{xiemuBurn:context.xiemuBurn}:{}),...(context.azaoCharge?{azaoCharge:context.azaoCharge}:{}),characterId:context.characterId,amoScoreTiming:context.amoScoreTiming,jokerSlots:context.jokerSlots,handLevels:this.run.handLevels,previousHandType:stage.previousHandType,previousHandScore:context.previousHandScore,wager:stage.wagerSelected},{...this.chosenHeroDraft(),assistIds:this.assistIds})};
+    return{...this.candidateInput(),boss:context.boss,sealedJokerIds:context.sealedJokerIds,challengeDisabledJokerId:context.challengeDisabledJokerId,score:aiScoreContext({...(context.amoExile?{amoExile:context.amoExile}:{}),...(context.boundedClear?{boundedClear:context.boundedClear}:{}),...(context.activeMultTiming?{activeMultTiming:context.activeMultTiming}:{}),...(context.routeGrowth?{routeGrowth:context.routeGrowth}:{}),...(context.erxiangHandoff?{erxiangHandoff:context.erxiangHandoff}:{}),...(context.touyeWager?{touyeWager:context.touyeWager}:{}),...(context.laohuanTrick?{laohuanTrick:context.laohuanTrick}:{}),...(context.xiemuBurn?{xiemuBurn:context.xiemuBurn}:{}),...(context.azaoCharge?{azaoCharge:context.azaoCharge}:{}),characterId:context.characterId,amoScoreTiming:context.amoScoreTiming,jokerSlots:context.jokerSlots,handLevels:this.run.handLevels,previousHandType:stage.previousHandType,previousHandScore:context.previousHandScore,wager:stage.wagerSelected},{...this.chosenHeroDraft(),assistIds:this.assistIds})};
   }
   private cancelAiCandidates():void {
     // Finished facts are immutable and still checked against the full public key.
@@ -1353,7 +1358,7 @@ export class GameScene extends Phaser.Scene {
     if(this.playing||this.presentation||this.run.phase!=='await-input'||this.handsLeft<=0||!this.selectedIds.size||[...this.selectedIds].some(id=>!this.hand.some(card=>card.id===id)))return undefined;
     const context=r2ScoreContext(this.run,this.hand,[...this.selectedIds]);
     const input={hand:this.hand,selectedIds:[...this.selectedIds],disabledIds:this.run.stage!.disabledIds,jokers:this.run.jokers,definitions:this.jokerDefinitions,handRules:context.handRules,ordinaryPointsSuppressedIds:context.ordinaryPointsSuppressedIds};
-    return validAssistDraft(input,this.assistProfile&&r2AssistAvailability(this.run).available,this.assistIds)??r2SelectionFacts(input);
+    return this.amoExile&&amoExileChoice(this.run,[...this.selectedIds]).available?amoExileFacts(input):validAssistDraft(input,this.assistProfile&&r2AssistAvailability(this.run).available,this.assistIds)??r2SelectionFacts(input);
   }
   private inspectSelection(facts:HandPreview):void {
     const copy=selectionCopy(facts),label=(ids:string[])=>this.hand.filter(c=>ids.includes(c.id)).map(c=>rankLabel(c.rank)+SUIT_SYMBOL[c.suit]).join('、')||'无';
@@ -1408,7 +1413,15 @@ export class GameScene extends Phaser.Scene {
       ()=>this.ready&&!this.presentation&&this.run.commandSeq===seq&&this.assistRecommendations.get(this.run,[...this.selectedIds])?.key===key,
       ids=>{if(ids.length)this.chooseAssist(ids);else {this.assistIds=[];this.statusMessage='本手不助攻，保留余牌与机会';this.refreshSelection();}});
   }
+  private inspectAmoExile():void {
+    if(!this.ready||this.presentation)return;
+    const run=this.run,ids=[...this.selectedIds],c=amoExileChoice(run,ids),selected=JSON.stringify(ids);
+    const names=this.hand.filter(card=>c.discardedIds.includes(card.id)).map(card=>rankLabel(card.rank)+SUIT_SYMBOL[card.suit]).join(' ');
+    const valid=()=>this.ready&&!this.presentation&&this.run===run&&JSON.stringify([...this.selectedIds])===selected;
+    this.dialog.open('苏轼 · 贬谪',AMO_EXILE_DETAILS+'\n\n'+(c.used?'本场已用':!c.enabled?'本场角色能力停用':!ids.length?'先选这手要打的牌':!c.discardedIds.length?'需要至少1张余牌可弃':'本手会弃掉：'+names+'（'+c.discardedIds.length+'张）'),[{label:this.amoExile?'取消本手贬谪':'本手使用贬谪 ×4',primary:true,disabled:!this.amoExile&&!c.available,run:()=>{if(!valid())return;this.amoExile=!this.amoExile&&amoExileChoice(this.run,ids).available;this.dialog.close();this.statusMessage=this.amoExile?'已选贬谪：出牌时弃掉'+c.discardedIds.length+'张，得分×4':'本手不使用贬谪';this.refreshSelection();}}],{closeLabel:'返回选牌'});
+  }
   private inspectHeroAction():void {
+    if(usesAmoExile(this.run)){this.inspectAmoExile();return;}
     if(!this.ready||this.presentation)return;if(this.pendingRefill){this.reopenRefill();return;}
     if(this.assistProfile){
       if(this.assistIds.length){this.chooseAssist(this.assistIds);return;}
@@ -1462,10 +1475,11 @@ export class GameScene extends Phaser.Scene {
     const dialog=this.dialog.open(characterForRun(this.run).name+' · '+characterForRun(this.run).passiveName,characterForRun(this.run).passiveDescription,[],{guideSteps:heroOperationSteps(this.run,guide,!!this.erxiangTargetId),summaryBody:guide.step,effectBody:choice.sentence,collapseRules:true,rulesLabel:'计分牌转换细则',closeLabel:'返回选牌',choices:actions.filter(a=>a.label!=='上一手详情'),secondaryActions:actions.filter(a=>a.label==='上一手详情')});mountHeroSkillGuide(dialog,this.run);
   }
   private inspectHeroExplanation():void {
-    const guide=heroSkillGuide(this.run,this.selectionPreview(),[...this.selectedIds],this.assistProfile&&assistCandidates(this.assistInput(),r2AssistAvailability(this.run).available).length>0,{erxiangTargetId:this.erxiangTargetId,xiemuBurn:this.xiemuBurn,azaoRelease:this.azaoRelease,assistCount:this.assistIds.length});
+    const guide=heroSkillGuide(this.run,this.selectionPreview(),[...this.selectedIds],this.assistProfile&&assistCandidates(this.assistInput(),r2AssistAvailability(this.run).available).length>0,{erxiangTargetId:this.erxiangTargetId,xiemuBurn:this.xiemuBurn,azaoRelease:this.azaoRelease,amoExile:this.amoExile,assistCount:this.assistIds.length});
     showHeroExplanation(this.dialog,this.characterId,{run:this.run,guide,status:this.presentation?'正在结算；结束后再使用技能。':this.playing?'正在换牌；完成后再使用技能。':!this.ready?'当前进度未保存或只读；可查看说明，暂不能使用。':undefined,closeLabel:'返回牌桌',actions:[{label:'查看本场技能操作',disabled:!this.ready||this.playing||!!this.presentation,run:()=>this.inspectRole()}]});
   }
   private inspectRole():void {
+    if(usesAmoExile(this.run)){this.inspectAmoExile();return;}
     if(this.ready&&this.assistProfile&&this.assistRecommendations.get(this.run,[...this.selectedIds])?.options.length!>1){this.inspectAssistChoices();return;}
     if(usesErxiangHandoff(this.run)){this.inspectErxiang();return;}
     if(usesTouyeWager(this.run)){this.inspectTouye();return;}
@@ -1477,8 +1491,8 @@ export class GameScene extends Phaser.Scene {
     const azao=usesAzaoCharge(this.run)?azaoChoice(this.run,this.selectionPreview()?.type):undefined;
     const roleState=xiemu?xiemu.details:azao?azao.compact+'\n'+azao.hold+'\n默认不释放；在确认出牌前选择，取消不消耗。':!ability?'本次挑战关闭角色被动、初始赠送与押注。':notice?.wagerDisabled?'静场：本场角色计分与押注停用；非计分过关奖励保留。':this.characterId==='xiemu'?(stage.handsLeft===1?'当前为最后一手：倍率 ×2，过关额外 +2 金。':'距离最后一手还有 '+(stage.handsLeft-1)+' 次。'):this.characterId==='touye'?(stage.wagerUsed?'本场押注已用。':stage.wagerSelected?'本手已押注：50% ×2 / 50% ×0.75。':'本场押注未用；默认倍率 ×1.15。'):'';
     const body=(savedXiemuBurn(this.run)?savedXiemuBurn(this.run)+'\n\n':'')+(savedAzaoCharge(this.run)?savedAzaoCharge(this.run)+'\n\n':'')+(challenge?challenge.name+'：'+challenge.description+'\n\n':'')+(xiemu?roleState+'\n'+(ability?c.passiveDescription:''):(ability?c.passiveDescription+'\n':'')+roleState)+'\n'+this.stage.name+'：'+this.stage.intro+'\n'+(notice?.warning?notice.details+'\n':'')+(stage.boss?'本场压轴':'本章压轴预告')+' '+heroText(r2BossText(stage.boss??this.run.boss))+'\n弃牌成本：'+r2DiscardCost(this.run)+(notice?.discardGoldCost?' 次 +1金币':' 次')+'；本场已弃 '+stage.discardsUsed+' 次。\n当前手牌上限 '+stage.handLimit+'，扩容修正后的硬上限14。\n'+(this.run.jokers.some(joker=>joker.definitionId==='c08')?'少一级：普通顺子可用4张，A234合法；同花顺仍须5张。\n':'')+(this.run.safetyNetUsed?'安全网本局已经使用，不会再次触发。':this.run.jokers.some(joker=>joker.definitionId==='f07')?'安全网：耗尽出牌且仍有可用手牌时救场一次，成功过关不触发。':'');
-    const guide=heroSkillGuide(this.run,this.selectionPreview(),[...this.selectedIds],this.assistProfile&&assistCandidates(this.assistInput(),r2AssistAvailability(this.run).available).length>0,{xiemuBurn:this.xiemuBurn,azaoRelease:this.azaoRelease,assistCount:this.assistIds.length});
-    const actions=[{label:'培养手记',run:()=>this.inspectJourney()},...(xiemu?[...xiemu.choices.map(choice=>({label:this.xiemuBurn===choice.cost?'已选'+choice.label:choice.label,detail:[choice.reason,choice.details].filter(Boolean).join(' · '),primary:this.xiemuBurn===choice.cost,disabled:!this.ready||!choice.available,run:()=>{if(!this.ready||!xiemuChoice(this.run,this.selectionPreview()?.type).choices.find(c=>c.cost===choice.cost)?.available)return;this.xiemuBurn=choice.cost;this.dialog.close();this.updateControls();}})),...(this.xiemuBurn?[{label:'取消本手支付',run:()=>{this.xiemuBurn=0;this.dialog.close();this.updateControls();}}]:[])]:[]),...(azao?[{label:azaoReleaseLabel(azao,this.azaoRelease),primary:true,disabled:!this.ready||(!this.azaoRelease&&!azao.available),run:()=>{if(!this.ready||!azaoChoice(this.run,this.selectionPreview()?.type).available){this.erxiangTargetId=null;this.azaoRelease=false;this.xiemuBurn=0;this.dialog.close();this.updateControls();return;}this.azaoRelease=!this.azaoRelease;this.dialog.close();this.updateControls();}}]:[]),{label:'查看物品',run:()=>showConsumables(this.dialog,this.run,this.ready&&!this.pendingRefill&&!this.pendingTouye,(a,seq)=>this.command(a,seq))},{label:'上一手详情',disabled:!this.run.lastTrace,run:()=>this.inspectLastTrace()},...(this.run.program?[{label:'本章节目单',run:()=>showPrograms(this.dialog,this.run,this.ready&&!this.pendingTouye,(a,seq)=>this.command(a,seq))}]:[]),...(this.characterId==='touye'?[{label:notice?.wagerDisabled?'本场不能押注':stage.wagerSelected?'取消本手押注':'押注本手',disabled:!this.ready||stage.wagerUsed||notice?.wagerDisabled,run:async()=>{await this.command({type:'SetWager',enabled:!stage.wagerSelected});if(this.dialog.active(dialog))this.inspectRole();}}]:[])];
+    const guide=heroSkillGuide(this.run,this.selectionPreview(),[...this.selectedIds],this.assistProfile&&assistCandidates(this.assistInput(),r2AssistAvailability(this.run).available).length>0,{xiemuBurn:this.xiemuBurn,azaoRelease:this.azaoRelease,amoExile:this.amoExile,assistCount:this.assistIds.length});
+    const actions=[{label:'培养手记',run:()=>this.inspectJourney()},...(xiemu?[...xiemu.choices.map(choice=>({label:this.xiemuBurn===choice.cost?'已选'+choice.label:choice.label,detail:[choice.reason,choice.details].filter(Boolean).join(' · '),primary:this.xiemuBurn===choice.cost,disabled:!this.ready||!choice.available,run:()=>{if(!this.ready||!xiemuChoice(this.run,this.selectionPreview()?.type).choices.find(c=>c.cost===choice.cost)?.available)return;this.xiemuBurn=choice.cost;this.dialog.close();this.updateControls();}})),...(this.xiemuBurn?[{label:'取消本手支付',run:()=>{this.xiemuBurn=0;this.dialog.close();this.updateControls();}}]:[])]:[]),...(azao?[{label:azaoReleaseLabel(azao,this.azaoRelease),primary:true,disabled:!this.ready||(!this.azaoRelease&&!azao.available),run:()=>{if(!this.ready||!azaoChoice(this.run,this.selectionPreview()?.type).available){this.erxiangTargetId=null;this.azaoRelease=false;this.xiemuBurn=0;this.amoExile=false;this.dialog.close();this.updateControls();return;}this.azaoRelease=!this.azaoRelease;this.dialog.close();this.updateControls();}}]:[]),{label:'查看物品',run:()=>showConsumables(this.dialog,this.run,this.ready&&!this.pendingRefill&&!this.pendingTouye,(a,seq)=>this.command(a,seq))},{label:'上一手详情',disabled:!this.run.lastTrace,run:()=>this.inspectLastTrace()},...(this.run.program?[{label:'本章节目单',run:()=>showPrograms(this.dialog,this.run,this.ready&&!this.pendingTouye,(a,seq)=>this.command(a,seq))}]:[]),...(this.characterId==='touye'?[{label:notice?.wagerDisabled?'本场不能押注':stage.wagerSelected?'取消本手押注':'押注本手',disabled:!this.ready||stage.wagerUsed||notice?.wagerDisabled,run:async()=>{await this.command({type:'SetWager',enabled:!stage.wagerSelected});if(this.dialog.active(dialog))this.inspectRole();}}]:[])];
     const auxiliary=new Set(['培养手记','查看物品','上一手详情','本章节目单']);
     const choices=actions.filter(a=>!auxiliary.has(a.label));
     if(this.assistProfile)choices.push({label:'查看主手与助攻组合',primary:true,disabled:!this.ready||!r2AssistAvailability(this.run).available,run:()=>this.inspectCandidates()});
@@ -1566,7 +1580,7 @@ export class GameScene extends Phaser.Scene {
   private async sortHand(mode:'rank'|'suit'):Promise<void> {
     if(!this.ready||this.presentation||this.run.phase!=='await-input')return;
     this.handInput?.cancel();this.view.cancelInteraction();
-    this.erxiangTargetId=null;this.azaoRelease=false;this.xiemuBurn=0;this.selectedIds.clear();this.assistIds=[];this.assistPage=0;this.candidateGhost=undefined;this.candidateUndo=undefined;this.aiCursor=undefined;this.statusMessage='';
+    this.erxiangTargetId=null;this.azaoRelease=false;this.xiemuBurn=0;this.amoExile=false;this.selectedIds.clear();this.assistIds=[];this.assistPage=0;this.candidateGhost=undefined;this.candidateUndo=undefined;this.aiCursor=undefined;this.statusMessage='';
     this.refreshSelection();
     const cards=[...this.hand].sort((a,b)=>mode==='rank'?b.rank-a.rank||SUITS.indexOf(a.suit)-SUITS.indexOf(b.suit):SUITS.indexOf(a.suit)-SUITS.indexOf(b.suit)||b.rank-a.rank);
     const before=this.handPositions();
@@ -1617,7 +1631,7 @@ export class GameScene extends Phaser.Scene {
     const previous=this.selectedIds,next=new Set(update.selectedIds),changed=previous.size!==next.size||[...previous].some(id=>!next.has(id));
     this.statusMessage=update.limitReached?'每手最多选择 5 张牌':'';
     if(!changed){if(update.limitReached)this.updateControls();return;}
-    const endedUndo=!!this.candidateUndo;this.aiCursor=undefined;this.candidateUndo=undefined;this.candidateGhost=undefined;this.azaoRelease=false;this.xiemuBurn=0;this.selectedIds=next;this.validateAssistSelection();if(endedUndo&&!update.limitReached&&this.statusMessage!=='主手或可用条件已变化，助攻已取消')this.statusMessage='已手动改选，换组撤销已结束';
+    const endedUndo=!!this.candidateUndo;this.aiCursor=undefined;this.candidateUndo=undefined;this.candidateGhost=undefined;this.azaoRelease=false;this.xiemuBurn=0;this.amoExile=false;this.selectedIds=next;this.validateAssistSelection();if(endedUndo&&!update.limitReached&&this.statusMessage!=='主手或可用条件已变化，助攻已取消')this.statusMessage='已手动改选，换组撤销已结束';
     const changedViews=this.cardViews.filter(view=>previous.has(view.card.id)!==next.has(view.card.id));changedViews.forEach(view=>this.revealCard(view));
     if(update.phase!=='cancelled'){if(update.mode==='select')this.audio.select();else this.audio.deselect();}
     // Batch a fast crossing into one preview; no rules command, RNG or save is touched.
@@ -1626,7 +1640,7 @@ export class GameScene extends Phaser.Scene {
 
   private toggleCard(id: string): void {
     if (!this.ready||this.refillHidden) return;
-    this.erxiangTargetId=null;this.azaoRelease=false;this.xiemuBurn=0;
+    this.erxiangTargetId=null;this.azaoRelease=false;this.xiemuBurn=0;this.amoExile=false;
     const view=this.cardViews.find(view=>view.card.id===id);if(view)this.revealCard(view);
     this.statusMessage='';
     if(!this.selectedIds.has(id)&&this.selectedIds.size>=this.selectionLimit){this.statusMessage='每手最多选择 5 张牌';this.audio.invalid();if(view)this.wiggleCard(view,this.cardViews.indexOf(view));this.updateControls();return;}
@@ -1765,7 +1779,7 @@ export class GameScene extends Phaser.Scene {
         this.audio.sourceCue('boss');await Promise.all([this.floatNote(event.operation==='charge-discard'?'-1 金币':'目标 +'+heatText(event.amount),b.x+b.width/2,b.y+b.height,'#ffd0a2',this.reducedMotion?180:460,context),this.reducedMotion?this.wait(180,context):this.animate({targets:target,scale:{from:1.14,to:1},duration:360,ease:'Back.easeOut'},context)]);
       });
       await this.effects.drain();if(!this.alive(lifecycle,intent))return;
-      this.erxiangTargetId=null;this.azaoRelease=false;this.xiemuBurn=0;this.selectedIds.clear();this.assistIds=[];this.assistGestureStart=undefined;this.statusMessage=bet||this.pendingRefill?'':result.events.flatMap(event=>event.type==='joker-transaction'?[transactionGrowthChange(previousRun,result.state,event,true)].filter(Boolean):[])[0]??(trick?heroSkillTitle('laohuan')+'已保存 · 候选不足，全留':'已弃 '+selectedIds.length+' 张 · '+(this.deck.length?'补抽完成':'牌堆已空'));this.updateHud();this.renderHand();this.revealDrawnCards(previousIds);
+      this.erxiangTargetId=null;this.azaoRelease=false;this.xiemuBurn=0;this.amoExile=false;this.selectedIds.clear();this.assistIds=[];this.assistGestureStart=undefined;this.statusMessage=bet||this.pendingRefill?'':result.events.flatMap(event=>event.type==='joker-transaction'?[transactionGrowthChange(previousRun,result.state,event,true)].filter(Boolean):[])[0]??(trick?heroSkillTitle('laohuan')+'已保存 · 候选不足，全留':'已弃 '+selectedIds.length+' 张 · '+(this.deck.length?'补抽完成':'牌堆已空'));this.updateHud();this.renderHand();this.revealDrawnCards(previousIds);
       if(trick&&!this.pendingRefill){const kept=this.run.handOrder.filter(id=>!previousRun.handOrder.includes(id));await this.showLaohuanPayoff(kept,0,lifecycle,intent);}
       if(this.run.phase==='run-lost')this.finishStage(false);
     } finally {if(this.alive(lifecycle,intent)){this.touyeSkillPhase=undefined;if(['await-input','pending-refill'].includes(this.run.phase)){this.playing=false;this.refreshSelection();}else this.updateHeroControl();}}
@@ -1797,12 +1811,12 @@ export class GameScene extends Phaser.Scene {
   private async playSelected(confirmedUnusedSkill=false):Promise<void> {
     if(this.pendingRefill){await this.chooseRefill();return;}
     if(!this.ready||this.presentation||this.dialog.current||this.selectedIds.size===0||this.handsLeft<=0)return;
-    const facts=this.selectionPreview(),ids=[...this.selectedIds],draft={erxiangTargetId:this.erxiangTargetId,xiemuBurn:this.xiemuBurn,azaoRelease:this.azaoRelease,assistCount:this.assistIds.length};
+    const facts=this.selectionPreview(),ids=[...this.selectedIds],draft={erxiangTargetId:this.erxiangTargetId,xiemuBurn:this.xiemuBurn,azaoRelease:this.azaoRelease,amoExile:this.amoExile,assistCount:this.assistIds.length};
     const assistAvailable=this.assistProfile&&assistCandidates(this.assistInput(),r2AssistAvailability(this.run).available).length>0;
     if(!confirmedUnusedSkill&&unusedHeroAbility(this.run,facts,ids,assistAvailable,draft)&&heroPlayReminders.enabled()){
       const state=this.run,lifecycle=this.lifecycle,selection=JSON.stringify(ids),chosen=JSON.stringify(draft);
       showHeroPlayReminder(this.dialog,this.run,facts!,ids,assistAvailable,{
-        valid:()=>this.lifecycle===lifecycle&&this.run===state&&this.ready&&!this.presentation&&JSON.stringify([...this.selectedIds])===selection&&JSON.stringify({erxiangTargetId:this.erxiangTargetId,xiemuBurn:this.xiemuBurn,azaoRelease:this.azaoRelease,assistCount:this.assistIds.length})===chosen&&unusedHeroAbility(this.run,this.selectionPreview(),[...this.selectedIds],this.assistProfile&&assistCandidates(this.assistInput(),r2AssistAvailability(this.run).available).length>0,draft),
+        valid:()=>this.lifecycle===lifecycle&&this.run===state&&this.ready&&!this.presentation&&JSON.stringify([...this.selectedIds])===selection&&JSON.stringify({erxiangTargetId:this.erxiangTargetId,xiemuBurn:this.xiemuBurn,azaoRelease:this.azaoRelease,amoExile:this.amoExile,assistCount:this.assistIds.length})===chosen&&unusedHeroAbility(this.run,this.selectionPreview(),[...this.selectedIds],this.assistProfile&&assistCandidates(this.assistInput(),r2AssistAvailability(this.run).available).length>0,draft),
         back:()=>this.inspectRole(),play:()=>{void this.playSelected(true);},disable:()=>heroPlayReminders.disable(),
       });return;
     }
@@ -1810,7 +1824,7 @@ export class GameScene extends Phaser.Scene {
     this.clearHover();this.cancelAiCandidates();this.touyeSkillPhase=this.pendingTouye?'settling':undefined;this.playing=true;this.statusMessage='';this.updateControls();
     const selectedViews=this.cardViews.filter(v=>selectedIds.includes(v.card.id)||assistIds.includes(v.card.id));
     try {
-      const result=await dispatchRun(this,assistIds.length?{type:'PlayAssistedHand',selectedIds,assistIds}:{type:'PlayHand',selectedIds,...(usesErxiangHandoff(this.run)&&erxiangTargetId?{erxiangTargetId}:{}),...(usesAzaoCharge(this.run)?{azaoRelease}:{}),...(usesXiemuBurn(this.run)&&xiemuBurn?{xiemuBurn:xiemuBurn as 10|20|30}:{})});
+      const result=await dispatchRun(this,assistIds.length?{type:'PlayAssistedHand',selectedIds,assistIds}:{type:'PlayHand',selectedIds,...(usesAmoExile(this.run)&&this.amoExile?{amoExile:true}:{}),...(usesErxiangHandoff(this.run)&&erxiangTargetId?{erxiangTargetId}:{}),...(usesAzaoCharge(this.run)?{azaoRelease}:{}),...(usesXiemuBurn(this.run)&&xiemuBurn?{xiemuBurn:xiemuBurn as 10|20|30}:{})});
       if(!this.alive(lifecycle,intent))return;
       if(!result.ok||result.duplicate){if(!result.ok)this.statusMessage=result.code==='save-failed'?'未保存，请在菜单中重试或导出':result.code==='score-diagnostic'?'本手无法结算，资源与原状态已保留':'出牌未提交，请查看菜单或选择。';return;}
       this.run=result.state;
@@ -1823,6 +1837,7 @@ export class GameScene extends Phaser.Scene {
 
   private operationText(event:ScoreEvent):string {
     if(event.reasonKey==='erxiang.handoff')return fractionText(event.value)+'点热度 → 倍率（首次普通计分）';
+    if(event.reasonKey==='amo.exile')return '贬谪：本手得分×4';
     return r2ScoreOperationText(event,event.sourceType==='joker'?this.jokerDefinition(event.sourceDefinitionId):undefined);
   }
   private eventSource(event:ScoreEvent):string {
@@ -1830,7 +1845,7 @@ export class GameScene extends Phaser.Scene {
     const edition=event.reasonKey.startsWith('edition.')?editionLabel(event.reasonKey.split('.')[1] as PlayingCard['edition'])+' · ':'';
     if(event.sourceType==='joker')return edition+this.jokerDefinition(event.sourceDefinitionId).name;
     if(event.sourceType==='character'&&(event.reasonKey.startsWith('touye.won.')||event.reasonKey.startsWith('touye.lost.')))return heroSkillTitle('touye')+' · 押'+HAND_LABELS[event.reasonKey.split('.')[2] as TouyeTarget]+(event.reasonKey.startsWith('touye.won.')?'达成':usesTouyeNewCore(this.run)?'输约':'未成');
-    if(event.sourceType==='character')return heroSkillTitle(this.characterId);
+    if(event.sourceType==='character')return usesAmoExile(this.run)?'苏轼 · 贬谪':heroSkillTitle(this.characterId);
     const card=(this.presentation?.score??this.run.lastTrace)?.cards.find(card=>card.id===event.targetCardId);
     const item=R2_LONG_TERM_ITEMS.find(item=>item.id===event.sourceDefinitionId),tool=R2_TOOLS.find(tool=>tool.id===event.sourceDefinitionId),program=R2_MODE_CATALOG.programs.find(program=>program.id===event.sourceDefinitionId);
     const boss=R2_BOSSES.find(boss=>boss.id===event.sourceDefinitionId),sealed=(this.presentation?.score??this.run.lastTrace)?.sourceJokers.find(joker=>joker.instanceId===event.targetJokerInstanceId);
@@ -1838,7 +1853,8 @@ export class GameScene extends Phaser.Scene {
   }
   private setAccumulator(value:Accumulator):void {
     this.scoreHeat.setText(readableFractionText(value.H));this.scoreMult.setText(readableFractionText(value.M));
-    this.setDisplayedProduct(Rational.fromJSON(value.H).multiply(Rational.fromJSON(value.M)).floor().toString());
+    const trace=this.presentation?.score;const exile=trace?.amoExile;
+    this.setDisplayedProduct(exile?.use&&JSON.stringify(value)===JSON.stringify(trace!.accumulator)?exile.afterScore!:Rational.fromJSON(value.H).multiply(Rational.fromJSON(value.M)).floor().toString());
   }
   private setDisplayedProduct(product:string):void {
     this.displayedScoreProduct=product;this.scoreTotal.setText(heatText(product));this.fitScoreReadouts();this.refreshScoreFire(product);
@@ -2143,7 +2159,7 @@ export class GameScene extends Phaser.Scene {
   }
   private showOpeningScore(score:ScoreTrace,context:EffectContext):KeyCueCleanup {
     const event=score.events.find(e=>e.phase==='finalScore')!;
-    const key:JokerKeyHighlight={eventId:event.eventId,kind:'opening',heroId:this.run.characterId,cause:'本局前五手内真实结算',landing:readableScoreFormula(score.accumulator.H,score.accumulator.M,score.finalScore),fact:{eventId:event.eventId,sourceInstanceId:event.sourceInstanceId,definitionId:'',title:(this.run.phase==='run-lost'?'本局结束 · 实际得分 · ':'开场得分 · ')+HAND_LABELS[score.handType],effect:'已结算 '+heatText(score.finalScore),condition:'真实已保存得分',destination:'本手实际得分',next:'继续自主选牌'}};
+    const key:JokerKeyHighlight={eventId:event.eventId,kind:'opening',heroId:this.run.characterId,cause:'本局前五手内真实结算',landing:savedAmoExileFormula(score)??readableScoreFormula(score.accumulator.H,score.accumulator.M,score.finalScore),fact:{eventId:event.eventId,sourceInstanceId:event.sourceInstanceId,definitionId:'',title:(this.run.phase==='run-lost'?'本局结束 · 实际得分 · ':'开场得分 · ')+HAND_LABELS[score.handType],effect:'已结算 '+heatText(score.finalScore),condition:'真实已保存得分',destination:'本手实际得分',next:'继续自主选牌'}};
     return this.showKeyHighlight(key,context);
   }
   private async award(score:ScoreTrace,presentation:NonNullable<GameScene['presentation']>,context:EffectContext):Promise<void> {
@@ -2157,7 +2173,7 @@ export class GameScene extends Phaser.Scene {
     await this.convergeScore(context,beat?.windup);if(context.signal.aborted)return;
     this.setAccumulator(score.accumulator);this.setDisplayedProduct(score.finalScore);
     this.resultText.setText((presentation.replay?'回看 · ':celebration.cleared?celebration.label+' · ':HAND_LABELS[score.handType]+' · ')+'+'+heatText(score.finalScore));
-    this.breakdownText.setText(readableScoreFormula(score.accumulator.H,score.accumulator.M,score.finalScore));
+    this.breakdownText.setText(savedAmoExileFormula(score)??readableScoreFormula(score.accumulator.H,score.accumulator.M,score.finalScore));
     presentation.credited=true;this.updateHud();
     this.scoreTotal.setAlpha(1);
     this.scoreTotal.setData('eventId',score.events.find(event=>event.phase==='finalScore')?.eventId).setData('eventPhase','award');
@@ -2217,6 +2233,7 @@ export class GameScene extends Phaser.Scene {
       if(attachment){if(attachment.targetIds)this.targetAttachment?.retainTargets(attachment.targetIds);this.targetAttachment?.commit(attachment.event.eventId,context);}else this.targetAttachment?.clear();
       this.scoreHaptic?.scope.cancel();this.scoreHaptic=replay?undefined:{generation:context.generation,scope:Haptics.shared.createScope(context.signal)};
       if(!replay)this.audio.playHand();
+      if(score.amoExile?.use)await Promise.all(this.cardViews.filter(v=>score.amoExile!.discardedIds.includes(v.card.id)).map((v,i)=>{v.hit?.disableInteractive();v.selectionMark?.setText('弃').setVisible(true);return this.animate({targets:v.container,alpha:0,y:v.container.y-(this.reducedMotion?0:24),duration:this.reducedMotion?0:180,delay:this.reducedMotion?0:i*30},context);}));
       await Promise.all([...(beforeHands!==undefined&&!replay?[this.pulseResource('play',beforeHands,context,beforeHands-1)]:[]),...landing.map(async({view,box},i)=>{
         const sx=box.width/Number(view.container.getData('width')),sy=box.height/Number(view.container.getData('height'));
         const tx=box.x+box.width/2,ty=box.y+box.height/2;
@@ -2276,7 +2293,7 @@ export class GameScene extends Phaser.Scene {
     if(!this.alive(presentation.lifecycle,presentation.intent))return;
     this.targetAttachment?.clear();this.heroPortraitMotion?.reset();this.giftDelivery?.cancel();this.giftEvent=undefined;
     this.stopScoreFire();this.setSettlementFocus(false);
-    this.erxiangTargetId=null;this.azaoRelease=false;this.xiemuBurn=0;this.presentation=undefined;this.run=presentation.state;this.selectedIds.clear();this.assistIds=[];this.assistGestureStart=undefined;this.statusMessage=opponentSavedStatus(presentation.score)||savedHeroResult(this.run)||handGrowthChanges(this.run)[0]?.line||'';this.updateHud();
+    this.erxiangTargetId=null;this.azaoRelease=false;this.xiemuBurn=0;this.amoExile=false;this.presentation=undefined;this.run=presentation.state;this.selectedIds.clear();this.assistIds=[];this.assistGestureStart=undefined;this.statusMessage=opponentSavedStatus(presentation.score)||savedHeroResult(this.run)||handGrowthChanges(this.run)[0]?.line||'';this.updateHud();
     if(this.run.phase==='stage-cleared'||this.run.phase==='run-won'){this.finishStage(true,true,!presentation.replay);return;}
     if(this.run.phase==='run-lost'){this.finishStage(false,!presentation.replay);return;}
     this.playing=false;this.render();this.revealDrawnCards(presentation.hand.map(card=>card.id));

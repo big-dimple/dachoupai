@@ -20,7 +20,8 @@ function reject(s:R2RunState,a:Action,code:string){const before=structuredClone(
 function round(s:R2RunState){const cp=makeCheckpoint(s,[]);expect(readCheckpoint(JSON.parse(JSON.stringify(cp)))).toEqual({ok:true,checkpoint:cp});}
 describe('approved S04 50% experimental profile',()=>{
  it.each(CHARACTER_IDS)('%s new launch inherits core scoring/targets and preserves old retry identity',hero=>{
-  expect(newRunIdentity(hero)).toEqual({contentVersion:R2_S04_FINISH_VERSION,contentHash:R2_S04_FINISH_HASH});
+  if(hero!=='amo')expect(newRunIdentity(hero)).toEqual({contentVersion:R2_S04_FINISH_VERSION,contentHash:R2_S04_FINISH_HASH});
+  else expect(newRunIdentity(hero).contentVersion).toBe('quality-r2-amo-exile-v1');
   const s=createRun({rulesVersion:'r2',runId:'s04-launch/'+hero,seed:'s04-launch',characterId:hero,openingRoute:'group',r2Identity:newRunIdentity(hero)});
   expect(isR2CoreBuild(s)).toBe(true);expect(listed(s)).toBe(false);round(s);
   const old=fixture({old:true});expect(old.contentHash).toBe(R2_CORE_BUILD_HASH);expect(launchIdentity('laohuan',{kind:'retry',run:old})).toEqual({contentVersion:R2_CORE_BUILD_VERSION,contentHash:R2_CORE_BUILD_HASH});

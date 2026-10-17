@@ -1,3 +1,5 @@
+import {usesAmoExile,amoExileChoice} from './r2AmoExile';
+import {R2_AMO_EXILE_VERSION,R2_AMO_EXILE_HASH,isR2AmoExile} from './r2GroupUpgrade';
 import {assertTouyeCoreFacts} from './r2TouyeCoreFacts';
 import {isR2CoreBuild,R2_CORE_BUILD_VERSION,R2_CORE_BUILD_HASH} from './r2GroupUpgrade';
 import {R2_S04_FINISH_VERSION,R2_S04_FINISH_HASH} from './r2GroupUpgrade';
@@ -64,6 +66,7 @@ const sharedRuntimeHash=stableHash({jokers:SHARED_R2_JOKERS,features:R2_IMPLEMEN
 if(sharedRuntimeHash!==R2_LEGACY_CONTENT_HASH)throw Error('published-r2-contract-drift');
 
 export const R2_RULESETS=Object.freeze([
+  Object.freeze({contentVersion:R2_AMO_EXILE_VERSION,contentHash:R2_AMO_EXILE_HASH,amoScoreTiming:'exile-v1' as const}),
   Object.freeze({contentVersion:R2_S04_FINISH_VERSION,contentHash:R2_S04_FINISH_HASH,amoScoreTiming:'assist-v1' as const}),
   Object.freeze({contentVersion:R2_CORE_BUILD_VERSION,contentHash:R2_CORE_BUILD_HASH,amoScoreTiming:'assist-v1' as const}),
   Object.freeze({contentVersion:R2_BOUNDED_CLEAR_VERSION,contentHash:R2_BOUNDED_CLEAR_HASH,amoScoreTiming:'assist-v1' as const}),
@@ -101,7 +104,7 @@ interface R2StageBase extends Omit<StageState,'targetHeat'|'heat'|'previousHandT
   challengeDisabledJokerId:string|null;
 }
 /** Profile parsing requires assistUsed for the prototype and forbids it for published runs. */
-export type R2StageState = R2StageBase & {routeGrowth?:R2RouteStage} & {erxiangHandoffUsed?:boolean} & {touyeWager?:TouyeWager} & {laohuanTrickUsed?:boolean} & ({assistUsed:boolean}|{assistUsed?:never}) & ({openingDiscard:R2OpeningDiscard|null}|{openingDiscard?:never}) & ({azaoCharge:AzaoCharge}|{azaoCharge?:never}) & ({xiemuBurnUsed:boolean}|{xiemuBurnUsed?:never});
+export type R2StageState = R2StageBase & {amoExileUsed?:boolean} & {routeGrowth?:R2RouteStage} & {erxiangHandoffUsed?:boolean} & {touyeWager?:TouyeWager} & {laohuanTrickUsed?:boolean} & ({assistUsed:boolean}|{assistUsed?:never}) & ({openingDiscard:R2OpeningDiscard|null}|{openingDiscard?:never}) & ({azaoCharge:AzaoCharge}|{azaoCharge?:never}) & ({xiemuBurnUsed:boolean}|{xiemuBurnUsed?:never});
 export interface R2RunState extends Omit<RunState,'schemaVersion'|'rulesVersion'|'stage'|'totalHeat'|'jokers'|'lastScore'|'shop'|'boss'|'outcome'|'difficulty'|'program'|'rng'> {
   chapterTargetPlan?:R2ChapterTargetPlan;
   routeGrowth?:R2RouteHistory;
@@ -148,6 +151,7 @@ export function r2CreateJoker(definitionId:string,instanceId:string,paidPrice:nu
 }
 
 export function assertR2Invariants(state:R2RunState):void {
+  if(isR2AmoExile(state)&&state.characterId!=='amo')throw Error('exile character identity');
   const activeStage=state.phase==='await-input'||state.phase==='pending-refill';
   const R2_JOKERS=r2JokerDefinitionsFor(state);
   const check=(condition:boolean,label:string)=>{if(!condition)throw new Error(`Run invariant: ${label}`);};
@@ -255,6 +259,7 @@ export function assertR2Invariants(state:R2RunState):void {
     check(validIds(state.stage.sealedJokerIds,state.stage.playIndex)&&state.stage.sealedJokerIds.every(id=>state.stage!.initialJokerIds.includes(id))&&(state.stage.boss?.definitionId==='B15'||state.stage.sealedJokerIds.length===0),'sealed joker ledger');
     if(activeStage)check(state.jokers.every(joker=>state.stage!.initialJokerIds.includes(joker.instanceId)),'live stage joker identities');
     check(state.stage.boss?.definitionId!=='B08'||!state.stage.wagerSelected&&!state.stage.wagerUsed,'disabled character wager');
+    check(usesAmoExile(state)?typeof state.stage.amoExileUsed==='boolean'&&(!state.stage.amoExileUsed||state.stage.playIndex>0):!Object.hasOwn(state.stage,'amoExileUsed'),'exile stage shape');
     check(r2UsesAssist(state)?typeof state.stage.assistUsed==='boolean'&&(!state.stage.assistUsed||state.stage.playIndex>0):!Object.hasOwn(state.stage,'assistUsed'),'assist stage shape');
     check(typeof state.stage.rescueUsed==='boolean'&&(!state.stage.rescueUsed||state.safetyNetUsed),'stage rescue');
     check(state.stage.previousHandScore===null||scoreString(state.stage.previousHandScore),'previous hand score');
@@ -313,14 +318,14 @@ export function r2ScoreContext(state:Pick<R2RunState,'gold'|'stage'|'boss'|'stag
   const modifiers=readR2Modifiers(state.jokers,r2JokerDefinitionsFor(state));
   const config=r2RunModeConfig(state),profile=r2RulesetFor(state);
   if(!profile)throw Error('incompatible-version');
-  return {...(isR2BoundedClear(state)?{boundedClear:true as const}:{}),...(isR2ActiveMultTiming(state)&&(R2_ACTIVE_MULT_CHARACTERS as readonly string[]).includes(state.characterId)?{activeMultTiming:'after-route-growth' as const}:{}),...(isR2RouteGrowth(state)?{routeGrowth:r2RouteSnapshot(state.routeGrowth)}:{}),...(usesErxiangHandoff(state)?{erxiangHandoff:{targetId:null,beforeUsed:state.stage?.erxiangHandoffUsed??false}}:{}),...(usesTouyeWager(state)?{touyeWager:{commit:state.stage?.touyeWager?.resolution==='pending'?state.stage.touyeWager.commit:null,...(usesTouyeNewCore(state)?{newCore:true as const}:{})}}:{}),...(usesLaohuanRefill(state)?{laohuanTrick:true as const}:{}),...(usesXiemuBurn(state)?{xiemuBurn:{cost:0 as XiemuBurnCost,goldBefore:state.gold,beforeUsed:state.stage?.xiemuBurnUsed??false}}:{}),...(usesAzaoCharge(state)?{azaoCharge:{before:state.stage?.azaoCharge??emptyAzaoCharge(),release:false}}:{}),amoScoreTiming:r2ScoreTimingFor(state),characterId:config.characterAbilityEnabled?state.characterId:'neutral' as const,jokerSlots:config.jokerSlots,gold:state.gold,discardsUsed:state.stage?.discardsUsed??0,previousHandScore:state.stage?.previousHandScore??null,boss:state.stage?.boss??null,sealedJokerIds:state.stage?.sealedJokerIds??[],challengeDisabledJokerId:state.stage?.challengeDisabledJokerId??null,
+  return {...(usesAmoExile(state)?{amoExile:{use:false,beforeUsed:state.stage?.amoExileUsed??false}}:{}),...(isR2BoundedClear(state)?{boundedClear:true as const}:{}),...(isR2ActiveMultTiming(state)&&(R2_ACTIVE_MULT_CHARACTERS as readonly string[]).includes(state.characterId)?{activeMultTiming:'after-route-growth' as const}:{}),...(isR2RouteGrowth(state)?{routeGrowth:r2RouteSnapshot(state.routeGrowth)}:{}),...(usesErxiangHandoff(state)?{erxiangHandoff:{targetId:null,beforeUsed:state.stage?.erxiangHandoffUsed??false}}:{}),...(usesTouyeWager(state)?{touyeWager:{commit:state.stage?.touyeWager?.resolution==='pending'?state.stage.touyeWager.commit:null,...(usesTouyeNewCore(state)?{newCore:true as const}:{})}}:{}),...(usesLaohuanRefill(state)?{laohuanTrick:true as const}:{}),...(usesXiemuBurn(state)?{xiemuBurn:{cost:0 as XiemuBurnCost,goldBefore:state.gold,beforeUsed:state.stage?.xiemuBurnUsed??false}}:{}),...(usesAzaoCharge(state)?{azaoCharge:{before:state.stage?.azaoCharge??emptyAzaoCharge(),release:false}}:{}),amoScoreTiming:r2ScoreTimingFor(state),characterId:config.characterAbilityEnabled?state.characterId:'neutral' as const,jokerSlots:config.jokerSlots,gold:state.gold,discardsUsed:state.stage?.discardsUsed??0,previousHandScore:state.stage?.previousHandScore??null,boss:state.stage?.boss??null,sealedJokerIds:state.stage?.sealedJokerIds??[],challengeDisabledJokerId:state.stage?.challengeDisabledJokerId??null,
     ...(state.stage?{stageHeatBefore:state.stage.heat,stageTargetHeat:state.stage.targetHeat}:{}),
     handRules:{fourStraight:modifiers.fourStraight,fourFlush:modifiers.fourFlush},ordinaryPointsSuppressedIds:r2OrdinarySuppression(state.boss,state.stage?.index??state.stageIndex,hand,ids)};
 }
 function entryStage(state:R2RunState,command:Command,targetHeat:string,skipResult:R2SkipResult|null=null):R2StageState {
   const handLimit=r2HandLimit(state),hands=r2HandsBudget(state),discards=r2DiscardBudget(state),initialJokerIds=state.jokers.map(joker=>joker.instanceId);
   const boss=state.stageIndex%3===2?structuredClone(state.boss):null;
-  return {...(isR2RouteGrowth(state)?{routeGrowth:freshR2RouteStage(command)}:{}),...(usesErxiangHandoff(state)?{erxiangHandoffUsed:false}:{}),...(usesTouyeWager(state)?{touyeWager:emptyTouyeWager(usesTouyeNewCore(state))}:{}),...(usesLaohuanRefill(state)?{laohuanTrickUsed:false as boolean}:{}),...(usesXiemuBurn(state)?{xiemuBurnUsed:false}:{}),...(usesAzaoCharge(state)?{azaoCharge:emptyAzaoCharge()}:{}),...(hasR2ComboGrowthContract(state)?{openingDiscard:null}:{}),...(r2UsesAssist(state)?{assistUsed:false}:{}),index:state.stageIndex,targetHeat,initialTargetHeat:targetHeat,heat:'0',handsLeft:hands,initialHands:hands,discardsLeft:discards,initialDiscards:discards,
+  return {...(usesAmoExile(state)?{amoExileUsed:false}:{}),...(isR2RouteGrowth(state)?{routeGrowth:freshR2RouteStage(command)}:{}),...(usesErxiangHandoff(state)?{erxiangHandoffUsed:false}:{}),...(usesTouyeWager(state)?{touyeWager:emptyTouyeWager(usesTouyeNewCore(state))}:{}),...(usesLaohuanRefill(state)?{laohuanTrickUsed:false as boolean}:{}),...(usesXiemuBurn(state)?{xiemuBurnUsed:false}:{}),...(usesAzaoCharge(state)?{azaoCharge:emptyAzaoCharge()}:{}),...(hasR2ComboGrowthContract(state)?{openingDiscard:null}:{}),...(r2UsesAssist(state)?{assistUsed:false}:{}),index:state.stageIndex,targetHeat,initialTargetHeat:targetHeat,heat:'0',handsLeft:hands,initialHands:hands,discardsLeft:discards,initialDiscards:discards,
     discardSpent:0,discardGained:0,doubleDiscardBeforeFirstPlay:boss?.definitionId==='B01',discardsUsed:0,skipResult,playIndex:0,previousHandType:null,previousHandScore:null,
     handLimit,initialHandLimit:handLimit,boss,initialJokerIds,sealedJokerIds:[],challengeDisabledJokerId:state.chapterDisabledJokerId,rescueUsed:false,clearId:null,goldEarned:0,disabledIds:[],wagerSelected:false,wagerUsed:false,
     maxPlayedCount:0,ordinaryStraightSeen:false,ordinaryFlushSeen:false,quadRefundUsed:false,jokerSold:state.shop?.soldJoker??false};
@@ -592,7 +597,8 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
     const profile=r2RulesetFor(identity??(action.r2Profile==='group-upgrade-v1'?{contentVersion:R2_GROUP_UPGRADE_VERSION,contentHash:R2_GROUP_UPGRADE_HASH}:action.r2Profile==='combo-growth-v1'?{contentVersion:R2_COMBO_GROWTH_VERSION,contentHash:R2_COMBO_GROWTH_HASH}:action.r2Profile==='amo-assist-v1'?{contentVersion:R2_ASSIST_VERSION,contentHash:R2_ASSIST_HASH}:{contentVersion:R2_CONTENT_VERSION,contentHash:R2_CONTENT_HASH}))!;
     if(isR2RouteStarter(profile)?!action.openingRoute||!Object.hasOwn(R2_ROUTE_STARTERS,action.openingRoute):Object.hasOwn(action,'openingRoute'))return fail('invalid-opening-route');
     if(!isR2BoundedClear(profile)&&isR2TouyeNewCore(profile)&&(isR2ActiveMultTiming(profile)?!(R2_ACTIVE_MULT_CHARACTERS as readonly string[]).includes(action.characterId):action.characterId!=='touye'))return fail('invalid-r2-profile');
-    const assisted=profile.amoScoreTiming==='assist-v1'&&action.characterId==='amo';
+    if(isR2AmoExile(profile)&&action.characterId!=='amo')return fail('invalid-r2-profile');
+    const assisted=['assist-v1','exile-v1'].includes(profile.amoScoreTiming)&&action.characterId==='amo';
     if(profile.contentVersion===R2_ASSIST_VERSION&&action.characterId!=='amo')return fail('invalid-r2-profile');
     if(!r2ModeSeedAllowed(config,action.seed)||config.mode==='tutorial'&&action.characterId!=='erxiang')return fail('invalid-mode-seed-or-character');
     const cards=createDeck().filter(card=>config.startingRanks.includes(card.rank));
@@ -816,6 +822,9 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
         if(assisted&&!r2AssistAvailability(state).available)return fail('assist-unavailable');
         let assistIds:string[]=[];
         if(assisted){try{assistIds=r2AssistFacts({hand:state.handOrder.map(id=>state.deckInstances.find(c=>c.id===id)!),selectedIds:ids,assistIds:action.assistIds,disabledIds:state.stage.disabledIds,jokers:state.jokers,definitions:R2_JOKERS}).assistIds;}catch(error){return fail(error instanceof Error?error.message:'invalid-assist');}}
+        const exile=action.type==='PlayHand'?action.amoExile:undefined;
+        if(Object.hasOwn(action,'amoExile')&&(!usesAmoExile(state)||typeof exile!=='boolean'))return fail('invalid-amo-exile');
+        if(exile&&!amoExileChoice(state,ids).available)return fail(!state.handOrder.some(id=>!ids.includes(id))?'amo-exile-empty-cost':state.stage.amoExileUsed?'amo-exile-already-used':'amo-exile-disabled');
         const handoff=action.type==='PlayHand'?action.erxiangTargetId:undefined;
         if(Object.hasOwn(action,'erxiangTargetId')&&(!usesErxiangHandoff(state)||typeof handoff!=='string'||!handoff))return fail('invalid-erxiang-handoff');
         const release=action.type==='PlayHand'&&Object.hasOwn(action,'azaoRelease')?action.azaoRelease:undefined;
@@ -830,12 +839,13 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
         let trace:ScoreTrace;
         try {scoreContext=r2ScoreContext(state,state.handOrder.map(id=>state.deckInstances.find(c=>c.id===id)!),ids);trace=scoreR2Hand({rulesVersion:'r2',runId:state.runId,rootId:`${state.runId}/hand/${command.commandId}`,
           hand:state.handOrder.map(id=>state.deckInstances.find(c=>c.id===id)!),selectedIds:ids,disabledIds:state.stage.disabledIds,jokers:state.jokers,definitions:R2_JOKERS,
-          ...(assisted?{assistIds}:{}),handLevels:state.handLevels,playIndex:state.stage.playIndex+1,handsBeforePlay:state.stage.handsLeft,previousHandType:state.stage.previousHandType,wager:state.stage.wagerSelected,rng:state.rng.rule,...scoreContext,...(usesErxiangHandoff(state)?{erxiangHandoff:{targetId:handoff??null,beforeUsed:state.stage.erxiangHandoffUsed!}}:{}),...(usesXiemuBurn(state)?{xiemuBurn:{cost:burn??0,goldBefore:goldBeforeBurn,beforeUsed:state.stage.xiemuBurnUsed!}}:{}),...(usesAzaoCharge(state)?{azaoCharge:{before:state.stage.azaoCharge!,release:release??false}}:{})});}
+          ...(assisted?{assistIds}:{}),handLevels:state.handLevels,playIndex:state.stage.playIndex+1,handsBeforePlay:state.stage.handsLeft,previousHandType:state.stage.previousHandType,wager:state.stage.wagerSelected,rng:state.rng.rule,...scoreContext,...(usesAmoExile(state)?{amoExile:{use:exile??false,beforeUsed:state.stage.amoExileUsed!}}:{}),...(usesErxiangHandoff(state)?{erxiangHandoff:{targetId:handoff??null,beforeUsed:state.stage.erxiangHandoffUsed!}}:{}),...(usesXiemuBurn(state)?{xiemuBurn:{cost:burn??0,goldBefore:goldBeforeBurn,beforeUsed:state.stage.xiemuBurnUsed!}}:{}),...(usesAzaoCharge(state)?{azaoCharge:{before:state.stage.azaoCharge!,release:release??false}}:{})});}
         catch(error) {return {ok:false,code:'score-diagnostic',diagnostic:{code:error instanceof ScoreFault?error.code:error instanceof Error?error.message:'score-error',events:error instanceof ScoreFault?error.events:[]}};}
         if(hasR2ComboGrowthContract(state))trace=Object.freeze({...trace,combo:Object.freeze({goldBeforeRewards:null})});
         if(usesErxiangHandoff(state))state.stage.erxiangHandoffUsed=trace.erxiangHandoff!.afterUsed;
         if(usesXiemuBurn(state))state.stage.xiemuBurnUsed=trace.xiemuBurn!.afterUsed;
         if(usesAzaoCharge(state))state.stage.azaoCharge={...trace.azaoCharge!.after};
+        if(usesAmoExile(state))state.stage.amoExileUsed=trace.amoExile!.afterUsed;
         if(assisted)state.stage.assistUsed=true;
         state.rng.rule={...trace.rng};state.lastTrace=trace;state.jokers=structuredClone(trace.jokers);state.gold+=trace.goldDelta;
         if(state.routeStarter&&!state.routeStarter.eventId){const first=routeStarterScoreEvent(state,trace);if(first){state.routeStarter.rootId=trace.rootId;state.routeStarter.eventId=first.eventId;}}
@@ -851,6 +861,7 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
         if(state.stage.wagerSelected)state.stage.wagerUsed=true;
         state.stage.wagerSelected=false;
         if(usesTouyeWager(state)&&state.stage.touyeWager?.resolution==='pending'){if(usesTouyeNewCore(state))state.stage.touyeWager.corePlay={command:structuredClone(command),hand:structuredClone(trace.cards),disabledIds:[...state.stage.disabledIds]};state.stage.touyeWager.resolution='played';}
+        if(trace.amoExile?.use)state.discardPile.push(...trace.amoExile.discardedIds);
         state.handOrder=[...trace.sets.heldIds];state.playedPile.push(...trace.cards.filter(card=>trace.sets.playedIds.includes(card.id)||assistIds.includes(card.id)).map(card=>card.id).filter(id=>!trace.destroyedCardIds.includes(id)));
         if(state.stage.boss?.definitionId==='B11')state.stage.handLimit=Math.max(R2_RESOURCE_CONTRACT.handMinimum,state.stage.initialHandLimit-state.stage.playIndex);
         const scoredEvent:Extract<DomainEvent,{type:'hand-scored-r2'}>={type:'hand-scored-r2',score:trace,playedIds:trace.sets.playedIds,playIndex:state.stage.playIndex};events.push(scoredEvent);

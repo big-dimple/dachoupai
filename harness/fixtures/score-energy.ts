@@ -1,5 +1,5 @@
 import {createRun,applyCommand,type R2RunState,type Action} from '../../src/domain/run';
-import {newRunIdentity} from '../../src/game/RunLaunch';
+import {newRunIdentity} from './legacy-assist-launch';
 import {r2CreateJoker} from '../../src/domain/r2Run';
 export function scoreEnergyFixture(kind:'ordinary'|'key'|'multiply'|'fifth'){
  let state=createRun({seed:'score-energy-controlled',runId:'controlled/score-energy/'+kind,characterId:'amo',rulesVersion:'r2',r2Identity:newRunIdentity('amo','group'),openingRoute:'group',modeConfig:{mode:'standard',difficulty:0,challengeId:null,programsEnabled:false}});
