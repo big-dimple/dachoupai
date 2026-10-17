@@ -24,7 +24,7 @@ export function inkSpringImpulse(seconds=.7){
   const spring=new InkSpring(400,10),count=Math.ceil(seconds*240),samples=[1];
   for(let i=1;i<=count;i++)samples.push(spring.step(seconds/count));
   const firstMinimum=samples.findIndex((value,i)=>i>0&&i<count&&value<samples[i-1]&&value<=samples[i+1]);
-  return {reboundAt:firstMinimum/count,value:(t:number)=>{
+  return {reboundAt:firstMinimum/count,firstCrossAt:samples.findIndex(value=>value<=0)/count,value:(t:number)=>{
     const p=Math.max(0,Math.min(1,Number.isFinite(t)?t:1));if(p===1)return 0;
     const at=p*count,i=Math.floor(at);return samples[i]+(samples[i+1]-samples[i])*(at-i);
   }};

@@ -10,6 +10,7 @@ import {ownedJokerMotionCue,ownedJokerScoreLayer,cancelOwnedJokerScoreMotion} fr
 import {OWNED_SCORE_SPRING} from './inkwaveSpring';
 
 type Point={x:number;y:number};
+export const STRIKE_RETURN_LANDING=OWNED_SCORE_SPRING.firstCrossAt*2;
 export interface JokerScoreStrikeCue {eventId:string;sourceInstanceId:string;contributions:ScoreContribution[]}
 export function jokerScoreStrikeCue(trace:ScoreTrace,event:ScoreEvent):JokerScoreStrikeCue|undefined {
  if(!ownedJokerMotionCue(trace,event))return;
@@ -22,8 +23,8 @@ export function jokerStrikeBeat(base:ScoreBeat,multiply:boolean,speed=1):ScoreBe
  const rate=[1,2,4].includes(speed)?speed:1,key=base.phrase?.role==='accent',pulse=base.phrase?.pulse??0;
  const windup=Math.max(key?160:multiply?130-Math.min(20,pulse):110-Math.min(30,pulse),40*rate),flight=Math.max(key?130:multiply?115:100,60*rate);
  const hold=Math.max(key?45:35,35*rate);let recovery=key?220:multiply?200:180;
- if(base.phrase?.paired)recovery=Math.max(recovery,Math.ceil(Math.max(0,50*rate-hold)/OWNED_SCORE_SPRING.reboundAt));
- else recovery=Math.max(recovery,96*rate-hold);
+ recovery=Math.max(recovery,96*rate-hold);
+ if(base.phrase?.paired)recovery=Math.max(recovery,Math.ceil(Math.max(0,50*rate-hold)/STRIKE_RETURN_LANDING));
  return {...base,windup,flight,impact:hold+recovery,rest:key?55:30,strike:{hold,recovery}};
 }
 
@@ -34,7 +35,7 @@ export function strikeFlightPoint(from:Point,to:Point,t:number,arc=12):Point {
 }
 /** Preserve the damped spring, bounding the post-crossing excursion to a local lane. */
 export function strikeReturnFraction(t:number,distance:number,overshoot=8):number {
- const s=OWNED_SCORE_SPRING.value(t);return t<.14?s:Math.tanh(s*Math.max(1,distance)/overshoot)*overshoot/Math.max(1,distance);
+ const s=OWNED_SCORE_SPRING.value(t*.5),tail=t>.65?((1-t)/.35)**2:1;return t<STRIKE_RETURN_LANDING?s:Math.tanh(s*Math.max(1,distance)/overshoot)*overshoot/Math.max(1,distance)*tail;
 }
 
 let snapshotOrdinal=0;
@@ -76,7 +77,7 @@ export function prepareJokerScoreStrike(scene:Phaser.Scene,parent:Phaser.GameObj
   for(const target of targets){
    const b=target.text.getBounds(),hit=local({x:b.centerX,y:b.centerY}),dx=hit.x-center.x,dy=hit.y-center.y,length=Math.hypot(dx,dy)||1;
    target.from=center;target.hit=hit;target.startWidth=Math.hypot(center.x-left.x,center.y-left.y)*2;target.startHeight=Math.hypot(center.x-top.x,center.y-top.y)*2;
-   target.endWidth=Math.min(target.startWidth*.65,options.portrait?26:40);target.endHeight=target.endWidth*target.startHeight/target.startWidth;
+   target.endWidth=Math.min(target.startWidth*.72,options.portrait?(multiply?30:24):(multiply?48:38));target.endHeight=target.endWidth*target.startHeight/target.startWidth;
    target.to={x:hit.x-dx/length*target.endHeight*.38,y:hit.y-dy/length*target.endHeight*.38};
    target.copy=scene.add.image(center.x,center.y,options.textureKey).setDisplaySize(target.startWidth,target.startHeight).setAngle(startAngle).setName('score/strike-card').setData('eventId',cue.eventId).setData('strike',{sourceInstanceId:cue.sourceInstanceId,target:target.contribution.target,from:center,to:target.to,hit,cell:target.cell,kind:target.contribution.kind});group.add(target.copy);
   }
@@ -101,7 +102,7 @@ export function prepareJokerScoreStrike(scene:Phaser.Scene,parent:Phaser.GameObj
     else target.copy?.setData('phase','impact').setData('progress',0);
    }
    const fracture=Math.min(1,elapsed/Math.max(95,hold*2));for(const part of fragments)part.image.setPosition(part.x+part.dx*fracture,part.y+part.dy*fracture).setAlpha((1-fracture)**2);
-   if(!rebounded&&settle>=OWNED_SCORE_SPRING.reboundAt){rebounded=true;phase('rebound');if(options.beat.phrase?.paired)options.onRebound?.(options.beat.impact-elapsed);}
+   if(!rebounded&&settle>=STRIKE_RETURN_LANDING){rebounded=true;phase('rebound');if(options.beat.phrase?.paired)options.onRebound?.(options.beat.impact-elapsed);}
    options.refresh();
   }).finally(dispose);
  };

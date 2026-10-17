@@ -7,6 +7,7 @@ import {isNeutralScoreReceipt} from '../src/game/ScoreTableMotion';
 import {scoreSourceProcessFixture} from '../harness/fixtures/score-source-process';
 import {energySend} from '../harness/fixtures/score-energy';
 import {actualMultiplier} from '../src/domain/openingShow';
+import {STRIKE_RETURN_LANDING} from '../src/game/JokerScoreStrike';
 const fixture=scoreSourceProcessFixture('chain'),trace=energySend(fixture.state,{type:'PlayHand',selectedIds:fixture.selectedIds}).lastTrace!;
 const events=remainingScoreEvents(trace).filter(e=>!isNeutralScoreReceipt(e));
 it('composes the committed order without mutating it; key accent must be a real largest multiplier',()=>{
@@ -24,7 +25,7 @@ it('preserves density within comparable gestures and alternating weights without
  const accent=[...plan.values()].find(b=>b.phrase!.role==='accent')!;expect(accent.windup).toBeGreaterThan(runs[0].windup);expect(accent.phrase!.accentWeight).toBe(1);
 });
 it('4x compresses single strikes while keeping selected spring second landings distinct',()=>{
- const plan=scorePhrase(events,'400',4);for(const b of plan.values())if(b.phrase!.paired)expect((b.strike?b.strike.hold+b.strike.recovery*OWNED_SCORE_SPRING.reboundAt:b.impact*OWNED_SCORE_SPRING.reboundAt)/4).toBeGreaterThanOrEqual(50);
+ const plan=scorePhrase(events,'400',4);for(const b of plan.values())if(b.phrase!.paired)expect((b.strike?b.strike.hold+b.strike.recovery*STRIKE_RETURN_LANDING:b.impact*OWNED_SCORE_SPRING.reboundAt)/4).toBeGreaterThanOrEqual(50);
  for(const e of events.filter(e=>e.sourceType==='joker')){const b=plan.get(e.eventId)!;if(b.phrase!.role==='run'&&!b.phrase!.paired)expect(b.impact/4).toBeGreaterThanOrEqual(96);}
  expect([...plan.values()].filter(b=>b.phrase!.paired).length).toBeLessThan([...plan.values()].filter(b=>['opening','run','accent'].includes(b.phrase!.role)).length);
  const normal=scorePhrase(events,'400');expect([...plan.values()].at(-1)!.phrase!.end/4).toBeLessThan([...normal.values()].at(-1)!.phrase!.end*.55);

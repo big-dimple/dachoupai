@@ -1,9 +1,8 @@
 import {it,expect} from 'vitest';
-import {jokerScoreStrikeCue,jokerStrikeBeat,strikeFlightPoint,strikeReturnFraction,prepareJokerScoreStrike} from '../src/game/JokerScoreStrike';
+import {jokerScoreStrikeCue,jokerStrikeBeat,strikeFlightPoint,strikeReturnFraction,prepareJokerScoreStrike,STRIKE_RETURN_LANDING} from '../src/game/JokerScoreStrike';
 import {scoreSourceProcessFixture} from '../harness/fixtures/score-source-process';
 import {energySend} from '../harness/fixtures/score-energy';
 import {scoreBeat} from '../src/game/scorePresentation';
-import {OWNED_SCORE_SPRING} from '../src/game/inkwaveSpring';
 const fixture=scoreSourceProcessFixture('chain'),trace=energySend(fixture.state,{type:'PlayHand',selectedIds:fixture.selectedIds}).lastTrace!;
 it('an already cancelled generation allocates no visual or texture',()=>{const abort=new AbortController();abort.abort();expect(prepareJokerScoreStrike({} as any,{} as any,{} as any,{} as any,{context:{generation:1,signal:abort.signal}} as any)).toBeUndefined();});
 it('only exact saved positive joker contributions attack their actual H/M, never total or resource receipts',()=>{
@@ -19,7 +18,7 @@ it('flight projection advances source to destination, not backwards, for all sou
 });
 it('impact holds and spring returns share one beat, including distinguishable double impacts at 4x',()=>{
  const event=trace.events.find(e=>jokerScoreStrikeCue(trace,e))!,base={...scoreBeat(event),phrase:{role:'accent' as const,pulse:3,paired:true,accentWeight:1,start:0,arrival:0,end:0}};
- for(const speed of [1,2,4]){const beat=jokerStrikeBeat(base,true,speed);expect(beat.strike!.hold/speed).toBeGreaterThanOrEqual(35);expect(beat.flight/speed).toBeGreaterThanOrEqual(60);expect((beat.strike!.hold+beat.strike!.recovery*OWNED_SCORE_SPRING.reboundAt)/speed).toBeGreaterThanOrEqual(50);expect(beat.impact).toBe(beat.strike!.hold+beat.strike!.recovery);}
+ for(const speed of [1,2,4]){const beat=jokerStrikeBeat(base,true,speed);expect(beat.strike!.hold/speed).toBeGreaterThanOrEqual(35);expect(beat.flight/speed).toBeGreaterThanOrEqual(60);expect((beat.strike!.hold+beat.strike!.recovery*STRIKE_RETURN_LANDING)/speed).toBeGreaterThanOrEqual(50);expect(beat.impact).toBe(beat.strike!.hold+beat.strike!.recovery);}
  const plain=jokerStrikeBeat({...base,phrase:{...base.phrase,role:'run'}},false);expect(jokerStrikeBeat(base,true).windup).toBeGreaterThan(plain.windup);
- for(let i=14;i<=100;i++)expect(Math.abs(strikeReturnFraction(i/100,900)*900)).toBeLessThanOrEqual(8);expect(strikeReturnFraction(1,900)).toBe(0);
+ for(let i=Math.ceil(STRIKE_RETURN_LANDING*100);i<=100;i++)expect(Math.abs(strikeReturnFraction(i/100,900)*900)).toBeLessThanOrEqual(8);expect(strikeReturnFraction(1,900)).toBe(0);
 });
