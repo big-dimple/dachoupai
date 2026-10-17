@@ -1,0 +1,56 @@
+{
+  "product": "e92ebe1a7ff32b2b4942d1d93d7681513c7c5d3c",
+  "baseline": "179e17414aa9dbae67dfa33dc991c2a298895223",
+  "runtimeFiles": 366,
+  "runtimeBytes": 34231986,
+  "strictRawBinaryMatches": 362,
+  "textSVGContract": "LF canonical source identity; working-to-built raw bytes remain equal",
+  "textSVGRows": [
+    {
+      "file": "public/assets/p00/mark-joker.svg",
+      "gitLF": "db1f865952c770e9d14a5fc157b0fe945844bb57ada0096b36f56d9d0ce6d1b0",
+      "workingRaw": "f08de28e4b83c5a65cd05ea8c766affccffcbbe5fdfacee90dd38b7fa566d4ab",
+      "builtRaw": "f08de28e4b83c5a65cd05ea8c766affccffcbbe5fdfacee90dd38b7fa566d4ab",
+      "workingLF": "db1f865952c770e9d14a5fc157b0fe945844bb57ada0096b36f56d9d0ce6d1b0",
+      "rawBuiltMatches": true,
+      "baselineLFMatches": true
+    },
+    {
+      "file": "public/assets/p00/mark-plus.svg",
+      "gitLF": "bffd262120c60902b380682866947a54978e82b7785d9b1328685adbc3c02977",
+      "workingRaw": "90f58342cea1366f83253beb80c7a1b87ee5b2e0c609c4cb839a66b2dd7a23cc",
+      "builtRaw": "90f58342cea1366f83253beb80c7a1b87ee5b2e0c609c4cb839a66b2dd7a23cc",
+      "workingLF": "bffd262120c60902b380682866947a54978e82b7785d9b1328685adbc3c02977",
+      "rawBuiltMatches": true,
+      "baselineLFMatches": true
+    },
+    {
+      "file": "public/assets/p00/mark-times.svg",
+      "gitLF": "9db59de4d96c8517969a220da5df77318f3b45efad07bc3d2c9767ace6684be1",
+      "workingRaw": "e27363206ea0a2197d81a378ff86df729ac2a7a5d0611131cab4036eed009f27",
+      "builtRaw": "e27363206ea0a2197d81a378ff86df729ac2a7a5d0611131cab4036eed009f27",
+      "workingLF": "9db59de4d96c8517969a220da5df77318f3b45efad07bc3d2c9767ace6684be1",
+      "rawBuiltMatches": true,
+      "baselineLFMatches": true
+    },
+    {
+      "file": "public/assets/p00/paper.svg",
+      "gitLF": "3b0aea1ddf1b8fbc8c4f25b5a4b0a265eda1d7f9c766da0f0f0c9a4f0534d949",
+      "workingRaw": "35e19948b856285f2cae6fea3e9ea68095635fa4c7a4167608a296e95013d077",
+      "builtRaw": "35e19948b856285f2cae6fea3e9ea68095635fa4c7a4167608a296e95013d077",
+      "workingLF": "3b0aea1ddf1b8fbc8c4f25b5a4b0a265eda1d7f9c766da0f0f0c9a4f0534d949",
+      "rawBuiltMatches": true,
+      "baselineLFMatches": true
+    }
+  ],
+  "initialRawFailureRetained": "docs\\production\\evidence\\feedback-batch-integration-2026-10-17\\checks\\asset-plan-runtime-initial.log",
+  "retiredFiles": 137,
+  "retiredPresent": [],
+  "dist": {
+    "files": 389,
+    "bytes": 37458958,
+    "limit": 20000000,
+    "budget": "FAIL"
+  },
+  "status": "PASS"
+}
