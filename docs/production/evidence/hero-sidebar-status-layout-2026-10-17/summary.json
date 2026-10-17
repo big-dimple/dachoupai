@@ -1,0 +1,117 @@
+{
+  "status": "PASS",
+  "baseSHA": "4b0de064480a9c518f6443984ef6a465c4b3323d",
+  "browser": "153.0.8010.12",
+  "scope": "Six heroes, real current display strings placed in the actual GameScene text node for measured layout stress; no run mutation. Separate two-hand Wencheng actual input checks phase/end copy and score trace. Controlled snapshots; not natural acquisition, physical devices or six-hero mechanical acceptance.",
+  "profiles": [
+    {
+      "width": 1180,
+      "heroes": 6,
+      "status": "PASS"
+    },
+    {
+      "width": 1366,
+      "heroes": 6,
+      "status": "PASS"
+    },
+    {
+      "width": 390,
+      "heroes": 6,
+      "status": "PASS"
+    },
+    {
+      "width": 320,
+      "heroes": 6,
+      "status": "PASS"
+    }
+  ],
+  "captionSamples": 232,
+  "real": {
+    "status": "PASS",
+    "scores": [
+      "178",
+      "297"
+    ],
+    "frames": 676,
+    "chargeFrames": 233,
+    "endedFrames": 361,
+    "afterCue": {
+      "label": "和亲",
+      "status": "本场结束",
+      "state": "ended",
+      "detail": "当前不在出牌阶段；下场从0层重新蓄势",
+      "actionable": false,
+      "attention": false,
+      "ariaLabel": "文成公主，主动技能和亲，本场结束，当前不在出牌阶段；下场从0层重新蓄势",
+      "available": false,
+      "opportunity": false
+    }
+  },
+  "sourceSHA256": {
+    "src/game/GameScene.ts": "97badfaf079b38d1f534c339157bb9d38b561cbdd2da22d626be72109638d18d",
+    "src/game/HeroSidebarLayout.ts": "1935eb1564644bfe83d123453a23c59d85019ed882b304d2b34f6dcac482868b",
+    "src/game/AzaoChargeCopy.ts": "dc28affaadf429a71927cf5cb5c89543ca08b05aa1a4998af46a1a2e89c85dfe",
+    "src/game/HeroAbilityCue.ts": "08741ef5404f0eee178a7c3af3ff9000669b91c528d7318076a903c1c9017ac3",
+    "src/game/HeroSkillPresentation.ts": "a6130fafc57196a064810211271da36d44ef97a541ccadc60f171c99a3fc1d6a",
+    "src/game/ErxiangHandoffCopy.ts": "3b74258485e93d04dc05b4dcda41fe551d9c87d221eaca3d71cee9673292f912",
+    "src/game/XiemuBurnCopy.ts": "d828e0cec96a83216a12bfef56e99288798dcac07178602b6c0bedd8d936ada3"
+  },
+  "images": [
+    {
+      "file": "1180-amo-longest.png",
+      "sha256": "afa7be4924a9085bf0bc1ed6edfb70a6edd79c8b1d7ff3552041d663bd285793"
+    },
+    {
+      "file": "1180-touye-longest.png",
+      "sha256": "183d8383723bc4e7ac6be457434245184972d085e91e7e56b7b10966c0243cba"
+    },
+    {
+      "file": "1180-laohuan-longest.png",
+      "sha256": "551276080d732be6a046e52a48b06205e0f7078ac57e6098e6e6e944f5e7e7ac"
+    },
+    {
+      "file": "1180-erxiang-longest.png",
+      "sha256": "8d2ff1ffa6c6bca08364acdd85f425392a1cec76211b2b011bd4dce865dcd5ed"
+    },
+    {
+      "file": "1180-azao-longest.png",
+      "sha256": "8da1e04de7c74e35b6b9cefc0ccc7995ad59b80d37be235a63e108955b9a2022"
+    },
+    {
+      "file": "1180-xiemu-longest.png",
+      "sha256": "aff9c08b74ad43e4bb385b3d4a79377e73826fdbf8c01c08d0bd370a507f1ffa"
+    },
+    {
+      "file": "320-amo-longest.png",
+      "sha256": "3967ea36f281a7b13370b60ea7ae147b21e0cf6186657fe68be34305f0bdabbe"
+    },
+    {
+      "file": "320-touye-longest.png",
+      "sha256": "17693127811f97d13902d534d9bf54815d8bdc0cd1065fdbb981677bb66eabd1"
+    },
+    {
+      "file": "320-laohuan-longest.png",
+      "sha256": "c058dde39dfb955aec24562662bb26ac96e11124190e88807888625742378fdb"
+    },
+    {
+      "file": "320-erxiang-longest.png",
+      "sha256": "72ca185a1b568566aa7e6d7efa52ed389e653f8a0ff13eabd8d8f561201971a2"
+    },
+    {
+      "file": "320-azao-longest.png",
+      "sha256": "6f2a92c276e1477df21f84bd3322517c98b41fac3e7c114169cebc86c214fcad"
+    },
+    {
+      "file": "320-xiemu-longest.png",
+      "sha256": "29e5a708246d9bd22db6c096e08fb6e1a652ab4aa94dc8b0dddc2fa4c9bb02a8"
+    },
+    {
+      "file": "1180-real-charged.png",
+      "sha256": "c0185230a26b429a3236c492e443897b5aa87a7bda34f334ceeaa972f59bd6e4"
+    },
+    {
+      "file": "1180-real-ended.png",
+      "sha256": "7e34d601691cb8995f94f852207354c03ef66722fab98d38a89daa37eb217f9c"
+    }
+  ]
+}

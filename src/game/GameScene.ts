@@ -1,5 +1,6 @@
 import {heroSkillButton,heroSkillName,heroSkillTitle,type TouyeSkillPhase} from './HeroSkillPresentation';
 import {updateHeroSkillStatusText} from './HeroSkillStatusText';
+import {heroSidebarRows,shortHeroStatus} from './HeroSidebarLayout';
 import {showTouyeDiscardChoice} from './TouyeDiscardChoice';
 import {showHeroDiscardChoice} from './HeroDiscardChoice';
 import {mountHeroDecisionEyes} from './HeroDecisionEyes';
@@ -516,7 +517,7 @@ export class GameScene extends Phaser.Scene {
     const v=this.view,l=v.layout;this.hoveredCardId=undefined;this.hoveredJokerId=undefined;this.jokerHoverPreview=undefined;v.clear();this.settlementChrome.clear();this.handNavigationButtons=[];v.paperBackground();drawStageTableArt(this,v,this.characterId,()=>this.inspectHeroExplanation());this.settledCards.clear();this.previewCards=undefined;
     this.playAuraPulse?.remove();this.playAuraPulse=undefined;this.playAura=undefined;
     if(this.progressBar)this.tweens.killTweensOf(this.progressBar);this.progressTarget=Number.NaN;
-    const h=l.hud,c=getCharacter(this.characterId),portrait=l.mode==='portrait',short=l.mode==='landscape',heroRoom=portrait?Math.min(108,Math.max(74,h.width-252)):108;
+    const h=l.hud,c=getCharacter(this.characterId),portrait=l.mode==='portrait',short=l.mode==='landscape',heroRoom=portrait?Math.min(108,Math.max(74,h.width-252)):108,sidebar=heroSidebarRows(h);
     this.game.canvas.setAttribute('aria-label',GAME_NAME+' · '+c.name+'牌桌；方向键聚焦手牌，空格选牌，Enter查看详情。');
     if(!portrait)v.add(this.add.graphics().lineStyle(1,T.jade,.22).lineBetween(h.x+h.width+8,h.y,h.x+h.width+8,h.y+h.height));
 
@@ -528,23 +529,24 @@ export class GameScene extends Phaser.Scene {
     this.roleFrame=this.add.rectangle(0,0,avatarSize+4,avatarSize+4,T.brass).setFillStyle(T.brass,0).setStrokeStyle(1,T.brass,.6);this.roleAvatar.add(this.roleFrame);
     const identity=stageIdentity(this.stage.index,this.run.stage!.boss,this.run.tourMode,this.run.difficulty)!;
     if(!portrait)v.text(h.x+12,h.y+8,this.run.tourMode==='endless'?'无尽对局':GAME_NAME.split('').join(' '),short?20:28,C.paper);
-    if(!portrait)v.text(h.x+(portrait?64:76),avatarY,(portrait&&this.run.tourMode==='endless'?'无尽 · ':'')+c.name,portrait?18:short?20:22,C.paper,portrait?h.width-160:h.width-88);
-    this.roleText=v.text(h.x+(portrait?64:76),avatarY+(portrait?23:28),this.roleCaption(),14,C.mutedInk,portrait?h.width-160:h.width-88);
-    const skillEntry=v.rect({x:this.roleText.x,y:this.roleText.y,width:portrait?heroRoom:h.width-88,height:20}).setFillStyle(0,0).setStrokeStyle();v.target(skillEntry,'hero/skill-entry',{tap:()=>this.inspectHeroExplanation(),detail:()=>this.inspectHeroExplanation()});
-    if(!portrait&&!l.shortLandscape)v.text(h.x+12,h.y+96,identity.isBoss?identity.title:identity.stageName,14,C.paper,h.width-24).setName('stage-identity/current');
-    this.heatText=v.text(h.x+12,h.y+(portrait?27:l.shortLandscape?94:short?108:118),'',portrait?20:short?28:24,C.paper,h.width-24).setFontStyle('bold');
-    const goldY=h.y+(portrait?31:l.shortLandscape?11:180);
+    if(!portrait)v.text(h.x+(portrait?64:76),avatarY,(portrait&&this.run.tourMode==='endless'?'无尽 · ':'')+c.name,portrait?18:short?20:22,C.paper,portrait?h.width-160:h.width-88).setName('hero/display-name');
+    this.roleText=v.text(l.mode==='desktop'?sidebar.status.x:h.x+(portrait?64:76),l.mode==='desktop'?sidebar.status.y:avatarY+(portrait?23:28),this.roleCaption(),14,C.mutedInk,l.mode==='desktop'?sidebar.status.width:portrait?h.width-160:h.width-88).setName('hero/status-caption');
+    const skillEntry=v.rect({x:this.roleText.x,y:this.roleText.y,width:portrait?heroRoom:l.mode==='desktop'?sidebar.status.width:h.width-88,height:l.mode==='desktop'?sidebar.status.height:20}).setFillStyle(0,0).setStrokeStyle();v.target(skillEntry,'hero/skill-entry',{tap:()=>this.inspectHeroExplanation(),detail:()=>this.inspectHeroExplanation()});
+    if(!portrait&&!l.shortLandscape)v.text(h.x+12,l.mode==='desktop'?sidebar.stage.y:h.y+96,identity.isBoss?identity.title:identity.stageName,14,C.paper,h.width-24).setName('stage-identity/current');
+    this.heatText=v.text(h.x+12,portrait?h.y+27:l.shortLandscape?h.y+94:short?h.y+108:sidebar.heat.y,'',portrait?20:short?28:24,C.paper,h.width-24).setFontStyle('bold');
+    const goldY=portrait?h.y+31:l.shortLandscape?h.y+11:l.mode==='desktop'?sidebar.gold.y:h.y+180;
     this.goldText=l.shortLandscape?v.text(h.x+h.width-12,goldY,'',14,C.brass).setOrigin(1,0):v.text(h.x+12,goldY,'',14,C.brass,h.width-24);
     if(!portrait){
 
-      v.text(h.x+12,h.y+(l.shortLandscape?130:short?146:156),'目标 '+heatText(this.stage.targetHeat),14,C.jade,h.width-24).setName('hud/target');
-      const progressY=toolInventoryProgressY(l,h.y+(l.shortLandscape?152:short?168:238));v.rect({x:h.x+12,y:progressY,width:h.width-24,height:5},0x45595b).setStrokeStyle();
+      v.text(h.x+12,l.mode==='desktop'?sidebar.target.y:h.y+(l.shortLandscape?130:146),'目标 '+heatText(this.stage.targetHeat),14,C.jade,h.width-24).setName('hud/target');
+      const progressY=toolInventoryProgressY(l,l.mode==='desktop'?sidebar.progress.y:h.y+(l.shortLandscape?152:168));v.rect({x:h.x+12,y:progressY,width:h.width-24,height:5},0x45595b).setStrokeStyle();
       this.progressBar=v.rect({x:h.x+12,y:progressY,width:1,height:5},T.jade).setOrigin(0,.5).setPosition(h.x+12,progressY+2.5).setStrokeStyle();
     }
     if(portrait){this.mobileHeroName=v.text(h.x+64,h.y+6,c.name,14,C.ink).setName('hero/display-name');this.roleText.setVisible(true).setPosition(h.x+64+this.mobileHeroName.width+8,h.y+6).setFontSize(13).setWordWrapWidth(0);this.goldText.setFontSize(12).setOrigin(0,0).setPosition(h.x+64,h.y+28);this.heatText.setPosition(h.x+128,h.y+28).setFontSize(14).setWordWrapWidth(0);skillEntry.setPosition(this.roleText.x,this.roleText.y).setSize(h.x+h.width-56-this.roleText.x,20);}
     if(short){this.roleText.setVisible(false);skillEntry.setVisible(false);}
     if(!short&&(this.assistProfile||usesErxiangHandoff(this.run)||usesAzaoCharge(this.run)||usesXiemuBurn(this.run)||usesLaohuanRefill(this.run)||usesTouyeWager(this.run))){
-      const hit=v.add(this.add.rectangle(this.roleText.x+(portrait?h.x+h.width-56-this.roleText.x:108)/2,this.roleText.y+9,portrait?h.x+h.width-56-this.roleText.x:108,portrait?44:30,0,0));v.target(hit,usesErxiangHandoff(this.run)?'hero/erxiang-handoff-label':usesTouyeWager(this.run)?'hero/touye-wager-label':usesLaohuanRefill(this.run)?'hero/laohuan-trick-label':usesXiemuBurn(this.run)?'hero/xiemu-burn-label':this.assistProfile?'hero/amo-assist-label':'hero/azao-charge-label',{tap:()=>this.inspectHeroExplanation(),detail:()=>this.inspectHeroExplanation()});
+      const hitWidth=portrait?h.x+h.width-56-this.roleText.x:sidebar.status.width,hitHeight=portrait?44:sidebar.status.height;
+      const hit=v.add(this.add.rectangle(this.roleText.x+hitWidth/2,this.roleText.y+(portrait?9:hitHeight/2),hitWidth,hitHeight,0,0));v.target(hit,usesErxiangHandoff(this.run)?'hero/erxiang-handoff-label':usesTouyeWager(this.run)?'hero/touye-wager-label':usesLaohuanRefill(this.run)?'hero/laohuan-trick-label':usesXiemuBurn(this.run)?'hero/xiemu-burn-label':this.assistProfile?'hero/amo-assist-label':'hero/azao-charge-label',{tap:()=>this.inspectHeroExplanation(),detail:()=>this.inspectHeroExplanation()});
     }
     this.renderJokerRack();
     const s=l.scoreBoard;
@@ -1162,7 +1164,7 @@ export class GameScene extends Phaser.Scene {
     const name=getCharacter(this.run.characterId).name,full=this.roleText.text,copy=full.startsWith(name+'·')?full.slice(name.length+1):full;
     const short=heroSkillName(this.characterId);
     const room=Math.max(1,this.view.layout.hud.x+this.view.layout.hud.width-56-this.roleText.x);
-    const fallback=copy.includes('停用')||copy.includes('不能')?'技能停用':copy.includes('已用')?'本场已用':copy.includes('已选')?'已选 · 点查看':short;
+    const fallback=shortHeroStatus(copy,short);
     this.roleText.setData('fullText',name+' · '+copy).setWordWrapWidth(0);
     for(const candidate of [copy,fallback]){this.roleText.setText(candidate);if(this.roleText.width<=room)break;}
   }
@@ -2196,9 +2198,11 @@ export class GameScene extends Phaser.Scene {
   }
 
   private fitHudReadouts():void {
-    const l=this.view.layout;if(l.mode!=='portrait'||!this.roleText?.active)return;const h=l.hud,roleX=h.x+64+(this.mobileHeroName?.width??40)+8;
+    const l=this.view.layout;if(!this.roleText?.active)return;
+    if(l.mode==='desktop'){const area=heroSidebarRows(l.hud).status;this.roleText.setFontSize(14).setScale(1).setOrigin(0,0).setPosition(area.x,area.y);if(this.roleText.style.wordWrapWidth!==area.width||!this.roleText.style.wordWrapUseAdvanced)this.roleText.setWordWrapWidth(area.width,true);crispText(this.roleText);return;}
+    if(l.mode!=='portrait')return;const h=l.hud,roleX=h.x+64+(this.mobileHeroName?.width??40)+8;
     this.roleText.setWordWrapWidth(0).setFontSize(13).setScale(1).setOrigin(0,0).setPosition(roleX,h.y+6);
-    this.roleText.setScale(Math.min(1,Math.max(1,h.x+h.width-56-roleX)/Math.max(1,this.roleText.width),18/Math.max(1,this.roleText.height)));crispText(this.roleText);
+    this.fitMobileHeroCaption();crispText(this.roleText);
     const x=h.x+128,width=h.x+h.width-56-x;
     // Exact current/target values stay on one row; no automatic wrapping into the rack.
     this.heatText.setWordWrapWidth(0).setFontSize(14).setScale(1).setOrigin(0,0).setPosition(x,h.y+28);
@@ -2230,8 +2234,8 @@ export class GameScene extends Phaser.Scene {
     this.goldText.setText(l.shortLandscape?gold+' 金':'金币 '+gold+(l.mode==='desktop'?'\n还需 '+heatText(remaining)+' 热度':''));
     if(l.mode==='desktop'&&this.progressBar?.active){
       // Keep the two actual text rows within the HUD's dedicated gold region.
-      fitScoreLine(this.goldText,{x:l.hud.x+12,y:l.hud.y+180,width:l.hud.width-24,height:48},14);
-      const progressY=Math.max(l.hud.y+238,this.goldText.getBounds().bottom+6);
+      const sidebar=heroSidebarRows(l.hud);fitScoreLine(this.goldText,sidebar.gold,14);
+      const progressY=Math.max(sidebar.progress.y,this.goldText.getBounds().bottom+4);
       this.progressBar.setY(progressY+2.5);
     }
     this.updateHandCount();
