@@ -37,8 +37,8 @@ describe('shop whole-chain presentation uses the current authoritative facts',()
  it('keeps real tool prices while the core entry does not mislabel tiered service prices',()=>{
   const s=fixture();s.purchaseCoupons=1;
   const prices=[...new Set(basicChoiceRows(s).filter(r=>!r.duplicate).map(r=>r.price))].sort((a,b)=>a-b);
-  expect(prices).toEqual([1,2]);expect(basicChoiceEntryLabel(s)).toBe('工坊\n本店共用1次');
+  expect(prices).toEqual([1,2]);expect(basicChoiceEntryLabel(s)).toBe('自选做牌\n本店共用1次');
   s.shop!.basicChoice!.purchase={definitionId:'T08',commandId:'already-bought',paidPrice:1,seq:s.commandSeq};
-  expect(basicChoiceEntryLabel(s)).toBe('工坊\n本店已用');
+  expect(basicChoiceEntryLabel(s)).toBe('自选做牌\n本店已用');
  });
 });

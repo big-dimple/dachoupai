@@ -36,16 +36,16 @@ export function shopHeldGeometry(card:Box,portrait:boolean){
   return {art,name,identity};
 }
 
-/** A complete, low-opacity image under the shop, with no source cropping or image edits. */
-export function shopHeroBackground(width:number,height:number,top:number,bottom:number,aspect:number,portrait:boolean){
-  const y=top+(portrait?44:0),availableHeight=Math.max(0,height-bottom-y),artHeight=Math.min(availableHeight,width/aspect),artWidth=artHeight*aspect;
-  return {x:portrait?(width-artWidth)/2:Math.min(24,(width-artWidth)/2),y:y+(availableHeight-artHeight)/2,width:artWidth,height:artHeight,alpha:.18};
-}
-
 /** One top-aligned grid per goods row; text length never moves the picture or price. */
 export function shopOfferGeometry(tile:Box,kind:keyof typeof SHOP_CATEGORIES):ShopOfferGeometry|undefined {
   const padding=8,gap=12,titleHeight=22,priceHeight=24,reasonHeight=18,aspect=4/5;
   if(kind==='jokers'){
+    if(tile.height<290){
+      const width=Math.min(128,(tile.width-20)*.48,(tile.height-16)*aspect),x=tile.x+padding+width+10,copyWidth=tile.x+tile.width-padding-x,priceY=tile.y+tile.height-padding-reasonHeight-priceHeight;
+      if(width<64||copyWidth<80||tile.height<180)return;
+      const art={x:tile.x+padding,y:tile.y+padding,width,height:width/aspect};
+      return {art,title:{x,y:tile.y+padding,width:copyWidth,height:titleHeight},identity:{x,y:tile.y+padding+24,width:copyWidth,height:16},summary:{x,y:tile.y+padding+46,width:copyWidth,height:priceY-tile.y-padding-50},price:{x,y:priceY,width:copyWidth,height:priceHeight},reason:{x,y:priceY+priceHeight,width:copyWidth,height:reasonHeight}};
+    }
     const copyHeight=124;
     const width=Math.min(224,tile.width-padding*2,(tile.height-padding*2-copyHeight)*aspect);
     if(width<64)return;

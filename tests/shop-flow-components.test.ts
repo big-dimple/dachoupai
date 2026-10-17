@@ -4,7 +4,7 @@ import {newRunIdentity} from '../src/game/RunLaunch';
 import {r2ToolPrice} from '../src/domain/r2Shop';
 import {intersects,type Box} from '../src/game/layout';
 import {shopAnchoredTip} from '../src/game/ShopAnchoredTip';
-import {shopOfferGeometry,shopHeldGeometry,shopHeroBackground,shopIdentityText,shopOfferSynopsis,SHOP_CATEGORIES} from '../src/game/ShopOfferLayout';
+import {shopOfferGeometry,shopHeldGeometry,shopIdentityText,shopOfferSynopsis,SHOP_CATEGORIES} from '../src/game/ShopOfferLayout';
 import {shopLayout,shopSummaryWrap,shopOfferSummary} from '../src/game/ShopLayout';
 import {shopPurchaseContinuation,shopToolContinuation,shopToolPurchaseContinuation} from '../src/game/ShopPurchaseFlow';
 
@@ -15,8 +15,8 @@ it('medium desktop spends space on full merchandise while keeping two-line infor
  expect(pc.ownedRail.height+16).toBeLessThan(757*.25);
  const rows=pc.jokerOffers.map(tile=>shopOfferGeometry(tile,'jokers')!);
  for(const [i,g] of rows.entries()){
-  expect(g.art.width/pc.jokerOffers[i].width).toBeGreaterThan(.72);expect(g.summary.height).toBeGreaterThanOrEqual(34);
-  expect(g.price.y).toBe(rows[0].price.y);expect(g.identity!.y).toBeGreaterThanOrEqual(g.art.y+g.art.height);
+  expect(g.art.width).toBeGreaterThanOrEqual(112);expect(g.summary.height).toBeGreaterThanOrEqual(34);
+  expect(g.price.y).toBe(rows[0].price.y);for(const copy of [g.title,g.identity!,g.summary,g.price])expect(intersects(g.art,copy)).toBe(false);
  }
 });
 
@@ -25,13 +25,6 @@ it('held phone identity stays outside complete art and above its route and actio
   const p=shopLayout(width,height,8,0,3,true);
   for(const b of p.slots){const g=shopHeldGeometry(b,true);expect(g.art.height/g.art.width).toBeCloseTo(1.25);expect(intersects(g.art,g.name)).toBe(false);expect(intersects(g.art,g.identity)).toBe(false);expect(g.identity.y+g.identity.height).toBeLessThanOrEqual(b.y+b.height);expect(b.y+b.height+20).toBeLessThan(p.reroll.y);}
   expect(shopIdentityText('common')).toContain('普通');expect(shopIdentityText('rare','foil',true)).toBe('稀有 · 闪箔');
- }
-});
-
-it('hero wallpaper stays complete and low opacity on desktop and both phone widths',()=>{
- for(const [width,height,portrait] of [[1180,757,false],[390,844,true],[360,844,true]] as const){
-  const b=shopHeroBackground(width,height,8,0,1122/1402,portrait);
-  expect(inside(b,{x:0,y:8,width,height:height-8})).toBe(true);expect(b.width/b.height).toBeCloseTo(1122/1402);expect(b.alpha).toBeGreaterThan(0);expect(b.alpha).toBeLessThan(.25);
  }
 });
 
