@@ -2227,6 +2227,16 @@
         "rainbow",
         "human experience acceptance"
       ]
+    },
+    "polychromeIridescenceShop": {
+      "candidate": "176dfb8eacdd39070c0d7b3d7fca23f46e5d1461",
+      "branch": "dev/polychrome-iridescence-20261017",
+      "baseSource": "7db6e8395b10f58b19986c181e0e29fd8d4b2192",
+      "status": "DELIVERED_FOLLOWUP_SHOP_SCOPE_NOT_IN_CURRENT_SHOP_RELEASE",
+      "scope": "Shop shelf/held/full-slots continuous polychrome;separate warm-gold Wangzhao shelf/inventory",
+      "parentReceipt": "18narrow/type/build and dual-end persistence evidence;not locally reviewed or integrated yet",
+      "GameSceneWired": false,
+      "notClaimed": "battle-table effect active;real source-card action remains separate"
     }
   },
   "encoreCopyFollowup": {
@@ -2356,6 +2366,16 @@
       "AI e321 module/wiring"
     ],
     "open": "three unmet experience goals,P08,CI defects,Guzhu old word not reproduced,human/device/hearing/haptics/formal gates",
-    "nextBatchAfterShop": "387c Liu E and8cf AI owner receipt plus e321 module delivered;AI requires one actual select/cancel/switch check;not in this shop release"
+    "nextBatchAfterShop": "387c Liu E and8cf AI owner receipt plus e321 module delivered;AI requires one actual select/cancel/switch check;not in this shop release;176dfb8e Shop-only rainbow queued,GameScene not wired,real source-card action separate",
+    "sourceRawLogWhitespace": {
+      "initialWholeBatchDiffCheck": "FAIL:trailing blank line at EOF in3original source logs",
+      "retainedByteExact": [
+        "fixture-third-tests-FAIL.txt",
+        "tests-first-FAIL.txt",
+        "tests.txt"
+      ],
+      "productDocsAndCurrentLogs": "PASS when excluding only those3raw data files",
+      "workflowThresholdOrGlobalWhitespaceConfigChanged": false
+    }
   }
 }
