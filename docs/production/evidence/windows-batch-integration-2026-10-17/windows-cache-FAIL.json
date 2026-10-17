@@ -1,0 +1,8 @@
+{
+  "correction": "Use a private cacheDir under this worktree shots, without changing product or assertions",
+  "status": "FAIL_ENVIRONMENT",
+  "action": "Windows narrow footer browser scenario",
+  "productChanged": false,
+  "candidate": "070cc16f0d04c7da03850dd62fd34cef450d8227",
+  "reason": "Vite default dependency cache through reused node_modules junction failed to create deps_temp_* (ENOENT); browser then timed out. Test exited before Stop-Process; no process was stopped."
+}

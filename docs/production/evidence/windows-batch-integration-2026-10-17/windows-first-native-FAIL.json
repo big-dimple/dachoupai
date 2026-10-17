@@ -1,0 +1,32 @@
+{
+  "head": "070cc16f0d04c7da03850dd62fd34cef450d8227",
+  "browser": "153.0.8010.12",
+  "renderer": "Chromium software Canvas",
+  "fixture": "Current new-run identity, validator-approved curated nine visible cards / hand capacity; no natural draw/acquisition claim.",
+  "sourceHashes": {
+    "GameScene": "7cfd3628a515f5ae2143aeb9b4c84bbe063999b06e04fa4b2737ad565ee0e56e",
+    "layout": "1640d14167bdc09e8614e7967982a88d1b0fefbf01554dee638c428931258ffe",
+    "HeroActionShortcut": "cab49b8bb9bc2ef2625846f4f0e002a32710e61a4bc4085eb71dd11f8e7418e1"
+  },
+  "rows": [
+    {
+      "name": "narrow",
+      "spec": {
+        "name": "narrow",
+        "width": 320,
+        "height": 568,
+        "touch": true,
+        "safe": {
+          "top": 0,
+          "left": 0,
+          "right": 0,
+          "bottom": 0
+        }
+      },
+      "status": "FAIL",
+      "errors": [],
+      "error": "page.waitForFunction: Timeout 12000ms exceeded.\n    at waitScene (C:\\Users\\wanghongping\\AppData\\Local\\Temp\\dachoupai-windows-integration-20261017\\harness\\ui.mjs:3:41)\n    at load (C:\\Users\\wanghongping\\AppData\\Local\\Temp\\dachoupai-windows-integration-20261017\\shots\\windows-integration\\cross.mjs:25:57)\n    at async file:///C:/Users/wanghongping/AppData/Local/Temp/dachoupai-windows-integration-20261017/shots/windows-integration/cross.mjs:59:4"
+    }
+  ],
+  "status": "FAIL"
+}

@@ -2,6 +2,8 @@
 
 ## 当前统一执行计划
 
+**2026-10-17 Windows 整批开发候选：** `070cc16f0d04c7da03850dd62fd34cef450d8227`，接续 `5afce4e4`，已合 `fc681cf7` 高光预算、`36ba1e41` AI/开战与 bundle `f82b3cf9` 底栏。范围为加载去鱼、卡图/高光、音频、AI/开战、弃牌—理牌三块—出牌及独立技能/既有提醒；最终48项、类型/构建和72高光产物预算/hash通过，原生交叉实际结果与来源复用见[整批回执](evidence/windows-batch-integration-2026-10-17/README.md)。仅普通 dev 交付，未合main/查CI/域名/部署；提醒仍是已加入引导的新局首两场每场一次，不是长局每手强制。P08仍in_progress，其他评审项/正式门及真人设备听感未签。以下“仅文档/待实施”描述评审来源当时状态，不能覆盖本段整批事实。
+
 **唯一排程与状态入口，2026-10-17新加坡批次评审与整改排程。** 被测产品 `7d7921e76ca794a14e715e3eac3b4d66143862ff`，比较旧 `ba49d4536a21c647a6710b047053def874d29ace`。先读[综合评审](reviews/SINGAPORE_REVIEW_20261017.md)、[待实施整改计划](reviews/REMEDIATION_PLAN_20261017.md)与[原始证据](evidence/singapore-review-2026-10-17/README.md)；机器状态在[plan.json](plan.json)。原作者交付说明/status不改写，评审前当前段已[原样归档](history/DELIVERY_PLAN-current-before-singapore-review-20261017.md)。
 
 本次仅独立 `docs/review-singapore-20261017` 文档分支普通提交/push，**没有实施产品整改，不push main、不改领域hash/数值/断言、不查CI或管理域名部署**。P08保持 **in_progress**，不以72图或43局部测试签整体完成。第一批修跳场保存后转场/错误选角与显示name污染规则导致AI灰色；GameScene同一负责人先恢复数据隔离，再收口punch双写。第二批卡图、音频、商店/折页按文件责任并行，第三批统一UI正名、缓存/来源与规则身份文档。全部出口和局部回退见新计划。

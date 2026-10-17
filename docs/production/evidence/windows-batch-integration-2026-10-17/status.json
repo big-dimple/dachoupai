@@ -1,0 +1,99 @@
+{
+  "taskId": "P08",
+  "testedCommit": "070cc16f0d04c7da03850dd62fd34cef450d8227",
+  "date": "2026-10-17",
+  "status": "DEVELOPMENT_BATCH_INTEGRATED",
+  "base": "5afce4e4b4a571f8611dcbd675e1255d24514a3d",
+  "remoteMainChecked": "7d7921e76ca794a14e715e3eac3b4d66143862ff",
+  "sources": {
+    "art": "fc681cf7a4134efa13f3d7c1244483f261978dea",
+    "audio": "934871198c8c737cba5aef3b5d8726138be341e5",
+    "flow": "36ba1e41984883b4f2b4ae740d67743018ca0718",
+    "footer": "f82b3cf9d8d3f0cc02e82aa3c57ce506806dc4c0"
+  },
+  "checks": [
+    {
+      "name": "final integration targeted tests",
+      "command": "npx --no-install vitest run tests/source-stage-art.test.ts tests/score-recorded-audio.test.ts tests/assist-profile-ui-copy.test.ts",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 48,
+      "evidence": "targeted-48-PASS.txt"
+    },
+    {
+      "name": "typecheck and production build",
+      "command": "npm run build",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "build-PASS.txt"
+    },
+    {
+      "name": "source identity and built art audit",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "source-build-audit.json"
+    },
+    {
+      "name": "Windows native footer/audio/stage HTTP",
+      "status": "PASS",
+      "evidence": "native/report.json",
+      "exitCode": 0,
+      "passed": 1
+    }
+  ],
+  "sourceEvidenceReuse": {
+    "footer": "../table-footer-2026-10-17/README.md",
+    "flow": "../ai-stage-regressions-2026-10-17/README.md",
+    "audio": "../audio-lifecycle-regression-2026-10-17/README.md",
+    "stageArt": "../climax-source-assets-2026-10-17/README.md",
+    "scope": "Canonical Git blobs match; Windows CRLF checkout digests separately retained. Original source runs are not relabeled as new Windows runs."
+  },
+  "oldAudioAssertion": {
+    "changedInSource": true,
+    "oldExpected": 0.8815,
+    "newExpected": 1.107,
+    "approvedEightSteps": [
+      1,
+      1.12,
+      1.25,
+      1.35,
+      1.5,
+      1.68,
+      1.88,
+      2
+    ],
+    "originalFail": "../singapore-audio-integration-2026-10-17/original-assertion-FAIL.log"
+  },
+  "remaining": {
+    "P08": "in_progress",
+    "reminder": "Existing enrolled opening two stages, once per stage, honors guide/global reminder opt-outs. Not all long-run hands.",
+    "fullSuite": "NOT_RUN",
+    "naturalLongRun": "NOT_RUN",
+    "physicalDevice": "NOT_RUN",
+    "listening": "NOT_RUN",
+    "productionBundleBrowser": "NOT_RUN",
+    "otherReviewItems": "Unchanged outside this batch",
+    "mainPush": false,
+    "ciQueried": false,
+    "deployed": false,
+    "windowsNative": "ONE_CONTROLLED_320_TOUCH_CASE_PASS"
+  },
+  "humanReview": {
+    "status": "NOT_RUN"
+  },
+  "readyForNormalMainMerge": "Yes for the stated batch; no main push performed. Other review items and formal human/device/listening gates remain unchanged.",
+  "environment": {
+    "os": "Windows",
+    "node": "22.20.0",
+    "npm": "10.9.3",
+    "git": "2.51.0.windows.2",
+    "browser": "153.0.8010.12",
+    "renderer": "Chromium software Canvas",
+    "device": "software browser; physical device not run"
+  },
+  "windowsPreparationFailures": [
+    "windows-cache-FAIL.txt",
+    "windows-ssr-FAIL.txt",
+    "windows-ui-startup-FAIL.txt"
+  ]
+}

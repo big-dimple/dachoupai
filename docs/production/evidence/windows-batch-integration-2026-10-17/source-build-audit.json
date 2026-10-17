@@ -1,0 +1,118 @@
+{
+  "candidate": "070cc16f0d04c7da03850dd62fd34cef450d8227",
+  "candidateTree": "db66016ece7fa4890fd372b311409c8888ef02f2",
+  "groups": {
+    "artwork": {
+      "ref": "fc681cf7a4134efa13f3d7c1244483f261978dea",
+      "paths": [
+        "src/game/ClimaxSourceArt.ts",
+        "src/game/HeroClimaxStage.ts",
+        "public/assets/handdrawn-climax",
+        "tests/source-stage-art.test.ts",
+        "scripts/build-climax-source-art.mjs"
+      ],
+      "identical": true,
+      "changed": ""
+    },
+    "audio": {
+      "ref": "934871198c8c737cba5aef3b5d8726138be341e5",
+      "paths": [
+        "src/audio",
+        "tests/score-recorded-audio.test.ts",
+        "tests/audio-music-lifecycle.test.ts"
+      ],
+      "identical": true,
+      "changed": ""
+    },
+    "flowAndFooter": {
+      "ref": "f82b3cf9d8d3f0cc02e82aa3c57ce506806dc4c0",
+      "paths": [
+        "src/game/GameScene.ts",
+        "src/game/ShopScene.ts",
+        "src/game/layout.ts",
+        "src/game/HeroActionShortcut.ts",
+        "src/game/HeroPlayReminder.ts",
+        "src/game/BlindSelectPresentation.ts",
+        "tests/layout.test.ts",
+        "tests/hero-payoff.test.ts",
+        "tests/hero-play-reminder.test.ts",
+        "tests/assist-profile-ui-copy.test.ts",
+        "tests/blind-select-presentation.test.ts"
+      ],
+      "identical": true,
+      "changed": ""
+    },
+    "loading": {
+      "ref": "73a621e57fd8790f634601aa4ab1906ece25cdd4",
+      "paths": [
+        "index.html",
+        "src/game/LoadingScreen.ts"
+      ],
+      "identical": true,
+      "changed": ""
+    },
+    "protected": {
+      "ref": "5afce4e4b4a571f8611dcbd675e1255d24514a3d",
+      "paths": [
+        "src/domain",
+        "src/application",
+        "src/platform",
+        "art/sources",
+        "public/assets/handdrawn-p08",
+        "public/assets/handdrawn-tools",
+        "package.json",
+        "package-lock.json"
+      ],
+      "identical": true,
+      "changed": ""
+    }
+  },
+  "footerBrowserBindings": {
+    "src/game/GameScene.ts": {
+      "expected": "423c0f4639f15e313b68e91fe5c2b2b3c956f70c728d1694439a7ce92e225a9c",
+      "gitBlobSHA256": "423c0f4639f15e313b68e91fe5c2b2b3c956f70c728d1694439a7ce92e225a9c",
+      "worktreeSHA256": "7cfd3628a515f5ae2143aeb9b4c84bbe063999b06e04fa4b2737ad565ee0e56e",
+      "match": true
+    },
+    "src/game/layout.ts": {
+      "expected": "0eb82e2f23eb3f0e980e3b6d60c875dac66ea54801de367d5d691370e8d40dd9",
+      "gitBlobSHA256": "0eb82e2f23eb3f0e980e3b6d60c875dac66ea54801de367d5d691370e8d40dd9",
+      "worktreeSHA256": "1640d14167bdc09e8614e7967982a88d1b0fefbf01554dee638c428931258ffe",
+      "match": true
+    },
+    "src/game/HeroActionShortcut.ts": {
+      "expected": "c3bf80f026b150827fbfb6204abc2b241cd2149802c361ecbc968c97e1f836e6",
+      "gitBlobSHA256": "c3bf80f026b150827fbfb6204abc2b241cd2149802c361ecbc968c97e1f836e6",
+      "worktreeSHA256": "cab49b8bb9bc2ef2625846f4f0e002a32710e61a4bc4085eb71dd11f8e7418e1",
+      "match": true
+    }
+  },
+  "build": {
+    "info": {
+      "version": "C03",
+      "builtAt": "2026-10-17T02:34:12.333Z",
+      "revision": "070cc16f0d04c7da03850dd62fd34cef450d8227",
+      "sourceStatus": "clean",
+      "modified": false
+    },
+    "selectedFiles": 72,
+    "derivatives": 52,
+    "reusedDetails": 20,
+    "byteCeiling": 98304,
+    "maxSelectedBytes": 96814,
+    "maxDerivedBytes": 61570,
+    "files": {
+      "index-BjICR4K5.css": "0eb622be28a6de07f8df947f711b51254f07a9ceea9cb3fc64da3ca5534b1231",
+      "index-Ci6qucyJ.js": "6c416b4c9bb5f151b59d4f34118d28aca24c15893de116ba4d02f1e6f56fcb25"
+    }
+  },
+  "bundle": {
+    "libraryFileId": "libfile_a49c45688fbc81919e0c11ba100569d5",
+    "bytes": 1029871,
+    "sha256": "5cb633042d2d286cd5371b23e58f6e509998f31694c007507fc402d0c65f5aea",
+    "verified": true,
+    "prerequisite": "36ba1e41984883b4f2b4ae740d67743018ca0718",
+    "head": "f82b3cf9d8d3f0cc02e82aa3c57ce506806dc4c0"
+  },
+  "status": "PASS"
+}
