@@ -1,0 +1,73 @@
+
+> dachoupai@0.1.0 test
+> vitest run tests/shop-decision-copy.test.ts tests/shop-offer-guidance.test.ts tests/shop-layout.test.ts tests/shop-synergy.test.ts tests/shop-synergy-conditions.test.ts tests/shop-synergy-preview.test.ts tests/shop-card-journey.test.ts tests/shop-post-purchase-condition.test.ts
+
+
+ RUN  v4.1.11 D:/ai/dachoupai/dachoupai/.codex-remote-attachments/shop-experience-20261017
+
+ ❯ tests/shop-layout.test.ts (18 tests | 5 failed) 83ms
+   × first-shop guide has reachable exits without covering merchandise or primary shop actions 7ms
+   × three visible modest 5:7 goods, separate readable copy, inventory below, one main action row 2ms
+   × the real320×568 shop keeps all five inventory cards inside the viewport and above actions 3ms
+   × compact inventory names retain measured four-character14px room without covering adjacent cards 1ms
+   × toolbar and action anchors stay fixed while compact stock reserves an owned heading 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/shop-layout.test.ts > first-shop guide has reachable exits without covering merchandise or primary shop actions
+AssertionError: guide at 390x740: expected undefined to be defined
+ ❯ tests/shop-layout.test.ts:19:120
+     17| it('first-shop guide has reachable exits without covering merchandise …
+     18|  for(const [width,height] of [[1280,720],[1366,768],[1920,1080],[390,7…
+     19|   const p=shopLayout(width,height,12,0,3),g=shopFirstGuideLayout(p,hei…
+       |                                                                                                                        ^
+     20|   expect(g.box.y).toBeGreaterThanOrEqual(8);expect(g.box.x).toBeGreate…
+     21|   for(const action of [p.play,p.reroll,p.build])expect(intersects(g.bo…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+ FAIL  tests/shop-layout.test.ts > three visible modest 5:7 goods, separate readable copy, inventory below, one main action row
+AssertionError: expected 558.1333333333333 to be less than 496
+ ❯ tests/shop-layout.test.ts:33:42
+     31|   expect(l.slots.every(b=>Math.abs(b.height/b.width-1.4)<1e-6)).toBe(t…
+     32|   expect(l.play.y).toBeGreaterThan(l.reroll.y+l.reroll.height);expect(…
+     33|   expect(l.slots[0].y+l.slots[0].height).toBeLessThan(l.reroll.y);
+       |                                          ^
+     34|  }
+     35| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+
+ FAIL  tests/shop-layout.test.ts > the real320×568 shop keeps all five inventory cards inside the viewport and above actions
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ tests/shop-layout.test.ts:53:223
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/5]⎯
+
+ FAIL  tests/shop-layout.test.ts > compact inventory names retain measured four-character14px room without covering adjacent cards
+AssertionError: expected 54 to be greater than or equal to 56
+ ❯ tests/shop-layout.test.ts:60:77
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/5]⎯
+
+ FAIL  tests/shop-layout.test.ts > toolbar and action anchors stay fixed while compact stock reserves an owned heading
+AssertionError: expected 547.2 to be less than or equal to 420
+ ❯ tests/shop-layout.test.ts:69:295
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/5]⎯
+
+
+ Test Files  1 failed | 7 passed (8)
+      Tests  5 failed | 47 passed (52)
+   Start at  13:46:37
+   Duration  1.92s (transform 4.76s, setup 0ms, import 6.96s, tests 845ms, environment 1ms)

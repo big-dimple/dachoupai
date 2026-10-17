@@ -1,0 +1,33 @@
+{
+  "materialization": "Current Library skill library_file_transfer.py, unchanged, in Ubuntu-Dev; Windows native os.setxattr unavailable. Helper materialize and read-back xattrs verified. Original bytes inspected through view_image; originals not copied into repository or edited.",
+  "files": [
+    {
+      "library_file_id": "libfile_4cdbd50ef7f48191bdd2b682a1961800",
+      "file_id": "file_0000000091bc81f8879222b82cbedeb8",
+      "file_name": "16300.jpg",
+      "version": 0,
+      "size_bytes": 337784,
+      "sha256": "d0da354c76207b08f7c08dccaaa7b94f951b42dbd20aed5d2b574453ce3491c9",
+      "materialized_path": "/tmp/dachoupai-shop-library-20261017/16300.jpg",
+      "windows_read_path": "\\\\wsl.localhost\\Ubuntu-Dev\\tmp\\dachoupai-shop-library-20261017\\16300.jpg",
+      "verified_xattrs": {
+        "user.library-file-version": "0",
+        "user.library-file-id": "libfile_4cdbd50ef7f48191bdd2b682a1961800"
+      }
+    },
+    {
+      "library_file_id": "libfile_48e5506c43fc8191b1813841ae8c9b57",
+      "file_id": "file_00000000d9a88243a586dfd0389a4f42",
+      "file_name": "16301.jpg",
+      "version": 0,
+      "size_bytes": 348103,
+      "sha256": "6449d13898fbf3f562f61f578eaf7cb572a37acd801a55931c7a223929898abc",
+      "materialized_path": "/tmp/dachoupai-shop-library-20261017/16301.jpg",
+      "windows_read_path": "\\\\wsl.localhost\\Ubuntu-Dev\\tmp\\dachoupai-shop-library-20261017\\16301.jpg",
+      "verified_xattrs": {
+        "user.library-file-version": "0",
+        "user.library-file-id": "libfile_48e5506c43fc8191b1813841ae8c9b57"
+      }
+    }
+  ]
+}

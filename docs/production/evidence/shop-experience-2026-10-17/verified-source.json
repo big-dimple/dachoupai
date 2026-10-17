@@ -1,0 +1,21 @@
+{
+  "base": "212e23d547d4fcfdd886f9dfe80699318e77a738",
+  "branch": "dev/shop-experience-20261017",
+  "sourceSHA256": {
+    "src/game/MakeCardsDialog.ts": "536aa5f5ae87e964fda87c325709b5bac614c46dde6d6cf3a48a5e7481363632",
+    "src/game/ShopArt.ts": "70bf3020a3a9b9eb1efa7d2be80e20ca344c3b4e1f17e6317f3ba7ca48646175",
+    "src/game/ShopComparisonDialog.ts": "bfadb2e218b29c9c4169c2ea0ff1d33095d3ef6a44022321f77b77ea18b2ddb2",
+    "src/game/ShopJokerPresentation.ts": "55e5242317a6c641c1be01cf9955a172e9aa523b1b879b2158893ab9366fd6ac",
+    "src/game/ShopLayout.ts": "0b3fb5d2fe33c386c9653e29e6ab09999cd30fb5c4da8d35949a3826c9e588cf",
+    "src/game/ShopOfferGuidance.ts": "969008ffe071639428b838e356a3a6dba775b10804a463d5c2b0db54df44241b",
+    "src/game/ShopScene.ts": "700a8916d171a4285e1e7c338480c2b3ecbffc89f876afbd59ecb5d2dc0eb1a6",
+    "src/game/ShopSynergyPreview.ts": "89e195255a0c3b714b1122ec37b4d763caa0e64ca1f2eca61e24bba605049c38",
+    "src/game/ShopDecisionCopy.ts": "79a6315e7f40b0c93738901d4effc29d537b9cf99ed4a6b0c5a63adba61f6303",
+    "src/game/ShopPresentation.css": "abb26e13c646338a17e6fdb242ba0ec860e9d970382ae5653b7bf541dd6b5108",
+    "src/game/ShopRerollEconomyCopy.ts": "0feface2fe26484fb687d533b31b0a70728630d3524bb1bda4a18bf674142ee9",
+    "tests/shop-layout.test.ts": "abfebd914827a8f29f7a08262b2d2bee29811932df45712f9717e4969525fb2c",
+    "tests/shop-synergy-preview.test.ts": "820b6e60cf669e842758a2b94f6b30084c94032e8ea964452ee284b4763ae084",
+    "tests/shop-decision-copy.test.ts": "e254e43587d65efd89a0dec42c604846a4b13e86b5609e180016ae89a638b35b"
+  },
+  "browser": "browser-full-pass.json plus browser-check.json (conditions-only follow-up). The final ShopScene cleanup removes the unused previous balance-animation flag and unreachable call; no additional UI behavior changed after the passing full sequence."
+}

@@ -1,0 +1,487 @@
+{
+  "scope": "One focused phone software-browser sequence. Controlled valid public checkpoint recreates the photographed offers, then native taps/purchase/cancel/import/refresh. No natural long run, full viewport matrix or physical-phone acceptance.",
+  "browser": "153.0.8010.12",
+  "errors": [],
+  "checks": [
+    "native touch selection and explicit details button",
+    "cancel preserves state/journal/save",
+    "c06 real purchase leaves 0 gold and updates following candidate affordability",
+    "e08/f04 exclusion and real held match",
+    "only gold aura animates; text stays crisp opaque at DPR3",
+    "reduced motion and refresh cleanup"
+  ],
+  "initial": {
+    "width": 360,
+    "height": 690,
+    "zoom": 0.3333333333333333,
+    "preview": [],
+    "names": [
+      {
+        "text": "梅开二度",
+        "offerId": "photo/a11"
+      },
+      {
+        "text": "点石成金",
+        "offerId": "photo/e06"
+      },
+      {
+        "text": "青出于蓝",
+        "offerId": "shop-experience-photo/shop/0/0/joker/2"
+      }
+    ],
+    "purse": "金币 6",
+    "stars": 0,
+    "starter": 0,
+    "previewBox": {
+      "top": 338,
+      "bottom": 546
+    }
+  },
+  "firstTap": {
+    "width": 360,
+    "height": 690,
+    "zoom": 0.3333333333333333,
+    "preview": [
+      {
+        "name": "shop/synergy-preview",
+        "alpha": 1,
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "scaleX": 1,
+        "scaleY": 1,
+        "offerId": "shop-experience-photo/shop/0/0/joker/2"
+      },
+      {
+        "name": "shop/synergy-title",
+        "text": "青出于蓝 · 购后0金",
+        "resolution": 3,
+        "alpha": 1,
+        "x": 22,
+        "y": 346,
+        "width": 130,
+        "height": 19,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "name": "shop/synergy-reason",
+        "text": "同花族后+0.5，下手用\n尚无持牌，先看单卡条件",
+        "resolution": 3,
+        "alpha": 1,
+        "x": 22,
+        "y": 370,
+        "width": 154,
+        "height": 37,
+        "scaleX": 1,
+        "scaleY": 1
+      }
+    ],
+    "names": [
+      {
+        "text": "梅开二度",
+        "offerId": "photo/a11"
+      },
+      {
+        "text": "点石成金",
+        "offerId": "photo/e06"
+      },
+      {
+        "text": "青出于蓝",
+        "offerId": "shop-experience-photo/shop/0/0/joker/2"
+      }
+    ],
+    "purse": "金币 6",
+    "stars": 0,
+    "starter": 0,
+    "previewBox": {
+      "top": 338,
+      "bottom": 546
+    }
+  },
+  "firstTapLater": {
+    "width": 360,
+    "height": 690,
+    "zoom": 0.3333333333333333,
+    "preview": [
+      {
+        "name": "shop/synergy-preview",
+        "alpha": 1,
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "scaleX": 1,
+        "scaleY": 1,
+        "offerId": "shop-experience-photo/shop/0/0/joker/2"
+      },
+      {
+        "name": "shop/synergy-title",
+        "text": "青出于蓝 · 购后0金",
+        "resolution": 3,
+        "alpha": 1,
+        "x": 22,
+        "y": 346,
+        "width": 130,
+        "height": 19,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "name": "shop/synergy-reason",
+        "text": "同花族后+0.5，下手用\n尚无持牌，先看单卡条件",
+        "resolution": 3,
+        "alpha": 1,
+        "x": 22,
+        "y": 370,
+        "width": 154,
+        "height": 37,
+        "scaleX": 1,
+        "scaleY": 1
+      }
+    ],
+    "names": [
+      {
+        "text": "梅开二度",
+        "offerId": "photo/a11"
+      },
+      {
+        "text": "点石成金",
+        "offerId": "photo/e06"
+      },
+      {
+        "text": "青出于蓝",
+        "offerId": "shop-experience-photo/shop/0/0/joker/2"
+      }
+    ],
+    "purse": "金币 6",
+    "stars": 0,
+    "starter": 0,
+    "previewBox": {
+      "top": 338,
+      "bottom": 546
+    }
+  },
+  "beforeBuy": {
+    "ready": true,
+    "busy": false,
+    "seq": 2,
+    "gold": 6,
+    "controller": "idle",
+    "lease": true,
+    "pending": false,
+    "working": false,
+    "active": true
+  },
+  "mutuallyExclusive": {
+    "width": 360,
+    "height": 690,
+    "zoom": 0.3333333333333333,
+    "preview": [
+      {
+        "name": "shop/synergy-preview",
+        "alpha": 1,
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "scaleX": 1,
+        "scaleY": 1,
+        "offerId": "pair/e08"
+      },
+      {
+        "name": "shop/synergy-aura",
+        "alpha": 0.3549374802710324,
+        "x": 0,
+        "y": 0,
+        "scaleX": 1,
+        "scaleY": 1,
+        "instanceId": "held/mantangcai"
+      },
+      {
+        "name": "shop/synergy-mark",
+        "text": "可配合",
+        "resolution": 3,
+        "alpha": 1,
+        "x": 122,
+        "y": 522.6666666666666,
+        "width": 46,
+        "height": 19,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "name": "shop/synergy-title",
+        "text": "一掷千金 · 购后20金",
+        "resolution": 3,
+        "alpha": 1,
+        "x": 22,
+        "y": 346,
+        "width": 140,
+        "height": 19,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "name": "shop/synergy-reason",
+        "text": "出牌前≥20金\n已持「满堂喝彩」都可用于对子／两对等",
+        "resolution": 3,
+        "alpha": 1,
+        "x": 22,
+        "y": 370,
+        "width": 210,
+        "height": 57,
+        "scaleX": 1,
+        "scaleY": 1
+      }
+    ],
+    "names": [
+      {
+        "text": "一掷千金",
+        "offerId": "pair/e08"
+      },
+      {
+        "text": "两袖清风",
+        "offerId": "pair/f04"
+      },
+      {
+        "text": "炉火纯青",
+        "offerId": "pair/b10"
+      }
+    ],
+    "purse": "金币 28",
+    "stars": 0,
+    "starter": 0,
+    "previewBox": {
+      "top": 338,
+      "bottom": 546
+    }
+  },
+  "match": {
+    "width": 360,
+    "height": 690,
+    "zoom": 0.3333333333333333,
+    "preview": [
+      {
+        "name": "shop/synergy-preview",
+        "alpha": 1,
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "scaleX": 1,
+        "scaleY": 1,
+        "offerId": "pair/b10"
+      },
+      {
+        "name": "shop/synergy-aura",
+        "alpha": 0.3585868565662229,
+        "x": 0,
+        "y": 0,
+        "scaleX": 1,
+        "scaleY": 1,
+        "instanceId": "held/mantangcai"
+      },
+      {
+        "name": "shop/synergy-mark",
+        "text": "可配合",
+        "resolution": 3,
+        "alpha": 1,
+        "x": 122,
+        "y": 522.6666666666666,
+        "width": 46,
+        "height": 19,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "name": "shop/synergy-title",
+        "text": "炉火纯青 · 购后24金",
+        "resolution": 3,
+        "alpha": 1,
+        "x": 22,
+        "y": 346,
+        "width": 140,
+        "height": 19,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "name": "shop/synergy-reason",
+        "text": "对子等同点组合出牌后后+10，下手用\n已持「满堂喝彩」都可用于对子／两对等",
+        "resolution": 3,
+        "alpha": 1,
+        "x": 22,
+        "y": 370,
+        "width": 210,
+        "height": 77,
+        "scaleX": 1,
+        "scaleY": 1
+      }
+    ],
+    "names": [
+      {
+        "text": "一掷千金",
+        "offerId": "pair/e08"
+      },
+      {
+        "text": "两袖清风",
+        "offerId": "pair/f04"
+      },
+      {
+        "text": "炉火纯青",
+        "offerId": "pair/b10"
+      }
+    ],
+    "purse": "金币 28",
+    "stars": 0,
+    "starter": 0,
+    "previewBox": {
+      "top": 338,
+      "bottom": 546
+    }
+  },
+  "auraFrames": [
+    [
+      {
+        "name": "shop/synergy-aura",
+        "alpha": 0.41408432056288774,
+        "x": 0,
+        "y": 0,
+        "scaleX": 1,
+        "scaleY": 1,
+        "instanceId": "held/mantangcai"
+      }
+    ],
+    [
+      {
+        "name": "shop/synergy-aura",
+        "alpha": 0.6749999999999999,
+        "x": 0,
+        "y": 0,
+        "scaleX": 1,
+        "scaleY": 1,
+        "instanceId": "held/mantangcai"
+      }
+    ]
+  ],
+  "reduced": {
+    "width": 360,
+    "height": 690,
+    "zoom": 0.3333333333333333,
+    "preview": [
+      {
+        "name": "shop/synergy-preview",
+        "alpha": 1,
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "scaleX": 1,
+        "scaleY": 1,
+        "offerId": "pair/b10"
+      },
+      {
+        "name": "shop/synergy-aura",
+        "alpha": 1,
+        "x": 0,
+        "y": 0,
+        "scaleX": 1,
+        "scaleY": 1,
+        "instanceId": "held/mantangcai"
+      },
+      {
+        "name": "shop/synergy-mark",
+        "text": "可配合",
+        "resolution": 3,
+        "alpha": 1,
+        "x": 122,
+        "y": 522.6666666666666,
+        "width": 46,
+        "height": 19,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "name": "shop/synergy-title",
+        "text": "炉火纯青 · 购后24金",
+        "resolution": 3,
+        "alpha": 1,
+        "x": 22,
+        "y": 346,
+        "width": 140,
+        "height": 19,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "name": "shop/synergy-reason",
+        "text": "对子等同点组合出牌后后+10，下手用\n已持「满堂喝彩」都可用于对子／两对等",
+        "resolution": 3,
+        "alpha": 1,
+        "x": 22,
+        "y": 370,
+        "width": 210,
+        "height": 77,
+        "scaleX": 1,
+        "scaleY": 1
+      }
+    ],
+    "names": [
+      {
+        "text": "一掷千金",
+        "offerId": "pair/e08"
+      },
+      {
+        "text": "两袖清风",
+        "offerId": "pair/f04"
+      },
+      {
+        "text": "炉火纯青",
+        "offerId": "pair/b10"
+      }
+    ],
+    "purse": "金币 28",
+    "stars": 0,
+    "starter": 0,
+    "previewBox": {
+      "top": 338,
+      "bottom": 546
+    }
+  },
+  "tallerPhone": {
+    "width": 390,
+    "height": 844,
+    "zoom": 0.3333333333333333,
+    "preview": [],
+    "names": [
+      {
+        "text": "步步高升",
+        "offerId": "shop-experience-pair/shop/0/1/joker/0"
+      },
+      {
+        "text": "野火春风",
+        "offerId": "shop-experience-pair/shop/0/1/joker/1"
+      },
+      {
+        "text": "乾坤锦囊",
+        "offerId": "shop-experience-pair/shop/0/1/joker/2"
+      }
+    ],
+    "purse": "金币 26",
+    "stars": 0,
+    "starter": 0,
+    "previewBox": {
+      "top": 371.2,
+      "bottom": 700
+    }
+  },
+  "status": "PASS",
+  "sourceSHA256": {
+    "src/game/ShopScene.ts": "8bc0124259c77985b6f7ddcc097dd8821a49a4da7188ec5aefe1a583f178f9a9",
+    "src/game/ShopLayout.ts": "0b3fb5d2fe33c386c9653e29e6ab09999cd30fb5c4da8d35949a3826c9e588cf",
+    "src/game/ShopSynergyPreview.ts": "6f4d7239d36b5415eba4d1b41400ed7e9f210a2a930f858a9dea4e6400b235e7",
+    "src/game/ShopDecisionCopy.ts": "54c44b976e8bf834966e45b71a10b4553a0dba113e6694bc64259dd095f25153"
+  }
+}

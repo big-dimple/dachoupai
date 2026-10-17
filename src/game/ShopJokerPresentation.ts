@@ -13,6 +13,7 @@ import type {Edition} from '../cards/types';
 import {createJokerRarityElement,type JokerRarity} from './JokerRarity';
 import {SHOP_STAR_POINTS} from './ShopCardValueVisual';
 import {jokerArtPreviewUrl} from './jokerArt';
+import './ShopPresentation.css';
 
 /** Projects existing public advice and transactions; never invents a score or new rating. */
 export function shopComparisonPresentation(run:R2RunState,offer:R2Offer){
@@ -25,17 +26,6 @@ export function shopComparisonPresentation(run:R2RunState,offer:R2Offer){
         costs:shopReplacementCompactFacts(run,held,transaction),details:[g.detail,transaction.summary,...transaction.growthEffects,facts.loss,facts.connections,facts.money,facts.held.body].join('\n')};
     })};
 }
-/** Outlines and fills share one fixed shape, so empty stars do not depend on font glyphs. */
-export function createShopValueStars(stars:number,label='推荐指数'):HTMLSpanElement {
-  const row=document.createElement('span');row.className='shop-value-stars';row.setAttribute('role','img');row.setAttribute('aria-label',label+(stars?` ${stars}星，共5星`:' 待核，共5星'));
-  row.dataset.stars=String(stars);
-  for(let i=0;i<5;i++){
-    const svg=document.createElementNS('http://www.w3.org/2000/svg','svg'),shape=document.createElementNS('http://www.w3.org/2000/svg','path');
-    svg.setAttribute('viewBox','0 0 24 24');svg.setAttribute('aria-hidden','true');svg.dataset.filled=String(i<stars);
-    shape.setAttribute('d',SHOP_STAR_POINTS.map(([x,y],i)=>(i?'L':'M')+x+' '+y).join(' ')+'Z');svg.append(shape);row.append(svg);
-  }
-  return row;
-}
 /** Definition rarity and instance edition remain independent of recommendation strength. */
 export function createShopIdentityTags(rarity:JokerRarity,edition?:Edition):HTMLElement {
  const row=document.createElement('div'),label=document.createElement('span');row.className='shop-card-tags';
@@ -44,10 +34,9 @@ export function createShopIdentityTags(rarity:JokerRarity,edition?:Edition):HTML
  row.append(badge,label);return row;
 }
 /** The same value block appears in the candidate, per-slot comparison and purchase detail. */
-export function createShopOfferValue(guidance:ReturnType<typeof shopOfferGuidance>,label='推荐指数'):HTMLElement {
+export function createShopOfferValue(guidance:ReturnType<typeof shopOfferGuidance>,label='选购依据'):HTMLElement {
   const block=document.createElement('section'),head=document.createElement('div'),name=document.createElement('span'),reason=document.createElement('p');
-  block.className='shop-offer-value';block.dataset.axis='recommendation';head.className='shop-value-heading';name.textContent=label;head.append(name,createShopValueStars(guidance.stars,label));reason.textContent=guidance.reason+' · '+guidance.condition;block.append(head,reason);
-  const visibleCombination=guidance.recommendation.combination.split('\n').filter(line=>line.startsWith('组合潜力：')||line.startsWith('组合记录：')&&!line.includes('尚无')).join('\n');
-  if(visibleCombination){const combination=document.createElement('p');combination.className='shop-value-combination';combination.dataset.axis='combination';combination.textContent=visibleCombination;block.append(combination);}
+  block.className='shop-offer-value';block.dataset.axis='purchase-facts';head.className='shop-value-heading';name.textContent=label;head.append(name);reason.textContent=guidance.decision.now+'\n条件：'+guidance.decision.later;block.append(head,reason);
+  const combination=document.createElement('p');combination.className='shop-value-combination';combination.dataset.axis='combination';combination.textContent=guidance.decision.connection;block.append(combination);
   return block;
 }

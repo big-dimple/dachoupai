@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "checks": [
+    "native touch selection and explicit details button",
+    "cancel preserves state/journal/save",
+    "c06 real purchase leaves 0 gold and updates following candidate affordability",
+    "e08/f04 exclusion and real held match",
+    "only gold aura animates; text stays crisp opaque at DPR3",
+    "reduced motion and refresh cleanup"
+  ]
+}
