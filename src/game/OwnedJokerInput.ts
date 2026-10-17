@@ -3,7 +3,7 @@ import type {Box} from './layout';
 import {PointerIntent} from './PointerIntent';
 import {pointerReleaseTime} from './PointerReleaseTime';
 import {modalBlocksCanvas} from './DetailDialog';
-import {requestOwnedJokerPickupHaptic} from './OwnedJokerHaptics';
+import {Haptics,type HapticScope} from '../haptics/Haptics';
 
 type OwnedCard=Box&{id:string};
 interface Options {
@@ -19,6 +19,7 @@ export class OwnedJokerInput {
   private owner?:{pointerId:number;id:string;x:number;y:number;touch:boolean;lifted:boolean;canceled:boolean;width:number;height:number;canDrag:boolean;at:number;downTime:number};
   private contacts=new Map<number,string>();
   private timer?:ReturnType<typeof setTimeout>;
+  private hapticScope?:HapticScope;
   private savedInput=true;
   private bounds?:Box;
   private destroyed=false;
@@ -63,12 +64,13 @@ export class OwnedJokerInput {
     const {x,y}=this.coordinates(e),card=this.options.cards().find(b=>x>=b.x&&x<=b.x+b.width&&y>=b.y&&y<=b.y+b.height);if(!card)return;
     this.options.cancelCanvas();this.savedInput=this.scene.input.enabled;this.scene.input.enabled=false;
     const at=performance.now();this.owner={pointerId:e.pointerId,id:card.id,x,y,touch:e.pointerType==='touch',lifted:false,canceled:false,width:innerWidth,height:innerHeight,canDrag:this.options.ready(),at,downTime:e.timeStamp};
+    this.hapticScope=Haptics.shared.createScope();
     this.intent.down(e.pointerId,x,y,at);
     try{this.surface.setPointerCapture(e.pointerId);}catch{/* Window events still track the contact. */}
     if(e.pointerType!=='touch')e.preventDefault();
     this.timer=setTimeout(()=>{const o=this.owner;if(o&&!o.canceled&&this.options.inspectable()&&!document.querySelector('dialog[open]')&&this.intent.hold(performance.now())&&o.canDrag&&this.options.ready())this.lift(o);},355);
   };
-  private lift(o:NonNullable<OwnedJokerInput['owner']>){if(o.lifted)return;o.lifted=true;this.surface.style.cursor='grabbing';this.options.lift(o.id,o.x,o.y);requestOwnedJokerPickupHaptic(o.touch);}
+  private lift(o:NonNullable<OwnedJokerInput['owner']>){if(o.lifted)return;o.lifted=true;this.surface.style.cursor='grabbing';this.options.lift(o.id,o.x,o.y);this.hapticScope?.pickup(o.touch);}
   private readonly move=(e:PointerEvent)=>{
     const o=this.owner;if(!o||e.pointerId!==o.pointerId)return;
     if(e.pointerType!=='touch'&&e.buttons===0){this.cancel();this.finish();return;}
@@ -98,8 +100,8 @@ export class OwnedJokerInput {
   private readonly visibility=()=>{if(document.hidden)this.blur();};
   private readonly focus=()=>{if(document.querySelector('dialog[open]'))this.cancel();};
   private readonly key=(e:KeyboardEvent)=>{if(e.key==='Escape')this.cancel();};
-  cancel(){clearTimeout(this.timer);this.intent.cancel();if(this.owner)this.owner.canceled=true;this.options.cancel();}
-  private finish(){clearTimeout(this.timer);const o=this.owner;this.owner=undefined;this.surface.style.cursor='grab';if(o){this.scene.input.enabled=this.savedInput;if(this.surface.hasPointerCapture(o.pointerId))this.surface.releasePointerCapture(o.pointerId);}}
+  cancel(){clearTimeout(this.timer);this.hapticScope?.cancel();this.intent.cancel();if(this.owner)this.owner.canceled=true;this.options.cancel();}
+  private finish(){clearTimeout(this.timer);this.hapticScope?.cancel();this.hapticScope=undefined;const o=this.owner;this.owner=undefined;this.surface.style.cursor='grab';if(o){this.scene.input.enabled=this.savedInput;if(this.surface.hasPointerCapture(o.pointerId))this.surface.releasePointerCapture(o.pointerId);}}
   setBounds(b:Box|undefined){
     this.cancel();this.finish();this.bounds=b;this.surface.hidden=!b;this.syncBounds();
   }
