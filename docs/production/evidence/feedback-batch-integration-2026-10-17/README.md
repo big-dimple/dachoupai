@@ -1,5 +1,7 @@
 # 本轮反馈整合回执 · 2026-10-17
 
+**最高音画批音频更新（仅登记）：** 现用候选 `6609f4f609199ee1d5c9271c9389daaebb943bd7`，为同分支8a9b后继，含真实回弹阶段scoreRebound双拍契约。源牌owner01a147ec须给GameScene同版接线及实际序列回执后再联合整合；旧一声版不提前单发，不以接口/单测宣称用户双拍或三体验已满足。其余已完成小批不阻塞此最高优先级；本次不合产品、不跑测试、不push main。
+
 ## 刘娥样例与AI实际操作一致性后继整合
 
 先完成商店main/eyes `934477727201a83b7b2590ee9a2a4645b5f45606` 的成功普通push及双ref核实，才接本批。正常合入[刘娥387](../liue-target-attachment-2026-10-17/README.md)与AI8cf，产品 `10c92404fb4e0cac7ca89a10fd47fdcecc6b7ec6`。e32149e8/24285a60底层模块是8cf真实祖先；387的证据末提交不是8cf祖先，二者共享b0a52c96产品，故另合387保留录像/原FAIL/31项日志。最终GameScene、AiHandCandidates、HeroSkillDraftLifecycle及两附着模块五文件逐blob精确8cf，无覆盖旧场景；刚发布ShopScene/规则/数值/保存/音频/public/art/包锁/.github零差异。

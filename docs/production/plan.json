@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "auditCommit": "7d7921e76ca794a14e715e3eac3b4d66143862ff",
   "currentTask": "P08",
-  "selectionPolicy": "商店934已先发布；刘娥387与AI8cf/e321已合10c92404，五核心精确，27必要交叉/类型336构建及一次真实PC选择/取消/AI切换/撤销/实际1390全状态canonical验证通过。源31/51/152与四段各原版本复用，不全矩阵不签体验。最高下一项为01a147ec源牌分散悬浮/去红粗框/真实摆动+8a9b音频同步，声音不可单合；虹彩图鉴及新美化后排，小文案63145/7b18不抢核心。普通eyes/main已授权，389文件37479977B预算FAIL、N01三目标/P08/CI人验正式门保持。",
+  "selectionPolicy": "最高音画批音频候选更新为6609f4f6（8a9同分支后继），含真实scoreRebound双拍；等01a147ec的GameScene同版接线与实际序列证据后再联合合入，不单发旧一声版，不签用户双拍/体验。当前main仍5cafa；此轮仅dev计划登记、不合源码/跑测试/main。已完成小批不阻塞此优先级，P08及预算/人验/CI正式门保持。",
   "resumeContract": {
     "candidateCommit": "4bf6a7d63d7738d3c415d09439a1bdca878dc685",
     "gateTask": "A01",
@@ -2193,19 +2193,22 @@
       "canShipIndependentlyForShop": true
     },
     "sourceCardAudioCore": {
-      "priority": "HIGHEST_NEXT_USER_12_26",
+      "priority": "HIGHEST_NEXT",
       "owner": "01a147ec",
-      "status": "WAITING_COMBINED_REAL_SOURCE_CARD_ACTION_AUDIO_RECEIPT",
-      "audioCandidate": "8a9b3d995a980bc9147babc0f683b01f114e39bb",
+      "status": "WAITING_COMBINED_SOURCE_CARD_LATEST6609_REBOUND_DOUBLE_BEAT_SCENE_SEQUENCE_RECEIPT",
+      "audioCandidate": "6609f4f609199ee1d5c9271c9389daaebb943bd7",
       "audioBranch": "dev/score-audio-density-20261017",
-      "sourceEvidence": "105narrow/type/build/no clipping;human listening NOT_RUN",
       "requiredScope": [
         "top five jokers spread floating",
         "remove thick red boxes",
         "actual triggered source left/right motion and recoil",
         "same-event audio sync;nonparticipants do not fake motion"
       ],
-      "mergePolicy": "combined source-action/audio receipt first;do not merge audio alone or infer three experience goals pass"
+      "mergePolicy": "latest6609 plus source-card GameScene same-version wiring and actual sequence receipt only;do not publish old single-beat8a9 alone or claim double-beat/human experience complete",
+      "supersededAudioCandidate": "8a9b3d995a980bc9147babc0f683b01f114e39bb",
+      "scoreReboundContract": "double beat at the actual rebound phase;requires GameScene same-version wiring and actual sequence evidence",
+      "previousAudioSourceEvidence": "105narrow/type/build/no clipping;human listening NOT_RUN",
+      "latestAudioSourceEvidence": "parent delivered scoreRebound double-beat contract;not locally merged/tested;actual scene sequence pending"
     },
     "toolCopyBoundaryAudit": {
       "candidate": "63145adfdecd06af006ea62e21b24455a88367fc",
@@ -2429,7 +2432,7 @@
     ],
     "product": "10c92404fb4e0cac7ca89a10fd47fdcecc6b7ec6",
     "devBranch": "dev/eyes-followups-integration-20261017",
-    "status": "MERGED_REQUIRED_NATIVE_AND_CROSS_BUILD_PASS_READY_NORMAL_PUBLICATION",
+    "status": "PUBLISHED_MAIN_AND_EYES_5cafa_SCOPED_EVIDENCE_RETAINED",
     "e321AncestorOf8cf": true,
     "387ReceiptAncestorOf8cf": false,
     "sharedLiueProduct": "b0a52c96d575fda876e87f7d676cd5f9009b1b6a",
@@ -2477,6 +2480,7 @@
       "catalogue",
       "63145/7b18 small copy"
     ],
-    "open": "N01/three unmet experience goals,P08,CI,human/performance/hearing/haptics/device/formal gates"
+    "open": "N01/three unmet experience goals,P08,CI,human/performance/hearing/haptics/device/formal gates",
+    "actualPublishedMain": "5cafa41ace1abbfd5d9fe4ad97f9bb10a00867a4"
   }
 }
