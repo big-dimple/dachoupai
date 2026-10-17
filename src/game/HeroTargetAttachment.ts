@@ -93,11 +93,11 @@ export class HeroTargetAttachment {
       const {edge,label}=mark,sx=Math.max(.2,Math.abs(container.scaleX)),sy=Math.max(.2,Math.abs(container.scaleY));edge.setPosition(center.x,center.y);
       if(label){
         const fullText=releasing?(state.resolvedLabel??'已转'):(state.label??'待转');label.setText(fullText).setData('fullText',fullText);
-        if(card.labelWidth&&label.width>card.labelWidth*sx&&state.kind==='wager')label.setText('新?');
+        if(card.labelWidth&&label.width>card.labelWidth*sx&&state.kind==='wager')label.setText(releasing?(state.failed?'未成':'已成'):'新?');
         const group=state.kind==='group';label.setScale(1/sx,1/sy).setPosition(group?center.x:center.x-width/2+(label.width/2+2)/sx,group?center.y-height/2-11/sy:center.y+height/2+11/sy).setAlpha(1-release);
         this.avoidControls(label,card,group);
       }
-      edge.setData('phase',state.phase).setData('generation',state.generation).setData('eventId',state.eventId).setData('flowPhase',full?state.clock%1600/1600:0).setData('width',width).setData('height',height);
+      edge.setData('phase',state.phase).setData('generation',state.generation).setData('eventId',state.eventId).setData('flowPhase',full?state.clock%1600/1600:0).setData('width',width).setData('height',height).setData('labelText',label?.text);
       const staticKey=full?'':state.phase+'/'+width+'/'+height;if(full||mark.staticKey!==staticKey){
         edge.clear();const ink=state.failed?0x8a7b70:state.kind==='assist'?0x46696f:BLUE;
         if(state.kind==='assist'){
