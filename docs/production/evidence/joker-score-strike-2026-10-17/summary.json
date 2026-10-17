@@ -1,0 +1,376 @@
+{
+  "baseline": "e82c7df8d3e004cb9ad5a86b27389496d397b2ad",
+  "product": "9969b9e6144ef5442dd6dfbcd636b53a96821167",
+  "sourceMatch": true,
+  "heard": false,
+  "physicalPhone": false,
+  "officialAudioSource": "cbf2f0f0d5f0506ed5e79b2ad1c085325b811bb2",
+  "sources": {
+    "src/game/GameScene.ts": "dcac7e591412fa630eee4d2a44b0448aa07a92329407a3745238d9003a809e16",
+    "src/game/OwnedJokerScoreMotion.ts": "968dc761c5b354c250c9157c1287ea4863ddf86e816ca393e326916a9337acbd",
+    "src/game/ScorePhrase.ts": "a2bce741c917e41a3a861a191a5d0fa9953d69d69a017101f93886e45a5944d2",
+    "src/game/JokerScoreStrike.ts": "571d1d4a024e13b7296d344fc643d8701e10af2189686c09038f25329d9df2a6",
+    "src/game/ScoreTableCredit.ts": "7a43df903b06cf4e06d859fc4f21b6d13223f62164a0c85433227e90b0e72ad0",
+    "src/game/inkwaveSpring.ts": "78b6d9bfeecb55dfeb1b305561dada352d4a0fbb43e4c8ccd5e066e4645b48bd",
+    "src/game/layout.ts": "e15138729ed0d0b2c1d6a4db416365404d159da8213a97d41bff84b5550cdc2f",
+    "src/game/PolychromeCardIridescence.ts": "560b19c18a2c3238d079a2f74d47b9910e268155239c4a8c3ef1d915c249e145",
+    "src/audio/AudioEngine.ts": "9f549cda5de0788a15e4005dc3f8a93659fee136a2f1cb36449713c60411be8d"
+  },
+  "cases": [
+    {
+      "key": "before-pc",
+      "status": "PASS",
+      "stateExact": true,
+      "width": 1366,
+      "height": 768,
+      "speed": 1,
+      "frames": 1045,
+      "preFinalTotalPulseMax": 1.54,
+      "creditFramesOverOuterRack": 13,
+      "maxScoreVoices": 3,
+      "stationarySourceLabelEvents": 24,
+      "sourceEvents": 13,
+      "expectedSourceEvents": 13,
+      "verifiedNumericStrikes": [],
+      "media": {
+        "path": "before-pc/av-continuous.webm",
+        "bytes": 3205422,
+        "video": "VP8",
+        "audio": "actual master WebAudio Opus",
+        "heard": false
+      }
+    },
+    {
+      "key": "pc",
+      "status": "PASS",
+      "stateExact": true,
+      "width": 1366,
+      "height": 768,
+      "speed": 1,
+      "frames": 1074,
+      "preFinalTotalPulseMax": 1,
+      "creditFramesOverOuterRack": 0,
+      "maxScoreVoices": 3,
+      "stationarySourceLabelEvents": 19,
+      "sourceEvents": 13,
+      "expectedSourceEvents": 13,
+      "verifiedNumericStrikes": [
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/6/event/28",
+          "target": "M",
+          "kind": "add",
+          "frames": 22,
+          "flightSamples": 8
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/6/event/29",
+          "target": "M",
+          "kind": "multiply",
+          "frames": 24,
+          "flightSamples": 8
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/6/event/30",
+          "target": "H",
+          "kind": "heat",
+          "frames": 22,
+          "flightSamples": 8
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/6/event/31",
+          "target": "H",
+          "kind": "heat",
+          "frames": 21,
+          "flightSamples": 7
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/6/event/32",
+          "target": "M",
+          "kind": "multiply",
+          "frames": 26,
+          "flightSamples": 9
+        }
+      ],
+      "media": {
+        "path": "pc/av-continuous.webm",
+        "bytes": 3271900,
+        "video": "VP8",
+        "audio": "actual master WebAudio Opus",
+        "heard": false
+      }
+    },
+    {
+      "key": "phone",
+      "status": "PASS",
+      "stateExact": true,
+      "width": 390,
+      "height": 740,
+      "speed": 1,
+      "frames": 1060,
+      "preFinalTotalPulseMax": 1,
+      "creditFramesOverOuterRack": 0,
+      "maxScoreVoices": 3,
+      "stationarySourceLabelEvents": 19,
+      "sourceEvents": 13,
+      "expectedSourceEvents": 13,
+      "verifiedNumericStrikes": [
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/6/event/28",
+          "target": "M",
+          "kind": "add",
+          "frames": 22,
+          "flightSamples": 8
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/6/event/29",
+          "target": "M",
+          "kind": "multiply",
+          "frames": 24,
+          "flightSamples": 8
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/6/event/30",
+          "target": "H",
+          "kind": "heat",
+          "frames": 22,
+          "flightSamples": 8
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/6/event/31",
+          "target": "H",
+          "kind": "heat",
+          "frames": 21,
+          "flightSamples": 7
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/6/event/32",
+          "target": "M",
+          "kind": "multiply",
+          "frames": 26,
+          "flightSamples": 9
+        }
+      ],
+      "media": {
+        "path": "phone/av-continuous.webm",
+        "bytes": 3764941,
+        "video": "VP8",
+        "audio": "actual master WebAudio Opus",
+        "heard": false
+      }
+    },
+    {
+      "key": "reduced",
+      "status": "PASS",
+      "stateExact": true,
+      "width": 390,
+      "height": 740,
+      "speed": 4,
+      "frames": 276,
+      "preFinalTotalPulseMax": 1,
+      "creditFramesOverOuterRack": 0,
+      "maxScoreVoices": 3,
+      "stationarySourceLabelEvents": 24,
+      "sourceEvents": 13,
+      "expectedSourceEvents": 13,
+      "verifiedNumericStrikes": []
+    },
+    {
+      "key": "fast",
+      "status": "PASS",
+      "stateExact": true,
+      "width": 390,
+      "height": 740,
+      "speed": 4,
+      "frames": 513,
+      "preFinalTotalPulseMax": 1,
+      "creditFramesOverOuterRack": 0,
+      "maxScoreVoices": 3,
+      "stationarySourceLabelEvents": 19,
+      "sourceEvents": 13,
+      "expectedSourceEvents": 13,
+      "verifiedNumericStrikes": [
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/28",
+          "target": "M",
+          "kind": "add",
+          "frames": 12,
+          "flightSamples": 5
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/29",
+          "target": "M",
+          "kind": "multiply",
+          "frames": 12,
+          "flightSamples": 5
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/30",
+          "target": "H",
+          "kind": "heat",
+          "frames": 12,
+          "flightSamples": 5
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/31",
+          "target": "H",
+          "kind": "heat",
+          "frames": 12,
+          "flightSamples": 5
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/32",
+          "target": "M",
+          "kind": "multiply",
+          "frames": 12,
+          "flightSamples": 5
+        }
+      ],
+      "media": {
+        "path": "fast/av-continuous.webm",
+        "bytes": 1968830,
+        "video": "VP8",
+        "audio": "actual master WebAudio Opus",
+        "heard": false
+      }
+    },
+    {
+      "key": "cancel-windup",
+      "status": "PASS",
+      "stateExact": true,
+      "width": 1366,
+      "height": 768,
+      "speed": 1,
+      "frames": 985,
+      "preFinalTotalPulseMax": 1,
+      "creditFramesOverOuterRack": 0,
+      "maxScoreVoices": 3,
+      "stationarySourceLabelEvents": 19,
+      "sourceEvents": 13,
+      "expectedSourceEvents": 13,
+      "verifiedNumericStrikes": [],
+      "cancelBoundary": {
+        "at": 18856.19999998808,
+        "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/32",
+        "role": "accent",
+        "phase": "windup"
+      },
+      "cancelCleanup": {
+        "at": 18889.79999999702,
+        "scoreVoices": 0,
+        "strikes": 0,
+        "snapshots": 0
+      },
+      "media": {
+        "path": "cancel-windup/av-continuous.webm",
+        "bytes": 2896569,
+        "video": "VP8",
+        "audio": "actual master WebAudio Opus",
+        "heard": false
+      }
+    },
+    {
+      "key": "cancel-flight",
+      "status": "PASS",
+      "stateExact": true,
+      "width": 390,
+      "height": 740,
+      "speed": 1,
+      "frames": 991,
+      "preFinalTotalPulseMax": 1,
+      "creditFramesOverOuterRack": 0,
+      "maxScoreVoices": 3,
+      "stationarySourceLabelEvents": 19,
+      "sourceEvents": 13,
+      "expectedSourceEvents": 13,
+      "verifiedNumericStrikes": [],
+      "cancelBoundary": {
+        "at": 19338.59999999404,
+        "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/32",
+        "role": "accent",
+        "phase": "flight"
+      },
+      "cancelCleanup": {
+        "at": 19356.29999999702,
+        "scoreVoices": 0,
+        "strikes": 0,
+        "snapshots": 0
+      },
+      "media": {
+        "path": "cancel-flight/av-continuous.webm",
+        "bytes": 3382488,
+        "video": "VP8",
+        "audio": "actual master WebAudio Opus",
+        "heard": false
+      }
+    },
+    {
+      "key": "cancel-rebound",
+      "status": "PASS",
+      "stateExact": true,
+      "width": 390,
+      "height": 740,
+      "speed": 1,
+      "frames": 1015,
+      "preFinalTotalPulseMax": 1,
+      "creditFramesOverOuterRack": 0,
+      "maxScoreVoices": 3,
+      "stationarySourceLabelEvents": 19,
+      "sourceEvents": 13,
+      "expectedSourceEvents": 13,
+      "verifiedNumericStrikes": [],
+      "cancelBoundary": {
+        "at": 20112.20000000298,
+        "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/32",
+        "role": "accent",
+        "phase": "rebound"
+      },
+      "cancelCleanup": {
+        "at": 20131,
+        "scoreVoices": 0,
+        "strikes": 0,
+        "snapshots": 0
+      },
+      "media": {
+        "path": "cancel-rebound/av-continuous.webm",
+        "bytes": 3389524,
+        "video": "VP8",
+        "audio": "actual master WebAudio Opus",
+        "heard": false
+      }
+    },
+    {
+      "key": "destroy-fracture",
+      "status": "PASS",
+      "stateExact": true,
+      "width": 1366,
+      "height": 768,
+      "speed": 1,
+      "frames": 866,
+      "preFinalTotalPulseMax": 1,
+      "creditFramesOverOuterRack": 0,
+      "maxScoreVoices": 3,
+      "stationarySourceLabelEvents": 19,
+      "sourceEvents": 9,
+      "expectedSourceEvents": 13,
+      "verifiedNumericStrikes": [],
+      "destroyBoundary": {
+        "phase": "impact",
+        "snapshots": 1
+      },
+      "afterDestroy": {
+        "voices": 0,
+        "active": false,
+        "size": 0,
+        "snapshots": 0
+      }
+    }
+  ],
+  "pending": [
+    "human review of direction, weight, rhythm and listening",
+    "physical phone",
+    "genuine perspective/reflection/touch inertia",
+    "continuous 4x phrase density across unlike event categories",
+    "latest six-hero target attachments are merged separately by integration owner; do not overwrite its GameScene hooks",
+    "320/short landscape/background/replay are not rerun in this strike batch"
+  ]
+}
