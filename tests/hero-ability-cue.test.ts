@@ -1,3 +1,4 @@
+import {heroSkillName} from '../src/game/HeroSkillPresentation';
 import {completeControlledRouteHistory} from './fixtures/route-growth-history';
 import {it,expect,vi} from 'vitest';
 vi.mock('phaser',()=>({default:{Scene:class {}}}));
@@ -23,27 +24,35 @@ it('six public legal inputs only advertise the current valid operation, without 
  for(const id of CHARACTER_IDS){let s=entered(id);if(id==='azao'){s=arrange(s,['spades-2','hearts-2','clubs-3','diamonds-3',...cards.slice(4)]);s=arrange(send(s,{type:'PlayHand',selectedIds:s.handOrder.slice(0,4)}));}if(id==='xiemu'){s.gold=10;expect(readCheckpoint(makeCheckpoint(s,[])).ok).toBe(true);}
   const before=structuredClone(s),ids=id==='erxiang'?cards.slice(0,2):main;
   expect(heroAbilityCue(s,facts(s,ids),ids,id==='amo')?.available).toBe(true);
-  expect(heroAbilityCue(s,facts(s,ids),ids,id==='amo')?.label).toContain(id==='touye'||id==='laohuan'?'弃前':'出前');
+  expect(heroAbilityCue(s,facts(s,ids),ids,id==='amo')).toMatchObject({label:heroSkillName(id),status:'可用',state:'available'});
+  expect(heroAbilityCue(s,facts(s,ids),ids,id==='amo')?.detail).toContain(id==='touye'||id==='laohuan'?'弃牌前':'出牌前');
   expect(heroAbilityCue(s)?.available).toBe(false);expect(s).toEqual(before);
  }
 });
 it('money, qualification, no discard budget, used handoff and old identities never get a ready accent',()=>{
- const x=entered('xiemu');expect(heroAbilityCue(x,facts(x),main)).toMatchObject({available:false,label:'花蕊夫人·不足10金'});
+ const x=entered('xiemu');expect(heroAbilityCue(x,facts(x),main)).toMatchObject({available:false,label:'赏赐',status:'条件未满足',detail:'不足10金'});
  const e=entered('erxiang');expect(heroAbilityCue(e,facts(e,[cards[0]]),[cards[0]])?.available).toBe(false);
  const a=send(e,{type:'PlayHand',selectedIds:cards.slice(0,2),erxiangTargetId:cards[0]});expect(heroAbilityCue(a)?.available).toBe(false);
  const l=entered('laohuan');l.stage!.discardsLeft=0;expect(heroAbilityCue(l,facts(l),[cards[0]])?.available).toBe(false);
  const legacy=structuredClone(e);delete legacy.stage!.erxiangHandoffUsed;legacy.contentVersion='legacy';expect(heroAbilityCue(legacy,facts(e),main)).toBeUndefined();
+});
+it('selected, used and pending states are read-only projections of real drafts and saved actions',()=>{
+ const s=entered('erxiang'),before=structuredClone(s),selected=heroAbilityCue(s,facts(s),main,false,{erxiangTargetId:cards[0]});
+ expect(selected).toMatchObject({label:'垂帘听政',status:'已选择',state:'selected',available:true});expect(s).toEqual(before);
+ const used=send(s,{type:'PlayHand',selectedIds:cards.slice(0,2),erxiangTargetId:cards[0]});expect(heroAbilityCue(used)).toMatchObject({label:'垂帘听政',status:'已用',state:'used',available:false});
+ const t=entered('touye'),ids=cards.slice(6),copy=touyeChoice(t,ids),pending=send(t,{type:'DiscardHand',selectedIds:ids,touyeBet:{target:'three-kind',snapshotToken:copy.snapshotToken}}),snapshot=structuredClone(pending);
+ expect(heroAbilityCue(pending)).toMatchObject({label:'跃马冲阵',status:'待完成',state:'pending',available:false});expect(pending).toEqual(snapshot);
 });
 it('committed handoff and wager results explain actual sources; promises and altered events cannot become receipts',()=>{
  const s=entered('erxiang'),a=send(s,{type:'PlayHand',selectedIds:cards.slice(0,2),erxiangTargetId:cards[0]}),t=a.lastTrace!,e=t.events.find(e=>e.reasonKey==='erxiang.handoff')!;
  expect(savedHeroResult(a)).toContain('8点热度 → 倍率');expect(savedBenefit(a,t,e)).toMatchObject({title:'刘娥 · 垂帘听政 · 已兑现',effect:'8点热度改加倍率（首次普通计分）'});
  expect(savedBenefit(a,t,{...e,eventId:'not-saved'})).toBeUndefined();
  const amo=entered('amo'),b=send(amo,{type:'PlayAssistedHand',selectedIds:main,assistIds:cards.slice(4,6)}),bt=b.lastTrace!,be=bt.events.find(e=>e.reasonKey==='amo.assist.pair')!;
- expect(savedBenefit(b,bt,be)?.effect).toBe('副组2张已用 · 实际×2');expect(savedHeroResult(b)).toBe('苏轼·助攻2张已用 · 实际×2');
+ expect(savedBenefit(b,bt,be)?.effect).toBe('副组2张已用 · 实际×2');expect(savedHeroResult(b)).toBe('苏轼 · 余音袅袅 · 副组2张已用 · 实际×2');
 });
 
 it('B08 respects the non-scoring Laohuan exception and never advertises disabled scoring abilities',()=>{
- for(const id of CHARACTER_IDS){let s=createRun({rulesVersion:'r2',characterId:id,runId:'boss-cue-'+id,seed:'group-natural-17',modeConfig:{mode:'standard',difficulty:0,challengeId:null,programsEnabled:false},r2Identity:newRunIdentity(id,'group'),openingRoute:'group'});s=send(s,{type:'LeaveShop'});s.shop=null;s.chapter=3;s.stageIndex=8;s.seenBossIds=['B02','B03','B08'];s.boss={definitionId:'B08',disabledSuit:null};completeControlledRouteHistory(s);s=arrange(send(s,{type:'EnterStage'}));const cue=heroAbilityCue(s,facts(s),main,id==='amo');expect(cue?.available).toBe(id==='laohuan');if(id!=='laohuan')expect(cue?.label).toContain('停用');}
+ for(const id of CHARACTER_IDS){let s=createRun({rulesVersion:'r2',characterId:id,runId:'boss-cue-'+id,seed:'group-natural-17',modeConfig:{mode:'standard',difficulty:0,challengeId:null,programsEnabled:false},r2Identity:newRunIdentity(id,'group'),openingRoute:'group'});s=send(s,{type:'LeaveShop'});s.shop=null;s.chapter=3;s.stageIndex=8;s.seenBossIds=['B02','B03','B08'];s.boss={definitionId:'B08',disabledSuit:null};completeControlledRouteHistory(s);s=arrange(send(s,{type:'EnterStage'}));const cue=heroAbilityCue(s,facts(s),main,id==='amo');expect(cue?.available).toBe(id==='laohuan');if(id!=='laohuan')expect(cue?.status).toBe('已停用');}
 });
 it('Q01 public current states disable every ability cue without a game mutation',()=>{
  for(const id of CHARACTER_IDS){const s=arrange(send(send(createRun({rulesVersion:'r2',characterId:id,runId:'q-cue-'+id,seed:'challenge/q01/0',r2Identity:newRunIdentity(id,'group'),openingRoute:'group',modeConfig:{mode:'challenge',difficulty:0,challengeId:'Q01',programsEnabled:false}}),{type:'LeaveShop'}),{type:'EnterStage'}));expect(heroAbilityCue(s,facts(s),main,id==='amo')).toMatchObject({available:false});}

@@ -1,0 +1,104 @@
+{
+  "base": "212e23d547d4fcfdd886f9dfe80699318e77a738",
+  "branch": "dev/hero-skill-name-projection-20261017",
+  "nameSource": "docs/production/HERO_TEXT_SPEC_20261015.json",
+  "sourceHashes": {
+    "src/game/AssistChoiceDialog.ts": "6dde5348bd677b88b42ece468ddea78f3f8597b8b5c161c1c3377dbe13841c7e",
+    "src/game/AssistSelection.ts": "dcff3d37087b97fda3d3ff2c52d27a2d4c28ab894ad48a039037e658ac82764c",
+    "src/game/AzaoChargeCopy.ts": "a9d0d735e1fc2736f8eeedc83e087b071eb3e69d8011d4d87c056c0eabf7681c",
+    "src/game/CharacterRunCopy.ts": "52ba6287126c03fb26694c0a9f5ab96c952782f9a274590a16611ff2441ca418",
+    "src/game/ErxiangHandoffCopy.ts": "1b9bd56bd731a99b5145446e7b723b4b61a6406da8314e5353d2c9c0cfd11a1e",
+    "src/game/HandRuleReference.ts": "b6610572a795809fea5ced5c35a50b41b1397fa75f59418f3caa541f55b1e822",
+    "src/game/HeroAbilityCue.ts": "92b8f83b013025135ee5eac06b566f0d57326e1ca199f2da291ae35a38bb95e9",
+    "src/game/HeroExplanation.ts": "27700e3f8d3c3313372427cad7b8d71120466e82de61c1b610e0386817191ecf",
+    "src/game/HeroPlayReminder.ts": "6c29a54cb1871b7670fe5a35389aa2d2ad03fa23604206c8891b51329d8980bc",
+    "src/game/HeroSignature.ts": "135377b8564964216800cc17ac0a6bd00301a9fc2d4517bebea973910b0e3206",
+    "src/game/HeroSkillGuide.ts": "36d5024722660ac4f49a3106b6533d8e2dfdbe09826e208878b50b2fbd9d9d94",
+    "src/game/HeroStageContinuity.ts": "f363369e6fe8aca7a8e2396a13ebcbb65cdafa6f97a7108fde39041bf2c1b22f",
+    "src/game/JokerExperience.ts": "7adbab3c7d15f5e47b9f03b8416ec0731faec43ea784d570084cbbb4ccf8f7a4",
+    "src/game/OpeningPlaySample.ts": "34352c65e995d7ebfac75502151b52d70fb1298b7b36357ca0eda87498d8e52a",
+    "src/game/ScoreReview.ts": "b022c142006e6c923ee9e72002716f8622de6e22bc0f5980d82aed853a4f4e17",
+    "src/game/SelectionPresentation.ts": "bfba34de059965403b4f0ca71cac0e9dfbb49f2aa50cbe06d3178fca4ad47ab6",
+    "src/game/SettlementHighlights.ts": "c7c306cdfc25e93716d3a69f8ad4aa886fd3688c140b385bbb00ddb9d098f670",
+    "src/game/TouyeWagerCopy.ts": "d1a821af630c614ee57308f2a43718b4f1a668edd14827145e5fe4eb4341133b",
+    "src/game/XiemuBurnCopy.ts": "3f0ac2ab9172efb640c48ed44029d41d5a51faf1a5997cb0d2b59a0eef1f0f99",
+    "src/game/characters.ts": "2aa207afcb90cccac06ebb917fbac4012c8660201f8f502585c5784f2a0b9910",
+    "tests/amo-assist-consumption-save.test.ts": "d77a09bae64334fb394e753952553400b3da595a11c694a42827a32bd47a11b7",
+    "tests/assist-profile-ui-copy.test.ts": "8f2a45d2fbe9139131019157b4b5970f0aa08022a9ac7dbbd9afbacfae2b0532",
+    "tests/hand-rule-order.test.ts": "f5652e24bbdb42c518b8d0656e1b5b2c1b8646091e4b0d41764ced1cdb49d142",
+    "tests/hero-ability-cue.test.ts": "684aa8680ebff73f9e63696dfe5b16e9d59700b9bbf68d81b9c98adf573d2eab",
+    "tests/hero-stage-continuity.test.ts": "e394258f9199712a8ddbc688a6ce95edde3ee0f6abae19f57a14769ef19ba45b",
+    "tests/hero-text-contract.test.ts": "d76342f9a1d0883a9db292609905aa3af4d18a3a2f3c193fc2280621e10178d9",
+    "tests/touye-wager.test.ts": "1df387886e51c52182e0365627f4c644556a1123455997e73c2598013a937a5c",
+    "src/game/HeroSkillPresentation.ts": "55089758c7414a200865d464a51a598604acdc1392263a99abc0968cce324735",
+    "tests/hero-skill-presentation.test.ts": "28ac77f88ff82c7a0acbb453899f19e8ffc700692ec94c15370ef3fdec3ad002"
+  },
+  "unit": {
+    "files": [
+      "tests/hero-skill-presentation.test.ts",
+      "tests/hero-text-contract.test.ts",
+      "tests/hero-ability-cue.test.ts",
+      "tests/hero-skill-guide.test.ts",
+      "tests/hero-explanation.test.ts",
+      "tests/hero-stage-continuity.test.ts",
+      "tests/hero-play-reminder.test.ts",
+      "tests/hero-payoff.test.ts",
+      "tests/opening-signature.test.ts",
+      "tests/opening-play-sample.test.ts",
+      "tests/hand-rule-order.test.ts",
+      "tests/hand-rule-reference.test.ts",
+      "tests/score-review.test.ts",
+      "tests/settlement-presentation.test.ts",
+      "tests/joker-experience.test.ts",
+      "tests/assist-profile-ui-copy.test.ts",
+      "tests/amo-assist-consumption-save.test.ts",
+      "tests/xiemu-burn.test.ts",
+      "tests/xiemu-cash-choice.test.ts",
+      "tests/azao-charge.test.ts",
+      "tests/erxiang-handoff.test.ts",
+      "tests/touye-wager.test.ts",
+      "tests/touye-new-core.test.ts",
+      "tests/assist-selection-ui.test.ts"
+    ],
+    "initial": {
+      "passed": 218,
+      "failed": 8,
+      "total": 226
+    },
+    "repair": {
+      "changedAssertions": "Approved names; GameScene fixture stage field",
+      "rerunFiles": [
+        "tests/hand-rule-order.test.ts",
+        "tests/assist-profile-ui-copy.test.ts"
+      ],
+      "passed": 13,
+      "failed": 0
+    },
+    "finalCoveredPassed": 226,
+    "unresolvedFailures": 0
+  },
+  "build": {
+    "status": "PASS",
+    "assets": [
+      {
+        "name": "index-CUxJcRQ8.css",
+        "sha256": "91e7eece5f21e185143c00e98661cba6140d73101ebae1ce14f32f176629e735"
+      },
+      {
+        "name": "index-DSy8d5c1.js",
+        "sha256": "8253556f008ac09755c475ec999589ad49b0da5f4ea53f2ffd587d53a9f967b9"
+      }
+    ]
+  },
+  "protectedFilesDiff": [],
+  "ownerPatch": {
+    "path": "GameScene-owner-only.patch",
+    "sha256": "281778efcb37b27eeab5d758ee787b450c374eaff6dc7408cb4d6600da5fcfb1",
+    "applyCheck": "PASS on base",
+    "applied": false,
+    "state": "pending owner integration"
+  },
+  "browser": "NOT_RUN; dot remote verification remains pending",
+  "ci": "NOT_RUN",
+  "deployment": "NOT_RUN"
+}

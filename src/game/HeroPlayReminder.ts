@@ -1,4 +1,5 @@
 import {usesTouyeWager} from '../domain/r2TouyeWager';
+import type {HeroSkillDraft} from './HeroSkillPresentation';
 import {r2DiscardCost} from '../domain/r2Run';
 import './HeroPlayReminder.css';
 import type {R2RunState} from '../domain/r2Run';
@@ -8,7 +9,7 @@ import {heroSkillGuide} from './HeroSkillGuide';
 import type {DetailDialog} from './DetailDialog';
 import {characterForRun} from './CharacterRunCopy';
 
-export interface HeroPlayDraft {erxiangTargetId?:string|null;xiemuBurn?:number;azaoRelease?:boolean;assistCount?:number}
+export type HeroPlayDraft=HeroSkillDraft;
 /** Available, not merely an opportunity: no speculation about another selection or future draw. */
 export function unusedHeroAbility(run:R2RunState,facts:R2SelectionFacts|undefined,ids:readonly string[],assistAvailable:boolean,draft:HeroPlayDraft):boolean {
  if(run.phase!=='await-input'||!run.stage||run.stage.handsLeft<=0||run.pendingRefill||run.stage.wagerSelected||run.stage.touyeWager?.resolution==='pending')return false;

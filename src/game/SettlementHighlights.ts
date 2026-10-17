@@ -2,7 +2,7 @@ import type {R2RunState} from '../domain/r2Run';
 import type {ScoreEvent,ScoreTrace} from '../domain/scoreR2';
 import {Rational} from '../domain/rational';
 import {usesTouyeWager} from '../domain/r2TouyeWager';
-import {characterForRun,usesCurrentHeroText} from './CharacterRunCopy';
+import {heroSkillName} from './HeroSkillPresentation';
 
 /** A name belongs to the actual saved character event, never an equipped portrait. */
 export function savedSkillName(run:R2RunState,trace:ScoreTrace,event:ScoreEvent):string|undefined {
@@ -10,14 +10,14 @@ export function savedSkillName(run:R2RunState,trace:ScoreTrace,event:ScoreEvent)
   ['base','finalScore','afterHand','onStageClear','beforeFailure'].includes(event.phase))return;
  const changed=['H','M'].some(metric=>Rational.fromJSON(event.after[metric as 'H'|'M']).compare(Rational.fromJSON(event.before[metric as 'H'|'M']))>0);
  if(!changed)return;
- const name=(legacy:string)=>usesCurrentHeroText(run)?characterForRun(run).passiveName:legacy;
- if(trace.xiemuBurn?.cost&&run.characterId==='xiemu')return name('燃金');
- if(trace.azaoCharge?.release&&run.characterId==='azao')return name('蓄势爆发');
- if(trace.erxiangHandoff&&event.reasonKey==='erxiang.handoff')return name('交棒');
- if(trace.assist&&event.reasonKey==='amo.assist.'+trace.assist.kind)return name('主手＋助攻');
- if(trace.touyeWager?.commit&&event.reasonKey.startsWith('touye.won.'))return name('赌约兑现');
+ const name=heroSkillName(run.characterId);
+ if(trace.xiemuBurn?.cost&&run.characterId==='xiemu')return name;
+ if(trace.azaoCharge?.release&&run.characterId==='azao')return name;
+ if(trace.erxiangHandoff&&event.reasonKey==='erxiang.handoff')return name;
+ if(trace.assist&&event.reasonKey==='amo.assist.'+trace.assist.kind)return name;
+ if(trace.touyeWager?.commit&&event.reasonKey.startsWith('touye.won.'))return name;
  if(usesTouyeWager(run))return '常规倍率';
- return characterForRun(run).passiveName;
+ return name;
 }
 
 /** Largest local Joker factor, exact rational comparison with trace-order ties.

@@ -1,3 +1,4 @@
+import {heroSkillName,heroSkillTitle} from './HeroSkillPresentation';
 import {heroText} from './HeroIdentity';
 import {R2_HAND_TYPES,type HandRules,type R2HandType} from '../domain/evaluateR2';
 import {R2_BASE_SCORES,SCORE_LIMITS} from '../domain/scoreR2';
@@ -14,17 +15,17 @@ export function handScoringOrder(identity?:HandRuleIdentity):string {
  if(!identity||!profile)return start+'。角色与整手大丑牌的具体先后，以该局已保存身份和计分记录为准。';
  const whole='按持有顺序的整手大丑牌及各自版次（逆场按相反顺序）',route=isR2RouteGrowth(identity)?' → 本手相关族加成':'';
  if(isR2ActiveMultTiming(identity)&&['touye','xiemu','azao'].includes(identity.characterId)){
-   const effect=identity.characterId==='touye'?'押约结果倍率（有押约时）':identity.characterId==='xiemu'?heroText('谢幕燃金倍率（本手实际燃金时）'):heroText('阿燥释放倍率（本手实际释放时）');
+   const effect=identity.characterId==='touye'?heroSkillName('touye')+'结果倍率（有押注时）':identity.characterId==='xiemu'?heroSkillTitle('xiemu')+'倍率（本手实际支付金币时）':heroSkillTitle('azao')+'倍率（本手实际释放时）';
    const ordinary=identity.characterId==='touye'?heroText(' → 骰爷普通加成（未押约时）'):'';
    return start+ordinary+' → '+whole+route+' → '+effect+(identity.characterId==='touye'?'。普通加成与押约结果互斥，不叠加。':'。');
  }
  if(identity.characterId==='amo'){
-   if(profile.amoScoreTiming==='assist-v1')return start+' → '+whole+route+heroText(' → 阿默助攻倍率（合法主手与副组时）；没有单张×3。');
+   if(profile.amoScoreTiming==='assist-v1')return start+' → '+whole+route+' → '+heroSkillTitle('amo')+'倍率（合法主手与副组时）；没有单张×3。';
    if(profile.amoScoreTiming==='after-joker')return start+' → '+whole+route+heroText(' → 阿默单张×3（仅打出1张时）。');
    return start+heroText(' → 阿默单张×3（仅打出1张时） → ')+whole+route+'。';
  }
- if(identity.characterId==='erxiang'&&isR2ErxiangHandoff(identity))return start+' → '+whole+route+heroText('。二响交棒在对应牌的首次普通点数步骤处理，不是整手后的倍率。');
- if(identity.characterId==='laohuan'&&isR2LaohuanRefill(identity))return start+' → '+whole+route+heroText('。老幻戏法弃属于补牌操作，不在计分链额外加角色热度。');
+ if(identity.characterId==='erxiang'&&isR2ErxiangHandoff(identity))return start+' → '+whole+route+'。'+heroSkillTitle('erxiang')+'在对应牌的首次普通点数步骤处理，不是整手后的倍率。';
+ if(identity.characterId==='laohuan'&&isR2LaohuanRefill(identity))return start+' → '+whole+route+'。'+heroSkillTitle('laohuan')+'属于补牌操作，不在计分链额外加角色热度。';
  return start+' → 角色计分（符合该局规则时） → '+whole+route+'。';
 }
 
