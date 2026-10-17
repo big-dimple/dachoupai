@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "auditCommit": "7d7921e76ca794a14e715e3eac3b4d66143862ff",
   "currentTask": "P08",
-  "selectionPolicy": "当前线上main4314录制冻结；待视频或用户后续发布信息再整批发布，只推进dev。当前产品4d496e20四路软件合批可按授权普通发布；既有共用放大/理牌已发布43725，a73/fb6只历史绑定。三大体验08:10明确未达标/重新整改；08:15自然两对1199+四条8906=10105/1800已触发完整高光并暴露小HUD/长射线/opaque割裂，连续计分重编排另行开发。动态视听触由连续过程验收，统一触觉01a148f7在补，API/设备/体感分别验；用户休息/无录屏不停止。505a商店细分及跨景美术余项见原表，Qin临时hooks已由c9/1607445b交付，108/鼠标触屏证据复用，不等后续连续计分/触觉。H01既有规则17领域检查不重做，H10a14d已合；P08/预算/缺证/真人听感真机正式门保持，不签三目标完成。",
+  "selectionPolicy": "录像已收到并固定为文件，录制限制解除；连续计分实际接线及手机修复齐源后集中验证，检查通过按既有授权普通发布main，不等待用户再回复。当前产品4d496e20四路软件合批可按授权普通发布；既有共用放大/理牌已发布43725，a73/fb6只历史绑定。三大体验08:10明确未达标/重新整改；08:15自然两对1199+四条8906=10105/1800已触发完整高光并暴露小HUD/长射线/opaque割裂，连续计分重编排另行开发。动态视听触由连续过程验收，统一触觉01a148f7在补，API/设备/体感分别验；用户休息/无录屏不停止。505a商店细分及跨景美术余项见原表，Qin临时hooks已由c9/1607445b交付，108/鼠标触屏证据复用，不等后续连续计分/触觉。H01既有规则17领域检查不重做，H10a14d已合；P08/预算/缺证/真人听感真机正式门保持，不签三目标完成。",
   "resumeContract": {
     "candidateCommit": "4bf6a7d63d7738d3c415d09439a1bdca878dc685",
     "gateTask": "A01",
@@ -1550,9 +1550,9 @@
     }
   },
   "recordingHold": {
-    "status": "MAIN_PUBLICATION_ON_HOLD",
+    "status": "RECORDING_HOLD_RELEASED_WAITING_FOR_SOURCE_INTEGRATION",
     "baseline": "4314a2459ade4ea68133f67468c98f9f42b2e251",
-    "reason": "User recording current online version; await video or follow-up release direction.",
+    "reason": "Video received and recording baseline fixed as a file. Wait only for actual continuous-scoring/GameScene wiring and mobile fixes, then concentrated validation and previously authorized normal main publication without further user reply.",
     "devBranch": "dev/recording-followups-integration-20261017",
     "devProduct": "d996ed79c423b0fece173e618be5eda3b7034c75",
     "mergedCandidate": "aac060561724efd62dd06ea764d73b658b68ff3a",
@@ -1571,6 +1571,8 @@
     ],
     "qinSkillObservation": "User reports skill actual trigger/presentation absent; video reproduction pending. Eyes resources and c9 temporary phase wiring are not trigger verification.",
     "physicalHaptics": "NOT_RUN",
-    "reference": "docs/production/CURRENT_BATCH_20261017.md"
+    "reference": "docs/production/CURRENT_BATCH_20261017.md",
+    "videoReview": "Root analyzes timestamps and reports regressions to source owners.",
+    "nextAction": "Receive both actual source SHAs, merge without overwriting owner windows, validate together, then normal dev/main push."
   }
 }
