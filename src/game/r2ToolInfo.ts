@@ -38,6 +38,18 @@ export function editionEffectText(edition?:Edition):string {
   const row=editionDefinition(edition);
   return `${row.name}${row.effect?`（${mathText(row.effect)}）`:'（无额外计分）'}。版次独立于增强和稀有度。扑克在该次增强后、唐宋牌能力前触发；唐宋牌在自身全部计分能力后逐槽触发，本体未命中仍有效。持牌或计分失效时不触发版次。`;
 }
+export interface JokerExtraBonusCopy {label:string;shelf:string;detail:string}
+/** Player copy only: keep familiar labels and saved edition IDs, expose the actual arithmetic. */
+export function jokerExtraBonusCopy(edition?:Edition,context:{definitionId?:string;chapterDisabled?:boolean}={}):JokerExtraBonusCopy {
+  const row=editionDefinition(edition),effect=row.effect;
+  if(!effect)return {label:row.name,shelf:row.name+' · 无额外加成',detail:row.name+'：没有额外计分加成。'};
+  const value=fractionText(effect.value);
+  const action=effect.kind==='add-heat'?`当前整手热度加${value}`:effect.kind==='add-multiplier'?`当前整手倍率加${value}`:`当前整手倍率乘以${value}`;
+  const example=edition==='polychrome'?'（如倍率4→6）':'';
+  const condition=context.definitionId==='c12'?'不用先达成过关赠品条件':'卡牌原有计分效果的条件没达成，也会有这项加成';
+  return {label:row.name,shelf:`${row.name} · 额外${mathText(effect)}`+(context.chapterDisabled?'（本章暂停）':''),
+    detail:`${row.name} · 额外加成：`+(context.chapterDisabled?'本章封角期间暂停。':'')+`每手先算这张牌原有的计分效果，再将${action}${example}。${condition}；被封禁计分时暂停。`};
+}
 function enhancementDefinition(id:NonNullable<PlayingCard['enhancement']>):R2EnhancementDefinition {
   const row=R2_ENHANCEMENTS.find(row=>row.id===id);if(!row)throw Error(`unknown-enhancement: ${id}`);return row;
 }
