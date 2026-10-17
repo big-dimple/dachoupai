@@ -1,5 +1,20 @@
 # 本轮反馈整合回执 · 2026-10-17
 
+## 加演许可与长期物品持续范围文案
+
+基线已发布main `e389ea2c4a7f6d49284546f91992d13055072655`；dev先前af45仅登记AI候选，没有合AI模块。本次只正常无冲突合入[9c12来源](../tool-player-copy-2026-10-17/README.md)，产品 `67a187a286f9132f2c8dcb4b032014ffdc9cd00c`；15路径逐blob全部相同，r2ToolInfo浏览器来源指纹匹配，ShopScene/ConsumableDialog/Catalog/DetailDialog四消费者亦与来源精确同blob。未合其后继4b74，不复制owner场景。
+
+U03加演许可明确“从下一场起，本局每场出牌次数+1；当前场次数不变”；新增源回归以真实购买和连续两次入场验证仍持有、每场5次出牌。12类长期物品说明均写清各自本局持续范围、入场/即时/每店/每章等真实时点，未改机制、数值、规则或存档。两处旧“大丑牌”测试预期同步到当前“唐宋牌”，没有放宽效果/价格/消耗断言；不因此宣称4b0历史CI55项全修或CI通过。
+
+来源Windows4文件105项/构建与1366×768、390×844前后查看证据按原范围复用，含全部39工具详情展开、完整state/journal/storage不变；并未确认购买或使用。整合者查看来源390加演许可像素，仅作源图核对，不冒称新整合浏览器或实体设备验收。源47d2…冻结JSON工作字节hash是Windows CRLF口径，既知Linux LF固定hash测试缺陷仍开放，未改领域内容。
+
+当前仅新增[图鉴消费端1文件10项交叉](checks/encore-copy-catalog-cross.log)及[含类型的329模块构建](checks/encore-copy-build.log)，均PASS；不重复来源105或新浏览器矩阵。GameScene、ShopScene、规则/保存/src/domain/content/application/platform、音频/public/art原字节、137退役结果、.github/包锁保持e389，先前侧栏16项和资源17/423/366证据留在自身产品范围不重跑。
+
+**孤注旧词仍开放。** 用户所见未在来源PC/390使用页、购买、图鉴及39组件复现，原因未知，不归因缓存，不写成已修复。4b74额外加成只有adapter与76源测试，[接口交接](https://github.com/big-dimple/dachoupai/blob/4b74ebc71aa760700d978057f7fd7fa46ca3bdaf/docs/production/evidence/joker-extra-bonus-copy-2026-10-17/README.md)待商店owner接货架未点击信息、detail及标签并给同版回执后才可合入落地；AI e321也继续等唯一Scene owner01a147f6的输入和switchHandType/候选采用草稿一致性回执，模块均未合。
+
+本批携带af45计划登记并按已有授权正常eyes dev/main发布，完整远端SHA以成功回执为准；不等新问答/多彩虹光、刘娥附着大样例或未完成接线。当前完整dist **389文件/37,460,654B**，20,000,000B预算仍FAIL，既有chunk警告/CI15格式与混合断言/待战超时不掩盖。无CI重跑、域名/部署/自然长局，P08仍in_progress，三目标与人验/听感/触感/真机及正式门开放。
+
+
 ## 英雄侧栏长状态与胜利后误停用修复
 
 基线已发布main/eyes `760b9ebd56605d44786e6e8d2221b8ba22ab06a6`，来源[1af6e171](../hero-sidebar-status-layout-2026-10-17/README.md)正常无冲突合入产品 `46ced0c81471b18f059a88b5720a60bcf105b44a`。来源29路径中28逐blob相同；唯一GameScene自动组合为侧栏局部增量加已发布2f2e独立弃牌，Xin方法/入口分派与760逐段相同，没有整份覆盖旧场景。6个叶模块指纹匹配；源第7个GameScene完整指纹不同，明确是组合，不将源24布局/受控动态冒称当前全文件同hash或新整合浏览器复测。
