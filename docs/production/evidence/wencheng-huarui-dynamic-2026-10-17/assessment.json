@@ -1,0 +1,110 @@
+{
+  "testedCommit": "e2e64946f6fabe6fc0e8b369a6b3b52c5bda9d29",
+  "scope": [
+    "azao",
+    "xiemu"
+  ],
+  "functionalStatus": "PASS",
+  "visualStatus": "FAIL",
+  "overallStatus": "FAIL",
+  "reason": "Canvas text bitmap resolution mismatch clips multiplier source and score total on 390 portrait; owner correction pending.",
+  "audioInvocationCheck": [
+    {
+      "key": "azao-1366",
+      "falseHeroImpactCalls": 0,
+      "payoffCalls": [
+        {
+          "tag": "payoff-1",
+          "kind": "flight",
+          "eventId": "dynamic-review/azao/hand/dynamic-review/azao/command/9/event/6"
+        },
+        {
+          "tag": "payoff-1",
+          "kind": "multiply",
+          "eventId": "dynamic-review/azao/hand/dynamic-review/azao/command/9/event/6"
+        },
+        {
+          "tag": "payoff-2",
+          "kind": "flight",
+          "eventId": "dynamic-review/azao/hand/dynamic-review/azao/command/11/event/6"
+        },
+        {
+          "tag": "payoff-2",
+          "kind": "multiply",
+          "eventId": "dynamic-review/azao/hand/dynamic-review/azao/command/11/event/6"
+        }
+      ]
+    },
+    {
+      "key": "azao-390",
+      "falseHeroImpactCalls": 0,
+      "payoffCalls": [
+        {
+          "tag": "payoff-1",
+          "kind": "flight",
+          "eventId": "dynamic-review/azao/hand/dynamic-review/azao/command/9/event/6"
+        },
+        {
+          "tag": "payoff-1",
+          "kind": "multiply",
+          "eventId": "dynamic-review/azao/hand/dynamic-review/azao/command/9/event/6"
+        },
+        {
+          "tag": "payoff-2",
+          "kind": "flight",
+          "eventId": "dynamic-review/azao/hand/dynamic-review/azao/command/11/event/6"
+        },
+        {
+          "tag": "payoff-2",
+          "kind": "multiply",
+          "eventId": "dynamic-review/azao/hand/dynamic-review/azao/command/11/event/6"
+        }
+      ]
+    },
+    {
+      "key": "xiemu-1366",
+      "falseHeroImpactCalls": 0,
+      "payoffCalls": [
+        {
+          "tag": "payoff-1",
+          "kind": "flight",
+          "eventId": "dynamic-review/xiemu/hand/dynamic-review/xiemu/command/8/event/6"
+        },
+        {
+          "tag": "payoff-1",
+          "kind": "multiply",
+          "eventId": "dynamic-review/xiemu/hand/dynamic-review/xiemu/command/8/event/6"
+        }
+      ]
+    },
+    {
+      "key": "xiemu-390",
+      "falseHeroImpactCalls": 0,
+      "payoffCalls": [
+        {
+          "tag": "payoff-1",
+          "kind": "flight",
+          "eventId": "dynamic-review/xiemu/hand/dynamic-review/xiemu/command/8/event/6"
+        },
+        {
+          "tag": "payoff-1",
+          "kind": "multiply",
+          "eventId": "dynamic-review/xiemu/hand/dynamic-review/xiemu/command/8/event/6"
+        }
+      ]
+    }
+  ],
+  "notRun": [
+    "four other heroes",
+    "physical device",
+    "human eye identity/art approval",
+    "subjective sound",
+    "haptics",
+    "other ability tiers",
+    "natural acquisition/balance",
+    "long campaign",
+    "CI",
+    "main merge/deployment"
+  ],
+  "publicFilesChanged": false
+}

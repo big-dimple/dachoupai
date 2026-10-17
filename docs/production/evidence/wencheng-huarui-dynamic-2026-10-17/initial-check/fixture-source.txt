@@ -1,0 +1,27 @@
+import {createRun,applyCommand,type Action,type R2RunState} from '../../src/domain/run';
+import {newRunIdentity} from '../../src/game/RunLaunch';
+import {makeCheckpoint,readCheckpoint} from '../../src/application/checkpoint';
+export const FIRST=['hearts-2','spades-2','clubs-14','diamonds-14'];
+export const RELEASE=['spades-3','hearts-3','clubs-4','diamonds-4'];
+export const HOLD=['spades-5','hearts-5','clubs-6','diamonds-6'];
+export const REPEAT=['spades-7','hearts-7','clubs-8','diamonds-8'];
+export function send(s:R2RunState,action:Action){const command={runId:s.runId,commandId:'fixture/'+s.commandSeq,expectedSeq:s.commandSeq,action},r=applyCommand(s,command);if(!r.ok)throw Error(r.code+JSON.stringify(r.diagnostic));return r.state;}
+function arranged(input:R2RunState,hand:string[],front:string[]=[]){const s=structuredClone(input),used=new Set([...hand,...front,...s.playedPile,...s.discardPile]);s.handOrder=[...hand];s.drawPile=[...front,...s.deckInstances.map(c=>c.id).filter(id=>!used.has(id))];return s;}
+function base(id:'azao'|'xiemu'){
+ let s=createRun({seed:'group-natural-17',runId:'dynamic-review/'+id,rulesVersion:'r2',characterId:id,r2Identity:newRunIdentity(id,'group'),openingRoute:'group',modeConfig:{mode:'standard',difficulty:0,challengeId:null,programsEnabled:false}});
+ s=send(send(s,{type:'LeaveShop'}),{type:'EnterStage'});
+ // One curated, legal first-stage clear provides the larger second-stage
+ // target, so a repeat release can occur before the stage ends.
+ s=arranged(s,['spades-14','hearts-14','clubs-14','diamonds-14','spades-13','hearts-13','clubs-12','diamonds-12']);
+ s=send(s,{type:'PlayHand',selectedIds:['spades-14','hearts-14','clubs-14','diamonds-14']});
+ if(s.phase!=='stage-cleared')throw Error('bounded setup did not clear first stage');
+ return send(send(send(s,{type:'OpenShop'}),{type:'LeaveShop'}),{type:'EnterStage'});
+}
+export function dynamicHeroFixture(id:'azao'|'xiemu',negative=false){
+ let s=base(id);
+ if(id==='azao'&&!negative){s=arranged(s,[...FIRST,...RELEASE]);s=send(s,{type:'PlayHand',selectedIds:FIRST});}
+ s=arranged(s,[...RELEASE,...HOLD],REPEAT);
+ if(id==='xiemu')s.gold=negative?9:35;
+ const checkpoint=makeCheckpoint(s,[]),checked=readCheckpoint(checkpoint);if(!checked.ok)throw Error('invalid controlled '+id+':'+checked.code);
+ return {state:s,checkpoint,selectedIds:RELEASE,holdIds:HOLD,repeatIds:REPEAT,negative};
+}
