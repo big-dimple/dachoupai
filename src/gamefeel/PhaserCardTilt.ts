@@ -36,6 +36,8 @@ export class PhaserCardTilt {
   // Internal child references
   private artChild?: Phaser.GameObjects.GameObject;
   private glareChild?: Phaser.GameObjects.Graphics;
+  private baseArtX: number = 0;
+  private baseArtY: number = 0;
 
   // State flags
   private isHovered: boolean = false;
@@ -97,6 +99,11 @@ export class PhaserCardTilt {
       this.artChild = this.innerVisual.getByName('card-art') ?? this.innerVisual.getAt(0);
     }
 
+    if (this.artChild && 'x' in this.artChild && 'y' in this.artChild) {
+      this.baseArtX = (this.artChild as any).x ?? 0;
+      this.baseArtY = (this.artChild as any).y ?? 0;
+    }
+
     // Optional subtle additive specular glare layer inside inner visual
     this.glareChild = this.scene.add.graphics();
     this.glareChild.setBlendMode(Phaser.BlendModes.ADD);
@@ -118,7 +125,7 @@ export class PhaserCardTilt {
     // If container not already interactive, set centered hit area
     if (!this.container.input) {
       this.container.setInteractive({
-        hitArea: new Phaser.Geom.Rectangle(-width / 2, -height / 2, width, height),
+        hitArea: new Phaser.Geom.Rectangle(0, 0, width, height),
         hitAreaCallback: Phaser.Geom.Rectangle.Contains,
         useHandCursor: true
       });
@@ -209,26 +216,50 @@ export class PhaserCardTilt {
 
   /**
    * Advances smooth interpolation. Call within Phaser scene update(time, delta).
+   * @param effectiveDtSeconds Presentation clock delta. If <= 0 (e.g. during Hit-Stop freeze), freezes interpolation.
    */
-  public update(): void {
-    if (this.isDestroyed) return;
-    const lerp = this.config.lerpSpeed;
+  public update(effectiveDtSeconds: number = 0.016): void {
+    if (this.isDestroyed || effectiveDtSeconds <= 0) return;
+    const t = 1 - Math.exp(-14 * effectiveDtSeconds);
 
     // Interpolate strictly on innerVisual
-    this.innerVisual.rotation = Phaser.Math.Linear(this.innerVisual.rotation, this.targetRotation, lerp);
-    this.innerVisual.scaleX = Phaser.Math.Linear(this.innerVisual.scaleX, this.targetScaleX, lerp);
-    this.innerVisual.scaleY = Phaser.Math.Linear(this.innerVisual.scaleY, this.targetScaleY, lerp);
+    this.innerVisual.rotation = Phaser.Math.Linear(this.innerVisual.rotation, this.targetRotation, t);
+    this.innerVisual.scaleX = Phaser.Math.Linear(this.innerVisual.scaleX, this.targetScaleX, t);
+    this.innerVisual.scaleY = Phaser.Math.Linear(this.innerVisual.scaleY, this.targetScaleY, t);
 
-    // Interpolate internal art parallax offset
+    // Interpolate internal art parallax offset relative to its base coordinates
     if (this.artChild && 'x' in this.artChild && 'y' in this.artChild) {
       const art = this.artChild as unknown as { x: number; y: number };
-      art.x = Phaser.Math.Linear(art.x, this.targetArtOffsetX, lerp);
-      art.y = Phaser.Math.Linear(art.y, this.targetArtOffsetY, lerp);
+      const curOffsetX = art.x - this.baseArtX;
+      const curOffsetY = art.y - this.baseArtY;
+      art.x = this.baseArtX + Phaser.Math.Linear(curOffsetX, this.targetArtOffsetX, t);
+      art.y = this.baseArtY + Phaser.Math.Linear(curOffsetY, this.targetArtOffsetY, t);
     }
   }
 
   public getInnerVisual(): Phaser.GameObjects.Container {
     return this.innerVisual;
+  }
+
+  /**
+   * Explicitly resets tilt and parallax poses to initial baseline immediately.
+   */
+  public reset(): void {
+    this.isHovered = false;
+    this.isDragging = false;
+    this.resetTargets();
+    this.innerVisual.rotation = 0;
+    this.innerVisual.scaleX = 1.0;
+    this.innerVisual.scaleY = 1.0;
+    if (this.artChild && 'x' in this.artChild && 'y' in this.artChild) {
+      const art = this.artChild as unknown as { x: number; y: number };
+      art.x = this.baseArtX;
+      art.y = this.baseArtY;
+    }
+    if (this.glareChild) {
+      this.glareChild.setAlpha(0);
+      this.glareChild.clear();
+    }
   }
 
   /**
@@ -253,8 +284,8 @@ export class PhaserCardTilt {
 
     if (this.artChild && 'x' in this.artChild && 'y' in this.artChild) {
       const art = this.artChild as unknown as { x: number; y: number };
-      art.x = 0;
-      art.y = 0;
+      art.x = this.baseArtX;
+      art.y = this.baseArtY;
     }
 
     if (this.glareChild) {

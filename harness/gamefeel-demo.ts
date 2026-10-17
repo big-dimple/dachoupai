@@ -1,22 +1,29 @@
 /**
  * harness/gamefeel-demo.ts
- * Real Phaser 3 Application Harness for Tang/Song Game Feel & Audio Elevation.
+ * Authentic Phaser Game Harness for Game Feel & Audio Elevation Verification.
  * 
- * Formal Integration Architecture:
- * - Runs authentic Phaser.Game and Phaser.Scene instance.
- * - Uses real PhaserCardTilt on innerVisual layers (preserving container transforms).
- * - Uses real ScoringRhythmOrchestrator consuming real domain ScoreTrace from scoreR2Hand.
- * - Routes all audio through formal AudioEngine public methods (playPentatonicNote, playWarDrum, playTempleBell).
- * - Low-pass filter cleanly attached to AudioEngine music bus with nested modal stack support.
- * - Exposes window.__GAMEFEEL_STATE__ for automated Playwright & Vitest assertions.
+ * Complies with Dachoupai Table Architecture:
+ * - 3-Layer Container Composition:
+ *   1. Layout Layer (outer Container): owns table x/y coordinates and drag interactions.
+ *   2. Spring Physics Layer (springLayer): owns spring displacement, pops, and rebounds.
+ *   3. 2.5D Tilt Layer (tiltLayer): owns perspective foreshortening, glare, and art parallax.
+ * - Zero fighting over scale/rotation properties.
+ * - Preserves art original (baseArtX, baseArtY) coordinates without layout shift.
+ * - Respects Hit-Stop presentation timeline: freezes spring and tilt during hit-stops.
+ * - Consumes authentic domain ScoreTrace events in strict original order.
  */
 
 import Phaser from 'phaser';
 import { AudioEngine } from '../src/audio/AudioEngine';
 import { AudioFilterTransition } from '../src/gamefeel/AudioFilterTransition';
 import { PhaserCardTilt } from '../src/gamefeel/PhaserCardTilt';
-import { ScoringRhythmOrchestrator, ScoringCardItem, ScoringPhase } from '../src/gamefeel/ScoringRhythmOrchestrator';
-import { SpringCardTransform, SPRING_PRESETS } from '../src/gamefeel/SpringMotion';
+import { SpringCardTransform } from '../src/gamefeel/SpringMotion';
+import {
+  ScoringRhythmOrchestrator,
+  ScoringCardItem,
+  ScoringPhase,
+  formatRational
+} from '../src/gamefeel/ScoringRhythmOrchestrator';
 import { HitStopPresentationTimeline } from '../src/gamefeel/HitStopPresentationTimeline';
 import { scoreR2Hand, type ScoreInput, type ScoreTrace } from '../src/domain/scoreR2';
 import { R2_JOKERS } from '../src/content/r2Schema';
@@ -24,29 +31,34 @@ import { r2CreateJoker } from '../src/domain/r2Run';
 import { SeededRng } from '../src/core/SeededRng';
 import { PlayingCard } from '../src/cards/types';
 
-export interface DemoCardData {
-  id: string;
-  name: string;
-  rank: number;
-  suit: 'spades' | 'hearts' | 'clubs' | 'diamonds';
-  character: string;
-}
-
-const DEMO_CARDS: DemoCardData[] = [
-  { id: 'c1', name: '苏轼·风起赤壁', rank: 14, suit: 'spades', character: '苏轼' },
-  { id: 'c2', name: '秦琼·踏破山河', rank: 13, suit: 'hearts', character: '秦琼' },
-  { id: 'c3', name: '辛弃疾·挑灯看剑', rank: 12, suit: 'clubs', character: '辛弃疾' },
-  { id: 'c4', name: '刘娥·大宋之母', rank: 11, suit: 'diamonds', character: '刘娥' },
+export const DEMO_CARDS = [
+  { id: 'c1', name: '苏轼·风起赤壁', rank: 14, suit: 'hearts', character: '苏轼' },
+  { id: 'c2', name: '秦琼·踏破山河', rank: 14, suit: 'spades', character: '秦琼' },
+  { id: 'c3', name: '辛弃疾·挑灯看剑', rank: 8, suit: 'diamonds', character: '辛弃疾' },
+  { id: 'c4', name: '刘娥·大宋之母', rank: 8, suit: 'clubs', character: '刘娥' },
   { id: 'c5', name: '文成·藏地迎宾', rank: 10, suit: 'spades', character: '文成公主' },
 ];
 
 export interface CardObjectItem {
   id: string;
   name: string;
-  container: Phaser.GameObjects.Container;
-  innerVisual: Phaser.GameObjects.Container;
+  container: Phaser.GameObjects.Container;       // Layer 1: Layout & Drag
+  springLayer: Phaser.GameObjects.Container;     // Layer 2: Spring Physics
+  tiltLayer: Phaser.GameObjects.Container;       // Layer 3: 2.5D Tilt & Parallax
+  innerVisual: Phaser.GameObjects.Container;     // Backwards-compatible alias to tiltLayer
   transform: SpringCardTransform;
   tilt: PhaserCardTilt;
+}
+
+export interface ProcessedEventRecord {
+  index: number;
+  eventId: string;
+  sourceType: string;
+  operation: string;
+  beforeH: string;
+  beforeM: string;
+  afterH: string;
+  afterM: string;
 }
 
 export class GameFeelScene extends Phaser.Scene {
@@ -67,6 +79,8 @@ export class GameFeelScene extends Phaser.Scene {
   public currentSpeed: number = 1.0;
   public lastResult?: { finalScore: string; isVictory: boolean };
   public phaseHistory: ScoringPhase[] = [];
+  public processedEvents: ProcessedEventRecord[] = [];
+  public freezeSamples: Array<{ time: number; generation: number; y: number; scaleX: number; rot: number; isFrozen: boolean }> = [];
 
   constructor() {
     super('GameFeelScene');
@@ -82,14 +96,14 @@ export class GameFeelScene extends Phaser.Scene {
     bg.fillStyle(0x13212b, 1.0);
     bg.fillRect(0, 0, width, height);
 
-    // Decorative inner table mat (paper parchment with brass border)
+    // Decorative inner table mat
     const mat = this.add.graphics();
     mat.fillStyle(0x1c2f3d, 0.9);
     mat.fillRoundedRect(30, 30, width - 60, height - 60, 16);
     mat.lineStyle(2, 0xd0af72, 0.85);
     mat.strokeRoundedRect(30, 30, width - 60, height - 60, 16);
 
-    // Subtle table header
+    // Header
     this.add.text(width / 2, 54, '唐宋牌 · 视听打击感与节奏编排', {
       fontFamily: 'Noto Serif SC, SimSun, serif',
       fontSize: '22px',
@@ -125,7 +139,7 @@ export class GameFeelScene extends Phaser.Scene {
       color: '#a1b8c2'
     }).setOrigin(0.5);
 
-    // Hit-stop Banner (Explosive multiplier burst visual)
+    // Hit-stop Banner
     this.hitstopBanner = this.add.container(width / 2, 230);
     const bannerG = this.add.graphics();
     bannerG.fillStyle(0xa83226, 0.95);
@@ -141,26 +155,12 @@ export class GameFeelScene extends Phaser.Scene {
     this.hitstopBanner.add([bannerG, this.bannerText]);
     this.hitstopBanner.setAlpha(0);
 
-    // Build 5 Interactive Phaser Cards
+    // Build 5 Interactive Phaser Cards with 3-layer architecture
     this.buildCards(width, height);
 
-    // Initialize Scoring Rhythm Orchestrator with real callbacks
+    // Initialize Scoring Rhythm Orchestrator
     this.orchestrator = new ScoringRhythmOrchestrator({
-      onCardStrike: (idx, card, event) => {
-        // Visual indicator on card
-        const item = this.cardItems.find(c => c.id === card.id);
-        if (item) {
-          this.tweens.add({
-            targets: item.innerVisual,
-            scaleX: 1.15,
-            scaleY: 1.15,
-            duration: 90 / this.currentSpeed,
-            yoyo: true
-          });
-        }
-      },
       onClimaxBurst: (event, mult) => {
-        // Screen shake and banner punch
         this.cameras.main.shake(160, 0.012);
         this.hitstopBanner.setAlpha(1.0).setScale(1.15);
         this.tweens.add({
@@ -197,6 +197,18 @@ export class GameFeelScene extends Phaser.Scene {
           completed: '结算完成 (呼吸留白)'
         };
         this.phaseText.setText(`编排时钟: ${labels[phase]}`);
+      },
+      onEventProcessed: (idx, event) => {
+        this.processedEvents.push({
+          index: idx,
+          eventId: event.eventId,
+          sourceType: event.sourceType,
+          operation: event.operation,
+          beforeH: formatRational(event.before.H),
+          beforeM: formatRational(event.before.M),
+          afterH: formatRational(event.after.H),
+          afterM: formatRational(event.after.M)
+        });
       }
     });
 
@@ -216,13 +228,17 @@ export class GameFeelScene extends Phaser.Scene {
     DEMO_CARDS.forEach((cardData, idx) => {
       const cardX = startX + idx * 140;
 
-      // Outer container strictly owned by layout / GameScene
+      // Layer 1: Outer container (Table Layout & Drag interactions)
       const container = this.add.container(cardX, cardY);
       container.setSize(cardWidth, cardHeight);
 
-      // Inner visual layer that receives 2.5D tilt & spring animations
-      const innerVisual = this.add.container(0, 0);
-      innerVisual.setName('card-visual');
+      // Layer 2: Dedicated Spring Physics Layer
+      const springLayer = this.add.container(0, 0);
+      springLayer.setName('card-spring-layer');
+
+      // Layer 3: Dedicated 2.5D Tilt & Parallax Layer
+      const tiltLayer = this.add.container(0, 0);
+      tiltLayer.setName('card-tilt-layer');
 
       // 1. Drop Shadow
       const shadow = this.add.graphics();
@@ -236,7 +252,7 @@ export class GameFeelScene extends Phaser.Scene {
       bg.lineStyle(1.5, 0xc2a66e, 0.95);
       bg.strokeRoundedRect(-cardWidth / 2, -cardHeight / 2, cardWidth, cardHeight, 8);
 
-      // 3. Card Art placeholder / motif
+      // 3. Card Art placeholder with preserved base coordinates
       const art = this.add.graphics();
       art.setName('card-art');
       art.fillStyle(0xecd9b5, 0.85);
@@ -267,14 +283,15 @@ export class GameFeelScene extends Phaser.Scene {
         color: '#7a6237'
       }).setOrigin(0.5);
 
-      innerVisual.add([shadow, bg, art, cornerText, heroName, skillName]);
-      container.add(innerVisual);
+      tiltLayer.add([shadow, bg, art, cornerText, heroName, skillName]);
+      springLayer.add(tiltLayer);
+      container.add(springLayer);
 
       // Card Spring Physics
       const transform = new SpringCardTransform(0, 0, 1.0, 0);
 
-      // 2.5D Perspective Tilt Component (modifies innerVisual only, never hijacking drag)
-      const tilt = new PhaserCardTilt(container, cardWidth, cardHeight, innerVisual, {
+      // 2.5D Perspective Tilt Component (modifies tiltLayer strictly)
+      const tilt = new PhaserCardTilt(container, cardWidth, cardHeight, tiltLayer, {
         maxRotationDeg: 6.5,
         scaleModulation: 0.04,
         artParallaxPx: 6.0,
@@ -286,7 +303,9 @@ export class GameFeelScene extends Phaser.Scene {
         id: cardData.id,
         name: cardData.name,
         container,
-        innerVisual,
+        springLayer,
+        tiltLayer,
+        innerVisual: tiltLayer,
         transform,
         tilt
       });
@@ -299,14 +318,31 @@ export class GameFeelScene extends Phaser.Scene {
     // 1. Advance Scoring Rhythm Orchestrator
     this.orchestrator.update(dtSeconds);
 
-    // 2. Advance 2.5D Card Tilt and Spring Physics
-    for (const item of this.cardItems) {
-      item.tilt.update();
+    // 2. Calculate presentation effective delta (0 if Hit-Stop is active)
+    const isFrozen = HitStopPresentationTimeline.shared.isFrozen();
+    const effectiveDt = (isFrozen ? 0 : dtSeconds) * this.currentSpeed;
 
-      // Apply spring motion to innerVisual
-      item.innerVisual.y = item.transform.y.value;
-      item.innerVisual.scaleX = item.transform.scaleX.value;
-      item.innerVisual.scaleY = item.transform.scaleY.value;
+    // 3. Advance 2.5D Tilt and Spring Physics across dedicated layers without fighting
+    for (const item of this.cardItems) {
+      item.tilt.update(effectiveDt);
+
+      // Apply spring motion strictly to springLayer (Layer 2)
+      item.springLayer.y = item.transform.y.value;
+      item.springLayer.scaleX = item.transform.scaleX.value;
+      item.springLayer.scaleY = item.transform.scaleY.value;
+      item.springLayer.rotation = item.transform.rotation.value;
+    }
+
+    if (isFrozen && this.cardItems.length > 0) {
+      const c = this.cardItems[0];
+      this.freezeSamples.push({
+        time,
+        generation: HitStopPresentationTimeline.shared.getGeneration(),
+        y: c.springLayer.y,
+        scaleX: c.springLayer.scaleX,
+        rot: c.tiltLayer.rotation,
+        isFrozen: true
+      });
     }
   }
 
@@ -314,6 +350,8 @@ export class GameFeelScene extends Phaser.Scene {
 
   public playNormal(speedRatio: number = 1.0): void {
     this.currentSpeed = speedRatio;
+    this.phaseHistory = [];
+    this.processedEvents = [];
     const cards: PlayingCard[] = DEMO_CARDS.map(c => ({ id: c.id, rank: c.rank as any, suit: c.suit }));
     const trace = scoreR2Hand({
       rulesVersion: 'r2',
@@ -352,6 +390,9 @@ export class GameFeelScene extends Phaser.Scene {
 
   public playHighMult(speedRatio: number = 1.0): void {
     this.currentSpeed = speedRatio;
+    this.phaseHistory = [];
+    this.processedEvents = [];
+    this.freezeSamples = [];
     const cards: PlayingCard[] = DEMO_CARDS.map(c => ({ id: c.id, rank: c.rank as any, suit: c.suit }));
     const trace = scoreR2Hand({
       rulesVersion: 'r2',
@@ -393,8 +434,63 @@ export class GameFeelScene extends Phaser.Scene {
     });
   }
 
+  /**
+   * Interleaved Scenario:
+   * Combines poker card scoring chips, Tang/Song additive heat (e03), additive mult (f03),
+   * fractional multiplier (f09 x1.5), and heavy multiplier (f06 x2).
+   */
+  public playInterleaved(speedRatio: number = 1.0): void {
+    this.currentSpeed = speedRatio;
+    this.phaseHistory = [];
+    this.processedEvents = [];
+    const cards: PlayingCard[] = DEMO_CARDS.map(c => ({ id: c.id, rank: c.rank as any, suit: c.suit }));
+    const jokers = [
+      r2CreateJoker('e03', 'owned/0', 4, 'none'), // +20 heat when gold > 0
+      r2CreateJoker('f03', 'owned/1', 4, 'none'), // +4 mult on first play
+      r2CreateJoker('f09', 'owned/2', 4, 'none'), // x1.5 mult when discardsUsed == 0
+      r2CreateJoker('f06', 'owned/3', 4, 'none')  // x2 mult
+    ];
+    const trace = scoreR2Hand({
+      rulesVersion: 'r2',
+      runId: 'interleaved-run',
+      rootId: 'interleaved-run/1',
+      characterId: 'amo',
+      amoScoreTiming: 'after-joker',
+      hand: cards,
+      selectedIds: ['c1'], // single card triggers sushi amo 3x multiplier
+      disabledIds: [],
+      jokers,
+      definitions: R2_JOKERS,
+      handLevels: { 'high-card': 1 },
+      playIndex: 1,
+      handsBeforePlay: 4,
+      previousHandType: null,
+      wager: false,
+      rng: new SeededRng('interleaved-run').snapshot(),
+      gold: 5,
+      discardsUsed: 0,
+      stageHeatBefore: '0',
+      stageTargetHeat: '300'
+    });
+
+    this.currentTrace = trace;
+    const scoringItems: ScoringCardItem[] = this.cardItems.map(c => ({
+      id: c.id,
+      name: c.name,
+      transform: c.transform
+    }));
+
+    this.orchestrator.startScoringSequence(scoringItems, trace, {
+      speedRatio,
+      goalScore: '300',
+      isStageCleared: true
+    });
+  }
+
   public playNoMult(speedRatio: number = 1.0): void {
     this.currentSpeed = speedRatio;
+    this.phaseHistory = [];
+    this.processedEvents = [];
     const cards: PlayingCard[] = DEMO_CARDS.map(c => ({ id: c.id, rank: c.rank as any, suit: c.suit }));
     const trace = scoreR2Hand({
       rulesVersion: 'r2',
@@ -433,6 +529,8 @@ export class GameFeelScene extends Phaser.Scene {
 
   public playDefeat(speedRatio: number = 1.0): void {
     this.currentSpeed = speedRatio;
+    this.phaseHistory = [];
+    this.processedEvents = [];
     const cards: PlayingCard[] = DEMO_CARDS.map(c => ({ id: c.id, rank: c.rank as any, suit: c.suit }));
     const trace = scoreR2Hand({
       rulesVersion: 'r2',
@@ -462,7 +560,6 @@ export class GameFeelScene extends Phaser.Scene {
       transform: c.transform
     }));
 
-    // Final score is far below 9000 goal -> isStageCleared is FALSE
     this.orchestrator.startScoringSequence(scoringItems, trace, {
       speedRatio,
       goalScore: '9000',
@@ -472,7 +569,10 @@ export class GameFeelScene extends Phaser.Scene {
 
   public playHeroSkill(heroKey: 'sushi' | 'liue' | 'qinqiong' | 'xinqiji' | 'wencheng' | 'huarui', speedRatio: number = 1.0): void {
     this.currentSpeed = speedRatio;
-    const cards: PlayingCard[] = [
+    this.phaseHistory = [];
+    this.processedEvents = [];
+
+    let playingCards: PlayingCard[] = [
       { id: 'c1', rank: 14, suit: 'spades' },
       { id: 'c2', rank: 14, suit: 'hearts' },
       { id: 'c3', rank: 10, suit: 'clubs' },
@@ -481,18 +581,44 @@ export class GameFeelScene extends Phaser.Scene {
     ];
 
     let heroInput: Partial<ScoreInput> = {};
+    let selectedIds = ['c1', 'c2'];
+    let handLevels: any = { pair: 1 };
+
     if (heroKey === 'sushi') {
       heroInput = { characterId: 'amo', amoScoreTiming: 'after-joker' };
+      selectedIds = ['c1'];
+      handLevels = { 'high-card': 1 };
     } else if (heroKey === 'liue') {
-      heroInput = { characterId: 'erxiang', erxiangHandoff: { targetId: 'c1', beforeUsed: false } };
+      // erxiang: pair triggers +1.5 mult
+      heroInput = { characterId: 'erxiang' };
+      selectedIds = ['c1', 'c2'];
+      handLevels = { pair: 1 };
     } else if (heroKey === 'qinqiong') {
       heroInput = { characterId: 'touye', wager: true };
+      selectedIds = ['c1', 'c2'];
+      handLevels = { pair: 1 };
     } else if (heroKey === 'xinqiji') {
-      heroInput = { characterId: 'laohuan', laohuanTrick: true };
+      // laohuan: straight triggers +120 heat
+      playingCards = [
+        { id: 'c1', rank: 14, suit: 'spades' },
+        { id: 'c2', rank: 13, suit: 'hearts' },
+        { id: 'c3', rank: 12, suit: 'clubs' },
+        { id: 'c4', rank: 11, suit: 'diamonds' },
+        { id: 'c5', rank: 10, suit: 'spades' }
+      ];
+      heroInput = { characterId: 'laohuan' };
+      selectedIds = ['c1', 'c2', 'c3', 'c4', 'c5'];
+      handLevels = { straight: 1 };
     } else if (heroKey === 'wencheng') {
-      heroInput = { characterId: 'azao', azaoCharge: { before: { charge: 0, previousQualifiedType: null }, release: false } };
+      // azao: previousHandType !== handType triggers +1 mult
+      heroInput = { characterId: 'azao', previousHandType: 'high-card' };
+      selectedIds = ['c1', 'c2'];
+      handLevels = { pair: 1 };
     } else if (heroKey === 'huarui') {
-      heroInput = { characterId: 'xiemu', xiemuBurn: { cost: 0, goldBefore: 5, beforeUsed: false } };
+      // xiemu: handsBeforePlay === 1 triggers x2 mult
+      heroInput = { characterId: 'xiemu', handsBeforePlay: 1 };
+      selectedIds = ['c1', 'c2'];
+      handLevels = { pair: 1 };
     }
 
     const trace = scoreR2Hand({
@@ -500,15 +626,15 @@ export class GameFeelScene extends Phaser.Scene {
       runId: `hero-${heroKey}`,
       rootId: `hero-${heroKey}/1`,
       characterId: heroInput.characterId ?? 'neutral',
-      hand: cards,
-      selectedIds: ['c1', 'c2', 'c3'],
+      hand: playingCards,
+      selectedIds,
       disabledIds: [],
       jokers: [],
       definitions: R2_JOKERS,
-      handLevels: { 'three-kind': 1 },
+      handLevels,
       playIndex: 1,
-      handsBeforePlay: 4,
-      previousHandType: null,
+      handsBeforePlay: heroInput.handsBeforePlay ?? 4,
+      previousHandType: heroInput.previousHandType ?? null,
       wager: heroInput.wager ?? false,
       rng: new SeededRng(`hero-${heroKey}`).snapshot(),
       gold: 5,
@@ -533,20 +659,38 @@ export class GameFeelScene extends Phaser.Scene {
 
   public cancel(): void {
     this.phaseHistory = [];
+    this.processedEvents = [];
     this.orchestrator.cancel();
+    for (const item of this.cardItems) {
+      item.transform.reset(0, 0, 1.0, 0);
+      item.tilt.reset();
+      item.springLayer.y = 0;
+      item.springLayer.scaleX = 1.0;
+      item.springLayer.scaleY = 1.0;
+      item.springLayer.rotation = 0;
+      item.tiltLayer.rotation = 0;
+      item.tiltLayer.scaleX = 1.0;
+      item.tiltLayer.scaleY = 1.0;
+    }
     this.hitstopBanner.setAlpha(0);
     this.phaseText.setText('编排时钟: 牌桌就绪 (已立即取消复位)');
   }
 
   public resetAllTransforms(): void {
     this.phaseHistory = [];
+    this.processedEvents = [];
+    this.freezeSamples = [];
     this.orchestrator.cancel();
     for (const item of this.cardItems) {
       item.transform.reset(0, 0, 1.0, 0);
-      item.innerVisual.y = 0;
-      item.innerVisual.scaleX = 1.0;
-      item.innerVisual.scaleY = 1.0;
-      item.innerVisual.rotation = 0;
+      item.tilt.reset();
+      item.springLayer.y = 0;
+      item.springLayer.scaleX = 1.0;
+      item.springLayer.scaleY = 1.0;
+      item.springLayer.rotation = 0;
+      item.tiltLayer.rotation = 0;
+      item.tiltLayer.scaleX = 1.0;
+      item.tiltLayer.scaleY = 1.0;
     }
     this.heatText.setText('0');
     this.multText.setText('1');
@@ -583,11 +727,18 @@ export function initGameFeelHarness(): Phaser.Game {
       cards: scene.cardItems,
       playNormal: (speed = 1.0) => scene.playNormal(speed),
       playHighMult: (speed = 1.0) => scene.playHighMult(speed),
+      playInterleaved: (speed = 1.0) => scene.playInterleaved(speed),
       playNoMult: (speed = 1.0) => scene.playNoMult(speed),
       playDefeat: (speed = 1.0) => scene.playDefeat(speed),
       playHeroSkill: (hero: any, speed = 1.0) => scene.playHeroSkill(hero, speed),
       cancel: () => scene.cancel(),
       reset: () => scene.resetAllTransforms(),
+      unlockAudio: () => AudioEngine.shared.unlock(),
+      getActiveVoiceCount: () => AudioEngine.shared.getActiveVoiceCount(),
+      isAudioContextRunning: () => AudioEngine.shared.isAudioContextRunning(),
+      getProcessedEvents: () => [...scene.processedEvents],
+      getPhaseHistory: () => [...scene.phaseHistory],
+      getFreezeSamples: () => [...scene.freezeSamples],
       toggleMuffle: (sourceId: string, enter: boolean) => {
         if (enter) scene.filterTransition.enterMuffled(sourceId);
         else scene.filterTransition.exitMuffled(sourceId);

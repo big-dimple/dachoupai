@@ -153,6 +153,7 @@
     <div class="btn-row">
       <span class="row-label">牌局手型:</span>
       <button id="btn-play-normal" class="primary">▶ 普通打出 (顺子/两对)</button>
+      <button id="btn-play-interleaved" class="climax">✨ 交错加乘手 (含1.5倍率与英雄)</button>
       <button id="btn-play-mult" class="climax">💥 连乘爆点 (葫芦 + 战鼓)</button>
       <button id="btn-play-nomult">🃏 无倍率手 (高牌/平推)</button>
       <button id="btn-play-defeat">❌ 未通关手 (得分未达标)</button>
@@ -179,6 +180,7 @@
 
     <div class="btn-row">
       <span class="row-label">音乐低通:</span>
+      <button id="btn-unlock-audio">🔓 触控激活音频链</button>
       <button id="btn-muffle-shop">🏪 进出商店 (深度 1)</button>
       <button id="btn-muffle-card">🔍 展开牌面弹窗 (深度 2)</button>
       <button id="btn-unmuffle-all">☀️ 全部退出恢复明亮</button>
@@ -209,6 +211,18 @@
     document.getElementById('btn-play-normal').onclick = () => {
       getState()?.playNormal(currentSpeed);
       log('打出普通两对手牌，触发 5 连发五音阶升调');
+    };
+
+    document.getElementById('btn-play-interleaved').onclick = () => {
+      getState()?.playInterleaved(currentSpeed);
+      log('打出交错加乘手牌 (含1.5小数倍率、加法与英雄收益)');
+    };
+
+    document.getElementById('btn-unlock-audio').onclick = async () => {
+      await getState()?.unlockAudio();
+      const running = getState()?.isAudioContextRunning();
+      log(`真实触控解锁音频链: ${running ? '成功 (AudioContext RUNNING)' : '未就绪'}`);
+      audioStatusEl.textContent = `音频上下文: ${running ? 'RUNNING' : 'SUSPENDED'}`;
     };
 
     document.getElementById('btn-play-mult').onclick = () => {

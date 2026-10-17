@@ -26,6 +26,8 @@ export class HitStopPresentationTimeline {
   // Presentation time scaling
   private presentationTimeScale: number = 1.0;
   private isHitStopActive: boolean = false;
+  private hitStopRemainingMs: number = 0;
+  private activeOnFreezeEnd?: () => void;
   private hitStopGeneration: number = 0;
   private hitStopTimer?: ReturnType<typeof setTimeout>;
 
@@ -41,11 +43,21 @@ export class HitStopPresentationTimeline {
   public update(rawDeltaMs: number): number {
     if (!Number.isFinite(rawDeltaMs) || rawDeltaMs <= 0) return 0;
     
-    // Clamp raw frame delta to max 50ms to prevent huge jumps after tab freeze
-    const clampedRaw = Math.min(rawDeltaMs, 50);
+    // Clamp frame delta to max 250ms to prevent abnormal spikes
+    const clampedRaw = Math.min(rawDeltaMs, 250);
 
     if (this.isHitStopActive) {
-      // Presentation clock is completely paused during hit-stop
+      this.hitStopRemainingMs -= clampedRaw;
+      if (this.hitStopRemainingMs <= 0) {
+        this.isHitStopActive = false;
+        if (this.hitStopTimer) {
+          clearTimeout(this.hitStopTimer);
+          this.hitStopTimer = undefined;
+        }
+        const onEnd = this.activeOnFreezeEnd;
+        this.activeOnFreezeEnd = undefined;
+        onEnd?.();
+      }
       return 0;
     }
 
@@ -70,6 +82,8 @@ export class HitStopPresentationTimeline {
     }
 
     this.isHitStopActive = true;
+    this.hitStopRemainingMs = durationMs;
+    this.activeOnFreezeEnd = onFreezeEnd;
     onFreezeStart?.();
 
     // Listen for cancellation
@@ -80,13 +94,16 @@ export class HitStopPresentationTimeline {
     };
     signal?.addEventListener('abort', abortHandler, { once: true });
 
-    // Schedule recovery timer on real wall clock
+    // Schedule recovery timer on real wall clock as dual-safety guarantee
     this.hitStopTimer = setTimeout(() => {
       if (this.hitStopGeneration === currentGen && this.isHitStopActive) {
         this.isHitStopActive = false;
+        this.hitStopRemainingMs = 0;
         this.hitStopTimer = undefined;
         signal?.removeEventListener('abort', abortHandler);
-        onFreezeEnd?.();
+        const onEnd = this.activeOnFreezeEnd;
+        this.activeOnFreezeEnd = undefined;
+        onEnd?.();
       }
     }, durationMs);
   }
@@ -101,6 +118,8 @@ export class HitStopPresentationTimeline {
       this.hitStopTimer = undefined;
     }
     this.isHitStopActive = false;
+    this.hitStopRemainingMs = 0;
+    this.activeOnFreezeEnd = undefined;
   }
 
   public setTimeScale(scale: number): void {
@@ -117,6 +136,10 @@ export class HitStopPresentationTimeline {
 
   public isFrozen(): boolean {
     return this.isHitStopActive;
+  }
+
+  public getGeneration(): number {
+    return this.hitStopGeneration;
   }
 
   public dispose(): void {
