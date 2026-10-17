@@ -3,7 +3,7 @@ import bgmManifest from '../../public/assets/audio/bgm/manifest.json';
 import {DEFAULT_AUDIO} from './preferences';
 import {FOLEY,FOLEY_SAMPLES,type FoleyKind,type Layer} from './foley';
 import {sampleBody,type SampleBody} from './sampleBody';
-import {awardForScore,chainRate,scoreStrikeRate,MAX_RECORDED_RATE,EFFECT_VOICE_BUDGET,ACCENT_TAIL_FLOOR} from './mixPolicy';
+import {awardForScore,chainRate,scoreStrikeRate,scoreStrikeStep,scoreArrivalKind,MAX_RECORDED_RATE,EFFECT_VOICE_BUDGET,SCORE_VOICE_BUDGET,SCORE_GAIN_BUDGET,ACCENT_TAIL_FLOOR} from './mixPolicy';
 
 export type AudioBus = 'master' | 'music' | 'sfx' | 'ui';
 export type AudioScene = 'menu' | 'shop' | 'table' | 'boss' | 'success' | 'failure';
@@ -12,9 +12,10 @@ type VoiceBus = Exclude<AudioBus, 'master'>;
 type MusicTrack = { title: string; runtimePath: string };
 type MusicSlot = { element: HTMLAudioElement; node: MediaElementAudioSourceNode; gain: GainNode;
   track?: MusicTrack; cancelAttempt?: () => void };
-type Voice = { source: AudioScheduledSourceNode; gain: GainNode; filter?: BiquadFilterNode; bus: VoiceBus; scoreAccent?: boolean; roll?: ScoreRollKind; semantic?: FoleyKind; startsAt?:number; endsAt?:number; priority?:number; peak?:number };
+type Voice = { source: AudioScheduledSourceNode; gain: GainNode; filter?: BiquadFilterNode; bus: VoiceBus; scoreAccent?: boolean; roll?: ScoreRollKind; semantic?: FoleyKind; startsAt?:number; endsAt?:number; priority?:number; peak?:number; nominalGain?:number; cleanup?:()=>void };
 export type ScoreSourceCue = 'card' | 'held' | 'character' | 'joker' | 'boss' | 'retrigger';
 export type ScoreRollKind = 'heat' | 'mult' | 'total';
+export interface ScoreImpactTiming { durationMs?:number; signal?:AbortSignal; paired?:boolean }
 
 export interface BGMTrackMeta {
   id: string;
@@ -52,6 +53,7 @@ export class AudioEngine {
   private scoreSampleTask?:Promise<void>;
   private readonly sampleAttempts = new Map<string, number>();
   private readonly scoreCues=new WeakMap<object,Set<string>>();
+  private scoreRebounds=new WeakMap<object,Map<string,{rate:number;signal?:AbortSignal}>>();
   private voices = new Set<Voice>();
   private readonly cueTimes = new Map<FoleyKind,number>();
   private readonly variants = new Map<FoleyKind,number>();
@@ -247,7 +249,8 @@ export class AudioEngine {
     voice.source.onended = () => this.release(voice);
   }
   private release(voice: Voice): void {
-    this.voices.delete(voice);
+    if(!this.voices.delete(voice))return;
+    voice.cleanup?.();voice.cleanup=undefined;
     voice.source.onended = null;
     try { voice.source.stop(); } catch { /* The source may already have ended. */ }
     try { voice.source.disconnect(); voice.gain.disconnect(); voice.filter?.disconnect(); } catch { /* Device teardown. */ }
@@ -327,19 +330,49 @@ export class AudioEngine {
       controller.abort();
     }
   }
-  /** Fixed-root recorded notes at numeric arrival; physical accents remain bounded. */
-  scoreImpact(presentation:object,eventId:string,kind:'add'|'key'|'multiply'|'award'|'flight',tier=0,chain=0):void {
-    let seen=this.scoreCues.get(presentation);if(!seen){seen=new Set();this.scoreCues.set(presentation,seen);}const id='recorded/'+eventId+'/'+kind;
-    if(seen.has(id)||seen.size>=1024)return;seen.add(id);if(!this.canPlay('sfx'))return;
+  /** One short material strike per numeric arrival, owned by the saved event. */
+  scoreImpact(presentation:object,eventId:string,kind:'add'|'key'|'multiply'|'award'|'flight',tier=0,chain=0,timing:ScoreImpactTiming={}):void {
+    let seen=this.scoreCues.get(presentation);if(!seen){seen=new Set();this.scoreCues.set(presentation,seen);}const id='recorded/'+eventId+'/'+(kind==='flight'||kind==='award'?kind:'arrival');
+    if(seen.has(id)||seen.size>=1024)return;seen.add(id);if(timing.signal?.aborted||Number.isFinite(timing.durationMs)&&timing.durationMs!<=0||!this.canPlay('sfx'))return;
+    if(kind!=='award'&&kind!=='flight')kind=scoreArrivalKind(presentation,eventId,kind);
     const rate=scoreStrikeRate(presentation,eventId,kind,chain);
-    const sound=kind==='award'?awardForScore(presentation):kind==='flight'?'flight':kind==='multiply'?'scoreMultiply':kind==='key'?(tier>=2?'scoreBurst':'scoreKey'):'scoreAdd';
-    const voices=this.cue(sound,'sfx',rate,0,kind==='add'||kind==='flight'?1:1+bounded(tier,3)*.035);
+    const pulse=scoreStrikeStep(presentation,eventId,chain);
+    const paired=!!timing.paired&&kind!=='award'&&kind!=='flight';
+    const sound=kind==='award'?awardForScore(presentation):kind==='flight'?'flight':kind==='multiply'?(paired?'scoreDoubleImpact':'scoreMultiply'):kind==='key'?(tier>=2?'scoreBurst':'scoreKey'):(['scoreAdd','scoreKey','scoreBurst'] as const)[pulse];
+    const durationMs=paired?(Number.isFinite(timing.durationMs)?Math.min(45,timing.durationMs!):45):timing.durationMs;
+    const scale=kind==='award'||!Number.isFinite(durationMs)?1:Math.max(.25,Math.min(1,durationMs!/(Math.max(...FOLEY[sound].layers.map(l=>(l.delay??0)+l.duration))*1000)));
+    const voices=this.cue(sound,'sfx',rate,0,kind==='award'?1+bounded(tier,3)*.035:1,undefined,scale);
+    if(paired&&voices.length){
+      let pending=this.scoreRebounds.get(presentation);if(!pending){pending=new Map();this.scoreRebounds.set(presentation,pending);}
+      pending.set(eventId,{rate,signal:timing.signal});
+    }
+    this.ownScoreVoices(voices,timing.signal);
+    if(voices.length)this.duckMusic(kind==='award'?Math.max(.4,...FOLEY[sound].layers.map(l=>(l.delay??0)+l.duration)):.2,kind==='award'?.22:.35);
+  }
+
+  /** Second beat belongs to the motion's real rebound callback, never a timer.
+   * Only an admitted paired impact can arm it; the saved first beat owns pitch. */
+  scoreRebound(presentation:object,eventId:string,timing:ScoreImpactTiming={}):void {
+    const pending=this.scoreRebounds.get(presentation),beat=pending?.get(eventId);
+    if(!beat)return;pending!.delete(eventId);
+    if(beat.signal?.aborted||timing.signal?.aborted||Number.isFinite(timing.durationMs)&&timing.durationMs!<=0||!this.canPlay('sfx'))return;
+    const scale=Number.isFinite(timing.durationMs)?Math.max(.6,Math.min(1,timing.durationMs!/60)):1;
+    const voices=this.cue('scoreRebound','sfx',beat.rate,0,1,undefined,scale);
+    this.ownScoreVoices(voices,beat.signal??timing.signal);
+  }
+
+  private ownScoreVoices(voices:Voice[],signal?:AbortSignal):void {
     for(const voice of voices)voice.scoreAccent=true;
-    if(voices.length)this.duckMusic(kind==='add'?.14:kind==='award'?Math.max(.4,...FOLEY[sound].layers.map(l=>(l.delay??0)+l.duration)):kind==='key'?.65:.4,kind==='key'||kind==='award'?.22:.35);
+    if(signal&&voices.length){
+      const stop=()=>{for(const voice of voices)this.release(voice);};let remaining=voices.length;
+      for(const voice of voices)voice.cleanup=()=>{if(--remaining===0)signal.removeEventListener('abort',stop);};
+      signal.addEventListener('abort',stop,{once:true});
+    }
   }
 
   /** Compatibility cleanup name; no continuous burning sources remain. */
   stopScoreFire(): void {
+    this.scoreRebounds=new WeakMap();
     for(const voice of this.voices)if(voice.scoreAccent)this.release(voice);
   }
 
@@ -514,7 +547,7 @@ export class AudioEngine {
   /** minGap/per-semantic oldest-voice cap adapted from Inkwave audio.js 258–280 (MIT).
    * Gate complete recipes, so delayed layers survive without setTimeout callbacks.
    * Variants rotate locally; never read the domain RNG or queue a missing recording. */
-  private cue(kind:FoleyKind,bus:VoiceBus='sfx',rate=1,offset=0,strength=1,duration?:number):Voice[] {
+  private cue(kind:FoleyKind,bus:VoiceBus='sfx',rate=1,offset=0,strength=1,duration?:number,timeScale=1):Voice[] {
     if(!this.canPlay(bus))return [];
     const recipe=FOLEY[kind],now=this.context!.currentTime,time=now+offset,last=this.cueTimes.get(kind);
     if(last!==undefined&&time>=last&&time-last+1e-6<recipe.gap)return [];
@@ -522,7 +555,8 @@ export class AudioEngine {
     const variant=this.variants.get(kind)??0;this.variants.set(kind,variant+1);
     // A late/unavailable preferred variant may use an already decoded sibling.
     // Missing families stay silent; this never queues or retries a past cue.
-    const layers=recipe.layers.flatMap(layer=>{
+    const layers=recipe.layers.flatMap(original=>{
+      const layer:Layer=timeScale===1?original:{...original,duration:Math.max(.035,original.duration*timeScale),delay:(original.delay??0)*timeScale,attack:(original.attack??.005)*timeScale,...(original.filter?{filter:{...original.filter,sweep:original.filter.sweep*timeScale}}:{})};
       const rotated=layer.samples.map((_,i)=>layer.samples[(variant+i)%layer.samples.length]);
       const name=rotated.find(sample=>this.scoreSamples.has(sample));
       return name?[{layer,name}]:[];
@@ -534,6 +568,16 @@ export class AudioEngine {
     const reclaimed:Voice[]=[];
     while(same.length+layers.length>recipe.cap&&same.length){
       reclaimed.push(same.shift()!);
+    }
+    // One shared numeric budget prevents distinct source/retrigger recipes from
+    // bypassing each other's cap. Keep the new arrival, retire the oldest tail.
+    const numeric=(semantic?:FoleyKind)=>!!semantic&&(semantic.startsWith('score')||semantic==='multiply');
+    if(numeric(kind)){
+      const tails=[...this.voices].filter(v=>numeric(v.semantic)&&overlaps(v)&&!reclaimed.includes(v))
+        .sort((a,b)=>(a.startsAt??0)-(b.startsAt??0));
+      const incoming=layers.reduce((sum,{layer})=>sum+layer.gain*bounded(strength,1.2),0);
+      const tooLoud=()=>tails.reduce((sum,v)=>sum+(v.nominalGain??0),incoming)>SCORE_GAIN_BUDGET;
+      while((tails.length+layers.length>SCORE_VOICE_BUDGET||tooLoud())&&tails.length)reclaimed.push(tails.shift()!);
     }
     // Admission is atomic per available recipe. Texture cannot evict a stronger
     // beat; key/ending recipes may reclaim the lowest-priority/oldest tail.
@@ -557,7 +601,7 @@ export class AudioEngine {
     }
     return layers.flatMap(({layer,name})=>{
       const voice=this.recordedCue(name,duration===undefined?layer.duration:Math.min(duration,layer.duration),layer.gain*bounded(strength,1.2),bus,rate*(layer.rate??1),offset+(layer.delay??0),layer);
-      if(!voice)return [];voice.semantic=kind;voice.priority=recipe.priority;return [voice];
+      if(!voice)return [];voice.semantic=kind;voice.priority=recipe.priority;voice.nominalGain=layer.gain*bounded(strength,1.2);return [voice];
     });
   }
   /** Give a foreground strike room without changing preferences or its bus.

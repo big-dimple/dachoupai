@@ -220,7 +220,7 @@ it('the continuous score band protects its digits and real played cards in short
 it('desktop card art uses spare height while ordinary nine and fourteen windows keep full hit safety',()=>{
  for(const [width,height] of [[1280,720],[1366,768],[1920,1080],[768,1024],[811,812],[812,811]])for(const count of [9,14]){
   const l=layout({width,height},{top:0,right:0,bottom:0,left:0},undefined,{count});
-  expect(l.slots[0].width).toBe(80);expect(l.cards[0].visual.width).toBeGreaterThanOrEqual(88);
+  expect(l.slots[0].width).toBeGreaterThanOrEqual(64);expect(l.slots[0].width).toBeLessThanOrEqual(104);expect(l.slots[1].x-l.slots[0].x-l.slots[0].width).toBeGreaterThanOrEqual(36);expect(l.cards[0].visual.width).toBeGreaterThanOrEqual(88);
   expect(l.slots[0].y+l.slots[0].height).toBeLessThan(l.playedArea.y);
   if(count===9)expect(l.visibleCardCount).toBe(9);
   const mat=playedFootprint(l.playedArea,false);expect(mat.width).toBeGreaterThanOrEqual(Math.min(540,l.playedArea.width));

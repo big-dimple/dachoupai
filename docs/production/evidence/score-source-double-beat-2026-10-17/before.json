@@ -1,0 +1,141 @@
+{
+  "version": "before",
+  "scope": "Same existing controlled saved events, actual AudioEngine/OfflineAudioContext and production mix. Prescribed impact/rebound callbacks at75/95/50ms, not GameScene/Tween integration or human audition.",
+  "heard": false,
+  "traceUnchanged": true,
+  "settings": {
+    "music": 0,
+    "sfx": 0.8
+  },
+  "duration": 1.9,
+  "peak": 0.3092136085033417,
+  "clipped": 0,
+  "rows": [
+    {
+      "label": "ordinary",
+      "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/1",
+      "source": "rank-7",
+      "operation": "add-heat",
+      "kind": "add",
+      "phase": "impact",
+      "at": 0.20266666666666666,
+      "layers": [
+        {
+          "sample": "impactWood_light_000",
+          "start": 0.20266666666666666,
+          "end": 0.29066666666666663,
+          "rate": 0.8999999761581421,
+          "peak": 0.15625305098631817
+        },
+        {
+          "sample": "impactBell_heavy_003",
+          "start": 0.21666666666666667,
+          "end": 0.2816666666666667,
+          "rate": 0.7649999856948853,
+          "peak": 0.0433691188384837
+        }
+      ]
+    },
+    {
+      "label": "ordinary",
+      "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/1",
+      "source": "rank-7",
+      "operation": "add-heat",
+      "kind": "add",
+      "phase": "rebound",
+      "at": 0.2773333333333333,
+      "layers": []
+    },
+    {
+      "label": "multiply",
+      "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/5",
+      "source": "f09",
+      "operation": "multiply-multiplier",
+      "kind": "multiply",
+      "phase": "impact",
+      "at": 0.752,
+      "layers": [
+        {
+          "sample": "impactGlass_heavy_002",
+          "start": 0.752,
+          "end": 0.827,
+          "rate": 0.9496029019355774,
+          "peak": 0.19327099002766432
+        },
+        {
+          "sample": "impactSoft_heavy_000",
+          "start": 0.752,
+          "end": 0.892,
+          "rate": 0.7879683375358582,
+          "peak": 0.15780114879554533
+        },
+        {
+          "sample": "impactGlass_heavy_002",
+          "start": 0.787,
+          "end": 0.8320000000000001,
+          "rate": 0.8485813140869141,
+          "peak": 0.06442366334255477
+        }
+      ]
+    },
+    {
+      "label": "multiply",
+      "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/5",
+      "source": "f09",
+      "operation": "multiply-multiplier",
+      "kind": "multiply",
+      "phase": "rebound",
+      "at": 0.848,
+      "layers": []
+    },
+    {
+      "label": "fast-multiply",
+      "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/9",
+      "source": "amo",
+      "operation": "multiply-multiplier",
+      "kind": "multiply",
+      "phase": "impact",
+      "at": 1.3013333333333332,
+      "layers": [
+        {
+          "sample": "impactGlass_heavy_002",
+          "start": 1.3013333333333332,
+          "end": 1.3763333333333332,
+          "rate": 0.9496029019355774,
+          "peak": 0.19327099002766432
+        },
+        {
+          "sample": "impactSoft_heavy_000",
+          "start": 1.3013333333333332,
+          "end": 1.4413333333333331,
+          "rate": 0.7879683375358582,
+          "peak": 0.15780114879554533
+        },
+        {
+          "sample": "impactGlass_heavy_002",
+          "start": 1.3363333333333332,
+          "end": 1.381333333333333,
+          "rate": 0.8485813140869141,
+          "peak": 0.06442366334255477
+        }
+      ]
+    },
+    {
+      "label": "fast-multiply",
+      "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/9",
+      "source": "amo",
+      "operation": "multiply-multiplier",
+      "kind": "multiply",
+      "phase": "rebound",
+      "at": 1.3546666666666667,
+      "layers": []
+    }
+  ],
+  "binding": {
+    "base": "8a9b3d995a980bc9147babc0f683b01f114e39bb",
+    "sha256NormalizedLF": {
+      "src/audio/AudioEngine.ts": "da900cc6c5e902ef18fbca634cec28fa85b51373c69275e5e83f335377ebb732",
+      "src/audio/foley.ts": "56a44733f94a08c54722127984934161434895ac42c498862420bc72732cc3c4"
+    }
+  }
+}

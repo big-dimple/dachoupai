@@ -1,0 +1,118 @@
+[
+  {
+    "path": "shots/owned-joker-score-motion/report.json",
+    "status": "FAIL",
+    "failure": "page.goto: net::ERR_NETWORK_ACCESS_DENIED at http://127.0.0.1:5596/.vite/owned-joker-motion-entry.html?harness=1\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:5596/.vite/owned-joker-motion-entry.html?harness=1\", waiting until \"load\"\u001b[22m\n\n    at D:\\ai\\dachoupai\\dachoupai\\.codex-remote-attachments\\owned-joker-score-motion\\harness\\owned-joker-score-motion.mjs:51:11",
+    "cases": [
+      {
+        "key": "pc",
+        "status": "FAIL",
+        "failure": "page.goto: net::ERR_NETWORK_ACCESS_DENIED at http://127.0.0.1:5596/.vite/owned-joker-motion-entry.html?harness=1\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:5596/.vite/owned-joker-motion-entry.html?harness=1\", waiting until \"load\"\u001b[22m\n\n    at D:\\ai\\dachoupai\\dachoupai\\.codex-remote-attachments\\owned-joker-score-motion\\harness\\owned-joker-score-motion.mjs:51:11"
+      }
+    ]
+  },
+  {
+    "path": "shots/owned-joker-motion-core/report.json",
+    "status": "FAIL",
+    "failure": "page.waitForFunction: Timeout 90000ms exceeded.\n    at waitScene (D:\\ai\\dachoupai\\dachoupai\\.codex-remote-attachments\\owned-joker-score-motion\\harness\\ui.mjs:3:41)\n    at D:\\ai\\dachoupai\\dachoupai\\.codex-remote-attachments\\owned-joker-score-motion\\harness\\owned-joker-score-motion.mjs:51:71",
+    "cases": [
+      {
+        "key": "pc",
+        "status": "FAIL",
+        "failure": "page.waitForFunction: Timeout 90000ms exceeded.\n    at waitScene (D:\\ai\\dachoupai\\dachoupai\\.codex-remote-attachments\\owned-joker-score-motion\\harness\\ui.mjs:3:41)\n    at D:\\ai\\dachoupai\\dachoupai\\.codex-remote-attachments\\owned-joker-score-motion\\harness\\owned-joker-score-motion.mjs:51:71"
+      }
+    ]
+  },
+  {
+    "path": "shots/owned-joker-motion-core-v3/report.json",
+    "status": "FAIL",
+    "failure": "locator.click: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: '导入本地', exact: true })\u001b[22m\n\n    at D:\\ai\\dachoupai\\dachoupai\\.codex-remote-attachments\\owned-joker-score-motion\\harness\\owned-joker-score-motion.mjs:60:122",
+    "cases": [
+      {
+        "key": "pc",
+        "status": "FAIL",
+        "failure": "locator.click: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: '导入本地', exact: true })\u001b[22m\n\n    at D:\\ai\\dachoupai\\dachoupai\\.codex-remote-attachments\\owned-joker-score-motion\\harness\\owned-joker-score-motion.mjs:60:122"
+      }
+    ]
+  },
+  {
+    "path": "shots/owned-joker-motion-integrated/initial-probe-stroke-failure.json",
+    "status": "FAIL",
+    "failure": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert.ok(row.layout.cards.every(c=>!c.nameVisible&&!c.valueVisible&&c.stroke===0&&c.accessible))\n\n    at file:///D:/ai/dachoupai/dachoupai/.codex-remote-attachments/owned-joker-score-motion/harness/owned-joker-score-motion.mjs:71:50",
+    "cases": [
+      {
+        "key": "pc",
+        "status": "FAIL",
+        "failure": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert.ok(row.layout.cards.every(c=>!c.nameVisible&&!c.valueVisible&&c.stroke===0&&c.accessible))\n\n    at file:///D:/ai/dachoupai/dachoupai/.codex-remote-attachments/owned-joker-score-motion/harness/owned-joker-score-motion.mjs:71:50"
+      }
+    ]
+  },
+  {
+    "path": "shots/owned-joker-motion-integrated/six-profiles-and-stale-menu-failure.json",
+    "status": "FAIL",
+    "failure": "locator.click: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: '跳过当前段', exact: true })\u001b[22m\n\n    at tap (D:\\ai\\dachoupai\\dachoupai\\.codex-remote-attachments\\owned-joker-score-motion\\harness\\ui.mjs:40:56)\n    at tapMenuAction (D:\\ai\\dachoupai\\dachoupai\\.codex-remote-attachments\\owned-joker-score-motion\\harness\\ui.mjs:43:9)\n    at async file:///D:/ai/dachoupai/dachoupai/.codex-remote-attachments/owned-joker-score-motion/harness/owned-joker-score-motion.mjs:92:200",
+    "cases": [
+      {
+        "key": "pc",
+        "status": "PASS"
+      },
+      {
+        "key": "phone",
+        "status": "PASS"
+      },
+      {
+        "key": "small",
+        "status": "PASS"
+      },
+      {
+        "key": "short",
+        "status": "PASS"
+      },
+      {
+        "key": "reduced",
+        "status": "PASS"
+      },
+      {
+        "key": "fast",
+        "status": "PASS"
+      },
+      {
+        "key": "cancel-windup",
+        "status": "FAIL",
+        "failure": "locator.click: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: '跳过当前段', exact: true })\u001b[22m\n\n    at tap (D:\\ai\\dachoupai\\dachoupai\\.codex-remote-attachments\\owned-joker-score-motion\\harness\\ui.mjs:40:56)\n    at tapMenuAction (D:\\ai\\dachoupai\\dachoupai\\.codex-remote-attachments\\owned-joker-score-motion\\harness\\ui.mjs:43:9)\n    at async file:///D:/ai/dachoupai/dachoupai/.codex-remote-attachments/owned-joker-score-motion/harness/owned-joker-score-motion.mjs:92:200"
+      }
+    ]
+  },
+  {
+    "path": "shots/owned-joker-motion-integrated/paired-and-cancel-pass-native-visibility-pending.json",
+    "status": "FAIL",
+    "failure": "page.waitForFunction: Timeout 5000ms exceeded.\n    at D:\\ai\\dachoupai\\dachoupai\\.codex-remote-attachments\\owned-joker-score-motion\\harness\\owned-joker-score-motion.mjs:96:141",
+    "cases": [
+      {
+        "key": "pc",
+        "status": "PASS"
+      },
+      {
+        "key": "fast",
+        "status": "PASS"
+      },
+      {
+        "key": "cancel-windup",
+        "status": "PASS"
+      },
+      {
+        "key": "cancel-rebound",
+        "status": "PASS"
+      },
+      {
+        "key": "background",
+        "status": "FAIL",
+        "failure": "page.waitForFunction: Timeout 5000ms exceeded.\n    at D:\\ai\\dachoupai\\dachoupai\\.codex-remote-attachments\\owned-joker-score-motion\\harness\\owned-joker-score-motion.mjs:96:141"
+      }
+    ]
+  },
+  {
+    "status": "observer-only failure",
+    "failure": "First MediaRecorder extraction split the data URI at the comma inside codecs=vp8,opus and yielded 7 bytes. Replaced with base64 delimiter; final delivered files have EBML, VP8 and Opus and >1KB; unusable files are not delivered."
+  }
+]

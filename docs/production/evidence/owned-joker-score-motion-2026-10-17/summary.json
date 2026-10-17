@@ -1,0 +1,212 @@
+{
+  "product": "c2dcab7f50ff9df2135784d39098da99c9e8657a",
+  "compiledFrom": "b040d104c12cfd2e5bf3c49c5729d90a45281ac9",
+  "compiledSourceHashes": {
+    "src/game/GameScene.ts": "f6abd044b0a6e424cdd9bb2aefac2b0b45a8f4d359ae9cf4512cebe514d1694d",
+    "src/game/OwnedJokerScoreMotion.ts": "25a409d6602b43569a27da1d7bb1f1517da3eaacb4ad2736ba239af85bc17aee",
+    "src/game/layout.ts": "e15138729ed0d0b2c1d6a4db416365404d159da8213a97d41bff84b5550cdc2f",
+    "src/game/PolychromeCardIridescence.ts": "560b19c18a2c3238d079a2f74d47b9910e268155239c4a8c3ef1d915c249e145",
+    "src/audio/AudioEngine.ts": "45187afcbc61abe8e38be60bebc0db5a5a085f1513792e94df168f72a2610535"
+  },
+  "compiledSourcesMatchProduct": true,
+  "scope": "One compiled build, actual public checkpoint import, native selection and PlayHand. Domain oracle exact state/journal comparison; real render-boundary card transforms and actual WebAudio voice admission times. Controlled inventory, no natural acquisition, physical phone, hearing or subjective feel acceptance.",
+  "heard": false,
+  "physicalDevice": false,
+  "cases": [
+    {
+      "key": "pc",
+      "status": "PASS",
+      "frames": 1340,
+      "events": 13,
+      "stateExact": true,
+      "pairCount": 13,
+      "pairMs": [
+        76.8999999910593,
+        115.29999999701977
+      ],
+      "help": true,
+      "hoverFrozen": true,
+      "keyboard": true,
+      "nativeReorder": true,
+      "violations": []
+    },
+    {
+      "key": "phone",
+      "status": "PASS",
+      "frames": 1335,
+      "events": 13,
+      "stateExact": true,
+      "pairCount": 13,
+      "pairMs": [
+        80.79999999701977,
+        120
+      ],
+      "help": true,
+      "nativeTap": true,
+      "nativeReorder": true,
+      "violations": []
+    },
+    {
+      "key": "fast",
+      "status": "PASS",
+      "frames": 604,
+      "events": 13,
+      "stateExact": true,
+      "pairCount": 13,
+      "pairMs": [
+        63.900000005960464,
+        81.6000000089407
+      ],
+      "help": true,
+      "violations": []
+    },
+    {
+      "key": "cancel-windup",
+      "status": "PASS",
+      "frames": 198,
+      "events": 1,
+      "stateExact": true,
+      "pairCount": 0,
+      "help": true,
+      "replaySilent": true,
+      "violations": []
+    },
+    {
+      "key": "cancel-rebound",
+      "status": "PASS",
+      "frames": 232,
+      "events": 1,
+      "stateExact": true,
+      "pairCount": 1,
+      "pairMs": [
+        111.29999999701977,
+        111.29999999701977
+      ],
+      "help": true,
+      "replaySilent": true,
+      "violations": []
+    },
+    {
+      "key": "background",
+      "status": "PASS",
+      "frames": 222,
+      "events": 1,
+      "stateExact": true,
+      "pairCount": 0,
+      "help": true,
+      "replaySilent": true,
+      "visibilityMethod": "synthetic visibility event; headless tab activation stayed visible",
+      "hidden": {
+        "hidden": true,
+        "voices": 0,
+        "poses": [
+          [
+            0,
+            0,
+            0,
+            1,
+            1
+          ]
+        ]
+      },
+      "violations": []
+    },
+    {
+      "key": "destroy",
+      "status": "PASS",
+      "frames": 203,
+      "events": 1,
+      "stateExact": true,
+      "pairCount": 0,
+      "help": true,
+      "afterDestroy": {
+        "voices": 0,
+        "active": false,
+        "size": 0
+      },
+      "violations": []
+    }
+  ],
+  "previousDisplayCases": [
+    {
+      "key": "small",
+      "status": "PASS",
+      "sourceBasis": "b040d104 before c2dc border-only closeout",
+      "frames": 1331,
+      "events": 13,
+      "stateExact": true,
+      "subsequentChange": "disable zero-width resting stroke; no layout/timing/audio change"
+    },
+    {
+      "key": "short",
+      "status": "PASS",
+      "sourceBasis": "b040d104 before c2dc border-only closeout",
+      "frames": 1329,
+      "events": 13,
+      "stateExact": true,
+      "subsequentChange": "disable zero-width resting stroke; no layout/timing/audio change"
+    },
+    {
+      "key": "reduced",
+      "status": "PASS",
+      "sourceBasis": "b040d104 before c2dc border-only closeout",
+      "frames": 259,
+      "events": 13,
+      "stateExact": true,
+      "subsequentChange": "disable zero-width resting stroke; no layout/timing/audio change"
+    }
+  ],
+  "media": [
+    {
+      "key": "pc",
+      "path": "final/pc/av-continuous.webm",
+      "bytes": 3946753,
+      "video": "VP8",
+      "audio": "Opus from actual master graph",
+      "heard": false
+    },
+    {
+      "key": "phone",
+      "path": "final/phone/av-continuous.webm",
+      "bytes": 4660493,
+      "video": "VP8",
+      "audio": "Opus from actual master graph",
+      "heard": false
+    },
+    {
+      "key": "fast",
+      "path": "final/fast/av-continuous.webm",
+      "bytes": 2127909,
+      "video": "VP8",
+      "audio": "Opus from actual master graph",
+      "heard": false
+    }
+  ],
+  "iridescence": [
+    {
+      "key": "pc",
+      "parent": "owned-joker/score-pose",
+      "samples": 1340,
+      "phases": 335
+    },
+    {
+      "key": "phone",
+      "parent": "owned-joker/score-pose",
+      "samples": 1335,
+      "phases": 336
+    },
+    {
+      "key": "fast",
+      "parent": "owned-joker/score-pose",
+      "samples": 604,
+      "phases": 152
+    }
+  ],
+  "pending": [
+    "whole-hand director / spring inertia / genuine perspective / reflection / physical touch",
+    "real phone background (headless tab activation stayed visible; synthetic visibility cleanup was exercised)",
+    "subjective listening and feel",
+    "hero portrait 3a0984cf and c12 9c3db534 hooks",
+    "non-H/M coefficient growth popup uses event.value; saved before/after delta requires follow-up, not covered by this numeric-source fixture"
+  ]
+}
