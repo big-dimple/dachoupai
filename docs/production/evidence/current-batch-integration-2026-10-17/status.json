@@ -1,0 +1,195 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "taskId": "P08",
+  "taskStatus": "in_progress",
+  "baseCommit": "f81724b57736c7d4f299cf1d95705a7ba3ef9497",
+  "testedCommit": "2c3bfe5c48d9d3429dcecc0112bfe3a64ffaa268",
+  "branch": "dev/current-batch-integration-20261017",
+  "integrationMerge": "cd6ba2501bd4b2460b2b55e584586cbd350e1c3c",
+  "sources": [
+    {
+      "name": "touye-shop",
+      "commit": "f6edb41b1cd0591c6835cbc8f01965c74844e2e0",
+      "exactPaths": 112,
+      "changedPaths": 119
+    },
+    {
+      "name": "tools",
+      "commit": "e5bed10d2bfd931432b73a9f9d158391579375e4",
+      "exactPaths": 280,
+      "changedPaths": 280
+    },
+    {
+      "name": "compact-dialog",
+      "commit": "7f6df3a7a33903a532abfd8aada907deb2975519",
+      "exactPaths": 9,
+      "changedPaths": 9
+    },
+    {
+      "name": "hero-selection",
+      "commit": "91bd63b66f7a7bc03ee7610841f60902b650aa45",
+      "exactPaths": 18,
+      "changedPaths": 18
+    },
+    {
+      "name": "chapter",
+      "commit": "c1eb5ff3e468f45952fc59798f851bd864b96395",
+      "exactPaths": 19,
+      "changedPaths": 19
+    },
+    {
+      "name": "ledger",
+      "commit": "92dc27ea2642267478d96182bad3fc74418db974",
+      "exactPaths": 2,
+      "changedPaths": 2
+    },
+    {
+      "name": "settlement",
+      "commit": "3b6109cf92d5d6cd229fbe1dc54d62cf814b61ce",
+      "exactPaths": 2,
+      "changedPaths": 5
+    },
+    {
+      "name": "shop-dynamics",
+      "commit": "2409977a22137c34f6589829e8dcb24b80755721",
+      "exactPaths": 17,
+      "changedPaths": 17
+    },
+    {
+      "name": "c06-art",
+      "commit": "3897abbc80f71d760fa41a9a8330f9fb606e72ab",
+      "exactPaths": 12,
+      "changedPaths": 12
+    },
+    {
+      "name": "score-boss",
+      "commit": "1eab25d91583c204536253cab85c6f8225526290",
+      "exactPaths": 17,
+      "changedPaths": 17
+    }
+  ],
+  "environment": {
+    "os": "Windows / PowerShell",
+    "node": "v22.20.0",
+    "npm": "10.9.3",
+    "git": "2.51.0.windows.2",
+    "browser": "NOT_RUN in this integration",
+    "worktree": "isolated Temp worktree; original main worktree preserved"
+  },
+  "binding": {
+    "sourceTree": "6b7d471bb467ab29567f73382a6236756a360ed8",
+    "gameSceneBlob": "5d6631ac2bd5e2f0a58cd8ba1b06e3a06d40597c",
+    "gameSceneExactOwnerCommit": "1eab25d91583c204536253cab85c6f8225526290",
+    "warmupCommit": "2c3bfe5c48d9d3429dcecc0112bfe3a64ffaa268",
+    "build": "checks/built-source-info.json",
+    "buildNote": "Build ran after warmup call-site fix, before its commit; recorded cd6ba250 dirty tracked overlay. Runtime source equals testedCommit; subsequent delivery changes are evidence/docs only."
+  },
+  "checks": [
+    {
+      "name": "Concentrated cross-source tests, original result",
+      "command": "node node_modules/vitest/vitest.mjs run tests/settlement-presentation.test.ts tests/score-review.test.ts tests/shop-synergy.test.ts tests/shop-synergy-preview.test.ts tests/shop-synergy-conditions.test.ts tests/game-score-pressure.test.ts tests/score-posture.test.ts tests/boss-card-visual.test.ts tests/score-contribution.test.ts tests/hero-climax.test.ts tests/hero-play-reminder.test.ts tests/touye-discard-handoff.test.ts tests/handdrawn-art.test.ts tests/joker-art.test.ts tests/source-stage-art.test.ts tests/goods-art.test.ts tests/scene-resources.test.ts tests/image-warmup-visibility.test.ts",
+      "status": "FAIL",
+      "exitCode": 1,
+      "cases": 149,
+      "passed": 146,
+      "failed": 3,
+      "evidence": "checks/concentrated-original-FAIL.txt",
+      "resolution": "Only b9/b10/b11 receipt Windows CRLF. Restored exact HEAD blob bytes; no test expectations or resource content changed."
+    },
+    {
+      "name": "Receipt-only necessary regression",
+      "command": "node node_modules/vitest/vitest.mjs run tests/handdrawn-art.test.ts",
+      "status": "PASS",
+      "exitCode": 0,
+      "cases": 19,
+      "evidence": "checks/receipt-recovery-PASS.txt"
+    },
+    {
+      "name": "Warmup call-site and loading contracts",
+      "command": "node node_modules/vitest/vitest.mjs run tests/image-warmup-visibility.test.ts tests/shop-tool-image-warmup.test.ts tests/image-warmup-queue.test.ts tests/art-texture-loading.test.ts",
+      "status": "PASS",
+      "exitCode": 0,
+      "cases": 17,
+      "evidence": "checks/warmup-regression-PASS.txt"
+    },
+    {
+      "name": "TypeScript",
+      "command": "node node_modules/typescript/bin/tsc --noEmit",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "checks/typecheck-PASS.txt"
+    },
+    {
+      "name": "Production build",
+      "command": "node node_modules/vite/bin/vite.js build",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "checks/production-build-PASS.txt",
+      "warning": "Existing large-chunk advisory remains."
+    },
+    {
+      "name": "Production diagnostic string absent",
+      "command": "rg '图片预热' dist/assets -g '*.js'",
+      "status": "PASS",
+      "note": "rg returned 1 (no matches), interpreted as successful absence check; no runtime browser claim.",
+      "rawExitCode": 1
+    },
+    {
+      "name": "Exact source reuse and protected roots",
+      "status": "PASS",
+      "evidence": "source-reuse.json",
+      "note": "Git blob comparisons, not a rerun of source owners tests. Domain/application/platform/content/audio/package and lock unchanged from base."
+    },
+    {
+      "name": "Candidate dot play / visual / audio / physical device acceptance",
+      "status": "NOT_RUN",
+      "evidence": "parent-dot-old-baseline.md"
+    }
+  ],
+  "deduplicatedFinal": {
+    "files": 21,
+    "cases": 162,
+    "passed": 162,
+    "calculation": "149 concentrated cases +17 warmup cases -4 shared image-warmup-visibility cases; receipt-only 19 rerun replaces prior failed file and adds no cases."
+  },
+  "conflicts": [
+    {
+      "file": "src/game/SettlementPresentation.ts",
+      "resolution": "One true conflict: preserve ID-based cardDefinitionName(r2JokerDefinitionFor(...)) and incoming stageTotal from run.stage. Intermission and test name projections retained. No wholesale scene/source replacement."
+    }
+  ],
+  "sourceReusePolicy": "Reuse only exact scoped owner source evidence; later authorized overlays and the settlement composition are explicitly listed in source-reuse.json. Intermediate 174 checks at 65c7912 are not final all-source results.",
+  "audio": "Audio unchanged from f817; approved eight-step scale contract remains. Do not claim legacy pre-eight-step assertions were unchanged and passed.",
+  "humanReview": {
+    "status": "NOT_RUN",
+    "reviewer": "",
+    "evidence": ""
+  },
+  "remaining": [
+    {
+      "item": "Candidate dot remote checks",
+      "status": "PENDING",
+      "scope": "Qin double-J fresh discard/cancel; full settlement stage total and names; actual shop match and touch detail flow; selection/chapter; scoring continuous frames and Boss scope."
+    },
+    {
+      "item": "Settlement controlled screenshots/save evidence",
+      "status": "BLOCKED",
+      "reason": "Source owner reported external review denial for screenshot/controlled-save evidence upload. Integration uses authorized committed source/tests only; rejected artifacts are not copied or re-collected; code integration is complete."
+    },
+    {
+      "item": "Human visual, listening, physical device, formal gates",
+      "status": "NOT_RUN"
+    },
+    {
+      "item": "Online preview/deployment",
+      "status": "NOT_RUN",
+      "reason": "No verified branch preview URL/config found; ordinary Git push does not prove deployment."
+    }
+  ],
+  "executionPolicy": "Today fixes follow the checklist in batches. Integrate a batch before concentrated validation; after a failure run only regression needed for that fix. Development remains local Windows, game play uses dot remote. No repeated screenshot matrix/natural long run; no CI/domain query/deployment/force push.",
+  "publication": {
+    "authorization": "Latest explicit user permission conveyed by parent: normal dev and main merge/push after checks.",
+    "status": "Pending ordinary pushes; final full release SHA is the commit containing this record and actual push receipt. No deploy claim."
+  }
+}

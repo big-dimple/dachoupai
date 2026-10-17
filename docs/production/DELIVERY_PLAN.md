@@ -2,6 +2,8 @@
 
 ## 当前统一执行计划
 
+**2026-10-17 当前批次集中整合：** 10个交付源已合入 `dev/current-batch-integration-20261017`，最终产品 `2c3bfe5c48d9d3429dcecc0112bfe3a64ffaa268`；含51工具图、c06新图、选角、章节、紧凑确认、秦琼/底栏/AI、结算累计/卡名、商店真实动态、计分/Boss与台账。最终21文件162项去重通过、类型/生产构建通过；旧回执CRLF原FAIL与必要19项恢复回归均保留。[完整来源、集中证据与待验](evidence/current-batch-integration-2026-10-17/README.md)。GameScene精确保持负责人1eab25d9，不并发覆写。图片预热后台默认静默，仅E2E显式imageDebug诊断可见，传输逻辑不变。用户最新已授权检查通过后正常dev及main合并/push，本段覆盖下方较早“仅dev/暂不main”的当时范围；最终发布SHA以实际push回执为准，不声明部署。今后按清单分批整合后集中验证，失败只补必要回归，试玩使用dot远端；本批候选远端、逐帧/听感/真机仍待验，P08保持in_progress。
+
 **秦琼/理牌与AI最新补正：** 基线a14d；产品 `1e647fa735a86bc2a4c579c2c4d48822efa914aa`（明确重选弃牌、取消保原出牌、首层名单/风险/消耗、等宽两侧及理牌标题分组）和 `195f3f9f830a7b2ae01404dfb7ddd706e6ea11af`（完成候选复用/真实计算状态，保串行与key校验）。最终去重13文件186项、类型/构建通过，[证据与dot远端待验步骤](evidence/touye-discard-footer-ai-2026-10-17/README.md)。复用既有最短本地证据，不重复矩阵/自然长局；全局试玩交dot，父级自然双J步骤当前dev远端PENDING。只普通dev交付，动画/Boss接独立模块，不合main/CI/部署，P08仍in_progress。
 
 **商店与卡名最新补正：** 产品 `6479d4377e843bfcde211efdbca89fef35431cf7`，基线 `f81724b5`，分支 `dev/shop-synergy-copy-20261017`。改为实际购款后的可知条件交集，不再关键词宣称强联动；收据/替换/成长/保存来源与回看在UI边界按ID统一卡名，规则定义和hash保持。43文件373项最终定向、类型/构建及一笔短原生购买/取消/回看通过，[事实与原FAIL](evidence/shop-synergy-ui-names-2026-10-17/README.md)。本批仅普通dev交付，不合main/CI/部署，不等51新图或自然长玩；P08仍in_progress。

@@ -1,0 +1,63 @@
+
+ RUN  v4.1.11 C:/Users/wanghongping/AppData/Local/Temp/dachoupai-windows-integration-20261017
+
+ ❯ tests/handdrawn-art.test.ts (19 tests | 3 failed) 294ms
+   × 'b9' consumes the exact approved receipt and same-ID on-demand derivatives 21ms
+   × 'b10' consumes the exact approved receipt and same-ID on-demand derivatives 5ms
+   × 'b11' consumes the exact approved receipt and same-ID on-demand derivatives 4ms
+
+ Test Files  1 failed | 17 passed (18)
+      Tests  3 failed | 146 passed (149)
+   Start at  12:15:11
+   Duration  8.19s (transform 38.16s, setup 0ms, import 52.86s, tests 3.27s, environment 3ms)
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/handdrawn-art.test.ts > 'b9' consumes the exact approved receipt and same-ID on-demand derivatives
+AssertionError: expected 'e8e7228968f0431733f607daca4c442fd4361…' to be 'b6247533107f4c7107bea892bf27d72ad09db…' // Object.is equality
+
+Expected: "b6247533107f4c7107bea892bf27d72ad09db9355c1c03600c8882c9396f1695"
+Received: "e8e7228968f0431733f607daca4c442fd43618a2cda18dac4ccbeb765a1fe898"
+
+ ❯ tests/handdrawn-art.test.ts:143:59
+    141| it.each(finalReceipts)('$batch consumes the exact approved receipt and…
+    142|  const root=new URL('../art/sources/handdrawn-runtime-20261004-'+batch…
+    143|  expect(createHash('sha256').update(bytes).digest('hex')).toBe(receipt…
+       |                                                           ^
+    144|  for(const id of ids){const asset=HANDDRAWN_ART.find(a=>a.id===id)!,so…
+    145|   if(!ALL72_IDS.has(id)){
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  tests/handdrawn-art.test.ts > 'b10' consumes the exact approved receipt and same-ID on-demand derivatives
+AssertionError: expected '98b81d7b729654c3ebe710ba2bc7d3f31580a…' to be '13b737b88b6ce4130f0a10052b52bd3ed2fea…' // Object.is equality
+
+Expected: "13b737b88b6ce4130f0a10052b52bd3ed2feab21c83528831ef924152a78d5ed"
+Received: "98b81d7b729654c3ebe710ba2bc7d3f31580a51db266c9b96cdc1046cc312873"
+
+ ❯ tests/handdrawn-art.test.ts:143:59
+    141| it.each(finalReceipts)('$batch consumes the exact approved receipt and…
+    142|  const root=new URL('../art/sources/handdrawn-runtime-20261004-'+batch…
+    143|  expect(createHash('sha256').update(bytes).digest('hex')).toBe(receipt…
+       |                                                           ^
+    144|  for(const id of ids){const asset=HANDDRAWN_ART.find(a=>a.id===id)!,so…
+    145|   if(!ALL72_IDS.has(id)){
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  tests/handdrawn-art.test.ts > 'b11' consumes the exact approved receipt and same-ID on-demand derivatives
+AssertionError: expected '70afbb9846c0224285ce6dcf8db16ec4f8b16…' to be '06ed702bdf40ee7e0814f6fc38e61262dda0f…' // Object.is equality
+
+Expected: "06ed702bdf40ee7e0814f6fc38e61262dda0f0c94b12103f6b59bc06c85a3a4f"
+Received: "70afbb9846c0224285ce6dcf8db16ec4f8b1625820e3386ba22616d4d3127171"
+
+ ❯ tests/handdrawn-art.test.ts:143:59
+    141| it.each(finalReceipts)('$batch consumes the exact approved receipt and…
+    142|  const root=new URL('../art/sources/handdrawn-runtime-20261004-'+batch…
+    143|  expect(createHash('sha256').update(bytes).digest('hex')).toBe(receipt…
+       |                                                           ^
+    144|  for(const id of ids){const asset=HANDDRAWN_ART.find(a=>a.id===id)!,so…
+    145|   if(!ALL72_IDS.has(id)){
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯

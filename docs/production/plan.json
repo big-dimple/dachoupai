@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "auditCommit": "7d7921e76ca794a14e715e3eac3b4d66143862ff",
   "currentTask": "P08",
-  "selectionPolicy": "2026-10-17 当前Windows本地开发：dev/touye-discard-ai-20261017，明确承接a14d；秦琼/等宽理牌产品1e647fa735a86bc2a4c579c2c4d48822efa914aa，AI产品195f3f9f830a7b2ae01404dfb7ddd706e6ea11af。仅本地代码、单测、类型/构建；全局试玩交dot远端，必要本地短验证可做；本次复用既有结果未追加浏览器，双J现场回归远端PENDING。普通dev交付，不合main/CI/部署；动画/Boss等三大提升按独立模块负责人接线，P08仍in_progress。",
+  "selectionPolicy": "2026-10-17 当前10来源整合完毕，独立Windows dev/current-batch-integration-20261017，产品2c3bfe5c48d9d3429dcecc0112bfe3a64ffaa268；GameScene精确1eab25d9。最终去重21文件162项、类型/构建通过，原CRLF失败及必要19项恢复回归保留。用户最新明确授权正常dev和main合并/push，最终发布SHA见实际push回执；不强推/查CI/域名/部署。今天整改按清单分批整合后集中验证，失败只补必要回归；开发本地Windows、试玩dot远端，不新增重复矩阵或自然长局。当前候选远端及视觉/听感/真机仍待验，P08仍in_progress。",
   "resumeContract": {
     "candidateCommit": "4bf6a7d63d7738d3c415d09439a1bdca878dc685",
     "gateTask": "A01",
@@ -38,8 +38,9 @@
       ],
       "package": "docs/production/WORK_PACKAGES.md#p08",
       "humanGate": false,
-      "completionScope": "当前两产品已独立落库：秦琼空弃牌草稿/取消保原拟出牌与明确确认、等宽两侧和理牌标题分组 1e647fa735a86bc2a4c579c2c4d48822efa914aa；AI同key完成结果复用/真实短状态与分批预算 195f3f9f830a7b2ae01404dfb7ddd706e6ea11af。最终去重13文件186项、类型/构建通过；禁令前有限本地软件证据保留，父级自然双J回归当前dev远端PENDING，不能代签。既有整批、提醒和a14d商店成果按各自原证据保留；P08仍in_progress，其他体验/人验/正式门不自动完成。",
+      "completionScope": "本批10来源已按原提交正常merge；产品2c3bfe5c48d9d3429dcecc0112bfe3a64ffaa268，最终来源1eab25d9包含顺序交接后的GameScene接线。51工具图/c06新图、选角/章节/短确认、秦琼明确重选弃牌/等宽理牌/AI复用、结算本场累计与卡名、商店真实动态与计分/Boss代码均齐，后台图片预热诊断仅E2E显式开启。21文件162项集中及必要回归通过，类型/构建通过。用户授权正常dev及main发布；dot旧线上首章观察仅为整改输入，当前候选dot画面/事件、逐帧、听感、物理设备与人验未签，正式门不自动完成；P08仍in_progress。",
       "evidence": [
+        "docs/production/evidence/current-batch-integration-2026-10-17/status.json",
         "docs/production/evidence/touye-discard-footer-ai-2026-10-17/status.json",
         "docs/production/evidence/shop-synergy-ui-names-2026-10-17/status.json",
         "docs/production/evidence/hero-reminder-scope-2026-10-17/status.json",

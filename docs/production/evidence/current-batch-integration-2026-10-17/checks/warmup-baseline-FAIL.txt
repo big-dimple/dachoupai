@@ -1,0 +1,63 @@
+
+ RUN  v4.1.11 C:/Users/wanghongping/AppData/Local/Temp/dachoupai-windows-integration-20261017
+
+ ❯ tests/image-warmup-visibility.test.ts (4 tests | 3 failed) 23ms
+   × production keeps catalog warmup silent for ?harness=1&imageDebug=1 without stopping transfers 11ms
+   × e2e keeps catalog warmup silent for ?harness=1 without stopping transfers 5ms
+   × test keeps catalog warmup silent for ?imageDebug=1 without stopping transfers 4ms
+ ❯ tests/shop-tool-image-warmup.test.ts (5 tests | 1 failed) 42ms
+   × prepares only real stock, legal self-choice rows and actual inventory without changing the run 24ms
+
+ Test Files  2 failed (2)
+      Tests  4 failed | 5 passed (9)
+   Start at  12:13:26
+   Duration  2.10s (transform 2.04s, setup 0ms, import 2.49s, tests 65ms, environment 0ms)
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/image-warmup-visibility.test.ts > production keeps catalog warmup silent for ?harness=1&imageDebug=1 without stopping transfers
+ FAIL  tests/image-warmup-visibility.test.ts > e2e keeps catalog warmup silent for ?harness=1 without stopping transfers
+ FAIL  tests/image-warmup-visibility.test.ts > test keeps catalog warmup silent for ?imageDebug=1 without stopping transfers
+AssertionError: expected "vi.fn()" to not be called at all, but actually been called 1 times
+
+Received:
+
+  1st vi.fn() call:
+
+    Array [
+      ImageWarmupQueue {
+        "active": 2,
+        "automaticRetry": true,
+        "changed": [Function anonymous],
+        "controller": [AbortController],
+        "disposed": false,
+        "entries": [Map],
+        "limit": 200,
+        "load": [Function anonymous],
+        "pending": [Array],
+      },
+      [Function lowLoad],
+    ]
+
+
+Number of calls: 1
+
+ ❯ tests/image-warmup-visibility.test.ts:8:359
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  tests/shop-tool-image-warmup.test.ts > prepares only real stock, legal self-choice rows and actual inventory without changing the run
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/shop-tool-image-warmup.test.ts:9:654
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯

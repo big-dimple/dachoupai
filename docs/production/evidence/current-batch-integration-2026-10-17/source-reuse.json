@@ -1,0 +1,555 @@
+{
+  "base": "f81724b57736c7d4f299cf1d95705a7ba3ef9497",
+  "checkedIntegratedCommit": "cd6ba2501bd4b2460b2b55e584586cbd350e1c3c",
+  "scopedGitTreePaths": [
+    "docs/production/DELIVERY_PLAN.md",
+    "docs/production/evidence/shop-synergy-ui-names-2026-10-17",
+    "docs/production/evidence/touye-discard-footer-ai-2026-10-17",
+    "docs/production/plan.json",
+    "src/game",
+    "tests",
+    "art/sources/handdrawn-runtime-tools-20261017",
+    "docs/production/evidence/tools-art-2026-10-17",
+    "harness",
+    "public/assets/handdrawn-tools",
+    "scripts",
+    "docs/production/evidence/compact-confirm-dialog-2026-10-17",
+    "docs/production/evidence/character-select-immersion-2026-10-17",
+    "docs/production/evidence/chapter-confrontation-2026-10-17",
+    "docs/production/CURRENT_BATCH_20261017.md",
+    "docs/production/REQUIREMENTS_DECISIONS_COMMITMENTS.md",
+    "docs/production/evidence/shop-synergy-live-2026-10-17",
+    "art/sources/qingchuyulan-art-20261017",
+    "docs/production/evidence/qingchuyulan-art-2026-10-17",
+    "public/assets/handdrawn-climax",
+    "public/assets/handdrawn-p08",
+    "docs/production/evidence/score-posture-pressure-2026-10-17"
+  ],
+  "sources": [
+    {
+      "name": "touye-shop",
+      "sha": "f6edb41b1cd0591c6835cbc8f01965c74844e2e0",
+      "mergeBase": "f81724b57736c7d4f299cf1d95705a7ba3ef9497",
+      "changedPaths": 119,
+      "exactPaths": 112,
+      "differences": [
+        {
+          "path": "src/game/GameScene.ts",
+          "sourceBlob": "9034af05568e51679f888fd484e650401ab2140e",
+          "integratedBlob": "5d6631ac2bd5e2f0a58cd8ba1b06e3a06d40597c",
+          "reason": "later authorized source score-boss"
+        },
+        {
+          "path": "src/game/IntermissionScene.ts",
+          "sourceBlob": "02bfb57ebfab0dfb71400f3b7c12f25b6d1b790d",
+          "integratedBlob": "c1f333e2e8bf91ecd7b45b5dd2ccd44572dba804",
+          "reason": "composed settlement change with ID-based display names"
+        },
+        {
+          "path": "src/game/SettlementPresentation.ts",
+          "sourceBlob": "4eee7518cac522b289011a18dcd84d371fac6f37",
+          "integratedBlob": "8f901c4d7f34bf51b90a8dad9cdbfc1a627e2e03",
+          "reason": "composed settlement change with ID-based display names"
+        },
+        {
+          "path": "src/game/ShopScene.ts",
+          "sourceBlob": "1664bac9a2c9759dccf73fe7d4779f4396f1b853",
+          "integratedBlob": "85159fb744a443d59b91f60cae49802c3d1b0ba5",
+          "reason": "later authorized source shop-dynamics"
+        },
+        {
+          "path": "src/game/ShopSynergy.ts",
+          "sourceBlob": "32ce929daeb1f733cf7c3a4bff4ca984fb5ca890",
+          "integratedBlob": "90f0daedb960691b7797845517422a1a0733a87a",
+          "reason": "later authorized source shop-dynamics"
+        },
+        {
+          "path": "tests/settlement-presentation.test.ts",
+          "sourceBlob": "5224cdf5def46e355e588fe7cd896b39f3b472ed",
+          "integratedBlob": "8f1eac3714a0785442a5aec27c26a4ded08f79c1",
+          "reason": "composed settlement change with ID-based display names"
+        },
+        {
+          "path": "tests/shop-synergy.test.ts",
+          "sourceBlob": "40e3d3e5906b7df185fcedd06b96fce676cf6d45",
+          "integratedBlob": "4ba3a10454f307e9a3690fa92e0ad8961b715364",
+          "reason": "later authorized source shop-dynamics"
+        }
+      ],
+      "originalEvidence": [
+        "docs/production/evidence/shop-synergy-ui-names-2026-10-17/README.md",
+        "docs/production/evidence/touye-discard-footer-ai-2026-10-17/README.md"
+      ],
+      "code": [
+        {
+          "path": "src/game/AiHandCandidates.ts",
+          "sourceBlob": "a7da54b889ad14b2b4ed20a38281862924f20cf0",
+          "integratedBlob": "a7da54b889ad14b2b4ed20a38281862924f20cf0"
+        },
+        {
+          "path": "src/game/BuildGrowthProgress.ts",
+          "sourceBlob": "f826ba22126916c6b0cfb374c5a10a45ea0bfb0b",
+          "integratedBlob": "f826ba22126916c6b0cfb374c5a10a45ea0bfb0b"
+        },
+        {
+          "path": "src/game/BuildJourney.ts",
+          "sourceBlob": "99f201f829ef2d0cf8c3f476f2b6685627be9e3a",
+          "integratedBlob": "99f201f829ef2d0cf8c3f476f2b6685627be9e3a"
+        },
+        {
+          "path": "src/game/BuildJourneyDialog.ts",
+          "sourceBlob": "e6e21a98bce17df0fccbbc286d3d8895b4a42b8f",
+          "integratedBlob": "e6e21a98bce17df0fccbbc286d3d8895b4a42b8f"
+        },
+        {
+          "path": "src/game/ConsumableDialog.ts",
+          "sourceBlob": "14aa924973ff73577be723e658ae731bf48424d4",
+          "integratedBlob": "14aa924973ff73577be723e658ae731bf48424d4"
+        },
+        {
+          "path": "src/game/FinaleKeepsake.ts",
+          "sourceBlob": "7f585ce3d8bf33720b01e377425b2d9d597c0050",
+          "integratedBlob": "7f585ce3d8bf33720b01e377425b2d9d597c0050"
+        },
+        {
+          "path": "src/game/GameScene.ts",
+          "sourceBlob": "9034af05568e51679f888fd484e650401ab2140e",
+          "integratedBlob": "5d6631ac2bd5e2f0a58cd8ba1b06e3a06d40597c"
+        },
+        {
+          "path": "src/game/GrowthOpportunity.ts",
+          "sourceBlob": "95941192654ac0cc406d0a58223c95e669cc30d6",
+          "integratedBlob": "95941192654ac0cc406d0a58223c95e669cc30d6"
+        },
+        {
+          "path": "src/game/HandActionArt.ts",
+          "sourceBlob": "509a4047d2bd028bc8325e1cfc61d7d40df22e73",
+          "integratedBlob": "509a4047d2bd028bc8325e1cfc61d7d40df22e73"
+        },
+        {
+          "path": "src/game/HeroPlayReminder.ts",
+          "sourceBlob": "bcc1552da19558e43048d95c7423522e142ca458",
+          "integratedBlob": "bcc1552da19558e43048d95c7423522e142ca458"
+        },
+        {
+          "path": "src/game/IntermissionScene.ts",
+          "sourceBlob": "02bfb57ebfab0dfb71400f3b7c12f25b6d1b790d",
+          "integratedBlob": "c1f333e2e8bf91ecd7b45b5dd2ccd44572dba804"
+        },
+        {
+          "path": "src/game/JokerComboGrowthTemplates.ts",
+          "sourceBlob": "605bdd9e8f37dd3bf1ca487c9d37117b5fd71997",
+          "integratedBlob": "605bdd9e8f37dd3bf1ca487c9d37117b5fd71997"
+        },
+        {
+          "path": "src/game/JokerExperience.ts",
+          "sourceBlob": "10aea861d7bdcf4231e412a7690a896628940e06",
+          "integratedBlob": "10aea861d7bdcf4231e412a7690a896628940e06"
+        },
+        {
+          "path": "src/game/JokerGroupUpgradeTemplates.ts",
+          "sourceBlob": "c46b423605a84d204b9305c6fc11213a06a58f39",
+          "integratedBlob": "c46b423605a84d204b9305c6fc11213a06a58f39"
+        },
+        {
+          "path": "src/game/JokerGrowthCausality.ts",
+          "sourceBlob": "18d6188427a079139fe27b0268367c64626fdc4a",
+          "integratedBlob": "18d6188427a079139fe27b0268367c64626fdc4a"
+        },
+        {
+          "path": "src/game/JokerMemory.ts",
+          "sourceBlob": "10675526f4823554d084e59f9d8cabf51d7ecb9a",
+          "integratedBlob": "10675526f4823554d084e59f9d8cabf51d7ecb9a"
+        },
+        {
+          "path": "src/game/JokerPlayerCopy.ts",
+          "sourceBlob": "ec6511407a4dba3c76bec914eae376db099970b0",
+          "integratedBlob": "ec6511407a4dba3c76bec914eae376db099970b0"
+        },
+        {
+          "path": "src/game/OpeningRouteDemo.ts",
+          "sourceBlob": "338f8d0dc8c706d55b2076504bd4fdef73324fac",
+          "integratedBlob": "338f8d0dc8c706d55b2076504bd4fdef73324fac"
+        },
+        {
+          "path": "src/game/PurchasePaymentFacts.ts",
+          "sourceBlob": "52eb20140586c05191773804300eea08f2d6dcfe",
+          "integratedBlob": "52eb20140586c05191773804300eea08f2d6dcfe"
+        },
+        {
+          "path": "src/game/RouteStarter.ts",
+          "sourceBlob": "077e9898c4bec9c3da3a51e4997b61bd8695be77",
+          "integratedBlob": "077e9898c4bec9c3da3a51e4997b61bd8695be77"
+        },
+        {
+          "path": "src/game/SavedBossImpact.ts",
+          "sourceBlob": "498d66c1b08ef0747881afe990faaf2e3ed5983b",
+          "integratedBlob": "498d66c1b08ef0747881afe990faaf2e3ed5983b"
+        },
+        {
+          "path": "src/game/SavedGrowthChange.ts",
+          "sourceBlob": "e20e8100db57ac6cd285182bbac4bc7700a26316",
+          "integratedBlob": "e20e8100db57ac6cd285182bbac4bc7700a26316"
+        },
+        {
+          "path": "src/game/SavedToolResult.ts",
+          "sourceBlob": "666be9cff8c27ff8301e755fecd0b83e70d15e44",
+          "integratedBlob": "666be9cff8c27ff8301e755fecd0b83e70d15e44"
+        },
+        {
+          "path": "src/game/ScoreReview.ts",
+          "sourceBlob": "58e14c7062a0030d04a6e08932dcab696ebb969a",
+          "integratedBlob": "58e14c7062a0030d04a6e08932dcab696ebb969a"
+        },
+        {
+          "path": "src/game/SettlementPresentation.ts",
+          "sourceBlob": "4eee7518cac522b289011a18dcd84d371fac6f37",
+          "integratedBlob": "8f901c4d7f34bf51b90a8dad9cdbfc1a627e2e03"
+        },
+        {
+          "path": "src/game/ShopJokerPresentation.ts",
+          "sourceBlob": "33a14dcb516263312f89ed1cc7de77b44271b044",
+          "integratedBlob": "33a14dcb516263312f89ed1cc7de77b44271b044"
+        },
+        {
+          "path": "src/game/ShopPurchaseReceipt.ts",
+          "sourceBlob": "46a7099782a20d61a1dfa3e5a04b45a93dc061b7",
+          "integratedBlob": "46a7099782a20d61a1dfa3e5a04b45a93dc061b7"
+        },
+        {
+          "path": "src/game/ShopPurchaseValue.ts",
+          "sourceBlob": "1fee7b0660401d51af7b726dde53e0def1325bbd",
+          "integratedBlob": "1fee7b0660401d51af7b726dde53e0def1325bbd"
+        },
+        {
+          "path": "src/game/ShopRecommendation.ts",
+          "sourceBlob": "a8268cd598029098a04be6f78fe0187d68f2ee44",
+          "integratedBlob": "a8268cd598029098a04be6f78fe0187d68f2ee44"
+        },
+        {
+          "path": "src/game/ShopRouteRelations.ts",
+          "sourceBlob": "07ed1ff4e6a467304a3c9d06f9c4be355a94ce1b",
+          "integratedBlob": "07ed1ff4e6a467304a3c9d06f9c4be355a94ce1b"
+        },
+        {
+          "path": "src/game/ShopScene.ts",
+          "sourceBlob": "1664bac9a2c9759dccf73fe7d4779f4396f1b853",
+          "integratedBlob": "85159fb744a443d59b91f60cae49802c3d1b0ba5"
+        },
+        {
+          "path": "src/game/ShopSynergy.ts",
+          "sourceBlob": "32ce929daeb1f733cf7c3a4bff4ca984fb5ca890",
+          "integratedBlob": "90f0daedb960691b7797845517422a1a0733a87a"
+        },
+        {
+          "path": "src/game/StageGiftReceipt.ts",
+          "sourceBlob": "258fd4261f642f6b5ec39ff9711ba2d8231ac7c9",
+          "integratedBlob": "258fd4261f642f6b5ec39ff9711ba2d8231ac7c9"
+        },
+        {
+          "path": "src/game/ToolPermanentValue.ts",
+          "sourceBlob": "a8f68e93e8eb0aa47a3cde911ebe620e9aa2114b",
+          "integratedBlob": "a8f68e93e8eb0aa47a3cde911ebe620e9aa2114b"
+        },
+        {
+          "path": "src/game/TouyeDiscardChoice.css",
+          "sourceBlob": "fbb31741825f7e3850885b25f676c2f1f4df2f2a",
+          "integratedBlob": "fbb31741825f7e3850885b25f676c2f1f4df2f2a"
+        },
+        {
+          "path": "src/game/TouyeDiscardChoice.ts",
+          "sourceBlob": "52a1c937bfa46575fbcdb5b46b8e3842633fa526",
+          "integratedBlob": "52a1c937bfa46575fbcdb5b46b8e3842633fa526"
+        },
+        {
+          "path": "src/game/XiemuBurnCopy.ts",
+          "sourceBlob": "7d7a7fbe32415b57474bdc703648f2f0a77b718b",
+          "integratedBlob": "7d7a7fbe32415b57474bdc703648f2f0a77b718b"
+        },
+        {
+          "path": "src/game/characters.ts",
+          "sourceBlob": "1c79b99c2f5a0ca5792c8bc5a214761dac02e50f",
+          "integratedBlob": "1c79b99c2f5a0ca5792c8bc5a214761dac02e50f"
+        },
+        {
+          "path": "src/game/layout.ts",
+          "sourceBlob": "64ae9a02254ffdc23f490cf29daf8168b58cb737",
+          "integratedBlob": "64ae9a02254ffdc23f490cf29daf8168b58cb737"
+        },
+        {
+          "path": "src/game/r2Help.ts",
+          "sourceBlob": "fa9e96aa4bb065415305afa0736eeeea80c5983e",
+          "integratedBlob": "fa9e96aa4bb065415305afa0736eeeea80c5983e"
+        },
+        {
+          "path": "src/game/stageNotice.ts",
+          "sourceBlob": "b1b21f546e17c879a55bf4939fee1606e1a6763a",
+          "integratedBlob": "b1b21f546e17c879a55bf4939fee1606e1a6763a"
+        },
+        {
+          "path": "src/game/tangsongCardNames.ts",
+          "sourceBlob": "bf259262dabc79290234b110f406a59a909de5cf",
+          "integratedBlob": "bf259262dabc79290234b110f406a59a909de5cf"
+        }
+      ]
+    },
+    {
+      "name": "tools",
+      "sha": "e5bed10d2bfd931432b73a9f9d158391579375e4",
+      "mergeBase": "f81724b57736c7d4f299cf1d95705a7ba3ef9497",
+      "changedPaths": 280,
+      "exactPaths": 280,
+      "differences": [],
+      "originalEvidence": [
+        "docs/production/evidence/tools-art-2026-10-17/README.md"
+      ],
+      "code": []
+    },
+    {
+      "name": "compact-dialog",
+      "sha": "7f6df3a7a33903a532abfd8aada907deb2975519",
+      "mergeBase": "f81724b57736c7d4f299cf1d95705a7ba3ef9497",
+      "changedPaths": 9,
+      "exactPaths": 9,
+      "differences": [],
+      "originalEvidence": [
+        "docs/production/evidence/compact-confirm-dialog-2026-10-17/README.md"
+      ],
+      "code": [
+        {
+          "path": "src/game/DetailDialog.css",
+          "sourceBlob": "2c6198acffcf09e33b909492dac326e568bdf00e",
+          "integratedBlob": "2c6198acffcf09e33b909492dac326e568bdf00e"
+        },
+        {
+          "path": "src/game/DetailDialog.ts",
+          "sourceBlob": "b1a77557ee75631eb7ec94a86d799d3b6a79f483",
+          "integratedBlob": "b1a77557ee75631eb7ec94a86d799d3b6a79f483"
+        }
+      ]
+    },
+    {
+      "name": "hero-selection",
+      "sha": "91bd63b66f7a7bc03ee7610841f60902b650aa45",
+      "mergeBase": "f81724b57736c7d4f299cf1d95705a7ba3ef9497",
+      "changedPaths": 18,
+      "exactPaths": 18,
+      "differences": [],
+      "originalEvidence": [
+        "docs/production/evidence/character-select-immersion-2026-10-17/README.md"
+      ],
+      "code": [
+        {
+          "path": "src/game/CharacterSelectScene.ts",
+          "sourceBlob": "fec85c94073b053244d2f640c01a13708d408dfb",
+          "integratedBlob": "fec85c94073b053244d2f640c01a13708d408dfb"
+        },
+        {
+          "path": "src/game/OpeningShowcaseLayout.ts",
+          "sourceBlob": "9ebeeea8d794535f381d465a82cd6c96b5002029",
+          "integratedBlob": "9ebeeea8d794535f381d465a82cd6c96b5002029"
+        },
+        {
+          "path": "src/game/SelectionLayout.ts",
+          "sourceBlob": "1ae0bdab1566f7d96dd7de13b48829bea224f636",
+          "integratedBlob": "1ae0bdab1566f7d96dd7de13b48829bea224f636"
+        },
+        {
+          "path": "src/game/SelectionStageView.ts",
+          "sourceBlob": "996303b19367b13ca3c800734190c8d515631c0f",
+          "integratedBlob": "996303b19367b13ca3c800734190c8d515631c0f"
+        }
+      ]
+    },
+    {
+      "name": "chapter",
+      "sha": "c1eb5ff3e468f45952fc59798f851bd864b96395",
+      "mergeBase": "f81724b57736c7d4f299cf1d95705a7ba3ef9497",
+      "changedPaths": 19,
+      "exactPaths": 19,
+      "differences": [],
+      "originalEvidence": [
+        "docs/production/evidence/chapter-confrontation-2026-10-17/README.md"
+      ],
+      "code": [
+        {
+          "path": "src/game/BlindSelectPresentation.css",
+          "sourceBlob": "082ecab94382965b99f1de321036cb75f1464774",
+          "integratedBlob": "082ecab94382965b99f1de321036cb75f1464774"
+        },
+        {
+          "path": "src/game/BlindSelectPresentation.ts",
+          "sourceBlob": "9ab8a98055e28ab1edda14a842a8ac007e26d70e",
+          "integratedBlob": "9ab8a98055e28ab1edda14a842a8ac007e26d70e"
+        }
+      ]
+    },
+    {
+      "name": "ledger",
+      "sha": "92dc27ea2642267478d96182bad3fc74418db974",
+      "mergeBase": "f81724b57736c7d4f299cf1d95705a7ba3ef9497",
+      "changedPaths": 2,
+      "exactPaths": 2,
+      "differences": [],
+      "originalEvidence": [],
+      "code": []
+    },
+    {
+      "name": "settlement",
+      "sha": "3b6109cf92d5d6cd229fbe1dc54d62cf814b61ce",
+      "mergeBase": "f81724b57736c7d4f299cf1d95705a7ba3ef9497",
+      "changedPaths": 5,
+      "exactPaths": 2,
+      "differences": [
+        {
+          "path": "src/game/IntermissionScene.ts",
+          "sourceBlob": "c4966bdcf1ab8ad10deb730748e15f50566897fe",
+          "integratedBlob": "c1f333e2e8bf91ecd7b45b5dd2ccd44572dba804",
+          "reason": "composed settlement change with ID-based display names"
+        },
+        {
+          "path": "src/game/SettlementPresentation.ts",
+          "sourceBlob": "d0059f5971e2648a5907b4c4d9311028afde1e8d",
+          "integratedBlob": "8f901c4d7f34bf51b90a8dad9cdbfc1a627e2e03",
+          "reason": "composed settlement change with ID-based display names"
+        },
+        {
+          "path": "tests/settlement-presentation.test.ts",
+          "sourceBlob": "355d6b32dad603a84ea89b38fb476852eda41b41",
+          "integratedBlob": "8f1eac3714a0785442a5aec27c26a4ded08f79c1",
+          "reason": "composed settlement change with ID-based display names"
+        }
+      ],
+      "originalEvidence": [],
+      "code": [
+        {
+          "path": "src/game/IntermissionScene.ts",
+          "sourceBlob": "c4966bdcf1ab8ad10deb730748e15f50566897fe",
+          "integratedBlob": "c1f333e2e8bf91ecd7b45b5dd2ccd44572dba804"
+        },
+        {
+          "path": "src/game/SettlementPresentation.ts",
+          "sourceBlob": "d0059f5971e2648a5907b4c4d9311028afde1e8d",
+          "integratedBlob": "8f901c4d7f34bf51b90a8dad9cdbfc1a627e2e03"
+        }
+      ]
+    },
+    {
+      "name": "shop-dynamics",
+      "sha": "2409977a22137c34f6589829e8dcb24b80755721",
+      "mergeBase": "a14d3b55d456d9bafb75d031347985288404eff8",
+      "changedPaths": 17,
+      "exactPaths": 17,
+      "differences": [],
+      "originalEvidence": [
+        "docs/production/evidence/shop-synergy-live-2026-10-17/README.md"
+      ],
+      "code": [
+        {
+          "path": "src/game/ShopScene.ts",
+          "sourceBlob": "85159fb744a443d59b91f60cae49802c3d1b0ba5",
+          "integratedBlob": "85159fb744a443d59b91f60cae49802c3d1b0ba5"
+        },
+        {
+          "path": "src/game/ShopSynergy.ts",
+          "sourceBlob": "90f0daedb960691b7797845517422a1a0733a87a",
+          "integratedBlob": "90f0daedb960691b7797845517422a1a0733a87a"
+        },
+        {
+          "path": "src/game/ShopSynergyPreview.ts",
+          "sourceBlob": "92b8d75b4ad609813a7598e25b053941155544a9",
+          "integratedBlob": "92b8d75b4ad609813a7598e25b053941155544a9"
+        }
+      ]
+    },
+    {
+      "name": "c06-art",
+      "sha": "3897abbc80f71d760fa41a9a8330f9fb606e72ab",
+      "mergeBase": "f81724b57736c7d4f299cf1d95705a7ba3ef9497",
+      "changedPaths": 12,
+      "exactPaths": 12,
+      "differences": [],
+      "originalEvidence": [
+        "docs/production/evidence/qingchuyulan-art-2026-10-17/README.md"
+      ],
+      "code": []
+    },
+    {
+      "name": "score-boss",
+      "sha": "1eab25d91583c204536253cab85c6f8225526290",
+      "mergeBase": "f6edb41b1cd0591c6835cbc8f01965c74844e2e0",
+      "changedPaths": 17,
+      "exactPaths": 17,
+      "differences": [],
+      "originalEvidence": [
+        "docs/production/evidence/score-posture-pressure-2026-10-17/README.md"
+      ],
+      "code": [
+        {
+          "path": "src/game/BossPressure.ts",
+          "sourceBlob": "84518951f695e62f9ef159fe589c1cbab4ae899e",
+          "integratedBlob": "84518951f695e62f9ef159fe589c1cbab4ae899e"
+        },
+        {
+          "path": "src/game/BossPressureView.ts",
+          "sourceBlob": "95e85e17d48d56e61bd35cceff32b542bb17006d",
+          "integratedBlob": "95e85e17d48d56e61bd35cceff32b542bb17006d"
+        },
+        {
+          "path": "src/game/GameScene.ts",
+          "sourceBlob": "5d6631ac2bd5e2f0a58cd8ba1b06e3a06d40597c",
+          "integratedBlob": "5d6631ac2bd5e2f0a58cd8ba1b06e3a06d40597c"
+        },
+        {
+          "path": "src/game/HeroClimax.ts",
+          "sourceBlob": "dfc85805037144b3182d6ebc06d57ed57d4da4d0",
+          "integratedBlob": "dfc85805037144b3182d6ebc06d57ed57d4da4d0"
+        },
+        {
+          "path": "src/game/HeroClimaxContribution.ts",
+          "sourceBlob": "52373918c6467d707482081bb98be125ada8b48b",
+          "integratedBlob": "52373918c6467d707482081bb98be125ada8b48b"
+        },
+        {
+          "path": "src/game/HeroClimaxStage.ts",
+          "sourceBlob": "f89b52a37e9c6064a5b08dcf591ed238476fbfdd",
+          "integratedBlob": "f89b52a37e9c6064a5b08dcf591ed238476fbfdd"
+        },
+        {
+          "path": "src/game/ScoreContribution.ts",
+          "sourceBlob": "8548530decdf61f86a69eeaa4a3c067f2072def0",
+          "integratedBlob": "8548530decdf61f86a69eeaa4a3c067f2072def0"
+        },
+        {
+          "path": "src/game/ScoreEnergy.ts",
+          "sourceBlob": "6c5b6ef27951cffc12b23b869904ac6a5f020b20",
+          "integratedBlob": "6c5b6ef27951cffc12b23b869904ac6a5f020b20"
+        },
+        {
+          "path": "src/game/ScoreGeometry.ts",
+          "sourceBlob": "57fc26671bf161fd7e7daf368286415bb751e274",
+          "integratedBlob": "57fc26671bf161fd7e7daf368286415bb751e274"
+        },
+        {
+          "path": "src/game/ScorePosture.ts",
+          "sourceBlob": "e5f6b5e1610b80d07f9734c7a8bf478ea86c2a8e",
+          "integratedBlob": "e5f6b5e1610b80d07f9734c7a8bf478ea86c2a8e"
+        }
+      ]
+    }
+  ],
+  "protectedUnchanged": [
+    "src/domain",
+    "src/application",
+    "src/platform",
+    "src/content",
+    "src/audio",
+    "package.json",
+    "package-lock.json"
+  ],
+  "gameSceneExactFrom": "1eab25d91583c204536253cab85c6f8225526290",
+  "metadataProbeFailure": {
+    "code": "ENOBUFS",
+    "reason": "initial unscoped git ls-tree exceeded Node default output buffer; replaced by scoped metadata reads; no product or files changed"
+  }
+}

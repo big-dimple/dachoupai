@@ -1,0 +1,23 @@
+{
+  "reason": "Windows checkout CRLF conversion only; restored exact Git blob bytes; no assertion or Git content change",
+  "files": [
+    {
+      "path": "art/sources/handdrawn-runtime-20261004-b9/manifest.json",
+      "beforeSHA256": "e8e7228968f0431733f607daca4c442fd43618a2cda18dac4ccbeb765a1fe898",
+      "canonicalGitSHA256": "b6247533107f4c7107bea892bf27d72ad09db9355c1c03600c8882c9396f1695",
+      "onlyWindowsCRLF": true
+    },
+    {
+      "path": "art/sources/handdrawn-runtime-20261004-b10/manifest.json",
+      "beforeSHA256": "98b81d7b729654c3ebe710ba2bc7d3f31580a51db266c9b96cdc1046cc312873",
+      "canonicalGitSHA256": "13b737b88b6ce4130f0a10052b52bd3ed2feab21c83528831ef924152a78d5ed",
+      "onlyWindowsCRLF": true
+    },
+    {
+      "path": "art/sources/handdrawn-runtime-20261004-b11/manifest.json",
+      "beforeSHA256": "70afbb9846c0224285ce6dcf8db16ec4f8b1625820e3386ba22616d4d3127171",
+      "canonicalGitSHA256": "06ed702bdf40ee7e0814f6fc38e61262dda0f0c94b12103f6b59bc06c85a3a4f",
+      "onlyWindowsCRLF": true
+    }
+  ]
+}
