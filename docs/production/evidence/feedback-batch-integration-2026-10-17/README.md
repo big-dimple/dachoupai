@@ -1,5 +1,22 @@
 # 本轮反馈整合回执 · 2026-10-17
 
+## 辛弃疾弃牌目标隔离后继批
+
+基线main `4b0de064480a9c518f6443984ef6a465c4b3323d`；[来源2f2eb708](../xinqiji-discard-targets-2026-10-17/README.md)正常无冲突合入产品 `de144e76d7e8d9b14df105da6fa96817862c0dc7`，14个增量路径逐blob相同，来源浏览器6个指纹均匹配（明确兼容LF/CRLF工作字节）。GameScene仅该来源局部增量，共享计分/眼神/触觉、68手机/98正名/71零成长不回退；领域/规则/数值/存档/音频/美术/public/包锁相对4b0零改动。
+
+辛弃疾提醒返回和主动技能都先另选空弃牌草稿，取消不动原拟出牌和保存，确认只提交新目标；候选提示用领域required实际张数。秦琼复用同一空草稿组件，原眼神接线保留。精确复用来源5文件50项与1366×768鼠标/390×844触控DPR1短受控交互，原选择器FAIL保留；整合者查看来源390确认图，不冒充新合版截图或实体设备验收。
+
+新增[4文件13项交叉](checks/xinqiji-cross.log)：辛弃疾/秦琼目标交接、共享眼神及当前零成长；[类型](checks/xinqiji-typecheck.log)与[328模块生产构建](checks/xinqiji-build.log)通过，旧大chunk警告仍在。未重复来源50项/完整浏览器矩阵或自然长局。完整dist526文件/45,174,068B仍超20,000,000B，FAIL不关闭。按既有批准普通eyes dev/main发布，不等待工坊重排、CI或再次回复；完整远端SHA以成功push回执为准，无部署/域名操作。P08仍in_progress，三目标未达标，人验/听感/触感/物理设备与正式门保持。
+
+### 两条指定CI只读失败摘要（对应已发布4b0）
+
+每个运行/失败job日志只取一次，后续仅缓存分析；未重跑、等待或改工作流/阈值。这些失败没有运行预算门，不能解释为已知20MB预算失败。
+
+- [CI39027786241](https://github.com/big-dimple/dachoupai/actions/runs/39027786241) docs和[production-docs39027786207](https://github.com/big-dimple/dachoupai/actions/runs/39027786207)均15条P08 invalid evidence record；validator要求taskId及40位testedCommit。c452与4b0静态逐记录都为15条，属于既有证据格式缺口，不能作为有意保留的人验门或予以忽略。
+- [domain job](https://github.com/big-dimple/dachoupai/actions/runs/39027786241/job/117382079997)16文件55失败、296文件4071通过。至少一个本批新增跨平台测试错误已精确定位：tangsong-player-terms固定Windows CRLF SHA47d2b0b0…，Linux/Git LF实际5521e9ed…；c452/4b0锁定JSON Git blob均为5521e9ed…，没有内容数据漂移。另有唐宋牌正名与旧字面/旧展示hash断言失配，以及旧推荐指数/技能名/成长措辞/音频/排版断言；未将全部55项说成旧问题或数值回归，需后续逐项定向修复，不改领域断言凑绿。
+- [browser job](https://github.com/big-dimple/dachoupai/actions/runs/39027786241/job/117382079883)327模块生产构建已通过；烟测在harness/screenshot.mjs:82等待hand/cardViews超时30秒，日志phase=stage-ready、controller=idle、renderFps约60。该批GameScene/RunLaunch/烟测脚本相对c452未改，现有日志仅定位待战入口未跨过，不证明游戏死锁；后续需针对入口衔接诊断，未扩大重跑浏览器矩阵。
+
+
 ## 手机文字／正名／零成长小批
 
 基线main `c4525b2c2faf77ad2df0b5486e0ea64276856d04`，产品 `60a81684058bec92c5fb8eabd0937550bd55ad49`。正常合入[68手机热修](../shop-owned-caption-2026-10-17/README.md)、[98玩家正名](../tangsong-visible-name-2026-10-17/README.md)、[71零成长](../zero-growth-caption-2026-10-17/README.md)，无冲突；路径分别21/21、61/62、5/6，唯一r2Help自动组合保留名称和零成长单位修复。锁定发布JSON SHA47d2b0b0…、规则/保存协议/历史/美术/AudioEngine/GameScene与c452保持；正名显示模板/文案JSON为授权范围。

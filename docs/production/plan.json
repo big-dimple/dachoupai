@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "auditCommit": "7d7921e76ca794a14e715e3eac3b4d66143862ff",
   "currentTask": "P08",
-  "selectionPolicy": "当前小批60a81684已齐68手机文字/新局提示、98玩家正名、71零成长显示；12必要交叉/类型/327构建通过，源86/分批304/26原范围复用。按用户重新明确授权正常eyes dev/main发布，不force不改安全权限、不等CI。背景/工坊结构/资源清理后续，三目标未达标/P08 in_progress及预算人验设备听感正式门保持。",
+  "selectionPolicy": "辛弃疾2f2e安全修复已无冲突合入de144e76，14路径/6指纹匹配；13必要交叉/类型/328构建通过，来源50与PC/390原范围复用。已有授权普通eyes dev/main发布，不等工坊或CI。指定CI只读摘要已记录，15证据格式/55混合断言/待战烟测超时及Linux换行hash新测试错误保持开放，非预算触发；三目标未达标/P08 in_progress、整包45174068B及人验设备听感正式门保持。",
   "resumeContract": {
     "candidateCommit": "4bf6a7d63d7738d3c415d09439a1bdca878dc685",
     "gateTask": "A01",
@@ -1925,7 +1925,7 @@
     "baseMain": "c4525b2c2faf77ad2df0b5486e0ea64276856d04",
     "product": "60a81684058bec92c5fb8eabd0937550bd55ad49",
     "devBranch": "dev/eyes-followups-integration-20261017",
-    "status": "ALL_THREE_SOURCES_MERGED_NECESSARY_CHECKS_PASS",
+    "status": "PREVIOUS_SMALL_BATCH_PUBLISHED_4b0_SCOPED_EVIDENCE_RETAINED",
     "sources": [
       {
         "source": "68affa5cbec3ecbebee0a1164c37cb27ba10600b",
@@ -1998,6 +1998,74 @@
       "releaseSHA": "Final commit carrying this receipt;exact main SHA only after successful push"
     },
     "excluded": "background redesign,workshop structure,resource cleanup;no new broad matrix/natural long play",
-    "acceptance": "P08 in_progress;three experience goals NOT_MET;physical Android/font behavior,human understanding,listening,haptics and formal gates not signed"
+    "acceptance": "P08 in_progress;three experience goals NOT_MET;physical Android/font behavior,human understanding,listening,haptics and formal gates not signed",
+    "actualPublishedMain": "4b0de064480a9c518f6443984ef6a465c4b3323d"
+  },
+  "xinqijiSafetyFollowup": {
+    "baseMain": "4b0de064480a9c518f6443984ef6a465c4b3323d",
+    "source": "2f2eb70893e1ac3aa66e7883d457bddb561b982b",
+    "product": "de144e76d7e8d9b14df105da6fa96817862c0dc7",
+    "devBranch": "dev/eyes-followups-integration-20261017",
+    "status": "MERGED_NECESSARY_CHECKS_PASS_NORMAL_PUBLICATION_AUTHORIZED",
+    "sourcePaths": 14,
+    "exactPaths": 14,
+    "browserFingerprintsMatched": 6,
+    "sourceTestsReused": 50,
+    "sourceRuntimeReused": "1366x768 mouse and390x844 touch DPR1;curated current-identity first hand;not new integrated browser/device/natural test",
+    "cross": {
+      "files": 4,
+      "tests": 13,
+      "status": "PASS",
+      "log": "docs/production/evidence/feedback-batch-integration-2026-10-17/checks/xinqiji-cross.log"
+    },
+    "typecheck": "PASS",
+    "build": "PASS 328 modules",
+    "fullDist": {
+      "files": 526,
+      "bytes": 45174068,
+      "limit": 20000000,
+      "status": "FAIL"
+    },
+    "readonlyCIFailureSummary": {
+      "runs": [
+        39027786241,
+        39027786207
+      ],
+      "logsFetchedOnce": true,
+      "rerun": false,
+      "workflowOrThresholdChanges": false,
+      "docsInvalidEvidence": 15,
+      "docsSameInvalidCountAt": [
+        "c4525b2c",
+        "4b0de064"
+      ],
+      "domain": {
+        "failedFiles": 16,
+        "failedTests": 55,
+        "passedTests": 4071,
+        "confirmedNewTestRegression": "Windows CRLF raw SHA pinned in tangsong-player-terms;Linux/Git LF blob unchanged at5521e9ed",
+        "otherFailures": "mixed player naming/legacy display hashes and old recommendation/skill/growth/audio/layout assertions;not all classified preexisting or numeric regression"
+      },
+      "browser": "build PASS;stage-ready phase,cardViews wait30s timeout at screenshot.mjs:82;not proven runtime deadlock",
+      "budgetGateInvoked": false
+    },
+    "protectedUnchanged": [
+      "src/domain",
+      "src/content",
+      "src/application",
+      "src/platform",
+      "src/audio",
+      "public",
+      "package.json",
+      "package-lock.json"
+    ],
+    "notClaimed": [
+      "full final hero/browser matrix",
+      "natural long play",
+      "human hearing or physical haptics",
+      "20MB budget PASS",
+      "P08 completion",
+      "deployment"
+    ]
   }
 }
