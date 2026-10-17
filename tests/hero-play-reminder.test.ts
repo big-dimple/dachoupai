@@ -89,18 +89,18 @@ it('malformed or oversized optional preference data falls back safely',()=>{
  for(const raw of [null,'broken','null','{}',JSON.stringify({disabled:'yes',entries:[]}),JSON.stringify({disabled:false,entries:[{run:'r',stages:[2]}]}),' '.repeat(16385)])expect(decodeHeroPlayReminder(raw)).toEqual({disabled:false,entries:[]});
  expect(decodeHeroPlayReminder(JSON.stringify({disabled:true,entries:[{run:'r',stages:[0,1]}]}))).toEqual({disabled:true,entries:[{run:'r',stages:[0,1]}]});
 });
-function lateRun(){let s=createRun({rulesVersion:'r2',characterId:'erxiang',runId:'late-reminder',seed:'group-natural-17',modeConfig:{mode:'standard',difficulty:0,challengeId:null,programsEnabled:false},r2Identity:newRunIdentity('erxiang','group'),openingRoute:'group'});s=send(s,{type:'LeaveShop'});s.shop=null;s.chapter=3;s.stageIndex=8;s.seenBossIds=['B01','B03','B02'];s.boss={definitionId:'B02',disabledSuit:null};completeControlledRouteHistory(s);return arrange(send(s,{type:'EnterStage'}));}
+function lateRun(id:CharacterId='erxiang',boss:'B01'|'B02'|'B07'='B02'){let s=createRun({rulesVersion:'r2',characterId:id,runId:'late-reminder',seed:'group-natural-17',modeConfig:{mode:'standard',difficulty:0,challengeId:null,programsEnabled:false},r2Identity:newRunIdentity(id,'group'),openingRoute:'group'});s=send(s,{type:'LeaveShop'});s.shop=null;s.chapter=3;s.stageIndex=8;s.seenBossIds=[boss==='B01'?'B02':'B01','B03',boss];s.boss={definitionId:boss,disabledSuit:null};completeControlledRouteHistory(s);return arrange(send(s,{type:'EnterStage'}));}
 function oldActiveRun(){let s=createRun({rulesVersion:'r2',characterId:'amo',runId:'old-active-reminder',seed:'group-natural-17',r2Profile:'amo-assist-v1'});return arrange(send(send(s,{type:'LeaveShop'}),{type:'EnterStage'}));}
 function reminderScene(run=prepared('erxiang')){
  vi.spyOn(heroPlayReminders,'enabled').mockReturnValue(true);
  vi.stubGlobal('document',{createElement:()=>({className:'',textContent:'',onclick:null})});
- const modal:any={classList:{add:vi.fn()},querySelector:()=>({append:vi.fn()})};let choices:any[]=[];
+ const appended:any[]=[],modal:any={classList:{add:vi.fn()},querySelector:()=>({append:(node:any)=>appended.push(node)})};let choices:any[]=[];
  const dialog:any={current:undefined,open:vi.fn((_title:string,_body:string,actions:any[])=>{choices=actions;dialog.current=modal;return modal;}),active:(d:any)=>dialog.current===d,close:vi.fn(()=>{dialog.current=undefined;})};
  const s=Object.create(GameScene.prototype) as any;
  Object.assign(s,{run,selectedIds:new Set(run.characterId==='amo'?main:cards.slice(0,2)),assistIds:[],erxiangTargetId:null,xiemuBurn:0,azaoRelease:false,lifecycle:1,intent:0,playing:false,presentation:undefined,dialog,scene:{isActive:()=>true},cardViews:[],selectionPreview:()=>r2SelectionFacts(input(s.run,[...s.selectedIds])),clearHover:vi.fn(),cancelAiCandidates:vi.fn(),updateControls:vi.fn(),refreshSelection:vi.fn(),inspectRole:vi.fn(),presentTrace:vi.fn(async()=>{})});
  Object.defineProperty(s,'ready',{get:()=>!s.playing});
  vi.mocked(dispatchRun).mockImplementation(async(_scene,action)=>applyCommand(s.run,{runId:s.run.runId,commandId:'confirmed/'+s.run.commandSeq,expectedSeq:s.run.commandSeq,action}) as any);
- return {s,dialog,choices:()=>choices};
+ return {s,dialog,choices:()=>choices,appended};
 }
 it.each(['opening','late','old-active'] as const)('%s run reminds on every explicit attempt; close and return preserve the draft',async kind=>{
  const run=kind==='late'?lateRun():kind==='old-active'?oldActiveRun():prepared('erxiang'),{s,dialog,choices}=reminderScene(run),before=structuredClone(run),selected=[...s.selectedIds];
@@ -120,4 +120,16 @@ it('unavailable selection and an explicit reminder opt-out do not open a prompt'
  for(const optedOut of [false,true]){const {s,dialog}=reminderScene();if(optedOut)vi.mocked(heroPlayReminders.enabled).mockReturnValue(false);else s.selectedIds=new Set([cards[0]]);const before=vi.mocked(dispatchRun).mock.calls.length;await s.playSelected();expect(dialog.open).not.toHaveBeenCalled();expect(vi.mocked(dispatchRun).mock.calls.length).toBe(before+1);}
 });
 
-it('Touye explains exchange costs and offers explicit reselection while retaining the proposed play',async()=>{const {s,dialog,choices}=reminderScene(prepared('touye')),before=structuredClone(s.run),selected=[...s.selectedIds];await s.playSelected();expect(dialog.open.mock.calls[0][0]).toBe('先换牌，再出牌？');expect(dialog.open.mock.calls[0][1]).toContain('先重新选1–5张');expect(dialog.open.mock.calls[0][1]).toContain('次弃牌');expect(dialog.open.mock.calls[0][1]).toContain('×0.85');expect(choices()[0].label).toContain('重选弃牌');choices()[0].run();expect(s.inspectRole).toHaveBeenCalledOnce();expect([...s.selectedIds]).toEqual(selected);expect(s.run).toEqual(before);expect(dispatchRun).not.toHaveBeenCalled();});
+it.each(['regular','B01','B07'] as const)('Touye keeps %s costs and outcomes visible, folds extra rules and preserves the play on cancel or reselection',async kind=>{
+ const {s,dialog,choices,appended}=reminderScene(kind==='regular'?prepared('touye'):lateRun('touye',kind)),before=structuredClone(s.run),selected=[...s.selectedIds];
+ await s.playSelected();const [title,body,,options]=dialog.open.mock.calls[0];
+ expect(title).toBe('先换牌，再出牌？');expect(options.summaryBody).toBe('重新选择1–5张弃牌并押目标。\n确认换牌耗'+(kind==='B01'?2:1)+'次弃牌'+(kind==='B07'?'＋1金币':'')+'；下一手成功×2，失败×0.85。');
+ expect(options).toMatchObject({collapseRules:true,rulesLabel:'押注规则',closeLabel:'取消 · 返回选牌'});expect(body).toContain('押后不能再弃牌');expect(body).toContain('新摸牌');
+ expect(choices().map(c=>c.label)).toEqual(['重选弃牌','按原选择出牌']);expect(appended).toHaveLength(1);expect(appended[0]).toMatchObject({className:'hero-reminder-disable',textContent:'不再提醒'});
+ dialog.close();expect([...s.selectedIds]).toEqual(selected);expect(s.run).toEqual(before);await s.playSelected();expect(dialog.open).toHaveBeenCalledTimes(2);
+ choices()[0].run();expect(s.inspectRole).toHaveBeenCalledOnce();expect([...s.selectedIds]).toEqual(selected);expect(s.run).toEqual(before);expect(dispatchRun).not.toHaveBeenCalled();
+});
+it('Touye retains an explicit opt-out without treating ordinary cancel as opt-out',async()=>{
+ const disabled=vi.spyOn(heroPlayReminders,'disable').mockImplementation(()=>{}),{s,dialog,appended}=reminderScene(prepared('touye')),before=structuredClone(s.run),selected=[...s.selectedIds];
+ await s.playSelected();dialog.close();expect(disabled).not.toHaveBeenCalled();await s.playSelected();appended.at(-1).onclick();expect(disabled).toHaveBeenCalledOnce();expect(dispatchRun).not.toHaveBeenCalled();expect(s.run).toEqual(before);expect([...s.selectedIds]).toEqual(selected);
+});
