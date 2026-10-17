@@ -1,7 +1,11 @@
 import type {EffectContext} from '../core/EffectQueue';
 
 export type AttachmentMotion='full'|'reduced'|'off';
-export interface AttachmentDraft {key:string;targetId:string}
+export interface AttachmentDraft {
+  key:string;targetId:string;targetIds?:readonly string[];
+  kind?:'card'|'assist'|'group'|'condition'|'candidate';
+  label?:string;resolvedLabel?:string;releaseReason?:string;
+}
 export interface AttachmentState extends AttachmentDraft {
   generation:number;phase:'travel'|'idle'|'committed'|'release';elapsed:number;clock:number;eventId?:string;
 }
@@ -17,9 +21,9 @@ export class HeroTargetAttachmentState {
 
   preview(draft:AttachmentDraft|undefined):void {
     if(!draft){this.clear();return;}
-    if(this.current?.key===draft.key&&this.current.targetId===draft.targetId)return;
+    if(this.current?.key===draft.key&&this.current.targetId===draft.targetId&&JSON.stringify(this.current.targetIds)===JSON.stringify(draft.targetIds))return;
     this.clear();
-    this.current={...draft,generation:++this.generation,phase:this.motion==='full'?'travel':'idle',elapsed:0,clock:0};
+    this.current={...draft,...(draft.targetIds?{targetIds:[...draft.targetIds]}:{}),generation:++this.generation,phase:this.motion==='full'?'travel':'idle',elapsed:0,clock:0};
   }
 
   /** Saving never waits for travel or an idle hold. Only the selected instance can transfer. */
@@ -36,7 +40,9 @@ export class HeroTargetAttachmentState {
 
   release(event:{eventId:string;targetCardId?:string;reasonKey?:string},context:EffectContext):boolean {
     const state=this.current;
-    if(context.signal.aborted||!state||state.phase!=='committed'||state.eventId!==event.eventId||state.targetId!==event.targetCardId||event.reasonKey!=='erxiang.handoff')return false;
+    const reason=state?.releaseReason??'erxiang.handoff',matches=reason.endsWith('.')?event.reasonKey?.startsWith(reason):event.reasonKey===reason;
+    const single=!state?.kind||state.kind==='card';
+    if(context.signal.aborted||!state||state.phase!=='committed'||state.eventId!==event.eventId||single&&state.targetId!==event.targetCardId||!matches)return false;
     if(this.motion!=='full'){this.clear();return true;}
     state.phase='release';state.elapsed=0;return true;
   }

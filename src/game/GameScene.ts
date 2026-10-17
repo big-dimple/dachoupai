@@ -1024,6 +1024,10 @@ export class GameScene extends Phaser.Scene {
   }
   private syncHeroTargetAttachment():void {
     if(this.presentation||this.playing)return;
+    if(this.assistProfile){
+      const assist=validAssistDraft(this.assistInput(),r2AssistAvailability(this.run).available,this.assistIds),ids=assist?.assistIds;
+      this.targetAttachment?.preview(ids?.length?{key:JSON.stringify([this.run.runId,this.run.stage?.index,[...this.selectedIds].sort(),[...ids].sort()]),targetId:ids[0],targetIds:ids,kind:'assist',label:'助',resolvedLabel:'已助',releaseReason:'amo.assist.'}:undefined);return;
+    }
     const target=usesErxiangHandoff(this.run)?erxiangChoice(this.run,this.selectionPreview(),this.erxiangTargetId).selected?.card.id:undefined;
     this.targetAttachment?.preview(target?{key:JSON.stringify([this.run.runId,this.run.stage?.index,[...this.selectedIds].sort()]),targetId:target}:undefined);
   }
@@ -2161,7 +2165,9 @@ export class GameScene extends Phaser.Scene {
     const baseCue=!replay&&BigInt(baseProduct)>0n&&scoreFireLevel(originHeat,baseProduct,this.stage.targetHeat)>0;
     this.effects.enqueue(async context=>{
       const handoff=replay?undefined:score.events.find(e=>e.reasonKey==='erxiang.handoff'&&e.targetCardId===score.erxiangHandoff?.targetId);
-      if(handoff?.targetCardId)this.targetAttachment?.consume(handoff.targetCardId,handoff.eventId,context);else this.targetAttachment?.clear();
+      const assisted=replay?undefined:score.events.find(e=>e.sourceType==='character'&&e.reasonKey.startsWith('amo.assist.')&&score.sets.assistConsumedIds?.length);
+      if(assisted)this.targetAttachment?.commit(assisted.eventId,context);
+      else if(handoff?.targetCardId)this.targetAttachment?.consume(handoff.targetCardId,handoff.eventId,context);else this.targetAttachment?.clear();
       this.scoreHaptic?.scope.cancel();this.scoreHaptic=replay?undefined:{generation:context.generation,scope:Haptics.shared.createScope(context.signal)};
       if(!replay)this.audio.playHand();
       await Promise.all([...(beforeHands!==undefined&&!replay?[this.pulseResource('play',beforeHands,context,beforeHands-1)]:[]),...landing.map(async({view,box},i)=>{
