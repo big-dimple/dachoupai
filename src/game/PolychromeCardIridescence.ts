@@ -38,14 +38,15 @@ function visible(entry:Entry,scene:Phaser.Scene):boolean {
   if(scene.sys?.settings.visible===false||!camera.visible||camera.alpha<=0)return false;
   for(let node:Phaser.GameObjects.Container|null=entry.host;node;node=node.parentContainer)
     if(!node.visible||!node.active||node.alpha<=0||(node.cameraFilter&camera.id)!==0)return false;
-  const m=entry.host.getWorldTransformMatrix(),b=entry.bounds;
+  const m=entry.host.getWorldTransformMatrix(),b=entry.bounds,cm=camera.matrix;
   let left=Infinity,top=Infinity,right=-Infinity,bottom=-Infinity;
   for(const [x,y] of [[b.x,b.y],[b.x+b.width,b.y],[b.x,b.y+b.height],[b.x+b.width,b.y+b.height]]){
-    const wx=m.a*x+m.c*y+m.tx,wy=m.b*x+m.d*y+m.ty;
-    left=Math.min(left,wx);right=Math.max(right,wx);top=Math.min(top,wy);bottom=Math.max(bottom,wy);
+    const wx=m.a*x+m.c*y+m.tx-camera.scrollX,wy=m.b*x+m.d*y+m.ty-camera.scrollY;
+    const sx=cm.a*wx+cm.c*wy+cm.tx,sy=cm.b*wx+cm.d*wy+cm.ty;
+    left=Math.min(left,sx);right=Math.max(right,sx);top=Math.min(top,sy);bottom=Math.max(bottom,sy);
   }
-  const v=camera.worldView;
-  return right>v.x&&bottom>v.y&&left<v.right&&top<v.bottom;
+  // worldView assumes the camera centre; this project uses origin(0,0) and DPR zoom.
+  return right>camera.x&&bottom>camera.y&&left<camera.x+camera.width&&top<camera.y+camera.height;
 }
 
 function draw(entry:Entry,phase:number):void {

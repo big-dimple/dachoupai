@@ -15,7 +15,7 @@ class Graphic extends EventEmitter {
 function fixture(){
   const events=new EventEmitter(),graphics:Graphic[]=[],host={visible:true,active:true,alpha:1,cameraFilter:0,parentContainer:null,x:20,
     getWorldTransformMatrix(){return {a:1,b:0,c:0,d:1,tx:this.x,ty:20};},add:vi.fn()};
-  const scene={events,add:{graphics:()=>{const g=new Graphic();graphics.push(g);return g;}},cameras:{main:{visible:true,alpha:1,id:1,worldView:{x:0,y:0,right:400,bottom:800}}}};
+  const scene={events,add:{graphics:()=>{const g=new Graphic();graphics.push(g);return g;}},cameras:{main:{visible:true,alpha:1,id:1,x:0,y:0,width:400,height:800,scrollX:0,scrollY:0,matrix:{a:1,b:0,c:0,d:1,tx:0,ty:0}}}};
   const mount=(edition='polychrome')=>mountPolychromeCardIridescence(scene as unknown as Phaser.Scene,host as unknown as Phaser.GameObjects.Container,{x:0,y:0,width:80,height:100},edition as 'polychrome');
   const step=(ms=17)=>events.emit('update',0,ms);
   return {scene,events,host,graphics,mount,step};
@@ -51,6 +51,11 @@ describe('persistent polychrome edge',()=>{
     expect(g.draws).toBe(draws);expect(g.getData('motion')).toBe('static');expect(g.visible).toBe(true);
     reduce=false;mediaEvents.dispatchEvent(new Event('change'));f.step(80);expect(g.draws).toBeGreaterThan(draws);
     preferences.reducedMotion=true;for(const callback of preferences.listeners)callback();const staticDraws=g.draws;for(let i=0;i<220;i++)f.step();expect(g.draws).toBe(staticDraws);f.events.emit('shutdown');
+  });
+  it('culls using the actual camera transform with a top-left origin and phone DPR zoom',()=>{
+    const f=fixture(),camera=f.scene.cameras.main;camera.matrix.a=camera.matrix.d=2;camera.width=780;camera.height=1688;
+    f.mount();expect(f.graphics[0].visible).toBe(true);for(let i=0;i<200;i++)f.step();expect(f.graphics[0].draws).toBeGreaterThan(40);
+    f.host.x=390;f.step(80);expect(f.graphics[0].visible).toBe(false);f.events.emit('shutdown');
   });
   it('removes every subscription on last graphic destruction and permits remounting in reused scenes',()=>{
     const f=fixture();f.mount();f.mount();f.graphics[0].destroy();expect(f.events.listenerCount('update')).toBe(1);
