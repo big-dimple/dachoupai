@@ -22,14 +22,14 @@ describe('multi-scene BGM playlist and attribution', () => {
   it('assigns specific atmospheric tracks to scenes', () => {
     const engine = new AudioEngine();
     const bossTrack = engine.getTrackForScene('boss');
-    expect(bossTrack.title).toContain('Dark Things Loop');
-    expect(bossTrack.runtimePath).toContain('boss-dark-things.mp3');
+    expect(bossTrack.title).toContain('Stranger Things Theme');
+    expect(bossTrack.runtimePath).toContain('gamefeel-rfc/boss-stranger-things-theme.mp3');
 
     const menuTrack = engine.getTrackForScene('menu');
     expect(menuTrack.title).toContain('阳关三叠');
 
     const tableTrack = engine.getTrackForScene('table');
-    expect(tableTrack.title).toMatch(/Tango|醉渔唱晚/);
+    expect(tableTrack.title).toContain('Tang-Song Cyber Groove');
 
     const shopTrack = engine.getTrackForScene('shop');
     expect(shopTrack.title).toContain('Serenade - Schubert');

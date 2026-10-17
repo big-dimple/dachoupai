@@ -35,7 +35,7 @@ const noteStep=(value:number)=>Math.max(0,Number.isFinite(value)?Math.floor(valu
 /** The saved positive accumulator events form one phrase for the whole hand.
  * Do not restart when cards give way to a joker or the first multiplication.
  * This reads committed before/after values, never final score or mutable counters. */
-export function scoreStrikeStep(presentation:object,eventId:string,chain=0):number {
+export function scoreStrikeOrdinal(presentation:object,eventId:string,chain=0):number {
  const score=(presentation as {score?:Partial<Pick<ScoreTrace,'sets'|'events'>>}).score;
  const events=Array.isArray(score?.events)?score.events:[];
  const event=events.find(e=>e.eventId===eventId);
@@ -44,15 +44,17 @@ export function scoreStrikeStep(presentation:object,eventId:string,chain=0):numb
   for(const e of events){
    if(['base','afterHand','onStageClear','beforeFailure','finalScore'].includes(e.phase)||!e.before?.H||!e.before.M||!e.after?.H||!e.after.M)continue;
    if(Rational.fromJSON(e.after.H).compare(Rational.fromJSON(e.before.H))<=0&&Rational.fromJSON(e.after.M).compare(Rational.fromJSON(e.before.M))<=0)continue;
-   if(e.eventId===eventId)return noteStep(ordinal);
+   if(e.eventId===eventId)return ordinal;
    ordinal++;
   }
  }
  // Compatibility for small public callers without full accumulator snapshots.
  const card=event?.targetCardId??(event?.sourceType==='card'?event.sourceInstanceId:undefined),ids=score?.sets?.activeScoringIds;
  const ordinal=card&&Array.isArray(ids)?ids.indexOf(card):-1;
- return noteStep(ordinal>=0?ordinal:chain);
+ const fallback=ordinal>=0?ordinal:chain;
+ return Math.max(0,Number.isFinite(fallback)?Math.floor(fallback):0);
 }
+export function scoreStrikeStep(presentation:object,eventId:string,chain=0):number {return noteStep(scoreStrikeOrdinal(presentation,eventId,chain));}
 export function scoreStrikeRate(presentation:object,eventId:string,kind:'add'|'key'|'multiply'|'award'|'flight',chain=0):number {
  if(kind==='award'||kind==='flight')return 1;
  return .9*2**(SCORE_NOTE_SEMITONES[scoreStrikeStep(presentation,eventId,chain)]/12);

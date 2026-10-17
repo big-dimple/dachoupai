@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "auditCommit": "7d7921e76ca794a14e715e3eac3b4d66143862ff",
   "currentTask": "P08",
-  "selectionPolicy": "我方白名单源牌4eac（含6609）实际合64c07b00，新增5files48交叉及类型339构建PASS，正常eyes/main交付，不等CI。局部双拍/同层虹彩只签功能，受控公开导入非自然/听感/真机；PC手机图已看但手机大空白/教学行/技能叠框未过，下一批优先源牌演出空间及整手导演。英雄/c12/透视反光等后续不阻本批；ca843不合，13:02外部边界保持。P08/三体验/20MB/人验正式门不关闭。",
+  "selectionPolicy": "用户明确指定音频4a1/cbf独立合27f32fa3，15交叉及类型340构建PASS，先普通eyes/main发布；无GameScene/源牌/规则/存档/美术改动，不等原型评审或CI。英雄/c12独立dev仍在验证，随后继续，不将WIP夹入main。ca843整分支仍不合，其他外部内容仍等用户通知；P08/三目标/预算/真人正式门保持。",
   "resumeContract": {
     "candidateCommit": "4bf6a7d63d7738d3c415d09439a1bdca878dc685",
     "gateTask": "A01",
@@ -38,7 +38,7 @@
       ],
       "package": "docs/production/WORK_PACKAGES.md#p08",
       "humanGate": false,
-      "completionScope": "P08和三体验目标仍未达标。源牌4eac含6609实际合64c07b00：五牌分散纯图/左右回弹/主击arrival与同Tween回弹第二拍/同层虹彩按功能收口，62路径/8核心/5源hash精确，保main2f0商店/文案/AI刘娥。新增5files48交叉、类型339构建PASS；源96及4files48与7最终受控用例按原范围复用，不相加、不冒称自然/新矩阵/真人。已看双端图，手机牌型至待出区大留白、底部教学整行、技能叠框未过视觉，下一批优先给源牌演出空间；整手导演/透视反光惯性/英雄和c12接线/非HM成长差值仍后续，不阻本功能批。389文件37488800B超20MB；外部ca843不合，原CI缺口、听感触感/真机/后台/性能/正式门保持。",
+      "completionScope": "P08和三体验目标仍未达标。源牌功能批已发da671af2；当前指定音频4a1/cbf独立合27f32fa3，保持同总线/实际双拍，GameScene/源牌动作/规则存档美术不改，15交叉及类型340构建PASS，按授权尽快正常发布。源110/音频层证据复用，heard=false，不签新素材完整GameScene音画。英雄/c12独立dev真实接线验证中未发布；手机空间/教学行/技能叠框、整手导演/透视反光与人验仍后续。整包397文件37100697B超20MB；ca843整分支不合，正式门保持。",
       "evidence": [
         "docs/production/evidence/feedback-batch-integration-2026-10-17/eyes-followups.json",
         "docs/production/evidence/feedback-batch-integration-2026-10-17/zoom-sort.json",
@@ -2347,7 +2347,7 @@
     "sourceCardAudioCore": {
       "priority": "FUNCTIONAL_BATCH_VERIFIED_EXPERIENCE_FOLLOWUP_OPEN",
       "owner": "01a147ec",
-      "status": "FUNCTIONAL_WIRING_VERIFIED_NORMAL_MAIN_DEV_DELIVERY_AUTHORIZED",
+      "status": "PUBLISHED_MAIN_AND_EYES_da671af2_FUNCTION_SCOPE",
       "audioCandidate": "6609f4f609199ee1d5c9271c9389daaebb943bd7",
       "audioBranch": "dev/score-audio-density-20261017",
       "requiredScope": [
@@ -2370,7 +2370,33 @@
       "wholeExperienceAccepted": false,
       "sourceCompiledHashesExact": 5,
       "sourceNative": "PC3904x each13events/13pairs;7finalcases exact saved state;controlled public import,not natural/physical/hearing",
-      "remaining": "whole-hand director,perspective/reflection/inertia,mobile space/teaching row/nested skill frame,hero/c12 hooks,non-HM growth saved delta"
+      "remaining": "whole-hand director,perspective/reflection/inertia,mobile space/teaching row/nested skill frame,hero/c12 hooks,non-HM growth saved delta",
+      "laterAudioAdoption": "27f32fa3;prior6609 AV evidence is historical same-motion contract,not new-sample GameScene AV or listening acceptance"
+    },
+    "userSelectedSingaporeAudio": {
+      "sources": [
+        "4a1f9227e137aaf57122ce812fb52d95eda0bf49",
+        "cbf2f0f0d5f0506ed5e79b2ad1c085325b811bb2"
+      ],
+      "product": "27f32fa3afafc193bdd12249ffa74fd7c15094f5",
+      "status": "CHECKS_PASS_AUTHORIZED_NORMAL_MAIN_AND_DEV_PUBLICATION",
+      "pathsNoRenamesExact": 33,
+      "onlyTwoAssignedCommits": true,
+      "GameSceneChanged": false,
+      "prototypeBranchMerged": false,
+      "sourceEvidence": "8files110 and audio-layer loops/mute/context/mix reused;heard=false",
+      "cross": {
+        "files": 3,
+        "tests": 15,
+        "status": "PASS"
+      },
+      "typeAndBuild": "PASS340 modules",
+      "fullDist": {
+        "files": 397,
+        "bytes": 37100697,
+        "limit": 20000000,
+        "status": "FAIL"
+      }
     }
   },
   "shopStructureFollowup": {
@@ -2562,6 +2588,14 @@
       "conditions": "same-version source motion and actual scoreRebound double-beat sequence,not audio alone",
       "integratedProduct": "64c07b005cb022d2fa987a8a803590a773ec3c48",
       "status": "FUNCTIONAL_CURRENT_OWN_BATCH_VERIFIED"
+    },
+    "explicitAudioException": {
+      "authorization": "user explicitly selected audio through parent handoff;do not wait for prototype review",
+      "sources": [
+        "4a1f9227e137aaf57122ce812fb52d95eda0bf49",
+        "cbf2f0f0d5f0506ed5e79b2ad1c085325b811bb2"
+      ],
+      "prototypeWholeBranch": "excluded"
     }
   },
   "sourceCardAudioFollowup": {
@@ -2571,7 +2605,7 @@
     "sourceProduct": "c2dcab7f50ff9df2135784d39098da99c9e8657a",
     "product": "64c07b005cb022d2fa987a8a803590a773ec3c48",
     "devBranch": "dev/eyes-followups-integration-20261017",
-    "status": "FUNCTION_CHECKS_PASS_NORMAL_MAIN_AND_DEV_DELIVERY_AUTHORIZED",
+    "status": "PUBLISHED_MAIN_AND_EYES_da671af2_FUNCTION_SCOPE",
     "sourceChangedPathsExact": 62,
     "coreExactSource": 8,
     "audio6609AncestorAndThreeBlobsExact": true,
@@ -2602,6 +2636,20 @@
       "status": "FAIL"
     },
     "externalCa843Merged": false,
-    "open": "P08 and3experiencegoals,human understanding/listening,physical devices/background/performance/formal gates"
+    "open": "P08 and3experiencegoals,human understanding/listening,physical devices/background/performance/formal gates",
+    "actualPublishedMain": "da671af2e59bac6877a954b000ba4c527fddcf7f"
+  },
+  "heroGiftSceneFollowup": {
+    "branch": "dev/hero-gift-scene-integration-20261017",
+    "baseMain": "da671af2e59bac6877a954b000ba4c527fddcf7f",
+    "modules": [
+      "3a0984cfbf2c69262d66256d9738ed3b8df60448",
+      "9c3db534da1108406ab2642877949270c5463b61"
+    ],
+    "status": "IN_PROGRESS_LOCAL_WIRING_NOT_IN_MAIN",
+    "scope": "hero layout and real saved skill reaction;c12 successful saved source-to-inventory or overflow gold;remove gift query",
+    "sourceDirectorQueueAndMotion": "do not change",
+    "native": "NOT_RUN:pending actual scene validation",
+    "publication": "independent dev first,can combine with director later;audio shipped independently first"
   }
 }
