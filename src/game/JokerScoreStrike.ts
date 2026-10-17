@@ -22,7 +22,7 @@ export function jokerScoreStrikeCue(trace:ScoreTrace,event:ScoreEvent):JokerScor
 export function jokerStrikeBeat(base:ScoreBeat,multiply:boolean,speed=1):ScoreBeat {
  const rate=[1,2,4].includes(speed)?speed:1,key=base.phrase?.role==='accent',pulse=base.phrase?.pulse??0;
  const windup=Math.max(key?160:multiply?130-Math.min(20,pulse):110-Math.min(30,pulse),40*rate),flight=Math.max(key?130:multiply?115:100,60*rate);
- const hold=Math.max(key?45:35,35*rate);let recovery=key?220:multiply?200:180;
+ const hold=Math.max(key?50:40,40*rate);let recovery=key?220:multiply?200:180;
  recovery=Math.max(recovery,96*rate-hold);
  if(base.phrase?.paired)recovery=Math.max(recovery,Math.ceil(Math.max(0,50*rate-hold)/STRIKE_RETURN_LANDING));
  return {...base,windup,flight,impact:hold+recovery,rest:key?55:30,strike:{hold,recovery}};
@@ -58,7 +58,7 @@ export function prepareJokerScoreStrike(scene:Phaser.Scene,parent:Phaser.GameObj
  const fragments:{image:Phaser.GameObjects.Image;x:number;y:number;dx:number;dy:number}[]=[],textures:string[]=[];
  const sparks=scene.add.graphics().setName('score/strike-hit').setData('eventId',cue.eventId);group.add(sparks);
  let disposed=false,rebounded=false;
- const phase=(value:'windup'|'flight'|'impact'|'rebound'|'rest')=>{if(marker.active)marker.setData('scoreMotionEventId',cue.eventId).setData('scoreMotionPhase',value);group.setData('phase',value);};
+ const phase=(value:'windup'|'flight'|'impact'|'rebound'|'rest')=>{if(marker.active)marker.setData('scoreMotionEventId',cue.eventId).setData('scoreMotionPhase',value).setData('scoreHitStop',value==='impact');group.setData('phase',value);};
  const dispose=()=>{if(disposed)return;disposed=true;abort.abort();options.context.signal.removeEventListener('abort',dispose);marker.off('destroy',dispose);scene.events.off('shutdown',dispose);scene.events.off('destroy',dispose);if(typeof document!=='undefined')document.removeEventListener('visibilitychange',hidden);
   if(visual.active)visual.setPosition(rest.x,rest.y).setAngle(rest.angle).setScale(rest.sx,rest.sy).setAlpha(rest.alpha);
   for(const target of targets)if(target.text.active)target.text.setAlpha(target.alpha).setData('scorePulseScale',1).setData('scorePulseY',0);
@@ -95,7 +95,7 @@ export function prepareJokerScoreStrike(scene:Phaser.Scene,parent:Phaser.GameObj
   }
   const {hold,recovery}=options.beat.strike!;
   return tween(options.beat.impact,t=>{
-   const elapsed=t*options.beat.impact,settle=Math.max(0,Math.min(1,(elapsed-hold)/recovery));sparks.clear();
+   const elapsed=t*options.beat.impact;marker.setData('scoreHitStop',elapsed<hold);const settle=Math.max(0,Math.min(1,(elapsed-hold)/recovery));sparks.clear();
    for(const target of targets){const color=target.contribution.target==='H'?0x247b93:multiply?0x8c561f:0xb8473a,hit=target.hit,alpha=Math.max(0,1-elapsed/Math.max(90,hold*2));
     sparks.lineStyle(multiply?3:2,color,alpha*.8);for(let i=0;i<(multiply?8:5);i++){const a=i*Math.PI*2/(multiply?8:5),r=4+elapsed*.06;sparks.lineBetween(hit.x+Math.cos(a)*r,hit.y+Math.sin(a)*r,hit.x+Math.cos(a)*(r+5),hit.y+Math.sin(a)*(r+5));}
     if(elapsed>=hold){target.text.setAlpha(target.alpha).setData('scorePulseScale',1+(.18+(multiply?.26:0))*weight*OWNED_SCORE_SPRING.value(settle)).setData('scorePulseY',-3*OWNED_SCORE_SPRING.value(settle));const distance=Math.hypot(target.to.x-home.x,target.to.y-home.y),s=strikeReturnFraction(settle,distance,options.portrait?4:8),homeW=target.startWidth/1.035,homeH=target.startHeight/1.035;target.copy?.setPosition(home.x+(target.to.x-home.x)*s,home.y+(target.to.y-home.y)*s).setDisplaySize(homeW+(target.endWidth-homeW)*Math.max(0,s),homeH+(target.endHeight-homeH)*Math.max(0,s)).setAngle(4*s).setData('phase','return').setData('progress',settle);}

@@ -7,6 +7,7 @@ import {scoreContributions} from './ScoreContribution';
 import {readableFractionText} from './scoreText';
 import {UI_FONT} from './theme';
 import {OWNED_SCORE_SPRING} from './inkwaveSpring';
+import {OwnedCardTilt,ownedTiltLayer} from './OwnedCardTilt';
 
 export type OwnedJokerMotionTier='ordinary'|'multiplier'|'multiply';
 export interface OwnedJokerMotionCue {eventId:string;sourceInstanceId:string;tier:OwnedJokerMotionTier;label:string}
@@ -29,7 +30,7 @@ export function ownedJokerScoreLayer(scene:Phaser.Scene,marker:Marker):Marker {
  let visual=marker.getData('scorePoseRoot') as Marker|undefined;
  if(!visual?.active){visual=scene.add.container(0,0).setName('owned-joker/score-pose');marker.add(visual);marker.setData('scorePoseRoot',visual);}
  const children=marker.list.filter(child=>child!==visual&&!child.getData('scoreMotionFixed'));
- if(children.length){marker.remove(children);visual.add(children);}
+ if(children.length){marker.remove(children);ownedTiltLayer(scene,visual).add(children);}
  return visual;
 }
 
@@ -58,20 +59,23 @@ export interface OwnedJokerMotionOptions {
  context:EffectContext;arrival:Promise<void>;beat?:ScoreBeat;portrait:boolean;reducedMotion:boolean;speed?:number;
  onPhase?:(phase:'windup'|'impact'|'rebound'|'rest')=>void;
 }
-export function cancelOwnedJokerScoreMotion(marker:Marker):void {owners.get(marker)?.cancel();}
+export function cancelOwnedJokerScoreMotion(marker:Marker):void {owners.get(marker)?.cancel();(marker.getData('ownedTilt') as OwnedCardTilt|undefined)?.reset();}
 
 /** Quiet 15fps float yields the pose to score/drag. The fixed slot never moves. */
-export function mountOwnedJokerIdle(scene:Phaser.Scene,marker:Marker,options:{reducedMotion:()=>boolean;canFloat:()=>boolean;ordinal:number}):void {
+export function mountOwnedJokerIdle(scene:Phaser.Scene,marker:Marker,options:{reducedMotion:()=>boolean;canFloat:()=>boolean;canTilt?:()=>boolean;ordinal:number}):void {
  const visual=ownedJokerScoreLayer(scene,marker),frame=marker.getData('frame') as Phaser.GameObjects.Rectangle;
+ const tilt=ownedTiltLayer(scene,visual),decorations=visual.list.filter(o=>o!==tilt);visual.remove(decorations);tilt.add(decorations);
+ const pointerTilt=new OwnedCardTilt(scene,marker,tilt,options.canTilt??options.canFloat);marker.setData('ownedTilt',pointerTilt);
  const shadow=scene.add.ellipse(0,(frame?.height??90)/2+1,(frame?.width??64)*.78,5,0x26313a,.12).setName('owned-joker/float-shadow').setData('scoreMotionFixed',true);marker.addAt(shadow,0);let last=-Infinity,wasFloating=false;
- const update=(time:number)=>{
+ const update=(time:number,delta:number)=>{
+  pointerTilt.update(marker.getData('scoreHitStop')?0:delta/1000,options.reducedMotion());
   if(time-last<66||!visual.active||!marker.active)return;last=time;
   if(owners.has(marker))return;
   const enabled=!options.reducedMotion()&&options.canFloat()&&(typeof document==='undefined'||!document.hidden);
   if(enabled){const p=time/1700+options.ordinal*1.17;visual.setPosition(Math.sin(p*.51)*.8,Math.sin(p)*2.8).setAngle(Math.sin(p*.73)*1.6).setScale(.97+Math.cos(p*.61)*.012,.985+Math.cos(p*.61)*.006);shadow.setScale(.9+Math.sin(p)*.1,1).setAlpha(.8+Math.sin(p)*.15);wasFloating=true;}
   else if(wasFloating){visual.setPosition(0,0).setAngle(0).setScale(1);shadow.setScale(1).setAlpha(1);wasFloating=false;}
  };
- const dispose=()=>{scene.events.off('update',update);scene.events.off('shutdown',dispose);scene.events.off('destroy',dispose);marker.off('destroy',dispose);};
+ const dispose=()=>{pointerTilt.destroy();scene.events.off('update',update);scene.events.off('shutdown',dispose);scene.events.off('destroy',dispose);marker.off('destroy',dispose);};
  scene.events.on('update',update);scene.events.once('shutdown',dispose);scene.events.once('destroy',dispose);marker.once('destroy',dispose);
 }
 

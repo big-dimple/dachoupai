@@ -12,7 +12,7 @@ type VoiceBus = Exclude<AudioBus, 'master'>;
 type MusicTrack = { title: string; runtimePath: string };
 type MusicSlot = { element: HTMLAudioElement; node: MediaElementAudioSourceNode; gain: GainNode;
   track?: MusicTrack; cancelAttempt?: () => void };
-type Voice = { source: AudioScheduledSourceNode; gain: GainNode; filter?: BiquadFilterNode; bus: VoiceBus; scoreAccent?: boolean; roll?: ScoreRollKind; semantic?: FoleyKind; startsAt?:number; endsAt?:number; priority?:number; peak?:number; nominalGain?:number; cleanup?:()=>void };
+type Voice = { source: AudioScheduledSourceNode; secondarySources?:AudioScheduledSourceNode[]; gain: GainNode; filter?: BiquadFilterNode; bus: VoiceBus; scoreAccent?: boolean; roll?: ScoreRollKind; semantic?: FoleyKind; startsAt?:number; endsAt?:number; priority?:number; peak?:number; nominalGain?:number; cleanup?:()=>void };
 export type ScoreSourceCue = 'card' | 'held' | 'character' | 'joker' | 'boss' | 'retrigger';
 export type ScoreRollKind = 'heat' | 'mult' | 'total';
 export interface ScoreImpactTiming { durationMs?:number; signal?:AbortSignal; paired?:boolean; pulse?:number; accentWeight?:number }
@@ -251,9 +251,10 @@ export class AudioEngine {
   private release(voice: Voice): void {
     if(!this.voices.delete(voice))return;
     voice.cleanup?.();voice.cleanup=undefined;
-    voice.source.onended = null;
-    try { voice.source.stop(); } catch { /* The source may already have ended. */ }
-    try { voice.source.disconnect(); voice.gain.disconnect(); voice.filter?.disconnect(); } catch { /* Device teardown. */ }
+    for(const source of [voice.source,...(voice.secondarySources??[])]){
+      source.onended=null;try{source.stop();}catch{}try{source.disconnect();}catch{}
+    }
+    try{voice.gain.disconnect();}catch{}try{voice.filter?.disconnect();}catch{}
   }
   private stopVoices(bus?: VoiceBus): void {
     for (const voice of this.voices) if (!bus || voice.bus === bus) this.release(voice);
@@ -343,7 +344,8 @@ export class AudioEngine {
     const sound=kind==='award'?awardForScore(presentation):kind==='flight'?'flight':kind==='multiply'?(paired?'scoreDoubleImpact':'scoreMultiply'):kind==='key'?(tier>=2?'scoreBurst':'scoreKey'):(['scoreAdd','scoreKey','scoreBurst'] as const)[pulse];
     const durationMs=paired?(Number.isFinite(timing.durationMs)?Math.min(45,timing.durationMs!):45):timing.durationMs;
     const scale=kind==='award'||!Number.isFinite(durationMs)?1:Math.max(.25,Math.min(1,durationMs!/(Math.max(...FOLEY[sound].layers.map(l=>(l.delay??0)+l.duration))*1000)));
-    const voices=this.cue(sound,'sfx',rate,0,weight*(kind==='award'?1+bounded(tier,3)*.035:1),undefined,scale,notePulse);
+    const recorded=FOLEY[sound].layers.some(layer=>layer.samples.some(name=>this.scoreSamples.has(name)));
+    const voices=kind!=='flight'&&!recorded?this.synthScoreFallback(kind,notePulse,{...timing,durationMs},weight):this.cue(sound,'sfx',rate,0,weight*(kind==='award'?1+bounded(tier,3)*.035:1),undefined,scale,notePulse);
     if(paired&&voices.length){
       let pending=this.scoreRebounds.get(presentation);if(!pending){pending=new Map();this.scoreRebounds.set(presentation,pending);}
       pending.set(eventId,{rate,weight,signal:timing.signal});
@@ -359,8 +361,39 @@ export class AudioEngine {
     if(!beat)return;pending!.delete(eventId);
     if(beat.signal?.aborted||timing.signal?.aborted||Number.isFinite(timing.durationMs)&&timing.durationMs!<=0||!this.canPlay('sfx'))return;
     const scale=Number.isFinite(timing.durationMs)?Math.max(.6,Math.min(1,timing.durationMs!/60)):1;
-    const voices=this.cue('scoreRebound','sfx',beat.rate,0,beat.weight,undefined,scale);
+    const recorded=FOLEY.scoreRebound.layers.some(layer=>layer.samples.some(name=>this.scoreSamples.has(name)));
+    const voices=recorded?this.cue('scoreRebound','sfx',beat.rate,0,beat.weight,undefined,scale):this.synthScoreFallback('add',scoreStrikeOrdinal(presentation,eventId,0),timing,beat.weight*.6);
     this.ownScoreVoices(voices,beat.signal??timing.signal);
+  }
+
+  /** fbb614a8 pentatonic/harmonic, war-drum sweep and bronze bell recipes.
+   * Only an unavailable recorded family reaches here. One existing Voice owner
+   * retains every oscillator; no extra context, callback queue or replay path. */
+  private synthScoreFallback(kind:'add'|'key'|'multiply'|'award',pulse:number,timing:ScoreImpactTiming,weight:number):Voice[]{
+    if(!this.canPlay('sfx')||timing.signal?.aborted)return [];
+    const now=this.context!.currentTime,nominal=.014*bounded(weight,1);
+    const active=[...this.voices].filter(v=>v.bus!=='music'&&(v.endsAt??Infinity)>now);
+    if(!nominal||active.length>=EFFECT_VOICE_BUDGET||active.filter(v=>v.scoreAccent).length>=SCORE_VOICE_BUDGET||active.filter(v=>v.scoreAccent).reduce((sum,v)=>sum+(v.nominalGain??0),nominal)>SCORE_GAIN_BUDGET)return [];
+    let voice:Voice|undefined;
+    try{
+      const context=this.context!,drum=kind==='multiply',bell=kind==='award',base=bell?1.2:drum?.55:.22;
+      const duration=Math.max(.035,Math.min(base,Number.isFinite(timing.durationMs)?timing.durationMs!/1000:base));
+      const step=Number.isFinite(pulse)?Math.abs(Math.floor(pulse)):0,notes=[261.63,293.66,329.63,392,440];
+      const frequency=bell?432:drum?135:Math.min(1318.51,notes[step%5]*2**Math.min(2,Math.floor(step/5)));
+      const source=context.createOscillator(),harmonic=bell||drum?undefined:context.createOscillator(),gain=context.createGain(),filter=context.createBiquadFilter();
+      const peak=nominal*SOURCE_GAIN.sfx;
+      voice={source,...(harmonic?{secondarySources:[harmonic]}:{}),gain,filter,bus:'sfx',scoreAccent:true,semantic:bell?'award':drum?'scoreMultiply':'scoreAdd',startsAt:now,endsAt:now+duration,nominalGain:nominal,peak,priority:bell||drum?4:2};
+      this.retain(voice); // retain owns onended; synthesis never replaces it.
+      source.type='sine';source.frequency.setValueAtTime(frequency,now);
+      if(drum)source.frequency.exponentialRampToValueAtTime(36,now+duration);
+      filter.type=drum?'lowpass':'bandpass';filter.frequency.setValueAtTime(drum?220:frequency*1.5,now);filter.Q.setValueAtTime(drum?4:2.5,now);
+      if(drum)filter.frequency.exponentialRampToValueAtTime(55,now+duration);
+      gain.gain.setValueAtTime(0,now);gain.gain.linearRampToValueAtTime(peak,now+Math.min(.008,duration*.2));gain.gain.exponentialRampToValueAtTime(.0001,now+duration);
+      source.connect(filter);if(harmonic){harmonic.type='triangle';harmonic.frequency.setValueAtTime(frequency*2.008,now);harmonic.connect(filter);}
+      filter.connect(gain);gain.connect(this.gains!.sfx);
+      source.start(now);harmonic?.start(now);source.stop(now+duration);harmonic?.stop(now+duration);
+      return [voice];
+    }catch{if(voice)this.release(voice);return [];}
   }
 
   private ownScoreVoices(voices:Voice[],signal?:AbortSignal):void {

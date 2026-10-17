@@ -738,7 +738,7 @@ export class GameScene extends Phaser.Scene {
       if(disabled.has(j.instanceId)){r.setStrokeStyle(1,T.ink,.3);marker.setData('bossDisabled',true);}
       const pressure=bossJokerPressure({...this.bossPressureContext(),jokers},j.instanceId);if(pressure)mountBossPressure(this,marker,b.width,b.height,pressure);
       const visual=ownedJokerScoreLayer(this,marker);mountPolychromeCardIridescence(this,visual,marker.getData('scoreArtBounds')??{x:-b.width/2,y:-b.height/2,width:b.width,height:b.height},j.edition);
-      mountOwnedJokerIdle(this,marker,{ordinal:i,reducedMotion:()=>this.reducedMotion,canFloat:()=>!this.playing&&!this.presentation&&!this.ownedDrag&&this.hoveredJokerId!==j.instanceId});this.jokerViews.set(j.instanceId,marker);
+      mountOwnedJokerIdle(this,marker,{ordinal:i,reducedMotion:()=>this.reducedMotion,canFloat:()=>!this.playing&&!this.presentation&&!this.ownedDrag&&this.hoveredJokerId!==j.instanceId,canTilt:()=>!this.playing&&!this.presentation&&!this.ownedDrag});this.jokerViews.set(j.instanceId,marker);
       const hit=v.rect({x:b.x,y:b.y,width:b.width+(sideLabels?labelBox.width+6:0),height:b.height},T.ink).setFillStyle(T.ink,.001).setStrokeStyle();marker.setData('hit',hit);
       v.target(hit,'joker/'+j.instanceId,{tap:()=>this.inspectJoker(j.instanceId),detail:()=>this.inspectJoker(j.instanceId),enter:()=>this.hoverJoker(j.instanceId,true),leave:()=>this.hoverJoker(j.instanceId,false)});
     });

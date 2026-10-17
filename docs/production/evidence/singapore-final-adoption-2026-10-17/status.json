@@ -1,0 +1,42 @@
+{
+  "taskId": "P08",
+  "baseCommit": "e9a8036d0cba3513ef39bc78db1be81bfb142f94",
+  "sourceTip": "fbb614a84087060c99e8973c118a473771448984",
+  "targetTests": {
+    "executedHead": "e9a8036d0cba3513ef39bc78db1be81bfb142f94",
+    "workingTreeDirty": true,
+    "passed": 3,
+    "cases": [
+      "voice natural end and abort, sample priority",
+      "event order, 1.5 and large rational",
+      "effective dt freeze, cancel/replay layered pose"
+    ],
+    "normalizedWorkingFiles": {
+      "src/audio/AudioEngine.ts": "8b31d085e1c98a23867e7f3d8e08b44c50d0f9a714bbb761e429ad363d72a638",
+      "src/game/GameScene.ts": "3e1d5ea20ef828d124b2b9eb8925ade4339ba4e266e61bfdaf3902b4b61255a8",
+      "src/game/OwnedJokerScoreMotion.ts": "ce8710ff256a394b3bbca348e159cc1f8e88806fae0251b2ce9389bfe484bb77",
+      "src/game/JokerScoreStrike.ts": "a7325b6c19501dcff0075d36ef33fde286ca3a5b05cecd698d26d671200a59b8",
+      "src/game/OwnedCardTilt.ts": "0aa536ba1c6975866c23b4523af4d9bdd3c0bc26810d4a4b25f758cd5b1a0909",
+      "src/game/SpringMotion.ts": "dacb70756bd4f09030a2303e361474391de5de1265cd2fca72528615a299b1c1",
+      "tests/singapore-final-adoption.test.ts": "aad17f8ec6f4047ad7eb1f40d37fd54f0bb7c2ae60fcaf157643773bf014d2b9"
+    }
+  },
+  "allowedRuntimePaths": [
+    "src/audio/AudioEngine.ts",
+    "src/game/GameScene.ts",
+    "src/game/OwnedJokerScoreMotion.ts",
+    "src/game/JokerScoreStrike.ts",
+    "src/game/OwnedCardTilt.ts",
+    "src/game/SpringMotion.ts"
+  ],
+  "sourceModulesNotCopied": [
+    "src/gamefeel",
+    "ScoringRhythmOrchestrator",
+    "HitStopPresentationTimeline",
+    "PentatonicSynth",
+    "AudioFilterTransition",
+    "CardTiltEffect DOM"
+  ],
+  "cleanupBranch": "feat/gamefeel-audio-elevation-rfc",
+  "cleanupStatus": "pending"
+}
