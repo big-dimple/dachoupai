@@ -41,4 +41,4 @@
 
 计划校验仍为既有FAIL：[原始输出](integration-plan-validation.txt)。在未改的a9主工作区与本次合并工作区各运行一次，退出码与完整输出完全相同；没有新增协议错误，不改旧证据或放宽校验。
 
-手机标题断言后继仅在 `dev/mobile-caption-contract-20261017`：删除320宽14张牌无条件隐藏的过期假设，改为实际视口边界、与数字/落牌/手牌/操作区不重叠，以及14px四字完整行的宽高；三组手机均必须保留标题，PC受阻区仍须隐藏，不能靠全部返回undefined过关。只运行[这一相关文件](caption-contract-tests.txt)，8项通过；运行时代码未改，等待苏轼整批集成。其余CI未归因失败已记plan.json，不扩为CI整改或重跑全套。
+手机标题断言后继仅在 `dev/mobile-caption-contract-20261017`：删除320宽14张牌无条件隐藏的过期假设，改为实际视口边界、与数字/落牌/手牌/操作区不重叠，以及14px四字完整行的宽高；三组手机均必须保留标题，PC受阻区仍须隐藏，不能靠全部返回undefined过关。只运行[这一相关文件](caption-contract-tests.txt)，8项通过；运行时代码未改，现已纳入dev/sushi-mobile-integration-20261017候选，main仍待本批明确批准。其余CI未归因失败已记plan.json，不扩为CI整改或重跑全套。

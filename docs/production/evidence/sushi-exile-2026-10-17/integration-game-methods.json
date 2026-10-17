@@ -1,0 +1,48 @@
+{
+  "phoneOnly": [
+    "render",
+    "mountSceneHeroPortrait",
+    "landingBoxes",
+    "placePlayedCaption",
+    "renderSelectedCards",
+    "tableHelpBox",
+    "inspectTableHelp",
+    "updateControls",
+    "update",
+    "refreshToolInventory"
+  ],
+  "exileOnly": [
+    "amoExile",
+    "create",
+    "syncHeroTargetAttachment",
+    "refreshSelection",
+    "chosenHeroDraft",
+    "updateHeroControl",
+    "aiInput",
+    "selectionPreview",
+    "inspectAmoExile",
+    "inspectHeroAction",
+    "inspectHeroExplanation",
+    "inspectRole",
+    "sortHand",
+    "applyHandSelection",
+    "toggleCard",
+    "discardSelected",
+    "playSelected",
+    "operationText",
+    "eventSource",
+    "setAccumulator",
+    "showOpeningScore",
+    "award",
+    "completePresentation"
+  ],
+  "overlap": [
+    "presentTrace"
+  ],
+  "phoneOnlyAllExact": true,
+  "exileOnlyAllExact": true,
+  "presentTraceDiff": [
+    "    this.refreshSelection();this.updateHud();this.setSettlementFocus(true);this.previewCards?.destroy();this.previewCards=undefined;(this.view.root.list.find(o=>o.name==='table/played-label') as Phaser.GameObjects.Text|undefined)?.setText('已出牌');this.placePlayedCaption(true);"
+  ],
+  "presentTraceExactSourcePlusPhoneCaptionCall": true
+}

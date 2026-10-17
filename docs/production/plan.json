@@ -2998,7 +2998,7 @@
       "budget": "37163769B >20000000B remains open; not the direct failure shown by these jobs",
       "captionFollowup": {
         "branch": "dev/mobile-caption-contract-20261017",
-        "status": "targeted_test_passed_waiting_for_Su_Shi_batch_integration",
+        "status": "integrated_into_sushi_dev_candidate_awaiting_explicit_main_approval",
         "baseCommit": "528df08dc4bac70c04f5581e2742e63a2bef253e",
         "runtimeChanged": false,
         "testFile": "tests/stage-table-art.test.ts",
@@ -3011,14 +3011,14 @@
     }
   },
   "sushiExileImplementation": {
-    "status": "ready_for_parent_integration",
+    "status": "integrated_development_candidate_awaiting_explicit_main_approval",
     "base": "a9f48dc1cac8da79b6d16ce8ef0542446a6f4466",
     "branch": "dev/sushi-exile-implementation-20261017",
     "approved": "出牌时弃掉全部余牌，本手正常整数得分×4，每场一次；至少1张余牌；取消不消耗。",
     "scope": "new-Su-Shi-identity-only; exact old saves and five other new identities retained",
     "evidence": "docs/production/evidence/sushi-exile-2026-10-17/README.md",
     "pending": [
-      "parent sequential integration with phone layout 528df08d and local GameScene checks",
+      "explicit approval for this Su Shi/mobile candidate before any main merge or main push",
       "subjective visual/audio/physical-device acceptance; P08 remains in_progress"
     ],
     "overall": "P08 in_progress; no overall completion percentage",
@@ -3030,6 +3030,29 @@
       "native": "six hero native short flows PASS; Su Shi full motion 78→312,2→8,6 true discards; all six next hand PASS",
       "planCheck": "15 existing invalid P08 evidence records remain",
       "fullSuite": "initial 88/4306 failed; not rerun or signed as passed"
+    },
+    "integration": {
+      "branch": "dev/sushi-mobile-integration-20261017",
+      "baseMain": "528df08dc4bac70c04f5581e2742e63a2bef253e",
+      "sushiSource": "9434fcba11af3f60f9ec15193d37abb66def6ae1",
+      "captionSource": "782d8c8d3aa9f0575858b213fd06170818303d03",
+      "product": "7c2c09df2614fe1b5790ac844642af6ebc2aac7e",
+      "conflicts": "plan docs only; source GameScene merged automatically",
+      "sourceRuntimeExactBindings": 26,
+      "gameComposition": "10 phone-only and 23 exile-only methods exact; shared presentTrace exact exile + phone placePlayedCaption(true)",
+      "checks": {
+        "files": 20,
+        "passed": 240,
+        "nativePhone": "390x740 full motion native Su Shi chosen/cancel/rechosen;6 true discards;78=>312;refill8;next ordinary30;once-used retained;canonical state/journal/storage",
+        "typecheck": "PASS",
+        "buildModules": 360,
+        "distBytes": 37175726,
+        "budgetStatus": "FAIL",
+        "sourceReuse": "39/508 and six native flows reused at source7627 only"
+      },
+      "evidence": "docs/production/evidence/sushi-exile-2026-10-17/integration.json",
+      "mainMergeOrPushPerformed": false,
+      "mainApprovalRequired": true
     }
   }
 }

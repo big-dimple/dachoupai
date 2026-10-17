@@ -1,0 +1,144 @@
+{
+  "taskId": "P08",
+  "baseMain": "528df08dc4bac70c04f5581e2742e63a2bef253e",
+  "sushiSource": "9434fcba11af3f60f9ec15193d37abb66def6ae1",
+  "sushiProduct": "7627e7ddc09f44a8412f4e944852969c15f9cf33",
+  "captionSource": "782d8c8d3aa9f0575858b213fd06170818303d03",
+  "sourceRuntimeBindingsExceptGame": {
+    "src/application/checkpoint.ts": "b469689aa17a3b6779981cf83322e8851357c3a3",
+    "src/application/routeGrowthTrace.ts": "f7a4e2474e5ca936665de1138a46a5834c73dfc0",
+    "src/domain/r2AmoExile.ts": "f51a5f0839455299e5984ada6cb5cccb309a6aff",
+    "src/domain/r2GroupUpgrade.ts": "c35441d1e2706b049d6dcecb0d99b680576673d1",
+    "src/domain/r2Run.ts": "1fb46f05e777ecdbf4848f1c8184cfedc52442f0",
+    "src/domain/run.ts": "66953a72e9fea9ebdc4cd24a346cb26a82fc7fe0",
+    "src/domain/scoreR2.ts": "e39fb52cb2761c3c861f96fc037a3f24ac9d2de6",
+    "src/game/AiHandCandidates.ts": "4deb01ac2b9c8df185ff6572bd55dccc78137d8e",
+    "src/game/AmoExileCopy.ts": "47db06161e87607b43232d798c423c2eab3a0b3f",
+    "src/game/CharacterRunCopy.ts": "8bf0218930f295c6d6611efd9ca82debd35e840d",
+    "src/game/HandRuleReference.ts": "b68b61eda25ed146eb0a3d97b63c906cc3217274",
+    "src/game/HeroAbilityCue.ts": "5d4f0ddf98965ca636a79fd2201423f2a575b8ca",
+    "src/game/HeroAttachmentFacts.ts": "a9e7601d19ebe311170800e981b0f7381503bf5d",
+    "src/game/HeroExplanation.ts": "14531257693a56a90ec98d207c4f40f0b3ef8c04",
+    "src/game/HeroPayoff.ts": "46f3b5d8a7414fcd5081494e322f71efb63b37f8",
+    "src/game/HeroPlayReminder.ts": "d12411a37f792db977349695777b9cf5c1bd7926",
+    "src/game/HeroSignature.ts": "2767c5bc61d526333db23603fede00bd8895fe33",
+    "src/game/HeroSkillDraftLifecycle.ts": "8faf00257af3aa71d9bcf433f867b1dc1158dcbe",
+    "src/game/HeroSkillGuide.ts": "f91a1ca08e6026530ade3619c5ad0acae6ada4af",
+    "src/game/HeroSkillPresentation.ts": "6516bd47fd0c0b2dac120e221223867a0be1b96c",
+    "src/game/HeroStageContinuity.ts": "34c31c9400c3e40e3c55d3208f1efd9592f8be4c",
+    "src/game/JokerExperience.ts": "c5b35422ae0ceb093b4ba9090603194eb5ba2c67",
+    "src/game/OpeningPlaySample.ts": "8c03cfb9a2bdbae5f4be172918f0f820261ccfd3",
+    "src/game/RunLaunch.ts": "5eaa5632adc0cf7845a8c3cf8f085550d3a7ff15",
+    "src/game/SelectionPresentation.ts": "36bb72cf0ddd477135f4aba0472d9e379edf3150",
+    "src/game/SettlementHighlights.ts": "4ec26ff9df9d11706190efd706c446c291628f9e"
+  },
+  "protectedMainAreasUnchanged": [
+    "src/audio",
+    "src/game/SpringMotion.ts",
+    "src/game/OwnedCardTilt.ts",
+    "src/game/OwnedJokerScoreMotion.ts",
+    "src/game/JokerScoreStrike.ts",
+    "src/game/ScorePhrase.ts",
+    "src/game/ScoreTableLayout.ts",
+    "src/game/ToolInventoryEntry.ts",
+    "src/game/HeroPortraitLayout.ts",
+    "src/game/layout.ts",
+    "public",
+    "art"
+  ],
+  "gameMethods": "game-methods.json",
+  "captionTestMatchesSource": true,
+  "mergeConflicts": {
+    "sushi": [
+      "docs/production/DELIVERY_PLAN.md",
+      "docs/production/plan.json"
+    ],
+    "caption": [
+      "docs/production/plan.json"
+    ],
+    "resolution": "preserved both source and main entries; GameScene merged automatically"
+  },
+  "targetedTests": {
+    "executedCommit": "0ac48422886cb17aad2ea8f16865e64c880d5c16",
+    "files": 20,
+    "passed": 240,
+    "rawLog": "targeted-initial.txt",
+    "srcAndTestsMatchProduct": true
+  },
+  "sourceEvidenceReuse": {
+    "relatedTests": 508,
+    "nativeHeroes": 6,
+    "sourceProduct": "7627e7ddc09f44a8412f4e944852969c15f9cf33",
+    "scope": "original precise version only; no claim phone final layout was in source build"
+  },
+  "mainWriteAuthorized": false,
+  "productCommit": "7c2c09df2614fe1b5790ac844642af6ebc2aac7e",
+  "status": "verified_dev_candidate_awaiting_explicit_main_approval",
+  "nativePhone": {
+    "source": "7c2c09df2614fe1b5790ac844642af6ebc2aac7e",
+    "buildInfo": {
+      "version": "C03",
+      "builtAt": "2026-10-17T17:58:44.343Z",
+      "revision": "7c2c09df2614fe1b5790ac844642af6ebc2aac7e",
+      "sourceStatus": "clean",
+      "modified": false
+    },
+    "viewport": {
+      "width": 390,
+      "height": 740
+    },
+    "browser": "143.0.3650.80",
+    "status": "PASS",
+    "cancelAndReselect": "draft-only; state/journal/storage unchanged by native harness assertions",
+    "trace": {
+      "use": true,
+      "beforeUsed": false,
+      "afterUsed": true,
+      "discardedIds": [
+        "spades-4",
+        "spades-12",
+        "hearts-5",
+        "hearts-11",
+        "hearts-7",
+        "diamonds-12"
+      ],
+      "beforeScore": "78",
+      "afterScore": "312"
+    },
+    "nextScore": "30",
+    "refilledHand": 8,
+    "usedAfterNext": true,
+    "errors": [],
+    "canonicalStateJournalStorage": true,
+    "evidence": "integration-phone-report.json.gz"
+  },
+  "build": {
+    "executedCommit": "7c2c09df2614fe1b5790ac844642af6ebc2aac7e",
+    "typecheck": "PASS",
+    "vite": "PASS",
+    "modules": 360,
+    "distFiles": 397,
+    "distBytes": 37175726,
+    "budgetBytes": 20000000,
+    "budgetStatus": "FAIL",
+    "info": {
+      "version": "C03",
+      "builtAt": "2026-10-17T17:59:44.918Z",
+      "revision": "7c2c09df2614fe1b5790ac844642af6ebc2aac7e",
+      "sourceStatus": "clean",
+      "modified": false
+    }
+  },
+  "verifiedTrees": {
+    "src": "7bcd28e551152ef7fc87ac0a4fe713f207b588b4",
+    "tests": "95bc3ca6a39dc89f95e8eb7665fe6bb377d84d86",
+    "harness": "bc8b490fb22bd04a5b85a35f3cc499326270fa2b"
+  },
+  "evidenceHashes": {
+    "integration-phone.webm": "ee4e6428be012a96ddd1b0146f8c4d37eea97b74734ea8f16e01a29da4c67e76",
+    "integration-phone-chosen.png": "b1a9b4ff6893435edc73aaf5f0d2182599694be18ec096ea243535d94386b559",
+    "integration-phone-eyes.png": "b6b259152c71756d5d8a6bf1927b1b270b3ffe558b28f3c4e484731d940dc99f",
+    "integration-phone-next.png": "3fc017bdc277be0e641ff9db4a0fae204d6ee3cc7bdfb469d51f021e70c06a21",
+    "integration-phone-report.json.gz": "b8daa2da5a3b6cbfdc594ab7295a902c52fb6e694272d41cdcc1de028e9cfaac"
+  }
+}

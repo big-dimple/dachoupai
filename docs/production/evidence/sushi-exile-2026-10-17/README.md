@@ -41,3 +41,15 @@
 `verify-content.mjs`单独执行也未在有限等待内输出，停在既有美术隐私预检；已停止本次进程，未继续重复运行或修改门禁，不能签当前内容证明通过。初次全量失败文件哪些已由508项相关批次覆盖、哪些仍未重跑，逐项见 `verification.json`，不把未触及测试归因为已经证实的基线缺陷。
 
 六人原生入口、实际代价、实时倍率、目标和眼神连续画面：**PASS，仅以上范围**。P08与三项体验目标仍 `in_progress`；真人理解、主观画面、听感、物理触感、实体手机及正式发布门不由软件验收替代。手机新布局合版后只需复核本次GameScene局部组合与相关流程，不以本候选冒签528df08d的新布局。
+
+## 手机布局顺序整合：仅开发候选
+
+基线main `528df08dc4bac70c04f5581e2742e63a2bef253e`；来源 `9434fcba11af3f60f9ec15193d37abb66def6ae1` 和标题断言 `782d8c8d3aa9f0575858b213fd06170818303d03`，整合产品 `7c2c09df2614fe1b5790ac844642af6ebc2aac7e`。分支 `dev/sushi-mobile-integration-20261017`；本次只允许开发分支commit/push，**尚未合入或推送main，必须等待本批明确批准**。
+
+源码没有冲突：26个苏轼运行时模块逐blob等于9434，四份手机布局、音频/新加坡倾斜/撞分时钟及public/art保持528。GameScene手机专属10方法和贬谪专属23方法各等来源；唯一共享presentTrace精确等于贬谪方法加手机placePlayedCaption(true)，未整份覆盖场景。[方法绑定](integration-game-methods.json)/[完整绑定与结果](integration.json)。冲突只在公共计划：第一次DELIVERY_PLAN/plan.json、第二次plan.json，均保留双方条目。标题测试完整采用782，保留必要文字/边界/防重叠检查。
+
+合并后只跑[20文件240项针对性回归](integration-targeted.txt)，全部通过；涵盖弃余牌/整数得分×4/每场一次/取消/正常补牌、六人能力/目标附着/候选恢复、手机布局/标题和新加坡/撞分相邻合同。该批在0ac48422执行，src/tests与最终产品7c2c09df逐树一致；后续仅给现有原生harness补可配置视口，用于这一次必要手机交叉。上文508项及六人原生证据只复用7627的精确来源范围，没有重跑完整六人或无关全套。
+
+同版7c2c09df干净构建上，仅新增一次390×740、Edge143全动态触摸原生流程：标题→选苏轼→路线→商店→入场，选用→取消→再选用均不改保存；真实PlayHand弃6张、正常整数78×4=312、倍率2→8。正常补满8张后，再真实普通出牌30分，次数仍已用；每步完整state/journal/storage与真实命令重放一致，无pageerror。未导入或改手牌/金币/RNG。可复核[完整报告](integration-phone-report.json.gz)、[连续视频](integration-phone.webm)、[选用](integration-phone-chosen.png)、[实际眼神与倍率](integration-phone-eyes.png)、[下一手](integration-phone-next.png)。
+
+最终产品[类型/360模块生产构建](integration-build.txt)通过，397文件/37,175,726B，20,000,000B预算仍FAIL。既有15条计划证据格式问题、原全量失败/内容CLI未完成沿来源记录保持开放，没有改门禁或查/重跑CI。只推开发候选；不查域名、不部署、不自然长玩，不签P08、三大体验、真人理解/听感/物理设备或正式门。
