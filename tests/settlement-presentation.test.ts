@@ -1,13 +1,21 @@
 import {cardDisplayName} from '../src/game/tangsongCardNames';
 import {it,expect} from 'vitest';
 import {settlementFacts,settlementPlan} from '../src/game/SettlementPresentation';
-import {settlementReady,climaxSettlementReady,repeatedSettlementReady,retriggerSettlementReady,growthSettlementReady,dualRouteSettlementReady,supportSettlementReady} from '../harness/fixtures/settlement';
+import {settlementReady,climaxSettlementReady,repeatedSettlementReady,retriggerSettlementReady,growthSettlementReady,dualRouteSettlementReady,supportSettlementReady,multiHandSettlementReady} from '../harness/fixtures/settlement';
 import {savedSkillName,settlementBeat} from '../src/game/SettlementHighlights';
 import {energySend} from '../harness/fixtures/hero-climax';
 import {heatText} from '../src/game/scoreText';
 import {makeCheckpoint,readCheckpoint} from '../src/application/checkpoint';
 
 const settle=(kind:Parameters<typeof settlementReady>[0])=>{const f=settlementReady(kind);return energySend(f.state,f.action);};
+it('a real multi-hand clear keeps the stage headline separate from the last-hand contribution',()=>{
+ const f=multiHandSettlementReady();expect(f.state.phase).toBe('await-input');
+ const run=energySend(f.state,f.action),before=JSON.stringify(run),facts=settlementFacts(run,true);
+ expect(readCheckpoint(makeCheckpoint(run,[])).ok).toBe(true);expect(run.phase).toBe('stage-cleared');
+ expect(facts.stageTotal).toBe(run.stage!.heat);expect(facts.trace?.finalScore).toBe(run.lastTrace!.finalScore);
+ expect(BigInt(facts.stageTotal)).toBe(BigInt(f.state.stage!.heat)+BigInt(facts.trace!.finalScore));
+ expect(BigInt(facts.stageTotal)).toBeGreaterThan(BigInt(facts.trace!.finalScore));expect(JSON.stringify(run)).toBe(before);
+});
 it('same-source heat additions stay additions, including the already saved growth at cap',()=>{
  const run=settle('ordinary'),before=JSON.stringify(run),f=settlementFacts(run,true);
  expect(f.card?.id).toBe('c04');expect(f.cardCopy).toBe('热度 +50\n读取 +100 热度');
@@ -71,8 +79,8 @@ it('an actual e11 1.3 reading belongs to the source while Amo has no triggered a
 it.each([{x:193,y:102,width:980,height:422},{x:12,y:116,width:366,height:452},{x:12,y:116,width:296,height:348},{x:12,y:76,width:446,height:194}])('contained hero and full-width number regions remain separate at %j',b=>{
  const p=settlementPlan(b,b.height<200);
  for(const box of [p.hero,p.score,p.source]){expect(box.x).toBeGreaterThanOrEqual(b.x);expect(box.y).toBeGreaterThanOrEqual(b.y);expect(box.x+box.width).toBeLessThanOrEqual(b.x+b.width);expect(box.y+box.height).toBeLessThanOrEqual(b.y+b.height);expect(box.height).toBeGreaterThan(0);}
- expect(p.short?p.hero.x+p.hero.width<p.score.x:p.score.y+p.score.height<p.hero.y).toBe(true);
- if(!p.short)expect(p.hero.x+p.hero.width<p.source.x).toBe(true);
+ expect(p.hero.x+p.hero.width<p.score.x).toBe(true);
+ expect(p.score.y+p.score.height<p.source.y).toBe(true);
 });
 it('current million and billion focus the actual strongest local source, while the automatic cap stays separate',()=>{
  for(const [kind,tier] of [['million',2],['billion',3]] as const){
