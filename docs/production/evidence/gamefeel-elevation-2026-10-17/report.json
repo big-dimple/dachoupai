@@ -1,40 +1,204 @@
 {
-  "executedAt": "2026-10-17T13:33:17.665Z",
-  "port": 5493,
+  "timestamp": "2026-10-17T14:31:11.796Z",
+  "port": 5589,
+  "totalAssertions": 28,
+  "passedAssertions": 28,
+  "failedAssertions": 0,
   "pageErrors": [],
-  "tests": [
+  "allPassed": true,
+  "assertions": [
     {
-      "name": "Idle Table Initialization",
-      "status": "PASS"
+      "scenario": "Harness Setup",
+      "check": "Phaser Canvas mounted with valid dimensions",
+      "status": "PASS",
+      "details": {}
     },
     {
-      "name": "2.5D Perspective Card Tilt",
-      "status": "PASS"
+      "scenario": "Scenario 10 [姿态复位]",
+      "check": "reset() restores all cards to baseline without throwing",
+      "status": "PASS",
+      "details": {}
     },
     {
-      "name": "Phase 1: Windup & Intentional Silence (留白)",
-      "status": "PASS"
+      "scenario": "Scenario 10 [倾斜隔离]",
+      "check": "Tilt modifies innerVisual without altering container position",
+      "status": "PASS",
+      "details": {}
     },
     {
-      "name": "Phase 2: Ascending Pentatonic Strikes (宫商角徵羽)",
-      "status": "PASS"
+      "scenario": "Scenario 1 [起势阶段]",
+      "check": "Phase 1 enters windup progression with intentional silence",
+      "status": "PASS",
+      "details": {
+        "history": [
+          "idle",
+          "idle",
+          "windup",
+          "striking",
+          "resolution",
+          "completed"
+        ]
+      }
     },
     {
-      "name": "Phase 3: Heavy Beat & 50ms Hit-Stop Micro-freeze",
-      "status": "PASS"
+      "scenario": "Scenario 1 [连发阶段]",
+      "check": "Phase 2 strikes cards with ascending pentatonic chimes",
+      "status": "PASS",
+      "details": {
+        "history": [
+          "idle",
+          "idle",
+          "windup",
+          "striking",
+          "resolution",
+          "completed"
+        ]
+      }
     },
     {
-      "name": "Phase 4: Temple Bell Victory & Settle",
-      "status": "PASS"
+      "scenario": "Scenario 1 [普通计分]",
+      "check": "Final score equals domain ScoreTrace finalScore exactly",
+      "status": "PASS",
+      "details": {
+        "scoreMatches": true,
+        "isVictory": true,
+        "finalScore": "704"
+      }
     },
     {
-      "name": "Audio Filter: Music Low-Pass Muffle Transition",
-      "status": "PASS"
+      "scenario": "Scenario 1 [普通计分]",
+      "check": "Declares victory when goal achieved",
+      "status": "PASS",
+      "details": {}
     },
     {
-      "name": "Mid-flow Cancel Cleanliness",
-      "status": "PASS"
+      "scenario": "Scenario 2 [连乘爆点]",
+      "check": "Trace contains real multiply-multiplier operations",
+      "status": "PASS",
+      "details": {
+        "hasMultOps": true,
+        "multCount": 2
+      }
+    },
+    {
+      "scenario": "Scenario 7 [顿挫取消]",
+      "check": "Orchestrator returns to idle upon cancellation",
+      "status": "PASS",
+      "details": {}
+    },
+    {
+      "scenario": "Scenario 7 [顿挫取消]",
+      "check": "Card springs cleanly restored to zero baseline",
+      "status": "PASS",
+      "details": {}
+    },
+    {
+      "scenario": "Scenario 7 [立即重播]",
+      "check": "Immediate replay starts cleanly from step 0",
+      "status": "PASS",
+      "details": {}
+    },
+    {
+      "scenario": "Scenario 3 [无倍率]",
+      "check": "Hand contains 0 multiply-multiplier events without fake ×2",
+      "status": "PASS",
+      "details": {}
+    },
+    {
+      "scenario": "Scenario 4 [未通关]",
+      "check": "isVictory is false when finalScore < goalScore",
+      "status": "PASS",
+      "details": {}
+    },
+    {
+      "scenario": "Scenario 5 [六英技能 - sushi]",
+      "check": "Produces valid non-empty trace",
+      "status": "PASS",
+      "details": {}
+    },
+    {
+      "scenario": "Scenario 5 [六英技能 - liue]",
+      "check": "Produces valid non-empty trace",
+      "status": "PASS",
+      "details": {}
+    },
+    {
+      "scenario": "Scenario 5 [六英技能 - qinqiong]",
+      "check": "Produces valid non-empty trace",
+      "status": "PASS",
+      "details": {}
+    },
+    {
+      "scenario": "Scenario 5 [六英技能 - xinqiji]",
+      "check": "Produces valid non-empty trace",
+      "status": "PASS",
+      "details": {}
+    },
+    {
+      "scenario": "Scenario 5 [六英技能 - wencheng]",
+      "check": "Produces valid non-empty trace",
+      "status": "PASS",
+      "details": {}
+    },
+    {
+      "scenario": "Scenario 5 [六英技能 - huarui]",
+      "check": "Produces valid non-empty trace",
+      "status": "PASS",
+      "details": {}
+    },
+    {
+      "scenario": "Scenario 6 [1x/4x速率]",
+      "check": "4x fast-forward completes within 1200ms",
+      "status": "PASS",
+      "details": {}
+    },
+    {
+      "scenario": "Scenario 11 [低通嵌套]",
+      "check": "Shop opens at depth 1 with lowpass active",
+      "status": "PASS",
+      "details": {}
+    },
+    {
+      "scenario": "Scenario 11 [低通嵌套]",
+      "check": "Card detail stacks at depth 2",
+      "status": "PASS",
+      "details": {}
+    },
+    {
+      "scenario": "Scenario 11 [低通嵌套]",
+      "check": "Popping card detail leaves filter active at depth 1",
+      "status": "PASS",
+      "details": {}
+    },
+    {
+      "scenario": "Scenario 11 [低通嵌套]",
+      "check": "Popping all layers restores full 20kHz brilliance",
+      "status": "PASS",
+      "details": {}
+    },
+    {
+      "scenario": "Scenario 8 [静音切换]",
+      "check": "AudioEngine muted correctly toggled to true",
+      "status": "PASS",
+      "details": {}
+    },
+    {
+      "scenario": "Scenario 8 [静音切换]",
+      "check": "AudioEngine unmuted correctly restored to false",
+      "status": "PASS",
+      "details": {}
+    },
+    {
+      "scenario": "Mobile View [竖屏就绪]",
+      "check": "Mobile 390x740 portrait table view rendered",
+      "status": "PASS",
+      "details": {}
+    },
+    {
+      "scenario": "Mobile View [竖屏爆点]",
+      "check": "Mobile 390x740 climax burst captured",
+      "status": "PASS",
+      "details": {}
     }
-  ],
-  "status": "ALL_PASS"
+  ]
 }
