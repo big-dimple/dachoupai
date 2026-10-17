@@ -15,6 +15,7 @@ import {touyeChoice,TOUYE_RISK} from './TouyeWagerCopy';
 import {erxiangChoice} from './ErxiangHandoffCopy';
 import {azaoChoice} from './AzaoChargeCopy';
 import {xiemuChoice} from './XiemuBurnCopy';
+import {assistRestrictionForRun} from './AssistRestrictionCopy';
 /** Guidance reads existing public choices. It never enables a command or predicts a draw. */
 export function heroSkillGuide(run:R2RunState,facts?:R2SelectionFacts,ids:readonly string[]=[],assistAvailable=false,draft:HeroSkillDraft={}){
  const enabled=r2RunModeConfig(run).characterAbilityEnabled,skill=heroSkillName(run.characterId);
@@ -23,7 +24,7 @@ export function heroSkillGuide(run:R2RunState,facts?:R2SelectionFacts,ids:readon
  if(usesLaohuanRefill(run)){const used=run.stage?.laohuanTrickUsed;const reason=!enabled?'本场'+skill+'停用':used?'本场'+skill+'已用':!ids.length||ids.length>5?'第1步 · 返回选1–5张弃牌':run.stage!.discardsLeft<r2DiscardCost(run)?'弃牌次数不足':run.stage?.boss?.definitionId==='B07'&&run.gold<1?'弃牌需要1金币':'第2步 · 确认换牌';return {active:true,step:run.pendingRefill?'第3步 · 选'+run.pendingRefill.required+'张候选留下':reason,effect:'多看最多2张，自己决定留下哪些',risk:'每场一次；照付弃牌成本，未留候选本场不再抽。'};}
  if(usesXiemuBurn(run)){const c=xiemuChoice(run,facts?.type);return {active:true,step:c.used?'本场'+skill+'已用':!c.enabled?'本场'+skill+'停用':!c.qualified?'第1步 · 返回选两对及以上':!c.choices.some(x=>x.available)?'至少需要10金':draft.xiemuBurn&&c.choices.some(x=>x.available&&x.cost===draft.xiemuBurn)?'第3步 · 已选付'+draft.xiemuBurn+'金，返回牌桌确认出牌':'第2步 · 选择支付档，或保留金币',effect:'付10／20／30金，出牌倍率×2／3／4',risk:'每场一次；选档不扣，出牌才扣。持币收益与关末利息读余金。'};}
  if(usesAzaoCharge(run)){const c=azaoChoice(run,facts?.type);return {active:true,step:!c.enabled?'本场'+heroSkillName('azao')+'停用':c.available&&draft.azaoRelease?'第3步 · 已选释放'+c.charge+'层，返回牌桌确认出牌':c.available?'出牌前 · 可释放'+c.charge+'层':c.charge?'返回选两对及以上，才能释放':'先用两对及以上出牌蓄势',effect:c.charge?'当前'+c.charge+'层，释放倍率×'+c.multiplier:'1／2／3层释放倍率×1.5／2.5／4',risk:'不释放时异型两对以上续蓄；同牌型未释放则清空，合格时仍可释放；对子或高牌出牌清空。弃牌保留，场间清空。'};}
- if(r2UsesAssist(run)){const c=r2AssistAvailability(run);return {active:true,step:!c.available&&c.reason==='disabled'?'本场'+skill+'停用':!c.available&&c.reason==='used'?'本场'+skill+'已用':assistAvailable&&draft.assistCount?'第3步 · 已选'+draft.assistCount+'张助攻，返回牌桌确认出牌':assistAvailable?'出牌前 · 选一组剩余同点牌助攻':'先选两对及以上主手，再留剩余对子／三条',effect:'剩余对子助攻×'+R2_ASSIST_CONTRACT.pair+'，三条×'+R2_ASSIST_CONTRACT.three,risk:'每场一次；助攻牌随本手消耗，不计主手或留手效果。'};}
+ if(r2UsesAssist(run)){const c=r2AssistAvailability(run),blocked=c.available&&!assistAvailable?assistRestrictionForRun(run,ids):undefined;return {active:true,step:!c.available&&c.reason==='disabled'?'本场'+skill+'停用':!c.available&&c.reason==='used'?'本场'+skill+'已用':assistAvailable&&draft.assistCount?'第3步 · 已选'+draft.assistCount+'张助攻，返回牌桌确认出牌':assistAvailable?'出牌前 · 选一组剩余同点牌助攻':blocked?.detail??'先选两对及以上主手，再留剩余对子／三条',effect:'剩余对子助攻×'+R2_ASSIST_CONTRACT.pair+'，三条×'+R2_ASSIST_CONTRACT.three,risk:'每场一次；助攻牌随本手消耗，不计主手或留手效果。'};}
  const c=characterForRun(run);if(run.characterId==='touye')return {active:true,step:!enabled?'本场押注停用':run.stage?.wagerUsed?'本场押注已用':run.stage?.wagerSelected?'本手已押注':'出牌前 · 可选择本手押注',effect:c.passiveDescription,risk:'每场一次；押注为50%×2／50%×0.75。'};return {active:false,step:enabled?'被动技能 · 条件满足时自动生效':'本场角色能力停用',effect:c.passiveDescription,risk:''};
 }
 

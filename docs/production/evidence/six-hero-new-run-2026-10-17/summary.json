@@ -1,0 +1,227 @@
+[
+  {
+    "hero": "amo",
+    "seed": "six-new-16",
+    "status": "PASS",
+    "commands": [
+      "LeaveShop",
+      "EnterStage",
+      "PlayAssistedHand",
+      "PlayHand"
+    ],
+    "skillScore": "300",
+    "assist": {
+      "ids": [
+        "spades-8",
+        "diamonds-8"
+      ],
+      "kind": "pair",
+      "multiplier": 2
+    },
+    "nextScore": "30",
+    "errors": []
+  },
+  {
+    "hero": "erxiang",
+    "seed": "six-new-1",
+    "status": "PASS",
+    "commands": [
+      "LeaveShop",
+      "EnterStage",
+      "PlayHand",
+      "PlayHand"
+    ],
+    "skillScore": "148",
+    "handoff": {
+      "targetId": "hearts-2",
+      "beforeUsed": false,
+      "points": 2,
+      "afterUsed": true
+    },
+    "nextScore": "24",
+    "errors": []
+  },
+  {
+    "hero": "azao",
+    "seed": "six-new-3",
+    "status": "PASS",
+    "commands": [
+      "LeaveShop",
+      "EnterStage",
+      "PlayHand",
+      "PlayHand",
+      "OpenShop",
+      "LeaveShop",
+      "EnterStage",
+      "PlayHand"
+    ],
+    "skillScore": "315",
+    "charge": {
+      "before": {
+        "charge": 1,
+        "previousQualifiedType": "two-pair"
+      },
+      "release": true,
+      "after": {
+        "charge": 0,
+        "previousQualifiedType": null
+      },
+      "multiplier": "1.5"
+    },
+    "nextScore": "27",
+    "errors": []
+  },
+  {
+    "hero": "xiemu",
+    "seed": "six-new-18",
+    "status": "PASS",
+    "commands": [
+      "LeaveShop",
+      "EnterStage",
+      "PlayHand",
+      "OpenShop",
+      "LeaveShop",
+      "EnterStage",
+      "PlayHand",
+      "PlayHand"
+    ],
+    "skillScore": "348",
+    "burn": {
+      "cost": 10,
+      "goldBefore": 15,
+      "beforeUsed": false,
+      "goldAfter": 5,
+      "afterUsed": true,
+      "multiplier": 2
+    },
+    "nextScore": "30",
+    "errors": []
+  },
+  {
+    "hero": "touye",
+    "seed": "six-new-0",
+    "status": "PASS",
+    "commands": [
+      "LeaveShop",
+      "EnterStage",
+      "DiscardHand",
+      "PlayHand",
+      "PlayHand"
+    ],
+    "skillScore": "388",
+    "wager": {
+      "commit": {
+        "target": "two-pair",
+        "snapshotToken": "json-fnv-v1:70cc801ef4eabcc2",
+        "stageIndex": 0,
+        "duePlayIndex": 1,
+        "discardCommandId": "run/six-new-0/touye/command/4",
+        "expectedSeq": 3,
+        "handBefore": [
+          {
+            "id": "spades-12",
+            "suit": "spades",
+            "rank": 12
+          },
+          {
+            "id": "hearts-7",
+            "suit": "hearts",
+            "rank": 7
+          },
+          {
+            "id": "spades-4",
+            "suit": "spades",
+            "rank": 4
+          },
+          {
+            "id": "spades-11",
+            "suit": "spades",
+            "rank": 11
+          },
+          {
+            "id": "hearts-14",
+            "suit": "hearts",
+            "rank": 14
+          },
+          {
+            "id": "hearts-10",
+            "suit": "hearts",
+            "rank": 10
+          },
+          {
+            "id": "clubs-8",
+            "suit": "clubs",
+            "rank": 8
+          },
+          {
+            "id": "diamonds-9",
+            "suit": "diamonds",
+            "rank": 9
+          }
+        ],
+        "rules": {
+          "fourStraight": false,
+          "fourFlush": false
+        },
+        "selectedIds": [
+          "spades-12",
+          "hearts-7",
+          "spades-4",
+          "spades-11",
+          "hearts-14"
+        ],
+        "refill": {
+          "handLimit": 8,
+          "handAfter": [
+            "hearts-10",
+            "clubs-8",
+            "diamonds-9",
+            "spades-7",
+            "diamonds-7",
+            "spades-5",
+            "spades-9",
+            "diamonds-2"
+          ],
+          "refilledIds": [
+            "spades-7",
+            "diamonds-7",
+            "spades-5",
+            "spades-9",
+            "diamonds-2"
+          ]
+        }
+      },
+      "outcome": "won",
+      "multiplier": "2",
+      "core": {
+        "contract": "new-core-v1",
+        "activeNewIds": [
+          "spades-7",
+          "diamonds-7",
+          "spades-9"
+        ],
+        "lossReason": null
+      }
+    },
+    "nextScore": "34",
+    "errors": []
+  },
+  {
+    "hero": "laohuan",
+    "seed": "six-new-0",
+    "status": "PASS",
+    "commands": [
+      "LeaveShop",
+      "EnterStage",
+      "DiscardHand",
+      "ChooseRefill",
+      "PlayHand"
+    ],
+    "refill": {
+      "count": 8,
+      "used": true
+    },
+    "nextScore": "30",
+    "errors": []
+  }
+]

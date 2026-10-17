@@ -13,6 +13,7 @@ import {touyeChoice} from './TouyeWagerCopy';
 import {xiemuChoice} from './XiemuBurnCopy';
 import {azaoChoice,savedAzaoCharge} from './AzaoChargeCopy';
 import {heroSkillButton,heroSkillTitle,type HeroSkillFlags,type HeroSkillDraft} from './HeroSkillPresentation';
+import {assistRestrictionForRun} from './AssistRestrictionCopy';
 export interface HeroAbilityCue extends ReturnType<typeof heroSkillButton> {available:boolean;opportunity:boolean}
 /** Public current-operation facts only. Never predicts a draw, outcome or score. */
 export function heroAbilityCue(run:R2RunState,facts?:R2SelectionFacts,ids:readonly string[]=[],assistAvailable=false,draft:HeroSkillDraft={}):HeroAbilityCue|undefined {
@@ -31,7 +32,7 @@ export function heroAbilityCue(run:R2RunState,facts?:R2SelectionFacts,ids:readon
   const legal=enabled&&!used&&ids.length>0&&ids.length<=5&&ids.every(id=>run.handOrder.includes(id))&&run.stage!.discardsLeft>=r2DiscardCost(run)&&run.gold>=(run.stage!.boss?.definitionId==='B07'?1:0);
   return cue(pending?'继续从候选中留牌':!enabled?'本场角色能力停用':used?'本场次数已用':legal?'弃牌前确认换牌':'先选1–5张弃牌',legal,enabled&&!used&&run.stage!.discardsLeft>=r2DiscardCost(run)&&run.gold>=(run.stage!.boss?.definitionId==='B07'?1:0),{used,disabled:!enabled,pending});
  }
- if(r2UsesAssist(run)){const c=r2AssistAvailability(run),reason=c.available?'':c.reason;return cue(reason==='disabled'?'本场角色能力停用':reason==='used'?'本场次数已用':assistAvailable?'出牌前选一组剩余同点牌':'先凑主手与剩余同点副组',c.available&&assistAvailable,c.available,{used:reason==='used',disabled:reason==='disabled',selected:!!draft.assistCount&&c.available&&assistAvailable});}
+ if(r2UsesAssist(run)){const c=r2AssistAvailability(run),reason=c.available?'':c.reason,blocked=c.available&&!assistAvailable?assistRestrictionForRun(run,ids):undefined;const result=cue(reason==='disabled'?'本场角色能力停用':reason==='used'?'本场次数已用':assistAvailable?'出牌前选一组剩余同点牌':blocked?.detail??'先凑主手与剩余同点副组',c.available&&assistAvailable,c.available,{used:reason==='used',disabled:reason==='disabled',selected:!!draft.assistCount&&c.available&&assistAvailable});return blocked?{...result,status:blocked.compact}:result;}
 }
 /** Called after a successful saved hand, including fast-forward; no forecast or reward callback. */
 export function savedHeroResult(run:R2RunState):string {
