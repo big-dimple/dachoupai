@@ -100,8 +100,9 @@ describe('CSS layout contract',()=>{
         expect(intersects(b,l.hand)).toBe(false);
       }
       for(let i=0;i<controls.length;i++)for(let j=i+1;j<controls.length;j++)expect(intersects(controls[i],controls[j])).toBe(false);
-      expect(l.buttons.rank.x).toBe(l.tools.x);if(l.tools.height>l.tools.width){expect(l.buttons.ai.x).toBe(l.tools.x);expect(l.buttons.ai.y).toBe(l.tools.y+112);expect(l.tableActions.play.x+l.tableActions.play.width).toBeLessThan(l.tools.x);}else expect(l.buttons.ai.x).toBe(l.tools.x+88);
-      if(l.mode!=='portrait'&&l.tools.height<=l.tools.width)expect(l.tableActions.discard.x).toBeGreaterThan(l.tools.x+l.tools.width);
+      expect(l.buttons.rank.x).toBe(l.tools.x);expect(l.buttons.ai.x).toBe(l.tools.x+88);
+      expect(l.tableActions.discard.x+l.tableActions.discard.width).toBeLessThan(l.tools.x);
+      expect(l.tools.x+l.tools.width).toBeLessThan(l.tableActions.play.x);
       if(l.mode==='portrait'&&!l.handOverflow)expect((l.tableActions.discard.x+l.tableActions.play.x+l.tableActions.play.width)/2).toBeCloseTo(l.actions.x+l.actions.width/2);
       else expect(l.tableActions.play.x+l.tableActions.play.width).toBeCloseTo(l.actions.x+l.actions.width);
     }
@@ -162,12 +163,14 @@ describe('CSS layout contract',()=>{
     }
   });
 });
-describe('AI sorting shares one reachable group without shrinking primary actions',()=>{
-  it.each([[320,568,0,0,114,90],[390,740,0,0,106,160],[844,300,12,12,236,308],[844,300,12,34,236,308]])('%s×%s safe%s/%s preserves submit/discard sizes and all nine seats', (width,height,top,bottom,discard,play)=>{
+describe('bottom discard — sorting — play row and independent skill',()=>{
+  it.each([[320,568,0,0,67,93],[390,740,0,0,93,129],[844,300,12,12,210,290],[844,300,12,34,210,290]])('%s×%s safe%s/%s reserves usable submit/discard sizes and all nine seats', (width,height,top,bottom,discard,play)=>{
     const l=layout({width,height},{top,bottom,left:0,right:0},undefined,{count:9}),entry=gameToolInventoryBox(l);
     expect(l.visibleCardCount).toBe(9);expect(l.handOverflow).toBe(false);
     expect(l.tableActions.discard.width).toBe(discard);expect(l.tableActions.play.width).toBe(play);
-    const controls=[...Object.values(l.buttons),...Object.values(l.tableActions),entry];
+    expect(l.tableActions.discard.x+l.tableActions.discard.width).toBeLessThan(l.buttons.rank.x);
+    expect(l.buttons.ai.x+l.buttons.ai.width).toBeLessThan(l.tableActions.play.x);
+    const controls=[...Object.values(l.buttons),...Object.values(l.tableActions),entry,l.heroAction];
     for(const b of controls){expect(inside(b,width,height)).toBe(true);expect(b.width).toBeGreaterThanOrEqual(44);expect(b.height).toBeGreaterThanOrEqual(44);expect(b.y).toBeGreaterThanOrEqual(top);expect(b.y+b.height).toBeLessThanOrEqual(height-bottom);for(const protectedBox of [l.hand,l.scoreBoard,l.status,playedFootprint(toolInventoryPlayedArea(l),l.mode==='portrait')])expect(intersects(b,protectedBox)).toBe(false);}
     for(let i=0;i<controls.length;i++)for(let j=i+1;j<controls.length;j++)expect(intersects(controls[i],controls[j])).toBe(false);
   });

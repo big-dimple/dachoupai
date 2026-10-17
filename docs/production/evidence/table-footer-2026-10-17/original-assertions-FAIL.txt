@@ -1,0 +1,82 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/layout.test.ts (53 tests | 5 failed) 141ms
+     × keeps three sorting targets and two primary targets within the dynamic safe viewport 9ms
+     × 320×568 safe0/0 preserves submit/discard sizes and all nine seats 3ms
+     × 390×740 safe0/0 preserves submit/discard sizes and all nine seats 1ms
+     × 844×300 safe12/12 preserves submit/discard sizes and all nine seats 0ms
+     × 844×300 safe12/34 preserves submit/discard sizes and all nine seats 0ms
+ ❯ tests/hero-payoff.test.ts (9 tests | 1 failed) 529ms
+   × shortcuts reserve legal hits while leaving hand, sort and play geometry intact across capacity/breakpoints 15ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 6 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/hero-payoff.test.ts > shortcuts reserve legal hits while leaving hand, sort and play geometry intact across capacity/breakpoints
+AssertionError: expected undefined to be defined
+ ❯ tests/hero-payoff.test.ts:43:364
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/6]⎯
+
+ FAIL  tests/layout.test.ts > CSS layout contract > keeps three sorting targets and two primary targets within the dynamic safe viewport
+AssertionError: expected 190.96 to be greater than 446.96000000000004
+ ❯ tests/layout.test.ts:104:94
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/6]⎯
+
+ FAIL  tests/layout.test.ts > AI sorting shares one reachable group without shrinking primary actions > 320×568 safe0/0 preserves submit/discard sizes and all nine seats
+AssertionError: expected 67 to be 114 // Object.is equality
+
+- Expected
++ Received
+
+- 114
++ 67
+
+ ❯ tests/layout.test.ts:169:42
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/6]⎯
+
+ FAIL  tests/layout.test.ts > AI sorting shares one reachable group without shrinking primary actions > 390×740 safe0/0 preserves submit/discard sizes and all nine seats
+AssertionError: expected 93 to be 106 // Object.is equality
+
+- Expected
++ Received
+
+- 106
++ 93
+
+ ❯ tests/layout.test.ts:169:42
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/6]⎯
+
+ FAIL  tests/layout.test.ts > AI sorting shares one reachable group without shrinking primary actions > 844×300 safe12/12 preserves submit/discard sizes and all nine seats
+ FAIL  tests/layout.test.ts > AI sorting shares one reachable group without shrinking primary actions > 844×300 safe12/34 preserves submit/discard sizes and all nine seats
+AssertionError: expected 210 to be 236 // Object.is equality
+
+- Expected
++ Received
+
+- 236
++ 210
+
+ ❯ tests/layout.test.ts:169:42
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/6]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  6 failed | 56 passed (62)
+   Start at  02:17:55
+   Duration  3.92s (transform 2.93s, setup 0ms, import 3.73s, tests 671ms, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
