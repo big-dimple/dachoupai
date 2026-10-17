@@ -26,7 +26,7 @@ export function sixNewRunPlan(hero:Hero):SixNewRunPlan {
     }else if(hero==='erxiang'){
       const p=pairs(state)[0];if(!p)continue;skill.push({type:'PlayHand',selectedIds:p,erxiangTargetId:p[0]});
     }else if(hero==='azao'){
-      const first=twoPair(state);if(!first)continue;const action:Action={type:'PlayHand',selectedIds:first};state=sixSend(state,action);
+      const first=twoPair(state);if(!first)continue;const action:Action={type:'PlayHand',selectedIds:first,azaoRelease:false};state=sixSend(state,action);
       if(state.phase!=='await-input'||state.stage?.azaoCharge?.charge!==1)continue;const second=twoPair(state);if(!second)continue;
       prep.push(action);skill.push({type:'PlayHand',selectedIds:second,azaoRelease:true});
     }else if(hero==='xiemu'){
@@ -49,7 +49,7 @@ export function sixNewRunPlan(hero:Hero):SixNewRunPlan {
     const skillBefore=state;for(const action of skill)state=sixSend(state,action);const skillAfter=state,nextStage:Action[]=[];
     if(state.phase==='stage-cleared'){nextStage.push({type:'OpenShop'},{type:'LeaveShop'},{type:'EnterStage'});state=enter(sixSend(state,{type:'OpenShop'}));}
     if(state.phase!=='await-input')continue;
-    return {hero,seed,shop,initial,prep,skill,skillBefore,skillAfter,nextStage,next:{type:'PlayHand',selectedIds:[state.handOrder[0]]}};
+    return {hero,seed,shop,initial,prep,skill,skillBefore,skillAfter,nextStage,next:{type:'PlayHand',selectedIds:[state.handOrder[0]],...(hero==='azao'?{azaoRelease:false}:{})}};
   }
   throw Error('no-new-run-plan/'+hero);
 }
