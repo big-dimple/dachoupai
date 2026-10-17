@@ -77,7 +77,7 @@ export function jokerPlayerCopy(definition:R2JokerDefinition,instance:R2JokerIns
  else{
   if(memory.scoreLimited){state.push('当前计分加成暂停');limits.push('只暂停计分与版次效果，其他效果仍按各自规则。');}
   else if(random)state.push('出牌时揭晓，每手抽一次');
-  else if(definition.hooks.some(h=>h.operations.some(o=>o.kind==='read-growth'||o.kind==='read-coefficient'))){const later=[...new Set(definition.hooks.filter(h=>!['onCardScore','onHeldCard','jokerScore'].includes(h.phase)).map(h=>eventTiming[h.phase]??'出牌结算后才更新'))];state.push('当前加成按保存值结算'+(later.length?'；'+later.join('；'):''));}
+  else if(definition.hooks.some(h=>h.operations.some(o=>o.kind==='read-growth'||o.kind==='read-coefficient'))){const later=[...new Set(definition.hooks.filter(h=>!['onCardScore','onHeldCard','jokerScore'].includes(h.phase)).map(h=>eventTiming[h.phase]??'出牌结算后才更新'))];state.push('当前使用已存加成'+(later.length?'；'+later.join('；'):''));}
   else switch(memory.status){
    case'条件满足':state.push('这手符合条件，出牌后才会生效');break;
    case'部分条件满足':state.push('这手符合其中一路，出牌后才会生效');for(const [i,hook]of memory.hooks.entries()){const condition=definition.hooks[i].condition;if(hook.status==='条件满足'&&condition.kind==='hand-type-transition')state.push('上手'+HAND_LABELS[condition.previous]+' → 本手'+HAND_LABELS[condition.current]+'符合条件');}break;
@@ -109,12 +109,12 @@ export function jokerPlayerCopy(definition:R2JokerDefinition,instance:R2JokerIns
   const scoreGain=body.some(e=>Rational.fromJSON(e.after.H).compare(Rational.fromJSON(e.before.H))>0||Rational.fromJSON(e.after.M).compare(Rational.fromJSON(e.before.M))>0);
   state.length=0;
   const income=definition.hooks.some(h=>h.operations.some(o=>o.kind==='add-gold-per-held'||o.kind==='add-gold-per-capital'||o.kind==='add-gold'));
-  state.push(chance?'本手'+(chance.value.n==='1'?'抽中':'没抽中'):scoreGain?'本手本体已有计分增益':bodyActive?'本手有本体结算记录':income?'本次没有本体收入记录':'本手没有本体计分加成记录');
+  state.push(chance?'本手'+(chance.value.n==='1'?'抽中':'没抽中'):scoreGain?'本手本体已有计分增益':bodyActive?'本手已结算':income?'本次未获得这张牌的金币':'本手未获得这张牌的计分加成');
   for(const e of body){
-   if((e.operation==='read-growth'||e.operation==='consume-growth')&&BigInt(e.value.n)===0n)state.push('本次按+0结算，结算时尚无成长加成');
-   if(e.operation==='read-coefficient'&&Rational.fromJSON(e.value).compare(new Rational(1n))===0)state.push('本次按×1结算，结算时尚无成长加成');
+   if((e.operation==='read-growth'||e.operation==='consume-growth')&&BigInt(e.value.n)===0n)state.push('本手成长加成+0');
+   if(e.operation==='read-coefficient'&&Rational.fromJSON(e.value).compare(new Rational(1n))===0)state.push('本手成长加成×1');
    if(e.operation==='multiply-coefficient'&&e.growthBefore&&e.growthAfter){const changed=Rational.fromJSON(e.growthAfter).compare(Rational.fromJSON(e.growthBefore))>0;state.push('出牌结算后系数×'+fractionText(e.value)+'：'+fractionText(e.growthBefore)+' → '+fractionText(e.growthAfter)+(changed?'，下次出牌生效':'，已达上限，本次未增加'));}
-   if(e.operation==='consume-rescue')state.push('救火已消耗；不会因返次或重载恢复');
+   if(e.operation==='consume-rescue')state.push('救火已消耗；返还次数也不会恢复');
    if(grouped&&e.operation==='add-gold')state.push('实际同点组合过关收入 +'+fractionText(e.value)+'金');
    if(e.operation==='add-gold-per-held')state.push('实际留牌过关收入 +'+fractionText(e.value)+'金');
    if(e.operation==='add-gold-per-capital')state.push('奖励前本金 '+e.goldBeforeRewards+'金；实际额外收入 +'+fractionText(e.value)+'金');
@@ -135,10 +135,10 @@ export function jokerPlayerCopy(definition:R2JokerDefinition,instance:R2JokerIns
    if(random)continue;
    const sentence=render(text);
    if(text.startsWith('当前保存：')){
-    state.push(growthRead?'本次读取成长：+'+fractionText(growthRead.value):sentence.replace('当前保存：','结算前保存成长：'));
+    state.push(growthRead?'本次读取成长：+'+fractionText(growthRead.value):sentence.replace('当前保存：','本手前已存成长：'));
     if(!growthRead)state.push('本次未读取成长加成');
    }else if(text.startsWith('当前系数：')){
-    state.push(coefficientRead?'本次读取系数：×'+fractionText(coefficientRead.value):sentence.replace('当前系数：','结算前保存系数：'));
+    state.push(coefficientRead?'本次读取系数：×'+fractionText(coefficientRead.value):sentence.replace('当前系数：','本手前已存系数：'));
     if(!coefficientRead)state.push('本次未读取系数加成');
    }else state.push(sentence);
   }

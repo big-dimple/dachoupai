@@ -1,3 +1,4 @@
+import {r2GrowthMinimums} from '../content/r2Schema';
 import {cardDefinitionName} from './tangsongCardNames';
 import type {R2JokerDefinition,R2JokerInstance,Operation} from '../content/r2Schema';
 import {getR2Joker} from '../domain/r2Shop';
@@ -103,13 +104,13 @@ export function r2JokerValue(joker:R2JokerInstance,context:{gold:number;jokerCou
 export function r2JokerStateText(joker:R2JokerInstance,definition:R2JokerDefinition=getR2Joker(joker.definitionId)):string {
   const operations=definition.hooks.flatMap(hook=>hook.operations);
   const names:Record<string,string>={heat:'热度成长',multiplier:'倍率成长',pendingHeat:'待用热度'};
-  const state=Object.entries(joker.growth).map(([key,value])=>key==='coefficient'?'乘法系数 ×'+fractionText(value):(names[key]??'成长')+' '+fractionText(value));
+    const state=Object.entries({...r2GrowthMinimums(definition),...joker.growth}).map(([key,value])=>key==='coefficient'?'乘法系数 ×'+fractionText(value):(names[key]??'成长')+' '+fractionText(value));
   const lifetime=operations.find(operation=>operation.kind==='expire-after-hands');
   if(lifetime?.kind==='expire-after-hands')state.push('累计出牌 '+(joker.counters?.handsScored??0)+' / '+lifetime.limit+' 手，余 '+Math.max(0,lifetime.limit-(joker.counters?.handsScored??0))+' 手');
   const limited=operations.find(operation=>operation.kind==='add-gold-limited');
   if(limited?.kind==='add-gold-limited')state.push('本场收益 '+(joker.counters?.singleDiscards??0)+' / '+limited.limit+' 次');
   if(operations.some(operation=>operation.kind==='reward-consumable-every-clears'))state.push('过关轮转 '+joker.counters!.stageClears+' / 1；'+(joker.counters!.stageClears===1?'下次成功过关赠票':'再成功过关两次赠票')+'，跳场不计');
-  return state.join('；')||'无成长或使用计数';
+    return state.join('；')||'不积攒成长';
 }
 
 export function r2JokerExtraHelp(definition:R2JokerDefinition):string {

@@ -48,6 +48,6 @@ export function createShopOfferValue(guidance:ReturnType<typeof shopOfferGuidanc
   const block=document.createElement('section'),head=document.createElement('div'),name=document.createElement('span'),reason=document.createElement('p');
   block.className='shop-offer-value';block.dataset.axis='recommendation';head.className='shop-value-heading';name.textContent=label;head.append(name,createShopValueStars(guidance.stars,label));reason.textContent=guidance.reason+' · '+guidance.condition;block.append(head,reason);
   const visibleCombination=guidance.recommendation.combination.split('\n').filter(line=>line.startsWith('组合潜力：')||line.startsWith('组合记录：')&&!line.includes('尚无')).join('\n');
-  const combination=document.createElement('p');combination.className='shop-value-combination';combination.dataset.axis='combination';combination.textContent=visibleCombination||'组合条件：按卡牌自身条件。';block.append(combination);
+  if(visibleCombination){const combination=document.createElement('p');combination.className='shop-value-combination';combination.dataset.axis='combination';combination.textContent=visibleCombination;block.append(combination);}
   return block;
 }

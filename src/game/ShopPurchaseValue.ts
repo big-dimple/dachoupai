@@ -82,7 +82,7 @@ export function purchaseValueWindow(before:R2RunState,after:R2RunState,focus?:Bu
 }
 export function purchaseValueWindowText(rows:ReturnType<typeof purchaseValueWindow>){
  const range=(r:{minimum:string;maximum:string})=>r.minimum===r.maximum?r.minimum:r.minimum+'～'+r.maximum;
- return '一次条件对照（公开牌组样例，非下一手预测；假定下场首手、未弃牌、只打所列牌且不留牌；主动技能未用）：\n'+rows.map(r=>r.label+' '+r.cards+'：保留 '+range(r.keep)+' → 变更 '+range(r.change)+'；分差 '+range(r.delta)).join('\n')+'\n只计本手已有值；手后成长、未来抽牌、收入和存活次数未知。';
+ return '同一组牌的效果比较（以现有牌组为例：下场第一手、不弃牌、不留牌、不用主动技能；不代表下一手会抽到）：\n'+rows.map(r=>r.label+' '+r.cards+'：保留 '+range(r.keep)+' → 变更 '+range(r.change)+'；分差 '+range(r.delta)).join('\n')+'\n只计本手已有值；手后成长、未来抽牌、收入和存活次数未知。';
 }
 export function shopPurchaseValue(state:R2RunState,offer:R2Offer,focus?:BuildFocus,sold?:R2JokerInstance){
  if(!isR2CoreBuild(state)||!state.shop?.offers.some(o=>o.offerId===offer.offerId&&o.definitionId===offer.definitionId))return;
@@ -106,9 +106,9 @@ export function shopPurchaseValue(state:R2RunState,offer:R2Offer,focus?:BuildFoc
  const cashLoss=shopPurchaseConditionLosses(state,offer,sold).length>0;
  const ceiling=negative?(positive?2:1):!positive||lostInvestment||unmeasuredLoss||cashLoss?2:interestLoss?3:allPositive&&offer.definitionId!=='f06'?4:3;
  const remaining=fresh?.definitionId==='f06'?Math.max(0,4-(fresh.counters?.handsScored??0)):undefined;
- const detail=`以保留不买为基线；实付${paid}金，已发生返金${refund}金，净支出${net}金；余额${state.gold}→${after.gold}金。\n当前利息档${interest(state)}→${interest(after)}，仅按过关时余额结算，不计未来收入。`+
-  (fresh?'\n新实例：'+r2JokerStateText(fresh,r2JokerDefinitionFor(after,fresh.definitionId)):'')+
-  (remaining!==undefined?`\n新牌余${remaining}次出牌；封禁也消耗，第4次后销毁；不预支全部次数的收益。`:'')+
-  (losses.length?'\n'+losses.join('\n'):'')+(unmeasuredLoss?'\n未估代价：失去所售牌的'+unmeasuredLossReasons.join('、')+'；是否兑现未知，未纳入本手分差，不能据此认定净补强。':'')+(rows.length?'\n'+purchaseValueWindowText(rows)+'\n推荐还需兼顾实付、已有来源和永久代价；条件增分不保证回本或通关。':'\n仅供当前条件适配参考；后续收益和整体回本未知。');
+ const detail=`实付${paid}金，返还${refund}金，合计花费${net}金；余额${state.gold}→${after.gold}金。\n当前利息档${interest(state)}→${interest(after)}，仅按过关时余额结算，不计未来收入。`+
+  (fresh?'\n新牌成长：'+r2JokerStateText(fresh,r2JokerDefinitionFor(after,fresh.definitionId)):'')+
+  (remaining!==undefined?`\n新牌余${remaining}次出牌；每手仍需满足条件；封禁也消耗次数，第4次后销毁。`:'')+
+  (losses.length?'\n'+losses.join('\n'):'')+(unmeasuredLoss?'\n未估代价：失去所售牌的'+unmeasuredLossReasons.join('、')+'；分差未包含这些效果，不能只看加分就决定替换。':'')+(rows.length?'\n'+purchaseValueWindowText(rows)+'\n推荐还需兼顾实付、已有来源和永久代价；条件增分不保证回本或通关。':'\n收益还取决于之后的出牌。');
  return {...base,status:'assessed' as const,paid,refund,net,goldAfter:after.gold,rows,ceiling,negative,positive,allPositive,lostInvestment,unmeasuredLoss,unmeasuredLossReasons,cashLoss,interestLoss,remaining,detail};
 }

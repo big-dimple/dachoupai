@@ -12,4 +12,4 @@ it('a candidate cash gate uses purchase cost, not the money still held before bu
 it('names and generic multiplier wording cannot establish an unsupported combination',()=>{const {s}=setup(['b10'],'c07',30),defs=r2JokerDefinitionsFor(s),before=JSON.stringify(defs);expect(findShopSynergy(s,'c07').hasSynergy).toBe(false);expect(JSON.stringify(defs)).toBe(before);});
 
 it.each([3,4])('f04 checks its exact post-payment %i-gold boundary',after=>{const {s,o}=setup(['b10'],'f04',30);s.gold=r2PurchasePrice(s,o)+after;const result=findShopSynergy(s,'f04');expect(result.hasSynergy).toBe(after===3);expect(result.reason).toContain('→'+after+'金');});
-it('full slots require a specified replacement instead of assuming free space',()=>{const {s}=setup(['b10','b03','c06','e08','e06'],'a03',30);const result=findShopSynergy(s,'a03');expect(result.hasSynergy).toBe(false);expect(result.reason).toContain('指定替换');});
+it('full slots require a specified replacement instead of assuming free space',()=>{const {s}=setup(['b10','b03','c06','e08','e06'],'a03',30);const result=findShopSynergy(s,'a03');expect(result.hasSynergy).toBe(false);expect(result.reason).toContain('先选要换掉的牌');});

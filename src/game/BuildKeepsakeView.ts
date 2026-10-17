@@ -16,11 +16,11 @@ export function buildKeepsakeView(facts:BuildKeepsake,cleanups:(()=>void)[],insp
  const portrait=facts.hero.url?image(facts.hero.url,facts.hero.name+'人物图'):undefined;
  if(inspectHero){const button=document.createElement('button');button.type='button';button.className='build-keepsake-hero-entry';button.style.cssText='padding:0;border:0;background:transparent;align-self:start';button.setAttribute('aria-label','查看'+facts.hero.name+'技能说明');const style=document.createElement('style');style.textContent='.build-keepsake-hero-entry{flex:none;width:88px;height:124px}.build-keepsake-hero-entry img{width:100%;height:100%;object-fit:contain}@media(max-width:480px){.build-keepsake-hero-entry{width:60px;height:86px}}';if(portrait)button.append(portrait);else {button.textContent='查看技能';button.style.cssText='min-height:44px;align-self:start';}button.onclick=inspectHero;hero.append(style,button);}else if(portrait)hero.append(portrait);
  hero.append(copy);section.append(hero);
- if(!facts.growth.length){section.append(p(facts.terminal?'本局最终未持有成长来源；这份留影不补发成长或奖励。':'尚无持有的成长来源；先用现有持牌尝试，按真实货架自主购买。','build-keepsake-empty'));return section;}
+ if(!facts.growth.length){section.append(p(facts.terminal?'本局结束时没有持有成长牌。':'还没有成长牌，可先用现有持牌继续。','build-keepsake-empty'));return section;}
  const title=document.createElement('h3');title.textContent='已存成长 · 不补加到刚结算的本手';section.append(title);
  for(const row of facts.growth){
   const card=document.createElement('article'),copy=document.createElement('div'),name=document.createElement('h4'),value=document.createElement('strong');card.className='build-keepsake-growth';card.dataset.instanceId=row.instanceId;card.dataset.growthKey=row.key;
-  name.textContent=row.name;value.textContent=row.metric;value.className='build-keepsake-value';copy.append(name,value,p(row.cause,'build-keepsake-cause'));if(row.read)copy.append(p(row.read,'build-keepsake-read'));copy.append(p(row.next+' · 以实际条件和保存事件为准','build-keepsake-next'));
+  name.textContent=row.name;value.textContent=row.metric;value.className='build-keepsake-value';copy.append(name,value,p(row.cause,'build-keepsake-cause'));if(row.read)copy.append(p(row.read,'build-keepsake-read'));copy.append(p(row.next,'build-keepsake-next'));
   if(row.url)card.append(image(row.url,row.name+'已有卡面'));card.append(copy);section.append(card);
  }
  return section;

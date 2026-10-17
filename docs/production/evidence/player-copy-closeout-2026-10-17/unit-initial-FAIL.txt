@@ -1,0 +1,339 @@
+
+ RUN  v4.1.11 D:/ai/dachoupai/dachoupai/.codex-remote-attachments/player-copy-closeout-20261017
+
+ 鉂?tests/route-growth-facts.test.ts (0 test)
+ 鉂?tests/joker-plain-copy.test.ts (16 tests | 1 failed) 246ms
+   脳 growth headroom and capped default facts agree with actual trace in each content identity 11ms
+ 鉂?tests/all-growth-opportunities.test.ts (17 tests | 2 failed) 312ms
+   脳 eight previously omitted families use their identity rule and actual action clock 44ms
+   脳 e11 sale breaks this stage qualification, and f12 cannot promise clear from one remaining hand 14ms
+ 鉂?tests/growth-selection.test.ts (9 tests | 1 failed) 488ms
+   脳 Amo full house reads saved +1 multiplier but adds no flush growth; flush adds only after scoring 41ms
+ 鉂?tests/shop-purchase-value.test.ts (27 tests | 7 failed) 1079ms
+   脳 f06 counts four available consumptions without forecasting four successful triggers 41ms
+   脳 selling d05 cannot turn omitted 寮冪墝杩旇繕 value into a four-star trade 20ms
+   脳 selling a07 cannot turn omitted 寮冪墝鏀跺叆 value into a four-star trade 20ms
+   脳 selling f07 cannot turn omitted 澶辫触鍓嶆晳鍦?value into a four-star trade 20ms
+   脳 selling e12 cannot turn omitted 鍒锋柊鍚庢垚闀?value into a four-star trade 22ms
+   脳 selling b03 cannot turn omitted 缁撶畻鍚庢垚闀匡紡杩旇繕 value into a four-star trade 24ms
+   脳 fresh coefficient is not mislabeled as accumulated growth, and omitted held/slot benefits prevent promotion 34ms
+ 鉂?tests/shop-purchase-receipt.test.ts (6 tests | 6 failed) 14ms
+   脳 jokers receipt reflects a real command acquisition and leaves its state untouched 7ms
+   脳 tools receipt reflects a real command acquisition and leaves its state untouched 1ms
+   脳 items receipt reflects a real command acquisition and leaves its state untouched 1ms
+   脳 existing unrelated growth cannot be presented as newly acquired growth 1ms
+   脳 targetless tools are not described as requiring a target to consume 1ms
+   脳 S07 sacrifice invalidates only an absent acquisition, using committed state 1ms
+ 鉂?tests/growth-selection-semantics.test.ts (6 tests | 1 failed) 185ms
+   脳 c05 reads stored pending heat on any next scored hand and consumes only after an actual read 16ms
+ 鉂?tests/build-journey-dialog.test.ts (7 tests | 1 failed) 130ms
+   脳 three unselected previews never pass the first unrelated stock off as a matching route example 43ms
+ 鉂?tests/build-keepsake.test.ts (10 tests | 1 failed) 118ms
+   脳 real saved growth is separated from the just-scored hand and stays instance scoped 38ms
+ 鉂?tests/build-growth-progress.test.ts (7 tests | 1 failed) 94ms
+   脳 sold and replacement instances cannot borrow saved source history 19ms
+ 鉂?tests/joker-growth-causality.test.ts (0 test)
+ 鉂?tests/shop-route-relations.test.ts (8 tests | 2 failed) 94ms
+   脳 replacement reports actual lost growth and public prices without a net-score promise or command 12ms
+   脳 saved co-sources use exact held instance identities, not another same-name card or an invented synergy 19ms
+ 鉂?tests/shop-sale-continuation.test.ts (4 tests | 1 failed) 56ms
+   脳 comparison and actual sale confirmation both expose retained reset, growth and qualification consequences 16ms
+
+鈳幆鈳幆鈳幆 Failed Suites 2 鈳幆鈳幆鈳幆鈳?
+ FAIL  tests/joker-growth-causality.test.ts [ tests/joker-growth-causality.test.ts ]
+Error: ENOENT: no such file or directory, open 'D:\ai\dachoupai\dachoupai\.codex-remote-attachments\player-copy-closeout-20261017\docs\production\evidence\p1-j-group-upgrade-ui-2026-10-05\final\native-PASS.json'
+ 鉂?tests/joker-growth-causality.test.ts:6:25
+      4| import {groupGrowthCausality,savedGrowthDiscovery} from '../src/game/J鈥?      5| import {applyCommand,type R2RunState} from '../src/domain/run';
+      6| const report=JSON.parse(readFileSync('docs/production/evidence/p1-j-gr鈥?       |                         ^
+      7| const natural=report.cases.find((c:{name:string})=>c.name==='normal-er鈥?      8| const copy=(s:R2RunState)=>groupGrowthCausality(s,s.jokers.find(j=>j.d鈥?
+鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳痆1/26]鈳?
+ FAIL  tests/route-growth-facts.test.ts [ tests/route-growth-facts.test.ts ]
+Error: ENOENT: no such file or directory, open 'D:\ai\dachoupai\dachoupai\.codex-remote-attachments\player-copy-closeout-20261017\docs\production\evidence\route-growth-c2-2026-10-11\p2-recovery.json'
+ 鉂?tests/route-growth-facts.test.ts:10:27
+      8| import {r2DisabledCards} from '../src/domain/r2Chapter';
+      9|
+     10| const evidence=JSON.parse(readFileSync(new URL('../docs/production/evi鈥?       |                           ^
+     11| const original=evidence.crossStage.before as Checkpoint;
+     12| function command(s:R2RunState,action:Command['action']):Command{return鈥?
+鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳痆2/26]鈳?
+
+鈳幆鈳幆鈳幆 Failed Tests 24 鈳幆鈳幆鈳幆鈳?
+ FAIL  tests/all-growth-opportunities.test.ts > eight previously omitted families use their identity rule and actual action clock
+AssertionError: expected '鐜板瓨脳1.5 绯绘暟 路 涓婇檺脳1,000,000\n寤虹珛鎺ョ画锛氭湰缁勫厛寤虹珛涓も€? to contain '淇濆瓨'
+
+- Expected
++ Received
+
+- 淇濆瓨
++ 鐜板瓨脳1.5 绯绘暟 路 涓婇檺脳1,000,000
++ 寤虹珛鎺ョ画锛氭湰缁勫厛寤虹珛涓ゅ鎺ョ画锛涘悓鍦轰笅涓€鎵嬫崲鍙︿竴鍚堟牸鍨嬫墠妫€鏌ユ垚闀匡紝鍙兘鏈墜宸茶繃鍏炽€?+ 鏂版垚闀夸粠涓嬩竴娆″嚭鐗岀敓鏁堛€?
+ 鉂?tests/all-growth-opportunities.test.ts:18:326
+
+
+鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳痆3/26]鈳?
+ FAIL  tests/all-growth-opportunities.test.ts > e11 sale breaks this stage qualification, and f12 cannot promise clear from one remaining hand
+AssertionError: expected '鐜板瓨脳1 绯绘暟 路 涓婇檺脳2.5\n婊¤冻鏉′欢鍚庢垚闀匡細鎴愬姛杩囧叧鏃堕』婊¤冻鏈墜鎵ｂ€? to contain '鏈彁浜ょ墝涓嶇畻杩囧叧'
+
+- Expected
++ Received
+
+- 鏈彁浜ょ墝涓嶇畻杩囧叧
++ 鐜板瓨脳1 绯绘暟 路 涓婇檺脳2.5
++ 婊¤冻鏉′欢鍚庢垚闀匡細鎴愬姛杩囧叧鏃堕』婊¤冻鏈墜鎵ｄ竴娆″嚭鐗屽悗鏈轰細涓?锛涜鍒嗕笌浜嬩欢鏃剁偣鍒嗗埆璇诲彇銆?+ 鏂版垚闀夸粠涓嬩竴娆″嚭鐗岀敓鏁堛€?
+ 鉂?tests/all-growth-opportunities.test.ts:29:478
+
+
+鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳痆4/26]鈳?
+ FAIL  tests/build-growth-progress.test.ts > sold and replacement instances cannot borrow saved source history
+AssertionError: expected '褰撳墠宸插瓨' to be '浠庡綋鍓嶄繚瀛樺€肩户缁煿鍏? // Object.is equality
+
+Expected: "浠庡綋鍓嶄繚瀛樺€肩户缁煿鍏?
+Received: "褰撳墠宸插瓨"
+
+ 鉂?tests/build-growth-progress.test.ts:6:255
+
+
+鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳痆5/26]鈳?
+ FAIL  tests/build-journey-dialog.test.ts > three unselected previews never pass the first unrelated stock off as a matching route example
+AssertionError: expected '淇濈暀鍚岀偣鐗岋紝璇曚袱瀵广€佷笁鏉＄瓑鎴愮粍銆俓n鐜拌揣 路 閫傚悎褰撳墠鎵撴硶锛氱倝鐏函闈?路 鈥? to contain '璺嚎鐩存帴鏉′欢'
+
+- Expected
++ Received
+
+- 璺嚎鐩存帴鏉′欢
++ 淇濈暀鍚岀偣鐗岋紝璇曚袱瀵广€佷笁鏉＄瓑鎴愮粍銆?+ 鐜拌揣 路 閫傚悎褰撳墠鎵撴硶锛氱倝鐏函闈?路 瀹炰粯4閲?
+ 鉂?tests/build-journey-dialog.test.ts:16:62
+     14| it('three unselected previews never pass the first unrelated stock off鈥?     15|  const s=buildJourneyPlan(true);s.shop!.offers=[{offerId:'actual/b10',鈥?     16|  expect(cards[0].body).toContain('鐜拌揣');expect(cards[0].body).toContain鈥?       |                                                              ^
+     17|  for(const card of cards.slice(1)){expect(card.body).not.toContain('鐜拌揣鈥?     18|  expect(JSON.stringify(s)).toBe(before);
+
+鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳痆6/26]鈳?
+ FAIL  tests/build-keepsake.test.ts > real saved growth is separated from the just-scored hand and stays instance scoped
+AssertionError: expected '褰撳墠宸插瓨' to be '浠庡綋鍓嶄繚瀛樺€肩户缁煿鍏? // Object.is equality
+
+Expected: "浠庡綋鍓嶄繚瀛樺€肩户缁煿鍏?
+Received: "褰撳墠宸插瓨"
+
+ 鉂?tests/build-keepsake.test.ts:21:195
+
+
+鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳痆7/26]鈳?
+ FAIL  tests/growth-selection-semantics.test.ts > c05 reads stored pending heat on any next scored hand and consumes only after an actual read
+AssertionError: expected '鏈墜鍔犳垚锛氳鍒嗗仠鐢紝宸插瓨鐑害+40涓嶈鍏ワ紱鏉′欢锛氫换鎰忕墝鍨嬶紱涓嬫鐢熸晥鍚庢秷鑰楋紝鈥? to contain '璁″垎鍋滅敤鏃朵笉璇讳篃涓嶆秷鑰?
+
+- Expected
++ Received
+
+- 璁″垎鍋滅敤鏃朵笉璇讳篃涓嶆秷鑰?+ 鏈墜鍔犳垚锛氳鍒嗗仠鐢紝宸插瓨鐑害+40涓嶈鍏ワ紱鏉′欢锛氫换鎰忕墝鍨嬶紱涓嬫鐢熸晥鍚庢秷鑰楋紝璁″垎鍋滅敤鏃朵笉鐢熸晥涔熶笉娑堣€楋紝鍦烘湯娓呯┖銆?+ 鏂板鎴愰暱锛氱幇瀛?40 钃勭儹 路 涓婇檺80
++ 涓嶆柊澧炴垚闀匡細鎵€閫変笉婊¤冻杩欐寮冪墝鏉′欢锛涘嚭鐗屼笉浼氳搫鐑€?+ 涓嬩竴娆″疄闄呰鍙栧悗娑堣€楋紱鍦烘湯娓呯┖銆?+ 鏈墜璁″垎鍋滅敤锛涙垚闀夸粛鎸夌嫭绔嬮樁娈垫潯浠舵鏌ャ€?+ 鏂版垚闀夸粠涓嬩竴娆″嚭鐗岀敓鏁堛€?
+ 鉂?tests/growth-selection-semantics.test.ts:19:369
+
+
+鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳痆8/26]鈳?
+ FAIL  tests/growth-selection.test.ts > Amo full house reads saved +1 multiplier but adds no flush growth; flush adds only after scoring
+AssertionError: expected '鏈墜鍔犳垚锛氬€嶇巼+1锛涙潯浠讹細浠绘剰鐗屽瀷銆俓n鏂板鎴愰暱锛氱幇瀛?1 鍊嶇巼 路 涓婇檺鈥? to contain '涓嶆弧瓒虫柊澧炴垚闀挎潯浠?
+
+- Expected
++ Received
+
+- 涓嶆弧瓒虫柊澧炴垚闀挎潯浠?+ 鏈墜鍔犳垚锛氬€嶇巼+1锛涙潯浠讹細浠绘剰鐗屽瀷銆?+ 鏂板鎴愰暱锛氱幇瀛?1 鍊嶇巼 路 涓婇檺6
++ 涓嶆柊澧炴垚闀匡細杩欑粍涓嶅鍔犳垚闀匡紝浠嶅彲鍑虹墝銆?+ 鏂版垚闀夸粠涓嬩竴娆″嚭鐗岀敓鏁堛€?+ 璁″垎鏀剁泭椤绘垚鍔熷嚭鐗屼笌淇濆瓨銆?
+ 鉂?tests/growth-selection.test.ts:33:235
+
+
+鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳痆9/26]鈳?
+ FAIL  tests/joker-plain-copy.test.ts > growth headroom and capped default facts agree with actual trace in each content identity
+AssertionError: expected '宸插瓨鐑害+0锛涙湰鎵嬪悗鏈€澶氭柊澧?5锛屼笅涓€鎵嬬敤' to contain '涓婇檺50'
+
+Expected: "涓婇檺50"
+Received: "宸插瓨鐑害+0锛涙湰鎵嬪悗鏈€澶氭柊澧?5锛屼笅涓€鎵嬬敤"
+
+ 鉂?tests/joker-plain-copy.test.ts:72:21
+
+
+鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆[10/26]鈳?
+ FAIL  tests/shop-purchase-receipt.test.ts > jokers receipt reflects a real command acquisition and leaves its state untouched
+ FAIL  tests/shop-purchase-receipt.test.ts > tools receipt reflects a real command acquisition and leaves its state untouched
+ FAIL  tests/shop-purchase-receipt.test.ts > items receipt reflects a real command acquisition and leaves its state untouched
+Error: ENOENT: no such file or directory, open 'D:\ai\dachoupai\dachoupai\.codex-remote-attachments\player-copy-closeout-20261017\docs\production\evidence\w1-inputs-2026-10-07\controlled-shop.json'
+ 鉂?initial tests/shop-purchase-receipt.test.ts:5:43
+
+ 鉂?tests/shop-purchase-receipt.test.ts:7:15
+
+鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆[11/26]鈳?
+ FAIL  tests/shop-purchase-receipt.test.ts > existing unrelated growth cannot be presented as newly acquired growth
+Error: ENOENT: no such file or directory, open 'D:\ai\dachoupai\dachoupai\.codex-remote-attachments\player-copy-closeout-20261017\docs\production\evidence\w1-inputs-2026-10-07\controlled-shop.json'
+ 鉂?initial tests/shop-purchase-receipt.test.ts:5:43
+
+ 鉂?tests/shop-purchase-receipt.test.ts:15:95
+
+鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆[12/26]鈳?
+ FAIL  tests/shop-purchase-receipt.test.ts > targetless tools are not described as requiring a target to consume
+Error: ENOENT: no such file or directory, open 'D:\ai\dachoupai\dachoupai\.codex-remote-attachments\player-copy-closeout-20261017\docs\production\evidence\w1-inputs-2026-10-07\controlled-shop.json'
+ 鉂?initial tests/shop-purchase-receipt.test.ts:5:43
+
+ 鉂?tests/shop-purchase-receipt.test.ts:17:92
+
+鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆[13/26]鈳?
+ FAIL  tests/shop-purchase-receipt.test.ts > S07 sacrifice invalidates only an absent acquisition, using committed state
+Error: ENOENT: no such file or directory, open 'D:\ai\dachoupai\dachoupai\.codex-remote-attachments\player-copy-closeout-20261017\docs\production\evidence\w1-inputs-2026-10-07\controlled-shop.json'
+ 鉂?initial tests/shop-purchase-receipt.test.ts:5:43
+
+ 鉂?tests/shop-purchase-receipt.test.ts:20:15
+
+鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆[14/26]鈳?
+ FAIL  tests/shop-purchase-value.test.ts > f06 counts four available consumptions without forecasting four successful triggers
+AssertionError: expected '瀹炰粯8閲戯紝杩旇繕0閲戯紝鍚堣鑺辫垂8閲戯紱浣欓40鈫?2閲戙€俓n褰撳墠鍒╂伅妗?鈫?锛屸€? to contain '涓嶉鏀叏閮ㄦ鏁?
+
+- Expected
++ Received
+
+- 涓嶉鏀叏閮ㄦ鏁?+ 瀹炰粯8閲戯紝杩旇繕0閲戯紝鍚堣鑺辫垂8閲戯紱浣欓40鈫?2閲戙€?+ 褰撳墠鍒╂伅妗?鈫?锛屼粎鎸夎繃鍏虫椂浣欓缁撶畻锛屼笉璁℃湭鏉ユ敹鍏ャ€?+ 鏂扮墝鎴愰暱锛氱疮璁″嚭鐗?0 / 4 鎵嬶紝浣?4 鎵?+ 鏂扮墝浣?娆″嚭鐗岋紱灏佺涔熸秷鑰楁鏁帮紝绗?娆″悗閿€姣併€?+ 鍚屼竴缁勭墝鐨勬晥鏋滄瘮杈冿紙浠ョ幇鏈夌墝缁勪负渚嬶細涓嬪満绗竴鎵嬨€佷笉寮冪墝銆佷笉鐣欑墝銆佷笉鐢ㄤ富鍔ㄦ妧鑳斤紱涓嶄唬琛ㄤ笅涓€鎵嬩細鎶藉埌锛夛細
++ 鏅€氬崟寮?2鈾ｏ細淇濈暀 22 鈫?鍙樻洿 44锛涘垎宸?22
++ 璺嚎鏉′欢鎵?7鈾?7鈾︼細淇濈暀 98 鈫?鍙樻洿 196锛涘垎宸?98
++ 鍙鏈墜宸叉湁鍊硷紱鎵嬪悗鎴愰暱銆佹湭鏉ユ娊鐗屻€佹敹鍏ュ拰瀛樻椿娆℃暟鏈煡銆?+ 鎺ㄨ崘杩橀渶鍏奸【瀹炰粯銆佸凡鏈夋潵婧愬拰姘镐箙浠ｄ环锛涙潯浠跺鍒嗕笉淇濊瘉鍥炴湰鎴栭€氬叧銆?
+ 鉂?tests/shop-purchase-value.test.ts:22:222
+
+
+鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆[15/26]鈳?
+ FAIL  tests/shop-purchase-value.test.ts > selling d05 cannot turn omitted 寮冪墝杩旇繕 value into a four-star trade
+AssertionError: expected '瀹炰粯8閲戯紝杩旇繕3閲戯紝鍚堣鑺辫垂5閲戯紱浣欓40鈫?5閲戙€俓n褰撳墠鍒╂伅妗?鈫?锛屸€? to contain '鏄惁鍏戠幇鏈煡'
+
+- Expected
++ Received
+
+- 鏄惁鍏戠幇鏈煡
++ 瀹炰粯8閲戯紝杩旇繕3閲戯紝鍚堣鑺辫垂5閲戯紱浣欓40鈫?5閲戙€?+ 褰撳墠鍒╂伅妗?鈫?锛屼粎鎸夎繃鍏虫椂浣欓缁撶畻锛屼笉璁℃湭鏉ユ敹鍏ャ€?+ 鏂扮墝鎴愰暱锛氫笉绉敀鎴愰暱
++ 澶卞幓鏉ユ簮锛氬皬璇曠墰鍒€锛涗笉绉敀鎴愰暱锛涚増娆?鏅€?+ 鏈眬杩囧叧鍔犳垚淇濈暀锛屽嚭鍞笉涓€?+ 鏈及浠ｄ环锛氬け鍘绘墍鍞墝鐨勫純鐗岃繑杩橈紱杩欎簺涓嶈鍏ヤ笂鏂瑰垎宸紝鏇挎崲鍓嶈涓€璧疯€冭檻銆?+ 鍚屼竴缁勭墝鐨勬晥鏋滄瘮杈冿紙浠ョ幇鏈夌墝缁勪负渚嬶細涓嬪満绗竴鎵嬨€佷笉寮冪墝銆佷笉鐣欑墝銆佷笉鐢ㄤ富鍔ㄦ妧鑳斤紱涓嶄唬琛ㄤ笅涓€鎵嬩細鎶藉埌锛夛細
++ 鏅€氬崟寮?2鈾ｏ細淇濈暀 22 鈫?鍙樻洿 39锛涘垎宸?17
++ 璺嚎鏉′欢鎵?7鈾?7鈾︼細淇濈暀 122 鈫?鍙樻洿 220锛涘垎宸?98
++ 鍙鏈墜宸叉湁鍊硷紱鎵嬪悗鎴愰暱銆佹湭鏉ユ娊鐗屻€佹敹鍏ュ拰瀛樻椿娆℃暟鏈煡銆?+ 鎺ㄨ崘杩橀渶鍏奸【瀹炰粯銆佸凡鏈夋潵婧愬拰姘镐箙浠ｄ环锛涙潯浠跺鍒嗕笉淇濊瘉鍥炴湰鎴栭€氬叧銆?
+ 鉂?tests/shop-purchase-value.test.ts:60:61
+     58|  const value=shopPurchaseValue(state,offer,'group',sold);if(value?.sta鈥?     59|  expect(value).toMatchObject({allPositive:true,interestLoss:false,lost鈥?     60|  expect(value.detail).toContain(label);expect(value.detail).toContain(鈥?       |                                                             ^
+     61|  expect(shopRecommendation(state,offer,'group',sold)).toMatchObject({s鈥?     62|  expect(state).toEqual(before);
+
+鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆[16/26]鈳?
+ FAIL  tests/shop-purchase-value.test.ts > selling a07 cannot turn omitted 寮冪墝鏀跺叆 value into a four-star trade
+AssertionError: expected '瀹炰粯8閲戯紝杩旇繕2閲戯紝鍚堣鑺辫垂6閲戯紱浣欓40鈫?4閲戙€俓n褰撳墠鍒╂伅妗?鈫?锛屸€? to contain '鏄惁鍏戠幇鏈煡'
+
+- Expected
++ Received
+
+- 鏄惁鍏戠幇鏈煡
++ 瀹炰粯8閲戯紝杩旇繕2閲戯紝鍚堣鑺辫垂6閲戯紱浣欓40鈫?4閲戙€?+ 褰撳墠鍒╂伅妗?鈫?锛屼粎鎸夎繃鍏虫椂浣欓缁撶畻锛屼笉璁℃湭鏉ユ敹鍏ャ€?+ 鏂扮墝鎴愰暱锛氫笉绉敀鎴愰暱
++ 澶卞幓鏉ユ簮锛氭诞鐢熷崐鏃ワ紱鏈満鏀剁泭 0 / 2 娆★紱鐗堟 鏅€?+ 鏈眬杩囧叧鍔犳垚淇濈暀锛屽嚭鍞笉涓€?+ 鏈及浠ｄ环锛氬け鍘绘墍鍞墝鐨勫純鐗屾敹鍏ワ紱杩欎簺涓嶈鍏ヤ笂鏂瑰垎宸紝鏇挎崲鍓嶈涓€璧疯€冭檻銆?+ 鍚屼竴缁勭墝鐨勬晥鏋滄瘮杈冿紙浠ョ幇鏈夌墝缁勪负渚嬶細涓嬪満绗竴鎵嬨€佷笉寮冪墝銆佷笉鐣欑墝銆佷笉鐢ㄤ富鍔ㄦ妧鑳斤紱涓嶄唬琛ㄤ笅涓€鎵嬩細鎶藉埌锛夛細
++ 鏅€氬崟寮?2鈾ｏ細淇濈暀 22 鈫?鍙樻洿 39锛涘垎宸?17
++ 璺嚎鏉′欢鎵?7鈾?7鈾︼細淇濈暀 122 鈫?鍙樻洿 220锛涘垎宸?98
++ 鍙鏈墜宸叉湁鍊硷紱鎵嬪悗鎴愰暱銆佹湭鏉ユ娊鐗屻€佹敹鍏ュ拰瀛樻椿娆℃暟鏈煡銆?+ 鎺ㄨ崘杩橀渶鍏奸【瀹炰粯銆佸凡鏈夋潵婧愬拰姘镐箙浠ｄ环锛涙潯浠跺鍒嗕笉淇濊瘉鍥炴湰鎴栭€氬叧銆?
+ 鉂?tests/shop-purchase-value.test.ts:60:61
+     58|  const value=shopPurchaseValue(state,offer,'group',sold);if(value?.sta鈥?     59|  expect(value).toMatchObject({allPositive:true,interestLoss:false,lost鈥?     60|  expect(value.detail).toContain(label);expect(value.detail).toContain(鈥?       |                                                             ^
+     61|  expect(shopRecommendation(state,offer,'group',sold)).toMatchObject({s鈥?     62|  expect(state).toEqual(before);
+
+鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆[17/26]鈳?
+ FAIL  tests/shop-purchase-value.test.ts > selling f07 cannot turn omitted 澶辫触鍓嶆晳鍦?value into a four-star trade
+AssertionError: expected '瀹炰粯8閲戯紝杩旇繕3閲戯紝鍚堣鑺辫垂5閲戯紱浣欓40鈫?5閲戙€俓n褰撳墠鍒╂伅妗?鈫?锛屸€? to contain '鏄惁鍏戠幇鏈煡'
+
+- Expected
++ Received
+
+- 鏄惁鍏戠幇鏈煡
++ 瀹炰粯8閲戯紝杩旇繕3閲戯紝鍚堣鑺辫垂5閲戯紱浣欓40鈫?5閲戙€?+ 褰撳墠鍒╂伅妗?鈫?锛屼粎鎸夎繃鍏虫椂浣欓缁撶畻锛屼笉璁℃湭鏉ユ敹鍏ャ€?+ 鏂扮墝鎴愰暱锛氫笉绉敀鎴愰暱
++ 澶卞幓鏉ユ簮锛氶€㈠嚩鍖栧悏锛涗笉绉敀鎴愰暱锛涚増娆?鏅€?+ 鏈眬杩囧叧鍔犳垚淇濈暀锛屽嚭鍞笉涓€?+ 鏈及浠ｄ环锛氬け鍘绘墍鍞墝鐨勫け璐ュ墠鏁戝満锛涜繖浜涗笉璁″叆涓婃柟鍒嗗樊锛屾浛鎹㈠墠璇蜂竴璧疯€冭檻銆?+ 鍚屼竴缁勭墝鐨勬晥鏋滄瘮杈冿紙浠ョ幇鏈夌墝缁勪负渚嬶細涓嬪満绗竴鎵嬨€佷笉寮冪墝銆佷笉鐣欑墝銆佷笉鐢ㄤ富鍔ㄦ妧鑳斤紱涓嶄唬琛ㄤ笅涓€鎵嬩細鎶藉埌锛夛細
++ 鏅€氬崟寮?2鈾ｏ細淇濈暀 22 鈫?鍙樻洿 39锛涘垎宸?17
++ 璺嚎鏉′欢鎵?7鈾?7鈾︼細淇濈暀 122 鈫?鍙樻洿 220锛涘垎宸?98
++ 鍙鏈墜宸叉湁鍊硷紱鎵嬪悗鎴愰暱銆佹湭鏉ユ娊鐗屻€佹敹鍏ュ拰瀛樻椿娆℃暟鏈煡銆?+ 鎺ㄨ崘杩橀渶鍏奸【瀹炰粯銆佸凡鏈夋潵婧愬拰姘镐箙浠ｄ环锛涙潯浠跺鍒嗕笉淇濊瘉鍥炴湰鎴栭€氬叧銆?
+ 鉂?tests/shop-purchase-value.test.ts:60:61
+     58|  const value=shopPurchaseValue(state,offer,'group',sold);if(value?.sta鈥?     59|  expect(value).toMatchObject({allPositive:true,interestLoss:false,lost鈥?     60|  expect(value.detail).toContain(label);expect(value.detail).toContain(鈥?       |                                                             ^
+     61|  expect(shopRecommendation(state,offer,'group',sold)).toMatchObject({s鈥?     62|  expect(state).toEqual(before);
+
+鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆[18/26]鈳?
+ FAIL  tests/shop-purchase-value.test.ts > selling e12 cannot turn omitted 鍒锋柊鍚庢垚闀?value into a four-star trade
+AssertionError: expected '瀹炰粯8閲戯紝杩旇繕3閲戯紝鍚堣鑺辫垂5閲戯紱浣欓40鈫?5閲戙€俓n褰撳墠鍒╂伅妗?鈫?锛屸€? to contain '鏄惁鍏戠幇鏈煡'
+
+- Expected
++ Received
+
+- 鏄惁鍏戠幇鏈煡
++ 瀹炰粯8閲戯紝杩旇繕3閲戯紝鍚堣鑺辫垂5閲戯紱浣欓40鈫?5閲戙€?+ 褰撳墠鍒╂伅妗?鈫?锛屼粎鎸夎繃鍏虫椂浣欓缁撶畻锛屼笉璁℃湭鏉ユ敹鍏ャ€?+ 鏂扮墝鎴愰暱锛氫笉绉敀鎴愰暱
++ 澶卞幓鏉ユ簮锛氭矙閲屾窐閲戯紱鐑害鎴愰暱 0锛涚増娆?鏅€?+ 鏈眬杩囧叧鍔犳垚淇濈暀锛屽嚭鍞笉涓€?+ 鏈及浠ｄ环锛氬け鍘绘墍鍞墝鐨勫埛鏂板悗鎴愰暱锛涜繖浜涗笉璁″叆涓婃柟鍒嗗樊锛屾浛鎹㈠墠璇蜂竴璧疯€冭檻銆?+ 鍚屼竴缁勭墝鐨勬晥鏋滄瘮杈冿紙浠ョ幇鏈夌墝缁勪负渚嬶細涓嬪満绗竴鎵嬨€佷笉寮冪墝銆佷笉鐣欑墝銆佷笉鐢ㄤ富鍔ㄦ妧鑳斤紱涓嶄唬琛ㄤ笅涓€鎵嬩細鎶藉埌锛夛細
++ 鏅€氬崟寮?2鈾ｏ細淇濈暀 22 鈫?鍙樻洿 39锛涘垎宸?17
++ 璺嚎鏉′欢鎵?7鈾?7鈾︼細淇濈暀 122 鈫?鍙樻洿 220锛涘垎宸?98
++ 鍙鏈墜宸叉湁鍊硷紱鎵嬪悗鎴愰暱銆佹湭鏉ユ娊鐗屻€佹敹鍏ュ拰瀛樻椿娆℃暟鏈煡銆?+ 鎺ㄨ崘杩橀渶鍏奸【瀹炰粯銆佸凡鏈夋潵婧愬拰姘镐箙浠ｄ环锛涙潯浠跺鍒嗕笉淇濊瘉鍥炴湰鎴栭€氬叧銆?
+ 鉂?tests/shop-purchase-value.test.ts:60:61
+     58|  const value=shopPurchaseValue(state,offer,'group',sold);if(value?.sta鈥?     59|  expect(value).toMatchObject({allPositive:true,interestLoss:false,lost鈥?     60|  expect(value.detail).toContain(label);expect(value.detail).toContain(鈥?       |                                                             ^
+     61|  expect(shopRecommendation(state,offer,'group',sold)).toMatchObject({s鈥?     62|  expect(state).toEqual(before);
+
+鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆[19/26]鈳?
+ FAIL  tests/shop-purchase-value.test.ts > selling b03 cannot turn omitted 缁撶畻鍚庢垚闀匡紡杩旇繕 value into a four-star trade
+AssertionError: expected '瀹炰粯8閲戯紝杩旇繕3閲戯紝鍚堣鑺辫垂5閲戯紱浣欓40鈫?5閲戙€俓n褰撳墠鍒╂伅妗?鈫?锛屸€? to contain '鏄惁鍏戠幇鏈煡'
+
+- Expected
++ Received
+
+- 鏄惁鍏戠幇鏈煡
++ 瀹炰粯8閲戯紝杩旇繕3閲戯紝鍚堣鑺辫垂5閲戯紱浣欓40鈫?5閲戙€?+ 褰撳墠鍒╂伅妗?鈫?锛屼粎鎸夎繃鍏虫椂浣欓缁撶畻锛屼笉璁℃湭鏉ユ敹鍏ャ€?+ 鏂扮墝鎴愰暱锛氫笉绉敀鎴愰暱
++ 澶卞幓鏉ユ簮锛氳帿閫嗕箣浜わ紱鍊嶇巼鎴愰暱 0锛涚増娆?鏅€?+ 鏈眬杩囧叧鍔犳垚淇濈暀锛屽嚭鍞笉涓€?+ 鏈及浠ｄ环锛氬け鍘绘墍鍞墝鐨勭粨绠楀悗鎴愰暱锛忚繑杩橈紱杩欎簺涓嶈鍏ヤ笂鏂瑰垎宸紝鏇挎崲鍓嶈涓€璧疯€冭檻銆?+ 鍚屼竴缁勭墝鐨勬晥鏋滄瘮杈冿紙浠ョ幇鏈夌墝缁勪负渚嬶細涓嬪満绗竴鎵嬨€佷笉寮冪墝銆佷笉鐣欑墝銆佷笉鐢ㄤ富鍔ㄦ妧鑳斤紱涓嶄唬琛ㄤ笅涓€鎵嬩細鎶藉埌锛夛細
++ 鏅€氬崟寮?2鈾ｏ細淇濈暀 22 鈫?鍙樻洿 39锛涘垎宸?17
++ 璺嚎鏉′欢鎵?7鈾?7鈾︼細淇濈暀 122 鈫?鍙樻洿 220锛涘垎宸?98
++ 鍙鏈墜宸叉湁鍊硷紱鎵嬪悗鎴愰暱銆佹湭鏉ユ娊鐗屻€佹敹鍏ュ拰瀛樻椿娆℃暟鏈煡銆?+ 鎺ㄨ崘杩橀渶鍏奸【瀹炰粯銆佸凡鏈夋潵婧愬拰姘镐箙浠ｄ环锛涙潯浠跺鍒嗕笉淇濊瘉鍥炴湰鎴栭€氬叧銆?
+ 鉂?tests/shop-purchase-value.test.ts:60:61
+     58|  const value=shopPurchaseValue(state,offer,'group',sold);if(value?.sta鈥?     59|  expect(value).toMatchObject({allPositive:true,interestLoss:false,lost鈥?     60|  expect(value.detail).toContain(label);expect(value.detail).toContain(鈥?       |                                                             ^
+     61|  expect(shopRecommendation(state,offer,'group',sold)).toMatchObject({s鈥?     62|  expect(state).toEqual(before);
+
+鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆[20/26]鈳?
+ FAIL  tests/shop-purchase-value.test.ts > fresh coefficient is not mislabeled as accumulated growth, and omitted held/slot benefits prevent promotion
+AssertionError: expected '瀹炰粯8閲戯紝杩旇繕2閲戯紝鍚堣鑺辫垂6閲戯紱浣欓40鈫?4閲戙€俓n褰撳墠鍒╂伅妗?鈫?锛屸€? to contain '涓嶈兘鎹璁ゅ畾鍑€琛ュ己'
+
+- Expected
++ Received
+
+- 涓嶈兘鎹璁ゅ畾鍑€琛ュ己
++ 瀹炰粯8閲戯紝杩旇繕2閲戯紝鍚堣鑺辫垂6閲戯紱浣欓40鈫?4閲戙€?+ 褰撳墠鍒╂伅妗?鈫?锛屼粎鎸夎繃鍏虫椂浣欓缁撶畻锛屼笉璁℃湭鏉ユ敹鍏ャ€?+ 鏂扮墝鎴愰暱锛氫笉绉敀鎴愰暱
++ 澶卞幓鏉ユ簮锛氬潗闀囦腑鍐涳紱涓嶇Н鏀掓垚闀匡紱鐗堟 鏅€?+ 鏈眬杩囧叧鍔犳垚淇濈暀锛屽嚭鍞笉涓€?+ 鏈及浠ｄ环锛氬け鍘绘墍鍞墝鐨勬寔鐗岃鍒嗭紱杩欎簺涓嶈鍏ヤ笂鏂瑰垎宸紝鏇挎崲鍓嶈涓€璧疯€冭檻銆?+ 鍚屼竴缁勭墝鐨勬晥鏋滄瘮杈冿紙浠ョ幇鏈夌墝缁勪负渚嬶細涓嬪満绗竴鎵嬨€佷笉寮冪墝銆佷笉鐣欑墝銆佷笉鐢ㄤ富鍔ㄦ妧鑳斤紱涓嶄唬琛ㄤ笅涓€鎵嬩細鎶藉埌锛夛細
++ 鏅€氬崟寮?2鈾ｏ細淇濈暀 22 鈫?鍙樻洿 39锛涘垎宸?17
++ 璺嚎鏉′欢鎵?7鈾?7鈾︼細淇濈暀 98 鈫?鍙樻洿 176锛涘垎宸?78
++ 鍙鏈墜宸叉湁鍊硷紱鎵嬪悗鎴愰暱銆佹湭鏉ユ娊鐗屻€佹敹鍏ュ拰瀛樻椿娆℃暟鏈煡銆?+ 鎺ㄨ崘杩橀渶鍏奸【瀹炰粯銆佸凡鏈夋潵婧愬拰姘镐箙浠ｄ环锛涙潯浠跺鍒嗕笉淇濊瘉鍥炴湰鎴栭€氬叧銆?
+ 鉂?tests/shop-purchase-value.test.ts:75:282
+
+
+鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆[21/26]鈳?
+ FAIL  tests/shop-route-relations.test.ts > replacement reports actual lost growth and public prices without a net-score promise or command
+AssertionError: expected '涓婃墜娌℃湁鍏卞悓瑙﹀彂璁板綍锛涢厤鍚堣繕瑕佺湅鍚勮嚜鏉′欢銆? to contain '鏈褰?
+
+Expected: "鏈褰?
+Received: "涓婃墜娌℃湁鍏卞悓瑙﹀彂璁板綍锛涢厤鍚堣繕瑕佺湅鍚勮嚜鏉′欢銆?
+
+ 鉂?tests/shop-route-relations.test.ts:25:160
+
+
+鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆[22/26]鈳?
+ FAIL  tests/shop-route-relations.test.ts > saved co-sources use exact held instance identities, not another same-name card or an invented synergy
+AssertionError: expected '涓庣倝鐏函闈掑叡浜潯浠讹紱鍏卞悓婊¤冻浠嶅垎鍒鏌ワ紝涓嶄繚璇侀澶栧姞鎴愩€俓n涓婃墜娌℃湁鍏卞悓瑙︹€? to contain '鏈褰?
+
+- Expected
++ Received
+
+- 鏈褰?+ 涓庣倝鐏函闈掑叡浜潯浠讹紱鍏卞悓婊¤冻浠嶅垎鍒鏌ワ紝涓嶄繚璇侀澶栧姞鎴愩€?+ 涓婃墜娌℃湁鍏卞悓瑙﹀彂璁板綍锛涢厤鍚堣繕瑕佺湅鍚勮嚜鏉′欢銆?
+ 鉂?tests/shop-route-relations.test.ts:30:61
+
+
+鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆[23/26]鈳?
+ FAIL  tests/shop-sale-continuation.test.ts > comparison and actual sale confirmation both expose retained reset, growth and qualification consequences
+AssertionError: expected '鍑哄敭绗?1 妲界殑銆岀倝鐏函闈掋€嶅熀纭€鍗栦环 2 閲戝竵銆俓n褰撳墠浣欓 15 閲戯紱鍑衡€? to contain '鏃х墿鏂扮敤'
+
+- Expected
++ Received
+
+- 鏃х墿鏂扮敤
++ 鍑哄敭绗?1 妲界殑銆岀倝鐏函闈掋€嶅熀纭€鍗栦环 2 閲戝竵銆?+ 褰撳墠浣欓 15 閲戯紱鍑哄敭鍚庡啀鎸夋柊浣欓璐拱銆?+
++ 璇ョ墝鎴愰暱灏嗕涪澶憋紝褰撳墠鎴愰暱锛氱儹搴︽垚闀?20銆?+
++ 鎴愬姛鍑哄敭鍚庝繚鐣欑墝鐨勭‘瀹氬奖鍝嶏細
++ 钖伀鐩镐紶锛堢2妲斤級淇濈暀锛氱郴鏁?脳1.5 鈫?脳1銆?+ 钖伀鐩镐紶锛氭湰娆″嚭鍞皢浣夸笅涓€鍦衡€滄湰鍦烘湭鍑哄敭鈥濈殑杩囧叧鎴愰暱鏉′欢涓嶆弧瓒筹紱涓嶄細鍦ㄨ繖閲岃幏寰楄繃鍏虫垚闀裤€?+ 鐐圭煶鎴愰噾锛堢3妲斤級淇濈暀锛氬€嶇巼鎴愰暱 +0.5 鈫?+1锛堜笂闄?锛夈€?
+ 鉂?tests/shop-sale-continuation.test.ts:45:107
+
+
+鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆[24/26]鈳?
+
+ Test Files  13 failed | 24 passed (37)
+      Tests  24 failed | 283 passed (307)
+   Start at  12:51:31
+   Duration  5.10s (transform 16.99s, setup 0ms, import 37.28s, tests 10.27s, environment 6ms)

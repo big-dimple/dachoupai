@@ -13,13 +13,13 @@ export function toolPermanentValue(state:R2RunState,id:string,action?:Extract<Ac
  if(!['S03','S04','S07'].includes(id))return '';
  const cost=id==='S03'?`当前每场${r2HandsBudget(state)}次出牌；使用后从下场起永久少1次。`:
   id==='S04'?`当前手牌上限${r2HandLimit(state)}；使用后从下场起永久少1张。`:'牺牲所选唐宋牌，永久失去其本体、已有成长与版次；不返出售金币，不触发出售成长。';
- const summary=cost+'未来可活场数、抽到改造牌与回本未知；永久效果不按无限收益计价。';
- if(!action)return summary+'选定对象后核对；当前可保留不买／不用。';
+ const summary=cost;
+ if(!action)return summary+'选好目标后再决定，也可保留不用。';
  const result=applyCommand(state,{runId:state.runId,commandId:state.runId+'/tool-value/'+(state.commandSeq+1),expectedSeq:state.commandSeq,action});
  if(!result.ok)return summary+'当前使用不可执行：'+result.code+'。';
  const after=result.state,donor=state.jokers.find(j=>j.instanceId===action.sacrificeId);
  const rows=state.phase==='shop'?purchaseValueWindow(state,after,currentBuildFocus(state,state.openingRoute)):[];
- return summary+`\n以保留不用为基线；使用净支出${state.gold-after.gold}金；已持工具不重复扣购价。\n下场出牌${r2HandsBudget(state)}→${r2HandsBudget(after)}；手牌上限${r2HandLimit(state)}→${r2HandLimit(after)}。`+
+ return summary+`\n使用需付${state.gold-after.gold}金；不再收取购买费用。\n下场出牌${r2HandsBudget(state)}→${r2HandsBudget(after)}；手牌上限${r2HandLimit(state)}→${r2HandLimit(after)}。`+
   (donor?'\n失去来源：'+cardDefinitionName(r2JokerDefinitionFor(state,donor.definitionId))+'；'+r2JokerStateText(donor,r2JokerDefinitionFor(state,donor.definitionId))+'；版次 '+editionLabel(donor.edition):'')+
   (rows.length?'\n'+purchaseValueWindowText(rows):'');
 }

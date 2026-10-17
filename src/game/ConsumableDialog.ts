@@ -1,3 +1,4 @@
+import {toolUseCost} from './r2ToolInfo';
 import {cardDefinitionName} from './tangsongCardNames';
 import {AudioEngine} from '../audio/AudioEngine';
 import {routeFitCue,markRouteDetail} from './RouteFitCue';
@@ -44,10 +45,10 @@ function selectionIssue(tool:R2ToolDefinition,state:R2RunState,selection:Selecti
   switch(target.kind){
     case 'cards':case 'card-sacrifice':
       if(ids.length<target.minimum||ids.length>target.maximum)return `请选择 ${target.minimum===target.maximum?target.minimum:`${target.minimum}～${target.maximum}`} 张受益牌。`;
-      if(selected.length!==ids.length)return '目标不在当前可见候选中。';
+      if(selected.length!==ids.length)return '所选牌已不可用，请重新选牌。';
       if(target.kind==='card-sacrifice'){
         if(!known.some(card=>card.id===selection.sacrificeId))return '请选择一张牺牲扑克牌。';
-        if(ids.includes(selection.sacrificeId!))return '牺牲牌和受益牌须是不同实例。';
+        if(ids.includes(selection.sacrificeId!))return '牺牲牌和受益牌不能是同一张牌。';
         if(selected.some(card=>card.enhancement!==undefined))return '受益牌必须没有增强；可以保留已有版次。';
       }
       break;
@@ -75,7 +76,7 @@ function selectionIssue(tool:R2ToolDefinition,state:R2RunState,selection:Selecti
     case 'joker-sacrifice': {
       if(!state.jokers.some(joker=>joker.instanceId===selection.sacrificeId))return '请选择牺牲唐宋牌。';
       if(ids.length!==1)return '请选择受益唐宋牌。';
-      if(ids[0]===selection.sacrificeId)return '牺牲牌与受益牌须是不同实例。';
+      if(ids[0]===selection.sacrificeId)return '牺牲牌与受益牌不能是同一张牌。';
       const recipient=state.jokers.find(joker=>joker.instanceId===ids[0]);
       if(!recipient||recipient.edition===target.excludedEdition)return '受益唐宋牌已经是多彩，或不在当前持有牌中。';
       if(state.consumables.length-1>r2ConsumableCapacity({...state,jokers:state.jokers.filter(joker=>joker.instanceId!==selection.sacrificeId)}))return '牺牲后余下库存会超过容量，请先处理库存。';break;
@@ -88,12 +89,12 @@ function selectionIssue(tool:R2ToolDefinition,state:R2RunState,selection:Selecti
     if(cost.kind==='permanent-hands-penalty'){
       const modifiers={...state.spectralModifiers,handsPenalty:state.spectralModifiers.handsPenalty+cost.amount};
       if(!getR2Stage(state.stageIndex,state.tourMode,state.difficulty,state))return '已无下一场，无法支付永久出牌代价。';
-      if(modifiers.handsPenalty>limits.spectralHandsPenaltyMaximum||r2HandsBudget(state)-r2HandsBudget({...state,spectralModifiers:modifiers})!==cost.amount)return '下一场出牌预算不能再实际减少，请保留此工具。';
+      if(modifiers.handsPenalty>limits.spectralHandsPenaltyMaximum||r2HandsBudget(state)-r2HandsBudget({...state,spectralModifiers:modifiers})!==cost.amount)return '下场出牌次数不能再减少，请保留此工具。';
     }
     if(cost.kind==='permanent-hand-penalty'){
       const modifiers={...state.spectralModifiers,handPenalty:state.spectralModifiers.handPenalty+cost.amount};
       if(!getR2Stage(state.stageIndex,state.tourMode,state.difficulty,state))return '已无下一场，无法支付永久手牌代价。';
-      if(modifiers.handPenalty>limits.spectralHandPenaltyMaximum||r2HandLimit(state)-r2HandLimit({...state,spectralModifiers:modifiers})!==cost.amount)return '下一场手牌容量不能再实际减少，请保留此工具。';
+      if(modifiers.handPenalty>limits.spectralHandPenaltyMaximum||r2HandLimit(state)-r2HandLimit({...state,spectralModifiers:modifiers})!==cost.amount)return '下场手牌上限不能再减少，请保留此工具。';
     }
   }
   switch(operation.kind){
@@ -158,7 +159,7 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
         catch{const status=confirmation.querySelector<HTMLParagraphElement>('.dialog-status')!;status.textContent='销毁未完成，请重试。';status.hidden=false;}
       }}],{closeLabel:'取消'});
     }};
-    const d=dialog.open(info.name+' · 使用',[info.description,info.cost].join('\n\n'),[useAction,destroyAction],{closeLabel:'取消 · 保留工具',portrait:goodsArtPortrait(info),effectBody:info.summary,collapseRules:true});d.classList.add('tool-detail');markRouteDetail(d,routeFitCue(state,'tools',tool.id));
+    const d=dialog.open(info.name+' · 使用',[info.description,toolUseCost(tool),info.risk].join('\n\n'),[useAction,destroyAction],{closeLabel:'取消 · 保留工具',portrait:goodsArtPortrait(info),effectBody:info.summary,collapseRules:true});d.classList.add('tool-detail');markRouteDetail(d,routeFitCue(state,'tools',tool.id));
     const instruction=document.createElement('p'),target=tool.target;
     instruction.className='tool-short-instruction';
     const count=target.kind==='cards'||target.kind==='card-sacrifice'?`选 ${target.minimum===target.maximum?target.maximum:target.minimum+'–'+target.maximum} 张` :target.kind==='card-or-joker'?'选 1 个普通版次对象':target.kind==='joker-sacrifice'?'选 1 张牺牲牌与 1 张受益牌':target.kind==='discovered-hand'?(target.selection==='fixed'?'固定牌型 · 无需选择':'选已发现牌型'):target.kind==='suit'?'选 1 种花色':target.kind==='hand-exchange'?'选 2 种不同牌型':target.kind==='whole-deck'?'整副有效牌组': '无需选牌';
@@ -226,12 +227,12 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
       case 'whole-deck': {const count=state.deckInstances.filter(card=>!state.destroyedIds.includes(card.id)&&(card.enhancement!==undefined||(card.edition??'none')!=='none')).length;const note=document.createElement('p');note.textContent=`整副有效牌组中 ${count} 张有特殊属性；同一张牌的增强与版次只计一张。`;panel.append(note);break;}
       case 'none':break;
     }
-    if(['cards','card-sacrifice','card-or-joker'].includes(tool.target.kind)){const scope=document.createElement('p');scope.className='tool-scope-note';scope.textContent=state.phase==='shop'?'仅展示有效持久牌组，不展示抽牌顺序。整理只改显示；实际目标顺序见变化预览。':'只展示当前已知手牌。整理不改手牌或已选目标，不提供隐藏牌目标。';panel.prepend(scope);}
+    if(['cards','card-sacrifice','card-or-joker'].includes(tool.target.kind)){const scope=document.createElement('p');scope.className='tool-scope-note';scope.textContent=state.phase==='shop'?'从现有牌组选择；这里不代表抽牌顺序。整理只改变显示，使用顺序见变化预览。':'从当前手牌选择；整理只改变显示，不改已选目标。';panel.prepend(scope);}
     const selectionHint=document.createElement('p');selectionHint.className='tool-selection-hint';selectionHint.setAttribute('role','status');d.querySelector('.dialog-header')!.append(selectionHint);
     const operation=tool.operation;
     if(operation.kind==='random-enhancement'||operation.kind==='random-edition'){
       const probability=document.createElement('p'),total=operation.choices.reduce((sum,choice)=>sum+choice.weight,0);probability.className='tool-public-probability';
-      probability.textContent='公开概率：'+operation.choices.map(choice=>`${operation.kind==='random-enhancement'?R2_ENHANCEMENTS.find(enhancement=>enhancement.id===choice.id)!.name:editionLabel(choice.id as 'foil'|'holographic'|'polychrome')} ${choice.weight}/${total}`).join('、')+'。使用后揭晓结果。';panel.append(probability);
+      probability.textContent='概率：'+operation.choices.map(choice=>`${operation.kind==='random-enhancement'?R2_ENHANCEMENTS.find(enhancement=>enhancement.id===choice.id)!.name:editionLabel(choice.id as 'foil'|'holographic'|'polychrome')} ${choice.weight}/${total}`).join('、')+'。使用后揭晓结果。';panel.append(probability);
     }
     const risks=document.createElement('details'),riskTitle=document.createElement('summary'),riskText=document.createElement('p');risks.className='tool-full-risk';riskTitle.textContent='风险与完整说明';riskText.textContent=info.risk;risks.append(riskTitle,riskText);
     risks.append(destroy);const route=d.querySelector('.route-fit-caption');if(route)risks.append(route);
@@ -278,7 +279,7 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
         const detail=label.querySelector('small');if(detail)detail.textContent=choice.detail+(reason?' · '+reason:'');
       }
       directoryUpdates.forEach(update=>update());selects.forEach(select=>{select.disabled=busy;});useAction.disabled=busy||!!issue;destroyAction.disabled=busy||!ready;confirm.disabled=useAction.disabled;destroy.disabled=destroyAction.disabled;
-      hint.textContent=busy?'正在提交并保存…':issue??'目标有效。确认后使用物品并支付上述代价。';hint.dataset.valid=String(!issue);
+      hint.textContent=busy?'正在使用…':issue??'目标有效。确认后使用物品并支付上述代价。';hint.dataset.valid=String(!issue);
       // Fixed summary rows retain visible selected identities, including targets outside filters.
       const donor=(tool.target.kind==='joker-sacrifice'?jokerChoices:cardChoices).find(choice=>choice.id===selection.sacrificeId);
       selectionHint.textContent=['cards','card-sacrifice','card-or-joker','joker-sacrifice'].includes(tool.target.kind)
@@ -287,8 +288,8 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
         :operation.kind==='set-deck-suit'?s04QualificationText(state,selection.suit)??'':'';selectionHint.hidden=!selectionHint.textContent;
       const lines:string[]=[];
       if(selection.sacrificeId){const donor=(tool.target.kind==='joker-sacrifice'?jokerChoices:cardChoices).find(choice=>choice.id===selection.sacrificeId);if(donor)lines.push(`永久牺牲：${donor.name} · ${donor.detail.replace('\n',' · ')}。不作为出售，不退款。`);}
-      changes.replaceChildren();if(tool.target.kind==='card-sacrifice'&&selection.sacrificeId){const donor=known.find(c=>c.id===selection.sacrificeId);if(donor)renderCardChange(changes,{before:donor,label:'永久献出',note:'牌组 −1 · 不退款'},0);}selected.forEach((choice,index)=>{if(choice.card){const change=toolCardChange(tool,choice.card);if(change)renderCardChange(changes,tool.id==='T12'?{...change,note:''}:change,index);else if(tool.operation.kind==='random-enhancement'){const row=document.createElement('figure'),title=document.createElement('figcaption'),face=document.createElement('span'),unknown=document.createElement('strong');row.className='tool-change-card';row.dataset.sourceId=choice.card.id;title.textContent=`受益 ${index+1} · 点数／花色／版次保留`;renderToolCard(face,choice.card);unknown.textContent='→ 随机增强（保存后揭晓）';unknown.className='tool-change-unknown';row.append(title,face,unknown);changes.append(row);}}});
-      if(selected.length)lines.push((tool.target.kind==='card-sacrifice'?'公开受益顺序：':'目标顺序：')+selected.map((choice,index)=>`${index+1}. ${choice.name} · ${choice.detail.replace('\n',' · ')}`).join(' → '));
+      changes.replaceChildren();if(tool.target.kind==='card-sacrifice'&&selection.sacrificeId){const donor=known.find(c=>c.id===selection.sacrificeId);if(donor)renderCardChange(changes,{before:donor,label:'永久献出',note:'牌组 −1 · 不退款'},0);}selected.forEach((choice,index)=>{if(choice.card){const change=toolCardChange(tool,choice.card);if(change)renderCardChange(changes,tool.id==='T12'?{...change,note:''}:change,index);else if(tool.operation.kind==='random-enhancement'){const row=document.createElement('figure'),title=document.createElement('figcaption'),face=document.createElement('span'),unknown=document.createElement('strong');row.className='tool-change-card';row.dataset.sourceId=choice.card.id;title.textContent=`受益 ${index+1} · 点数／花色／版次保留`;renderToolCard(face,choice.card);unknown.textContent='→ 随机增强（使用后揭晓）';unknown.className='tool-change-unknown';row.append(title,face,unknown);changes.append(row);}}});
+      if(selected.length)lines.push((tool.target.kind==='card-sacrifice'?'受益顺序：':'目标顺序：')+selected.map((choice,index)=>`${index+1}. ${choice.name} · ${choice.detail.replace('\n',' · ')}`).join(' → '));
       for(const choice of selected)if(choice.card){
         if(operation.kind==='set-suit')lines.push(`${cardName(choice.card)} → ${rankLabel(choice.card.rank)}${SUIT_SYMBOL[operation.suit]}；${cardSpecialText(choice.card)}`);
         else if(operation.kind==='shift-rank')lines.push(`${cardName(choice.card)} → ${rankLabel(Math.max(operation.minimum,Math.min(operation.maximum,choice.card.rank+operation.delta)) as PlayingCard['rank'])}${SUIT_SYMBOL[choice.card.suit]}；${cardSpecialText(choice.card)}`);

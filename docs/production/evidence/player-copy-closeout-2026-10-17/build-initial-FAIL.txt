@@ -1,0 +1,14 @@
+
+> dachoupai@0.1.0 build
+> tsc --noEmit && vite build
+
+tests/player-copy-closeout.test.ts(13,124): error TS2769: No overload matches this call.
+  Overload 3 of 3, '(options: StartOptions & { rulesVersion?: "r2" | "r1" | undefined; }): AnyRunState', gave the following error.
+    Type 'string' is not assignable to type '"erxiang" | "xiemu" | "azao" | "amo" | "touye" | "laohuan"'.
+tests/player-copy-closeout.test.ts(13,162): error TS2345: Argument of type 'string' is not assignable to parameter of type '"erxiang" | "xiemu" | "azao" | "amo" | "touye" | "laohuan"'.
+tests/player-copy-closeout.test.ts(33,27): error TS2339: Property 'gold' does not exist on type 'never'.
+  The intersection 'R2RunState & RunState' was reduced to 'never' because property 'schemaVersion' has conflicting types in some constituents.
+tests/player-copy-closeout.test.ts(33,37): error TS2339: Property 'jokers' does not exist on type 'never'.
+  The intersection 'R2RunState & RunState' was reduced to 'never' because property 'schemaVersion' has conflicting types in some constituents.
+tests/player-copy-closeout.test.ts(33,87): error TS2339: Property 'shop' does not exist on type 'never'.
+  The intersection 'R2RunState & RunState' was reduced to 'never' because property 'schemaVersion' has conflicting types in some constituents.

@@ -21,7 +21,7 @@ it('audits all 16 growth definitions against real scorer reads, independent of n
  const base=growthSelectionPlan().state;
  expect(r2JokerDefinitionsFor(base).filter(d=>d.hooks.some(h=>h.operations.some(isGrowthWrite))).map(d=>d.id).sort()).toEqual([...ids].sort());
  for(const id of ids){const {s,j,ctx,fullHouse}=fixture(id),before=JSON.stringify(s),copy=selectionExperience(s,j,ctx());
-  expect(copy.readiness,id).toBe('ready');expect(copy.label,id).toMatch(/^本手/);expect(copy.body,id).toContain('本手读取：');expect(copy.body,id).toContain('新增成长：');
+  expect(copy.readiness,id).toBe('ready');expect(copy.label,id).toMatch(/^本手/);expect(copy.body,id).toContain('本手加成：');expect(copy.body,id).toContain('新增成长：');
   const r=applyCommand(s,{runId:s.runId,commandId:s.runId+'/command/'+(s.commandSeq+1),expectedSeq:s.commandSeq,action:{type:'PlayHand',selectedIds:fullHouse}});expect(r.ok,id).toBe(true);if(!r.ok)continue;
   const read=r.state.lastTrace!.events.find(e=>e.sourceInstanceId===j.instanceId&&['read-growth','consume-growth','read-coefficient'].includes(e.operation));expect(read,id).toBeDefined();const op=r2JokerDefinitionFor(s,id).hooks.flatMap(h=>h.operations).find(o=>['read-growth','consume-growth','read-coefficient'].includes(o.kind))!;if('key' in op)expect(read!.value,id).toEqual(j.growth[op.key]);
   const limited=selectionExperience(s,j,ctx(fullHouse,true));expect(limited.readiness,id).toBe('limited');expect(limited.label,id).toBe('计分停用');expect(limited.body,id).toContain('不计入');
@@ -30,7 +30,7 @@ it('audits all 16 growth definitions against real scorer reads, independent of n
 });
 it('Amo full house reads saved +1 multiplier but adds no flush growth; flush adds only after scoring',()=>{
  const {s,j,ctx,fullHouse,flush}=fixture(),copy=selectionExperience(s,j,ctx());
- expect(readCheckpoint(makeCheckpoint(s,[])).ok).toBe(true);expect(ctx().facts!.type).toBe('full-house');expect(copy.label).toBe('本手倍+1');expect(copy.growth!.status).toBe('unmet');expect(copy.body).toContain('任意牌型');expect(copy.body).toContain('不满足新增成长条件');
+ expect(readCheckpoint(makeCheckpoint(s,[])).ok).toBe(true);expect(ctx().facts!.type).toBe('full-house');expect(copy.label).toBe('本手倍+1');expect(copy.growth!.status).toBe('unmet');expect(copy.body).toContain('任意牌型');expect(copy.body).toContain('这组不增加成长');
  expect(starterSelection(s,j.instanceId,'full-house')).toEqual({ready:false,label:'不新增成长'});
  expect(selectionExperience(s,j,ctx(flush)).growth!.status).toBe('ready');expect(selectionExperience(s,j,ctx(flush)).label).toBe('本手倍+1');
  for(const selectedIds of [fullHouse,flush]){const r=applyCommand(s,{runId:s.runId,commandId:s.runId+'/command/'+(s.commandSeq+1),expectedSeq:s.commandSeq,action:{type:'PlayHand',selectedIds}});expect(r.ok).toBe(true);if(!r.ok)continue;const trace=r.state.lastTrace!;expect(trace.events.find(e=>e.sourceDefinitionId==='c06'&&e.operation==='read-growth')!.value).toEqual({n:'1',d:'1'});expect(r.state.jokers[0].growth.multiplier).toEqual({n:selectedIds===flush?'3':'1',d:selectedIds===flush?'2':'1'});}
@@ -39,7 +39,7 @@ it('caps, repeat memory, used growth quota and broken sale eligibility never tur
  for(const id of ['a05','a06','b03','b10','c06','e11']){const {s,j,ctx}=fixture(id);j.growth={...r2GrowthCaps(r2JokerDefinitionFor(s,id))};j.counters={alternationUsed:true};s.stage!.jokerSold=true;const copy=selectionExperience(s,j,ctx());expect(copy.readiness,id).toBe('ready');expect(copy.label,id).toMatch(/^本手/);expect(copy.growth!.status).not.toBe('ready');}
 });
 it('Dujiaxi keeps its actual two-pair-or-higher read restriction, independent of alternation',()=>{
- const {s,j,ctx,fullHouse}=fixture('a06');for(const selected of [fullHouse.slice(0,1),fullHouse.slice(0,2)]){const copy=selectionExperience(s,j,ctx(selected));expect(copy.readiness).toBe('unmet');expect(copy.label).toBe('本手不读取');expect(copy.body).toContain('不满足读取条件');}
+ const {s,j,ctx,fullHouse}=fixture('a06');for(const selected of [fullHouse.slice(0,1),fullHouse.slice(0,2)]){const copy=selectionExperience(s,j,ctx(selected));expect(copy.readiness).toBe('unmet');expect(copy.label).toBe('本手无加成');expect(copy.body).toContain('不满足读取条件');}
  expect(selectionExperience(s,j,ctx()).label).toBe('本手×2');expect(selectionExperience(s,j,ctx()).growth!.status).toBe('prepare');j.counters={alternationUsed:true};expect(selectionExperience(s,j,ctx()).readiness).toBe('ready');
 });
 it('Huabujing separates discard growth from next actual consuming read, including suppression',()=>{
@@ -61,8 +61,8 @@ it.each([
  const {s,j,ctx,fullHouse}=fixture('a06');j.growth.coefficient={n,d};const before=JSON.stringify(s);
  const selected=selectionExperience(s,j,ctx()),idle=jokerMemory(r2JokerDefinitionFor(s,'a06'),j,{...ctx(),facts:undefined});
  expect(selected.scoring!.labelCandidates).toContain(short);expect(idle.labelCandidates).toContain(short);
- expect(selected.label).toBe('本手×'+exact);expect(selected.body).toContain('本手读取：倍率×'+exact);expect(idle.saved).toContain(exact);
- expect(selectionExperience(s,j,ctx(fullHouse.slice(0,2))).scoring!.labelCandidates).toEqual(['本手不读取','不读取']);
+ expect(selected.label).toBe('本手×'+exact);expect(selected.body).toContain('本手加成：倍率×'+exact);expect(idle.saved).toContain(exact);
+ expect(selectionExperience(s,j,ctx(fullHouse.slice(0,2))).scoring!.labelCandidates).toEqual(['本手无加成','不读取']);
  expect(selectionExperience(s,j,ctx(fullHouse,true)).scoring!.labelCandidates).toEqual(['计分停用','停用 ›']);
  const r=applyCommand(s,{runId:s.runId,commandId:s.runId+'/command/'+(s.commandSeq+1),expectedSeq:s.commandSeq,action:{type:'PlayHand',selectedIds:fullHouse}});
  expect(r.ok).toBe(true);if(r.ok)expect(r.state.lastTrace!.events.find(e=>e.sourceDefinitionId==='a06'&&e.operation==='read-coefficient')!.value).toEqual({n,d});

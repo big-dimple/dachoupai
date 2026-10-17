@@ -41,7 +41,7 @@ export function showBuildJourney(dialog:DetailDialog,state:R2RunState,actions:Jo
   const inspectChoice=()=>{if(!choice||!offer)return;if(choice.replaceId&&actions.compare)actions.compare(choice.id,choice.replaceId);else actions.offers?.(choice.id,offer.kind);};
   const compareRepair=()=>{const c=fallback?.choice;if(!c)return;if(c.source==='held')actions.tool(c.id);else if(c.source==='offer')actions.offers?.(c.id,'tools');else if(c.source==='practice'&&c.quote)actions.practice?.(c.quote,all);else actions.basicTool?.(c.id||undefined);};
   const cards=offer&&choice?[{title:offer.title,url:offer.url,body:choice.loss??'查看后仍由你确认，不会自动购买。',action:{label:choice.replaceId?'查看这张替换':'查看这件购买',run:inspectChoice}}]:fallback?.choice&&fallback.choice.source!=='practice'?[{title:fallback.choice.title,url:fallback.choice.url,body:fallback.choice.body,action:{label:fallback.choice.label,run:compareRepair}}]:[];
-  const d=dialog.open('这轮怎么选 · '+facts.title,[buildDirectionSummary(state),'这是按当前持牌、已存成长、实际货架与成本给出的保守建议，可自行选择其它方案。不是数学最优，也不保证下手成型。',...decision.items.map(i=>cardDefinitionName(r2JokerDefinitionFor(state,i.offer.definitionId))+'：'+i.reason),facts.cash.body,...facts.owned.map(o=>o.title+'\n'+o.body)].join('\n\n'),[
+  const d=dialog.open('这轮怎么选 · '+facts.title,[buildDirectionSummary(state),'根据当前持牌和金币建议；买不买由你决定。',...decision.items.map(i=>cardDefinitionName(r2JokerDefinitionFor(state,i.offer.definitionId))+'：'+i.reason),facts.cash.body,...facts.owned.map(o=>o.title+'\n'+o.body)].join('\n\n'),[
    ...(choice&&offer?[{label:(choice.replaceId?'查看替换':'查看购买')+' · '+offer.price+'金',primary:true,disabled:!actions.ready||!offer.affordable,run:inspectChoice}]:[]),
    {label:'查看全部现货与持牌',run:()=>showBuildJourney(dialog,state,actions,false,true)},
    {label:'更换方向',run:()=>showBuildJourney(dialog,state,actions,true)},
@@ -49,13 +49,13 @@ export function showBuildJourney(dialog:DetailDialog,state:R2RunState,actions:Jo
   ],{heroRun:state,keepsake:buildKeepsake(state),keepsakeCompact:true,summaryBody:(fallback?.headline??decision.headline)+'\n'+(fallback?.reason??decision.reason)+'\n'+buildDirectionCaption(state),cards,collapseRules:true,rulesLabel:'建议依据与完整规则'});mountPractices(d,facts,actions,all);attachFirstChapterGuide(state,actions.onFocus);return;
  }
  const offers=facts.offers.map(o=>({title:o.title,url:o.url,stat:o.decision,body:o.brief,action:{label:o.affordable?'查看并选择这件':'查看差额与条件',run:()=>actions.offers?.(o.id,o.kind)}}));
- const owned=facts.owned.map(o=>({title:o.title,url:o.url,body:o.relation.label+' · '+o.relation.body,details:o.body,action:{label:'查看来源与成长',run:()=>actions.source(o.id)}}));
+ const owned=facts.owned.map(o=>({title:o.title,url:o.url,body:o.relation.body,details:o.body,action:{label:'查看来源与成长',run:()=>actions.source(o.id)}}));
  const tools=facts.tools.map(t=>({...t,action:{label:t.openable?'选择工具与目标':'查看工具规则',run:()=>actions.tool(t.id)}}));
  const cards=state.phase==='shop'?[...offers,...owned,...tools]:[...owned,...tools];
  const summary=state.phase==='shop'?'手头 '+state.gold+' 金 · 买组件或留金入场':facts.progress.length?'已存值与上手变化见成长手记':'用已有牌继续尝试';
  const d=dialog.open('培养路线 · '+facts.title,[buildDirectionSummary(state),facts.guide,facts.cash.body,facts.composition,facts.discovered,...facts.gaps,'完整持有规则：',...facts.owned.map(o=>o.title+'\n'+o.body)].join('\n\n'),[
   ...(state.phase==='shop'?[{label:'回到这轮建议',run:()=>showBuildJourney(dialog,state,actions)}]:[]),{label:'更换方向',run:()=>showBuildJourney(dialog,state,actions,true)},
-  {label:'查看公开牌组',run:actions.deck},
+  {label:'查看牌组',run:actions.deck},
   ...(actions.chapter?[{label:'本章节目',run:actions.chapter}]:[]),
   ...(actions.manage?[{label:'持有牌管理',run:actions.manage}]:[]),
   ...(actions.publicHands?[{label:'当前手牌可成型',run:actions.publicHands}]:[]),

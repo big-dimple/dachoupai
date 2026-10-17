@@ -23,8 +23,8 @@ export class ShopSynergyPreview {
       if(!reduced)this.pulses.push(scene.tweens.add({targets:aura,alpha:{from:.35,to:1},duration:900,yoyo:true,repeat:-1,ease:'Sine.easeInOut'}));
     }
     const lines=result.matches.map(m=>'「'+m.name+'」'+m.shortReason);
-    const reason=lines.length?'已持'+lines[0]+(lines.length>1?'\n还可配合：'+result.matches.slice(1).map(m=>m.name).join('、'):''):result.tradeoff??(result.cashNote?'未核实可共同满足的条件，各自查看规则。':result.reason||'未核实可共同满足的条件，各自查看规则。');
-    const text=scene.add.text(bubble.x+10,bubble.y+7,name+' · '+(result.cashNote??'条件待核对')+'\n'+reason+(touch?'\n再点此商品查看详情':'\n仅条件交集，按各自时点触发'),{fontFamily:UI_FONT,fontSize:'14px',color:'#604416',wordWrap:{width:bubble.width-20,useAdvancedWrap:true},lineSpacing:3}).setName('shop/synergy-reason');
+    const reason=lines.length?'已持'+lines[0]+(lines.length>1?'\n还可配合：'+result.matches.slice(1).map(m=>m.name).join('、'):''):result.tradeoff??(result.cashNote?'暂未确认配合，先看各自条件。':result.reason||'暂未确认配合，先看各自条件。');
+    const text=scene.add.text(bubble.x+10,bubble.y+7,name+' · '+(result.cashNote??'条件待核对')+'\n'+reason+(touch?'\n再点此商品查看详情':'\n各自满足条件才生效'),{fontFamily:UI_FONT,fontSize:'14px',color:'#604416',wordWrap:{width:bubble.width-20,useAdvancedWrap:true},lineSpacing:3}).setName('shop/synergy-reason');
     const height=text.height+14,y=bubble.height?Math.min(bubble.y,bubble.y+bubble.height-height):bubble.y;
     text.setY(y+7);
     const plate=scene.add.graphics().fillStyle(0xfff4d2,.98).fillRoundedRect(bubble.x,y,bubble.width,height,6).lineStyle(1,0xb38733,.9).strokeRoundedRect(bubble.x,y,bubble.width,height,6);
