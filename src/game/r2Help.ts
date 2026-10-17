@@ -175,6 +175,11 @@ export function r2ScoreOperationText(event:ScoreEvent,definition?:R2JokerDefinit
   if(event.operation==='add-coefficient'||event.operation==='reset-coefficient')return coefficientChangeText(event.operation,event.growthBefore,event.growthAfter);
   if(event.operation==='increment-clear-cycle')return '过关计数 '+event.resourceBefore+' → '+event.resourceAfter+' · '+(event.resourceAfter===1?'下次成功过关发赠票':'本次赠票已结算');
   if(event.operation==='multiply-multiplier')return '×'+value+' 倍率';
+  if(event.operation==='read-growth'&&event.value.n==='0'){
+    const source=definition??(event.sourceType==='joker'?getR2Joker(event.sourceDefinitionId):undefined);
+    const targets=new Set(source?.hooks.filter(hook=>hook.phase===event.phase).flatMap(hook=>hook.operations.flatMap(op=>op.kind==='read-growth'?[op.target]:[])));
+    return '+'+value+' '+(targets.size===1?targets.has('heat')?'热度':'倍率':'成长');
+  }
   const heatChanged=event.before.H.n!==event.after.H.n||event.before.H.d!==event.after.H.d;
   return '+'+value+(heatChanged||event.operation==='add-heat'?' 热度':' 倍率');
 }
