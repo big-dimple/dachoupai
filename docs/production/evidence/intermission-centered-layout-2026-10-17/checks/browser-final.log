@@ -1,0 +1,20 @@
+FAIL locator.click: Timeout 25000ms exceeded.
+Call log:
+[2m  - waiting for locator('.run-menu-toggle')[22m
+[2m    - locator resolved to <button type="button" role="menuitem" aria-label="鑿滃崟" aria-expanded="false" aria-haspopup="dialog" class="run-menu-toggle" aria-controls="run-menu-modal">鑿滃崟</button>[22m
+[2m  - attempting click action[22m
+[2m    2 脳 waiting for element to be visible, enabled and stable[22m
+[2m      - element is not visible[22m
+[2m    - retrying click action[22m
+[2m    - waiting 20ms[22m
+[2m    2 脳 waiting for element to be visible, enabled and stable[22m
+[2m      - element is not visible[22m
+[2m    - retrying click action[22m
+[2m      - waiting 100ms[22m
+[2m    44 脳 waiting for element to be visible, enabled and stable[22m
+[2m       - element is not visible[22m
+[2m     - retrying click action[22m
+[2m       - waiting 500ms[22m
+
+    at imp (C:\Users\wanghongping\AppData\Local\Temp\dachoupai-hero-gift-integration-20261017\harness\intermission-centered-layout.mjs:39:114)
+    at async file:///C:/Users/wanghongping/AppData/Local/Temp/dachoupai-hero-gift-integration-20261017/harness/intermission-centered-layout.mjs:57:19

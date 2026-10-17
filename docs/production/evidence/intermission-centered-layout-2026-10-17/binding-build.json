@@ -1,0 +1,143 @@
+{
+  "taskId": "P08",
+  "testedCommit": "638b34c83d3bfba884f2c3fff83d9eaf7708fa66",
+  "baseCommit": "e82c7df8d3e004cb9ad5a86b27389496d397b2ad",
+  "runtimeCommit": "638b34c83d3bfba884f2c3fff83d9eaf7708fa66",
+  "resultProduct": "a9aa9c30",
+  "sourceBranches": {
+    "sixHero": "f135ca11826be4c1b836b8b01453dc91b79085dd",
+    "shop": "610816ad1a87201ae47248817bcaba64fafb36f3"
+  },
+  "sourceBindings": {
+    "610816ad1a87201ae47248817bcaba64fafb36f3": [
+      {
+        "path": "src/game/RunMenu.ts",
+        "sourceBlob": "2c8a599955c5e252fe07a0677d472780eb1f54b3",
+        "integratedBlob": "2c8a599955c5e252fe07a0677d472780eb1f54b3"
+      },
+      {
+        "path": "src/game/ShopArt.ts",
+        "sourceBlob": "bda4e1b8a9ae3d153b52cddea60ae0ff60b058d8",
+        "integratedBlob": "bda4e1b8a9ae3d153b52cddea60ae0ff60b058d8"
+      },
+      {
+        "path": "src/game/ShopJokerPresentation.ts",
+        "sourceBlob": "cd2705a4b85a893028aae741eb25eebcde9ea0f7",
+        "integratedBlob": "cd2705a4b85a893028aae741eb25eebcde9ea0f7"
+      },
+      {
+        "path": "src/game/ShopLayout.ts",
+        "sourceBlob": "87e18bf384d5fb0f7202e3652d47325abfe11575",
+        "integratedBlob": "87e18bf384d5fb0f7202e3652d47325abfe11575"
+      },
+      {
+        "path": "src/game/ShopOfferLayout.ts",
+        "sourceBlob": "3e0d5a078801e8633aa1c265fc273e09707a6231",
+        "integratedBlob": "3e0d5a078801e8633aa1c265fc273e09707a6231"
+      },
+      {
+        "path": "src/game/ShopRefreshConfirmation.ts",
+        "sourceBlob": "1320408e0d058c0127c8a96265c46e386d7b837f",
+        "integratedBlob": "1320408e0d058c0127c8a96265c46e386d7b837f"
+      },
+      {
+        "path": "src/game/ShopScene.ts",
+        "sourceBlob": "db8582f274f38435fab1bc20d52f729c59e9b9c0",
+        "integratedBlob": "db8582f274f38435fab1bc20d52f729c59e9b9c0"
+      },
+      {
+        "path": "src/game/ShopSynergyPreview.ts",
+        "sourceBlob": "0ab6e2fd05863d9ecaf46435292ef2c10055cedf",
+        "integratedBlob": "0ab6e2fd05863d9ecaf46435292ef2c10055cedf"
+      },
+      {
+        "path": "src/game/ShopToolbar.css",
+        "sourceBlob": "3c5a324cbd0623bfd9917cd08a6e654cb66d5f20",
+        "integratedBlob": "3c5a324cbd0623bfd9917cd08a6e654cb66d5f20"
+      },
+      {
+        "path": "src/game/ShopToolbarArt.ts",
+        "sourceBlob": "92eb57cd7a20cad42073190630d8d44ea7c71483",
+        "integratedBlob": "92eb57cd7a20cad42073190630d8d44ea7c71483"
+      },
+      {
+        "path": "src/style.css",
+        "sourceBlob": "c4394b44f04b2170ec5d1c078c2c52cf49de5726",
+        "integratedBlob": "c4394b44f04b2170ec5d1c078c2c52cf49de5726"
+      }
+    ],
+    "706f5cc4a99aeb928662834c2ae4f5ff912f1058": [
+      {
+        "path": "src/game/AssistRestrictionCopy.ts",
+        "sourceBlob": "42475f3d2416e18dfade236914854811f913df69",
+        "integratedBlob": "42475f3d2416e18dfade236914854811f913df69"
+      },
+      {
+        "path": "src/game/HeroAbilityCue.ts",
+        "sourceBlob": "0981d099a751ea53e810885bfe1027be0a76ff19",
+        "integratedBlob": "0981d099a751ea53e810885bfe1027be0a76ff19"
+      },
+      {
+        "path": "src/game/HeroSkillGuide.ts",
+        "sourceBlob": "717adefae1ff5183503f1147c341faf0d064d435",
+        "integratedBlob": "717adefae1ff5183503f1147c341faf0d064d435"
+      }
+    ]
+  },
+  "protectedSameAsBase": [
+    "src/game/GameScene.ts",
+    "src/game/OwnedJokerScoreMotion.ts",
+    "src/game/ScorePhrase.ts",
+    "src/game/HeroPortraitLayout.ts",
+    "src/game/HeroPortraitScoreMotion.ts",
+    "src/game/SavedStageGift.ts",
+    "src/game/StageGiftDelivery.ts",
+    "src/game/StageTableArt.ts",
+    "src/audio",
+    "src/domain",
+    "src/content",
+    "public",
+    "art/sources"
+  ],
+  "checks": {
+    "targeted": {
+      "files": 3,
+      "passed": 36,
+      "scope": "new layout, saved settlement facts, failure audio; before shop"
+    },
+    "finalCross": {
+      "files": 2,
+      "passed": 7,
+      "scope": "result queued exits and actual shop refresh confirmation; integrated 1199e9d6"
+    },
+    "productionBuild": {
+      "typecheck": "PASS",
+      "modules": 351,
+      "status": "PASS",
+      "testedCommit": "638b34c83d3bfba884f2c3fff83d9eaf7708fa66"
+    },
+    "browser": {
+      "nineCaseCommit": "1199e9d626061db0a2992b3b642e91998f689991",
+      "cases": 9,
+      "status": "PASS",
+      "lastBoundary": {
+        "commit": "638b34c83d3bfba884f2c3fff83d9eaf7708fa66",
+        "key": "long-number-pc",
+        "status": "PASS"
+      },
+      "scope": "Nine combined cases reused after only the PC nonempty-notice column changed; one real failed long PC page then fixed/rechecked. No claim of a fresh ten-case matrix."
+    }
+  },
+  "budget": {
+    "files": 397,
+    "bytes": 37131323,
+    "limitBytes": 20000000,
+    "status": "FAIL"
+  },
+  "scope": "No GameScene/source motion/audio/rules/storage/assets changes. Source49/type/build/shop pages and source20/six formal new-run native regressions reused at their original versions, not rerun or combined into a new matrix.",
+  "humanAcceptance": false,
+  "physicalDevice": false,
+  "heard": false,
+  "nineCaseTestedCommit": "1199e9d626061db0a2992b3b642e91998f689991",
+  "lastBoundaryTestedCommit": "638b34c83d3bfba884f2c3fff83d9eaf7708fa66"
+}

@@ -1,0 +1,24 @@
+{
+  "head": "1199e9d626061db0a2992b3b642e91998f689991",
+  "browser": "143.0.3650.80",
+  "scope": "Controlled legal scorer/save fixtures; real import, native mouse/touch scrolling and continuation. PC1366 and c12 phone use actual PlayHand. Not natural play, physical device or human aesthetic/hearing acceptance.",
+  "sourceFiles": {
+    "src/game/IntermissionScene.ts": "02d68a295388f98cdf513ff17b2a5b94a1d9b33003fdb63b28d6d2c114602ce1",
+    "src/game/IntermissionLayout.ts": "809fe20cb3e97b13725db691fa11e372c63a53b836077fda5c5bc1ad596a4e5b",
+    "src/game/IntermissionScroll.ts": "d1488779115cc9c2bf1ca9ee8133cfa1e48f8e151d106f8881d325f3e89631e5"
+  },
+  "cases": [
+    {
+      "key": "pc-1366",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "errors": [],
+      "status": "FAIL",
+      "error": "locator.click: Timeout 25000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.run-menu-toggle')\u001b[22m\n\u001b[2m    - locator resolved to <button type=\"button\" role=\"menuitem\" aria-label=\"菜单\" aria-expanded=\"false\" aria-haspopup=\"dialog\" class=\"run-menu-toggle\" aria-controls=\"run-menu-modal\">菜单</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    44 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is not visible\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n    at imp (C:\\Users\\wanghongping\\AppData\\Local\\Temp\\dachoupai-hero-gift-integration-20261017\\harness\\intermission-centered-layout.mjs:39:114)\n    at async file:///C:/Users/wanghongping/AppData/Local/Temp/dachoupai-hero-gift-integration-20261017/harness/intermission-centered-layout.mjs:57:19"
+    }
+  ],
+  "status": "FAIL",
+  "error": "locator.click: Timeout 25000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.run-menu-toggle')\u001b[22m\n\u001b[2m    - locator resolved to <button type=\"button\" role=\"menuitem\" aria-label=\"菜单\" aria-expanded=\"false\" aria-haspopup=\"dialog\" class=\"run-menu-toggle\" aria-controls=\"run-menu-modal\">菜单</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    44 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is not visible\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n    at imp (C:\\Users\\wanghongping\\AppData\\Local\\Temp\\dachoupai-hero-gift-integration-20261017\\harness\\intermission-centered-layout.mjs:39:114)\n    at async file:///C:/Users/wanghongping/AppData/Local/Temp/dachoupai-hero-gift-integration-20261017/harness/intermission-centered-layout.mjs:57:19"
+}

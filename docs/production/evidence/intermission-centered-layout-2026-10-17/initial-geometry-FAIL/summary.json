@@ -1,0 +1,265 @@
+{
+  "head": "972b9ba3ab2f3f1e405367bedcc308c972cf2ad6",
+  "browser": "143.0.3650.80",
+  "scope": "Controlled legal scorer/save fixtures; real import, native mouse/touch scrolling and continuation. PC1366 and c12 phone use actual PlayHand. Not natural play, physical device or human aesthetic/hearing acceptance.",
+  "sourceFiles": {
+    "src/game/IntermissionScene.ts": "25fdcc92bf2ea4d922a448540ed107a52336f634c5afed2b7a5c9febe8e821e0",
+    "src/game/IntermissionLayout.ts": "809fe20cb3e97b13725db691fa11e372c63a53b836077fda5c5bc1ad596a4e5b",
+    "src/game/IntermissionScroll.ts": "c54c8d2e6014de2f5eacf2cc501dab54f9dee56f58d72f04cb486cd2692e3601"
+  },
+  "cases": [
+    {
+      "key": "pc-1366",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "errors": [],
+      "start": {
+        "viewport": {
+          "top": 60,
+          "bottom": 752,
+          "contentTop": 0,
+          "contentHeight": 378.8,
+          "overflow": 0,
+          "scroll": 0
+        },
+        "group": {
+          "type": 5,
+          "x": 0,
+          "y": 0,
+          "width": 1243,
+          "height": 595.4000061035156
+        },
+        "texts": [
+          {
+            "name": "stage-identity/result",
+            "text": "第 1 章 · 暖场 · 苏轼",
+            "bounds": {
+              "type": 5,
+              "x": 123,
+              "y": 216.60000610351562,
+              "width": 124,
+              "height": 17
+            }
+          },
+          {
+            "name": "result/title",
+            "text": "本场获胜",
+            "bounds": {
+              "type": 5,
+              "x": 123,
+              "y": 244.60000610351562,
+              "width": 136,
+              "height": 39
+            }
+          },
+          {
+            "name": "result/hand",
+            "text": "本场总热度",
+            "bounds": {
+              "type": 5,
+              "x": 355,
+              "y": 320.6000061035156,
+              "width": 70,
+              "height": 17
+            }
+          },
+          {
+            "name": "result/score",
+            "text": "3,931",
+            "bounds": {
+              "type": 5,
+              "x": 355,
+              "y": 340.6000061035156,
+              "width": 136,
+              "height": 66
+            }
+          },
+          {
+            "name": "result/formula",
+            "text": "目标 400 · 已过关",
+            "bounds": {
+              "type": 5,
+              "x": 355,
+              "y": 409.6000061035156,
+              "width": 111,
+              "height": 17
+            }
+          },
+          {
+            "name": "result/gap",
+            "text": "末手 葫芦 · 3,931",
+            "bounds": {
+              "type": 5,
+              "x": 355,
+              "y": 429.6000061035156,
+              "width": 109,
+              "height": 17
+            }
+          },
+          {
+            "name": "result/hero-name",
+            "text": "苏轼",
+            "bounds": {
+              "type": 5,
+              "x": 215,
+              "y": 491.6000061035156,
+              "width": 40,
+              "height": 23
+            }
+          },
+          {
+            "name": "result/source-continuity",
+            "text": "末手来源 · 薪火相传",
+            "bounds": {
+              "type": 5,
+              "x": 419,
+              "y": 458.6000061035156,
+              "width": 154,
+              "height": 22
+            }
+          },
+          {
+            "name": "result/source-effect",
+            "text": "×1.3",
+            "bounds": {
+              "type": 5,
+              "x": 419,
+              "y": 482.6000061035156,
+              "width": 31,
+              "height": 17
+            }
+          },
+          {
+            "name": "result/growth-saved",
+            "text": "手后 1.3 → 1.4",
+            "bounds": {
+              "type": 5,
+              "x": 419,
+              "y": 501.6000061035156,
+              "width": 95,
+              "height": 17
+            }
+          },
+          {
+            "name": "result/reward",
+            "text": "奖励  +8 金",
+            "bounds": {
+              "type": 5,
+              "x": 474.20000000000005,
+              "y": 554.6000061035156,
+              "width": 106,
+              "height": 25
+            }
+          },
+          {
+            "name": "result/next-heading",
+            "text": "准备下一场",
+            "bounds": {
+              "type": 5,
+              "x": 931,
+              "y": 310.6000061035156,
+              "width": 90,
+              "height": 23
+            }
+          },
+          {
+            "name": "result/next-body",
+            "text": "第 1 章 · 正场 · 目标 600\n筹备后，出牌与弃牌次数补满。\n下场余音袅袅次数恢复为1次",
+            "bounds": {
+              "type": 5,
+              "x": 931,
+              "y": 336.6000061035156,
+              "width": 196,
+              "height": 53
+            }
+          },
+          {
+            "name": "",
+            "text": "本场详情",
+            "bounds": {
+              "type": 5,
+              "x": 979,
+              "y": 483.1000061035156,
+              "width": 56,
+              "height": 17
+            }
+          },
+          {
+            "name": "",
+            "text": "前往筹备商店",
+            "bounds": {
+              "type": 5,
+              "x": 1021,
+              "y": 422.6000061035156,
+              "width": 132,
+              "height": 28
+            }
+          },
+          {
+            "name": "",
+            "text": "回看上手",
+            "bounds": {
+              "type": 5,
+              "x": 1139,
+              "y": 483.1000061035156,
+              "width": 56,
+              "height": 17
+            }
+          }
+        ],
+        "controls": [
+          {
+            "name": "result/hero-details",
+            "primary": false,
+            "bounds": {
+              "type": 5,
+              "x": 147,
+              "y": 320.6000061035156,
+              "width": 176,
+              "height": 168
+            }
+          },
+          {
+            "name": "action/result-details",
+            "primary": false,
+            "bounds": {
+              "type": 5,
+              "x": 931,
+              "y": 469.6000061035156,
+              "width": 152,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/continue-stage",
+            "primary": true,
+            "bounds": {
+              "type": 5,
+              "x": 931,
+              "y": 409.6000061035156,
+              "width": 312,
+              "height": 56
+            }
+          },
+          {
+            "name": "action/last-hand",
+            "primary": false,
+            "bounds": {
+              "type": 5,
+              "x": 1091,
+              "y": 469.6000061035156,
+              "width": 152,
+              "height": 44
+            }
+          }
+        ]
+      },
+      "status": "FAIL",
+      "error": "AssertionError [ERR_ASSERTION]: horizontal safe bounds\n    at file:///C:/Users/wanghongping/AppData/Local/Temp/dachoupai-hero-gift-integration-20261017/harness/intermission-centered-layout.mjs:58:49"
+    }
+  ],
+  "status": "FAIL",
+  "error": "AssertionError [ERR_ASSERTION]: horizontal safe bounds\n    at file:///C:/Users/wanghongping/AppData/Local/Temp/dachoupai-hero-gift-integration-20261017/harness/intermission-centered-layout.mjs:58:49"
+}

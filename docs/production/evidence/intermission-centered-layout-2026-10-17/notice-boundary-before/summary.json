@@ -1,0 +1,303 @@
+{
+  "head": "1199e9d626061db0a2992b3b642e91998f689991",
+  "browser": "143.0.3650.80",
+  "scope": "Controlled legal scorer/save fixtures; real import, native mouse/touch scrolling and continuation. PC1366 and c12 phone use actual PlayHand. Not natural play, physical device or human aesthetic/hearing acceptance.",
+  "sourceFiles": {
+    "src/game/IntermissionScene.ts": "02d68a295388f98cdf513ff17b2a5b94a1d9b33003fdb63b28d6d2c114602ce1",
+    "src/game/IntermissionLayout.ts": "809fe20cb3e97b13725db691fa11e372c63a53b836077fda5c5bc1ad596a4e5b",
+    "src/game/IntermissionScroll.ts": "d1488779115cc9c2bf1ca9ee8133cfa1e48f8e151d106f8881d325f3e89631e5"
+  },
+  "cases": [
+    {
+      "key": "long-number-pc",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "errors": [],
+      "start": {
+        "viewport": {
+          "top": 60,
+          "bottom": 752,
+          "contentTop": 0,
+          "contentHeight": 401,
+          "overflow": 0,
+          "scroll": 0
+        },
+        "group": {
+          "x": 123,
+          "y": 205.5,
+          "width": 1120,
+          "height": 401
+        },
+        "paper": {
+          "x": 123,
+          "y": 285.5,
+          "width": 780,
+          "height": 321
+        },
+        "texts": [
+          {
+            "name": "stage-identity/result",
+            "text": "第 8 章 · 压轴 · 花蕊夫人",
+            "bounds": {
+              "type": 5,
+              "x": 123,
+              "y": 205.5,
+              "width": 152,
+              "height": 17
+            }
+          },
+          {
+            "name": "result/title",
+            "text": "八章通关",
+            "bounds": {
+              "type": 5,
+              "x": 123,
+              "y": 233.5,
+              "width": 136,
+              "height": 39
+            }
+          },
+          {
+            "name": "result/hand",
+            "text": "本场总热度",
+            "bounds": {
+              "type": 5,
+              "x": 355,
+              "y": 309.5,
+              "width": 70,
+              "height": 17
+            }
+          },
+          {
+            "name": "result/score",
+            "text": "≈1.95e15",
+            "bounds": {
+              "type": 5,
+              "x": 355,
+              "y": 329.5,
+              "width": 249,
+              "height": 72
+            }
+          },
+          {
+            "name": "result/formula",
+            "text": "目标 320,000 · 已过关",
+            "bounds": {
+              "type": 5,
+              "x": 355,
+              "y": 404.5,
+              "width": 139,
+              "height": 17
+            }
+          },
+          {
+            "name": "result/gap",
+            "text": "末手 顺子 · 1.95e15",
+            "bounds": {
+              "type": 5,
+              "x": 355,
+              "y": 424.5,
+              "width": 125,
+              "height": 17
+            }
+          },
+          {
+            "name": "result/tier",
+            "text": "亿分落定",
+            "bounds": {
+              "type": 5,
+              "x": 823,
+              "y": 309.5,
+              "width": 56,
+              "height": 17
+            }
+          },
+          {
+            "name": "result/hero-name",
+            "text": "花蕊夫人",
+            "bounds": {
+              "type": 5,
+              "x": 195,
+              "y": 480.5,
+              "width": 80,
+              "height": 23
+            }
+          },
+          {
+            "name": "result/hero-skill",
+            "text": "赏赐",
+            "bounds": {
+              "type": 5,
+              "x": 221,
+              "y": 505.5,
+              "width": 28,
+              "height": 18
+            }
+          },
+          {
+            "name": "result/hero-effect",
+            "text": "燃30金 · ×4",
+            "bounds": {
+              "type": 5,
+              "x": 197.5,
+              "y": 525.5,
+              "width": 75,
+              "height": 17
+            }
+          },
+          {
+            "name": "result/source-continuity",
+            "text": "末手来源 · 一舞倾城",
+            "bounds": {
+              "type": 5,
+              "x": 419,
+              "y": 453.5,
+              "width": 154,
+              "height": 22
+            }
+          },
+          {
+            "name": "result/source-effect",
+            "text": "×1000000",
+            "bounds": {
+              "type": 5,
+              "x": 419,
+              "y": 477.5,
+              "width": 68,
+              "height": 17
+            }
+          },
+          {
+            "name": "result/reward",
+            "text": "奖励  +17 金 · 小红包 ×1 · 含关末息2金",
+            "bounds": {
+              "type": 5,
+              "x": 366.5,
+              "y": 565.5,
+              "width": 293,
+              "height": 19
+            }
+          },
+          {
+            "name": "result/next-heading",
+            "text": "八章通关",
+            "bounds": {
+              "type": 5,
+              "x": 931,
+              "y": 299.5,
+              "width": 72,
+              "height": 23
+            }
+          },
+          {
+            "name": "result/next-body",
+            "text": "花蕊夫人 · 已过关场次累计热度 1.95e15\n构筑与金币已保留，可自愿继续无尽对局。\nD1 与挑战已解锁。",
+            "bounds": {
+              "type": 5,
+              "x": 931,
+              "y": 325.5,
+              "width": 266,
+              "height": 53
+            }
+          },
+          {
+            "name": "",
+            "text": "返回选角",
+            "bounds": {
+              "type": 5,
+              "x": 979,
+              "y": 472,
+              "width": 56,
+              "height": 17
+            }
+          },
+          {
+            "name": "",
+            "text": "继续无尽",
+            "bounds": {
+              "type": 5,
+              "x": 1043,
+              "y": 411.5,
+              "width": 88,
+              "height": 28
+            }
+          },
+          {
+            "name": "",
+            "text": "对局回顾",
+            "bounds": {
+              "type": 5,
+              "x": 1139,
+              "y": 472,
+              "width": 56,
+              "height": 17
+            }
+          },
+          {
+            "name": "result/notice",
+            "text": "八章通关已保存，继续无尽由你决定。",
+            "bounds": {
+              "type": 5,
+              "x": 123,
+              "y": 506.5,
+              "width": 238,
+              "height": 17
+            }
+          }
+        ],
+        "controls": [
+          {
+            "name": "result/hero-details",
+            "primary": false,
+            "bounds": {
+              "type": 5,
+              "x": 147,
+              "y": 309.5,
+              "width": 176,
+              "height": 168
+            }
+          },
+          {
+            "name": "action/return-select",
+            "primary": false,
+            "bounds": {
+              "type": 5,
+              "x": 931,
+              "y": 458.5,
+              "width": 152,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/continue-endless",
+            "primary": true,
+            "bounds": {
+              "type": 5,
+              "x": 931,
+              "y": 398.5,
+              "width": 312,
+              "height": 56
+            }
+          },
+          {
+            "name": "action/last-hand",
+            "primary": false,
+            "bounds": {
+              "type": 5,
+              "x": 1091,
+              "y": 458.5,
+              "width": 152,
+              "height": 44
+            }
+          }
+        ]
+      },
+      "status": "FAIL",
+      "error": "AssertionError [ERR_ASSERTION]: wide final notice remains with its next-step column\n    at file:///C:/Users/wanghongping/AppData/Local/Temp/dachoupai-hero-gift-integration-20261017/harness/intermission-centered-layout.mjs:62:97"
+    }
+  ],
+  "status": "FAIL",
+  "error": "AssertionError [ERR_ASSERTION]: wide final notice remains with its next-step column\n    at file:///C:/Users/wanghongping/AppData/Local/Temp/dachoupai-hero-gift-integration-20261017/harness/intermission-centered-layout.mjs:62:97"
+}
