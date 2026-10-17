@@ -498,7 +498,8 @@ export class GameScene extends Phaser.Scene {
       this.progressBar=v.rect({x:h.x+12,y:progressY,width:1,height:5},T.jade).setOrigin(0,.5).setPosition(h.x+12,progressY+2.5).setStrokeStyle();
     }
     if(portrait){this.mobileHeroName=v.text(h.x+64,h.y+6,c.name,14,C.ink).setName('hero/display-name');this.roleText.setVisible(true).setPosition(h.x+64+this.mobileHeroName.width+8,h.y+6).setFontSize(13).setWordWrapWidth(0);this.goldText.setFontSize(12).setOrigin(0,0).setPosition(h.x+64,h.y+28);this.heatText.setPosition(h.x+128,h.y+28).setFontSize(14).setWordWrapWidth(0);skillEntry.setPosition(this.roleText.x,this.roleText.y).setSize(h.x+h.width-56-this.roleText.x,20);}
-    if(this.assistProfile||usesErxiangHandoff(this.run)||usesAzaoCharge(this.run)||usesXiemuBurn(this.run)||usesLaohuanRefill(this.run)||usesTouyeWager(this.run)){
+    if(short){this.roleText.setVisible(false);skillEntry.setVisible(false);}
+    if(!short&&(this.assistProfile||usesErxiangHandoff(this.run)||usesAzaoCharge(this.run)||usesXiemuBurn(this.run)||usesLaohuanRefill(this.run)||usesTouyeWager(this.run))){
       const hit=v.add(this.add.rectangle(this.roleText.x+(portrait?h.x+h.width-56-this.roleText.x:108)/2,this.roleText.y+9,portrait?h.x+h.width-56-this.roleText.x:108,portrait?44:30,0,0));v.target(hit,usesErxiangHandoff(this.run)?'hero/erxiang-handoff-label':usesTouyeWager(this.run)?'hero/touye-wager-label':usesLaohuanRefill(this.run)?'hero/laohuan-trick-label':usesXiemuBurn(this.run)?'hero/xiemu-burn-label':this.assistProfile?'hero/amo-assist-label':'hero/azao-charge-label',{tap:()=>this.inspectHeroExplanation(),detail:()=>this.inspectHeroExplanation()});
     }
     this.renderJokerRack();
@@ -534,8 +535,8 @@ export class GameScene extends Phaser.Scene {
     this.suitButton=v.button(l.buttons.suit,brief?'花色':'花色排序','action/sort-suit',()=>void this.sortHand('suit'),this.ready,false,'sort');
     this.aiButton=v.button(l.buttons.ai,this.assistProfile?'AI\n主手':'AI 切','selection/switch-type',()=>this.switchHandType(),false,false,'sort');
     for(const button of [this.rankButton,this.suitButton,this.aiButton])(button.getData('label') as Phaser.GameObjects.Text).setFontSize(14);
-    const heroEntry=heroAbilityCue(this.run),heroActions=heroEntry?heroActionShortcut(l.tableActions.discard,l.actions.x,portrait):undefined,discardBox=heroActions?.discard??l.tableActions.discard;
-    this.heroActionButton=heroActions?v.button(heroActions.shortcut,usesTouyeWager(this.run)?'押注\n换牌':usesLaohuanRefill(this.run)?'戏法':usesErxiangHandoff(this.run)?'交棒':usesAzaoCharge(this.run)?'释放':usesXiemuBurn(this.run)?'燃金':'助攻','hero/action-shortcut',()=>this.inspectHeroAction(),false):undefined;
+    const heroEntry=heroAbilityCue(this.run),heroActions=heroEntry?heroActionShortcut(l.tableActions.discard,l.heroAction):undefined,discardBox=heroActions?.discard??l.tableActions.discard;
+    this.heroActionButton=heroActions?v.button(heroActions.shortcut,this.heroActionLabel(),'hero/action-shortcut',()=>this.inspectHeroAction(),false):undefined;
     if(this.heroActionButton)(this.heroActionButton.getData('label') as Phaser.GameObjects.Text).setFontSize(14);
     this.discardButton=v.button(discardBox,'弃牌','action/discard',()=>void this.discardSelected(),this.ready&&this.selectedIds.size>0&&this.run.stage!.discardsLeft>=r2DiscardCost(this.run),false,'discard');
     this.playButton=v.button(l.tableActions.play,'出牌','action/play',()=>void this.playSelected(),this.ready&&this.selectedIds.size>0&&this.handsLeft>0,true,'play');
@@ -1024,6 +1025,10 @@ export class GameScene extends Phaser.Scene {
     if(score.height<78)return;
     const footer=this.add.text(score.x+10,score.y+score.height-20,this.candidateEntry(),{fontFamily:UI_FONT,fontSize:'14px',color:C.jade,resolution:Math.max(1,1/this.scale.zoom)}).setName('selection/rules-entry');this.previewCards!.add(footer);
   }
+  private heroActionLabel(chosen=false):string {
+    const action=this.pendingRefill?'留牌':chosen?'已选':usesTouyeWager(this.run)?'押注':usesLaohuanRefill(this.run)?'戏法':usesErxiangHandoff(this.run)?'交棒':usesAzaoCharge(this.run)?'释放':usesXiemuBurn(this.run)?'燃金':'助攻';
+    return '技能'+(this.view.layout.mode==='landscape'?'\n':' · ')+action;
+  }
   private selectionQuickInScore(score:Box):boolean {return this.assistProfile||this.view.layout.mode!=='desktop'||score.width>=300;}
   private renderSelectionQuickButtons(score:Box):void {
     const area=this.selectionQuickInScore(score)?selectionCandidateEntryBox(score):{x:this.view.layout.playedArea.x+8,y:score.y+2,width:92,height:44},first=this.view.root.length;
@@ -1115,7 +1120,7 @@ export class GameScene extends Phaser.Scene {
     const heroOpportunity=!!heroCue?.opportunity&&this.ready&&!this.presentation&&!this.playing;
     const heroAvailable=!!heroCue?.available&&heroOpportunity&&!heroChosen;
     this.roleFrame.setData('abilityOpportunity',heroOpportunity&&!heroChosen).setData('abilityAvailable',heroAvailable).setData('abilityChosen',heroChosen&&this.ready).setData('abilityState',heroChosen?'chosen':heroAvailable?'ready':heroOpportunity?'needs-selection':this.pendingRefill||this.pendingTouye?'pending':heroCue?.label.includes('已用')?'used':'unavailable');
-    if(this.heroActionButton){this.heroActionButton.setData('abilityAvailable',heroAvailable).setData('abilityChosen',heroChosen&&this.ready);this.view.setEnabled(this.heroActionButton,this.ready&&(heroOpportunity||!!this.pendingRefill||heroChosen));const label=this.heroActionButton.getData('label') as Phaser.GameObjects.Text;label.setText(this.pendingRefill?'继续':heroChosen?'已选':usesTouyeWager(this.run)?'押注\n换牌':usesLaohuanRefill(this.run)?'戏法':usesErxiangHandoff(this.run)?'交棒':usesAzaoCharge(this.run)?'释放':usesXiemuBurn(this.run)?'燃金':'助攻');}
+    if(this.heroActionButton){this.heroActionButton.setData('abilityAvailable',heroAvailable).setData('abilityChosen',heroChosen&&this.ready);this.view.setEnabled(this.heroActionButton,this.ready&&(heroOpportunity||!!this.pendingRefill||heroChosen));const label=this.heroActionButton.getData('label') as Phaser.GameObjects.Text;label.setText(this.heroActionLabel(heroChosen));}
     this.roleText.setColor(heroAvailable?C.jade:C.mutedInk).setData('abilityAvailable',heroAvailable);
     this.roleFrame.setStrokeStyle(heroOpportunity||heroChosen?2:1,heroAvailable||heroChosen?T.jade:T.brass,heroOpportunity||heroChosen?1:.6);
     this.fitMobileHeroCaption();

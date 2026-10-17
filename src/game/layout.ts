@@ -148,20 +148,19 @@ export function layout(viewport:{width:number;height:number},safe:Insets,request
   const pedestal=scorePedestal(s);
   const fireTop=s.y+(s.height>=108?26:2);
   l.scoreFire=pedestal?box(pedestal.x,fireTop,pedestal.width,pedestal.y+1-fireTop):box(primary.x-3,s.y+28,primary.width+6,s.height-32);
-  // Reuse the existing action row. Capacity/hand/score budgets above stay exact.
-  const sortWidth=88,gap=6,remaining=l.actions.width-sortWidth-2*gap;
-  const discardWidth=Math.min(remaining-44,Math.max(l.tableActions.discard.width+8,Math.min(112,Math.floor(remaining*.4))));
+  // One bottom row: discard — the three 44px sorting hits — play.
+  // Hand seats and their lift reserve above remain unchanged.
+  const sortWidth=132,gap=6,remaining=l.actions.width-sortWidth-2*gap;
+  const discardWidth=Math.max(44,Math.min(remaining-44,Math.floor(remaining*.42)));
   const {x,y,height:actionHeight}=l.actions;
-  const originalActions={discard:box(x+sortWidth+gap,y,discardWidth,actionHeight),play:box(x+sortWidth+2*gap+discardWidth,y,remaining-discardWidth,actionHeight)};
-  // Sorting uses the existing utility row on phones. Wider tables extend its
-  // former bottom group leftward; neither submit nor discard loses any width.
-  const tools=portrait?box(l.hand.x,l.hand.y-48,132,44):box(x-44,y,132,actionHeight);
+  const tools=box(x+discardWidth+gap,y,sortWidth,actionHeight);
   const buttons={rank:box(tools.x,tools.y,44,tools.height),suit:box(tools.x+44,tools.y,44,tools.height),ai:box(tools.x+88,tools.y,44,tools.height)};
-  const actionStart=portrait&&!l.handOverflow?x+(sortWidth+gap)/2:x+sortWidth+gap;
-  const tableActions=portrait&&!l.handOverflow?{discard:box(actionStart,y,discardWidth,actionHeight),play:box(actionStart+discardWidth+gap,y,remaining-discardWidth,actionHeight)}:originalActions;
-  const status=l.mode==='landscape'?{...l.status,width:Math.min(l.status.width,tools.x-l.status.x-6)}:l.status;
-  if(desktop&&width>=1180&&height>=600){const rail=box(l.hand.x+l.hand.width+12,l.hand.y,132,168);return {...l,buttons:{rank:box(rail.x,rail.y,132,48),suit:box(rail.x,rail.y+56,132,48),ai:box(rail.x,rail.y+112,132,48)},tools:rail,toolsInHud:false,tableActions:{discard:box(x,y,Math.max(112,discardWidth),actionHeight),play:box(x+Math.max(112,discardWidth)+gap,y,l.actions.width-Math.max(112,discardWidth)-gap,actionHeight)},status};}
-  return {...l,buttons,tools,toolsInHud:false,tableActions,status};
+  const tableActions={discard:box(x,y,discardWidth,actionHeight),play:box(tools.x+sortWidth+gap,y,remaining-discardWidth,actionHeight)};
+  // Skills own a separate hit, never a slice of the discard button. Portraits
+  // reuse the former sorting area; short tables use the sidebar skill label.
+  const heroAction=l.mode==='landscape'?box(l.hud.x+76,l.hud.y+64,l.hud.width-88,44):box(l.hand.x,l.hand.y-48,132,44);
+  const playedArea=desktop?{...l.playedArea,height:Math.max(0,Math.min(l.playedArea.height,heroAction.y-4-l.playedArea.y))}:l.playedArea;
+  return {...l,buttons,tools,toolsInHud:false,tableActions,heroAction,playedArea};
 }
 export type TableLayout=ReturnType<typeof layout>;
 
