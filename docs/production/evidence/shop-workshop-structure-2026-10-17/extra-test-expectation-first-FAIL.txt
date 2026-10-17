@@ -1,0 +1,22 @@
+
+ RUN  v4.1.11 C:/Users/wanghongping/AppData/Local/Temp/dachoupai-common-art-zoom-20261017
+
+ 鉂?tests/joker-extra-bonus.test.ts (2 tests | 1 failed) 12ms
+   脳 uses exact scoring catalogue additions and multiplication, with no invented normal bonus 7ms
+
+鈳幆鈳幆鈳幆鈳?Failed Tests 1 鈳幆鈳幆鈳幆鈳?
+ FAIL  tests/joker-extra-bonus.test.ts > uses exact scoring catalogue additions and multiplication, with no invented normal bonus
+AssertionError: expected '鐑害+25' to be '鐑害+50' // Object.is equality
+
+Expected: "鐑害+50"
+Received: "鐑害+25"
+
+ 鉂?tests/joker-extra-bonus.test.ts:7:82
+
+
+鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆[1/1]鈳?
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  1 failed | 37 passed (38)
+   Start at  19:59:11
+   Duration  2.02s (transform 2.09s, setup 0ms, import 2.48s, tests 144ms, environment 0ms)

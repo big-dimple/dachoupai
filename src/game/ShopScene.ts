@@ -64,7 +64,7 @@ import {reorderJokerIds,ownedJokerDropIndex} from './JokerReorder';
 import {OwnedJokerInput} from './OwnedJokerInput';
 import {OwnedJokerDragVisual,ownedOrderHint,ownedOrderReversed} from './OwnedJokerDragVisual';
 import {heatText,fractionText} from './scoreText';
-import {toolInfo,itemInfo,goodsArtPortrait,editionEffectText,toolFamilyLabel} from './r2ToolInfo';
+import {toolInfo,itemInfo,goodsArtPortrait,editionEffectText,jokerExtraBonusCopy,toolFamilyLabel} from './r2ToolInfo';
 import {SceneView} from './SceneView';
 import {getCharacter} from './characters';
 import {selectionPortraitKey,avatarKey} from './portraits';
@@ -270,7 +270,7 @@ export class ShopScene extends Phaser.Scene {
     this.drawShelfTabs(p.portrait?p.tabs:inventoryRow.shelves);
     this.drawInventoryBag(portraitHeader?.inventory??inventoryRow.inventory);
     if(p.portrait&&this.run.jokers.length===0)this.drawEmptyShop(p);
-    const offers=this.visibleOffers(),phoneSummaryHeight=p.portrait?this.measureShopTextBox('同点\n顺子').height:0;
+    const offers=this.visibleOffers(),stockExtra=this.shelfKind==='jokers'&&offers.some(o=>(o.edition??'none')!=='none'),extraRows=offers.some(o=>(o.edition??'none')!=='none'&&this.run.chapterDisabledJokerId===o.definitionId)?2:1,phoneSummaryHeight=p.portrait?this.measureShopTextBox('同点\n顺子').height:0;
     offers.forEach((o,i)=>{
       if(this.shelfKind!=='jokers'){this.drawGoodsOffer(o,p.shelf[i],p.short,p.portrait);return;}
       const selected=this.selectedOfferId===o.offerId,b=p.shelf[i],d=this.jokerDefinition(o.definitionId),ability=this.jokerCopy(o.definitionId),first=v.root.length;
@@ -288,12 +288,14 @@ export class ShopScene extends Phaser.Scene {
       const identity=v.text(copyX,copyY+24,p.portrait?shopShelfIdentityText(d.rarity,o.edition):shopIdentityText(d.rarity,o.edition),14,'#596B69',copyWidth).setName('shop/offer-identity').setData('offerId',o.offerId);
       purpose.setY(copyY+43).setWordWrapWidth(0).setText(shopOfferSummary(purposeCopy,copyWidth,s=>this.measureShopText(s)));
       if(p.portrait){identity.setY(name.y+name.height+4);purpose.setY(identity.y+identity.height+4);}
-      const price=r2PurchasePrice(this.run,o),priceY=p.portrait?Math.max(copy.priceY,purpose.y+Math.max(purpose.height,phoneSummaryHeight)+6):copy.priceY;
+      const extraY=purpose.y+Math.max(purpose.height,phoneSummaryHeight)+4;
+      this.drawOfferExtra(o,{x:copyX,y:extraY,width:copyWidth,height:20});
+      const price=r2PurchasePrice(this.run,o),priceY=stockExtra?Math.max(copy.priceY,extraY+this.measureShopTextBox('倍率×1.5').height*extraRows+6):p.portrait?Math.max(copy.priceY,purpose.y+Math.max(purpose.height,phoneSummaryHeight)+6):copy.priceY;
       const priceInk=this.offerPricePlate(o,{x:copyX-2,y:priceY-2,width:copyWidth+2,height:24});
       const priceText=v.text(copyX,priceY,o.consumed?'已收入':p.portrait?price+'金 · '+(price>this.run.gold?'差'+(price-this.run.gold):selected?'详情':'选择'):price+' 金 · '+(this.run.jokers.length>=r2JokerCapacity(this.run)?'比较替换':'查看'),16,priceInk).setFontStyle('bold').setName('shop/offer-price').setData('offerId',o.offerId);
-      if(!p.portrait&&!headerTabs)this.drawOfferGuidance(o,{x:copyX,y:copy.priceY-(p.copyBeside?36:54),width:copyWidth,height:p.copyBeside?34:52});
+      if(!p.portrait&&!headerTabs&&!stockExtra)this.drawOfferGuidance(o,{x:copyX,y:copy.priceY-(p.copyBeside?36:54),width:copyWidth,height:p.copyBeside?34:52});
       this.markBuildOffer(o,'jokers',b);
-      const tile=p.portrait?{...copy.tile,height:Math.max(copy.tile.height,priceY+priceText.height+4-copy.tile.y)}:copy.tile,hover=this.hoverCard(first,tile,o.definitionId,o.offerId),r=v.rect(tile).setFillStyle(0,0).setStrokeStyle().setData('selected',selected);
+      const tile=p.portrait||stockExtra?{...copy.tile,height:Math.max(copy.tile.height,priceY+priceText.height+4-copy.tile.y)}:copy.tile,hover=this.hoverCard(first,tile,o.definitionId,o.offerId),r=v.rect(tile).setFillStyle(0,0).setStrokeStyle().setData('selected',selected);
       this.offerArts.push(hover.art);v.target(r,`offer/${o.offerId}`,{tap:()=>this.selectOffer(o.offerId),detail:()=>this.inspectOffer(o.offerId),...hover});
 
     });
@@ -394,7 +396,7 @@ export class ShopScene extends Phaser.Scene {
     this.dialog.open('首章提示选项','提示是可选帮助；关闭提示不修改牌组、金币或进度。',(['step','run','forever'] as const).map((scope,i)=>({label:['略过此提示','本局关闭提示','不再显示提示'][i],run:()=>{dismissFirstChapterGuide(this.run,scope);this.dialog.close();this.render();}})),{closeLabel:'回到筹备'});
   }
   private drawDecisionIdle(p:ReturnType<typeof shopLayout>):void {
-    const b=shopDecisionBox(p);if(!b||this.shelfKind!=='jokers'||this.run.jokers.length===0)return;
+    const b=shopDecisionBox(p);if(!b||this.shelfKind!=='jokers'||this.run.jokers.length===0||this.visibleOffers().some(o=>(o.edition??'none')!=='none'))return;
     this.view.text(b.x+4,b.y+8,'点商品看配合，再点看详情；确认后扣款。',14,'#3f606b',b.width-8).setName('shop/decision-idle');
   }
   private drawFirstGuide(p:ReturnType<typeof shopLayout>):void {
@@ -425,7 +427,7 @@ export class ShopScene extends Phaser.Scene {
   }
   private drawPCOffer(o:R2Offer,kind:ShelfKind,tile:Box):void {
     const v=this.view,first=v.root.length,d=kind==='jokers'?this.jokerDefinition(o.definitionId):undefined,info=kind==='tools'?toolInfo(o.definitionId,this.run):kind==='items'?itemInfo(o.definitionId):undefined;
-    const g=shopOfferGeometry(tile,kind);if(!g){this.shopButton(tile,'查看 '+(d?.name??info!.name),'offer/'+o.offerId,()=>this.inspectOffer(o.offerId));return;}
+    const g=shopOfferGeometry(tile,kind,kind==='jokers'&&(o.edition??'none')!=='none',this.run.chapterDisabledJokerId===o.definitionId?2:1);if(!g){this.shopButton(tile,'查看 '+(d?.name??info!.name),'offer/'+o.offerId,()=>this.inspectOffer(o.offerId));return;}
     shopSheet(this,v,'offer',tile,this.selectedOfferId===o.offerId?PAPER_THEME.jadeSoft:PAPER_THEME.paperLight);
     let summary=d?this.shopJokerSummary(d.id):info!.summary;
     if(d){const decision=shopOfferGuidance(this.run,o).decision;summary=shopOfferSynopsis(decision.now,decision.later);}
@@ -434,6 +436,7 @@ export class ShopScene extends Phaser.Scene {
     const name=v.text(g.title.x,g.title.y,d?.name??info!.name,15,'#26313A').setFontStyle('bold').setName('shop/offer-name').setData('offerId',o.offerId);this.ellipsis(name,g.title.width);
     if(d&&g.identity)v.text(g.identity.x,g.identity.y,shopIdentityText(d.rarity,o.edition),14,'#596B69',g.identity.width).setName('shop/offer-identity').setData('offerId',o.offerId);
     const purpose=v.text(g.summary.x,g.summary.y,summary,14,'#3F606B',g.summary.width).setName('shop/offer-purpose').setData('offerId',o.offerId);purpose.setWordWrapWidth(0).setText(d?shopOfferSummary(summary,g.summary.width,s=>this.measureShopText(s)):shopSummaryWrap(summary,g.summary.width,s=>this.measureShopText(s),2)).setData('fullText',summary);
+    if(g.extra)this.drawOfferExtra(o,g.extra);
     const priceInk=this.offerPricePlate(o,g.price);
     v.text(g.price.x,g.price.y,o.consumed?'已购':g.price.width<126?`${r2PurchasePrice(this.run,o)} 金`:`${r2PurchasePrice(this.run,o)} 金 · ${d&&this.run.jokers.length>=r2JokerCapacity(this.run)?'比较替换':'查看'}`,16,priceInk).setFontStyle('bold').setName('shop/offer-price').setData('offerId',o.offerId);
     const reason=o.consumed?'':this.purchaseReason(o,true);if(reason){const note=v.text(g.reason.x,g.reason.y,reason,14,'#B8473A').setName('shop/offer-reason').setData('offerId',o.offerId);this.ellipsis(note,g.reason.width);}
@@ -520,6 +523,13 @@ export class ShopScene extends Phaser.Scene {
     text.setText(lines.join('\n')).setData('fullText',full);
   }
   private openWorkshop(goal?:WorkshopTab):void {this.makeCardsView.workshopTab=goal;this.makeCardsView.intent=undefined;this.inspectMakeCards();}
+  private drawOfferExtra(offer:R2Offer,b:Box):void {
+    if((offer.edition??'none')==='none')return;
+    const bonus=jokerExtraBonusCopy(offer.edition,{definitionId:offer.definitionId,chapterDisabled:this.run.chapterDisabledJokerId===offer.definitionId});
+    // The identity row already carries the label; narrow columns keep the remainder of the canonical shelf copy.
+    const prefix=bonus.label+' · ',copy=b.width>=180?bonus.shelf:bonus.shelf.startsWith(prefix)?bonus.shelf.slice(prefix.length):bonus.shelf;
+    this.view.text(b.x,b.y,copy,14,copy.includes('×')?'#783D7F':'#8A5B2D',b.width).setFontStyle('bold').setName('shop/offer-extra').setData('offerId',offer.offerId).setData('edition',offer.edition);
+  }
   private drawWorkshopActions(b:Box):void {
     for(const [i,goal] of WORKSHOP_GOALS.entries())this.shopButton({x:b.x,y:b.y+i*48,width:b.width,height:44},goal.title+'  ›','action/workshop-'+goal.id,()=>this.openWorkshop(goal.id),!this.busy);
     this.view.text(b.x+4,b.y+148,this.run.shop?.basicChoice?.purchase?'本店已用 · 下一店恢复':'每店共用1次 · 查看费用',14,'#596B69',b.width-8).setName('shop/workshop-quota');
@@ -538,11 +548,11 @@ export class ShopScene extends Phaser.Scene {
     (button.getData('label') as Phaser.GameObjects.Text).setFontSize(b.width<80?14:16).setColor('#36594f');
   }
   private drawEmptyShop(p:ReturnType<typeof shopLayout>):void {
-    const b=shopEmptyPortrait(p);if(!b)return;const key=selectionPortraitKey(this.run.characterId),textWidth=Math.max(136,b.width*.48);
+    const b=shopEmptyPortrait(p,this.shelfKind==='jokers'&&this.visibleOffers().some(o=>(o.edition??'none')!=='none'));if(!b)return;const key=selectionPortraitKey(this.run.characterId),textWidth=Math.max(136,b.width*.48),buttonOffset=Math.min(58,b.height-44);
     if(this.textures.exists(key)){const image=this.add.image(b.x+textWidth+(b.width-textWidth)/2,b.y+b.height/2,key);image.setScale(Math.min((b.width-textWidth)/image.width,b.height/image.height)).setName('shop/hero-portrait');this.view.add(image);}
-    this.view.text(b.x+4,b.y,'自选做牌',16,'#26313A').setFontStyle('bold').setName('shop/empty-workshop-heading');
-    this.view.text(b.x+4,b.y+24,'升级牌型 · 点数 · 花色',14,'#596B69',textWidth-8);
-    this.shopButton({x:b.x,y:b.y+Math.min(58,b.height-44),width:textWidth-8,height:44},'查看目标与费用 ›','action/basic-choice',()=>this.openWorkshop(),!this.busy);
+    if(buttonOffset>=24)this.view.text(b.x+4,b.y,'自选做牌',16,'#26313A').setFontStyle('bold').setName('shop/empty-workshop-heading');
+    if(buttonOffset>=46)this.view.text(b.x+4,b.y+24,'升级牌型 · 点数 · 花色',14,'#596B69',textWidth-8);
+    this.shopButton({x:b.x,y:b.y+buttonOffset,width:textWidth-8,height:44},'查看目标与费用 ›','action/basic-choice',()=>this.openWorkshop(),!this.busy);
   }
   private inspectMakeCards():void {
     if(this.busy||this.run.phase!=='shop')return;
@@ -752,7 +762,7 @@ export class ShopScene extends Phaser.Scene {
     return label;
   }
   private jokerEditionSummary(edition:R2Offer['edition'],definitionId:string):string {
-    return '版次：'+editionEffectText(edition).split('。')[0]+(this.run.chapterDisabledJokerId===definitionId?' · 本章封角暂停':(edition??'none')!=='none'?' · 独立于本体条件':'');
+    return jokerExtraBonusCopy(edition,{definitionId,chapterDisabled:this.run.chapterDisabledJokerId===definitionId}).detail;
   }
   private jokerPortrait(definitionId:string):{url:string;thumbnailUrl?:string;alt:string;layout:'card'}|undefined {
     const key=jokerArtKey(definitionId),url=jokerArtUrl(definitionId);
