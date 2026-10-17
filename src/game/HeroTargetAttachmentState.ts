@@ -1,9 +1,13 @@
 import type {EffectContext} from '../core/EffectQueue';
 
 export type AttachmentMotion='full'|'reduced'|'off';
-export interface AttachmentDraft {key:string;targetId:string}
+export interface AttachmentDraft {
+  key:string;targetId:string;targetIds?:readonly string[];
+  kind?:'card'|'assist'|'group'|'condition'|'candidate'|'wager';
+  label?:string;resolvedLabel?:string;releaseReason?:string;
+}
 export interface AttachmentState extends AttachmentDraft {
-  generation:number;phase:'travel'|'idle'|'committed'|'release';elapsed:number;clock:number;eventId?:string;
+  generation:number;phase:'travel'|'idle'|'committed'|'release';elapsed:number;clock:number;eventId?:string;failed?:boolean;
 }
 export const ATTACHMENT_TRAVEL_MS=190,ATTACHMENT_RELEASE_MS=220;
 
@@ -17,9 +21,9 @@ export class HeroTargetAttachmentState {
 
   preview(draft:AttachmentDraft|undefined):void {
     if(!draft){this.clear();return;}
-    if(this.current?.key===draft.key&&this.current.targetId===draft.targetId)return;
+    if(this.current?.key===draft.key&&this.current.targetId===draft.targetId&&JSON.stringify(this.current.targetIds)===JSON.stringify(draft.targetIds))return;
     this.clear();
-    this.current={...draft,generation:++this.generation,phase:this.motion==='full'?'travel':'idle',elapsed:0,clock:0};
+    this.current={...draft,...(draft.targetIds?{targetIds:[...draft.targetIds]}:{}),generation:++this.generation,phase:this.motion==='full'?'travel':'idle',elapsed:0,clock:0};
   }
 
   /** Saving never waits for travel or an idle hold. Only the selected instance can transfer. */
@@ -28,6 +32,7 @@ export class HeroTargetAttachmentState {
     if(!state||state.targetId!==targetId||context.signal.aborted)return false;
     if(state.eventId)return state.eventId===eventId;
     state.phase='committed';state.elapsed=0;state.eventId=eventId;
+    if(state.kind==='group')state.label=state.releaseReason==='xiemu.multiply-multiplier'?(state.label??'待付').replace('待付','已付')+'·待算':'待兑现';
     const generation=state.generation,cancel=()=>{if(this.current?.generation===generation)this.clear();};
     context.signal.addEventListener('abort',cancel,{once:true});
     this.unbind=()=>context.signal.removeEventListener('abort',cancel);
@@ -36,9 +41,17 @@ export class HeroTargetAttachmentState {
 
   release(event:{eventId:string;targetCardId?:string;reasonKey?:string},context:EffectContext):boolean {
     const state=this.current;
-    if(context.signal.aborted||!state||state.phase!=='committed'||state.eventId!==event.eventId||state.targetId!==event.targetCardId||event.reasonKey!=='erxiang.handoff')return false;
+    const reason=state?.releaseReason??'erxiang.handoff',matches=reason.endsWith('.')?event.reasonKey?.startsWith(reason):event.reasonKey===reason;
+    const single=!state?.kind||state.kind==='card';
+    if(context.signal.aborted||!state||state.phase!=='committed'||state.eventId!==event.eventId||single&&state.targetId!==event.targetCardId||!matches)return false;
     if(this.motion!=='full'){this.clear();return true;}
+    state.failed=event.reasonKey?.startsWith('touye.lost.')===true;if(state.failed)state.resolvedLabel='未成';
     state.phase='release';state.elapsed=0;return true;
+  }
+
+  retainTargets(ids:readonly string[]):void {
+    if(!this.current)return;if(!ids.length){this.clear();return;}
+    this.current.targetId=ids[0];this.current.targetIds=[...ids];
   }
 
   setMotion(motion:AttachmentMotion):void {

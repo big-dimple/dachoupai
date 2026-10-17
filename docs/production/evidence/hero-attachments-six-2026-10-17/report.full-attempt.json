@@ -1,0 +1,5420 @@
+{
+  "head": "e34a9330a94a24ea70c433674b5dfacfa1ccab78",
+  "sourceHashes": {
+    "src/game/GameScene.ts": "3091f7715f57f1c0b5d42f17d1c93d28c059e4879b5546fa8957e80edc89f088",
+    "src/game/HeroTargetAttachment.ts": "ef130ae8acbf389ff0fde3b5dd90fa114db04640bccf358a015b9e189886b191",
+    "src/game/HeroTargetAttachmentState.ts": "be16afbfe2bc2f77822e84f42a135633bc4753612a705fbd0670abe0b74675ab",
+    "src/game/HeroAttachmentFacts.ts": "cfa99471a3f74fb1e903cc7bcfad480e44ceb1ad2f081bc4a7c6be2ae274f08e"
+  },
+  "scope": "Actual GameScene and SavedRun public checkpoint import. Su Shi main/assist choices use native canvas and dialog input. Other heroes use controlled legal Scene drafts, then the real existing save/presentation path; not full native hero-input coverage, natural acquisition, hearing or physical-device acceptance.",
+  "cases": [
+    {
+      "key": "1366-amo",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "errors": [],
+      "checks": [
+        ">=3.3 seconds continuous idle flow without input; actual exterior pixels change; state/journal/storage unchanged; exact instances only; labels avoid controls",
+        "reduced motion keeps semantic static edges; no flowing phase or exterior pixel changes",
+        "hidden removes visuals; return resumes idle without replaying travel",
+        "cancel removes exact pending target; fresh deliberate draft can reattach",
+        "actual command saved once; canonical state equals domain result; release follows actual source impact; completed presentation removes all edges"
+      ],
+      "status": "PASS",
+      "pending": [
+        {
+          "targetId": "spades-13",
+          "kind": "assist",
+          "members": [
+            "spades-13",
+            "hearts-13"
+          ],
+          "phase": "idle",
+          "flow": 0.2810958333333335
+        },
+        {
+          "targetId": "hearts-13",
+          "kind": "assist",
+          "members": [
+            "spades-13",
+            "hearts-13"
+          ],
+          "phase": "idle",
+          "flow": 0.2810958333333335
+        }
+      ],
+      "labels": [],
+      "samples": [
+        {
+          "elapsed": 0.02599999999802094,
+          "edges": [
+            {
+              "targetId": "spades-13",
+              "kind": "assist",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "idle",
+              "flow": 0.2810958333333335
+            },
+            {
+              "targetId": "hearts-13",
+              "kind": "assist",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "idle",
+              "flow": 0.2810958333333335
+            }
+          ]
+        },
+        {
+          "elapsed": 1232.137999999999,
+          "edges": [
+            {
+              "targetId": "spades-13",
+              "kind": "assist",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "idle",
+              "flow": 0.07272083333333355
+            },
+            {
+              "targetId": "hearts-13",
+              "kind": "assist",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "idle",
+              "flow": 0.07272083333333355
+            }
+          ]
+        },
+        {
+          "elapsed": 2399.7430999999997,
+          "edges": [
+            {
+              "targetId": "spades-13",
+              "kind": "assist",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "idle",
+              "flow": 0.7810208333333327
+            },
+            {
+              "targetId": "hearts-13",
+              "kind": "assist",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "idle",
+              "flow": 0.7810208333333327
+            }
+          ]
+        },
+        {
+          "elapsed": 3565.6013999999996,
+          "edges": [
+            {
+              "targetId": "spades-13",
+              "kind": "assist",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "idle",
+              "flow": 0.531002083333332
+            },
+            {
+              "targetId": "hearts-13",
+              "kind": "assist",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "idle",
+              "flow": 0.531002083333332
+            }
+          ]
+        }
+      ],
+      "changedExteriorPixels": 1947,
+      "reducedExteriorPixels": 0,
+      "reduced": [
+        {
+          "targetId": "spades-13",
+          "kind": "assist",
+          "members": [
+            "spades-13",
+            "hearts-13"
+          ],
+          "phase": "idle",
+          "flow": 0
+        },
+        {
+          "targetId": "hearts-13",
+          "kind": "assist",
+          "members": [
+            "spades-13",
+            "hearts-13"
+          ],
+          "phase": "idle",
+          "flow": 0
+        }
+      ],
+      "release": [
+        {
+          "at": 10709.89999999106,
+          "edges": [
+            {
+              "targetId": "spades-13",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6"
+            },
+            {
+              "targetId": "hearts-13",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 10725.89999999106,
+          "edges": [
+            {
+              "targetId": "spades-13",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6"
+            },
+            {
+              "targetId": "hearts-13",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 10742.89999999106,
+          "edges": [
+            {
+              "targetId": "spades-13",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6"
+            },
+            {
+              "targetId": "hearts-13",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 10759.20000000298,
+          "edges": [
+            {
+              "targetId": "spades-13",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6"
+            },
+            {
+              "targetId": "hearts-13",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 10775.29999999702,
+          "edges": [
+            {
+              "targetId": "spades-13",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6"
+            },
+            {
+              "targetId": "hearts-13",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 10791.79999999702,
+          "edges": [
+            {
+              "targetId": "spades-13",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6"
+            },
+            {
+              "targetId": "hearts-13",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 10809.5,
+          "edges": [
+            {
+              "targetId": "spades-13",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6"
+            },
+            {
+              "targetId": "hearts-13",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 10825,
+          "edges": [
+            {
+              "targetId": "spades-13",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6"
+            },
+            {
+              "targetId": "hearts-13",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 10841.89999999106,
+          "edges": [
+            {
+              "targetId": "spades-13",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6"
+            },
+            {
+              "targetId": "hearts-13",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 10859.20000000298,
+          "edges": [
+            {
+              "targetId": "spades-13",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6"
+            },
+            {
+              "targetId": "hearts-13",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6",
+          "scorePhase": "rest"
+        },
+        {
+          "at": 10875.70000000298,
+          "edges": [
+            {
+              "targetId": "spades-13",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6"
+            },
+            {
+              "targetId": "hearts-13",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6",
+          "scorePhase": "rest"
+        },
+        {
+          "at": 10891.29999999702,
+          "edges": [
+            {
+              "targetId": "spades-13",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6"
+            },
+            {
+              "targetId": "hearts-13",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6",
+          "scorePhase": "rest"
+        },
+        {
+          "at": 10908.70000000298,
+          "edges": [
+            {
+              "targetId": "spades-13",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6"
+            },
+            {
+              "targetId": "hearts-13",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/7",
+          "scorePhase": "converge"
+        },
+        {
+          "at": 10925.39999999106,
+          "edges": [
+            {
+              "targetId": "spades-13",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6"
+            },
+            {
+              "targetId": "hearts-13",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/7",
+          "scorePhase": "converge"
+        },
+        {
+          "at": 10941.59999999404,
+          "edges": [
+            {
+              "targetId": "spades-13",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6"
+            },
+            {
+              "targetId": "hearts-13",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/7",
+          "scorePhase": "converge"
+        },
+        {
+          "at": 10958.59999999404,
+          "edges": [
+            {
+              "targetId": "spades-13",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6"
+            },
+            {
+              "targetId": "hearts-13",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/7",
+          "scorePhase": "award"
+        }
+      ],
+      "expectedEvent": {
+        "id": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6",
+        "reason": "amo.assist.pair",
+        "targetIds": [
+          "spades-13",
+          "hearts-13"
+        ]
+      },
+      "cleanup": true
+    },
+    {
+      "key": "1366-erxiang",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "errors": [],
+      "checks": [
+        ">=3.3 seconds continuous idle flow without input; actual exterior pixels change; state/journal/storage unchanged; exact instances only; labels avoid controls",
+        "reduced motion keeps semantic static edges; no flowing phase or exterior pixel changes",
+        "hidden removes visuals; return resumes idle without replaying travel",
+        "cancel removes exact pending target; fresh deliberate draft can reattach",
+        "actual command saved once; canonical state equals domain result; release follows actual source impact; completed presentation removes all edges"
+      ],
+      "status": "PASS",
+      "pending": [
+        {
+          "targetId": "spades-8",
+          "kind": "card",
+          "members": [
+            "spades-8"
+          ],
+          "phase": "idle",
+          "flow": 0.22886249999999972
+        }
+      ],
+      "labels": [
+        {
+          "text": "待转",
+          "bounds": {
+            "type": 5,
+            "x": 303.63999755859373,
+            "y": 661.9999995117188,
+            "width": 32,
+            "height": 18
+          },
+          "intersectsControl": false
+        }
+      ],
+      "samples": [
+        {
+          "elapsed": 0.008000000001629815,
+          "edges": [
+            {
+              "targetId": "spades-8",
+              "kind": "card",
+              "members": [
+                "spades-8"
+              ],
+              "phase": "idle",
+              "flow": 0.22886249999999972
+            }
+          ]
+        },
+        {
+          "elapsed": 1184.0558999999994,
+          "edges": [
+            {
+              "targetId": "spades-8",
+              "kind": "card",
+              "members": [
+                "spades-8"
+              ],
+              "phase": "idle",
+              "flow": 0.9786375000000009
+            }
+          ]
+        },
+        {
+          "elapsed": 2362.3219000000026,
+          "edges": [
+            {
+              "targetId": "spades-8",
+              "kind": "card",
+              "members": [
+                "spades-8"
+              ],
+              "phase": "idle",
+              "flow": 0.6869250000000017
+            }
+          ]
+        },
+        {
+          "elapsed": 3539.0550000000003,
+          "edges": [
+            {
+              "targetId": "spades-8",
+              "kind": "card",
+              "members": [
+                "spades-8"
+              ],
+              "phase": "idle",
+              "flow": 0.4369000000000011
+            }
+          ]
+        }
+      ],
+      "changedExteriorPixels": 868,
+      "reducedExteriorPixels": 0,
+      "reduced": [
+        {
+          "targetId": "spades-8",
+          "kind": "card",
+          "members": [
+            "spades-8"
+          ],
+          "phase": "idle",
+          "flow": 0
+        }
+      ],
+      "release": [
+        {
+          "at": 7605.79999999702,
+          "edges": [
+            {
+              "targetId": "spades-8",
+              "members": [
+                "spades-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/erxiang/hand/controlled/attachment/erxiang/command/4/event/2"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/erxiang/hand/controlled/attachment/erxiang/command/4/event/2",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 7622.5999999940395,
+          "edges": [
+            {
+              "targetId": "spades-8",
+              "members": [
+                "spades-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/erxiang/hand/controlled/attachment/erxiang/command/4/event/2"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/erxiang/hand/controlled/attachment/erxiang/command/4/event/2",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 7639.29999999702,
+          "edges": [
+            {
+              "targetId": "spades-8",
+              "members": [
+                "spades-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/erxiang/hand/controlled/attachment/erxiang/command/4/event/2"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/erxiang/hand/controlled/attachment/erxiang/command/4/event/2",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 7655.5999999940395,
+          "edges": [
+            {
+              "targetId": "spades-8",
+              "members": [
+                "spades-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/erxiang/hand/controlled/attachment/erxiang/command/4/event/2"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/erxiang/hand/controlled/attachment/erxiang/command/4/event/2",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 7673.199999988079,
+          "edges": [
+            {
+              "targetId": "spades-8",
+              "members": [
+                "spades-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/erxiang/hand/controlled/attachment/erxiang/command/4/event/2"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/erxiang/hand/controlled/attachment/erxiang/command/4/event/2",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 7689.79999999702,
+          "edges": [
+            {
+              "targetId": "spades-8",
+              "members": [
+                "spades-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/erxiang/hand/controlled/attachment/erxiang/command/4/event/2"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/erxiang/hand/controlled/attachment/erxiang/command/4/event/2",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 7705.5,
+          "edges": [
+            {
+              "targetId": "spades-8",
+              "members": [
+                "spades-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/erxiang/hand/controlled/attachment/erxiang/command/4/event/2"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/erxiang/hand/controlled/attachment/erxiang/command/4/event/2",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 7723.29999999702,
+          "edges": [
+            {
+              "targetId": "spades-8",
+              "members": [
+                "spades-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/erxiang/hand/controlled/attachment/erxiang/command/4/event/2"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/erxiang/hand/controlled/attachment/erxiang/command/4/event/2",
+          "scorePhase": "rest"
+        },
+        {
+          "at": 7739.199999988079,
+          "edges": [
+            {
+              "targetId": "spades-8",
+              "members": [
+                "spades-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/erxiang/hand/controlled/attachment/erxiang/command/4/event/2"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/erxiang/hand/controlled/attachment/erxiang/command/4/event/2",
+          "scorePhase": "rest"
+        },
+        {
+          "at": 7756,
+          "edges": [
+            {
+              "targetId": "spades-8",
+              "members": [
+                "spades-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/erxiang/hand/controlled/attachment/erxiang/command/4/event/2"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/erxiang/hand/controlled/attachment/erxiang/command/4/event/2",
+          "scorePhase": "rest"
+        },
+        {
+          "at": 7776.199999988079,
+          "edges": [
+            {
+              "targetId": "spades-8",
+              "members": [
+                "spades-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/erxiang/hand/controlled/attachment/erxiang/command/4/event/2"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/erxiang/hand/controlled/attachment/erxiang/command/4/event/3",
+          "scorePhase": "windup"
+        },
+        {
+          "at": 7789.0999999940395,
+          "edges": [
+            {
+              "targetId": "spades-8",
+              "members": [
+                "spades-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/erxiang/hand/controlled/attachment/erxiang/command/4/event/2"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/erxiang/hand/controlled/attachment/erxiang/command/4/event/3",
+          "scorePhase": "windup"
+        },
+        {
+          "at": 7806.5999999940395,
+          "edges": [
+            {
+              "targetId": "spades-8",
+              "members": [
+                "spades-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/erxiang/hand/controlled/attachment/erxiang/command/4/event/2"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/erxiang/hand/controlled/attachment/erxiang/command/4/event/3",
+          "scorePhase": "windup"
+        },
+        {
+          "at": 7822.79999999702,
+          "edges": [
+            {
+              "targetId": "spades-8",
+              "members": [
+                "spades-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/erxiang/hand/controlled/attachment/erxiang/command/4/event/2"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/erxiang/hand/controlled/attachment/erxiang/command/4/event/3",
+          "scorePhase": "windup"
+        }
+      ],
+      "expectedEvent": {
+        "id": "controlled/attachment/erxiang/hand/controlled/attachment/erxiang/command/4/event/2",
+        "reason": "erxiang.handoff",
+        "targetIds": [
+          "spades-8"
+        ]
+      },
+      "cleanup": true
+    },
+    {
+      "key": "1366-azao",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "errors": [],
+      "checks": [
+        ">=3.3 seconds continuous idle flow without input; actual exterior pixels change; state/journal/storage unchanged; exact instances only; labels avoid controls",
+        "reduced motion keeps semantic static edges; no flowing phase or exterior pixel changes",
+        "hidden removes visuals; return resumes idle without replaying travel",
+        "actual command saved once; canonical state equals domain result; release follows actual source impact; completed presentation removes all edges"
+      ],
+      "status": "PASS",
+      "pending": [
+        {
+          "targetId": "group/spades-8",
+          "kind": "group",
+          "members": [
+            "spades-8",
+            "hearts-8",
+            "clubs-7",
+            "diamonds-7"
+          ],
+          "phase": "idle",
+          "flow": 0.20798750000000057
+        }
+      ],
+      "labels": [
+        {
+          "text": "本手待放",
+          "bounds": {
+            "type": 5,
+            "x": 484.32000732421875,
+            "y": 500.2239995117187,
+            "width": 58,
+            "height": 18
+          },
+          "intersectsControl": false
+        }
+      ],
+      "samples": [
+        {
+          "elapsed": 0.00990000000456348,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "kind": "group",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "idle",
+              "flow": 0.24958333333333407
+            }
+          ]
+        },
+        {
+          "elapsed": 1191.0566000000108,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "kind": "group",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "idle",
+              "flow": 0.957579166666669
+            }
+          ]
+        },
+        {
+          "elapsed": 2365.425199999998,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "kind": "group",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "idle",
+              "flow": 0.7075479166666696
+            }
+          ]
+        },
+        {
+          "elapsed": 3542.1463000000076,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "kind": "group",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "idle",
+              "flow": 0.45752916666666804
+            }
+          ]
+        }
+      ],
+      "changedExteriorPixels": 997,
+      "reducedExteriorPixels": 0,
+      "reduced": [
+        {
+          "targetId": "group/spades-8",
+          "kind": "group",
+          "members": [
+            "spades-8",
+            "hearts-8",
+            "clubs-7",
+            "diamonds-7"
+          ],
+          "phase": "idle",
+          "flow": 0
+        }
+      ],
+      "release": [
+        {
+          "at": 8421.70000000298,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/azao/hand/controlled/attachment/azao/command/5/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/azao/hand/controlled/attachment/azao/command/5/event/6",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 8438.800000011921,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/azao/hand/controlled/attachment/azao/command/5/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/azao/hand/controlled/attachment/azao/command/5/event/6",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 8455.5,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/azao/hand/controlled/attachment/azao/command/5/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/azao/hand/controlled/attachment/azao/command/5/event/6",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 8472.20000000298,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/azao/hand/controlled/attachment/azao/command/5/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/azao/hand/controlled/attachment/azao/command/5/event/6",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 8487.800000011921,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/azao/hand/controlled/attachment/azao/command/5/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/azao/hand/controlled/attachment/azao/command/5/event/6",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 8505.20000000298,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/azao/hand/controlled/attachment/azao/command/5/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/azao/hand/controlled/attachment/azao/command/5/event/6",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 8521,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/azao/hand/controlled/attachment/azao/command/5/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/azao/hand/controlled/attachment/azao/command/5/event/6",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 8537.60000000894,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/azao/hand/controlled/attachment/azao/command/5/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/azao/hand/controlled/attachment/azao/command/5/event/6",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 8554.70000000298,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/azao/hand/controlled/attachment/azao/command/5/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/azao/hand/controlled/attachment/azao/command/5/event/6",
+          "scorePhase": "rest"
+        },
+        {
+          "at": 8571.20000000298,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/azao/hand/controlled/attachment/azao/command/5/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/azao/hand/controlled/attachment/azao/command/5/event/6",
+          "scorePhase": "rest"
+        },
+        {
+          "at": 8587.90000000596,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/azao/hand/controlled/attachment/azao/command/5/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/azao/hand/controlled/attachment/azao/command/5/event/6",
+          "scorePhase": "rest"
+        },
+        {
+          "at": 8604.10000000894,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/azao/hand/controlled/attachment/azao/command/5/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/azao/hand/controlled/attachment/azao/command/5/event/7",
+          "scorePhase": "converge"
+        },
+        {
+          "at": 8621.800000011921,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/azao/hand/controlled/attachment/azao/command/5/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/azao/hand/controlled/attachment/azao/command/5/event/7",
+          "scorePhase": "converge"
+        },
+        {
+          "at": 8638.20000000298,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/azao/hand/controlled/attachment/azao/command/5/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/azao/hand/controlled/attachment/azao/command/5/event/7",
+          "scorePhase": "converge"
+        },
+        {
+          "at": 8655.90000000596,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/azao/hand/controlled/attachment/azao/command/5/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/azao/hand/controlled/attachment/azao/command/5/event/7",
+          "scorePhase": "award"
+        },
+        {
+          "at": 8672,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/azao/hand/controlled/attachment/azao/command/5/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/azao/hand/controlled/attachment/azao/command/5/event/7",
+          "scorePhase": "award"
+        }
+      ],
+      "expectedEvent": {
+        "id": "controlled/attachment/azao/hand/controlled/attachment/azao/command/5/event/6",
+        "reason": "azao.multiply-multiplier",
+        "targetIds": [
+          "spades-8",
+          "hearts-8",
+          "clubs-7",
+          "diamonds-7"
+        ]
+      },
+      "cleanup": true
+    },
+    {
+      "key": "1366-xiemu",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "errors": [],
+      "checks": [
+        ">=3.3 seconds continuous idle flow without input; actual exterior pixels change; state/journal/storage unchanged; exact instances only; labels avoid controls",
+        "reduced motion keeps semantic static edges; no flowing phase or exterior pixel changes",
+        "hidden removes visuals; return resumes idle without replaying travel",
+        "actual command saved once; canonical state equals domain result; release follows actual source impact; completed presentation removes all edges"
+      ],
+      "status": "PASS",
+      "pending": [
+        {
+          "targetId": "group/spades-8",
+          "kind": "group",
+          "members": [
+            "spades-8",
+            "hearts-8",
+            "clubs-7",
+            "diamonds-7"
+          ],
+          "phase": "idle",
+          "flow": 0.21847083333333311
+        }
+      ],
+      "labels": [
+        {
+          "text": "待付10",
+          "bounds": {
+            "type": 5,
+            "x": 488.82000732421875,
+            "y": 500.2239995117187,
+            "width": 49,
+            "height": 18
+          },
+          "intersectsControl": false
+        }
+      ],
+      "samples": [
+        {
+          "elapsed": 0.011599999997997656,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "kind": "group",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "idle",
+              "flow": 0.21847083333333311
+            }
+          ]
+        },
+        {
+          "elapsed": 1198.6826,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "kind": "group",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "idle",
+              "flow": 0.9681520833333346
+            }
+          ]
+        },
+        {
+          "elapsed": 2374.348499999993,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "kind": "group",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "idle",
+              "flow": 0.7181083333333353
+            }
+          ]
+        },
+        {
+          "elapsed": 3542.6380999999965,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "kind": "group",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "idle",
+              "flow": 0.4264270833333342
+            }
+          ]
+        }
+      ],
+      "changedExteriorPixels": 1016,
+      "reducedExteriorPixels": 0,
+      "reduced": [
+        {
+          "targetId": "group/spades-8",
+          "kind": "group",
+          "members": [
+            "spades-8",
+            "hearts-8",
+            "clubs-7",
+            "diamonds-7"
+          ],
+          "phase": "idle",
+          "flow": 0
+        }
+      ],
+      "release": [
+        {
+          "at": 8383.59999999404,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/xiemu/hand/controlled/attachment/xiemu/command/4/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/xiemu/hand/controlled/attachment/xiemu/command/4/event/6",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 8401.39999999106,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/xiemu/hand/controlled/attachment/xiemu/command/4/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/xiemu/hand/controlled/attachment/xiemu/command/4/event/6",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 8417.39999999106,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/xiemu/hand/controlled/attachment/xiemu/command/4/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/xiemu/hand/controlled/attachment/xiemu/command/4/event/6",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 8433.699999988079,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/xiemu/hand/controlled/attachment/xiemu/command/4/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/xiemu/hand/controlled/attachment/xiemu/command/4/event/6",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 8450.699999988079,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/xiemu/hand/controlled/attachment/xiemu/command/4/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/xiemu/hand/controlled/attachment/xiemu/command/4/event/6",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 8466.59999999404,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/xiemu/hand/controlled/attachment/xiemu/command/4/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/xiemu/hand/controlled/attachment/xiemu/command/4/event/6",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 8485,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/xiemu/hand/controlled/attachment/xiemu/command/4/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/xiemu/hand/controlled/attachment/xiemu/command/4/event/6",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 8503.79999999702,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/xiemu/hand/controlled/attachment/xiemu/command/4/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/xiemu/hand/controlled/attachment/xiemu/command/4/event/6",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 8516.29999999702,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/xiemu/hand/controlled/attachment/xiemu/command/4/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/xiemu/hand/controlled/attachment/xiemu/command/4/event/6",
+          "scorePhase": "rest"
+        },
+        {
+          "at": 8533.79999999702,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/xiemu/hand/controlled/attachment/xiemu/command/4/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/xiemu/hand/controlled/attachment/xiemu/command/4/event/6",
+          "scorePhase": "rest"
+        },
+        {
+          "at": 8550.29999999702,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/xiemu/hand/controlled/attachment/xiemu/command/4/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/xiemu/hand/controlled/attachment/xiemu/command/4/event/6",
+          "scorePhase": "rest"
+        },
+        {
+          "at": 8568,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/xiemu/hand/controlled/attachment/xiemu/command/4/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/xiemu/hand/controlled/attachment/xiemu/command/4/event/7",
+          "scorePhase": "converge"
+        },
+        {
+          "at": 8583,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/xiemu/hand/controlled/attachment/xiemu/command/4/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/xiemu/hand/controlled/attachment/xiemu/command/4/event/7",
+          "scorePhase": "converge"
+        },
+        {
+          "at": 8600,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/xiemu/hand/controlled/attachment/xiemu/command/4/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/xiemu/hand/controlled/attachment/xiemu/command/4/event/7",
+          "scorePhase": "converge"
+        },
+        {
+          "at": 8616.89999999106,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/xiemu/hand/controlled/attachment/xiemu/command/4/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/xiemu/hand/controlled/attachment/xiemu/command/4/event/7",
+          "scorePhase": "award"
+        }
+      ],
+      "expectedEvent": {
+        "id": "controlled/attachment/xiemu/hand/controlled/attachment/xiemu/command/4/event/6",
+        "reason": "xiemu.multiply-multiplier",
+        "targetIds": [
+          "spades-8",
+          "hearts-8",
+          "clubs-7",
+          "diamonds-7"
+        ]
+      },
+      "cleanup": true
+    },
+    {
+      "key": "1366-touye",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "errors": [],
+      "checks": [
+        ">=3.3 seconds continuous idle flow without input; actual exterior pixels change; state/journal/storage unchanged; exact instances only; labels avoid controls",
+        "reduced motion keeps semantic static edges; no flowing phase or exterior pixel changes",
+        "hidden removes visuals; return resumes idle without replaying travel",
+        "actual command saved once; canonical state equals domain result; release follows actual source impact; completed presentation removes all edges"
+      ],
+      "status": "PASS",
+      "pending": [
+        {
+          "targetId": "clubs-8",
+          "kind": "wager",
+          "members": [
+            "clubs-8",
+            "diamonds-6"
+          ],
+          "phase": "idle",
+          "flow": 0.3015666666666668
+        },
+        {
+          "targetId": "diamonds-6",
+          "kind": "wager",
+          "members": [
+            "clubs-8",
+            "diamonds-6"
+          ],
+          "phase": "idle",
+          "flow": 0.3015666666666668
+        }
+      ],
+      "labels": [
+        {
+          "text": "新·待判",
+          "bounds": {
+            "type": 5,
+            "x": 950.6799755859375,
+            "y": 661.9999995117188,
+            "width": 51,
+            "height": 18
+          },
+          "intersectsControl": false
+        },
+        {
+          "text": "新·待判",
+          "bounds": {
+            "type": 5,
+            "x": 1058.51994140625,
+            "y": 677.9999995117188,
+            "width": 51,
+            "height": 18
+          },
+          "intersectsControl": false
+        }
+      ],
+      "samples": [
+        {
+          "elapsed": 0.00810000000637956,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "kind": "wager",
+              "members": [
+                "clubs-8",
+                "diamonds-6"
+              ],
+              "phase": "idle",
+              "flow": 0.3015666666666668
+            },
+            {
+              "targetId": "diamonds-6",
+              "kind": "wager",
+              "members": [
+                "clubs-8",
+                "diamonds-6"
+              ],
+              "phase": "idle",
+              "flow": 0.3015666666666668
+            }
+          ]
+        },
+        {
+          "elapsed": 1172.0473000000056,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "kind": "wager",
+              "members": [
+                "clubs-8",
+                "diamonds-6"
+              ],
+              "phase": "idle",
+              "flow": 0.051339583333336096
+            },
+            {
+              "targetId": "diamonds-6",
+              "kind": "wager",
+              "members": [
+                "clubs-8",
+                "diamonds-6"
+              ],
+              "phase": "idle",
+              "flow": 0.051339583333336096
+            }
+          ]
+        },
+        {
+          "elapsed": 2354.8327000000136,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "kind": "wager",
+              "members": [
+                "clubs-8",
+                "diamonds-6"
+              ],
+              "phase": "idle",
+              "flow": 0.7596520833333367
+            },
+            {
+              "targetId": "diamonds-6",
+              "kind": "wager",
+              "members": [
+                "clubs-8",
+                "diamonds-6"
+              ],
+              "phase": "idle",
+              "flow": 0.7596520833333367
+            }
+          ]
+        },
+        {
+          "elapsed": 3537.3626000000077,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "kind": "wager",
+              "members": [
+                "clubs-8",
+                "diamonds-6"
+              ],
+              "phase": "idle",
+              "flow": 0.5096083333333357
+            },
+            {
+              "targetId": "diamonds-6",
+              "kind": "wager",
+              "members": [
+                "clubs-8",
+                "diamonds-6"
+              ],
+              "phase": "idle",
+              "flow": 0.5096083333333357
+            }
+          ]
+        }
+      ],
+      "changedExteriorPixels": 1632,
+      "reducedExteriorPixels": 0,
+      "reduced": [
+        {
+          "targetId": "clubs-8",
+          "kind": "wager",
+          "members": [
+            "clubs-8",
+            "diamonds-6"
+          ],
+          "phase": "idle",
+          "flow": 0
+        },
+        {
+          "targetId": "diamonds-6",
+          "kind": "wager",
+          "members": [
+            "clubs-8",
+            "diamonds-6"
+          ],
+          "phase": "idle",
+          "flow": 0
+        }
+      ],
+      "release": [
+        {
+          "at": 8448.70000000298,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "members": [
+                "clubs-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 8468.70000000298,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "members": [
+                "clubs-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 8482.70000000298,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "members": [
+                "clubs-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 8499.59999999404,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "members": [
+                "clubs-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 8516.29999999702,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "members": [
+                "clubs-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 8532.90000000596,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "members": [
+                "clubs-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 8548.70000000298,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "members": [
+                "clubs-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 8565.90000000596,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "members": [
+                "clubs-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 8581.59999999404,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "members": [
+                "clubs-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+          "scorePhase": "rest"
+        },
+        {
+          "at": 8599.79999999702,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "members": [
+                "clubs-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+          "scorePhase": "rest"
+        },
+        {
+          "at": 8616,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "members": [
+                "clubs-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+          "scorePhase": "rest"
+        },
+        {
+          "at": 8632,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "members": [
+                "clubs-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/6",
+          "scorePhase": "converge"
+        },
+        {
+          "at": 8648.09999999404,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "members": [
+                "clubs-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/6",
+          "scorePhase": "converge"
+        },
+        {
+          "at": 8665.29999999702,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "members": [
+                "clubs-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/6",
+          "scorePhase": "converge"
+        },
+        {
+          "at": 8682.29999999702,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "members": [
+                "clubs-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/6",
+          "scorePhase": "award"
+        }
+      ],
+      "expectedEvent": {
+        "id": "controlled/attachment/touye/hand/controlled/attachment/touye/command/5/event/5",
+        "reason": "touye.won.three-kind",
+        "targetIds": [
+          "clubs-8"
+        ]
+      },
+      "cleanup": true
+    },
+    {
+      "key": "1366-laohuan",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "errors": [],
+      "checks": [
+        ">=3.3 seconds continuous idle flow without input; actual exterior pixels change; state/journal/storage unchanged; exact instances only; labels avoid controls",
+        "reduced motion keeps semantic static edges; no flowing phase or exterior pixel changes",
+        "hidden removes visuals; return resumes idle without replaying travel",
+        "actual command saved once; canonical state equals domain result; release follows actual source impact; completed presentation removes all edges"
+      ],
+      "status": "PASS",
+      "pending": [
+        {
+          "targetId": "diamonds-14",
+          "kind": "candidate",
+          "members": [
+            "diamonds-14",
+            "diamonds-13",
+            "diamonds-12",
+            "diamonds-11",
+            "diamonds-10"
+          ],
+          "phase": "idle",
+          "flow": 0.2184583333333336
+        },
+        {
+          "targetId": "diamonds-13",
+          "kind": "candidate",
+          "members": [
+            "diamonds-14",
+            "diamonds-13",
+            "diamonds-12",
+            "diamonds-11",
+            "diamonds-10"
+          ],
+          "phase": "idle",
+          "flow": 0.2184583333333336
+        },
+        {
+          "targetId": "diamonds-12",
+          "kind": "candidate",
+          "members": [
+            "diamonds-14",
+            "diamonds-13",
+            "diamonds-12",
+            "diamonds-11",
+            "diamonds-10"
+          ],
+          "phase": "idle",
+          "flow": 0.2184583333333336
+        },
+        {
+          "targetId": "diamonds-11",
+          "kind": "candidate",
+          "members": [
+            "diamonds-14",
+            "diamonds-13",
+            "diamonds-12",
+            "diamonds-11",
+            "diamonds-10"
+          ],
+          "phase": "idle",
+          "flow": 0.2184583333333336
+        },
+        {
+          "targetId": "diamonds-10",
+          "kind": "candidate",
+          "members": [
+            "diamonds-14",
+            "diamonds-13",
+            "diamonds-12",
+            "diamonds-11",
+            "diamonds-10"
+          ],
+          "phase": "idle",
+          "flow": 0.2184583333333336
+        }
+      ],
+      "labels": [
+        {
+          "text": "待留",
+          "bounds": {
+            "type": 5,
+            "x": 357.5600109863281,
+            "y": 661.9999995117188,
+            "width": 32,
+            "height": 18
+          },
+          "intersectsControl": false
+        },
+        {
+          "text": "待留",
+          "bounds": {
+            "type": 5,
+            "x": 465.40000732421873,
+            "y": 661.9999995117188,
+            "width": 32,
+            "height": 18
+          },
+          "intersectsControl": false
+        },
+        {
+          "text": "待留",
+          "bounds": {
+            "type": 5,
+            "x": 573.2399731445313,
+            "y": 661.9999995117188,
+            "width": 32,
+            "height": 18
+          },
+          "intersectsControl": false
+        },
+        {
+          "text": "待留",
+          "bounds": {
+            "type": 5,
+            "x": 681.08,
+            "y": 661.9999995117188,
+            "width": 32,
+            "height": 18
+          },
+          "intersectsControl": false
+        },
+        {
+          "text": "待留",
+          "bounds": {
+            "type": 5,
+            "x": 788.9200268554688,
+            "y": 661.9999995117188,
+            "width": 32,
+            "height": 18
+          },
+          "intersectsControl": false
+        }
+      ],
+      "samples": [
+        {
+          "elapsed": 0.006299999993643723,
+          "edges": [
+            {
+              "targetId": "diamonds-14",
+              "kind": "candidate",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "idle",
+              "flow": 0.2184583333333336
+            },
+            {
+              "targetId": "diamonds-13",
+              "kind": "candidate",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "idle",
+              "flow": 0.2184583333333336
+            },
+            {
+              "targetId": "diamonds-12",
+              "kind": "candidate",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "idle",
+              "flow": 0.2184583333333336
+            },
+            {
+              "targetId": "diamonds-11",
+              "kind": "candidate",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "idle",
+              "flow": 0.2184583333333336
+            },
+            {
+              "targetId": "diamonds-10",
+              "kind": "candidate",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "idle",
+              "flow": 0.2184583333333336
+            }
+          ]
+        },
+        {
+          "elapsed": 1178.1239999999962,
+          "edges": [
+            {
+              "targetId": "diamonds-14",
+              "kind": "candidate",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "idle",
+              "flow": 0.9680875000000019
+            },
+            {
+              "targetId": "diamonds-13",
+              "kind": "candidate",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "idle",
+              "flow": 0.9680875000000019
+            },
+            {
+              "targetId": "diamonds-12",
+              "kind": "candidate",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "idle",
+              "flow": 0.9680875000000019
+            },
+            {
+              "targetId": "diamonds-11",
+              "kind": "candidate",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "idle",
+              "flow": 0.9680875000000019
+            },
+            {
+              "targetId": "diamonds-10",
+              "kind": "candidate",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "idle",
+              "flow": 0.9680875000000019
+            }
+          ]
+        },
+        {
+          "elapsed": 2345.1552999999985,
+          "edges": [
+            {
+              "targetId": "diamonds-14",
+              "kind": "candidate",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "idle",
+              "flow": 0.6763937500000031
+            },
+            {
+              "targetId": "diamonds-13",
+              "kind": "candidate",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "idle",
+              "flow": 0.6763937500000031
+            },
+            {
+              "targetId": "diamonds-12",
+              "kind": "candidate",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "idle",
+              "flow": 0.6763937500000031
+            },
+            {
+              "targetId": "diamonds-11",
+              "kind": "candidate",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "idle",
+              "flow": 0.6763937500000031
+            },
+            {
+              "targetId": "diamonds-10",
+              "kind": "candidate",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "idle",
+              "flow": 0.6763937500000031
+            }
+          ]
+        },
+        {
+          "elapsed": 3511.6563000000024,
+          "edges": [
+            {
+              "targetId": "diamonds-14",
+              "kind": "candidate",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "idle",
+              "flow": 0.4263562500000015
+            },
+            {
+              "targetId": "diamonds-13",
+              "kind": "candidate",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "idle",
+              "flow": 0.4263562500000015
+            },
+            {
+              "targetId": "diamonds-12",
+              "kind": "candidate",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "idle",
+              "flow": 0.4263562500000015
+            },
+            {
+              "targetId": "diamonds-11",
+              "kind": "candidate",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "idle",
+              "flow": 0.4263562500000015
+            },
+            {
+              "targetId": "diamonds-10",
+              "kind": "candidate",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "idle",
+              "flow": 0.4263562500000015
+            }
+          ]
+        }
+      ],
+      "changedExteriorPixels": 4114,
+      "reducedExteriorPixels": 0,
+      "reduced": [
+        {
+          "targetId": "diamonds-14",
+          "kind": "candidate",
+          "members": [
+            "diamonds-14",
+            "diamonds-13",
+            "diamonds-12",
+            "diamonds-11",
+            "diamonds-10"
+          ],
+          "phase": "idle",
+          "flow": 0
+        },
+        {
+          "targetId": "diamonds-13",
+          "kind": "candidate",
+          "members": [
+            "diamonds-14",
+            "diamonds-13",
+            "diamonds-12",
+            "diamonds-11",
+            "diamonds-10"
+          ],
+          "phase": "idle",
+          "flow": 0
+        },
+        {
+          "targetId": "diamonds-12",
+          "kind": "candidate",
+          "members": [
+            "diamonds-14",
+            "diamonds-13",
+            "diamonds-12",
+            "diamonds-11",
+            "diamonds-10"
+          ],
+          "phase": "idle",
+          "flow": 0
+        },
+        {
+          "targetId": "diamonds-11",
+          "kind": "candidate",
+          "members": [
+            "diamonds-14",
+            "diamonds-13",
+            "diamonds-12",
+            "diamonds-11",
+            "diamonds-10"
+          ],
+          "phase": "idle",
+          "flow": 0
+        },
+        {
+          "targetId": "diamonds-10",
+          "kind": "candidate",
+          "members": [
+            "diamonds-14",
+            "diamonds-13",
+            "diamonds-12",
+            "diamonds-11",
+            "diamonds-10"
+          ],
+          "phase": "idle",
+          "flow": 0
+        }
+      ],
+      "release": [
+        {
+          "at": 6953.5,
+          "edges": [
+            {
+              "targetId": "diamonds-14",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-13",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-12",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-11",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-10",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            }
+          ]
+        },
+        {
+          "at": 6968.899999991059,
+          "edges": [
+            {
+              "targetId": "diamonds-14",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-13",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-12",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-11",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-10",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            }
+          ]
+        },
+        {
+          "at": 6985.29999999702,
+          "edges": [
+            {
+              "targetId": "diamonds-14",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-13",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-12",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-11",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-10",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            }
+          ]
+        },
+        {
+          "at": 6993.399999991059,
+          "edges": [
+            {
+              "targetId": "diamonds-14",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-13",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-12",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-11",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-10",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            }
+          ]
+        },
+        {
+          "at": 7004,
+          "edges": [
+            {
+              "targetId": "diamonds-14",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-13",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-12",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-11",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-10",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            }
+          ]
+        },
+        {
+          "at": 7020,
+          "edges": [
+            {
+              "targetId": "diamonds-14",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-13",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-12",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-11",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-10",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            }
+          ]
+        },
+        {
+          "at": 7037.399999991059,
+          "edges": [
+            {
+              "targetId": "diamonds-14",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-13",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-12",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-11",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-10",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            }
+          ]
+        },
+        {
+          "at": 7053.899999991059,
+          "edges": [
+            {
+              "targetId": "diamonds-14",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-13",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-12",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-11",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-10",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            }
+          ]
+        },
+        {
+          "at": 7069.79999999702,
+          "edges": [
+            {
+              "targetId": "diamonds-14",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-13",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-12",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-11",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-10",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            }
+          ]
+        },
+        {
+          "at": 7087,
+          "edges": [
+            {
+              "targetId": "diamonds-14",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-13",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-12",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-11",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-10",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            }
+          ]
+        },
+        {
+          "at": 7103.699999988079,
+          "edges": [
+            {
+              "targetId": "diamonds-14",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-13",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-12",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-11",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-10",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            }
+          ]
+        },
+        {
+          "at": 7120.5999999940395,
+          "edges": [
+            {
+              "targetId": "diamonds-14",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-13",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-12",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-11",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-10",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            }
+          ]
+        },
+        {
+          "at": 7136.5,
+          "edges": [
+            {
+              "targetId": "diamonds-14",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-13",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-12",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-11",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-10",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            }
+          ]
+        },
+        {
+          "at": 7153.5999999940395,
+          "edges": [
+            {
+              "targetId": "diamonds-14",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-13",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-12",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-11",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            },
+            {
+              "targetId": "diamonds-10",
+              "members": [
+                "diamonds-14",
+                "diamonds-13",
+                "diamonds-12",
+                "diamonds-11",
+                "diamonds-10"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/laohuan/command/5/laohuan-refill"
+            }
+          ]
+        }
+      ],
+      "expectedEvent": {
+        "kind": "saved ChooseRefill receipt, no ScoreEvent",
+        "targetIds": [
+          "diamonds-14",
+          "diamonds-13",
+          "diamonds-12",
+          "diamonds-11",
+          "diamonds-10"
+        ]
+      },
+      "cleanup": true
+    },
+    {
+      "key": "390-amo",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "errors": [],
+      "checks": [
+        ">=3.3 seconds continuous idle flow without input; actual exterior pixels change; state/journal/storage unchanged; exact instances only; labels avoid controls",
+        "reduced motion keeps semantic static edges; no flowing phase or exterior pixel changes",
+        "hidden removes visuals; return resumes idle without replaying travel",
+        "cancel removes exact pending target; fresh deliberate draft can reattach",
+        "actual command saved once; canonical state equals domain result; release follows actual source impact; completed presentation removes all edges"
+      ],
+      "status": "PASS",
+      "pending": [
+        {
+          "targetId": "spades-13",
+          "kind": "assist",
+          "members": [
+            "spades-13",
+            "hearts-13"
+          ],
+          "phase": "idle",
+          "flow": 0.2707270833333332
+        },
+        {
+          "targetId": "hearts-13",
+          "kind": "assist",
+          "members": [
+            "spades-13",
+            "hearts-13"
+          ],
+          "phase": "idle",
+          "flow": 0.2707270833333332
+        }
+      ],
+      "labels": [],
+      "samples": [
+        {
+          "elapsed": 0.0063999999983934686,
+          "edges": [
+            {
+              "targetId": "spades-13",
+              "kind": "assist",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "idle",
+              "flow": 0.3123833333333332
+            },
+            {
+              "targetId": "hearts-13",
+              "kind": "assist",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "idle",
+              "flow": 0.3123833333333332
+            }
+          ]
+        },
+        {
+          "elapsed": 1169.9994000000006,
+          "edges": [
+            {
+              "targetId": "spades-13",
+              "kind": "assist",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "idle",
+              "flow": 0.020689583333334552
+            },
+            {
+              "targetId": "hearts-13",
+              "kind": "assist",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "idle",
+              "flow": 0.020689583333334552
+            }
+          ]
+        },
+        {
+          "elapsed": 2324.2879000000103,
+          "edges": [
+            {
+              "targetId": "spades-13",
+              "kind": "assist",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "idle",
+              "flow": 0.7289895833333339
+            },
+            {
+              "targetId": "hearts-13",
+              "kind": "assist",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "idle",
+              "flow": 0.7289895833333339
+            }
+          ]
+        },
+        {
+          "elapsed": 3487.3141000000032,
+          "edges": [
+            {
+              "targetId": "spades-13",
+              "kind": "assist",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "idle",
+              "flow": 0.4789770833333333
+            },
+            {
+              "targetId": "hearts-13",
+              "kind": "assist",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "idle",
+              "flow": 0.4789770833333333
+            }
+          ]
+        }
+      ],
+      "changedExteriorPixels": 751,
+      "reducedExteriorPixels": 0,
+      "reduced": [
+        {
+          "targetId": "spades-13",
+          "kind": "assist",
+          "members": [
+            "spades-13",
+            "hearts-13"
+          ],
+          "phase": "idle",
+          "flow": 0
+        },
+        {
+          "targetId": "hearts-13",
+          "kind": "assist",
+          "members": [
+            "spades-13",
+            "hearts-13"
+          ],
+          "phase": "idle",
+          "flow": 0
+        }
+      ],
+      "release": [
+        {
+          "at": 9046.90000000596,
+          "edges": [
+            {
+              "targetId": "spades-13",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6"
+            },
+            {
+              "targetId": "hearts-13",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 9067.5,
+          "edges": [
+            {
+              "targetId": "spades-13",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6"
+            },
+            {
+              "targetId": "hearts-13",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 9080.10000000894,
+          "edges": [
+            {
+              "targetId": "spades-13",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6"
+            },
+            {
+              "targetId": "hearts-13",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 9097.300000011921,
+          "edges": [
+            {
+              "targetId": "spades-13",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6"
+            },
+            {
+              "targetId": "hearts-13",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 9113.20000000298,
+          "edges": [
+            {
+              "targetId": "spades-13",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6"
+            },
+            {
+              "targetId": "hearts-13",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 9130.10000000894,
+          "edges": [
+            {
+              "targetId": "spades-13",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6"
+            },
+            {
+              "targetId": "hearts-13",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 9146.10000000894,
+          "edges": [
+            {
+              "targetId": "spades-13",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6"
+            },
+            {
+              "targetId": "hearts-13",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 9162.300000011921,
+          "edges": [
+            {
+              "targetId": "spades-13",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6"
+            },
+            {
+              "targetId": "hearts-13",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 9179,
+          "edges": [
+            {
+              "targetId": "spades-13",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6"
+            },
+            {
+              "targetId": "hearts-13",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 9195.800000011921,
+          "edges": [
+            {
+              "targetId": "spades-13",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6"
+            },
+            {
+              "targetId": "hearts-13",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6",
+          "scorePhase": "rest"
+        },
+        {
+          "at": 9213.40000000596,
+          "edges": [
+            {
+              "targetId": "spades-13",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6"
+            },
+            {
+              "targetId": "hearts-13",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6",
+          "scorePhase": "rest"
+        },
+        {
+          "at": 9230.10000000894,
+          "edges": [
+            {
+              "targetId": "spades-13",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6"
+            },
+            {
+              "targetId": "hearts-13",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6",
+          "scorePhase": "rest"
+        },
+        {
+          "at": 9245.60000000894,
+          "edges": [
+            {
+              "targetId": "spades-13",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6"
+            },
+            {
+              "targetId": "hearts-13",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/7",
+          "scorePhase": "converge"
+        },
+        {
+          "at": 9263.10000000894,
+          "edges": [
+            {
+              "targetId": "spades-13",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6"
+            },
+            {
+              "targetId": "hearts-13",
+              "members": [
+                "spades-13",
+                "hearts-13"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/7",
+          "scorePhase": "converge"
+        }
+      ],
+      "expectedEvent": {
+        "id": "controlled/attachment/amo/hand/controlled/attachment/amo/command/4/event/6",
+        "reason": "amo.assist.pair",
+        "targetIds": [
+          "spades-13",
+          "hearts-13"
+        ]
+      },
+      "cleanup": true
+    },
+    {
+      "key": "390-erxiang",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "errors": [],
+      "checks": [
+        ">=3.3 seconds continuous idle flow without input; actual exterior pixels change; state/journal/storage unchanged; exact instances only; labels avoid controls",
+        "reduced motion keeps semantic static edges; no flowing phase or exterior pixel changes",
+        "hidden removes visuals; return resumes idle without replaying travel",
+        "cancel removes exact pending target; fresh deliberate draft can reattach",
+        "actual command saved once; canonical state equals domain result; release follows actual source impact; completed presentation removes all edges"
+      ],
+      "status": "PASS",
+      "pending": [
+        {
+          "targetId": "spades-8",
+          "kind": "card",
+          "members": [
+            "spades-8"
+          ],
+          "phase": "idle",
+          "flow": 0.21848333333333347
+        }
+      ],
+      "labels": [
+        {
+          "text": "待转",
+          "bounds": {
+            "type": 5,
+            "x": 148,
+            "y": 626.4000122070313,
+            "width": 32,
+            "height": 18
+          },
+          "intersectsControl": false
+        }
+      ],
+      "samples": [
+        {
+          "elapsed": 0.010999999998603016,
+          "edges": [
+            {
+              "targetId": "spades-8",
+              "kind": "card",
+              "members": [
+                "spades-8"
+              ],
+              "phase": "idle",
+              "flow": 0.21848333333333347
+            }
+          ]
+        },
+        {
+          "elapsed": 1187.6056000000099,
+          "edges": [
+            {
+              "targetId": "spades-8",
+              "kind": "card",
+              "members": [
+                "spades-8"
+              ],
+              "phase": "idle",
+              "flow": 0.9681104166666685
+            }
+          ]
+        },
+        {
+          "elapsed": 2344.8600000000006,
+          "edges": [
+            {
+              "targetId": "spades-8",
+              "kind": "card",
+              "members": [
+                "spades-8"
+              ],
+              "phase": "idle",
+              "flow": 0.6764229166666692
+            }
+          ]
+        },
+        {
+          "elapsed": 3499.5362000000023,
+          "edges": [
+            {
+              "targetId": "spades-8",
+              "kind": "card",
+              "members": [
+                "spades-8"
+              ],
+              "phase": "idle",
+              "flow": 0.4263854166666675
+            }
+          ]
+        }
+      ],
+      "changedExteriorPixels": 585,
+      "reducedExteriorPixels": 0,
+      "reduced": [
+        {
+          "targetId": "spades-8",
+          "kind": "card",
+          "members": [
+            "spades-8"
+          ],
+          "phase": "idle",
+          "flow": 0
+        }
+      ],
+      "release": [
+        {
+          "at": 7294.0999999940395,
+          "edges": [
+            {
+              "targetId": "spades-8",
+              "members": [
+                "spades-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/erxiang/hand/controlled/attachment/erxiang/command/4/event/2"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/erxiang/hand/controlled/attachment/erxiang/command/4/event/2",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 7315.79999999702,
+          "edges": [
+            {
+              "targetId": "spades-8",
+              "members": [
+                "spades-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/erxiang/hand/controlled/attachment/erxiang/command/4/event/2"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/erxiang/hand/controlled/attachment/erxiang/command/4/event/2",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 7327.5,
+          "edges": [
+            {
+              "targetId": "spades-8",
+              "members": [
+                "spades-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/erxiang/hand/controlled/attachment/erxiang/command/4/event/2"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/erxiang/hand/controlled/attachment/erxiang/command/4/event/2",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 7344.399999991059,
+          "edges": [
+            {
+              "targetId": "spades-8",
+              "members": [
+                "spades-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/erxiang/hand/controlled/attachment/erxiang/command/4/event/2"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/erxiang/hand/controlled/attachment/erxiang/command/4/event/2",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 7360.5,
+          "edges": [
+            {
+              "targetId": "spades-8",
+              "members": [
+                "spades-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/erxiang/hand/controlled/attachment/erxiang/command/4/event/2"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/erxiang/hand/controlled/attachment/erxiang/command/4/event/2",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 7377.79999999702,
+          "edges": [
+            {
+              "targetId": "spades-8",
+              "members": [
+                "spades-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/erxiang/hand/controlled/attachment/erxiang/command/4/event/2"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/erxiang/hand/controlled/attachment/erxiang/command/4/event/2",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 7393.79999999702,
+          "edges": [
+            {
+              "targetId": "spades-8",
+              "members": [
+                "spades-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/erxiang/hand/controlled/attachment/erxiang/command/4/event/2"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/erxiang/hand/controlled/attachment/erxiang/command/4/event/2",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 7410,
+          "edges": [
+            {
+              "targetId": "spades-8",
+              "members": [
+                "spades-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/erxiang/hand/controlled/attachment/erxiang/command/4/event/2"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/erxiang/hand/controlled/attachment/erxiang/command/4/event/2",
+          "scorePhase": "rest"
+        },
+        {
+          "at": 7427.399999991059,
+          "edges": [
+            {
+              "targetId": "spades-8",
+              "members": [
+                "spades-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/erxiang/hand/controlled/attachment/erxiang/command/4/event/2"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/erxiang/hand/controlled/attachment/erxiang/command/4/event/2",
+          "scorePhase": "rest"
+        },
+        {
+          "at": 7443.79999999702,
+          "edges": [
+            {
+              "targetId": "spades-8",
+              "members": [
+                "spades-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/erxiang/hand/controlled/attachment/erxiang/command/4/event/2"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/erxiang/hand/controlled/attachment/erxiang/command/4/event/2",
+          "scorePhase": "rest"
+        },
+        {
+          "at": 7466.70000000298,
+          "edges": [
+            {
+              "targetId": "spades-8",
+              "members": [
+                "spades-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/erxiang/hand/controlled/attachment/erxiang/command/4/event/2"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/erxiang/hand/controlled/attachment/erxiang/command/4/event/3",
+          "scorePhase": "windup"
+        },
+        {
+          "at": 7482.5,
+          "edges": [
+            {
+              "targetId": "spades-8",
+              "members": [
+                "spades-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/erxiang/hand/controlled/attachment/erxiang/command/4/event/2"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/erxiang/hand/controlled/attachment/erxiang/command/4/event/3",
+          "scorePhase": "windup"
+        },
+        {
+          "at": 7496,
+          "edges": [
+            {
+              "targetId": "spades-8",
+              "members": [
+                "spades-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/erxiang/hand/controlled/attachment/erxiang/command/4/event/2"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/erxiang/hand/controlled/attachment/erxiang/command/4/event/3",
+          "scorePhase": "windup"
+        },
+        {
+          "at": 7510.5999999940395,
+          "edges": [
+            {
+              "targetId": "spades-8",
+              "members": [
+                "spades-8"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/erxiang/hand/controlled/attachment/erxiang/command/4/event/2"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/erxiang/hand/controlled/attachment/erxiang/command/4/event/3",
+          "scorePhase": "windup"
+        }
+      ],
+      "expectedEvent": {
+        "id": "controlled/attachment/erxiang/hand/controlled/attachment/erxiang/command/4/event/2",
+        "reason": "erxiang.handoff",
+        "targetIds": [
+          "spades-8"
+        ]
+      },
+      "cleanup": true
+    },
+    {
+      "key": "390-azao",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "errors": [],
+      "checks": [
+        ">=3.3 seconds continuous idle flow without input; actual exterior pixels change; state/journal/storage unchanged; exact instances only; labels avoid controls",
+        "reduced motion keeps semantic static edges; no flowing phase or exterior pixel changes",
+        "hidden removes visuals; return resumes idle without replaying travel",
+        "actual command saved once; canonical state equals domain result; release follows actual source impact; completed presentation removes all edges"
+      ],
+      "status": "PASS",
+      "pending": [
+        {
+          "targetId": "group/spades-8",
+          "kind": "group",
+          "members": [
+            "spades-8",
+            "hearts-8",
+            "clubs-7",
+            "diamonds-7"
+          ],
+          "phase": "idle",
+          "flow": 0.20800208333333373
+        }
+      ],
+      "labels": [
+        {
+          "text": "本手待放",
+          "bounds": {
+            "type": 5,
+            "x": 148,
+            "y": 626.4000122070313,
+            "width": 58,
+            "height": 18
+          },
+          "intersectsControl": false
+        }
+      ],
+      "samples": [
+        {
+          "elapsed": 0.0015999999886844307,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "kind": "group",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "idle",
+              "flow": 0.20800208333333373
+            }
+          ]
+        },
+        {
+          "elapsed": 1191.502999999997,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "kind": "group",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "idle",
+              "flow": 0.9576708333333357
+            }
+          ]
+        },
+        {
+          "elapsed": 2347.7121999999945,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "kind": "group",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "idle",
+              "flow": 0.7076520833333365
+            }
+          ]
+        },
+        {
+          "elapsed": 3498.3675999999978,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "kind": "group",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "idle",
+              "flow": 0.4159583333333353
+            }
+          ]
+        }
+      ],
+      "changedExteriorPixels": 968,
+      "reducedExteriorPixels": 0,
+      "reduced": [
+        {
+          "targetId": "group/spades-8",
+          "kind": "group",
+          "members": [
+            "spades-8",
+            "hearts-8",
+            "clubs-7",
+            "diamonds-7"
+          ],
+          "phase": "idle",
+          "flow": 0
+        }
+      ],
+      "release": [
+        {
+          "at": 8286.300000011921,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/azao/hand/controlled/attachment/azao/command/5/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/azao/hand/controlled/attachment/azao/command/5/event/6",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 8307.70000000298,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/azao/hand/controlled/attachment/azao/command/5/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/azao/hand/controlled/attachment/azao/command/5/event/6",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 8320.70000000298,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/azao/hand/controlled/attachment/azao/command/5/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/azao/hand/controlled/attachment/azao/command/5/event/6",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 8337.70000000298,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/azao/hand/controlled/attachment/azao/command/5/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/azao/hand/controlled/attachment/azao/command/5/event/6",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 8354.70000000298,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/azao/hand/controlled/attachment/azao/command/5/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/azao/hand/controlled/attachment/azao/command/5/event/6",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 8369.800000011921,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/azao/hand/controlled/attachment/azao/command/5/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/azao/hand/controlled/attachment/azao/command/5/event/6",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 8387,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/azao/hand/controlled/attachment/azao/command/5/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/azao/hand/controlled/attachment/azao/command/5/event/6",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 8403.300000011921,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/azao/hand/controlled/attachment/azao/command/5/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/azao/hand/controlled/attachment/azao/command/5/event/6",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 8419.300000011921,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/azao/hand/controlled/attachment/azao/command/5/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/azao/hand/controlled/attachment/azao/command/5/event/6",
+          "scorePhase": "rest"
+        },
+        {
+          "at": 8436.40000000596,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/azao/hand/controlled/attachment/azao/command/5/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/azao/hand/controlled/attachment/azao/command/5/event/6",
+          "scorePhase": "rest"
+        },
+        {
+          "at": 8452.60000000894,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/azao/hand/controlled/attachment/azao/command/5/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/azao/hand/controlled/attachment/azao/command/5/event/6",
+          "scorePhase": "rest"
+        },
+        {
+          "at": 8470.90000000596,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/azao/hand/controlled/attachment/azao/command/5/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/azao/hand/controlled/attachment/azao/command/5/event/7",
+          "scorePhase": "converge"
+        },
+        {
+          "at": 8486.5,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/azao/hand/controlled/attachment/azao/command/5/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/azao/hand/controlled/attachment/azao/command/5/event/7",
+          "scorePhase": "converge"
+        },
+        {
+          "at": 8502.70000000298,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/azao/hand/controlled/attachment/azao/command/5/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/azao/hand/controlled/attachment/azao/command/5/event/7",
+          "scorePhase": "converge"
+        }
+      ],
+      "expectedEvent": {
+        "id": "controlled/attachment/azao/hand/controlled/attachment/azao/command/5/event/6",
+        "reason": "azao.multiply-multiplier",
+        "targetIds": [
+          "spades-8",
+          "hearts-8",
+          "clubs-7",
+          "diamonds-7"
+        ]
+      },
+      "cleanup": true
+    },
+    {
+      "key": "390-xiemu",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "errors": [],
+      "checks": [
+        ">=3.3 seconds continuous idle flow without input; actual exterior pixels change; state/journal/storage unchanged; exact instances only; labels avoid controls",
+        "reduced motion keeps semantic static edges; no flowing phase or exterior pixel changes",
+        "hidden removes visuals; return resumes idle without replaying travel",
+        "actual command saved once; canonical state equals domain result; release follows actual source impact; completed presentation removes all edges"
+      ],
+      "status": "PASS",
+      "pending": [
+        {
+          "targetId": "group/spades-8",
+          "kind": "group",
+          "members": [
+            "spades-8",
+            "hearts-8",
+            "clubs-7",
+            "diamonds-7"
+          ],
+          "phase": "idle",
+          "flow": 0.2184833333333335
+        }
+      ],
+      "labels": [
+        {
+          "text": "待付10",
+          "bounds": {
+            "type": 5,
+            "x": 148,
+            "y": 626.4000122070313,
+            "width": 49,
+            "height": 18
+          },
+          "intersectsControl": false
+        }
+      ],
+      "samples": [
+        {
+          "elapsed": 0.002299999992828816,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "kind": "group",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "idle",
+              "flow": 0.2184833333333335
+            }
+          ]
+        },
+        {
+          "elapsed": 1179.280700000003,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "kind": "group",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "idle",
+              "flow": 0.9681375000000013
+            }
+          ]
+        },
+        {
+          "elapsed": 2321.8122999999905,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "kind": "group",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "idle",
+              "flow": 0.6764437500000017
+            }
+          ]
+        },
+        {
+          "elapsed": 3473.6835999999894,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "kind": "group",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "idle",
+              "flow": 0.3847500000000002
+            }
+          ]
+        }
+      ],
+      "changedExteriorPixels": 973,
+      "reducedExteriorPixels": 0,
+      "reduced": [
+        {
+          "targetId": "group/spades-8",
+          "kind": "group",
+          "members": [
+            "spades-8",
+            "hearts-8",
+            "clubs-7",
+            "diamonds-7"
+          ],
+          "phase": "idle",
+          "flow": 0
+        }
+      ],
+      "release": [
+        {
+          "at": 8143.5999999940395,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/xiemu/hand/controlled/attachment/xiemu/command/4/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/xiemu/hand/controlled/attachment/xiemu/command/4/event/6",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 8165.199999988079,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/xiemu/hand/controlled/attachment/xiemu/command/4/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/xiemu/hand/controlled/attachment/xiemu/command/4/event/6",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 8178,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/xiemu/hand/controlled/attachment/xiemu/command/4/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/xiemu/hand/controlled/attachment/xiemu/command/4/event/6",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 8194.29999999702,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/xiemu/hand/controlled/attachment/xiemu/command/4/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/xiemu/hand/controlled/attachment/xiemu/command/4/event/6",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 8210.699999988079,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/xiemu/hand/controlled/attachment/xiemu/command/4/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/xiemu/hand/controlled/attachment/xiemu/command/4/event/6",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 8227.699999988079,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/xiemu/hand/controlled/attachment/xiemu/command/4/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/xiemu/hand/controlled/attachment/xiemu/command/4/event/6",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 8243.89999999106,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/xiemu/hand/controlled/attachment/xiemu/command/4/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/xiemu/hand/controlled/attachment/xiemu/command/4/event/6",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 8260.199999988079,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/xiemu/hand/controlled/attachment/xiemu/command/4/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/xiemu/hand/controlled/attachment/xiemu/command/4/event/6",
+          "scorePhase": "impact"
+        },
+        {
+          "at": 8276.59999999404,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/xiemu/hand/controlled/attachment/xiemu/command/4/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/xiemu/hand/controlled/attachment/xiemu/command/4/event/6",
+          "scorePhase": "rest"
+        },
+        {
+          "at": 8293.699999988079,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/xiemu/hand/controlled/attachment/xiemu/command/4/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/xiemu/hand/controlled/attachment/xiemu/command/4/event/6",
+          "scorePhase": "rest"
+        },
+        {
+          "at": 8311.199999988079,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/xiemu/hand/controlled/attachment/xiemu/command/4/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/xiemu/hand/controlled/attachment/xiemu/command/4/event/6",
+          "scorePhase": "rest"
+        },
+        {
+          "at": 8327.59999999404,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/xiemu/hand/controlled/attachment/xiemu/command/4/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/xiemu/hand/controlled/attachment/xiemu/command/4/event/7",
+          "scorePhase": "converge"
+        },
+        {
+          "at": 8343.79999999702,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/xiemu/hand/controlled/attachment/xiemu/command/4/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/xiemu/hand/controlled/attachment/xiemu/command/4/event/7",
+          "scorePhase": "converge"
+        },
+        {
+          "at": 8361,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/xiemu/hand/controlled/attachment/xiemu/command/4/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/xiemu/hand/controlled/attachment/xiemu/command/4/event/7",
+          "scorePhase": "converge"
+        },
+        {
+          "at": 8377.89999999106,
+          "edges": [
+            {
+              "targetId": "group/spades-8",
+              "members": [
+                "spades-8",
+                "hearts-8",
+                "clubs-7",
+                "diamonds-7"
+              ],
+              "phase": "release",
+              "eventId": "controlled/attachment/xiemu/hand/controlled/attachment/xiemu/command/4/event/6"
+            }
+          ],
+          "scoreEvent": "controlled/attachment/xiemu/hand/controlled/attachment/xiemu/command/4/event/7",
+          "scorePhase": "award"
+        }
+      ],
+      "expectedEvent": {
+        "id": "controlled/attachment/xiemu/hand/controlled/attachment/xiemu/command/4/event/6",
+        "reason": "xiemu.multiply-multiplier",
+        "targetIds": [
+          "spades-8",
+          "hearts-8",
+          "clubs-7",
+          "diamonds-7"
+        ]
+      },
+      "cleanup": true
+    },
+    {
+      "key": "390-touye",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "errors": [],
+      "checks": [
+        ">=3.3 seconds continuous idle flow without input; actual exterior pixels change; state/journal/storage unchanged; exact instances only; labels avoid controls"
+      ],
+      "status": "FAIL",
+      "pending": [
+        {
+          "targetId": "clubs-8",
+          "kind": "wager",
+          "members": [
+            "clubs-8",
+            "diamonds-6"
+          ],
+          "phase": "idle",
+          "flow": 0.30163333333333303
+        },
+        {
+          "targetId": "diamonds-6",
+          "kind": "wager",
+          "members": [
+            "clubs-8",
+            "diamonds-6"
+          ],
+          "phase": "idle",
+          "flow": 0.30163333333333303
+        }
+      ],
+      "labels": [
+        {
+          "text": "新?",
+          "bounds": {
+            "type": 5,
+            "x": 237,
+            "y": 626.4000122070313,
+            "width": 26,
+            "height": 18
+          },
+          "intersectsControl": false
+        },
+        {
+          "text": "新·待判",
+          "bounds": {
+            "type": 5,
+            "x": 316,
+            "y": 642.4000122070313,
+            "width": 51,
+            "height": 18
+          },
+          "intersectsControl": false
+        }
+      ],
+      "samples": [
+        {
+          "elapsed": 0.0015999999886844307,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "kind": "wager",
+              "members": [
+                "clubs-8",
+                "diamonds-6"
+              ],
+              "phase": "idle",
+              "flow": 0.30163333333333303
+            },
+            {
+              "targetId": "diamonds-6",
+              "kind": "wager",
+              "members": [
+                "clubs-8",
+                "diamonds-6"
+              ],
+              "phase": "idle",
+              "flow": 0.30163333333333303
+            }
+          ]
+        },
+        {
+          "elapsed": 1191.5194999999949,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "kind": "wager",
+              "members": [
+                "clubs-8",
+                "diamonds-6"
+              ],
+              "phase": "idle",
+              "flow": 0.051297916666668754
+            },
+            {
+              "targetId": "diamonds-6",
+              "kind": "wager",
+              "members": [
+                "clubs-8",
+                "diamonds-6"
+              ],
+              "phase": "idle",
+              "flow": 0.051297916666668754
+            }
+          ]
+        },
+        {
+          "elapsed": 2350.3649999999907,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "kind": "wager",
+              "members": [
+                "clubs-8",
+                "diamonds-6"
+              ],
+              "phase": "idle",
+              "flow": 0.7595979166666689
+            },
+            {
+              "targetId": "diamonds-6",
+              "kind": "wager",
+              "members": [
+                "clubs-8",
+                "diamonds-6"
+              ],
+              "phase": "idle",
+              "flow": 0.7595979166666689
+            }
+          ]
+        },
+        {
+          "elapsed": 3525.9829000000027,
+          "edges": [
+            {
+              "targetId": "clubs-8",
+              "kind": "wager",
+              "members": [
+                "clubs-8",
+                "diamonds-6"
+              ],
+              "phase": "idle",
+              "flow": 0.5095666666666676
+            },
+            {
+              "targetId": "diamonds-6",
+              "kind": "wager",
+              "members": [
+                "clubs-8",
+                "diamonds-6"
+              ],
+              "phase": "idle",
+              "flow": 0.5095666666666676
+            }
+          ]
+        }
+      ],
+      "changedExteriorPixels": 1037,
+      "reducedExteriorPixels": 108,
+      "failure": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n108 !== 0\n\n    at file:///D:/ai/dachoupai/dachoupai/.codex-remote-attachments/hero-target-attachments-20261017/harness/hero-attachments.mjs:49:490"
+    }
+  ],
+  "status": "RUNNING",
+  "browser": "153.0.8010.12"
+}

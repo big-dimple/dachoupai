@@ -1,0 +1,43 @@
+{
+  "product": "f0deb61c3a0db50321347e6c94537957a0c088c9",
+  "runtimeHead": "e34a9330a94a24ea70c433674b5dfacfa1ccab78",
+  "note": "Browser reports retain the actual precommit HEAD. Actual tested working-tree bytes are compared to this product; Git line-ending normalization is recorded explicitly.",
+  "files": {
+    "src/game/GameScene.ts": {
+      "runtimeSHA256": "3091f7715f57f1c0b5d42f17d1c93d28c059e4879b5546fa8957e80edc89f088",
+      "workingSHA256": "3091f7715f57f1c0b5d42f17d1c93d28c059e4879b5546fa8957e80edc89f088",
+      "gitBlobSHA256": "0fad168b22f2448f5b99b5976e039f0b00d7babfc43e3d65d41867bb75bdfd93",
+      "gitBlobLFNormalizedSHA256": "0fad168b22f2448f5b99b5976e039f0b00d7babfc43e3d65d41867bb75bdfd93",
+      "runtimeLFNormalizedSHA256": "0fad168b22f2448f5b99b5976e039f0b00d7babfc43e3d65d41867bb75bdfd93",
+      "rawMatchesRuntime": true,
+      "normalizedMatchesProduct": true
+    },
+    "src/game/HeroTargetAttachment.ts": {
+      "runtimeSHA256": "ef130ae8acbf389ff0fde3b5dd90fa114db04640bccf358a015b9e189886b191",
+      "workingSHA256": "ef130ae8acbf389ff0fde3b5dd90fa114db04640bccf358a015b9e189886b191",
+      "gitBlobSHA256": "ef130ae8acbf389ff0fde3b5dd90fa114db04640bccf358a015b9e189886b191",
+      "gitBlobLFNormalizedSHA256": "ef130ae8acbf389ff0fde3b5dd90fa114db04640bccf358a015b9e189886b191",
+      "runtimeLFNormalizedSHA256": "ef130ae8acbf389ff0fde3b5dd90fa114db04640bccf358a015b9e189886b191",
+      "rawMatchesRuntime": true,
+      "normalizedMatchesProduct": true
+    },
+    "src/game/HeroTargetAttachmentState.ts": {
+      "runtimeSHA256": "be16afbfe2bc2f77822e84f42a135633bc4753612a705fbd0670abe0b74675ab",
+      "workingSHA256": "be16afbfe2bc2f77822e84f42a135633bc4753612a705fbd0670abe0b74675ab",
+      "gitBlobSHA256": "c35d345077155f981fb0e69dc22442cc9d7b56962b6da85aedbda4d1e7c0ac04",
+      "gitBlobLFNormalizedSHA256": "c35d345077155f981fb0e69dc22442cc9d7b56962b6da85aedbda4d1e7c0ac04",
+      "runtimeLFNormalizedSHA256": "c35d345077155f981fb0e69dc22442cc9d7b56962b6da85aedbda4d1e7c0ac04",
+      "rawMatchesRuntime": true,
+      "normalizedMatchesProduct": true
+    },
+    "src/game/HeroAttachmentFacts.ts": {
+      "runtimeSHA256": "cfa99471a3f74fb1e903cc7bcfad480e44ceb1ad2f081bc4a7c6be2ae274f08e",
+      "workingSHA256": "cfa99471a3f74fb1e903cc7bcfad480e44ceb1ad2f081bc4a7c6be2ae274f08e",
+      "gitBlobSHA256": "cfa99471a3f74fb1e903cc7bcfad480e44ceb1ad2f081bc4a7c6be2ae274f08e",
+      "gitBlobLFNormalizedSHA256": "cfa99471a3f74fb1e903cc7bcfad480e44ceb1ad2f081bc4a7c6be2ae274f08e",
+      "runtimeLFNormalizedSHA256": "cfa99471a3f74fb1e903cc7bcfad480e44ceb1ad2f081bc4a7c6be2ae274f08e",
+      "rawMatchesRuntime": true,
+      "normalizedMatchesProduct": true
+    }
+  }
+}

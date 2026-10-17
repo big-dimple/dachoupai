@@ -42,4 +42,28 @@ describe('hero target intent ownership',()=>{
       const p=attachmentEdgePoint(width,height,i/200);expect(Math.abs(p.x)>=width/2+2.99||Math.abs(p.y)>=height/2+2.99).toBe(true);
     }
   });
+  it('owns one exact assist group, survives idle/rebind and releases only its saved assist event',()=>{
+    const state=new HeroTargetAttachmentState(),ids=['assist/2c','assist/2s'],assist={key:'main-77-99/assist-22',targetId:ids[0],targetIds:ids,kind:'assist' as const,releaseReason:'amo.assist.'};
+    state.preview(assist);ids.push('not-selected-later');expect(state.value?.targetIds).toEqual(['assist/2c','assist/2s']);
+    for(let i=0;i<100;i++)state.advance(50);expect(state.value?.phase).toBe('idle');
+    state.consume(assist.targetId,'saved/assist',context());expect(state.release({eventId:'saved/assist',reasonKey:'ordinary.points'},context())).toBe(false);
+    expect(state.release({eventId:'saved/assist',reasonKey:'amo.assist.pair'},context())).toBe(true);
+    for(let i=0;i<5;i++)state.advance(50);expect(state.value).toBeUndefined();
+  });
+  it('editing/canceling the assist set invalidates old flight and saved callbacks without changing a main target',()=>{
+    const state=new HeroTargetAttachmentState(),old=new AbortController();state.preview({key:'assist-a',targetId:'a',targetIds:['a','b'],kind:'assist',releaseReason:'amo.assist.'});state.consume('a','old',{generation:1,signal:old.signal});
+    state.preview({key:'assist-b',targetId:'c',targetIds:['c','d','e'],kind:'assist',releaseReason:'amo.assist.'});old.abort();expect(state.value?.targetIds).toEqual(['c','d','e']);
+    expect(state.release({eventId:'old',reasonKey:'amo.assist.pair'},context())).toBe(false);state.preview(undefined);expect(state.value).toBeUndefined();
+  });
+  it('the whole-hand bracket changes payment wording only after saving and waits for the exact saved source event',()=>{
+    const state=new HeroTargetAttachmentState();state.preview({key:'burn20',targetId:'main/a',targetIds:['main/a','main/b'],kind:'group',label:'待付20',releaseReason:'xiemu.multiply-multiplier'});
+    expect(state.value?.label).toBe('待付20');state.consume('main/a','saved/payment',context());expect(state.value?.label).toBe('已付20·待算');
+    expect(state.release({eventId:'saved/payment',reasonKey:'ordinary.points'},context())).toBe(false);
+    expect(state.release({eventId:'saved/payment',reasonKey:'xiemu.multiply-multiplier'},context())).toBe(true);
+  });
+  it('a saved core can narrow new-card ownership while retaining one abort-bound generation',()=>{
+    const state=new HeroTargetAttachmentState(),abort=new AbortController();state.preview({key:'wager',targetId:'new/a',targetIds:['new/a','new/b'],kind:'wager',releaseReason:'touye.'});const generation=state.value?.generation;
+    state.retainTargets(['new/b']);state.consume('new/b','saved/win',{generation:1,signal:abort.signal});expect(state.value).toMatchObject({generation,targetId:'new/b',targetIds:['new/b']});
+    abort.abort();expect(state.value).toBeUndefined();
+  });
 });
