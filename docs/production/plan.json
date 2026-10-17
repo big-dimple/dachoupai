@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "auditCommit": "7d7921e76ca794a14e715e3eac3b4d66143862ff",
   "currentTask": "P08",
-  "selectionPolicy": "2026-10-17 当前10来源整合完毕，独立Windows dev/current-batch-integration-20261017，产品2c3bfe5c48d9d3429dcecc0112bfe3a64ffaa268；GameScene精确1eab25d9。最终去重21文件162项、类型/构建通过，原CRLF失败及必要19项恢复回归保留。用户最新明确授权正常dev和main合并/push，最终发布SHA见实际push回执；不强推/查CI/域名/部署。今天整改按清单分批整合后集中验证，失败只补必要回归；开发本地Windows、试玩dot远端，不新增重复矩阵或自然长局。当前候选远端及视觉/听感/真机仍待验，P08仍in_progress。",
+  "selectionPolicy": "2026-10-17 当前文案+待提交dot文档合批，来源6a67b0e722f677fbc31b6e69d032d6704c778657，无冲突整合产品24fb33d3efde7531278260131e22da31519adf93。复用精确来源37文件321项，新增仅类型/构建通过；正常dev/main推送已授权，不强推/CI/域名/部署、不重跑单测或新开浏览器。复杂/旧身份长规则未逐卡重写，新文案dot观感/真人理解与原高光/触摸/听感/物理设备仍待验；开发Windows、试玩dot，按清单分批集中验证，P08仍in_progress。",
   "resumeContract": {
     "candidateCommit": "4bf6a7d63d7738d3c415d09439a1bdca878dc685",
     "gateTask": "A01",
@@ -38,8 +38,9 @@
       ],
       "package": "docs/production/WORK_PACKAGES.md#p08",
       "humanGate": false,
-      "completionScope": "本批10来源已按原提交正常merge；产品2c3bfe5c48d9d3429dcecc0112bfe3a64ffaa268，最终来源1eab25d9包含顺序交接后的GameScene接线。51工具图/c06新图、选角/章节/短确认、秦琼明确重选弃牌/等宽理牌/AI复用、结算本场累计与卡名、商店真实动态与计分/Boss代码均齐，后台图片预热诊断仅E2E显式开启。21文件162项集中及必要回归通过，类型/构建通过。用户授权正常dev及main发布；dot旧线上首章观察仅为整改输入，当前候选dot画面/事件、逐帧、听感、物理设备与人验未签，正式门不自动完成；P08仍in_progress。",
+      "completionScope": "既有10来源与dot有限实测保留；当前玩家文案来源6a67b0e722f677fbc31b6e69d032d6704c778657无冲突合入24fb33d3efde7531278260131e22da31519adf93，待提交dot证据一并合批。展示详情/配合/交易回执/工具/成长手记去重复工程词，规则数值/保存/图片/音频/GameScene及计分动画无变化。37文件321项精确来源复用，新增整合类型/构建通过；未逐卡重写全部复杂长规则，不签全覆盖。此前线上2cc24a50且锁文件modified，不代签新文案运行时观感；P08和正式门保持原状态。",
       "evidence": [
+        "docs/production/evidence/player-copy-integration-2026-10-17/status.json",
         "docs/production/evidence/current-batch-integration-2026-10-17/status.json",
         "docs/production/evidence/touye-discard-footer-ai-2026-10-17/status.json",
         "docs/production/evidence/shop-synergy-ui-names-2026-10-17/status.json",

@@ -1,0 +1,258 @@
+{
+  "baseCommit": "2cc24a5071e97bf0f79d227b64f60df31269bcbd",
+  "sourceCommit": "6a67b0e722f677fbc31b6e69d032d6704c778657",
+  "integratedProductCommit": "24fb33d3efde7531278260131e22da31519adf93",
+  "pendingDotEvidenceCommit": "2985e5099cf61864506197f41ba0b7d8ffb67a62",
+  "conflicts": 0,
+  "productRoots": [
+    "src",
+    "tests",
+    "scripts",
+    "harness",
+    "public",
+    "art",
+    "package.json",
+    "package-lock.json"
+  ],
+  "productAndAllTestTreesEqualToSource": true,
+  "protectedRoots": [
+    "src/domain",
+    "src/application",
+    "src/platform",
+    "src/content",
+    "src/audio",
+    "public",
+    "art",
+    "package.json",
+    "package-lock.json",
+    "src/game/GameScene.ts",
+    "src/game/ScorePosture.ts",
+    "src/game/HeroClimax.ts"
+  ],
+  "protectedRootsEqualToBase": true,
+  "bindings": [
+    {
+      "path": "src/game/BuildGrowthProgress.ts",
+      "blob": "7578abe76974c59875efea3b2c9fa67dfddc62cb",
+      "sourceBlob": "7578abe76974c59875efea3b2c9fa67dfddc62cb",
+      "equal": true
+    },
+    {
+      "path": "src/game/BuildJourney.ts",
+      "blob": "8fe4321434487e951fdb9fc46c8e930daed04d69",
+      "sourceBlob": "8fe4321434487e951fdb9fc46c8e930daed04d69",
+      "equal": true
+    },
+    {
+      "path": "src/game/BuildJourneyDialog.ts",
+      "blob": "e51b6e4651aa15b4c56b7a3bd0fc2d5483a04cf7",
+      "sourceBlob": "e51b6e4651aa15b4c56b7a3bd0fc2d5483a04cf7",
+      "equal": true
+    },
+    {
+      "path": "src/game/BuildKeepsakeView.ts",
+      "blob": "a1cb43c591589630f1a39c25e9729bbe28c1714a",
+      "sourceBlob": "a1cb43c591589630f1a39c25e9729bbe28c1714a",
+      "equal": true
+    },
+    {
+      "path": "src/game/ConsumableDialog.ts",
+      "blob": "7e6ee08f168cdbba231b15a9282c408a39befa3a",
+      "sourceBlob": "7e6ee08f168cdbba231b15a9282c408a39befa3a",
+      "equal": true
+    },
+    {
+      "path": "src/game/DetailDialog.ts",
+      "blob": "df77ae516c73fd96ff46e646e8ed95d945f35268",
+      "sourceBlob": "df77ae516c73fd96ff46e646e8ed95d945f35268",
+      "equal": true
+    },
+    {
+      "path": "src/game/GrowthOpportunity.ts",
+      "blob": "40d79d0f689b550e504540f4e3f5e58a96fe75ac",
+      "sourceBlob": "40d79d0f689b550e504540f4e3f5e58a96fe75ac",
+      "equal": true
+    },
+    {
+      "path": "src/game/JokerPlainCopy.ts",
+      "blob": "c497bbeae352bb1e3c7c412041ac55b63196b97a",
+      "sourceBlob": "c497bbeae352bb1e3c7c412041ac55b63196b97a",
+      "equal": true
+    },
+    {
+      "path": "src/game/JokerPlayerCopy.ts",
+      "blob": "c16606b49e13f614c51f0158afaff0d0651b77fc",
+      "sourceBlob": "c16606b49e13f614c51f0158afaff0d0651b77fc",
+      "equal": true
+    },
+    {
+      "path": "src/game/RouteFitCue.ts",
+      "blob": "878318ddf33fa55edb4d41254a572211dbfa404a",
+      "sourceBlob": "878318ddf33fa55edb4d41254a572211dbfa404a",
+      "equal": true
+    },
+    {
+      "path": "src/game/ShopJokerPresentation.ts",
+      "blob": "518957163aa8e3c2b18867aeda215556bab30cb3",
+      "sourceBlob": "518957163aa8e3c2b18867aeda215556bab30cb3",
+      "equal": true
+    },
+    {
+      "path": "src/game/ShopPurchaseReceipt.ts",
+      "blob": "d606b54c4b95e73318ba1f9530fe16e0cedb7564",
+      "sourceBlob": "d606b54c4b95e73318ba1f9530fe16e0cedb7564",
+      "equal": true
+    },
+    {
+      "path": "src/game/ShopPurchaseValue.ts",
+      "blob": "49f31cf1144dc473517c0d5f0efa3d98ec06e9b6",
+      "sourceBlob": "49f31cf1144dc473517c0d5f0efa3d98ec06e9b6",
+      "equal": true
+    },
+    {
+      "path": "src/game/ShopRouteRelations.ts",
+      "blob": "0a6ee5219177759876cf4817551216eea8f02a2f",
+      "sourceBlob": "0a6ee5219177759876cf4817551216eea8f02a2f",
+      "equal": true
+    },
+    {
+      "path": "src/game/ShopScene.ts",
+      "blob": "8176cc2c7e239f2e8726b5272b621c8f9ff0f51a",
+      "sourceBlob": "8176cc2c7e239f2e8726b5272b621c8f9ff0f51a",
+      "equal": true
+    },
+    {
+      "path": "src/game/ShopSynergy.ts",
+      "blob": "9e76052ddc12792de9387676b47698c0edcf49c9",
+      "sourceBlob": "9e76052ddc12792de9387676b47698c0edcf49c9",
+      "equal": true
+    },
+    {
+      "path": "src/game/ShopSynergyPreview.ts",
+      "blob": "1a7c45ecb8f35087ed942e9ce983cb71101c28e7",
+      "sourceBlob": "1a7c45ecb8f35087ed942e9ce983cb71101c28e7",
+      "equal": true
+    },
+    {
+      "path": "src/game/ToolPermanentValue.ts",
+      "blob": "b4c6a0b627ff5662689e9b2fad0adf825bc85012",
+      "sourceBlob": "b4c6a0b627ff5662689e9b2fad0adf825bc85012",
+      "equal": true
+    },
+    {
+      "path": "src/game/r2Help.ts",
+      "blob": "e2302afe2abba726cd4d502f80d76086e97b88e1",
+      "sourceBlob": "e2302afe2abba726cd4d502f80d76086e97b88e1",
+      "equal": true
+    },
+    {
+      "path": "src/game/r2ToolInfo.ts",
+      "blob": "e1649361902d8ce98764ef95174d2d194e681350",
+      "sourceBlob": "e1649361902d8ce98764ef95174d2d194e681350",
+      "equal": true
+    },
+    {
+      "path": "tests/all-growth-opportunities.test.ts",
+      "blob": "d849699e8eaae5ff6a3a6f6e98027c9a6348488f",
+      "sourceBlob": "d849699e8eaae5ff6a3a6f6e98027c9a6348488f",
+      "equal": true
+    },
+    {
+      "path": "tests/build-growth-progress.test.ts",
+      "blob": "e7a310b91bc4c8e8b9419bcec995a1f0ac4c1600",
+      "sourceBlob": "e7a310b91bc4c8e8b9419bcec995a1f0ac4c1600",
+      "equal": true
+    },
+    {
+      "path": "tests/build-journey-dialog.test.ts",
+      "blob": "944ac9669641a9b28821b61454c041c1d5cdf5cc",
+      "sourceBlob": "944ac9669641a9b28821b61454c041c1d5cdf5cc",
+      "equal": true
+    },
+    {
+      "path": "tests/build-keepsake.test.ts",
+      "blob": "3135754108b2509883a1baf87bf1cf75f440b932",
+      "sourceBlob": "3135754108b2509883a1baf87bf1cf75f440b932",
+      "equal": true
+    },
+    {
+      "path": "tests/c01-tool-info.test.ts",
+      "blob": "ce7d221ef769fbb49cf2a2151d827aa0ab68d03e",
+      "sourceBlob": "ce7d221ef769fbb49cf2a2151d827aa0ab68d03e",
+      "equal": true
+    },
+    {
+      "path": "tests/growth-selection-semantics.test.ts",
+      "blob": "43919bdd0baa81315f3ace45e3adf8bdc466bb96",
+      "sourceBlob": "43919bdd0baa81315f3ace45e3adf8bdc466bb96",
+      "equal": true
+    },
+    {
+      "path": "tests/growth-selection.test.ts",
+      "blob": "66f53d01aa0c0f05632ad6044292ca2aa26aa3a1",
+      "sourceBlob": "66f53d01aa0c0f05632ad6044292ca2aa26aa3a1",
+      "equal": true
+    },
+    {
+      "path": "tests/joker-copy-ambiguity.test.ts",
+      "blob": "92709a0ee7e69a166bae4b1451c1f3c8198d7f9f",
+      "sourceBlob": "92709a0ee7e69a166bae4b1451c1f3c8198d7f9f",
+      "equal": true
+    },
+    {
+      "path": "tests/joker-plain-copy.test.ts",
+      "blob": "40d3af66e6a7094c50996278f89502466f70cd31",
+      "sourceBlob": "40d3af66e6a7094c50996278f89502466f70cd31",
+      "equal": true
+    },
+    {
+      "path": "tests/shop-purchase-value.test.ts",
+      "blob": "07dbb53ce98a9a0df9e4b967b4e51c9bc04d0efa",
+      "sourceBlob": "07dbb53ce98a9a0df9e4b967b4e51c9bc04d0efa",
+      "equal": true
+    },
+    {
+      "path": "tests/shop-replacement-cash-risk.test.ts",
+      "blob": "3d924eaa58d09fc8960e068d105e0c60e69f3831",
+      "sourceBlob": "3d924eaa58d09fc8960e068d105e0c60e69f3831",
+      "equal": true
+    },
+    {
+      "path": "tests/shop-route-relations.test.ts",
+      "blob": "955ab43d6e6bd79510592d5c707652ba409ea8bd",
+      "sourceBlob": "955ab43d6e6bd79510592d5c707652ba409ea8bd",
+      "equal": true
+    },
+    {
+      "path": "tests/shop-sale-continuation.test.ts",
+      "blob": "8ce050bf5eb57474f4920178a12437b0725eccb4",
+      "sourceBlob": "8ce050bf5eb57474f4920178a12437b0725eccb4",
+      "equal": true
+    },
+    {
+      "path": "tests/shop-synergy-conditions.test.ts",
+      "blob": "7f9db3b8b63c482dff355cc1f199ae9884798b54",
+      "sourceBlob": "7f9db3b8b63c482dff355cc1f199ae9884798b54",
+      "equal": true
+    },
+    {
+      "path": "tests/shop-synergy.test.ts",
+      "blob": "37a85f8c953dc47aa92aabd17b2a88af33ec2799",
+      "sourceBlob": "37a85f8c953dc47aa92aabd17b2a88af33ec2799",
+      "equal": true
+    },
+    {
+      "path": "tests/player-copy-closeout.test.ts",
+      "blob": "b4f0481ab67443476cf47785bc3f446a9aabd8fb",
+      "sourceBlob": "b4f0481ab67443476cf47785bc3f446a9aabd8fb",
+      "equal": true
+    }
+  ],
+  "reuse": {
+    "status": "PASS_REUSED_EXACT_SOURCE",
+    "files": 37,
+    "tests": 321,
+    "evidence": "../player-copy-closeout-2026-10-17/status.json",
+    "note": "No rerun of 321 cases. Source original failures and necessary repair/final logs retained unchanged."
+  }
+}

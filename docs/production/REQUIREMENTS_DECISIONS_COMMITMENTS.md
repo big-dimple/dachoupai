@@ -4,6 +4,10 @@
 
 本轮逐项 owner、文件窗口及“开发 / 整合 / 行为验证 / 用户体验验收”四状态见 [当前11项清单](CURRENT_BATCH_20261017.md)。唯一排程仍为 [DELIVERY_PLAN](DELIVERY_PLAN.md#当前统一执行计划) / [plan.json](plan.json)；本台账负责防漏和证据追溯，不自动新增工作包、改数值或解锁历史暂停项。P08 保持 `in_progress`。
 
+## 玩家文案统一入口交付更新
+
+COPY-BATCH-20261017已由既有负责人交付 `6a67b0e722f677fbc31b6e69d032d6704c778657`，无冲突整合产品 `24fb33d3efde7531278260131e22da31519adf93`，与待提交dot记录合批。精确来源37文件321项复用，新增类型/构建通过；[证据](evidence/player-copy-integration-2026-10-17/README.md)。代码交付不等于新文案dot/真人理解通过；复杂及旧身份长规则未逐卡重写。用户当前授权正常dev/main合批推送，以下“继续/暂不单独main”等按当时记录读取，不重复派发或重跑测试。
+
 ## 2026-10-17 04:36 UTC 实测追加与下一批文案
 
 当前整合已正常发布main `2cc24a5071e97bf0f79d227b64f60df31269bcbd`；[新版dot有限实测](evidence/current-batch-integration-2026-10-17/parent-dot-candidate-0436.md)报告域名对应revision但modified package-lock.json，不能签源码全干净。下表较早“未main/待交付”只按原回执读取，当前合入与验收状态以[批次清单](CURRENT_BATCH_20261017.md)及精确新证据为准。

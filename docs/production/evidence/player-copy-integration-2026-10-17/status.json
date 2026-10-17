@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "taskId": "P08",
+  "taskStatus": "in_progress",
+  "baseCommit": "2cc24a5071e97bf0f79d227b64f60df31269bcbd",
+  "sourceCommit": "6a67b0e722f677fbc31b6e69d032d6704c778657",
+  "testedCommit": "24fb33d3efde7531278260131e22da31519adf93",
+  "branch": "dev/current-batch-integration-20261017",
+  "pendingDotEvidenceCommit": "2985e5099cf61864506197f41ba0b7d8ffb67a62",
+  "conflicts": 0,
+  "scope": "公共玩家文案去重与语言收口：持有/购买详情、配合、比较/出售/回执、工具、成长手记。仅UI展示及必要测试；未逐卡重写72张/全部旧身份复杂长规则。",
+  "checks": [
+    {
+      "name": "Exact product/test tree and 36 recorded blob bindings",
+      "status": "PASS",
+      "evidence": "source-reuse.json",
+      "method": "Git diff source..integrated src/tests/scripts/harness/public/art/package+lock equals0; all36 source recorded blobs match; protected paths unchanged from2cc24a50."
+    },
+    {
+      "name": "Source-owner concentrated contracts reused",
+      "status": "PASS",
+      "execution": "REUSED_NOT_RERUN",
+      "files": 37,
+      "cases": 321,
+      "evidence": "../player-copy-closeout-2026-10-17/status.json",
+      "note": "Original FAIL, necessary repair131 and final26 logs retained; do not add repeat counts or call this a new321-case run."
+    },
+    {
+      "name": "Integrated TypeScript",
+      "command": "node node_modules/typescript/bin/tsc --noEmit",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "checks/typecheck-PASS.txt"
+    },
+    {
+      "name": "Integrated production build",
+      "command": "node node_modules/vite/bin/vite.js build",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "checks/build-PASS.txt",
+      "sourceBinding": "checks/built-source-info.json",
+      "modules": 315,
+      "note": "Existing large-chunk advisory; no new browser or unit run."
+    },
+    {
+      "name": "Copy-batch dot UI and human understanding",
+      "status": "NOT_RUN",
+      "reason": "Parent dot observations remain bound to pre-copy2cc24a50; they are not acceptance of new6a67 text."
+    }
+  ],
+  "protectedUnchanged": [
+    "src/domain",
+    "src/application",
+    "src/platform",
+    "src/content",
+    "src/audio",
+    "public",
+    "art",
+    "package.json",
+    "package-lock.json",
+    "src/game/GameScene.ts",
+    "src/game/ScorePosture.ts",
+    "src/game/HeroClimax.ts"
+  ],
+  "remoteEvidence": {
+    "beforeCopyRevision": "2cc24a5071e97bf0f79d227b64f60df31269bcbd",
+    "reference": "../current-batch-integration-2026-10-17/parent-dot-candidate-0436.md",
+    "status": "SCOPED_PRIOR_RUNTIME_FACTS_ONLY",
+    "notes": [
+      "Includes parent normal purchase19→15,5♣+5,Wildfire+H line25→45,Qin×1.15 line/landing,final145 and stored0.5 retained.",
+      "Source lines/addition observed; complete hero eye-climax, listening/smoothness/touch/physical phone not signed.",
+      "Domain score-pressure harness returned ordinary loading shell; unavailable; no deployment change.",
+      "Previous online build-info had modified package-lock.json; local exact source does not prove a clean online source."
+    ]
+  },
+  "remaining": [
+    "Complex multistep/legacy long rules not individually rewritten; no full-copy-coverage claim.",
+    "New copy layout/readability/human understanding and e08/f04/Qin conflict wording await scoped dot observation on the new revision.",
+    "Complete hero highglow continuous frames, touch dynamic links, listening and physical devices remain unaccepted.",
+    "Original settlement screenshot/save evidence upload denial remains; rejected artifacts were not copied or retried.",
+    "P08 remains in_progress; C04/A03/V01/L01 gates unchanged."
+  ],
+  "publication": {
+    "authorization": "Parent relayed explicit user approval for today fixes normal merge/push main after checks; source and pending dot docs are this single batch.",
+    "status": "Ready for ordinary dev/main pushes; final commit is the documentation closeout containing this record; exact published SHA comes from actual push receipt.",
+    "restrictions": "No force push, CI/domain query, deployment, browser matrix or natural long game."
+  }
+}

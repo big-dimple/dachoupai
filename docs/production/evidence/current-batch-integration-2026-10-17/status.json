@@ -213,7 +213,13 @@
     "releasedCommit": "2cc24a5071e97bf0f79d227b64f60df31269bcbd",
     "status": "Prior batch normal dev/main pushes succeeded f81724b5..2cc24a50. This candidate observation addendum is documentation-only on dev; not separately sent to main.",
     "deployment": "Parent later observed the domain revision with a modified lockfile; no deployment performed by this task.",
-    "pendingLocalAddendum": "This same-session follow-up remains local until next combined documentation commit, per parent instruction; no new commit/push for this message."
+    "followupBatch": {
+      "dotEvidenceCommit": "2985e5099cf61864506197f41ba0b7d8ffb67a62",
+      "sourceCommit": "6a67b0e722f677fbc31b6e69d032d6704c778657",
+      "integratedProductCommit": "24fb33d3efde7531278260131e22da31519adf93",
+      "authorization": "Current parent request authorizes combined normal dev/main pushes after checks.",
+      "evidence": "../player-copy-integration-2026-10-17/status.json"
+    }
   },
   "remoteCandidateEvidence": {
     "observedAt": "2026-10-17T04:36:00Z",
@@ -239,16 +245,18 @@
   "nextBatchTasks": [
     {
       "id": "COPY-BATCH-20261017",
-      "status": "in_progress",
+      "status": "code_complete_remote_pending",
       "scope": "青出于蓝详情同花成长规则重复三遍、工程式时点/用途/现存状态措辞；下一批统一玩家文案去重。",
       "observedPhrases": [
         "到对应动作成功并保存时检查",
         "用途不表示已发动或最优；仍按实际条件、封禁和保存事件检查",
         "现存：无成长或使用计数"
       ],
-      "evidence": "parent-dot-candidate-0436.md",
-      "currentAction": "Parent confirms existing worker continues task. Record only in this integrator; do not reassign, change product or add tests.",
-      "owner": "existing shop worker 01a147f7"
+      "evidence": "../player-copy-integration-2026-10-17/status.json",
+      "currentAction": "Existing worker delivered; integrated with accumulated dot docs. Exact321 source contracts reused, only integrated type/build added. New-copy dot/human understanding pending; no full complex/legacy long-rule rewrite.",
+      "owner": "existing shop worker 01a147f7",
+      "sourceCommit": "6a67b0e722f677fbc31b6e69d032d6704c778657",
+      "integratedProductCommit": "24fb33d3efde7531278260131e22da31519adf93"
     }
   ]
 }
