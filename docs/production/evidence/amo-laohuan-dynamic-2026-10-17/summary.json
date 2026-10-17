@@ -1,0 +1,106 @@
+{
+  "testedCommit": "e2e64946f6fabe6fc0e8b369a6b3b52c5bda9d29",
+  "status": "FAIL_VISUAL",
+  "behaviorStatus": "PASS: 4 bounded cells",
+  "allSixHeroes": "NOT_RUN by this subtask; only amo/laohuan covered",
+  "physicalDevice": "NOT_RUN",
+  "subjectiveAudio": "NOT_RUN",
+  "haptics": "NOT_RUN",
+  "sourceUnchanged": true,
+  "cases": [
+    {
+      "key": "amo-1366",
+      "behavior": "PASS",
+      "raw": "observed/amo-1366.json.gz",
+      "strike": "observed/amo-1366-1-strike.png",
+      "sampleCount": 23,
+      "eyesFirst": 8617.69999999553,
+      "eyesStrike": 8935.89999999851,
+      "eyesRelease": 9385.79999999702,
+      "H": "75",
+      "M": "2 → 4",
+      "score": "150 → 300",
+      "audioFlight": 8587.79999999702,
+      "audioMultiply": 8920,
+      "valueArrival": 8919.39999999851,
+      "audioDeltaMs": 0.6000000014901161,
+      "ordinaryNextScore": "30",
+      "pixel": "reviewed screenshot"
+    },
+    {
+      "key": "amo-390",
+      "behavior": "PASS",
+      "raw": "observed/amo-390.json.gz",
+      "strike": "observed/amo-390-1-strike.png",
+      "sampleCount": 23,
+      "eyesFirst": 10708.69999999553,
+      "eyesStrike": 11025.59999999404,
+      "eyesRelease": 11458.39999999851,
+      "H": "75",
+      "M": "2 → 4",
+      "score": "150 → 300",
+      "audioFlight": 10677.89999999851,
+      "audioMultiply": 11009.89999999851,
+      "valueArrival": 11009.29999999702,
+      "audioDeltaMs": 0.6000000014901161,
+      "ordinaryNextScore": "30",
+      "pixel": "FAIL: ×2 raster clipped"
+    },
+    {
+      "key": "laohuan-1366",
+      "behavior": "PASS",
+      "raw": "observed/laohuan-1366.json.gz",
+      "strike": "observed/laohuan-1366-1-strike.png",
+      "sampleCount": 23,
+      "eyesFirst": 4316.4000000059605,
+      "eyesStrike": 4580,
+      "eyesRelease": 5613.30000000447,
+      "kept": [
+        "diamonds-14"
+      ],
+      "stageHeat": "0",
+      "retentionSfx": [
+        "select",
+        "hover",
+        "select",
+        "hover",
+        "select"
+      ],
+      "ordinaryNextScore": "78",
+      "pixel": "FAIL: eye placement overlays existing text"
+    },
+    {
+      "key": "laohuan-390",
+      "behavior": "PASS",
+      "raw": "observed/laohuan-390.json.gz",
+      "strike": "observed/laohuan-390-1-strike.png",
+      "sampleCount": 23,
+      "eyesFirst": 5047.4000000059605,
+      "eyesStrike": 5308.60000000149,
+      "eyesRelease": 6326,
+      "kept": [
+        "diamonds-14"
+      ],
+      "stageHeat": "0",
+      "retentionSfx": [
+        "select",
+        "select",
+        "select"
+      ],
+      "ordinaryNextScore": "78",
+      "pixel": "FAIL: eye placement overlays existing text"
+    }
+  ],
+  "findings": [
+    "Xin Qiji retention eye uses default placement and overlays PC resources / mobile selection explanation.",
+    "Su Shi mobile source ×2 raster is enlarged and clipped at the viewport edge; nominal Text bounds remain 39×34 at resolution 3.",
+    "Xin Qiji retention has no dedicated effect/character SFX at its strike; generic discard/select sounds exist. Product audio requirement needs owner judgment."
+  ],
+  "environment": {
+    "os": "win32",
+    "node": "v22.20.0",
+    "device": "NOT_RUN: Chromium mobile emulation only",
+    "browser": "153.0.8010.12"
+  },
+  "scope": "Only Su Shi/amo and Xin Qiji/laohuan, PC 1366x768 and 390x844 portrait. Disclosed planted public hand, canonical command/checkpoint validation; actual import, mouse/touch and production GameScene. No private action calls, fake presentation, timing change, seed search, natural acquisition or long run. Audio call/scheduled voice timing is observed; timbre, haptics and physical devices are NOT_RUN. Other four heroes are outside this subtask, so no six-hero pass."
+}
