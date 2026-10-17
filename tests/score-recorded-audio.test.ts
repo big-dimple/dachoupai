@@ -1,6 +1,9 @@
 import {it,expect,vi,afterEach} from 'vitest';
 import {AudioEngine} from '../src/audio/AudioEngine';
 import {FOLEY_SAMPLES} from '../src/audio/foley';
+import {scoreR2Hand} from '../src/domain/scoreR2';
+import {numberImpact} from '../src/game/ScoreEnergy';
+import type {PlayingCard, Rank} from '../src/cards/types';
 const fixture=()=>{vi.stubGlobal('document',{hidden:false});const sources:any[]=[];const param=()=>({value:1,cancelScheduledValues:vi.fn(),setValueAtTime:vi.fn(),setTargetAtTime:vi.fn(),linearRampToValueAtTime:vi.fn()});const gain=()=>({gain:param(),connect:vi.fn(),disconnect:vi.fn()});const engine=new AudioEngine(),inside=engine as any;inside.context={currentTime:1,state:'running',createGain:gain,createBufferSource:()=>{const node={buffer:null,playbackRate:param(),start:vi.fn(),stop:vi.fn(),connect:vi.fn(),disconnect:vi.fn(),onended:null};sources.push(node);return node;}};inside.gains={master:gain(),sfx:gain(),ui:gain(),music:gain()};inside.unlocked=true;for(const name of [...FOLEY_SAMPLES.map(a=>a.name),'cloth2'])inside.scoreSamples.set(name,{name,duration:.3});return {engine,inside,sources};};
 afterEach(()=>vi.unstubAllGlobals());
 it('ordinary hits stay light and key multiplication has bounded three-layer timbre, all cancellable',()=>{const {engine,inside,sources}=fixture(),show={};engine.scoreImpact(show,'one','add',0,0);expect(sources[0].buffer.name).toBe('impactWood_light_000');engine.scoreImpact(show,'two','multiply',3,3);expect(sources.slice(1).map(s=>s.buffer.name)).toEqual(['impactSoft_heavy_000','impactBell_heavy_003','card-fan-1']);expect(sources[1].playbackRate.value).toBeCloseTo(.82*1.35);expect(inside.voices.size).toBe(4);engine.cancelPresentation();expect(inside.voices.size).toBe(0);expect(sources.every(s=>s.disconnect.mock.calls.length===1)).toBe(true);});
@@ -9,6 +12,33 @@ it.each([1,1.12,1.25,1.35,1.5,1.68,1.88,2])('chain step %# preserves its actual 
  const {engine,sources}=fixture();const chain=[1,1.12,1.25,1.35,1.5,1.68,1.88,2].indexOf(rate);
  engine.scoreImpact({},'chain/'+chain,'multiply',3,chain);
  expect(sources.map(s=>s.playbackRate.value)).toEqual([.82*rate,rate,rate]);
+});
+
+it.each(['10000','16'])('real scoring-card events reach rising recorded rates through the scene numeric path (target %s)', target=>{
+ const {engine,inside,sources}=fixture();
+ const hand:PlayingCard[]=[2,4,6,8,10].map((rank,i)=>({id:'flush/'+i,rank:rank as Rank,suit:'spades'}));
+ const score=scoreR2Hand({rulesVersion:'r2',runId:'audio',rootId:'audio/real-hand',characterId:'neutral',hand,selectedIds:hand.map(c=>c.id),disabledIds:[],jokers:[],definitions:[],handLevels:{},playIndex:1,handsBeforePlay:4,previousHandType:null,wager:false,rng:{algorithm:'fnv1a-mulberry32-v1',state:99}});
+ const presentation={score},saved=JSON.stringify(score); const recorded:number[][]=[];
+ for(const event of score.events){
+  // This is the actual scene's numeric-event route: its visual chain is 1
+  // for every card before a multiplier. cardScore(index) is never called.
+  const number=numberImpact(event,target,1); if(!number)continue;
+  inside.context.currentTime+=1; const before=sources.length;
+  engine.scoreImpact(presentation,event.eventId,number.kind,number.tier,number.chain);
+  recorded.push(sources.slice(before).map(s=>s.playbackRate.value));
+ }
+ expect(score.sets.activeScoringIds).toEqual(hand.map(c=>c.id));
+ expect(recorded).toHaveLength(5);
+ const rates=[1,1.12,1.25,1.35,1.5];
+ expect(recorded).toEqual(target==='10000'?rates.map(rate=>[rate]):rates.map(rate=>[.76*rate,1.1*rate,.9*rate,.84*rate]));
+ expect(JSON.stringify(score)).toBe(saved);
+});
+
+it.each([1,1.12,1.25,1.35,1.5,1.68,1.88,2])('card key step %# preserves every material layer at octave factor %s', rate=>{
+ const {engine,sources}=fixture(),ids=Array.from({length:8},(_,i)=>'card/'+i),index=[1,1.12,1.25,1.35,1.5,1.68,1.88,2].indexOf(rate);
+ const presentation={score:{sets:{activeScoringIds:ids},events:[{eventId:'key',targetCardId:ids[index]}]}};
+ engine.scoreImpact(presentation,'key','key',3,1);
+ expect(sources.map(s=>s.playbackRate.value)).toEqual([.76*rate,1.1*rate,.9*rate,.84*rate]);
 });
 it('mute and missing clip consume cue without late playback; duplicate saved event cannot sound again',()=>{const {engine,inside,sources}=fixture(),show={};engine.muted=true;engine.scoreImpact(show,'one','multiply',3,2);engine.muted=false;engine.scoreImpact(show,'one','multiply',3,2);expect(sources).toHaveLength(0);inside.scoreSamples.delete('impactWood_light_000');inside.scoreSamples.delete('impactWood_light_001');engine.scoreImpact(show,'two','add');inside.scoreSamples.set('impactWood_light_000',{name:'impactWood_light_000',duration:.3});inside.scoreSamples.set('impactWood_light_001',{name:'impactWood_light_001',duration:.3});inside.context.currentTime+=.1;engine.scoreImpact(show,'two','add');expect(sources).toHaveLength(0);engine.scoreImpact(show,'three','add');engine.scoreImpact(show,'three','add');expect(sources).toHaveLength(1);});
 it('hidden/scene exit cancel all recorded tails without rewards or replay',()=>{const {engine,inside,sources}=fixture();engine.scoreImpact({},'award','award',3);engine.setScene('shop');expect(inside.voices.size).toBe(0);expect(sources[0].disconnect).toHaveBeenCalledOnce();vi.stubGlobal('document',{hidden:true});engine.scoreImpact({},'hidden','award',3);expect(sources).toHaveLength(3);});

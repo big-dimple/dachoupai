@@ -110,7 +110,11 @@ try {
       window.__newRunCues = [];
       e.scoreImpact = function(...args) {
         const voices = new Set(this.voices), result = original.apply(this, args);
-        window.__newRunCues.push({eventId: args[1], kind: args[2], added: [...this.voices].filter(v => !voices.has(v)).length});
+        const added = [...this.voices].filter(v => !voices.has(v));
+        const event = args[0]?.score?.events?.find(e => e.eventId === args[1]);
+        const cardIndex = args[0]?.score?.sets?.activeScoringIds?.indexOf(event?.targetCardId) ?? -1;
+        window.__newRunCues.push({eventId: args[1], kind: args[2], cardIndex, added: added.length,
+          rates: added.map(v => v.source.playbackRate.value)});
         return result;
       };
     });
@@ -124,6 +128,15 @@ try {
     await p.waitForFunction(() => {const s = window.__harness.game.scene.getScene('game'); return !s.playing && !s.presentation;}, null, {timeout: 30000});
     row.actualNewRunCues = await p.evaluate(() => window.__newRunCues);
     assert.ok(row.actualNewRunCues.some(e => e.added > 0));
+    const cards = row.actualNewRunCues.filter(e => e.cardIndex >= 0 && ['add', 'key'].includes(e.kind));
+    assert.ok(cards.length >= 2, 'actual committed hand has at least two scoring-card landings');
+    for (const cue of cards) {
+      const step = [1, 1.12, 1.25, 1.35, 1.5, 1.68, 1.88, 2][Math.min(7, cue.cardIndex)];
+      const expected = cue.kind === 'add' ? [step] : [.76 * step, 1.1 * step, .9 * step, .84 * step];
+      assert.equal(cue.rates.length, expected.length);
+      expected.forEach((rate, i) => assert.ok(Math.abs(cue.rates[i] - rate) < 1e-6,
+        `actual ${cue.kind} sample rate ${cue.rates[i]} should be ${rate} at scoring-card ${cue.cardIndex}`));
+    }
   }, {touch});
 
   await run('slow-first-track-native-start', async (p, row) => {

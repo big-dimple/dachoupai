@@ -3,7 +3,7 @@ import bgmManifest from '../../public/assets/audio/bgm/manifest.json';
 import {DEFAULT_AUDIO} from './preferences';
 import {FOLEY,FOLEY_SAMPLES,type FoleyKind,type Layer} from './foley';
 import {sampleBody,type SampleBody} from './sampleBody';
-import {awardForScore,chainRate,EFFECT_VOICE_BUDGET,ACCENT_TAIL_FLOOR} from './mixPolicy';
+import {awardForScore,chainRate,scoreStrikeRate,MAX_RECORDED_RATE,EFFECT_VOICE_BUDGET,ACCENT_TAIL_FLOOR} from './mixPolicy';
 
 export type AudioBus = 'master' | 'music' | 'sfx' | 'ui';
 export type AudioScene = 'menu' | 'shop' | 'table' | 'boss' | 'success' | 'failure';
@@ -331,7 +331,7 @@ export class AudioEngine {
   scoreImpact(presentation:object,eventId:string,kind:'add'|'key'|'multiply'|'award'|'flight',tier=0,chain=0):void {
     let seen=this.scoreCues.get(presentation);if(!seen){seen=new Set();this.scoreCues.set(presentation,seen);}const id='recorded/'+eventId+'/'+kind;
     if(seen.has(id)||seen.size>=1024)return;seen.add(id);if(!this.canPlay('sfx'))return;
-    const rate=kind==='multiply'?chainRate(chain):1;
+    const rate=scoreStrikeRate(presentation,eventId,kind,chain);
     const sound=kind==='award'?awardForScore(presentation):kind;
     const voices=this.cue(sound,'sfx',rate,0,kind==='add'||kind==='flight'?1:1+bounded(tier,3)*.035);
     for(const voice of voices)voice.scoreAccent=true;
@@ -501,7 +501,7 @@ export class AudioEngine {
       const context=this.context!,source=context.createBufferSource(),gain=context.createGain(),time=context.currentTime+offset;
       // cloth2 has an 80ms quiet lead; start at its recorded cloth body, not silence.
       const body=this.sampleBodies.get(name),sampleOffset=body?.offset??(name==='cloth2'?.08:0);
-      const speed=Number.isFinite(rate)?Math.max(.65,Math.min(2,rate)):1,length=Math.min(Math.max(.035,duration),(buffer.duration-sampleOffset)/speed);
+      const speed=Number.isFinite(rate)?Math.max(.65,Math.min(MAX_RECORDED_RATE,rate)):1,length=Math.min(Math.max(.035,duration),(buffer.duration-sampleOffset)/speed);
       if(!Number.isFinite(length)||length<=0)return;
       source.buffer=buffer;source.playbackRate.value=speed;
       const peak=bounded(volume,.14)*SOURCE_GAIN[bus]*(body?.gain??1),attack=Math.min(length*.2,shape?.attack??.005),hold=Math.max(attack,length*(shape?.hold??.55));
