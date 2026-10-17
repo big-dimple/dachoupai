@@ -9,7 +9,6 @@ import {paperSceneStart} from './PaperFlow';
 import {savedTouyeWager} from './TouyeWagerCopy';
 import {savedBossImpact} from './SavedBossImpact';
 import {stageIdentity} from './StageIdentity';
-import {victorySourceFact} from './JokerKeyHighlight';
 import {jokerArtKey} from './jokerArt';
 import {showBuildJourney} from './BuildJourneyDialog';
 import {showDeckInspection} from './DeckInspector';
@@ -22,7 +21,6 @@ import {readRunProgress} from '../platform/RunProgress';
 import {AudioEngine,type FailureCue} from '../audio/AudioEngine';
 import {getR2Stage} from '../domain/r2Run';
 import {r2JokerDefinitionFor} from '../domain/r2ContentProfiles';
-import {savedAssistSummary} from './AssistSelection';
 import {r2BossText} from '../domain/r2Chapter';
 import {HAND_LABELS} from '../content/handLabels';
 import type {ScoreTrace} from '../domain/scoreR2';
@@ -45,18 +43,19 @@ import type {Box} from './layout';
 import {PAPER_CSS,PAPER_THEME as T} from './theme';
 
 export interface IntermissionResult {cleared:boolean;stageIndex:number;stageHeat:string;handsLeft:number;goldEarned:number;failureCue?:FailureCue;rewardClearId?:string}
-function resultLayout(width:number,height:number,top:number,bottom:number,nextBoss=false,failure=false,heroCaption=false,highScore=false){
-  const short=height<500,portrait=width<700&&height>width,tight=portrait&&height<=700,compactNext=tight&&(bottom>0||!failure),w=Math.min(980,width-24),x=(width-w)/2;
-  const footerLimit=height-bottom-(portrait?(tight?132:148):104),bodyY=top+(short?64:portrait?(tight?(compactNext?88:100):108):94),available=footerLimit-16-bodyY;
-  const nextHeight=short?available:Math.min(failure?(tight?60:100):tight?(compactNext?32:60):nextBoss?132:portrait?100:112,failure?Math.max(52,available*.26):available*(nextBoss ? .30 : .26));
-  // Reserve actual score, portrait/caption and reward content; spare viewport height stays outside the flow.
-  const contentHeight=settlementContentHeight(w,heroCaption,highScore);
-  const maxScoreHeight=available-nextHeight-(compactNext?8:12);
-  const score:Box=short?{x,y:bodyY,width:w*.64-12,height:available}:{x,y:bodyY,width:w,height:failure?maxScoreHeight:Math.min(maxScoreHeight,contentHeight)};
-  const next:Box=short?{x:x+w*.64,y:bodyY,width:w*.36,height:available}:{x,y:score.y+score.height+(compactNext?8:12),width:w,height:nextHeight};
-  const footerY=short||failure?footerLimit:next.y+next.height+16;
-  const sideWidth=Math.floor(w*.28),primaryWidth=Math.floor(w*.43),rightWidth=w-sideWidth-primaryWidth-16;
-  return {x,w,top,short,portrait,tight,compactNext,score,next,left:{x,y:footerY,width:portrait?w/2-4:sideWidth,height:44},primary:portrait?{x,y:footerY+52,width:w,height:tight?48:56}:{x:x+sideWidth+8,y:footerY,width:primaryWidth,height:56},right:portrait?{x:x+w/2+4,y:footerY,width:w/2-4,height:44}:{x:x+sideWidth+primaryWidth+16,y:footerY,width:rightWidth,height:44},noticeY:footerY+(portrait?(tight?108:116):64)};
+function resultLayout(width:number,height:number,top:number,bottom:number,heroCaption=false,highScore=false,failure=false){
+  const short=height<500,portrait=width<700&&height>width,tight=portrait&&height<=700,w=Math.min(900,width-24),x=(width-w)/2;
+  const bodyY=top+(short?54:portrait?64:88),nextHeight=short?Math.min(94,height-bottom-bodyY-126):portrait?(tight?60:86):116;
+  const available=height-bottom-bodyY-(portrait?nextHeight+128:short?16:nextHeight+44);
+  const preferredHeight=failure?(short?192:portrait?180:212):short?240:settlementContentHeight(w,heroCaption,highScore);
+  const score:Box={x,y:bodyY,width:short?w*.64-12:w,height:Math.min(available,preferredHeight)};
+  const next:Box=short?{x:x+w*.64,y:bodyY,width:w*.36,height:nextHeight}:{x,y:score.y+score.height+12,width:w,height:nextHeight};
+  const actionX=short?next.x:portrait?x:x+w-288,actionWidth=short?next.width:portrait?w:288;
+  const actionY=short?next.y+next.height+8:portrait?next.y+next.height+8:next.y+8;
+  const primary:Box={x:actionX,y:actionY,width:actionWidth,height:portrait&&tight||short?48:56};
+  const auxY=primary.y+primary.height+4,auxWidth=(actionWidth-8)/2;
+  const nextText:Box={...next,width:short||portrait?next.width:next.width-actionWidth-28};
+  return {x,w,top,short,portrait,tight,score,next,nextText,primary,left:{x:actionX,y:auxY,width:auxWidth,height:44},right:{x:actionX+auxWidth+8,y:auxY,width:auxWidth,height:44},noticeY:Math.max(next.y+next.height,auxY+44)+4};
 }
 
 export class IntermissionScene extends Phaser.Scene {
@@ -120,7 +119,7 @@ export class IntermissionScene extends Phaser.Scene {
   private render():void {
     if(this.busy)this.stopSourceArt();
     const v=this.view,l=v.layout,bottom=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--safe-bottom'))||0;
-    const run=runController(this)!.state,resultFacts=settlementFacts(run,this.result.cleared,!!run.stage?.skipResult),p=resultLayout(l.width,l.height,l.hud.y,bottom,this.result.cleared&&run.phase==='stage-cleared'&&run.stageIndex%3===2,!this.result.cleared&&run.phase==='run-lost',!!resultFacts.hero,resultFacts.tier>=2),stage={...getR2Stage(this.result.stageIndex,run.tourMode,run.difficulty,run)!,targetHeat:run.stage!.targetHeat},character=getCharacter(run.characterId);
+    const run=runController(this)!.state,resultFacts=settlementFacts(run,this.result.cleared,!!run.stage?.skipResult),p=resultLayout(l.width,l.height,l.hud.y,bottom,!!resultFacts.hero,resultFacts.tier>=2,!this.result.cleared&&run.phase==='run-lost'),stage={...getR2Stage(this.result.stageIndex,run.tourMode,run.difficulty,run)!,targetHeat:run.stage!.targetHeat},character=getCharacter(run.characterId);
     const nextStage=this.result.cleared&&run.phase==='stage-cleared'?getR2Stage(run.stageIndex,run.tourMode,run.difficulty,run):undefined,skipped=run.phase==='run-lost'?null:run.stage?.skipResult,won=run.phase==='run-won',capped=this.result.cleared&&run.phase==='stage-cleared'&&!nextStage,lost=!this.result.cleared&&!skipped&&!won;
     const animateIn=this.firstRender&&!gameSession().reducedMotion&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     this.stopCelebration();v.clear();this.paintSourceArt=undefined;this.sourceArtLayer=undefined;v.paperBackground();
@@ -128,10 +127,10 @@ export class IntermissionScene extends Phaser.Scene {
     v.text(p.x,p.top,(run.tourMode==='endless'?'无尽 · ':'')+stage.name+' · '+character.name,14,identity.isBoss?PAPER_CSS.red:PAPER_CSS.jade,p.w-116).setName('stage-identity/result');
     const guidance=lost?failureGuidance(run):undefined;
     const title=capped?'本局暂止于此':skipped?'换一场，再对局':won?(run.mode==='tutorial'?'教学对局完成！':run.mode==='challenge'?'挑战完成！':'八章通关'):this.result.cleared?(identity.isBoss?'压轴过关 · '+identity.title:'本场获胜'):guidance?.title??'此局结束，再来一局';
-    v.text(p.x,p.top+(p.short?23:p.portrait?52:34),title,p.short||p.portrait&&identity.isBoss?22:p.portrait?26:34,identity.isBoss&&this.result.cleared?PAPER_CSS.red:PAPER_CSS.ink,p.w).setName('result/title').setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold');
-    this.drawResultHero(p.score,!!skipped,lost,animateIn,p.compactNext||lost&&p.tight);
+    v.text(p.x,p.top+(p.short?22:28),title,p.short||p.portrait&&identity.isBoss?22:p.portrait?26:34,identity.isBoss&&this.result.cleared?PAPER_CSS.red:PAPER_CSS.ink,p.w).setName('result/title').setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold');
+    this.drawResultHero(p.score,!!skipped,lost,animateIn);
     const trace=run.lastTrace;
-    const n=p.next;
+    const n=p.nextText;
     let heading='下一步',body='';
     if(skipped){
       const reward=skipped.kind==='coupon'?'下次买牌减2金券':skipped.kind==='gold'?'库存已满，+1金币':SKIP_ITEM_LABELS[skipped.definitionId];
@@ -139,7 +138,7 @@ export class IntermissionScene extends Phaser.Scene {
     }else if(nextStage){
       const nextIdentity=stageIdentity(nextStage.index,nextStage.index%3===2?run.boss:null,run.tourMode,run.difficulty,run)!;
       heading=nextIdentity.isBoss?'下一场压轴 · '+nextIdentity.title:'准备下一场';const hero=heroStageContinuity(run);
-      body=nextIdentity.isBoss?`第 ${Math.floor(nextStage.index/3)+1} 章 · 目标 ${heatText(nextStage.targetHeat)}\n`+nextIdentity.scope:`${nextStage.name} · 目标 ${heatText(nextStage.targetHeat)}\n筹备后，出牌与弃牌次数补满。`+(!p.short&&hero?'\n'+hero.next:'');
+      body=nextIdentity.isBoss?'目标 '+heatText(nextStage.targetHeat)+' · '+nextIdentity.scope:`${nextStage.name} · 目标 ${heatText(nextStage.targetHeat)}\n筹备后，出牌与弃牌次数补满。`+(!p.short&&hero?'\n'+hero.next:'');
     }else if(won){
       const progress=readRunProgress(),qualified=run.mode==='standard'&&!!run.normalCompletion;
       heading=run.mode==='challenge'?R2_MODE_CATALOG.challenges.find(row=>row.id===run.challengeId)!.name+' · 通关':run.mode==='tutorial'?'教学对局通关':'八章通关';
@@ -151,45 +150,43 @@ export class IntermissionScene extends Phaser.Scene {
       heading='再来一局';
       body=p.tight?'同局重试从开局，构筑不继承。':`${failureSummary(run).resources}\n已过关场次累计热度 ${heatText(run.totalHeat)} · 余额 ${run.gold} 金\n同局重试从开局重新开始，构筑不继承。`;
     }
-    const touye=savedTouyeWager(trace);if(touye)body=touye+'\n'+body;
+    const touye=savedTouyeWager(trace);if(touye&&!nextStage&&!p.short)body=touye+'\n'+body;
     const xiemuInterest=trace?.events.find(e=>e.sourceType==='character'&&e.sourceDefinitionId==='xiemu'&&e.phase==='onStageClear');
     if(!p.short&&!skipped&&this.result.cleared&&xiemuInterest)heading+=' · 额外关末息+'+xiemuInterest.value.n+'金';
-    if(p.short&&trace&&!skipped&&this.result.cleared&&(!nextStage||nextStage.index%3!==2)){const assist=savedAssistSummary(trace);if(assist)body=assist+'\n'+body;const fact=victorySourceFact(run,trace);if(fact)body=fact.title+' · '+fact.effect+'\n'+body;}
     if(lost){
       const prompt=run.outcome?.reason==='abandoned'?'主动结束，可以重新选择':run.outcome?.reason==='no-legal-cards'?'先查牌组，再准备开局':'先看末手，再选下一步';
-      v.button(n,'再战建议 ›\n'+prompt,'action/failure-guidance',()=>this.inspectFailure(),!this.busy);
+      this.auxiliary(n,'再战建议 ›\n'+prompt,'action/failure-guidance',()=>this.inspectFailure(),!this.busy);
     }else {
-      v.material(n,T.paper,T.paper,4).setName('result/next-panel');
-      v.add(this.add.graphics().lineStyle(1,T.divider,.75).beginPath().moveTo(n.x,n.y).lineTo(n.x+n.width,n.y).strokePath());
-      if(nextStage&&nextStage.index%3===2)v.add(this.add.graphics().lineStyle(2,T.red,.8).beginPath().moveTo(n.x+2,n.y+5).lineTo(n.x+2,n.y+n.height-5).strokePath()).setName('stage-identity/next-seal');
-      if(p.compactNext){
-        const brief=nextStage?'下场 '+nextStage.name+' · 目标 '+heatText(nextStage.targetHeat):lost?'同局重试从开局，构筑不继承。':won?'八章结果已保存，可继续无尽。':heading;
-        v.text(n.x+14,n.y+8,brief,14,PAPER_CSS.ink,n.width-28).setName('result/next-body');
-      }else {
-      const nextHeading=v.text(n.x+14,n.y+10,heading,18,'#26313A',n.width-28).setFontStyle('bold');
-      const bodyY=nextHeading.y+nextHeading.height+8;
-      v.text(n.x+14,bodyY,body,14,'#26313A',n.width-28).setLineSpacing(2).setStyle({maxLines:Math.max(1,Math.floor((n.y+n.height-12-bodyY)/19))}).setName('result/next-body');
-      }
+      v.add(this.add.graphics().lineStyle(1,T.divider,.75).beginPath().moveTo(p.next.x,p.next.y-2).lineTo(p.next.x+p.next.width,p.next.y-2).strokePath());
+      const nextHeading=v.text(n.x,n.y+2,heading,p.portrait&&p.tight?16:18,PAPER_CSS.ink,n.width).setFontStyle('bold').setName('result/next-heading');
+      const bodyY=nextHeading.y+nextHeading.height+3;
+      v.text(n.x,bodyY,body,14,PAPER_CSS.jade,n.width).setLineSpacing(1).setStyle({maxLines:Math.max(1,Math.floor((n.y+n.height-bodyY)/17))}).setName('result/next-body');
     }
     if(nextStage){
       const gift=this.ready?stageGiftReceipt(run):undefined;
-      v.button(p.left,gift?'赠品去向':'本场详情','action/result-details',()=>gift?this.inspectGift():this.inspectResult());
+      this.auxiliary(p.left,gift?'赠品去向':'本场详情','action/result-details',()=>gift?this.inspectGift():this.inspectResult());
       v.button(p.primary,'前往筹备商店','action/continue-stage',()=>void this.next(),this.ready,true);
     }else if(won){
-      v.button(p.left,'返回选角','action/return-select',()=>this.returnToSelect(),!this.busy);
+      this.auxiliary(p.left,'返回选角','action/return-select',()=>this.returnToSelect(),!this.busy);
       if(run.mode==='standard'&&run.normalCompletion)v.button(p.primary,'继续无尽','action/continue-endless',()=>this.confirmEndless(),this.ready,true);
       else v.button(p.primary,run.mode==='tutorial'?'重温教程':'再挑战一次','action/retry-seed',()=>void this.retrySeed(),this.ready,true);
     }else if(capped){
-      v.button(p.left,'本场详情','action/result-details',()=>this.inspectResult(),!this.busy);
+      this.auxiliary(p.left,'本场详情','action/result-details',()=>this.inspectResult(),!this.busy);
       v.button(p.primary,'返回选角','action/return-select',()=>this.returnToSelect(),!this.busy,true);
     }else {
-      v.button(p.left,'返回选角','action/continue-stage',()=>void this.next(),!this.busy);
+      this.auxiliary(p.left,'返回选角','action/continue-stage',()=>void this.next(),!this.busy);
       v.button(p.primary,this.busy?'正在开局…':'同局重试','action/retry-seed',()=>void this.retrySeed(),this.ready,true);
     }
-    v.button(p.right,won||lost?'对局回顾':'回看上手','action/last-hand',()=>{if(won||lost)this.inspectFinale();else this.inspectLastHand();},!this.busy&&(won||lost||!!trace));
+    this.auxiliary(p.right,won||lost?'对局回顾':'回看上手','action/last-hand',()=>{if(won||lost)this.inspectFinale();else this.inspectLastHand();},!this.busy&&(won||lost||!!trace));
     const discovery=this.ready&&!this.notice&&!lost&&!skipped?savedGrowthDiscovery(run):undefined,gift=this.ready&&!this.notice&&!lost&&!skipped?stageGiftReceipt(run):undefined;
-    v.text(p.x,p.noticeY,this.busy?'正在保存…':this.notice||(!this.ready?'当前进度未保存或只读，请查看菜单。':capped?'已达数值上限，进度已保存':won?run.mode==='standard'?'八章通关已保存，继续无尽由你决定。':'本模式结果已保存，可重试或返回选角。':nextStage?gift?.banner||discovery?.full||'':lost?'重试从开局开始，金币与构筑不继承。':''),14,this.notice?'#ffd0b1':'#3F606B',p.w).setName(gift&&nextStage?'gift/discovery':discovery&&nextStage?'growth/discovery':'');
+    v.text(p.short?p.next.x:p.x,p.noticeY,this.busy?'正在保存…':this.notice||(!this.ready?'当前进度未保存或只读，请查看菜单。':capped?'已达数值上限，进度已保存':won?run.mode==='standard'?'八章通关已保存，继续无尽由你决定。':'本模式结果已保存，可重试或返回选角。':nextStage?gift?.banner||discovery?.full||'':lost?'重试从开局开始，金币与构筑不继承。':''),14,this.notice?'#ffd0b1':'#3F606B',p.short?p.next.width:p.w).setStyle(p.short?{maxLines:1}:{}).setName(gift&&nextStage?'gift/discovery':discovery&&nextStage?'growth/discovery':'');
     this.firstRender=false;
+  }
+  private auxiliary(b:Box,label:string,name:string,action:()=>void,enabled=true):void {
+    const v=this.view,text=v.text(b.x+b.width/2,b.y+b.height/2,label,14,PAPER_CSS.jade,b.width-4).setOrigin(.5).setAlpha(enabled?1:.55);
+    const hit=v.rect(b).setFillStyle(0,0).setStrokeStyle().setData('label',text);
+    v.target(hit,name,{tap:()=>{if(enabled){this.audio.select();action();}}});
+    if(!enabled)hit.disableInteractive();
   }
   private jokerDefinition(id:string){return r2JokerDefinitionFor(runController(this)!.state,id);}
   private traceSources(trace:ScoreTrace):string[] {
@@ -202,9 +199,9 @@ export class IntermissionScene extends Phaser.Scene {
     this.celebrationTimer?.remove();this.celebrationTimer=undefined;
     this.tweens.killAll();
   }
-  private drawResultHero(b:Box,skipped:boolean,lost:boolean,animate:boolean,compactSafe=false):void {
+  private drawResultHero(b:Box,skipped:boolean,lost:boolean,animate:boolean):void {
     const v=this.view,run=runController(this)!.state;
-    const presentation=drawSettlement(this,v,b,run,this.result.cleared,skipped,this.result.stageHeat,compactSafe);
+    const presentation=drawSettlement(this,v,b,run,this.result.cleared,skipped);
     const explainHero=(image:Phaser.GameObjects.Image|undefined)=>{
       if(!image)return;
       const hit=v.rect(image.getData('bounds')).setFillStyle(0,0).setStrokeStyle();image.parentContainer.add(hit);

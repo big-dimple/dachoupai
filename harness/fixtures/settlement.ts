@@ -5,6 +5,7 @@ import {R2_ROUTE_GROWTH_VERSION,R2_ROUTE_GROWTH_HASH} from '../../src/domain/r2G
 import {newRunIdentity} from '../../src/game/RunLaunch';
 import {r2CreateJoker} from '../../src/domain/r2Run';
 import {energySend} from './hero-climax';
+import {touyeSnapshotToken} from '../../src/domain/r2TouyeWager';
 
 /** Controlled public inventory, levels and prior clear ledger; no natural acquisition claim.
  * Only the resulting real PlayHand trace supplies the presentation numbers. */
@@ -65,6 +66,27 @@ export function supportSettlementReady(){
  state.handLevels['full-house']=4;state=energySend(state,{type:'EnterStage'});
  const ids=['spades-13','hearts-13','clubs-13','spades-9','hearts-9'];state.handOrder=[...ids,...state.deckInstances.map(c=>c.id).filter(id=>!ids.includes(id)).slice(0,state.handOrder.length-ids.length)];state.drawPile=state.deckInstances.map(c=>c.id).filter(id=>!state.handOrder.includes(id));
  return {state,action:{type:'PlayHand' as const,selectedIds:ids}};
+}
+
+/** Two actual PlayHand commands: the terminal hand is smaller than the stage total. */
+export function multiHandSettlementReady(){
+ const f=supportSettlementReady(),extra=f.state.handOrder.find(id=>!f.action.selectedIds.includes(id))!;
+ return {...f,state:energySend(f.state,{type:'PlayHand',selectedIds:[extra]})};
+}
+
+/** Current Qin Qiong + c06, scored by a real committed discard and PlayHand.
+ * Controlled public hand/history; this is not the user's screenshot save. */
+export function touyeSettlementReady(){
+ let state=createRun({seed:'settlement-qin-current',runId:'controlled/settlement/qin',characterId:'touye',rulesVersion:'r2',r2Identity:newRunIdentity('touye','flush'),openingRoute:'flush',modeConfig:{mode:'standard',difficulty:0,challengeId:null,programsEnabled:false}});
+ state=energySend(state,{type:'LeaveShop'});
+ Object.assign(state,{shop:null,stageIndex:1,totalHeat:'400',routeGrowth:{clears:1,G:1,S:0,F:0,settlements:[{stageIndex:0,families:['G']}]}});
+ state.jokers=[r2CreateJoker('c06','controlled/qin/source',8,'none',state)];state.jokers[0].growth.multiplier={n:'1',d:'2'};
+ state=energySend(state,{type:'EnterStage'});
+ const hand=['hearts-2','hearts-6','hearts-9','clubs-3','diamonds-8','spades-11','spades-4','diamonds-13'],incoming=['hearts-11','hearts-13','clubs-7','spades-8','diamonds-4'];
+ state.handOrder=hand;state.drawPile=state.deckInstances.map(c=>c.id).filter(id=>!hand.includes(id)&&!incoming.includes(id)).concat([...incoming].reverse());
+ const snapshotToken=touyeSnapshotToken(hand.map(id=>state.deckInstances.find(c=>c.id===id)!),{fourStraight:false,fourFlush:false},state.stage!.index,1,state.commandSeq);
+ state=energySend(state,{type:'DiscardHand',selectedIds:hand.slice(3),touyeBet:{target:'flush',snapshotToken}});
+ return {state,action:{type:'PlayHand' as const,selectedIds:[...hand.slice(0,3),...incoming.slice(0,2)]}};
 }
 
 /** Current cap identity, deliberately controlled inventory/levels; not natural reachability. */
