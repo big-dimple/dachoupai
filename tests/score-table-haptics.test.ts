@@ -6,6 +6,7 @@ import {GameScene} from '../src/game/GameScene';
 import {scoreSourceProcessFixture} from '../harness/fixtures/score-source-process';
 import {energySend} from '../harness/fixtures/score-energy';
 import {scoreArrival} from '../src/game/ScoreTableMotion';
+import {scorePhrase} from '../src/game/ScorePhrase';
 import {SavedRun,type SaveSlots} from '../src/application/SavedRun';
 const f=scoreSourceProcessFixture('chain'),state=energySend(f.state,{type:'PlayAssistedHand',selectedIds:f.selectedIds,assistIds:f.assistIds}),trace=state.lastTrace!;
 afterEach(()=>{session.run=undefined;vi.unstubAllGlobals();});
@@ -28,7 +29,7 @@ it('the final score haptic waits for the same saved total to reach award, not en
  let release!:()=>void;
  Object.assign(scene,{stage:{targetHeat:f.state.stage!.targetHeat},scoreTotal:text,scoreHeat:text,scoreMult:text,resultText:text,breakdownText:text,
   convergeScore:()=>new Promise<void>(r=>release=r),setAccumulator:vi.fn(),setDisplayedProduct:(v:string)=>text.setText(v),updateHud:vi.fn(),keepScoreReadable:vi.fn(),wait:async()=>{}});
- const presentation={state,score:trace,replay:false,originHeat:'0',displayHeat:'0',credited:false};
+ const presentation={state,score:trace,phrase:scorePhrase(trace.events,f.state.stage!.targetHeat),replay:false,originHeat:'0',displayHeat:'0',credited:false};
  scope.settlementArrived.mockImplementation(()=>{expect(data.get('eventPhase')).toBe('award');expect(text.setText).toHaveBeenCalledWith(trace.finalScore);});
  const pending=scene.award(trace,presentation,context);expect(scope.settlementArrived).not.toHaveBeenCalled();release();await pending;
  expect(scope.settlementArrived).toHaveBeenCalledExactlyOnceWith(trace.events.find(e=>e.phase==='finalScore')!.eventId);

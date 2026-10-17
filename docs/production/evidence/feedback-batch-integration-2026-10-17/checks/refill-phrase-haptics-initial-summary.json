@@ -1,0 +1,18 @@
+{
+  "scope": "summary of actual initial tool stdout,not a fabricated raw log",
+  "command": "vitest run hero-gift-scene-wiring hero-portrait-score-motion c12-saved-gift score-phrase score-table-haptics",
+  "result": {
+    "files": 5,
+    "passedTests": 25,
+    "failedTests": 1,
+    "unhandledErrors": 1
+  },
+  "failedTest": "the final score haptic waits for the same saved total to reach award, not enqueue or convergence",
+  "reason": "old test presentation mock lacked required phrase Map introduced by score director;award reads presentation.phrase.get",
+  "reportedErrors": [
+    "TypeError: release is not a function",
+    "TypeError: Cannot read properties of undefined (reading get)"
+  ],
+  "fix": "test fixture now builds phrase via real scorePhrase;production code and original haptic-arrival assertions unchanged",
+  "retryScope": "only failed score-table-haptics file"
+}

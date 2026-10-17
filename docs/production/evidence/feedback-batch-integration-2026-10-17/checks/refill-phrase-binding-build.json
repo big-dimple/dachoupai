@@ -1,0 +1,29 @@
+{
+  "baseMain": "8ebff2a2470ca37d64bafc99827bbf4bcc456cb9",
+  "testedProduct": "8d6aa988eb4188f7276bc502323183541d84bc14",
+  "sources": {
+    "refill": "f32029bc7a21f76e3a6f8ec44923c8f1561143f5",
+    "refillProduct": "80b8dab4df781f46efd4020e5fc7f873441e6775",
+    "phrase": "3c6e853364d3a58922e53e1edd81e55d447f60c3",
+    "phraseProduct": "c2228a64b5772709e5c5be44ade4d825afbbba80"
+  },
+  "GameSceneExactlyPhrasePlusFourLineRefillFix": true,
+  "publishedSelectedAudioAndOriginalAssetsRulesSaveUnchanged": true,
+  "heroGiftWIPExcluded": true,
+  "source19And78ReusedNotRerun": true,
+  "extraTests": "none requested;known phrase fixture correction copied with unchanged haptic assertions;5 passing same award-method cases reused from combined dev",
+  "buildInfo": {
+    "version": "C03",
+    "builtAt": "2026-10-17T14:14:03.143Z",
+    "revision": "8d6aa988eb4188f7276bc502323183541d84bc14",
+    "sourceStatus": "clean",
+    "modified": false
+  },
+  "modules": 341,
+  "files": 397,
+  "bytes": 37102547,
+  "budgetLimit": 20000000,
+  "budgetStatus": "FAIL",
+  "newUserScope": "all new games;no added old-save recovery work",
+  "remaining": "4x phrase tail not progressively dense,human/device/experience/P08 gates"
+}
