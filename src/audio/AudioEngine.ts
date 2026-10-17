@@ -12,7 +12,20 @@ type VoiceBus = Exclude<AudioBus, 'master'>;
 type MusicTrack = { title: string; runtimePath: string };
 type MusicSlot = { element: HTMLAudioElement; node: MediaElementAudioSourceNode; gain: GainNode;
   track?: MusicTrack; cancelAttempt?: () => void };
-type Voice = { source: AudioScheduledSourceNode; gain: GainNode; filter?: BiquadFilterNode; bus: VoiceBus; scoreAccent?: boolean; roll?: ScoreRollKind; semantic?: FoleyKind; startsAt?:number; endsAt?:number; priority?:number; peak?:number };
+type Voice = {
+  source: AudioScheduledSourceNode;
+  secondarySources?: AudioScheduledSourceNode[];
+  gain: GainNode;
+  filter?: BiquadFilterNode;
+  bus: VoiceBus;
+  scoreAccent?: boolean;
+  roll?: ScoreRollKind;
+  semantic?: FoleyKind;
+  startsAt?: number;
+  endsAt?: number;
+  priority?: number;
+  peak?: number;
+};
 export type ScoreSourceCue = 'card' | 'held' | 'character' | 'joker' | 'boss' | 'retrigger';
 export type ScoreRollKind = 'heat' | 'mult' | 'total';
 
@@ -260,13 +273,31 @@ export class AudioEngine {
     this.voices.delete(voice);
     voice.source.onended = null;
     try { voice.source.stop(); } catch { /* The source may already have ended. */ }
-    try { voice.source.disconnect(); voice.gain.disconnect(); voice.filter?.disconnect(); } catch { /* Device teardown. */ }
+    try { voice.source.disconnect(); } catch { /* Device teardown. */ }
+    if (voice.secondarySources) {
+      for (const sec of voice.secondarySources) {
+        sec.onended = null;
+        try { sec.stop(); } catch {}
+        try { sec.disconnect(); } catch {}
+      }
+    }
+    try { voice.gain.disconnect(); voice.filter?.disconnect(); } catch { /* Device teardown. */ }
   }
   private stopVoices(bus?: VoiceBus): void {
     for (const voice of this.voices) if (!bus || voice.bus === bus) this.release(voice);
   }
   /** Cancel a skipped scene's score tails while its table music keeps playing. */
   cancelPresentation(): void { this.stopScoreFire(); this.stopVoices('sfx'); this.duckUntil = 0; this.applyVolume('music'); }
+
+  /** Returns active voices count for diagnostic assertion. */
+  getActiveVoiceCount(): number {
+    return this.voices.size;
+  }
+
+  /** Returns whether audio is unlocked and audio context is running. */
+  isAudioContextRunning(): boolean {
+    return this.unlocked && !!this.context && this.context.state === 'running';
+  }
 
   private duckMusic(duration = .3,floor=.35): void {
     if (!this.canPlay('music')) return;
@@ -717,6 +748,7 @@ export class AudioEngine {
 
       const voice: Voice = {
         source: osc,
+        secondarySources: [oscHarmonic],
         gain,
         filter,
         bus: 'sfx',
@@ -731,13 +763,6 @@ export class AudioEngine {
       oscHarmonic.start(now);
       osc.stop(now + duration);
       oscHarmonic.stop(now + duration);
-
-      osc.onended = () => {
-        try {
-          oscHarmonic.stop();
-          oscHarmonic.disconnect();
-        } catch {}
-      };
 
       this.duckMusic(options.isMultiplier ? 0.35 : 0.16, 0.3);
     } catch {
