@@ -48,6 +48,7 @@ import {presentScoreSource,presentScoreArrival,scoreArrival,isNeutralScoreReceip
 import {numberImpact,impactBeat,numberPulse,type NumberImpact} from './ScoreEnergy';
 import {ScorePosture} from './ScorePosture';
 import {ownedJokerScoreLayer,mountOwnedJokerIdle,ownedJokerMotionCue,ownedJokerMotionDuration,playOwnedJokerScoreMotion} from './OwnedJokerScoreMotion';
+import {mountPolychromeCardIridescence} from './PolychromeCardIridescence';
 import {bossCardPressure,bossJokerPressure,type BossPressureContext} from './BossPressure';
 import {mountBossPressure} from './BossPressureView';
 import {readableMultiplierEffect} from './ScoreEventCaption';
@@ -570,8 +571,6 @@ export class GameScene extends Phaser.Scene {
     }
     this.renderJokerRack();
     const s=l.scoreBoard;
-    v.material(s,T.paperLight,T.paperLight,4).setName('score/board-paper');
-    v.add(this.add.graphics().lineStyle(1,T.ink,.26).strokeRoundedRect(s.x,s.y,s.width,s.height,4)).setName('score/board-border');
     this.resultText=v.text(s.x+8,s.y+6,'选牌，准备开演',17,C.ink).setName('score/source');
     mountTableScoreMarks(this,v.root,s);
     this.scoreLabels=['热度','倍率','本手得分'].map(label=>v.text(0,0,label,14,C.mutedInk).setOrigin(.5,0));
@@ -637,8 +636,8 @@ export class GameScene extends Phaser.Scene {
       const artTop=-b.height/2+3,artHeight=Math.max(8,b.height-6),key=jokerArtKey(j.definitionId);
       if(key&&this.textures.exists(key)){
         const art=this.add.container(0,artTop+artHeight/2),artWidth=Math.min(b.width-6,artHeight*.8);
-        if(j.definitionId==='f09'){mountF09Art(this,art,artWidth,artWidth/.8,()=>this.reducedMotion,key,jokerArtAlignedLayers(j.definitionId));marker.setData('f09-art',art);}
-        else{const image=this.add.image(0,0,key);image.setScale(Math.min((b.width-6)/image.width,artHeight/image.height));art.add(image);}
+        if(j.definitionId==='f09'){mountF09Art(this,art,artWidth,artWidth/.8,()=>this.reducedMotion,key,jokerArtAlignedLayers(j.definitionId));marker.setData('f09-art',art).setData('scoreArtBounds',{x:-artWidth/2,y:art.y-artWidth/.8/2,width:artWidth,height:artWidth/.8});}
+        else{const image=this.add.image(0,0,key);image.setScale(Math.min((b.width-6)/image.width,artHeight/image.height));art.add(image);marker.setData('scoreArtBounds',{x:-image.displayWidth/2,y:art.y-image.displayHeight/2,width:image.displayWidth,height:image.displayHeight});}
         art.setData('f09-active',(this.run.stage?.discardsUsed??0)===0&&!disabled.has(j.instanceId)).setData('f09-sealed',disabled.has(j.instanceId));marker.add(art);
       }else this.jokerMechanism(marker,0,artTop+artHeight/2,Math.min(b.width-8,artHeight),j);
       // A small rarity symbol stays separate from the name/state; full rarity is in details.
@@ -646,7 +645,8 @@ export class GameScene extends Phaser.Scene {
       name.setVisible(false);current.setVisible(false).setBackgroundColor(C.paperLight);marker.add([name,current]).setData('frame',r).setData('frameColor',T.ink).setData('nameLabel',name).setData('valueLabel',current).setData('slotIndex',i).setData('accessibleLabel',d.name+'；'+this.jokerValue(j)+'；点按查看，长按拖动调序');
       if(disabled.has(j.instanceId)){r.setStrokeStyle(1,T.ink,.3);marker.setData('bossDisabled',true);}
       const pressure=bossJokerPressure({...this.bossPressureContext(),jokers},j.instanceId);if(pressure)mountBossPressure(this,marker,b.width,b.height,pressure);
-      ownedJokerScoreLayer(this,marker);mountOwnedJokerIdle(this,marker,{ordinal:i,reducedMotion:()=>this.reducedMotion,canFloat:()=>!this.playing&&!this.presentation&&!this.ownedDrag&&this.hoveredJokerId!==j.instanceId});this.jokerViews.set(j.instanceId,marker);
+      const visual=ownedJokerScoreLayer(this,marker);mountPolychromeCardIridescence(this,visual,marker.getData('scoreArtBounds')??{x:-b.width/2,y:-b.height/2,width:b.width,height:b.height},j.edition);
+      mountOwnedJokerIdle(this,marker,{ordinal:i,reducedMotion:()=>this.reducedMotion,canFloat:()=>!this.playing&&!this.presentation&&!this.ownedDrag&&this.hoveredJokerId!==j.instanceId});this.jokerViews.set(j.instanceId,marker);
       const hit=v.rect({x:b.x,y:b.y,width:b.width+(sideLabels?labelBox.width+6:0),height:b.height},T.ink).setFillStyle(T.ink,.001).setStrokeStyle();marker.setData('hit',hit);
       v.target(hit,'joker/'+j.instanceId,{tap:()=>this.inspectJoker(j.instanceId),detail:()=>this.inspectJoker(j.instanceId),enter:()=>this.hoverJoker(j.instanceId,true),leave:()=>this.hoverJoker(j.instanceId,false)});
     });
@@ -802,11 +802,12 @@ export class GameScene extends Phaser.Scene {
   private editionTrim(container:Phaser.GameObjects.Container,width:number,height:number,edition:PlayingCard['edition'],joker=false):void {
     if(!edition||edition==='none')return;
     const rim=this.add.graphics(),colors=edition==='foil'?[0xc0e9f5]:edition==='holographic'?[0xc8a8f5,0x8fe5d9]:[0xf3bc79,0xe390c7,0x93d9e5,0xbce09f];
-    colors.forEach((color,i)=>{rim.lineStyle(edition==='polychrome'?2:1.5,color,.9).strokeRoundedRect(-width/2+3+i*1.7,-height/2+3+i*1.7,width-6-i*3.4,height-6-i*3.4,5);});
+    if(edition==='polychrome')mountPolychromeCardIridescence(this,container,{x:-width/2,y:-height/2,width,height},edition);
+    else colors.forEach((color,i)=>{rim.lineStyle(1.5,color,.9).strokeRoundedRect(-width/2+3+i*1.7,-height/2+3+i*1.7,width-6-i*3.4,height-6-i*3.4,5);});
     const label=edition==='foil'?'箔':edition==='holographic'?'虹':'彩',labelY=joker?-height/2+12:height/2-12;
     rim.fillStyle(colors[0],.9).fillCircle(width/2-12,labelY,8);container.add(rim);container.setData('editionRim',rim);
     container.add(this.add.text(width/2-12,labelY,label,{fontFamily:UI_FONT,fontSize:'11px',fontStyle:'bold',color:'#17383c',resolution:Math.max(1,1/this.scale.zoom)}).setOrigin(.5).setName('edition-badge'));
-    if(!this.reducedMotion){const shimmer=this.tweens.add({targets:rim,alpha:{from:.55,to:1},duration:1100,yoyo:true,repeat:-1,ease:'Sine.easeInOut'});rim.setData('editionTween',shimmer);rim.once('destroy',()=>shimmer.remove());}
+    if(edition!=='polychrome'&&!this.reducedMotion){const shimmer=this.tweens.add({targets:rim,alpha:{from:.55,to:1},duration:1100,yoyo:true,repeat:-1,ease:'Sine.easeInOut'});rim.setData('editionTween',shimmer);rim.once('destroy',()=>shimmer.remove());}
   }
   private revealCard(view:CardView):void {
     if(!view.dealing&&!view.back?.visible)return;
@@ -1536,7 +1537,11 @@ export class GameScene extends Phaser.Scene {
     const view=this.jokerViews.get(joker.sourceInstanceId);if(!view)return this.wait(duration,context);
     const art=view.getData('f09-art') as Phaser.GameObjects.Container|undefined;art?.setData('f09-trigger',true);if(art&&!this.presentation)(view.getData('valueLabel') as Phaser.GameObjects.Text).setText('触发 ×1.5');
     const motion=this.presentation&&ownedJokerMotionCue(this.presentation.score,joker);
-    if(motion)return playOwnedJokerScoreMotion(this,view,motion,{context,arrival:impact??Promise.resolve(),beat,speed:gameSession().speed,portrait:this.view.layout.mode==='portrait',reducedMotion:this.reducedMotion||!!this.presentation?.replay}).finally(()=>art?.setData('f09-trigger',false));
+    if(motion){const presentation=this.presentation!,speed=gameSession().speed,durationMs=ownedJokerMotionDuration(motion.tier,beat,speed)/speed;
+      return playOwnedJokerScoreMotion(this,view,motion,{context,arrival:impact??Promise.resolve(),beat,speed,portrait:this.view.layout.mode==='portrait',reducedMotion:this.reducedMotion||presentation.replay,onPhase:phase=>{
+        if(phase==='rebound'&&!this.reducedMotion&&!presentation.replay&&!context.signal.aborted)this.audio.scoreRebound(presentation,motion.eventId,{durationMs:durationMs*.76,signal:context.signal});
+      }}).finally(()=>art?.setData('f09-trigger',false));
+    }
     const frame=view.getData('frame') as Phaser.GameObjects.Rectangle,multiply=joker.operation==='multiply-multiplier'||joker.operation==='read-coefficient';frame.setStrokeStyle(1,T.brass,.5);
     return this.focusSource(view,frame,multiply?T.red:T.brass,multiply,duration,context,beat,impact).then(()=>{art?.setData('f09-trigger',false);if(art&&view.active)(view.getData('valueLabel') as Phaser.GameObjects.Text).setText('×1.5');if(frame.active)frame.setStrokeStyle(2,Number(view.getData('frameColor')));});
   }
@@ -1755,7 +1760,7 @@ export class GameScene extends Phaser.Scene {
   private impactAccumulator(event:ScoreEvent,duration:number,context:EffectContext,impact?:NumberImpact):Promise<void> {
     if(context.signal.aborted||!this.presentation)return Promise.resolve();
     const positive=Rational.fromJSON(event.after.H).compare(Rational.fromJSON(event.before.H))>0||Rational.fromJSON(event.after.M).compare(Rational.fromJSON(event.before.M))>0;
-    if(positive&&!this.presentation.replay)this.audio.scoreImpact(this.presentation,event.eventId,impact?.kind??'add',impact?.tier??0,impact?.chain??0);
+    if(positive&&!this.presentation.replay)this.audio.scoreImpact(this.presentation,event.eventId,impact?.kind??'add',impact?.tier??0,impact?.chain??0,{paired:!this.reducedMotion&&!!ownedJokerMotionCue(this.presentation.score,event),durationMs:duration/gameSession().speed,signal:context.signal});
     const cue=scoreArrival(event);if(!cue)return Promise.resolve();
     if(positive&&!this.presentation.replay&&cue.kind==='mult-multiply'&&this.scoreHaptic?.generation===context.generation)this.scoreHaptic.scope.multiplierArrived(event.eventId);
     const target=tableScoreCells(this.view.layout.scoreBoard)[cue.kind==='heat'?0:cue.kind==='total'?2:1];
@@ -1784,7 +1789,7 @@ export class GameScene extends Phaser.Scene {
     const h0=accumulatorRollValue(event.before.H),h1=accumulatorRollValue(event.after.H);
     const m0=accumulatorRollValue(event.before.M),m1=accumulatorRollValue(event.after.M);
     if(h0===undefined||h1===undefined||m0===undefined||m1===undefined||this.reducedMotion||duration<90||![h0,h1,m0,m1,h0*m0,h1*m1].every(Number.isFinite)||Math.max(h0,h1)*Math.max(m0,m1)>Number.MAX_SAFE_INTEGER){this.setAccumulator(event.after);return Promise.resolve();}
-    if(!context.signal.aborted&&(h0!==h1||m0!==m1))this.audio.scoreRoll(duration/gameSession().speed,m0!==m1?'mult':'heat',event.operation==='multiply-multiplier'?2:1);
+    if(!context.signal.aborted&&!this.presentation?.replay&&(h0!==h1||m0!==m1))this.audio.scoreRoll(duration/gameSession().speed,m0!==m1?'mult':'heat',event.operation==='multiply-multiplier'?2:1);
     const trim=(value:number)=>{const rounded=Number(value.toFixed(2));return (rounded===value?'':'≈')+String(rounded);};
     const roll={t:0};
     return this.animate({targets:roll,t:1,duration,ease:'Sine.easeOut',onUpdate:()=>{
@@ -1870,7 +1875,8 @@ export class GameScene extends Phaser.Scene {
     const releaseSourceImpact=impactCue&&impactSource?mountSourceImpact(this,impactSource,impactCue,context.signal):undefined;
     restoreKey?.strike?.();
     if(restoreKey?.strike&&number)number={...number,tier:number.tier===3?3:2,peak:number.kind==='multiply'?1.54:1.48};
-    if(number||(sourceBenefit&&benefit)){if(!number&&sourceBenefit&&benefit&&this.presentation&&!this.presentation.replay)this.audio.scoreImpact(this.presentation,event.eventId,restoreKey?.strike?'key':'add',restoreKey?.strike?2:0);}
+    if(!this.presentation?.replay){
+    if(number||(sourceBenefit&&benefit)){if(!number&&sourceBenefit&&benefit&&this.presentation)this.audio.scoreImpact(this.presentation,event.eventId,restoreKey?.strike?'key':'add',restoreKey?.strike?2:0,0,{paired:!this.reducedMotion&&!!motion,durationMs:timing.impact/gameSession().speed,signal:context.signal});}
     else if(event.sourceType==='character')this.audio.sourceCue('character');
     else if(key?.kind==='multiply')this.audio.multiplier('multiply',index);
     else if(event.sourceType==='joker'&&sourceBenefit)this.audio.sourceCue(event.phase==='onHeldCard'?'held':'joker',index);
@@ -1884,6 +1890,7 @@ export class GameScene extends Phaser.Scene {
     if(event.operation==='upgrade-hand')this.audio.toolUse('planet');
     if(event.operation==='reward-consumable')this.audio.rareReveal();
     if(event.operation==='reward-free-reroll')this.audio.rareReveal();
+    }
     const impactDuration=timing.impact;
     // Positive committed values land on arrival; the existing impact slot supplies
     // the brief compressed hold and rebound, without extending the trace timeline.
@@ -1899,7 +1906,7 @@ export class GameScene extends Phaser.Scene {
       if(this.presentation&&!this.presentation.replay&&event.resourceAfter!==undefined){
         effects.push(this.rollGold(event.resourceBefore??event.resourceAfter,event.resourceAfter,impactDuration,context));
       }
-      this.audio.coin();
+      if(!this.presentation?.replay)this.audio.coin();
     }
     if(!scoreArrival(event)&&event.sourceType==='joker'&&sourceBenefit&&!key){
       const jv=this.jokerViews.get(event.sourceInstanceId);
@@ -1951,13 +1958,14 @@ export class GameScene extends Phaser.Scene {
   }
   private ensureTraceSource(event:ScoreEvent):void {
     if(event.sourceType!=='joker'||this.jokerViews.has(event.sourceInstanceId))return;
-    const definition=this.jokerDefinition(event.sourceDefinitionId),rarityStyle=JOKER_RARITY[definition.rarity],l=this.view.layout,index=Math.min(this.jokerViews.size,R2_LIMITS.jokerSlots-1),b=l.slots[index],sideLabels=l.mode==='landscape',labelBox=l.jokerLabels[index],labelX=sideLabels?labelBox.x-b.x-b.width/2:-b.width/2+5;
-    const marker=this.view.add(this.add.container(b.x+b.width/2,b.y+b.height/2)),frame=this.add.rectangle(0,0,b.width,b.height,rarityStyle.paper).setStrokeStyle(2,rarityStyle.edge);
-    marker.add(frame);drawJokerMotif(this,marker,definition.id,0,0,Math.min(b.width,b.height)*.75,definition);
-    marker.add(this.add.text(labelX,-b.height/2+5,definition.name,{fontFamily:UI_FONT,fontSize:'14px',fontStyle:'bold',color:sideLabels?'#fff0cf':rarityStyle.css.ink,wordWrap:{width:sideLabels?labelBox.width:b.width-10,useAdvancedWrap:true},maxLines:l.shortLandscape?1:2}));
-    const stackValue=!sideLabels&&b.width<64,label=this.add.text(labelX,sideLabels?-b.height/2+26:b.height/2-(stackValue?24:3),'回看来源',{fontFamily:UI_FONT,fontSize:'12px',color:sideLabels?'#ffd0af':rarityStyle.css.ink,wordWrap:{width:sideLabels?labelBox.width:stackValue?b.width-10:b.width-40,useAdvancedWrap:true},maxLines:l.shortLandscape?1:2}).setOrigin(0,sideLabels?0:1);marker.add(label);
-    marker.add(createJokerRarityBadge(this,definition.rarity,{x:b.width/2-31,y:b.height/2-21,compact:true,resolution:Math.max(1,1/this.scale.zoom)}).setData('definitionId',definition.id).setData('surface','trace'));
-    marker.setData('frame',frame).setData('frameColor',rarityStyle.edge).setData('valueLabel',label).setData('baseX',marker.x).setData('baseY',marker.y);ownedJokerScoreLayer(this,marker);this.jokerViews.set(event.sourceInstanceId,marker);
+    const definition=this.jokerDefinition(event.sourceDefinitionId),index=Math.min(this.jokerViews.size,R2_LIMITS.jokerSlots-1),b=this.view.layout.slots[index];
+    const marker=this.view.add(this.add.container(b.x+b.width/2,b.y+b.height/2)),frame=this.add.rectangle(0,0,b.width,b.height,T.paperLight,0).setStrokeStyle();marker.add(frame);
+    const key=jokerArtKey(definition.id);let bounds:Box={x:-b.width/2,y:-b.height/2,width:b.width,height:b.height};
+    if(key&&this.textures.exists(key)){const image=this.add.image(0,0,key);image.setScale(Math.min((b.width-6)/image.width,(b.height-6)/image.height));marker.add(image);bounds={x:-image.displayWidth/2,y:-image.displayHeight/2,width:image.displayWidth,height:image.displayHeight};}
+    else drawJokerMotif(this,marker,definition.id,0,0,Math.min(b.width,b.height)*.75,definition);
+    const label=this.add.text(-b.width/2+3,b.height/2-16,'回看来源',{fontFamily:UI_FONT,fontSize:'14px',color:C.red}).setVisible(false);marker.add(label);
+    marker.setData('frame',frame).setData('frameColor',T.ink).setData('valueLabel',label).setData('slotIndex',index).setData('baseX',marker.x).setData('baseY',marker.y);
+    const visual=ownedJokerScoreLayer(this,marker),saved=this.presentation?.score.sourceJokers.find(j=>j.instanceId===event.sourceInstanceId);mountPolychromeCardIridescence(this,visual,bounds,saved?.edition);this.jokerViews.set(event.sourceInstanceId,marker);
   }
   private showTraceHeldCard(id:string):void {
     if(!this.presentation||this.settledCards.has(id))return;
@@ -2056,7 +2064,7 @@ export class GameScene extends Phaser.Scene {
       const handoff=replay?undefined:score.events.find(e=>e.reasonKey==='erxiang.handoff'&&e.targetCardId===score.erxiangHandoff?.targetId);
       if(handoff?.targetCardId)this.targetAttachment?.consume(handoff.targetCardId,handoff.eventId,context);else this.targetAttachment?.clear();
       this.scoreHaptic?.scope.cancel();this.scoreHaptic=replay?undefined:{generation:context.generation,scope:Haptics.shared.createScope(context.signal)};
-      this.audio.playHand();
+      if(!replay)this.audio.playHand();
       await Promise.all([...(beforeHands!==undefined&&!replay?[this.pulseResource('play',beforeHands,context,beforeHands-1)]:[]),...landing.map(async({view,box},i)=>{
         const sx=box.width/Number(view.container.getData('width')),sy=box.height/Number(view.container.getData('height'));
         const tx=box.x+box.width/2,ty=box.y+box.height/2;
@@ -2069,7 +2077,7 @@ export class GameScene extends Phaser.Scene {
             .setAngle(start.angle*(1-t)+(i%2===0?-3:3)*Math.sin(t*Math.PI));
         }},context);
         if(!view.container.active||context.signal.aborted)return;
-        this.audio.cardLand();
+        if(!replay)this.audio.cardLand();
         view.container.setScale(sx*1.07,sy*.9).setAngle(0);
         await this.animate({targets:view.container,scaleX:sx,scaleY:sy,duration:110,ease:'Back.easeOut'},context);
       })]);
@@ -2083,7 +2091,7 @@ export class GameScene extends Phaser.Scene {
         const view=this.jokerViews.get(formation.instanceId),frame=view?.getData('frame') as Phaser.GameObjects.Rectangle|undefined;
         const type=HAND_LABELS[formation.handType],name=this.jokerDefinition(formation.definitionId).name;
         this.resultText.setText(name+' · 四张普通'+type);this.breakdownText.setText(name+'允许4张普通'+type+'；同花顺仍须5张。');
-        if(view&&frame){this.audio.sourceCue('joker');await Promise.all([this.focusSource(view,frame,T.brass,false,380,context),this.floatNote('四张'+type,view.x,view.y-frame.height/2-8,'#ffe3ae',380,context)]);}
+        if(view&&frame){if(!replay)this.audio.sourceCue('joker');await Promise.all([this.focusSource(view,frame,T.brass,false,380,context),this.floatNote('四张'+type,view.x,view.y-frame.height/2-8,'#ffe3ae',380,context)]);}
       }
       await Promise.all(baseEffects);
     });
