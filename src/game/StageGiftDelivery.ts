@@ -122,6 +122,8 @@ export class StageGiftDelivery {
           caption.setText(sourceCopy).setPosition(from.x,from.y+caption.height/2+29);
           const half=caption.width/2+6,width=viewportWidth;caption.x=Math.min(width-half,Math.max(half,caption.x));
         }
+        // Currency sinks into the HUD; the readable receipt remains without covering the hero avatar.
+        if(arrival&&coin)payload.setVisible(false);
         if(captionBox)caption.setPosition(captionBox.x+captionBox.width/2,captionBox.y+captionBox.height/2);
         if(elapsed>=(reduced?READ:WINDUP+FLIGHT+READ))finish('complete');
       };
