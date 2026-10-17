@@ -2,6 +2,10 @@
 
 ## 当前后继合版：连续计分、统一触觉与手机商店
 
+当前后继产品 `f5fc3a38ab13fdd69816a51cc12b03804b9b69db` 已再正常合入[af9字段保持](../continuous-score-table-2026-10-17/status-retention/README.md)与[c197苏轼/辛弃疾审查](../amo-laohuan-dynamic-2026-10-17/README.md)。af9 9路径/2指纹精确，源30检查与33事件1202帧按原范围复用；c197 24路径精确，四格行为PASS但苏轼手机×2裁切/辛弃疾眼神遮字视觉FAIL，待计分owner窄修。文成/花蕊及小字仍待；下文1629检查仅历史快照，最新合版需齐窄修后必要复检，未推main。详情卡图艺术墙独立后续不阻塞。
+
+
+
 产品 `1629c0d2ac33851e950f4ca50ddb5fe0f5a6136e`；aac06056/e2e64946/a6b49d62正常无冲突合并，计分68与Shop39实际应用路径精确，计分10与Shop5指纹匹配（Shop原报告含CRLF/LF，仅换行差异）。GameScene精确e2e、ShopScene精确a6，规则/存档/AudioEngine/原图与public无增量变化。源[计分动态](../continuous-score-table-2026-10-17/README.md)按最终短屏两例/较早修订其余例区分；源[商店240与受控布局](../shop-flow-redesign-2026-10-17/README.md)复用，不重跑全套，不签实体手机/触感/听感/Safari。
 
 本地5文件[交叉首轮](checks/continuous-shop-cross.log)71PASS/1FAIL来自旧秦琼无DOM意图夹具；仅补减少动态值及空标题查询，原行为断言不变、产品无改。[失败文件定向复验](checks/continuous-shop-handoff-recheck.log)3PASS，按每文件最新结果共72PASS、不相加成75。[最终类型](checks/continuous-shop-typecheck-final.log)与[326模块构建](checks/continuous-shop-build.log)通过；构建后只改夹具/台账，原chunk提示保留。完整dist526文件/45,167,559B超20,000,000B，预算FAIL保留。
