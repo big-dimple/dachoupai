@@ -1,0 +1,142 @@
+{
+  "taskId": "P08",
+  "testedCommit": "e63fe48ea14f65a42070a68f4113a89c41edb237",
+  "baseCommit": "c8f86be235a8d453fa2260a88434c852d493ca05",
+  "sourceCommit": "5be8927f2ef464aff30c32b80d6f12a723929e89",
+  "sourceProduct": "614e10e7dba186a75819669e1f6a6fbba3a82028",
+  "sourceBindings": [
+    {
+      "path": "src/game/GameScene.ts",
+      "sourceBlob": "a5b08c009b15ccce081f6911c9823c7bd9e9a7db",
+      "integratedBlob": "a5b08c009b15ccce081f6911c9823c7bd9e9a7db"
+    },
+    {
+      "path": "src/game/HeroTargetAttachment.ts",
+      "sourceBlob": "e0e0bfb3a61e590623565eb19afd18ceab6120cd",
+      "integratedBlob": "e0e0bfb3a61e590623565eb19afd18ceab6120cd"
+    },
+    {
+      "path": "src/game/HeroTargetAttachmentState.ts",
+      "sourceBlob": "8a7f8e58977a2d64fc68e946f1d2cbeee4eac181",
+      "integratedBlob": "8a7f8e58977a2d64fc68e946f1d2cbeee4eac181"
+    },
+    {
+      "path": "src/game/HeroAttachmentFacts.ts",
+      "sourceBlob": "771a5f248727455fc39bc11a9fdcfb87730e9e34",
+      "integratedBlob": "771a5f248727455fc39bc11a9fdcfb87730e9e34"
+    }
+  ],
+  "protectedSameAsBase": [
+    "src/game/ShopScene.ts",
+    "src/game/ShopJokerGalleryArt.ts",
+    "src/game/IntermissionScene.ts",
+    "src/game/IntermissionLayout.ts",
+    "src/game/IntermissionScroll.ts",
+    "src/game/AssistRestrictionCopy.ts",
+    "src/game/HeroAbilityCue.ts",
+    "src/game/HeroSkillGuide.ts",
+    "src/game/OwnedJokerScoreMotion.ts",
+    "src/game/HeroPortraitLayout.ts",
+    "src/game/HeroPortraitScoreMotion.ts",
+    "src/game/StageGiftDelivery.ts",
+    "src/game/SavedStageGift.ts",
+    "src/game/ScorePhrase.ts",
+    "src/game/inkwaveSpring.ts",
+    "src/game/ScoreEnergy.ts",
+    "src/game/scorePresentation.ts",
+    "src/game/RunMenu.ts",
+    "src/style.css",
+    "src/audio",
+    "src/domain",
+    "src/content",
+    "public",
+    "art/sources"
+  ],
+  "refillLayoutFix": "preserved exact handLayoutWindow count and SceneView callback",
+  "status": "scoped_checks_pass",
+  "scope": "Only the four specified attachment/GameScene files change; source17 tests/type/build and versioned12 dynamic checks reused, Su native shortcut only; other five controlled legal drafts plus real save/payoff. Not whole native input or human aesthetics. Loading five files are exact ba526, all previous protected paths remain unchanged; cold restore still goes via title/paper background and may wait for decoding.",
+  "checks": {
+    "cross": {
+      "files": 3,
+      "passed": 14,
+      "scope": "refill layout recovery, saved hero/c12 wiring, score arrival haptics"
+    },
+    "typecheck": "PASS",
+    "productionBuild": {
+      "status": "PASS",
+      "modules": 354,
+      "commit": "e63fe48ea14f65a42070a68f4113a89c41edb237",
+      "runtimeClean": true,
+      "documentationDirtyAtBuild": true
+    },
+    "sourceReused": {
+      "tests": 17,
+      "dynamicCases": 12,
+      "scope": "Versioned foundation10 plus portrait tail2 and Qin caption2 rechecks per source report, not a fresh integrated12 run; Su native shortcut only, five controlled Scene drafts with real saves"
+    },
+    "heroProductionBuild": {
+      "status": "PASS",
+      "modules": 353,
+      "commit": "9034822f6a9f369d1d8be987e118a24f1edc6674"
+    },
+    "loadingCross": {
+      "files": 1,
+      "passed": 4,
+      "commit": "e63fe48ea14f65a42070a68f4113a89c41edb237",
+      "scope": "c03 result queued transition"
+    },
+    "paperFlowCross": {
+      "files": 1,
+      "passed": 4,
+      "commit": "e63fe48ea14f65a42070a68f4113a89c41edb237",
+      "scope": "direct resource preparation caller"
+    },
+    "loadingReused": {
+      "source": "ba526c5ac7d00106b45326c4824e192fb6dffa71",
+      "tests": 32,
+      "scope": "Source cold start, second visit/reload, scene switches, 503/retry, local cancel/resume, cold restore state equality; not rerun on integration"
+    }
+  },
+  "budget": {
+    "files": 397,
+    "bytes": 37141756,
+    "limitBytes": 20000000,
+    "status": "FAIL"
+  },
+  "formalAcceptance": {
+    "P08": "in_progress",
+    "humanAesthetic": false,
+    "heard": false,
+    "physicalDevice": false
+  },
+  "heroCrossTestedCommit": "9034822f6a9f369d1d8be987e118a24f1edc6674",
+  "finalProductCommit": "e63fe48ea14f65a42070a68f4113a89c41edb237",
+  "loadingSource": "ba526c5ac7d00106b45326c4824e192fb6dffa71",
+  "loadingBindings": [
+    {
+      "path": "src/game/BootScene.ts",
+      "sourceBlob": "69fcaa5c2dd37b052d9758486725db29f5463850",
+      "integratedBlob": "69fcaa5c2dd37b052d9758486725db29f5463850"
+    },
+    {
+      "path": "src/game/LoadingProgress.ts",
+      "sourceBlob": "d4770a7d74a44cf5effdb0816821f5ecd9f9bf26",
+      "integratedBlob": "d4770a7d74a44cf5effdb0816821f5ecd9f9bf26"
+    },
+    {
+      "path": "src/game/LoadingScreen.ts",
+      "sourceBlob": "58654c2d8c536b2b01bba3c04a9c5baed5f4ee53",
+      "integratedBlob": "58654c2d8c536b2b01bba3c04a9c5baed5f4ee53"
+    },
+    {
+      "path": "src/game/LoadingScreen.css",
+      "sourceBlob": "2dbeb735e068c38cb27e61b85481f4a7a96aa0d2",
+      "integratedBlob": "2dbeb735e068c38cb27e61b85481f4a7a96aa0d2"
+    },
+    {
+      "path": "src/game/SceneResources.ts",
+      "sourceBlob": "ddc749d11d004c5465efffeaf541ec43af94885d",
+      "integratedBlob": "ddc749d11d004c5465efffeaf541ec43af94885d"
+    }
+  ]
+}
