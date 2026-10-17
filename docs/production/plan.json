@@ -2924,17 +2924,25 @@
     "remoteAndSameNameLocalRefsAbsent": true
   },
   "sushiExileImplementation": {
-    "status": "in_progress",
+    "status": "ready_for_parent_integration",
     "base": "a9f48dc1cac8da79b6d16ce8ef0542446a6f4466",
     "branch": "dev/sushi-exile-implementation-20261017",
     "approved": "出牌时弃掉全部余牌，本手正常整数得分×4，每场一次；至少1张余牌；取消不消耗。",
     "scope": "new-Su-Shi-identity-only; exact old saves and five other new identities retained",
     "evidence": "docs/production/evidence/sushi-exile-2026-10-17/README.md",
     "pending": [
-      "same-build native six-hero short regression",
-      "parent sequential integration with phone layout 528df08d",
-      "subjective visual/audio/physical-device acceptance"
+      "parent sequential integration with phone layout 528df08d and local GameScene checks",
+      "subjective visual/audio/physical-device acceptance; P08 remains in_progress"
     ],
-    "overall": "P08 in_progress; no overall completion percentage"
+    "overall": "P08 in_progress; no overall completion percentage",
+    "product": "7627e7ddc09f44a8412f4e944852969c15f9cf33",
+    "verification": {
+      "unit": "39 files / 508 PASS",
+      "typecheck": "PASS",
+      "frozenBuild": "PASS; clean source 7627e7dd; 37174059B still above20MiB",
+      "native": "six hero native short flows PASS; Su Shi full motion 78→312,2→8,6 true discards; all six next hand PASS",
+      "planCheck": "15 existing invalid P08 evidence records remain",
+      "fullSuite": "initial 88/4306 failed; not rerun or signed as passed"
+    }
   }
 }
