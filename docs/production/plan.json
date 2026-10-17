@@ -2922,5 +2922,61 @@
     "publishedMainBeforeCleanup": "02ce7700fed218ef2405e230cdb381d82a5aa5dd",
     "sourceReachableFromPublishedMain": true,
     "remoteAndSameNameLocalRefsAbsent": true
+  },
+  "mobileDensityIntegration": {
+    "status": "implementation_verified",
+    "baseCommit": "a9f48dc1cac8da79b6d16ce8ef0542446a6f4466",
+    "sourceCommit": "2603c1c04e65350e5fd33a5233d99fef98d9e32c",
+    "productCommit": "44df03f437a9cf46d3f7ebf70c15b7868e9833cc",
+    "conflicts": [],
+    "regressions": {
+      "files": 14,
+      "passed": 138
+    },
+    "phoneIntegration": {
+      "executedCommit": "44df03f437a9cf46d3f7ebf70c15b7868e9833cc",
+      "browser": "143.0.3650.80",
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "touch": true,
+      "status": "PASS",
+      "realJokerImpacts": 5,
+      "realSavedHeroReleases": 1,
+      "exactStateJournalStorage": true,
+      "cleanup": {
+        "oldTextures": 0,
+        "activeStrikes": 0
+      },
+      "humanHearing": false,
+      "physicalDevice": false,
+      "evidence": "integration-phone-summary.json"
+    },
+    "build": {
+      "executedCommit": "44df03f437a9cf46d3f7ebf70c15b7868e9833cc",
+      "typecheck": "PASS",
+      "vite": "PASS",
+      "modules": 358,
+      "distFiles": 397,
+      "distBytes": 37163769,
+      "budgetBytes": 20000000,
+      "budgetStatus": "FAIL",
+      "buildInfo": {
+        "version": "C03",
+        "builtAt": "2026-10-17T16:49:08.137Z",
+        "revision": "44df03f437a9cf46d3f7ebf70c15b7868e9833cc",
+        "sourceStatus": "clean",
+        "modified": false
+      }
+    },
+    "preserved": "Singapore final active owners, source-strike clock, six hero attachment and saved payoff, all rules/saves/assets",
+    "evidence": "docs/production/evidence/mobile-table-space-2026-10-17/README.md",
+    "publication": "normal main push authorized; exact final SHA and associated CI in delivery receipt",
+    "scopeLimits": [
+      "no new Su Shi skill implementation",
+      "no deployment verification",
+      "no experience/hearing/physical-device approval"
+    ]
   }
 }

@@ -30,3 +30,13 @@
 实际canvas与同一WebAudio连续音画：[PC](strike-pc/av-continuous.webm)、[390](strike-phone/av-continuous.webm)、[4×](strike-fast/av-continuous.webm)。[手机命中](strike-phone/ordinary-hit.png)、[手机新值/回撤](strike-phone/multiply-pop.png)、[回归汇总](strike-summary.json)、[原始报告](strike-report.json.gz)，各目录附逐帧记录。WebM含实际VP8+Opus，未试听。
 
 不重跑六人、长局、CI或部署；本批未重跑取消/后台/销毁，它们保留各自先前证据范围。物理设备、主观视觉和听感仍待验。
+
+## main 顺序合批回执
+
+基线 `a9f48dc1cac8da79b6d16ce8ef0542446a6f4466`，来源 `2603c1c04e65350e5fd33a5233d99fef98d9e32c`，产品 `44df03f437a9cf46d3f7ebf70c15b7868e9833cc`。普通三方合并无冲突：四个布局模块逐 blob 等于来源，GameScene 等于来源加保留新加坡 canTilt 回调一行；新加坡最终音频/倾斜/撞分短停、六英雄真实目标附着与兑现、规则/保存及全部 public/art 字节均与基线一致。[精确绑定](integration.json)。复用上文来源的 104 项、尺寸几何和同版 PC/390/4×撞分证据，保留其 FAIL 与原测试范围。
+
+本次合并后[批量回归](integration-regressions.txt)：14 文件 / 138 项通过，含三份修改测试、新加坡复合声音/有序大数/层姿态、撞分/触觉/拖拽/输入、英雄附着/c12/候选恢复等。执行时 HEAD=a9 加合并工作区，最终源码绑定44df。再于44df执行一次390×740触摸真实流程：原生导入合法当前身份存档、五张主手/两助攻、技能入口和出牌，实际5笔来源H/M撞击及一次英雄已保存兑现，完整state/journal/storage与领域oracle精确相等，碎字/撞击清理为0。[汇总](integration-phone-summary.json)/[完整报告](integration-phone-report.json.gz)/[待出牌](integration-phone-pending.png)/[保存后](integration-phone-saved.png)。测试复用现有撞分整合 harness，仅补可配置视口与触摸，不添第二套用例。
+
+最终44df生产[构建日志](integration-build.txt)：类型检查、358模块构建通过；397文件/37163769B，20,000,000B预算仍FAIL。后续仅为回执/计划文档，最终main SHA及对应CI在本次交付答复记录，不使用原始来源CI替代新合版CI。不查域名、不部署、不自然长玩；苏轼新技能独立任务不在本批。P08仍in_progress，三项目标/整体美术/听感/物理设备及V01/L01正式门仍未签。
+
+计划校验仍为既有FAIL：[原始输出](integration-plan-validation.txt)。在未改的a9主工作区与本次合并工作区各运行一次，退出码与完整输出完全相同；没有新增协议错误，不改旧证据或放宽校验。
