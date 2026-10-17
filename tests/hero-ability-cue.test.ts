@@ -41,7 +41,9 @@ it('selected, used and pending states are read-only projections of real drafts a
  expect(selected).toMatchObject({label:'垂帘听政',status:'已选择',state:'selected',available:true});expect(s).toEqual(before);
  const used=send(s,{type:'PlayHand',selectedIds:cards.slice(0,2),erxiangTargetId:cards[0]});expect(heroAbilityCue(used)).toMatchObject({label:'垂帘听政',status:'已用',state:'used',available:false});
  const t=entered('touye'),ids=cards.slice(6),copy=touyeChoice(t,ids),pending=send(t,{type:'DiscardHand',selectedIds:ids,touyeBet:{target:'three-kind',snapshotToken:copy.snapshotToken}}),snapshot=structuredClone(pending);
- expect(heroAbilityCue(pending)).toMatchObject({label:'跃马冲阵',status:'待完成',state:'pending',available:false});expect(pending).toEqual(snapshot);
+ expect(heroAbilityCue(pending)).toMatchObject({label:'跃马冲阵',status:'已押三条',state:'locked',detail:'出牌后结算',available:false,actionable:false,attention:false});expect(pending).toEqual(snapshot);
+ const l=entered('laohuan'),refill=send(l,{type:'DiscardHand',selectedIds:cards.slice(6),laohuanTrick:true});
+ expect(refill.pendingRefill).not.toBeNull();expect(heroAbilityCue(refill)).toMatchObject({status:'待完成',state:'pending',detail:'继续从候选中留牌',actionable:true,attention:true});
 });
 it('committed handoff and wager results explain actual sources; promises and altered events cannot become receipts',()=>{
  const s=entered('erxiang'),a=send(s,{type:'PlayHand',selectedIds:cards.slice(0,2),erxiangTargetId:cards[0]}),t=a.lastTrace!,e=t.events.find(e=>e.reasonKey==='erxiang.handoff')!;
