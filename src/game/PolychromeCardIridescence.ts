@@ -10,7 +10,8 @@ const managers=new WeakMap<Phaser.Scene,IridescenceManager>();
 const palette=[0xf17eae,0xd79bfa,0x85b6f5,0x57d9db,0x9bdd9d,0xf4d282,0xf4a17c,0xf17eae];
 type Point={x:number;y:number};
 type Viewport={left:number;top:number;right:number;bottom:number};
-type Entry={host:Phaser.GameObjects.Container;edge:Phaser.GameObjects.Graphics;bounds:Box;path:Point[];lastPhase?:number;remove:()=>void};
+type EdgeKind='polychrome'|'forget-technique';
+type Entry={kind:EdgeKind;host:Phaser.GameObjects.Container;edge:Phaser.GameObjects.Graphics;bounds:Box;path:Point[];lastPhase?:number;remove:()=>void};
 
 export function iridescenceColor(position:number):number {
   const p=((position%1+1)%1)*(palette.length-1),i=Math.floor(p),t=p-i,a=palette[i],b=palette[i+1];
@@ -57,14 +58,14 @@ function visible(entry:Entry,scene:Phaser.Scene,view:Viewport):boolean {
 }
 
 function draw(entry:Entry,phase:number):void {
-  const g=entry.edge,path=entry.path,count=path.length-1;
+  const g=entry.edge,path=entry.path,count=path.length-1,warm=entry.kind==='forget-technique';
   g.clear();
   // Both passes share one path: a soft inner feather and a fine coloured edge, never nested frames.
   for(let i=0;i<count;i++){
-    const a=path[i],b=path[i+1],position=i/count,color=iridescenceColor(position-phase);
-    const glint=Math.pow((1+Math.cos((position-phase)*Math.PI*4))/2,12);
+    const a=path[i],b=path[i+1],position=i/count,color=warm?0xe3b76f:iridescenceColor(position-phase);
+    const glint=Math.pow((1+Math.cos((position-phase)*Math.PI*(warm?2:4)))/2,12);
     g.lineStyle(3.4,color,.12+.10*glint).lineBetween(a.x,a.y,b.x,b.y);
-    g.lineStyle(1.6,color,.80+.18*glint).lineBetween(a.x,a.y,b.x,b.y);
+    g.lineStyle(1.6,color,warm?.32+.66*glint:.80+.18*glint).lineBetween(a.x,a.y,b.x,b.y);
   }
   entry.lastPhase=phase;
   g.setData('phase',phase).setData('draws',(g.getData('draws')??0)+1);
@@ -125,10 +126,20 @@ class IridescenceManager {
  * A non-polychrome edition creates no object, listener, texture or manager.
  */
 export function mountPolychromeCardIridescence(scene:Phaser.Scene,host:Phaser.GameObjects.Container,bounds:Box,edition?:Edition):Phaser.GameObjects.Graphics|undefined {
-  if(edition!=='polychrome'||bounds.width<12||bounds.height<12)return;
-  const edge=scene.add.graphics().setName('card/polychrome-iridescence').setData('edition','polychrome').setData('bounds',{...bounds});
+  if(edition!=='polychrome')return;
+  return mountEdge(scene,host,bounds,'polychrome');
+}
+/** S05 is an explicit discovery cue, with warm light instead of an edition/rainbow signal. */
+export function mountForgetTechniqueAttention(scene:Phaser.Scene,host:Phaser.GameObjects.Container,bounds:Box,toolId:string):Phaser.GameObjects.Graphics|undefined {
+  if(toolId!=='S05')return;
+  return mountEdge(scene,host,bounds,'forget-technique');
+}
+function mountEdge(scene:Phaser.Scene,host:Phaser.GameObjects.Container,bounds:Box,kind:EdgeKind):Phaser.GameObjects.Graphics|undefined {
+  if(bounds.width<12||bounds.height<12)return;
+  const edge=scene.add.graphics().setName('card/'+(kind==='polychrome'?'polychrome-iridescence':'forget-technique-attention')).setData('effect',kind).setData('bounds',{...bounds});
+  if(kind==='polychrome')edge.setData('edition','polychrome');else edge.setData('toolId','S05');
   host.add(edge);
   const manager=managers.get(scene)??new IridescenceManager(scene);managers.set(scene,manager);
-  const entry:Entry={host,edge,bounds:{...bounds},path:iridescencePath(bounds,bounds.width<100?48:64),remove:()=>manager.remove(entry)};
+  const entry:Entry={kind,host,edge,bounds:{...bounds},path:iridescencePath(bounds,bounds.width<100?48:64),remove:()=>manager.remove(entry)};
   manager.add(entry);return edge;
 }

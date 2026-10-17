@@ -3,13 +3,13 @@ import {EventEmitter} from 'node:events';
 import type Phaser from 'phaser';
 const preferences=vi.hoisted(()=>({reducedMotion:false,listeners:new Set<()=>void>()}));
 vi.mock('../src/game/session',()=>({gameSession:()=>({...preferences,subscribe:(f:()=>void)=>{preferences.listeners.add(f);return ()=>preferences.listeners.delete(f);}})}));
-import {mountPolychromeCardIridescence,iridescencePath,iridescenceColor} from '../src/game/PolychromeCardIridescence';
+import {mountPolychromeCardIridescence,mountForgetTechniqueAttention,iridescencePath,iridescenceColor} from '../src/game/PolychromeCardIridescence';
 
 class Graphic extends EventEmitter {
   data=new Map<string,unknown>();visible=true;draws=0;destroyed=false;
   setName(_s:string){return this;}setData(k:string,v:unknown){this.data.set(k,v);return this;}getData(k:string){return this.data.get(k);}
   setVisible(v:boolean){this.visible=v;return this;}clear(){this.draws++;return this;}
-  lineStyle(..._args:unknown[]){return this;}lineBetween(..._args:unknown[]){return this;}
+  colors=new Set<unknown>();lineStyle(_width:number,color:number,..._args:unknown[]){this.colors.add(color);return this;}lineBetween(..._args:unknown[]){return this;}
   destroy(){if(this.destroyed)return;this.destroyed=true;this.emit('destroy');this.removeAllListeners();}
 }
 function fixture(){
@@ -18,7 +18,8 @@ function fixture(){
   const scene={events,add:{graphics:()=>{const g=new Graphic();graphics.push(g);return g;}},cameras:{main:{visible:true,alpha:1,id:1,x:0,y:0,width:400,height:800,zoom:1,getWorldPoint(x:number,y:number){return {x:x/this.zoom,y:y/this.zoom};}}}};
   const mount=(edition='polychrome')=>mountPolychromeCardIridescence(scene as unknown as Phaser.Scene,host as unknown as Phaser.GameObjects.Container,{x:0,y:0,width:80,height:100},edition as 'polychrome');
   const step=(ms=17)=>events.emit('update',0,ms);
-  return {scene,events,host,graphics,mount,step};
+  const forget=(id:string)=>mountForgetTechniqueAttention(scene as unknown as Phaser.Scene,host as unknown as Phaser.GameObjects.Container,{x:0,y:0,width:80,height:100},id);
+  return {scene,events,host,graphics,mount,step,forget};
 }
 let documentEvents:EventTarget,mediaEvents:EventTarget,hidden=false,reduce=false;
 beforeEach(()=>{
@@ -56,6 +57,12 @@ describe('persistent polychrome edge',()=>{
     const f=fixture(),camera=f.scene.cameras.main;camera.zoom=2;camera.width=780;camera.height=1688;
     f.mount();expect(f.graphics[0].visible).toBe(true);for(let i=0;i<200;i++)f.step();expect(f.graphics[0].draws).toBeGreaterThan(40);
     f.host.x=390;f.step(80);expect(f.graphics[0].visible).toBe(false);f.events.emit('shutdown');
+  });
+  it('gives only S05 a warm travelling cue, never rainbow/edition semantics or extra managers',()=>{
+    const f=fixture();for(const id of ['T17','S04','S06','U01'])expect(f.forget(id)).toBeUndefined();f.mount();f.forget('S05');
+    const warm=f.graphics[1];expect(warm.getData('edition')).toBeUndefined();expect(warm.getData('toolId')).toBe('S05');expect(warm.colors.size).toBe(1);
+    const before=warm.getData('phase');for(let i=0;i<220;i++)f.step();expect(warm.getData('phase')).not.toBe(before);expect(f.events.listenerCount('update')).toBe(1);
+    preferences.reducedMotion=true;for(const listener of preferences.listeners)listener();const staticDraws=warm.draws;for(let i=0;i<220;i++)f.step();expect(warm.draws).toBe(staticDraws);f.events.emit('shutdown');expect(warm.destroyed).toBe(true);
   });
   it('removes every subscription on last graphic destruction and permits remounting in reused scenes',()=>{
     const f=fixture();f.mount();f.mount();f.graphics[0].destroy();expect(f.events.listenerCount('update')).toBe(1);
