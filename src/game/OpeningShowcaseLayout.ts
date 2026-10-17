@@ -1,20 +1,17 @@
 import type {Box} from './layout';
-/** Portrait, compact facts and opt-in actions always own separate bands. */
+/** Art, attitude and factual ability copy have independent space at each orientation. */
 export function openingShowcaseLayout(b:Box,portrait:boolean,short:boolean){
- const pad=short?8:portrait?10:12;
-  if(short&&!portrait){
-   const demoY=b.y+b.height-pad-44,artWidth=b.width*.3,copyX=b.x+artWidth+pad*2;
-   return {art:{x:b.x+pad,y:b.y+pad,width:artWidth,height:demoY-b.y-pad-8},copy:{x:copyX,y:b.y+pad,width:b.x+b.width-pad-copyX,height:demoY-b.y-pad-8},demo:{x:b.x+pad,y:demoY,width:b.width-pad*2,height:44}};
-  }
-  if(portrait&&b.height>=300){
-   const demoY=b.y+b.height-pad-44,copyY=demoY-108;
-   return {art:{x:b.x+pad,y:b.y+pad,width:b.width-pad*2,height:copyY-b.y-pad-8},copy:{x:b.x+pad,y:copyY,width:b.width-pad*2,height:100},demo:{x:b.x+pad,y:demoY,width:b.width-pad*2,height:44}};
-  }
-  if(portrait){
-   const artWidth=b.width*.42,copyX=b.x+artWidth+pad*2,demoY=b.y+b.height-pad-44;
-   return {art:{x:b.x+pad,y:b.y+pad,width:artWidth,height:demoY-b.y-pad-8},copy:{x:copyX,y:b.y+pad,width:b.width-(copyX-b.x)-pad,height:demoY-b.y-pad-8},demo:{x:b.x+pad,y:demoY,width:b.width-pad*2,height:44}};
-  }
-  const artWidth=short?Math.min(150,b.width*.2):Math.min(470,b.width*.42),copyX=b.x+artWidth+pad*2;
-  const copyWidth=b.width-(copyX-b.x)-pad,demoY=b.y+b.height-pad-48;
-  return {art:{x:b.x+pad,y:b.y+pad,width:artWidth,height:b.height-pad*2-(short?0:24)},copy:{x:copyX,y:b.y+pad,width:copyWidth,height:demoY-b.y-pad-8},demo:{x:copyX,y:demoY,width:copyWidth,height:48}};
+ const pad=portrait||short?8:16,demoHeight=44;
+ if(portrait){
+  const demoY=b.y+b.height-demoHeight,copyHeight=b.height<300?88:104,copyY=demoY-copyHeight-6,artHeight=copyY-b.y-10;
+  const artWidth=Math.floor(b.width*.55),identityX=b.x+artWidth+12;
+  return {art:{x:b.x,y:b.y,width:artWidth,height:artHeight},identity:{x:identityX,y:b.y+8,width:b.x+b.width-identityX,height:artHeight-8},copy:{x:b.x+pad,y:copyY,width:b.width-pad*2,height:copyHeight},demo:{x:b.x+pad,y:demoY,width:Math.min(272,b.width-pad*2),height:demoHeight}};
+ }
+ if(short){
+  const artWidth=Math.floor(b.width*.4),copyX=b.x+artWidth+12,demoY=b.y+b.height-demoHeight,identityHeight=60;
+  return {art:{x:b.x,y:b.y,width:artWidth,height:b.height},identity:{x:copyX,y:b.y,width:b.x+b.width-copyX,height:identityHeight},copy:{x:copyX,y:b.y+identityHeight+6,width:b.x+b.width-copyX,height:demoY-b.y-identityHeight-12},demo:{x:copyX,y:demoY,width:b.x+b.width-copyX,height:demoHeight}};
+ }
+ const artWidth=Math.floor(b.width*.38),identityX=b.x+artWidth+28,identityWidth=Math.floor(b.width*.27)-28,copyX=identityX+identityWidth+28,copyWidth=b.x+b.width-pad-copyX;
+ const copyY=b.y+Math.max(16,(b.height-360)/2),demoY=Math.min(b.y+b.height-demoHeight,copyY+320);
+ return {art:{x:b.x,y:b.y,width:artWidth,height:b.height},identity:{x:identityX,y:b.y+Math.max(24,(b.height-270)/2),width:identityWidth,height:270},copy:{x:copyX,y:copyY,width:copyWidth,height:demoY-copyY-12},demo:{x:copyX,y:demoY,width:Math.min(272,copyWidth),height:demoHeight}};
 }
