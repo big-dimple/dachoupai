@@ -1,0 +1,309 @@
+{
+  "head": "514d10647ea021c72ec0bd9d33b5dd6e35ce12f1",
+  "browser": "143.0.3650.80",
+  "scope": "Controlled legal scorer/save fixtures; real import, native mouse/touch scrolling and continuation. PC1366 and c12 phone use actual PlayHand. Not natural play, physical device or human aesthetic/hearing acceptance.",
+  "sourceFiles": {
+    "src/game/IntermissionScene.ts": "2514b26190e7d03e50b9233bf991829ca84f8ea4eb246eb3cfd6bc859c9f1d8d",
+    "src/game/IntermissionLayout.ts": "809fe20cb3e97b13725db691fa11e372c63a53b836077fda5c5bc1ad596a4e5b",
+    "src/game/IntermissionScroll.ts": "d1488779115cc9c2bf1ca9ee8133cfa1e48f8e151d106f8881d325f3e89631e5"
+  },
+  "cases": [
+    {
+      "key": "pc-1366",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "errors": [],
+      "start": {
+        "viewport": {
+          "top": 60,
+          "bottom": 752,
+          "contentTop": 0,
+          "contentHeight": 381.8,
+          "overflow": 0,
+          "scroll": 0
+        },
+        "group": {
+          "x": 123,
+          "y": 215.10000610351562,
+          "width": 1120,
+          "height": 381.79999999999995
+        },
+        "paper": {
+          "x": 123,
+          "y": 295.1000061035156,
+          "width": 780,
+          "height": 301.8
+        },
+        "texts": [
+          {
+            "name": "stage-identity/result",
+            "text": "第 1 章 · 暖场 · 苏轼",
+            "bounds": {
+              "type": 5,
+              "x": 123,
+              "y": 215.10000610351562,
+              "width": 124,
+              "height": 17
+            }
+          },
+          {
+            "name": "result/title",
+            "text": "本场获胜",
+            "bounds": {
+              "type": 5,
+              "x": 123,
+              "y": 243.10000610351562,
+              "width": 136,
+              "height": 39
+            }
+          },
+          {
+            "name": "result/hand",
+            "text": "本场总热度",
+            "bounds": {
+              "type": 5,
+              "x": 355,
+              "y": 319.1000061035156,
+              "width": 70,
+              "height": 17
+            }
+          },
+          {
+            "name": "result/score",
+            "text": "3,931",
+            "bounds": {
+              "type": 5,
+              "x": 355,
+              "y": 339.1000061035156,
+              "width": 136,
+              "height": 66
+            }
+          },
+          {
+            "name": "result/formula",
+            "text": "目标 400 · 已过关",
+            "bounds": {
+              "type": 5,
+              "x": 355,
+              "y": 408.1000061035156,
+              "width": 111,
+              "height": 17
+            }
+          },
+          {
+            "name": "result/gap",
+            "text": "末手 葫芦 · 3,931",
+            "bounds": {
+              "type": 5,
+              "x": 355,
+              "y": 428.1000061035156,
+              "width": 109,
+              "height": 17
+            }
+          },
+          {
+            "name": "result/hero-name",
+            "text": "苏轼",
+            "bounds": {
+              "type": 5,
+              "x": 215,
+              "y": 490.1000061035156,
+              "width": 40,
+              "height": 23
+            }
+          },
+          {
+            "name": "result/source-continuity",
+            "text": "末手来源 · 薪火相传",
+            "bounds": {
+              "type": 5,
+              "x": 419,
+              "y": 457.1000061035156,
+              "width": 154,
+              "height": 22
+            }
+          },
+          {
+            "name": "result/source-effect",
+            "text": "×1.3",
+            "bounds": {
+              "type": 5,
+              "x": 419,
+              "y": 481.1000061035156,
+              "width": 31,
+              "height": 17
+            }
+          },
+          {
+            "name": "result/growth-saved",
+            "text": "手后 1.3 → 1.4",
+            "bounds": {
+              "type": 5,
+              "x": 419,
+              "y": 500.1000061035156,
+              "width": 95,
+              "height": 17
+            }
+          },
+          {
+            "name": "result/reward",
+            "text": "奖励  +8 金",
+            "bounds": {
+              "type": 5,
+              "x": 474.20000000000005,
+              "y": 553.1000061035156,
+              "width": 106,
+              "height": 25
+            }
+          },
+          {
+            "name": "result/next-heading",
+            "text": "准备下一场",
+            "bounds": {
+              "type": 5,
+              "x": 931,
+              "y": 309.1000061035156,
+              "width": 90,
+              "height": 23
+            }
+          },
+          {
+            "name": "result/next-body",
+            "text": "第 1 章 · 正场 · 目标 600\n筹备后，出牌与弃牌次数补满。\n下场余音袅袅次数恢复为1次",
+            "bounds": {
+              "type": 5,
+              "x": 931,
+              "y": 335.1000061035156,
+              "width": 196,
+              "height": 53
+            }
+          },
+          {
+            "name": "",
+            "text": "本场详情",
+            "bounds": {
+              "type": 5,
+              "x": 979,
+              "y": 481.6000061035156,
+              "width": 56,
+              "height": 17
+            }
+          },
+          {
+            "name": "",
+            "text": "前往筹备商店",
+            "bounds": {
+              "type": 5,
+              "x": 1021,
+              "y": 421.1000061035156,
+              "width": 132,
+              "height": 28
+            }
+          },
+          {
+            "name": "",
+            "text": "回看上手",
+            "bounds": {
+              "type": 5,
+              "x": 1139,
+              "y": 481.6000061035156,
+              "width": 56,
+              "height": 17
+            }
+          }
+        ],
+        "controls": [
+          {
+            "name": "result/hero-details",
+            "primary": false,
+            "bounds": {
+              "type": 5,
+              "x": 147,
+              "y": 319.1000061035156,
+              "width": 176,
+              "height": 168
+            }
+          },
+          {
+            "name": "action/result-details",
+            "primary": false,
+            "bounds": {
+              "type": 5,
+              "x": 931,
+              "y": 468.1000061035156,
+              "width": 152,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/continue-stage",
+            "primary": true,
+            "bounds": {
+              "type": 5,
+              "x": 931,
+              "y": 408.1000061035156,
+              "width": 312,
+              "height": 56
+            }
+          },
+          {
+            "name": "action/last-hand",
+            "primary": false,
+            "bounds": {
+              "type": 5,
+              "x": 1091,
+              "y": 468.1000061035156,
+              "width": 152,
+              "height": 44
+            }
+          }
+        ]
+      },
+      "gallery": [
+        {
+          "id": "e09",
+          "key": "shop-joker-detail/e09",
+          "width": 615,
+          "height": 768,
+          "display": {
+            "type": 5,
+            "x": 336.5733333333334,
+            "y": 249.74360975609753,
+            "width": 235.51999999999998,
+            "height": 294.1127804878049
+          }
+        },
+        {
+          "id": "e03",
+          "key": "shop-joker-detail/e03",
+          "width": 615,
+          "height": 768,
+          "display": {
+            "type": 5,
+            "x": 689.2400000000001,
+            "y": 249.74360975609753,
+            "width": 235.51999999999998,
+            "height": 294.1127804878049
+          }
+        },
+        {
+          "id": "b07",
+          "key": "shop-joker-detail/b07",
+          "width": 615,
+          "height": 768,
+          "display": {
+            "type": 5,
+            "x": 1051.5066666666667,
+            "y": 249.73190243902434,
+            "width": 216.31999999999994,
+            "height": 270.13619512195123
+          }
+        }
+      ],
+      "status": "PASS"
+    }
+  ],
+  "status": "PASS"
+}

@@ -70,6 +70,12 @@ try{for(const spec of cases){
    const action=end.controls.some(c=>c.name==='action/continue-stage'&&c.primary)?'action/continue-stage':null;
    if(action){const hit=await point(p,'intermission',action);if(spec.width<800)await p.touchscreen.tap(hit.x,hit.y);else await p.mouse.click(hit.x,hit.y,{clickCount:3,delay:15});await waitScene(p,'shop');const actual=await saved(p),receipt=actual.state.receipts.at(-1),command={runId:row.before.state.runId,commandId:receipt.commandId,expectedSeq:row.before.state.commandSeq,action:{type:'OpenShop'}},expected=applyCommand(row.before.state,command);assert.ok(expected.ok);assert.deepEqual(actual.state,expected.state);assert.deepEqual(actual.journal,[...row.before.journal,command]);assert.deepEqual(actual.storage.current,makeCheckpoint(actual.state,actual.journal));row.continued=actual;}
   }
+  if(process.env.RESULT_LAYOUT_CHECK_GALLERY&&spec.key==='pc-1366'){
+   assert.ok(row.continued,'real OpenShop precedes gallery check');
+   await p.waitForFunction(()=>{const s=window.__harness.game.scene.getScene('shop'),targets=[...s.jokerArtTargets].filter(([,t])=>t.box.width>128||t.box.height>160);return targets.length===3&&targets.every(([h])=>{const image=h.list.find(n=>n.type==='Image'),src=image?.texture.getSourceImage();return src&&(src.naturalWidth??src.width)===615&&(src.naturalHeight??src.height)===768;});});
+   row.gallery=await p.evaluate(()=>[...window.__harness.game.scene.getScene('shop').jokerArtTargets].filter(([,t])=>t.box.width>128||t.box.height>160).map(([h,t])=>{const image=h.list.find(n=>n.type==='Image'),src=image.texture.getSourceImage();return {id:t.definitionId,key:image.texture.key,width:src.naturalWidth??src.width,height:src.naturalHeight??src.height,display:image.getBounds()};}));
+   assert.deepEqual(await saved(p),row.continued,'decoded gallery art changes no state/journal/storage');await p.screenshot({path:out+'/'+spec.key+'-continued-shop-hd.png'});
+  }
   assert.deepEqual(row.errors,[]);row.status='PASS';console.log('PASS',spec.key,'overflow',v.overflow);
  }catch(e){row.status='FAIL';row.error=e.stack;await p.screenshot({path:out+'/'+spec.key+'-FAIL.png'});throw e;}finally{await p.close();}
 }report.status='PASS';}catch(e){report.status='FAIL';report.error=e.stack;process.exitCode=1;}finally{
