@@ -1,0 +1,23 @@
+{
+  "buildModules": 336,
+  "node": "v22.20.0",
+  "runtimeReportHead": "5cafa41ace1abbfd5d9fe4ad97f9bb10a00867a4",
+  "sceneWiring": "NOT_IMPLEMENTED; independent owner hook only",
+  "sources": [
+    {
+      "gitBlob": "5ae52f8b4bda0a8b74b1278e11969292da102f65",
+      "status": "PASS",
+      "sha256": "9c65971c40727f3dd1d0a49571f18f0e471affac3cb2c550e49f046e05866298",
+      "path": "src/game/HeroPortraitLayout.ts"
+    },
+    {
+      "gitBlob": "ad7ed2239d68e92610554bbcf2ffca82c440c79b",
+      "status": "PASS",
+      "sha256": "fc46c2960e5b28705d0af23da127a2bab44a5401251a52ab8a8095b3c186ba65",
+      "path": "src/game/HeroPortraitScoreMotion.ts"
+    }
+  ],
+  "note": "Report preserves actual pre-commit HEAD; these exact two raw source hashes were checked after the product commit and bound to Git blobs.",
+  "crossThreadInterfaceMessage": "DENIED; not sent; awaiting root relay/owner agreement",
+  "productCommit": "b88d235b7e52bf968d8224e4171ef7180ec4e978"
+}
