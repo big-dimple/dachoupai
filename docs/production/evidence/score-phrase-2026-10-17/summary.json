@@ -1,0 +1,335 @@
+{
+  "product": "c2228a64b5772709e5c5be44ade4d825afbbba80",
+  "sourceMatch": true,
+  "normalHead": "c2228a64b5772709e5c5be44ade4d825afbbba80",
+  "cancelHead": "c2228a64b5772709e5c5be44ade4d825afbbba80",
+  "heard": false,
+  "physicalDevice": false,
+  "audioSources": [
+    "4a1f9227e137aaf57122ce812fb52d95eda0bf49",
+    "cbf2f0f0d5f0506ed5e79b2ad1c085325b811bb2"
+  ],
+  "cases": [
+    {
+      "key": "pc",
+      "status": "PASS",
+      "frames": 1042,
+      "observedDurationMs": 17362.8,
+      "phraseArrivalSpanMs": 15017.7,
+      "sourceEvents": 13,
+      "expectedSourceEvents": 13,
+      "stateExact": true,
+      "arrivals": 32,
+      "rebounds": 6,
+      "pairMs": [
+        67.7,
+        97.9
+      ],
+      "runGapEarlyMedian": 517.2,
+      "runGapLateMedian": 417.5,
+      "keyAccent": {
+        "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/6/event/32",
+        "planned": {
+          "windup": 180,
+          "flight": 105,
+          "impact": 340,
+          "rest": 100,
+          "strength": "multiply",
+          "phrase": {
+            "role": "accent",
+            "pulse": 31,
+            "accentWeight": 1,
+            "paired": true,
+            "start": 11361,
+            "arrival": 11646,
+            "end": 12086
+          }
+        },
+        "observedLead": 333,
+        "mainCount": 1
+      },
+      "settlement": {
+        "planned": {
+          "windup": 120,
+          "flight": 0,
+          "impact": 430,
+          "rest": 130,
+          "strength": "medium",
+          "phrase": {
+            "role": "settle",
+            "pulse": 32,
+            "accentWeight": 1,
+            "paired": false,
+            "start": 12086,
+            "arrival": 12206,
+            "end": 12766
+          }
+        },
+        "observedLead": 149.9
+      },
+      "maxScoreVoices": 3,
+      "media": {
+        "path": "pc/av-continuous.webm",
+        "bytes": 3201593,
+        "video": "VP8",
+        "audio": "Opus actual master graph",
+        "heard": false
+      }
+    },
+    {
+      "key": "phone",
+      "status": "PASS",
+      "frames": 1043,
+      "observedDurationMs": 17360.7,
+      "phraseArrivalSpanMs": 14999.9,
+      "sourceEvents": 13,
+      "expectedSourceEvents": 13,
+      "stateExact": true,
+      "arrivals": 32,
+      "rebounds": 6,
+      "pairMs": [
+        67.5,
+        97.5
+      ],
+      "runGapEarlyMedian": 517.7,
+      "runGapLateMedian": 416.3,
+      "keyAccent": {
+        "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/6/event/32",
+        "planned": {
+          "windup": 180,
+          "flight": 105,
+          "impact": 340,
+          "rest": 100,
+          "strength": "multiply",
+          "phrase": {
+            "role": "accent",
+            "pulse": 31,
+            "accentWeight": 1,
+            "paired": true,
+            "start": 11361,
+            "arrival": 11646,
+            "end": 12086
+          }
+        },
+        "observedLead": 333.4,
+        "mainCount": 1
+      },
+      "settlement": {
+        "planned": {
+          "windup": 120,
+          "flight": 0,
+          "impact": 430,
+          "rest": 130,
+          "strength": "medium",
+          "phrase": {
+            "role": "settle",
+            "pulse": 32,
+            "accentWeight": 1,
+            "paired": false,
+            "start": 12086,
+            "arrival": 12206,
+            "end": 12766
+          }
+        },
+        "observedLead": 151.3
+      },
+      "maxScoreVoices": 3,
+      "media": {
+        "path": "phone/av-continuous.webm",
+        "bytes": 3689549,
+        "video": "VP8",
+        "audio": "Opus actual master graph",
+        "heard": false
+      }
+    },
+    {
+      "key": "fast",
+      "status": "PASS",
+      "frames": 490,
+      "observedDurationMs": 8182,
+      "phraseArrivalSpanMs": 7201.2,
+      "sourceEvents": 13,
+      "expectedSourceEvents": 13,
+      "stateExact": true,
+      "arrivals": 32,
+      "rebounds": 6,
+      "pairMs": [
+        65.6,
+        86.5
+      ],
+      "runGapEarlyMedian": 200,
+      "runGapLateMedian": 233,
+      "keyAccent": {
+        "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/32",
+        "planned": {
+          "windup": 180,
+          "flight": 105,
+          "impact": 885,
+          "rest": 100,
+          "strength": "multiply",
+          "phrase": {
+            "role": "accent",
+            "pulse": 31,
+            "accentWeight": 1,
+            "paired": true,
+            "start": 15944,
+            "arrival": 16229,
+            "end": 17214
+          }
+        },
+        "observedLead": 118.8,
+        "mainCount": 1
+      },
+      "settlement": {
+        "planned": {
+          "windup": 120,
+          "flight": 0,
+          "impact": 430,
+          "rest": 130,
+          "strength": "medium",
+          "phrase": {
+            "role": "settle",
+            "pulse": 32,
+            "accentWeight": 1,
+            "paired": false,
+            "start": 17214,
+            "arrival": 17334,
+            "end": 17894
+          }
+        },
+        "observedLead": 52.1
+      },
+      "maxScoreVoices": 3,
+      "media": {
+        "path": "fast/av-continuous.webm",
+        "bytes": 1771949,
+        "video": "VP8",
+        "audio": "Opus actual master graph",
+        "heard": false
+      }
+    },
+    {
+      "key": "cancel-windup",
+      "status": "PASS",
+      "frames": 949,
+      "observedDurationMs": 15828.2,
+      "phraseArrivalSpanMs": null,
+      "sourceEvents": 13,
+      "expectedSourceEvents": 13,
+      "stateExact": true,
+      "arrivals": 31,
+      "rebounds": 5,
+      "pairMs": [
+        75.7,
+        82.3
+      ],
+      "runGapEarlyMedian": 516.4,
+      "runGapLateMedian": 400.4,
+      "keyAccent": {
+        "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/32",
+        "planned": {
+          "windup": 180,
+          "flight": 105,
+          "impact": 340,
+          "rest": 100,
+          "strength": "multiply",
+          "phrase": {
+            "role": "accent",
+            "pulse": 31,
+            "accentWeight": 1,
+            "paired": true,
+            "start": 11361,
+            "arrival": 11646,
+            "end": 12086
+          }
+        },
+        "mainCount": 0
+      },
+      "maxScoreVoices": 3,
+      "cancelAt": "windup",
+      "cancelBoundary": {
+        "at": 18442.70000000298,
+        "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/32",
+        "role": "accent",
+        "phase": "windup"
+      },
+      "cancelCleanup": {
+        "at": 18473.59999999404,
+        "scoreVoices": 0
+      },
+      "media": {
+        "path": "cancel-windup/av-continuous.webm",
+        "bytes": 2882804,
+        "video": "VP8",
+        "audio": "Opus actual master graph",
+        "heard": false
+      }
+    },
+    {
+      "key": "cancel-rebound",
+      "status": "PASS",
+      "frames": 977,
+      "observedDurationMs": 16281.1,
+      "phraseArrivalSpanMs": null,
+      "sourceEvents": 13,
+      "expectedSourceEvents": 13,
+      "stateExact": true,
+      "arrivals": 32,
+      "rebounds": 6,
+      "pairMs": [
+        65.9,
+        97.9
+      ],
+      "runGapEarlyMedian": 518,
+      "runGapLateMedian": 416.7,
+      "keyAccent": {
+        "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/32",
+        "planned": {
+          "windup": 180,
+          "flight": 105,
+          "impact": 340,
+          "rest": 100,
+          "strength": "multiply",
+          "phrase": {
+            "role": "accent",
+            "pulse": 31,
+            "accentWeight": 1,
+            "paired": true,
+            "start": 11361,
+            "arrival": 11646,
+            "end": 12086
+          }
+        },
+        "observedLead": 332.9,
+        "mainCount": 1
+      },
+      "maxScoreVoices": 3,
+      "cancelAt": "rebound",
+      "cancelBoundary": {
+        "at": 19048.79999999702,
+        "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/32",
+        "role": "accent",
+        "phase": "rebound"
+      },
+      "cancelCleanup": {
+        "at": 19067,
+        "scoreVoices": 0
+      },
+      "media": {
+        "path": "cancel-rebound/av-continuous.webm",
+        "bytes": 3217241,
+        "video": "VP8",
+        "audio": "Opus actual master graph",
+        "heard": false
+      }
+    }
+  ],
+  "pending": [
+    "4x late run density: observed median 200ms to 233ms; adjust structural rebound density in next iteration without weakening visibility",
+    "subjective full-hand feel/listening",
+    "physical phone",
+    "genuine perspective/reflection/touch inertia",
+    "hero/c12 integration owned by parent",
+    "320/short/reduced/background/destroy not rerun in this phrase batch; previous baseline has its own scoped evidence"
+  ]
+}
