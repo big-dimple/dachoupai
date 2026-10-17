@@ -1,0 +1,220 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "taskId": "P08",
+  "taskStatus": "in_progress",
+  "phase": "PREBATTLE_MERGED_WAITING_FINAL_ART",
+  "baseCommit": "9e015286d1d223afad0a6e6b2860fcfed1457faf",
+  "integratedProductCommit": "ed013a91bcd312852de3f91220f5916b647527dc",
+  "branch": "dev/prebattle-art-integration-20261017",
+  "prebattleSource": {
+    "sha": "67b4b2cdd10ce8b6ffcd1a10f6bdb55a9f6ab865",
+    "incrementBase": "43216be21d1ac551fb1ffdc55ad4bb67eebb0cc5",
+    "paths": 26,
+    "bindings": [
+      {
+        "path": "docs/production/evidence/prebattle-flow-2026-10-17/README.md",
+        "sourceBlob": "582269a55a277c7e3f4108faebfeff09771f35b5",
+        "integratedBlob": "582269a55a277c7e3f4108faebfeff09771f35b5"
+      },
+      {
+        "path": "docs/production/evidence/prebattle-flow-2026-10-17/boss-direct-entry.png",
+        "sourceBlob": "b3900a16e722cddc543bbab69d86af564afe90a8",
+        "integratedBlob": "b3900a16e722cddc543bbab69d86af564afe90a8"
+      },
+      {
+        "path": "docs/production/evidence/prebattle-flow-2026-10-17/browser-check.json",
+        "sourceBlob": "8a50536d5e3291fa2a418c7243129dfd99eebf2a",
+        "integratedBlob": "8a50536d5e3291fa2a418c7243129dfd99eebf2a"
+      },
+      {
+        "path": "docs/production/evidence/prebattle-flow-2026-10-17/browser-check.mjs",
+        "sourceBlob": "b812e09026bc34eb30986b3a77706927bc28eef3",
+        "integratedBlob": "b812e09026bc34eb30986b3a77706927bc28eef3"
+      },
+      {
+        "path": "docs/production/evidence/prebattle-flow-2026-10-17/browser-check.txt",
+        "sourceBlob": "86c7d845435db5216e740734a4e87bd6bbdb64d7",
+        "integratedBlob": "86c7d845435db5216e740734a4e87bd6bbdb64d7"
+      },
+      {
+        "path": "docs/production/evidence/prebattle-flow-2026-10-17/browser-setup-fail.txt",
+        "sourceBlob": "9a23ab12cdff841073d4849b334cb933b8d8d4dd",
+        "integratedBlob": "9a23ab12cdff841073d4849b334cb933b8d8d4dd"
+      },
+      {
+        "path": "docs/production/evidence/prebattle-flow-2026-10-17/build-check.txt",
+        "sourceBlob": "c3c202f3a076a6c1a94ba7e69892429e748223a6",
+        "integratedBlob": "c3c202f3a076a6c1a94ba7e69892429e748223a6"
+      },
+      {
+        "path": "docs/production/evidence/prebattle-flow-2026-10-17/challenge-program-off.png",
+        "sourceBlob": "ee095ed9203b18c64e1ec087addf176f7e0c737b",
+        "integratedBlob": "ee095ed9203b18c64e1ec087addf176f7e0c737b"
+      },
+      {
+        "path": "docs/production/evidence/prebattle-flow-2026-10-17/focused-check.txt",
+        "sourceBlob": "dc2316211642c8f39ad8f9d75df9f096c8f957b5",
+        "integratedBlob": "dc2316211642c8f39ad8f9d75df9f096c8f957b5"
+      },
+      {
+        "path": "docs/production/evidence/prebattle-flow-2026-10-17/manual-rules-initial-fail.json",
+        "sourceBlob": "265453ca9974178170a848c56916d1149698be94",
+        "integratedBlob": "265453ca9974178170a848c56916d1149698be94"
+      },
+      {
+        "path": "docs/production/evidence/prebattle-flow-2026-10-17/manual-rules-initial-fail.png",
+        "sourceBlob": "9803f30b31c091149c428fc58de392d9146be78c",
+        "integratedBlob": "9803f30b31c091149c428fc58de392d9146be78c"
+      },
+      {
+        "path": "docs/production/evidence/prebattle-flow-2026-10-17/manual-rules-initial-fail.txt",
+        "sourceBlob": "69923a9f60eff47245ae6168b12cc25ffa7166d7",
+        "integratedBlob": "69923a9f60eff47245ae6168b12cc25ffa7166d7"
+      },
+      {
+        "path": "docs/production/evidence/prebattle-flow-2026-10-17/program-phone.png",
+        "sourceBlob": "34ddfcd60f4aa2cb0ac460799ce2a2573fe6dfaf",
+        "integratedBlob": "34ddfcd60f4aa2cb0ac460799ce2a2573fe6dfaf"
+      },
+      {
+        "path": "docs/production/evidence/prebattle-flow-2026-10-17/restore-entry-initial-fail.json",
+        "sourceBlob": "4325a5ed0a038b9368fd25b3b624c05b6d81d0bc",
+        "integratedBlob": "4325a5ed0a038b9368fd25b3b624c05b6d81d0bc"
+      },
+      {
+        "path": "docs/production/evidence/prebattle-flow-2026-10-17/restore-entry-initial-fail.png",
+        "sourceBlob": "110df5d4135aaa7052c64834248d1675683c3f6e",
+        "integratedBlob": "110df5d4135aaa7052c64834248d1675683c3f6e"
+      },
+      {
+        "path": "docs/production/evidence/prebattle-flow-2026-10-17/restore-entry-initial-fail.txt",
+        "sourceBlob": "44cc241bc52899678449778c68cd1780a8d83b68",
+        "integratedBlob": "44cc241bc52899678449778c68cd1780a8d83b68"
+      },
+      {
+        "path": "docs/production/evidence/shop-purchase-consistency-2026-10-17/README.md",
+        "sourceBlob": "69dbd0d66127569abcf8bd4cb7afff32aecfa64e",
+        "integratedBlob": "69dbd0d66127569abcf8bd4cb7afff32aecfa64e"
+      },
+      {
+        "path": "src/game/BlindSelectPresentation.ts",
+        "sourceBlob": "d00864ccc830a62c72a4d44a0ad86d491e3ef5cd",
+        "integratedBlob": "d00864ccc830a62c72a4d44a0ad86d491e3ef5cd"
+      },
+      {
+        "path": "src/game/BossPreparationPresentation.ts",
+        "sourceBlob": "4fc80bec5d6d4142f758f8e6bd2535ae281ca42e",
+        "integratedBlob": "4fc80bec5d6d4142f758f8e6bd2535ae281ca42e"
+      },
+      {
+        "path": "src/game/GameScene.ts",
+        "sourceBlob": "4243d6ce1283e3b77c8b68244b54ca45737b949d",
+        "integratedBlob": "4243d6ce1283e3b77c8b68244b54ca45737b949d"
+      },
+      {
+        "path": "src/game/OpponentPresentation.ts",
+        "sourceBlob": "27ad672b981b0160dac6d4cc7a3ac6d3de625c9c",
+        "integratedBlob": "27ad672b981b0160dac6d4cc7a3ac6d3de625c9c"
+      },
+      {
+        "path": "src/game/ProgramDialog.ts",
+        "sourceBlob": "4b8f804757278da2ba4df4dbf48da354b2272929",
+        "integratedBlob": "4b8f804757278da2ba4df4dbf48da354b2272929"
+      },
+      {
+        "path": "src/game/ShopScene.ts",
+        "sourceBlob": "a0f18a436daffeefb8f1572a3f7148123fc1a834",
+        "integratedBlob": "a0f18a436daffeefb8f1572a3f7148123fc1a834"
+      },
+      {
+        "path": "tests/blind-select-presentation.test.ts",
+        "sourceBlob": "daf6fe6c47a99f2dfb05f99812ddb65bd6ac0d15",
+        "integratedBlob": "daf6fe6c47a99f2dfb05f99812ddb65bd6ac0d15"
+      },
+      {
+        "path": "tests/boss-preparation-presentation.test.ts",
+        "sourceBlob": "a60950dfdb7c49afdccf822d302bb0e652d3a71c",
+        "integratedBlob": "a60950dfdb7c49afdccf822d302bb0e652d3a71c"
+      },
+      {
+        "path": "tests/program-dialog.test.ts",
+        "sourceBlob": "42b6dda951a4fd4d4c8fa6f015563745c782ad08",
+        "integratedBlob": "42b6dda951a4fd4d4c8fa6f015563745c782ad08"
+      }
+    ],
+    "evidence": "../prebattle-flow-2026-10-17/README.md"
+  },
+  "sourceBrowserBindings": [
+    {
+      "path": "src/game/BossPreparationPresentation.ts",
+      "ownerFileSHA256": "c9a37315b80f37b09b27f3cd108a77cdc33dbd398d66840cac0f7e84a2eed582",
+      "integratedGitLF_SHA256": "461cba794c7e45b4a4a89d4100e0ad9bde03ef54ce676df6f4b31a2ee5b2a72f",
+      "integratedCRLF_SHA256": "c9a37315b80f37b09b27f3cd108a77cdc33dbd398d66840cac0f7e84a2eed582",
+      "workingFileExact": true
+    },
+    {
+      "path": "src/game/BlindSelectPresentation.ts",
+      "ownerFileSHA256": "abf21efbf0c5e5a77c2b6b6eb4780ffb3c2dc14e09e52dd01782581c4279767a",
+      "integratedGitLF_SHA256": "801e97caa0eae3478e6214f7e9abe27c028156b81a54673499df7371fb87fd68",
+      "integratedCRLF_SHA256": "abf21efbf0c5e5a77c2b6b6eb4780ffb3c2dc14e09e52dd01782581c4279767a",
+      "workingFileExact": true
+    },
+    {
+      "path": "src/game/OpponentPresentation.ts",
+      "ownerFileSHA256": "a92c0e88f4a0c3f6bcba6245c7129d9542fd7222418c2260c2cf03445ec4bb19",
+      "integratedGitLF_SHA256": "1c6269a05ff68f73e03e23bc2663f65e4f17bf99e330ef42afe3b48a81a03046",
+      "integratedCRLF_SHA256": "a92c0e88f4a0c3f6bcba6245c7129d9542fd7222418c2260c2cf03445ec4bb19",
+      "workingFileExact": true
+    },
+    {
+      "path": "src/game/GameScene.ts",
+      "ownerFileSHA256": "c62c1f3753046ecb74c0a3e0ba0a1f337b356556b3c13644c40260161b646b52",
+      "integratedGitLF_SHA256": "3209219d3d9903846087249d8549d3a73970bc7c15db1d88fea9ae983970a5fa",
+      "integratedCRLF_SHA256": "c62c1f3753046ecb74c0a3e0ba0a1f337b356556b3c13644c40260161b646b52",
+      "workingFileExact": true
+    },
+    {
+      "path": "src/game/ShopScene.ts",
+      "ownerFileSHA256": "06723ab7a057559ab7f656c7d4f5b438f6612c47e33efc40f1d0b879b9dfbeb4",
+      "integratedGitLF_SHA256": "fd217754bfef1b75e720bf5c00c74e1927c83fc33a2a58c2d9aed281c0ff01df",
+      "integratedCRLF_SHA256": "06723ab7a057559ab7f656c7d4f5b438f6612c47e33efc40f1d0b879b9dfbeb4",
+      "workingFileExact": true
+    },
+    {
+      "path": "src/game/ProgramDialog.ts",
+      "ownerFileSHA256": "bbd3cd9bedde5059067f5aefe65cec4c31379e43f56cc5330f80d2f6a5103035",
+      "integratedGitLF_SHA256": "ccfe164305cc0989ac2bcde4d035ce95630e72dec1099e57ff21543cf493908c",
+      "integratedCRLF_SHA256": "bbd3cd9bedde5059067f5aefe65cec4c31379e43f56cc5330f80d2f6a5103035",
+      "workingFileExact": true
+    }
+  ],
+  "bindingCheckNote": "Initial raw Git LF hash comparison failed at BossPreparationPresentation; all six owner hashes are proven exact CRLF working-file hashes and exactly match this worktree. Source/integrated Git blobs separately identical. No file or owner evidence altered.",
+  "checksReused": {
+    "directed": "4 files68 checks, then final controller/manual-entry changes covered by source8 short native flows and final type/build, as original receipt scopes",
+    "browser": "8 limited native flows at1180x757, one same-state390x844 program panel; six final product working-file hashes exact",
+    "integrationNewRuns": "NOT_RUN: defer concentrated type/build/cross-source checks until final art arrives; no conflicts",
+    "originalFailures": "Source manual rules, restored entry and setup FAILs retained"
+  },
+  "protectedDiff": [],
+  "preservedCompactReminderSource": "6a044ee1e21f907212f3464ef7f05b0d7c53b703",
+  "waitingFor": {
+    "scope": "Final art source containing provenance base plus user 风鸣朝阳.png candidate",
+    "artBase": "2229b4cb22da230cda241d7cd414e6726a4c1d7d",
+    "finalSourceSha": null,
+    "status": "PENDING owner final SHA; base not merged separately"
+  },
+  "excluded": "Unfinished new Shop overhaul and HD appreciation are next independent batch, not merged.",
+  "publication": {
+    "mode": "Normal dev checkpoint only",
+    "mainRemains": "9e015286d1d223afad0a6e6b2860fcfed1457faf",
+    "mainStatus": "WAITING_FINAL_ART_AND_CONCENTRATED_CHECKS",
+    "authorization": "User explicitly holds main until final art/new-image source, then normal push; no force/CI/deploy/natural long game"
+  },
+  "remaining": [
+    "Final art/new-image source and necessary integrated checks",
+    "Same-version natural prebattle review; source software results do not sign all Boss/modes",
+    "H15 final art provenance acceptance",
+    "Eye climax, hearing=false, comprehension, physical device and formal gates unchanged"
+  ]
+}

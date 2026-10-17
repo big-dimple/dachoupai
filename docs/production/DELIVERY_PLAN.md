@@ -2,6 +2,8 @@
 
 ## 当前统一执行计划
 
+**2026-10-17 战前/新图批仅dev：** main9e015保持；67b4b2cd无冲突合入dev/prebattle-art-integration-20261017产品`ed013a91bcd312852de3f91220f5916b647527dc`，26源路径/六浏览器工作文件hash一致，6a044提醒保留。H14节目入口/H16Boss跨处规则已有dev软件修复，精确复用68项/最终type-build/8短流程，不重跑整套。[部分回执](evidence/feedback-batch-integration-2026-10-17/prebattle-art.json)。等艺术2229b4cb接风鸣朝阳.png后的最终SHA，集中必要交叉/type/build再一起普通main push；新商店大重整/高清鉴赏是下一独立批次，明确不纳入。H15/新合版自然、听感/眼神/真机及正式门保持，P08仍in_progress。以下较早直接main范围按已发布回执读取，不覆盖本批等待艺术的范围。
+
 **2026-10-17 dot反馈两路小修：** 已发布main a470da22为父级dot实际可见版本；自然秦琼第2章正场1705/1350、Boss1874/1800，来源线/数值增量/底栏/技能真名/弃牌可见，未自然触发全屏眼神高光，heard=false。当前6a044ee1（紧凑提醒）+43216be2（c04固定+50与成长0并列/购买去重及用语/Boss页内容收高）无冲突整合产品`b1916e6c6b00bdf6635882755b671ce7a4e8892c`，26源路径逐blob一致，复用来源31/60定向及有限原生受控23→19/取消证据，仅补整合类型/321模块构建通过。[同一回执入口](evidence/feedback-batch-integration-2026-10-17/README.md)/[精确小批绑定](evidence/feedback-batch-integration-2026-10-17/dot-followup.json)；同一批次表/需求台账同步，不新开排程。用户授权普通dev/main合入push，完整main SHA以实际回执为准，不等CI/不部署。跨备战/章节/场内三次同规则H16只登记，H14/H15保留，P08与正式门/人验边界不变。
 
 **2026-10-17 反馈最终合批：** 四来源5273a1fa（音阶）、09249ad5（高光/底栏/六技能名）、236acc4c（手机结算）、3b22614b（商店/Boss备战）已正常合并，最终产品`e978f295136c48f999895e2e9333f8c0b93cc5c1`。GameScene保持09249、手机两文件保持236；音频补2/3材质与轻重/35–65ms内部拍点，八档保存事件主音/arrival不变；T18按用户最新改“换货券 / 刷新一次商店商品”，删除比价冗余，价格/规则/hash/素材不变。31文件365项按最后每文件去重通过，原两次旧名FAIL保留，类型与321模块构建通过；[精确来源和证据](evidence/feedback-batch-integration-2026-10-17/README.md)/[今日逐项入口](CURRENT_BATCH_20261017.md)/[需求台账](REQUIREMENTS_DECISIONS_COMMITMENTS.md)。全部来源与检查齐，已获用户正常dev/main合入push授权；最终main完整SHA以实际推送回执为准，无CI/域名/部署。8.36秒真实AudioEngine短WAV仅软件证据，heard=false；新整合dot自然画面/真人听感/真机待验，P08仍in_progress。节目单开战前选择入口与72图新源链欠账已登记H14/H15，本批不扩修、不阻塞合批。

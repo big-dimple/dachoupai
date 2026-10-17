@@ -1,5 +1,12 @@
 # 本轮反馈整合回执 · 2026-10-17
 
+## 战前/新图批：当前仅 dev 检查点
+
+基线main `9e015286d1d223afad0a6e6b2860fcfed1457faf`；战前来源 `67b4b2cdd10ce8b6ffcd1a10f6bdb55a9f6ab865` 已正常合入产品 `ed013a91bcd312852de3f91220f5916b647527dc`，分支dev/prebattle-art-integration-20261017，无冲突。来源增量以其父43216计算，全部26路径与源blob一致；已发6a044紧凑提醒保留。[部分绑定与发布边界](prebattle-art.json)。来源浏览器六产品hash是Windows CRLF工作文件hash，当前六文件原字节全部匹配；初次直接比Git LF曾失败，已保留说明和两种hash，未改文件或源证据。
+
+[来源68项、最终type/build、8短流程及原FAIL](../prebattle-flow-2026-10-17/README.md)按精确范围复用，不重复整套。H14节目入口/H16三处Boss规则已有dev软件修复：共用完整身份/场次真正可见历史，已见离店沿原LeaveShop/EnterStage直入；待战恢复保明确入场，未见恢复介绍、主动规则可查；Shop/目录/待战节目单仍走原ChooseProgram与owner/序号守卫。领域/存档/RNG/音频/public和包锁未改，不签全Boss/模式自然或人验。
+
+**main保持9e015286；等待艺术负责人在2229b4cb22da230cda241d7cd414e6726a4c1d7d上接用户“风鸣朝阳.png”的最终SHA，齐后再必要交叉/type/build和一起普通main push。** 新商店大重整/高清鉴赏是下一独立批次，不纳入。H15/新合版自然/听感/眼神高光/真机及正式门保持，P08仍in_progress。
 ## dot 自然试玩后的两路小修
 
 本小批基线main `a470da228a85283eabc00811f610ba6a41a38738`，两路正常合并产品 `b1916e6c6b00bdf6635882755b671ce7a4e8892c`，分支 `dev/dot-followup-integration-20261017`，无冲突。两来源26个增量文件全部逐blob相同；复用来源31项与60项，不新增/相加重复单测或浏览器矩阵；只补整合类型/321模块生产构建通过。[本小批精确绑定/检查/实测回执](dot-followup.json)、[类型](checks/dot-followup-typecheck.log)、[构建](checks/dot-followup-build.log)。现有大chunk警告保留，规则/数值/存档/GameScene/音频/public/包锁零改动。按最新授权正常dev/main合入push，实际完整main SHA以最终成功推送回执为准。
