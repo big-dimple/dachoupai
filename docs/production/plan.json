@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "auditCommit": "7d7921e76ca794a14e715e3eac3b4d66143862ff",
   "currentTask": "P08",
-  "selectionPolicy": "当前242f合2a最终窄修含efb真实小字接线，原两问题四格/最终短屏DPR3源证据按修订范围复用；热度峰值越框待精确判断、文成花蕊回执待，不签全布局或六英雄通过。齐备后必要最终复检并按已有授权main发布，不等用户回复；详情艺术墙独立非阻塞。三目标未达标、预算FAIL、人验听感实体触感Safari/正式门保持，P08仍in_progress。",
+  "selectionPolicy": "六英雄分工证据已齐但视觉未全过；361文成花蕊四功能PASS、公共Canvas文字密度/裁切FAIL，与热度峰值待计分owner共享TextRaster修复。当前运行时242f，审查仅证据；最终只复验受影响字段/手机边界及必要类型构建/共享消费者交叉，不完整重跑六人，再按已有授权main发布。三目标未达标、预算FAIL及真人听感实体触感Safari/正式门保持，P08仍in_progress。",
   "resumeContract": {
     "candidateCommit": "4bf6a7d63d7738d3c415d09439a1bdca878dc685",
     "gateTask": "A01",
@@ -1550,9 +1550,9 @@
     }
   },
   "recordingHold": {
-    "status": "NARROW_FIXES_AND_SMALL_TEXT_WIRED_PEAK_BOUNDARY_AND_TWO_HERO_REVIEW_PENDING",
+    "status": "ALL_SIX_RECEIPTS_RECEIVED_COMMON_CANVAS_TEXT_DEFECT_PENDING_REPAIR",
     "baseline": "4314a2459ade4ea68133f67468c98f9f42b2e251",
-    "reason": "Two visual regressions narrowly repaired and rechecked, status-density module actually wired in GameScene. Heat-number highlight peak below-board edge still awaits precise pixel assessment; Princess Wencheng/Lady Huarui review pending. Do not sign all layouts or all-six acceptance.",
+    "reason": "All six bounded hero review receipts are received. Wencheng/Huarui four functional cases PASS but visual FAIL on e2e Canvas due style/source resolution mismatch and clipped source/score pixels. Await final shared TextRaster correction with heat-peak issue; no all-six visual acceptance.",
     "devBranch": "dev/recording-followups-integration-20261017",
     "devProduct": "242f8cc8fada68e160f301fdc16b9344b062bb09",
     "mergedCandidate": "aac060561724efd62dd06ea764d73b658b68ff3a",
@@ -1605,17 +1605,16 @@
         "status": "FAIL",
         "scope": "Complete filesystem dist, not network-transfer measurement; no assets deleted or threshold relaxed."
       },
-      "currentness": "Historical PASS for1629 before af9/2a. Latest2a product merged; final combined affected cross-check/typecheck/build pending peak assessment and remaining two-hero receipt."
+      "currentness": "Historical PASS for1629 before af9/2a. Review361 changes only evidence/harness; runtime remains242f. Final shared TextRaster fix requires affected-field/mobile-boundary check and final typecheck/build; no full six-hero rerun."
     },
     "pendingOwners": [
-      "continuous scoring owner/root: exact screenshot and decision for heat-number peak crossing board lower edge",
-      "footer owner 01a147ec: Princess Wencheng / Lady Huarui bounded dynamic receipt"
+      "continuous scoring owner: final common TextRaster correction and affected-field/mobile-boundary pixel recheck"
     ],
     "qinSkillObservation": "Original user video counterexample retained. e2e provides controlled native-touch decision/commit/real next-hand win chain; not natural or physical-device acceptance.",
     "physicalHaptics": "NOT_RUN",
     "reference": "docs/production/CURRENT_BATCH_20261017.md",
     "videoReview": "Root analyzes timestamps and reports regressions to source owners.",
-    "nextAction": "Resolve/record heat-peak boundary assessment and receive remaining two-hero receipt. Merge any necessary narrow fix, run final affected cross-check/typecheck/build once sources settle, then normal dev/main push under existing authorization; detail art wall is non-blocking.",
+    "nextAction": "Receive exact shared text correction SHA; normally merge, reuse source functional checks and completed six-hero flows; only rerun affected text fields/mobile boundaries plus necessary final typecheck/build/shared-consumer cross-check. Repair known critical visual regressions before normal main push, without further user reply.",
     "mergedCandidates": [
       "aac060561724efd62dd06ea764d73b658b68ff3a",
       "e2e64946f6fabe6fc0e8b369a6b3b52c5bda9d29",
@@ -1623,7 +1622,8 @@
       "af9b0473d78823b06ae54ffe6bc58906803e329b",
       "c1977284ef133045506ef2e2df3274127c2bf47d",
       "efb066319c6fea3ce5579b9f06692d72f91d0db5",
-      "2a090feec92e0f646aeac484742560f9d955464c"
+      "2a090feec92e0f646aeac484742560f9d955464c",
+      "3611741ca8be0e19989b626b9a37defef71b91cf"
     ],
     "continuousScore": {
       "source": "e2e64946f6fabe6fc0e8b369a6b3b52c5bda9d29",
@@ -1666,7 +1666,18 @@
         "秦琼: e2e controlled touch decision/commit/real win chain",
         "刘娥: e2e controlled converted-score chain"
       ],
-      "pending": [
+      "criticalRegressionPolicy": "Repair before main publication",
+      "boundary": "Bounded dynamic source review only; no shared-file edits, long matrix, physical-device/Safari/subjective-hearing/felt-haptics claims.",
+      "receiptStatus": "ALL_SIX_SCOPED_RECEIPTS_RECEIVED_NOT_ALL_VISUALLY_ACCEPTED",
+      "reviews": [
+        {
+          "heroes": [
+            "秦琼",
+            "刘娥"
+          ],
+          "source": "e2e64946f6fabe6fc0e8b369a6b3b52c5bda9d29",
+          "status": "CONTROLLED_SOURCE_EVIDENCE_REUSED_ONLY_ORIGINAL_SCOPE"
+        },
         {
           "owner": "01a147eb",
           "heroes": [
@@ -1690,11 +1701,17 @@
             "文成公主",
             "花蕊夫人"
           ],
-          "status": "PENDING_RECEIPT"
+          "source": "3611741ca8be0e19989b626b9a37defef71b91cf",
+          "testedCommit": "e2e64946f6fabe6fc0e8b369a6b3b52c5bda9d29",
+          "status": "RECEIVED_FUNCTIONAL_PASS_VISUAL_FAIL",
+          "functional": "Four bounded PC/mobile cases PASS; no full-flow rerun requested",
+          "visualFailures": [
+            "Canvas Text.style.resolution2 while frame.source.resolution1 renders actual bitmap twice logical bounds",
+            "Wencheng source x1.5 actual x288..416 on390 viewport; total-score bitmap also clipped"
+          ],
+          "repairOwner": "continuous scoring owner shared TextRaster correction; pending affected-field/mobile-boundary recheck"
         }
-      ],
-      "criticalRegressionPolicy": "Repair before main publication",
-      "boundary": "Bounded dynamic source review only; no shared-file edits, long matrix, physical-device/Safari/subjective-hearing/felt-haptics claims."
+      ]
     },
     "mobileShop": {
       "source": "a6b49d6254ea1ecbde9277f38246f4156d434444",
@@ -1723,7 +1740,7 @@
       "currentEvidence": "af9 status-retention source checks target,current/target stage heat,remaining resources,saved assist used,real source/effect through33 events1202 frames. Prior e2e Liu E/Qin receipts retained only original scope.",
       "actions": "Current e2e disables action input during playing; setSettlementFocus hides only playAura, not HUD/resource fields. Do not call action suppression information removal.",
       "secondaryText": "Long duplicate breakdownText remains hidden; actual event note stays in score/source and H/M/hand totals remain. No false clear-screen acceptance.",
-      "pending": "Remaining heat-peak assessment and WenCheng/HuaRui review, then final combined affected-scope check."
+      "pending": "Common TextRaster source correction and affected-field/mobile-boundary recheck; all six review receipts received."
     },
     "fieldRetention": {
       "source": "af9b0473d78823b06ae54ffe6bc58906803e329b",
@@ -1768,7 +1785,16 @@
         "Xin Qiji saved receipt strike calls existing sourceCue(character) once; no scoring event fabricated",
         "native status density helper actually wired;11px/position/color meanings retained"
       ],
-      "open": "Heat-number high-water peak slightly below score-board edge: precise pixel assessment pending, not all-layout PASS."
+      "open": "Public Canvas TextRaster style/source density mismatch affects main readouts/peak. Wencheng/Huarui review received as visual FAIL; final shared correction pending."
+    },
+    "wenchengHuaruiReview": {
+      "source": "3611741ca8be0e19989b626b9a37defef71b91cf",
+      "appliedEvidenceAndHarnessPathsExact": 47,
+      "productFilesChanged": false,
+      "functionalStatus": "PASS",
+      "visualStatus": "FAIL",
+      "rendererScope": "Canvas fallback type1, camera zoom1; not a claim about WebGL/Safari/device",
+      "remaining": "Shared text sampler correction and heat/total/source pixel boundaries"
     }
   }
 }
