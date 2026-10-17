@@ -22,7 +22,7 @@ it('same-ID game and shop copy follows the current exact profile in both directi
  const game=Object.create(GameScene.prototype) as any,shop=Object.create(ShopScene.prototype) as any;
  for(const prototype of [false,true,false,true])for(const id of ['pengci','a03','a05','a06','a10','a11','a12']){
   const s=state(prototype),j=r2CreateJoker(id,'same-instance',0);s.jokers=[j];
-  Object.assign(game,{run:s,selectedIds:new Set(main),assistIds:prototype?side:[],playing:false,presentation:undefined});shop.run=s;
+  Object.assign(game,{run:s,stage:s.stage,selectedIds:new Set(main),assistIds:prototype?side:[],playing:false,presentation:undefined});shop.run=s;
   const facts=game.selectionPreview(),ctx=game.memoryContext(j,facts);
   expect(game.jokerAbility(j,facts)).toEqual(jokerAbilityCopyForRun(s,id,j,ctx));
   expect(shop.jokerCopy(id,j)).toEqual(jokerAbilityCopyForRun(s,id,j,publicJokerMemoryContext(s,{hand:[],scoringLimited:false,deckSize:s.deckInstances.length,jokerSlots:5,jokerCount:1})));
@@ -31,7 +31,7 @@ it('same-ID game and shop copy follows the current exact profile in both directi
  }
 });
 it('saved Amo role copy distinguishes assist, before-Joker v10 and after-Joker v11 without changing other characters',()=>{
- expect(characterForRun(state(true)).passiveName).toBe('主手＋助攻');
+ expect(characterForRun(state(true)).passiveName).toBe('余音袅袅');
  expect(characterForRun(legacy.before.state as any).passiveDescription).toContain('之前');
  expect(characterForRun(state(false)).passiveDescription).toContain('之后');
 });
@@ -41,7 +41,7 @@ it('all known identities bind game, shop and AI to the exact definition; only Am
  for(const profile of R2_RULESETS.filter(p=>!isR2RouteStarter(p)))for(const characterId of CHARACTER_IDS){
   if(profile.contentVersion==='quality-r2-amo-assist-prototype-v1'&&characterId!=='amo')continue;
   const s=state(false,{contentVersion:profile.contentVersion,contentHash:profile.contentHash},characterId),defs=r2JokerDefinitionsFor(s);
-  Object.assign(game,{run:s,selectedIds:new Set(main),assistIds:[],playing:false,presentation:undefined});shop.run=s;
+  Object.assign(game,{run:s,stage:s.stage,selectedIds:new Set(main),assistIds:[],playing:false,presentation:undefined});shop.run=s;
   expect(game.assistProfile).toBe(r2UsesAssist(s));expect(game.assistProfile).toBe(characterId==='amo'&&profile.amoScoreTiming==='assist-v1');
   for(const id of ['a06','f10','d12','e04','b03','b06','b08','b10']){
    const j=r2CreateJoker(id,'same-instance',0,undefined,s);s.jokers=[j];const facts=game.selectionPreview();

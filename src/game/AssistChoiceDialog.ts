@@ -1,4 +1,4 @@
-import {heroText} from './HeroIdentity';
+import {heroSkillTitle} from './HeroSkillPresentation';
 import type {PlayingCard} from '../cards/types';
 import {rankLabel,SUIT_SYMBOL} from '../cards/types';
 import type {R2SelectionFacts} from '../domain/r2SelectionFacts';
@@ -8,7 +8,7 @@ import type {DetailDialog} from './DetailDialog';
 
 /** A local poker workspace; the generic dialog retains its original sizing and lifecycle. */
 export function showAssistChoices(dialog:DetailDialog,hand:readonly PlayingCard[],main:R2SelectionFacts,recommendation:AssistRecommendation,selected:readonly string[],current:()=>boolean,choose:(ids:readonly string[])=>void):void {
- const d=dialog.open(heroText('阿默 · 换一组'),'助攻会一同用掉，不计主手或留手效果。最终出牌才消费本场机会。',[],{closeLabel:'返回选牌'});d.classList.add('amo-assist-dialog');
+ const d=dialog.open(heroSkillTitle('amo')+' · 选择副组','助攻会一同用掉，不计主手或留手效果。最终出牌才消费本场机会。',[],{closeLabel:'返回选牌'});d.classList.add('amo-assist-dialog');
  const workspace=document.createElement('section');workspace.className='amo-assist-workspace';workspace.setAttribute('aria-label','主手与助攻候选');
  const group=document.createElement('section'),heading=document.createElement('h3'),faces=document.createElement('div');group.className='amo-assist-main';heading.textContent='主手保持 · '+main.playedIds.length+'张';renderCandidateCards(faces,hand,main);group.append(heading,faces);workspace.append(group);
  const list=document.createElement('section');list.className='amo-assist-options';list.setAttribute('aria-label','可选助攻');

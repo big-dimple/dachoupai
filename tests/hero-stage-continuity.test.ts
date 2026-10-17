@@ -16,12 +16,12 @@ it('the saved one-layer gain is history, while stage end and next entry really r
  expect(f.entered.stage!.azaoCharge!.charge).toBe(0);expect(heroStageContinuity(f.entered)).toBeUndefined();
 });
 it('burn history keeps the paid 12→2 while the shop decision reads current saved money',()=>{
- const f=heroStageFixture('xiemu'),c=heroStageContinuity(f.shop)!;expect(c.last).toContain('已燃10金，12→2');expect(c.last).toContain('实际×2');expect(c.decision).toContain('当前'+f.shop.gold+'金');expect(c.decision).toContain('未到账');expect(f.cleared.stage!.xiemuBurnUsed).toBe(true);expect(f.entered.stage!.xiemuBurnUsed).toBe(false);
+ const f=heroStageFixture('xiemu'),c=heroStageContinuity(f.shop)!;expect(c.last).toContain('已付10金，12→2');expect(c.last).toContain('实际×2');expect(c.decision).toContain('当前'+f.shop.gold+'金');expect(c.decision).toContain('未到账');expect(f.cleared.stage!.xiemuBurnUsed).toBe(true);expect(f.entered.stage!.xiemuBurnUsed).toBe(false);
  const changed=structuredClone(f.shop);changed.gold=4;const next=heroStageContinuity(changed)!;expect(next.last).toBe(c.last);expect(next.decision).toContain('还差6金');
 });
 it('old-stage quiet is not the next ordinary stage restriction, and actual upcoming quiet exempts trick',()=>{
  const f=heroStageFixture('azao'),s=structuredClone(f.shop);s.stage!.boss={definitionId:'B08',disabledSuit:null};expect(heroStageContinuity(s)!.next).not.toContain('停用');s.stageIndex=2;s.boss={definitionId:'B08',disabledSuit:null};expect(heroStageContinuity(s)!.next).toContain('静场');
- const trick=initial('laohuan');trick.stageIndex=2;trick.boss={definitionId:'B08',disabledSuit:null};expect(heroStageContinuity(trick)!.next).toContain('戏法次数');
+ const trick=initial('laohuan');trick.stageIndex=2;trick.boss={definitionId:'B08',disabledSuit:null};expect(heroStageContinuity(trick)!.next).toContain('众里寻他次数');
 });
 it('skip has no role activation, no old identity promise, and terminal has no next stage',()=>{
  const s=heroSend(initial('azao'),{type:'SkipStage'}),c=heroStageContinuity(s)!;expect(c.last).toContain('没有出牌或角色发动');
