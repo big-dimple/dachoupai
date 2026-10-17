@@ -1,0 +1,91 @@
+/* A named challenge, a clear restriction, one preparation action. No invented Boss portrait. */
+.detail-dialog.boss-preparation-dialog[open] {
+  width: min(850px, calc(100vw - var(--safe-left, 0px) - var(--safe-right, 0px) - 24px));
+  max-height: calc(100dvh - var(--safe-top, 0px) - var(--safe-bottom, 0px) - 24px);
+  padding: 0;
+  border: 1px solid #687066;
+  border-radius: 3px 9px 4px 3px;
+  overflow: clip;
+  background: #eee7d6;
+  box-shadow: 0 20px 60px #172c3359, inset 0 0 0 4px #fcf4e2;
+  color: #293b3c;
+  animation: boss-preparation-arrive .18s ease-out;
+}
+.boss-preparation-dialog::backdrop { background: #243a3dc7; }
+.boss-preparation-dialog > .dialog-header {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 10px;
+  padding: 26px 32px 22px;
+  background: #2d4542;
+  border: 0;
+  box-shadow: inset 0 -3px 0 #b7ac8d;
+}
+.boss-preparation-dialog .dialog-eyebrow,
+.boss-preparation-dialog .dialog-header::after { display: none; }
+.boss-preparation-dialog > .dialog-header h2 { margin: 0; font-size: clamp(32px, 5vw, 52px); line-height: 1.2; color: #f5ecd8; letter-spacing: .12em; }
+.boss-preparation-dialog .boss-preparation-chapter { color: #d2c7ad; font-size: 14px; letter-spacing: .16em; }
+.boss-preparation-dialog > .dialog-content { min-height: 0; padding: 26px 32px 28px; overflow: auto; }
+.boss-preparation-dialog .dialog-scroll,
+.boss-preparation-dialog .dialog-copy { overflow: visible; padding: 0; }
+.boss-preparation-dialog .dialog-body:empty { display: none; }
+.boss-preparation-dialog .boss-preparation-page { position: relative; display: grid; grid-template-columns: 100px minmax(0, 1fr); gap: 22px 26px; align-items: center; }
+.boss-preparation-dialog .boss-preparation-seal {
+  display: grid;
+  place-items: center;
+  width: 88px;
+  height: 88px;
+  border: 2px solid #8a563d;
+  border-radius: 47% 43% 48% 42%;
+  color: #87513c;
+  font: bold 29px/1.3 Georgia, 'Noto Serif SC', SimSun, serif;
+  letter-spacing: .1em;
+  transform: rotate(-7deg);
+}
+.boss-preparation-dialog .boss-preparation-challenge { min-width: 0; }
+.boss-preparation-dialog .boss-preparation-scope { margin: 0 0 12px; color: #293b3c; font-size: clamp(20px, 2.5vw, 26px); font-weight: 700; line-height: 1.45; }
+.boss-preparation-dialog .boss-preparation-target { display: flex; align-items: baseline; flex-wrap: wrap; gap: 18px; margin: 0; color: #59645b; font-size: 14px; }
+.boss-preparation-dialog .boss-preparation-target strong { color: #293b3c; font: bold 36px/1.15 Georgia, serif; overflow-wrap: anywhere; }
+.boss-preparation-dialog .boss-preparation-rule,
+.boss-preparation-dialog .boss-preparation-advice { grid-column: 1 / -1; min-width: 0; padding-top: 18px; border-top: 1px solid #b4b09c; }
+.boss-preparation-dialog .boss-preparation-page h3 { margin: 0 0 6px; font-size: 13px; letter-spacing: .12em; color: #6d5d45; }
+.boss-preparation-dialog .boss-preparation-rule p,
+.boss-preparation-dialog .boss-preparation-advice p { margin: 0; font-size: 16px; line-height: 1.65; color: #293b3c; }
+.boss-preparation-dialog .boss-preparation-suit { margin-top: 8px!important; color: #87513c!important; font-weight: 700; }
+.boss-preparation-dialog > .dialog-actions { display: flex; flex-wrap: nowrap; align-items: center; gap: 14px; padding: 14px 32px; background: #e4ddc9; border-top: 1px solid #b5ae97; box-shadow: none; }
+.boss-preparation-dialog > .dialog-actions button { min-height: 48px; padding: 10px 18px; font-size: 15px; border-radius: 3px; box-shadow: none; }
+.boss-preparation-dialog > .dialog-actions .dialog-primary { flex: 1 1 auto; background: #354f4b; color: #fff6e3; border-color: #354f4b; letter-spacing: .08em; }
+.boss-preparation-dialog > .dialog-actions .dialog-close { flex: 0 0 auto; min-width: 88px; background: transparent; border-color: transparent; color: #59645b; }
+.boss-preparation-dialog button:focus-visible { outline: 3px solid #a36c47; outline-offset: 2px; }
+@keyframes boss-preparation-arrive { from {opacity: .65;} to {opacity: 1;} }
+@media (max-width: 560px) {
+  .boss-preparation-dialog > .dialog-header { padding: 20px 20px 18px; }
+  .boss-preparation-dialog > .dialog-content { padding: 20px; }
+  .boss-preparation-dialog .boss-preparation-page { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+  .boss-preparation-dialog .boss-preparation-seal { position: absolute; right: 2px; top: 0; width: 68px; height: 68px; font-size: 24px; opacity: .14; pointer-events: none; }
+  .boss-preparation-dialog .boss-preparation-challenge { position: relative; }
+  .boss-preparation-dialog .boss-preparation-scope { font-size: 22px; }
+  .boss-preparation-dialog .boss-preparation-target strong { font-size: 34px; }
+  .boss-preparation-dialog .boss-preparation-rule,
+  .boss-preparation-dialog .boss-preparation-advice { padding-top: 14px; }
+  .boss-preparation-dialog .boss-preparation-rule p,
+  .boss-preparation-dialog .boss-preparation-advice p { font-size: 15px; }
+  .boss-preparation-dialog > .dialog-actions { padding: 12px 16px; gap: 8px; }
+  .boss-preparation-dialog > .dialog-actions button { padding: 10px 12px; }
+}
+@media (max-height: 450px) and (orientation: landscape) {
+  .boss-preparation-dialog > .dialog-header { flex-direction: row; align-items: baseline; justify-content: space-between; padding: 12px 20px; }
+  .boss-preparation-dialog > .dialog-header h2 { font-size: 30px; }
+  .boss-preparation-dialog .boss-preparation-chapter { font-size: 12px; }
+  .boss-preparation-dialog > .dialog-content { padding: 16px 20px; }
+  .boss-preparation-dialog .boss-preparation-page { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px 22px; align-items: start; }
+  .boss-preparation-dialog .boss-preparation-seal { display: none; }
+  .boss-preparation-dialog .boss-preparation-challenge { grid-column: 1; grid-row: 1; }
+  .boss-preparation-dialog .boss-preparation-rule { grid-column: 2; grid-row: 1; padding-top: 0; border: 0; }
+  .boss-preparation-dialog .boss-preparation-advice { grid-column: 1 / -1; padding-top: 12px; }
+  .boss-preparation-dialog .boss-preparation-scope { font-size: 20px; }
+  .boss-preparation-dialog .boss-preparation-rule p,
+  .boss-preparation-dialog .boss-preparation-advice p { font-size: 14px; }
+  .boss-preparation-dialog > .dialog-actions { padding: 8px 20px; }
+}
+@media (prefers-reduced-motion: reduce) { .detail-dialog.boss-preparation-dialog[open] {animation: none;} }
