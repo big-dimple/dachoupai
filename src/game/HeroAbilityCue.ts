@@ -17,9 +17,9 @@ export interface HeroAbilityCue extends ReturnType<typeof heroSkillButton> {avai
 /** Public current-operation facts only. Never predicts a draw, outcome or score. */
 export function heroAbilityCue(run:R2RunState,facts?:R2SelectionFacts,ids:readonly string[]=[],assistAvailable=false,draft:HeroSkillDraft={}):HeroAbilityCue|undefined {
  const live=run.phase==='await-input';
- const cue=(detail:string,available=false,opportunity=available,flags:Omit<HeroSkillFlags,'available'>={})=>({...heroSkillButton(run.characterId,{...flags,available:live&&available},detail),available:live&&available,opportunity:live&&opportunity});
+ const cue=(detail:string,available=false,opportunity=available,flags:Omit<HeroSkillFlags,'available'>={})=>({...heroSkillButton(run.characterId,{...flags,ended:['stage-cleared','run-won','run-lost'].includes(run.phase),available:live&&available},detail),available:live&&available,opportunity:live&&opportunity});
  if(usesErxiangHandoff(run)){const c=erxiangChoice(run,facts,draft.erxiangTargetId);return cue(c.used?'本场次数已用':!c.enabled?'本场角色能力停用':c.selected?'已选计分牌，确认出牌后使用':c.candidates.length?'出牌前选一张计分牌':'先选对子及以上',c.candidates.length>0,c.enabled&&!c.used,{used:c.used,disabled:!c.enabled,selected:!!c.selected});}
- if(usesAzaoCharge(run)){const c=azaoChoice(run,facts?.type);return cue(!c.enabled?'本场不蓄层、不释放':c.available?'出牌前可选择释放'+c.charge+'层':!c.charge?'先实际出牌蓄层':'先选两对及以上',c.available,c.enabled&&c.charge>0,{disabled:!c.enabled,selected:!!draft.azaoRelease&&c.available});}
+ if(usesAzaoCharge(run)){const c=azaoChoice(run,facts?.type);return cue(!c.enabled?'本场不蓄层、不释放':!live?c.hold:c.available?'出牌前可选择释放'+c.charge+'层':!c.charge?'先实际出牌蓄层':'先选两对及以上',c.available,c.enabled&&c.charge>0,{disabled:!c.enabled,selected:!!draft.azaoRelease&&c.available});}
  if(usesXiemuBurn(run)){const c=xiemuChoice(run,facts?.type),available=c.choices.some(c=>c.available);return cue(c.used?'本场次数已用':!c.enabled?'本场角色能力停用':run.gold<10?'不足10金':available?'出牌前选择支付档':'先选两对及以上',available,c.enabled&&!c.used&&run.gold>=10,{used:c.used,disabled:!c.enabled,selected:!!draft.xiemuBurn&&c.choices.some(x=>x.available&&x.cost===draft.xiemuBurn)});}
  if(usesTouyeWager(run)){
   const c=touyeChoice(run,ids),available=!draft.touyePhase&&c.choices.some(c=>c.available),target=c.lockedTarget;
