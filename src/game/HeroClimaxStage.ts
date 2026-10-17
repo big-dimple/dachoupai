@@ -68,8 +68,9 @@ export function mountHeroClimax(scene:Phaser.Scene,root:Phaser.GameObjects.Conta
  const readouts=scene.add.container(0,0).setName('hero/climax-readouts');board.add(readouts);numbers(readouts);
  const cumulative=readouts.list.find(o=>o.name==='hero/climax-value') as Phaser.GameObjects.Text|undefined;
  const localReadout=readouts.list.find(o=>o.name==='hero/climax-local-effect') as Phaser.GameObjects.Text|undefined;
- const labelBounds=readouts.list.filter(o=>o.name.endsWith('-label')).map(o=>(o as Phaser.GameObjects.Text).getBounds());
- const contribution=value.contribution&&cumulative?mountClimaxContribution(scene,skillLayer,landingLayer,composition.source??composition.eyes,composition.local,composition.total,cumulative,value.contribution,localReadout,labelBounds):undefined;
+ const labelBounds=readouts.list.filter(o=>o.name.endsWith('-label')).map(o=>{const t=o as Phaser.GameObjects.Text;return{x:t.x-t.displayOriginX*t.scaleX,y:t.y-t.displayOriginY*t.scaleY,width:t.displayWidth,height:t.displayHeight};});
+ const contributionSource=images.find(image=>image.name==='hero/climax-source')??focus;
+ const contribution=value.contribution&&cumulative?mountClimaxContribution(scene,skillLayer,landingLayer,contributionSource.getData('visibleBounds') as Box,composition.local,composition.total,cumulative,value.contribution,localReadout,labelBounds,images.map(image=>image.getData('visibleBounds') as Box)):undefined;
  if(reduced)contribution?.settle();
  const contentBottom=Math.max(...images.map(image=>{const b=image.getData('visibleBounds') as Box;return b.y+b.height;}),...readouts.list.map(o=>{const t=o as Phaser.GameObjects.Text;return t.y+t.displayHeight;}));
  const note=board.list.find(o=>o.name==='hero/climax-note') as Phaser.GameObjects.Text;note.setY(Math.ceil(contentBottom)+8);crispText(note);
