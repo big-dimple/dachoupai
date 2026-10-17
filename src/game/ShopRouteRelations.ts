@@ -1,3 +1,4 @@
+import {playerText} from './Brand';
 import {cardDefinitionName} from './tangsongCardNames';
 import type {R2RunState} from '../domain/r2Run';
 import {applyCommand,type Action} from '../domain/run';
@@ -51,7 +52,7 @@ function savedInvestment(state:R2RunState,j:R2JokerInstance){
  return !!j.edition&&j.edition!=='none'||Object.entries(j.growth).some(([k,v])=>Rational.fromJSON(v).compare(Rational.fromJSON(fresh.growth[k]??{n:'0',d:'1'}))>0)||Object.values(j.counters??{}).some(v=>typeof v==='number'?v>0:v===true)||!!state.lastTrace?.events.some(e=>e.sourceType==='joker'&&e.sourceInstanceId===j.instanceId);
 }
 function shortEffect(d:R2JokerDefinition){
- const values=d.hooks.flatMap(h=>h.operations).flatMap(o=>o.kind==='add-multiplier'?['倍率+'+fractionText(o.value)]:o.kind==='add-heat'?['热度+'+fractionText(o.value)]:o.kind==='multiply-multiplier'?['倍率×'+fractionText(o.value)]:[]);return [...new Set(values)].join('、')||d.description.split('；')[0];
+ const values=d.hooks.flatMap(h=>h.operations).flatMap(o=>o.kind==='add-multiplier'?['倍率+'+fractionText(o.value)]:o.kind==='add-heat'?['热度+'+fractionText(o.value)]:o.kind==='multiply-multiplier'?['倍率×'+fractionText(o.value)]:[]);return [...new Set(values)].join('、')||playerText(d.description).split('；')[0];
 }
 /** Public cash after the specified sale, including real on-sale hooks. No dispatch or save. */
 export function shopPurchaseCashFacts(state:R2RunState,offer:R2Offer,sold?:R2JokerInstance){
@@ -131,7 +132,7 @@ export function shopRouteRelation(state:R2RunState,j:R2JokerInstance,focus:Build
  const label=kind==='direct'?'适合当前打法':kind==='support'?'通用辅助':kind==='other'?'可用于其他打法':'尚未选方向';
  const tag=kind==='direct'?'主线':kind==='support'?'辅助':kind==='other'?'转向':'待选';
  const opportunity=[...routes].map(f=>labels[f]).join('／');
- return {kind,label,tag,body:d.description+'\n'+(opportunity?'可用于'+opportunity+'。':'不专属某一种牌型。')};
+ return {kind,label,tag,body:playerText(d.description)+'\n'+(opportunity?'可用于'+opportunity+'。':'不专属某一种牌型。')};
 }
 export function shopOfferRelation(state:R2RunState,o:R2Offer,focus:BuildFocus|undefined){
  return shopRouteRelation(state,r2CreateJoker(o.definitionId,'preview/'+o.offerId,r2PurchasePrice(state,o),o.edition,state),focus);

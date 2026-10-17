@@ -1,0 +1,17 @@
+{
+  "base": "c4525b2c2faf77ad2df0b5486e0ea64276856d04",
+  "browser": "153.0.8010.12",
+  "scope": "Fresh local context; actual title/version menu and ordinary-mode controls. No run started, no unlocks or imported player save. Not a complete UI, mobile or physical-device review.",
+  "errors": [],
+  "version": "关闭\n本局与设置\n\n没有进行中的局，请选择角色。\n\n返回游戏\n图鉴查询\n全屏游玩\n想多看一点？可在这里全屏游玩。\n关闭提示\n画面、声音与触觉\n回看与演出\n进度与存档\n本局与版本\n局详情版本信息\n\n版本 C03 · c4525b2c2faf\n构建时间 2026-10-17T10:57:13.022Z\n构建时：有尚未提交的文件修改（53 个文件）。\n修改文件（项目内路径）：\n• README.md\n• docs/GDD.md\n• docs/production/ALL_GROWTH_OPPORTUNITY_SCOPE.md\n• docs/production/AMO_ASSIST_PROTOTYPE.md\n• docs/production/C04_READONLY_CATALOG_SCOPE.md\n• docs/production/CARD_AND_HERO_GUIDANCE_SCOPE.md\n• docs/production/CONTENT.md\n• docs/production/HERO_TEXT_SPEC_20261015.json\n• docs/production/HERO_TEXT_SPEC_20261015.md\n• docs/production/JOKER_LOW_READING_SCOPE.md\n• docs/production/JOKER_TRIGGER_HIGHLIGHT.md\n• docs/production/PC_SHOP_REGION_CONTRACT.md\n• docs/production/PRODUCT.md\n• docs/production/RULES.md\n• docs/production/SHORT_ANIMATION_REPAIR_SCOPE.md\n• docs/production/W4_KEY_HIGHLIGHT_START_CARD.md\n• src/game/BossPressure.ts\n• src/game/Brand.ts\n• src/game/BuildJourney.ts\n• src/game/CharacterRunCopy.ts\n• src/game/DetailDialog.ts\n• src/game/FailureSummary.ts\n• src/game/FinaleKeepsake.ts\n• src/game/HandRuleReference.ts\n• src/game/HeroIdentity.ts\n• src/game/HeroText.ts\n• src/game/JokerAssistTemplates.ts\n• src/game/JokerMemory.ts\n• src/game/JokerPlayerCopy.ts\n• src/game/JokerPlayerTemplates.json\n• src/game/JokerRouteGrowthTemplates.ts\n• src/game/ModeSelectDialog.ts\n• src/game/OpeningPlaySample.ts\n• src/game/OpponentFacts.ts\n• src/game/OpponentPresentation.ts\n• src/game/ProgramDialog.ts\n• src/game/RunMenu.ts\n• src/game/SavedBossImpact.ts\n• src/game/ShopDecisionCopy.ts\n• src/game/ShopInvestment.ts\n• src/game/ShopRecommendation.ts\n• src/game/ShopRouteRelations.ts\n• src/game/StageIdentity.ts\n• src/game/TouyeWagerCopy.ts\n• src/game/characters.ts\n• src/game/r2Help.ts\n• src/game/r2ToolInfo.ts\n• src/game/stageNotice.ts\n• src/game/tangsongCardNames.ts\n• tests/c04-mode-notice.test.ts\n• tests/detail-dialog.test.ts\n• tests/saved-boss-impact.test.ts\n• tests/stage-identity.test.ts\n当前可玩内容：72张唐宋牌、8章。",
+  "mode": "对局模式\n玩法\n普通种子局\n挑战 · 待标准八章首通\n教程\n难度\n普通\n进阶 · 待上一难度首通\n严苛 · 待上一难度首通\n极限 · 待上一难度首通\n普通局种子\n开启章节节目单\n\n普通八章首通后解锁进阶与挑战，随后逐档解锁；六位角色与72张唐宋牌始终可用。\n\n普通 · 标准目标，6金开局，每场可弃牌3次。\n\n手牌 8 · 每场出牌 4 · 弃牌 3\n开局 6 金 · 唐宋牌 5 槽 · 基础利息上限 5\n付费刷新 2–10 金\n\n章节节目单开启，可选择一项或不选。确认角色并保存成功后才建立新局。继续会使用此模式上次保存的种子与进度。\n\n使用此模式\n继续此模式\n取消",
+  "noRun": true,
+  "localStorageBefore": {
+    "dachoupai-audio-v2": "{\"version\":2,\"music\":0.3,\"sfx\":0.8}"
+  },
+  "localStorageAfter": {
+    "dachoupai-audio-v2": "{\"version\":2,\"music\":0.3,\"sfx\":0.8}",
+    "dachoupai-fullscreen-hint-v1": "true"
+  },
+  "status": "PASS"
+}

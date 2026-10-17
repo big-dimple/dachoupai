@@ -1,4 +1,5 @@
 import type {CharacterId} from '../domain/characters';
+import {playerText} from './Brand';
 
 /** Player identities only. Technical IDs, saved rules and historical events stay unchanged. */
 export const HERO_CAST={
@@ -13,4 +14,4 @@ export const heroName=(id:CharacterId):string=>HERO_CAST[id].name;
 
 /** Translate only explicit hero-copy call sites, never saved data or generic card/stage names. */
 const legacyNames:Record<string,CharacterId>={'阿默':'amo','骰爷':'touye','老幻':'laohuan','二响':'erxiang','阿燥':'azao','谢幕人':'xiemu','谢幕':'xiemu'};
-export function heroText(copy:string):string {return copy.replace(/谢幕人|阿默|骰爷|老幻|二响|阿燥|谢幕(?=·|燃金|普通)/g,name=>heroName(legacyNames[name]));}
+export function heroText(copy:string):string {return playerText(copy).replace(/谢幕人|阿默|骰爷|老幻|二响|阿燥|谢幕(?=·|燃金|普通)/g,name=>heroName(legacyNames[name]));}

@@ -3,6 +3,7 @@ import {applyCommand,createRun,type Action,type R2RunState} from '../src/domain/
 import {r2CreateJoker} from '../src/domain/r2Run';
 import {R2_JOKERS} from '../src/content/r2Schema';
 import {stageNotice} from '../src/game/stageNotice';
+import {cardDisplayName} from '../src/game/tangsongCardNames';
 
 function send(state:R2RunState,action:Action):R2RunState {
   const result=applyCommand(state,{runId:state.runId,commandId:'notice/'+(state.commandSeq+1),expectedSeq:state.commandSeq,action});
@@ -18,7 +19,7 @@ describe('C04 public challenge restrictions at the actual table',()=>{
   it('names the locked Q11 source and marks its actual instance even on an ordinary warmup',()=>{
     const state=q11(),notice=stageNotice(state)!;
     const name=R2_JOKERS.find(row=>row.id===state.stage!.challengeDisabledJokerId)!.name;
-    expect(notice.warning).toBe(true);expect(notice.title).toContain(name);
+    expect(notice.warning).toBe(true);expect(notice.title).toContain(cardDisplayName(state.stage!.challengeDisabledJokerId!,name));
     expect(notice.disabledJokerIds).toEqual(['notice/banned']);
     expect(notice.details).toContain('版次');expect(notice.details).toContain('经济');
   });
@@ -29,7 +30,7 @@ describe('C04 public challenge restrictions at the actual table',()=>{
     state.stage!.index=20;state.stage!.boss={definitionId:'B13',disabledSuit:null};
     const notice=stageNotice(state)!;
     expect(notice.jokerScoreDirection).toBe('right-to-left');expect(notice.disabledJokerIds).toEqual(['notice/banned']);
-    expect(notice.details).toContain(R2_JOKERS.find(row=>row.id===entry)!.name);
+    expect(notice.details).toContain(cardDisplayName(entry,R2_JOKERS.find(row=>row.id===entry)!.name));
   });
   it('states Q01 passive disablement and disables wager controls while retaining the chosen identity',()=>{
     let state=createRun({rulesVersion:'r2',runId:'q01-notice',characterId:'touye',seed:'challenge/q01/0',

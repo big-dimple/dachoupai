@@ -1,3 +1,4 @@
+import {playerText} from './Brand';
 import {validCharacterImage} from './CharacterArt';
 import type {BuildKeepsake} from './BuildKeepsake';
 import type {R2RunState} from '../domain/r2Run';
@@ -63,6 +64,7 @@ export class DetailDialog {
     if(this.returnFocus?.isConnected)this.returnFocus.focus({preventScroll:true});this.returnFocus=undefined;
   }
   open(title:string,body:string,actions:DialogAction[]=[],options:DialogOptions={},reuse?:HTMLDialogElement):HTMLDialogElement {
+    title=playerText(title);body=playerText(body);
     const retained=reuse&&this.active(reuse)?reuse:undefined,returnFocus=this.returnFocus;
     if(retained){this.stopArt?.();this.attachFallback=undefined;this.refreshArt=undefined;retained.replaceChildren();for(const key of Object.keys(retained.dataset))delete retained.dataset[key];}
     else this.close();
@@ -75,7 +77,7 @@ export class DetailDialog {
     header.className='dialog-header';layout.className='dialog-content';copy.className='dialog-copy';const intro=document.createElement('div');intro.className='dialog-intro';
     const eyebrow=document.createElement('span');eyebrow.className='dialog-eyebrow';eyebrow.textContent=options.portrait?'卡牌图鉴':'牌桌手记';eyebrow.textContent=options.shopContext==='purchase'?'现货 · 确认后付款':options.shopContext==='sale'?'已持 · 确认后出售':options.shopContext==='held'?'当前持有':options.shopContext==='compare'?'现货与已持':eyebrow.textContent;header.append(eyebrow,heading);
     const actionButton=(action:DialogAction)=>{
-      const b=document.createElement('button');b.type='button';b.textContent=action.label;b.disabled=!!action.disabled;if(action.primary)b.className='dialog-primary';
+      const b=document.createElement('button');b.type='button';b.textContent=playerText(action.label);b.disabled=!!action.disabled;if(action.primary)b.className='dialog-primary';
       b.onclick=async()=>{AudioEngine.shared.select();b.disabled=true;b.setAttribute('aria-busy','true');status.hidden=true;try{await action.run();}catch{if(this.active(dialog)){status.textContent='操作未完成，请重试。';status.hidden=false;}}finally{if(b.isConnected){b.disabled=!!action.disabled;b.removeAttribute('aria-busy');}}};return b;
     };
     for(const action of actions)row.append(actionButton(action));
@@ -176,10 +178,10 @@ export class DetailDialog {
       if(options.ability.state){state.textContent=(options.ability.plain?.steps?'现在：':'')+(options.ability.plain?.status??options.ability.state);ability.append(state);}intro.append(ability);
       if(options.ability.flavor.trim()&&!options.shopContext){const flavor=document.createElement('p');flavor.className='card-flavor';flavor.textContent=options.ability.flavor;copy.append(flavor);}
     }
-    if(options.effectBody&&!options.ability){const effect=document.createElement('p');effect.className='dialog-effect';effect.textContent=options.effectBody;intro.append(effect);}
-    if(options.summaryBody&&options.ability?.plain?.steps){const summary=document.createElement('p');summary.className='dialog-purchase-summary';summary.textContent=options.summaryBody;intro.append(summary);}
-    if(options.editionBody){const edition=document.createElement('p');edition.className='dialog-edition-summary';edition.textContent=options.editionBody;intro.append(edition);}
-    if(options.summaryBody&&!options.ability?.plain?.steps){const summary=document.createElement('p');summary.className='dialog-purchase-summary';summary.textContent=options.summaryBody;intro.append(summary);}
+    if(options.effectBody&&!options.ability){const effect=document.createElement('p');effect.className='dialog-effect';effect.textContent=playerText(options.effectBody);intro.append(effect);}
+    if(options.summaryBody&&options.ability?.plain?.steps){const summary=document.createElement('p');summary.className='dialog-purchase-summary';summary.textContent=playerText(options.summaryBody);intro.append(summary);}
+    if(options.editionBody){const edition=document.createElement('p');edition.className='dialog-edition-summary';edition.textContent=playerText(options.editionBody);intro.append(edition);}
+    if(options.summaryBody&&!options.ability?.plain?.steps){const summary=document.createElement('p');summary.className='dialog-purchase-summary';summary.textContent=playerText(options.summaryBody);intro.append(summary);}
     const heroDialog=options.heroRun?new DetailDialog():undefined;if(heroDialog)cleanups.push(()=>heroDialog.close());
     const inspectHero=heroDialog?()=>showHeroExplanation(heroDialog,options.heroRun!.characterId,{run:options.heroRun,closeLabel:'返回手记'}):undefined;
     if(options.keepsake&&!options.keepsakeCompact)intro.prepend(buildKeepsakeView(options.keepsake,cleanups,inspectHero));
@@ -190,21 +192,21 @@ export class DetailDialog {
         item.className='experience-card';title.textContent=card.title;text.textContent=card.body;copy.append(title);if(card.stat){const stat=document.createElement('strong');stat.className='experience-card-stat';stat.textContent=card.stat;copy.append(stat);}copy.append(text);
         if(card.url){const image=document.createElement('img');image.src=card.url;image.alt=card.title+'卡面';image.width=80;image.height=112;image.decoding='async';image.onerror=()=>{image.hidden=true;};item.append(image);cleanups.push(()=>{image.onerror=null;});}
         if(card.action){const b=document.createElement('button');b.type='button';b.textContent=card.action.label;b.disabled=!!card.action.disabled;b.onclick=card.action.run;copy.append(b);}
-        if(card.details){const details=document.createElement('details'),label=document.createElement('summary'),text=document.createElement('p');details.className='card-rules';label.textContent='条件、配合与完整损失';text.textContent=card.details;details.append(label,text);copy.append(details);}
+        if(card.details){const details=document.createElement('details'),label=document.createElement('summary'),text=document.createElement('p');details.className='card-rules';label.textContent='条件、配合与完整损失';text.textContent=playerText(card.details);details.append(label,text);copy.append(details);}
         item.append(copy);gallery.append(item);
       }intro.append(gallery);
     }
     if(options.guideSteps){const steps=document.createElement('ol');steps.className='operation-guide';steps.setAttribute('aria-label','操作步骤');options.guideSteps.labels.forEach((label,index)=>{const item=document.createElement('li');item.textContent=label;if(index===options.guideSteps!.current){item.className='is-current';item.setAttribute('aria-current','step');}steps.append(item);});intro.prepend(steps);}
     if(options.choices?.length){
       const choices=document.createElement('section');choices.className='dialog-choice-actions';choices.setAttribute('aria-label','当前可选操作');
-      for(const action of options.choices){const item=document.createElement('div');item.append(actionButton(action));if(action.detail){const detail=document.createElement('p');detail.textContent=action.detail;item.append(detail);}choices.append(item);}intro.append(choices);
+      for(const action of options.choices){const item=document.createElement('div');item.append(actionButton(action));if(action.detail){const detail=document.createElement('p');detail.textContent=playerText(action.detail);item.append(detail);}choices.append(item);}intro.append(choices);
     }
     if(options.secondaryActions?.length){
       const more=document.createElement('details'),label=document.createElement('summary'),buttons=document.createElement('div');more.className='dialog-secondary-actions';label.textContent='其它查看';
       for(const action of options.secondaryActions)buttons.append(actionButton(action));more.append(label,buttons);copy.append(more);
     }
     if(options.keepsake&&options.keepsakeCompact)intro.append(compactBuildKeepsakeView(options.keepsake,cleanups,inspectHero));
-    if(options.collapseRules||options.ability){const rules=document.createElement('details'),summary=document.createElement('summary'),text=document.createElement('p');rules.className='card-rules';summary.textContent=options.rulesLabel??'规则与操作';text.textContent=[options.ability?.plain?.details??options.ability?.rules,body].filter(Boolean).join('\n\n');rules.append(summary,text);copy.append(rules,status);}
+    if(options.collapseRules||options.ability){const rules=document.createElement('details'),summary=document.createElement('summary'),text=document.createElement('p');rules.className='card-rules';summary.textContent=options.rulesLabel??'规则与操作';text.textContent=playerText([options.ability?.plain?.details??options.ability?.rules,body].filter(Boolean).join('\n\n'));rules.append(summary,text);copy.append(rules,status);}
     else copy.append(content,status);
     const scroll=document.createElement('div');scroll.className='dialog-scroll';if(intro.childElementCount)scroll.append(intro);for(const selector of ['figcaption','.detail-art-status','.detail-art-retry'])for(const node of layout.querySelectorAll(selector))scroll.append(node);scroll.append(copy);layout.append(scroll);if(backgroundFrame)dialog.prepend(backgroundFrame);dialog.append(layout,row);if(!retained)document.body.append(dialog);
     const cancel=(event:Event)=>{event.preventDefault();this.close(dialog);};

@@ -36,7 +36,7 @@ function editionDefinition(edition:Edition='none'):R2EditionDefinition {
 export function editionLabel(edition?:Edition):string {return editionDefinition(edition).name;}
 export function editionEffectText(edition?:Edition):string {
   const row=editionDefinition(edition);
-  return `${row.name}${row.effect?`（${mathText(row.effect)}）`:'（无额外计分）'}。版次独立于增强和稀有度。扑克在该次增强后、大丑牌能力前触发；大丑牌在自身全部计分能力后逐槽触发，本体未命中仍有效。持牌或计分失效时不触发版次。`;
+  return `${row.name}${row.effect?`（${mathText(row.effect)}）`:'（无额外计分）'}。版次独立于增强和稀有度。扑克在该次增强后、唐宋牌能力前触发；唐宋牌在自身全部计分能力后逐槽触发，本体未命中仍有效。持牌或计分失效时不触发版次。`;
 }
 function enhancementDefinition(id:NonNullable<PlayingCard['enhancement']>):R2EnhancementDefinition {
   const row=R2_ENHANCEMENTS.find(row=>row.id===id);if(!row)throw Error(`unknown-enhancement: ${id}`);return row;
@@ -56,7 +56,7 @@ function effectText(effect:R2EnhancementEffect):string {
       return `${effect.phase==='onHeldCard'?'有效持牌一次':'每次普通或额外计分'}${mathText(effect)}`;
     case 'chance-destroy':return `结算后每张原牌只判一次，${effect.probability.n}/${effect.probability.d}概率永久破碎，失败手也判定且可低于主动删牌下限`;
     case 'add-gold':return `成功过关时每张有效持牌金币+${effect.amount}，每场最多${effect.capPerStage}金`;
-    case 'retrigger-card':return `有效计分时额外计分+${effect.count}次，不递归触发，与大丑牌共享每张最多${SCORE_LIMITS.extraRetriggers}次额外计分`;
+    case 'retrigger-card':return `有效计分时额外计分+${effect.count}次，不递归触发，与唐宋牌共享每张最多${SCORE_LIMITS.extraRetriggers}次额外计分`;
     case 'chance-add-multiplier':return `${effect.probability.n}/${effect.probability.d}概率倍率+${fractionText(effect.value)}`;
     case 'chance-add-gold':return `${effect.probability.n}/${effect.probability.d}概率金币+${effect.amount}，整手最多${effect.capPerHand}金，达到上限仍判定，金币不增加热度或倍率`;
     default:return impossible(effect);
@@ -101,10 +101,10 @@ function targetText(tool:R2ToolDefinition):string {
     case 'discovered-hand':return target.selection==='fixed'?'对象固定，须已发现该牌型。':'选择一种已发现牌型。';
     case 'cards':return `选择${range(target.minimum,target.maximum)}张可见扑克。`;
     case 'card-sacrifice':return `牺牲${target.donors}张扑克，再选${range(target.minimum,target.maximum)}张未增强扑克，牺牲者与受赠者必须不同。`;
-    case 'card-or-joker':return '选择一张普通版次的扑克或大丑牌。';
+    case 'card-or-joker':return '选择一张普通版次的扑克或唐宋牌。';
     case 'suit':return '选择一种花色，作用于整个有效牌组。';
     case 'hand-exchange':return '选择两种不同、已发现的牌型，分别作为受益方和牺牲方。';
-    case 'joker-sacrifice':return `牺牲${target.donors}张大丑牌，选另一张非${editionLabel(target.excludedEdition)}大丑牌受赠。`;
+    case 'joker-sacrifice':return `牺牲${target.donors}张唐宋牌，选另一张非${editionLabel(target.excludedEdition)}唐宋牌受赠。`;
     case 'whole-deck':return '作用于整个有效牌组，无需逐张选择。';
     default:return impossible(target);
   }
@@ -126,8 +126,8 @@ function toolEffectSummary(tool:R2ToolDefinition):string {
  case 'random-edition':return '给选中的牌随机增加闪箔、全息或多彩版次';
  case 'set-deck-suit':return '把整个牌组改成一种花色';
  case 'exchange-hand-levels':return `一种牌型升${op.gain}级，另一种降${op.loss}级`;
- case 'rare-joker-reward':{const edition=op.edition;return `随机获得一张${edition==='none'?'':editionLabel(edition)}稀有大丑牌`;}
- case 'set-joker-edition':return `永久献出一张大丑牌，让受赠牌变为${editionLabel(op.edition)}（${mathText(editionDefinition(op.edition).effect!)}）`;
+ case 'rare-joker-reward':{const edition=op.edition;return `随机获得一张${edition==='none'?'':editionLabel(edition)}稀有唐宋牌`;}
+ case 'set-joker-edition':return `永久献出一张唐宋牌，让受赠牌变为${editionLabel(op.edition)}（${mathText(editionDefinition(op.edition).effect!)}）`;
  case 'clear-deck-specials':return `清除全牌组增强和特殊版次；下一场起，永久手牌上限+${op.handBonus}`;
  default:return impossible(op);
  }
@@ -162,11 +162,11 @@ function operationText(tool:R2ToolDefinition):string {
     case 'restore-discard':return `本场弃牌次数+${op.amount}，最多恢复至入场次数，保留已用弃牌记录；须实际用过弃牌。`;
     case 'free-reroll':return '刷新一次唐宋牌和工具，长期道具不变。';
     case 'random-enhancement':return '每张受赠扑克独立随机获得一种增强，保留原版次。按商店可见有效牌组顺序，或待出牌时当前手牌顺序分配，不按目标点击顺序分配。';
-    case 'random-edition':return '随机获得闪箔、全息或多彩版次，增强与版次各占一层。扑克保留点数、花色和增强；大丑牌保留稀有度、购入价、成长与计数。';
+    case 'random-edition':return '随机获得闪箔、全息或多彩版次，增强与版次各占一层。扑克保留点数、花色和增强；唐宋牌保留稀有度、购入价、成长与计数。';
     case 'set-deck-suit':return '整个有效牌组永久改为所选花色，保留点数、增强、版次以及各牌堆顺序；须至少一张确实改变花色。';
     case 'exchange-hand-levels':return `受益牌型+${op.gain}级、牺牲牌型−${op.loss}级，均保留发现状态。受益方原等级最多${op.targetMaximumBefore}，牺牲方至少${op.donorMinimumBefore}级。已确定的计分与回看保持原结果。`;
-    case 'rare-joker-reward':return `从当前可用且未持有的稀有大丑牌中等概率获得一张：${editionLabel(op.edition)}版次、初始成长与计数、购入价${op.paidPrice}。属于奖励，不触发购买成长或首购优惠。`;
-    case 'set-joker-edition':return `受赠大丑牌变为${editionLabel(op.edition)}（${mathText(editionDefinition(op.edition).effect!)}），保留稀有度、购入价、成长与计数。牺牲不算出售，无返金或出售成长。`;
+    case 'rare-joker-reward':return `从当前可用且未持有的稀有唐宋牌中等概率获得一张：${editionLabel(op.edition)}版次、初始成长与计数、购入价${op.paidPrice}。属于奖励，不触发购买成长或首购优惠。`;
+    case 'set-joker-edition':return `受赠唐宋牌变为${editionLabel(op.edition)}（${mathText(editionDefinition(op.edition).effect!)}），保留稀有度、购入价、成长与计数。牺牲不算出售，无返金或出售成长。`;
     case 'clear-deck-specials':return `有效牌组须至少${op.minimumModifiedCards}张带增强或特殊版次，双层均有的牌每张只计一次。清除全部扑克的增强与特殊版次，下一场起永久手牌上限+${op.handBonus}，最多${limits.handMaximum}，本局一次。`;
     default:return impossible(op);
   }
@@ -176,7 +176,7 @@ function costText(cost:R2ToolCost):string {
     case 'gold':return `${cost.amount}金`;
     case 'all-gold':return `全部金币（至少${cost.minimum}金）`;
     case 'sacrifice-card':return `永久牺牲${cost.count}张扑克`;
-    case 'sacrifice-joker':return `永久牺牲${cost.count}张大丑牌`;
+    case 'sacrifice-joker':return `永久牺牲${cost.count}张唐宋牌`;
     case 'permanent-hands-penalty':return `下一场起永久出牌次数−${cost.amount}，累计最多${limits.spectralHandsPenaltyMaximum}次，下一场须确实少${cost.amount}次且至少${limits.handsMinimum}次`;
     case 'permanent-hand-penalty':return `下一场起永久手牌上限−${cost.amount}，累计最多${limits.spectralHandPenaltyMaximum}张，下一场须确实少${cost.amount}张且至少${limits.handMinimum}张`;
     default:return impossible(cost);
@@ -206,12 +206,12 @@ function toolRisk(tool:R2ToolDefinition):string {
   }
   if(tool.operation.kind==='random-edition'){
     const total=tool.operation.choices.reduce((sum,choice)=>sum+choice.weight,0);
-    risks.push('概率：'+tool.operation.choices.map(choice=>`${editionLabel(choice.id)}${choice.weight}/${total}（${mathText(editionDefinition(choice.id).effect!)}）`).join('、')+'。结果使用后才揭晓，版次不改变稀有度。扑克版次在增强后、大丑牌逐牌效果在自身能力后触发；仅有效计分来源触发，持牌不触发版次。');
+    risks.push('概率：'+tool.operation.choices.map(choice=>`${editionLabel(choice.id)}${choice.weight}/${total}（${mathText(editionDefinition(choice.id).effect!)}）`).join('、')+'。结果使用后才揭晓，版次不改变稀有度。扑克版次在增强后、唐宋牌逐牌效果在自身能力后触发；仅有效计分来源触发，持牌不触发版次。');
   }
   if(tool.caps.includes('deckDeletionFloor'))risks.push(`主动删除或牺牲后牌组至少${limits.deckDeletionFloor}张，持有极简手册时至少${limits.minimalDeckFloor}张，当前场须仍有合法行动。此下限不保护玻璃破碎。`);
   if(tool.caps.includes('actualResourceChange'))risks.push('下场的次数或手牌上限须能按说明改变；已达上下限时不能使用，当前场不变。');
-  if(tool.caps.includes('jokerMaximum'))risks.push(`须有空大丑牌槽，最多${limits.jokerMaximum}张；奖池为空时不能使用。`);
-  if(tool.caps.includes('postConsumptionCapacity'))risks.push('牺牲后按真实剩余大丑牌重算库存容量，消费此工具后其余工具仍须装得下。');
+  if(tool.caps.includes('jokerMaximum'))risks.push(`须有空唐宋牌槽，最多${limits.jokerMaximum}张；奖池为空时不能使用。`);
+  if(tool.caps.includes('postConsumptionCapacity'))risks.push('牺牲后按真实剩余唐宋牌重算库存容量，消费此工具后其余工具仍须装得下。');
   if(tool.operation.kind==='set-enhancement')risks.push('每张只有一个增强层，替换会永久失去原增强；确认页须核对被替换的效果。失效牌不触发增强。');
   const firstBoss=tool.rewardSources.find(source=>source.source==='first-boss-clear');
   if(firstBoss)risks.push(`仅本局首次Boss成功过关赠送一件，工具库存满则转${firstBoss.overflowGold}金，本局只发一次。`);
@@ -236,12 +236,12 @@ function itemDescription(item:R2LongTermDefinition):string {
     case 'discard-limit':effect=`下一场入场弃牌次数+${op.amount}，当前场次数不增加。`;break;
     case 'hands-limit':effect=`下一场入场出牌次数+${op.amount}，当前场次数不增加。`;break;
     case 'interest-cap':effect=`每次过关结算利息上限+${op.amount}金，在奖励前读取；不会直接赠送金币，须有足够存款产生利息。`;break;
-    case 'joker-offer-count':effect=`后续开店与刷新时大丑牌货位${op.base}→${op.base+op.amount}，当前已生成货架不补货。`;break;
+    case 'joker-offer-count':effect=`后续开店与刷新时唐宋牌货位${op.base}→${op.base+op.amount}，当前已生成货架不补货。`;break;
     case 'paid-reroll-discount':effect=`后续付费刷新价格−${op.amount}金，至少${op.minimum}金；免费刷新照常免费。`;break;
     case 'consumable-slots':effect=`工具库存容量+${op.amount}，最多${limits.consumableSlotsMaximum}格；立即按真实容量生效，失去其他扩容来源时须仍装得下。`;break;
     case 'deletion-floor':effect=`主动删牌与幻灵牺牲的牌组下限降为${op.floor}张；仍须保留当前场合法行动。玻璃破碎可以继续低于此下限。`;break;
     case 'boss-most-used-hand-upgrade':effect=`Boss成功过关时，将本章使用最多的已发现牌型升${op.levels}级；并列按牌型表从低到高选择，已到${limits.handLevelMaximum}级则跳过、不重选，已确定的计分保持原结果。`;break;
-    case 'first-purchase-discount':effect=`每间商店第一次成功购买价格−${op.amount}金，至少${op.minimum}金，可与大丑牌优惠叠加。采购证自身这次购买不享受自身优惠；取消与失败不占用首购资格。`;break;
+    case 'first-purchase-discount':effect=`每间商店第一次成功购买价格−${op.amount}金，至少${op.minimum}金，可与唐宋牌优惠叠加。采购证自身这次购买不享受自身优惠；取消与失败不占用首购资格。`;break;
     case 'item-offer-count':effect=`后续开店长期道具货位${op.base}→${op.base+op.amount}；当前货架不补货，刷新也不重抽该货架。`;break;
     case 'first-normal-clear-per-chapter':effect=`每章首次普通场成功过关时，若已持有此道具则金币+${op.gold}；跳过普通场不占资格。首次成功过关即消耗该章资格，未持有时也如此，之后购买不追补。`;break;
     default:return impossible(op);

@@ -1,3 +1,4 @@
+import {playerText} from './Brand';
 import {R2_MODE_CATALOG} from '../content/r2Modes';
 import type {Action,R2RunState} from '../domain/run';
 import {HAND_LABELS} from '../content/handLabels';
@@ -19,7 +20,7 @@ export function programEntryLabel(state:R2RunState):string {
 }
 export function programPreparationFacts(state:R2RunState):string {
   const challenge=R2_MODE_CATALOG.challenges.find(row=>row.id===state.challengeId);
-  return [challenge?'挑战 · '+challenge.name+'：'+challenge.description:'',state.chapterDisabledJokerId?'本章封角 · 「'+cardDisplayName(state.chapterDisabledJokerId)+'」计分与版次停用；其他效果按条件执行。':''].filter(Boolean).join('\n');
+  return [challenge?'挑战 · '+challenge.name+'：'+playerText(challenge.description):'',state.chapterDisabledJokerId?'本章封角 · 「'+cardDisplayName(state.chapterDisabledJokerId)+'」计分与版次停用；其他效果按条件执行。':''].filter(Boolean).join('\n');
 }
 function programDescription(id:string):string {
   switch(id){

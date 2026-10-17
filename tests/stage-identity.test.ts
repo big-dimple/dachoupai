@@ -34,7 +34,7 @@ describe('locked Boss identity across preview, entry and recovery',()=>{
   expect(stageIdentity(1,{definitionId:'B03',disabledSuit:'clubs'})).toMatchObject({title:'正场',isBoss:false,scope:'按当前牌型与来源正常计分'});
  });
  it('retains ordinary-point-only scope separately from card scoring failure',()=>{
-  expect(bossScope({definitionId:'B02',disabledSuit:null})).toBe('第4/5张仅普通点数0；仍成型、触发大丑牌');
+  expect(bossScope({definitionId:'B02',disabledSuit:null})).toBe('第4/5张仅普通点数0；仍成型、触发唐宋牌');
   expect(bossScope({definitionId:'B03',disabledSuit:'clubs'})).toContain('不加点数或计分牌效果');
  });
  it('uses the completed stage snapshot even after the next chapter plan changes',()=>{

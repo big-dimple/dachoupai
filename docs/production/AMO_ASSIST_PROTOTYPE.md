@@ -43,7 +43,7 @@
 
 定义统一从 `src/domain/r2ContentProfiles.ts` 的 `r2JokerDefinitionsFor(run)`（72张）或 `r2JokerDefinitionFor(run,id)`（单张）取；二者只接受精确 `contentVersion + contentHash`，无默认回落。玩家文案统一从 `src/game/JokerMemory.ts` 的 `jokerAbilityCopyForRun(run,id,instance,ctx,events?)` 取；内部复用新七卡模板、其余65卡和旧profile原模板。使用 `publicJokerMemoryContext` 构造 ctx，助攻草稿传 `r2AssistFacts` 作为 `ctx.facts`，实际记录使用 `recordedJokerMemoryContext(ctx,trace.bossContext)` 和 trace.events；不把提交后的 previousHandType 当本手之前的历史。
 
-B单一UI窗口须切换 GameScene 的大丑牌详情、完整构筑、条件说明、AI切输入 definitions、selection/assist facts，以及 ShopScene 的购买／持有详情。`getR2Joker(id)` 和全局 `R2_JOKERS` 仍是已发布定义，不能用于新原型的效果和文案。名字／稀有度／美术／价格不变。本批只交纯函数，不修改这些 Scene。测试策略读取公开 run 的精确 profile；未增加策略模拟或助攻自动决策。
+B单一UI窗口须切换 GameScene 的唐宋牌详情、完整构筑、条件说明、AI切输入 definitions、selection/assist facts，以及 ShopScene 的购买／持有详情。`getR2Joker(id)` 和全局 `R2_JOKERS` 仍是已发布定义，不能用于新原型的效果和文案。名字／稀有度／美术／价格不变。本批只交纯函数，不修改这些 Scene。测试策略读取公开 run 的精确 profile；未增加策略模拟或助攻自动决策。
 
 `r2AssistAvailability(publicRun)` 只读当前 profile、角色、phase、Boss/模式和 assistUsed，返回 `{available,remaining,reason?}`。busy / pending 保存仍以 `SavedRun.status` 为准，不能把纯领域资格当保存许可。
 

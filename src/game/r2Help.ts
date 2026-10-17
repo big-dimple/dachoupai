@@ -122,7 +122,7 @@ export function r2JokerExtraHelp(definition:R2JokerDefinition):string {
   if(definition.modifiers?.some(modifier=>modifier.kind==='consumable-capacity'))notes.push('与长期道具合计最多4个消耗品槽；出售或牺牲后超容量会拒绝，须先处理超额库存。');
   const operations=definition.hooks.flatMap(hook=>hook.operations);
   if(operations.some(operation=>operation.kind==='read-coefficient'))notes.push(operations.some(operation=>operation.kind==='multiply-coefficient-once')?'本次出牌读取开始时已保存的系数；出牌结算后的成长从下一次出牌生效。':'本手读取出牌开始时已保存的乘法系数；成功过关的新增系数从后续出牌生效。');
-  if(operations.some(operation=>operation.kind==='reset-coefficient'))notes.push('本场包含入场前准备商店的销售；出售其他大丑牌立即重置系数，出售后再买回不恢复旧系数。');
+  if(operations.some(operation=>operation.kind==='reset-coefficient'))notes.push('本场包含入场前准备商店的销售；出售其他唐宋牌立即重置系数，出售后再买回不恢复旧系数。');
   if(operations.some(operation=>operation.kind==='chance-add-heat'))notes.push('每个有效实例每手只判断一次；扑克重触发不增加判断，演出和回看不再抽随机结果。');
   if(operations.some(operation=>operation.kind==='refund-hand-limited'))notes.push('每场最多返还一次，先于耗尽失败判断；致胜四条、五条及扩展牌型不返还，实际出牌序号不回退。');
   const pool=operations.find(operation=>operation.kind==='reward-consumable-pool');

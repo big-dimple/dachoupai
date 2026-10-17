@@ -96,6 +96,13 @@ beforeEach(()=>{
 });
 afterEach(()=>{vi.unstubAllGlobals();});
 
+it('normalizes frozen legacy rule copy only at the dialog display boundary',()=>{
+ const owner=new DetailDialog(),run=vi.fn(),actions=[{label:'查看大丑牌',run}],options={effectBody:'大丑牌能力按条件结算',summaryBody:'最多5张大丑牌',editionBody:'大丑牌版次',collapseRules:true,choices:[{label:'大丑牌条件',detail:'这张大丑牌的旧规则',run}]},before=JSON.stringify({actions,options});
+ const dialog=owner.open('大丑牌旧规则','整手大丑牌之后，倍率×3',actions,options);
+ expect(node(dialog).textContent).not.toContain('大丑');expect(node(dialog).textContent).toContain('整手唐宋牌之后，倍率×3');expect(node(dialog).getAttribute('aria-label')).toBe('唐宋牌旧规则');
+ expect(JSON.stringify({actions,options})).toBe(before);expect(run).not.toHaveBeenCalled();owner.close();
+});
+
 describe('detail art recovery and stable rarity',()=>{
   it('opts registered art into a full-panel background and a separate original-art action',()=>{
     const owner=new DetailDialog(),info=toolInfo('T11'),zoom={close:vi.fn()};art.zoom.mockReturnValue(zoom);

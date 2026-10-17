@@ -86,12 +86,12 @@ export class ModeSelectDialog {
         if(prior&&config.seedPolicy.values.includes(prior))fixedSeed.value=prior;
       }
       const cleared=progress.standardWins.flatMap((complete,i)=>complete?[DIFFICULTY_NAMES[i]]:[]);
-      progressLine.textContent=current.ok?(cleared.length?`标准八章首通：${cleared.join('、')}。角色与全部72张大丑牌始终可用。`:
-        '普通八章首通后解锁进阶与挑战，随后逐档解锁；六位角色与72张大丑牌始终可用。'):
+      progressLine.textContent=current.ok?(cleared.length?`标准八章首通：${cleared.join('、')}。角色与全部72张唐宋牌始终可用。`:
+        '普通八章首通后解锁进阶与挑战，随后逐档解锁；六位角色与72张唐宋牌始终可用。'):
         '解锁记录读取失败，普通模式与教程仍可新开；现有模式存档可继续。';
-      const rules=selected.mode==='challenge'?R2_MODE_CATALOG.challenges.find(row=>row.id===selected.challengeId)!.description:
+      const rules=selected.mode==='challenge'?heroText(R2_MODE_CATALOG.challenges.find(row=>row.id===selected.challengeId)!.description):
         selected.mode==='tutorial'?heroText('固定二响与教学种子，可随时跳过；节目单关闭。'):`${DIFFICULTY_NAMES[selected.difficulty]} · ${['标准目标，6金开局，每场可弃牌3次。','目标比普通高20%，开局资源不变。','目标比普通高20%，每场弃牌减少为2次。','目标比普通高20%，每场弃牌2次，4金开局，刷新起价3金。'][selected.difficulty]}`;
-      body.textContent=`${rules}\n\n手牌 ${config.baseHandSize} · 每场出牌 ${config.baseHands} · 弃牌 ${config.baseDiscards}\n开局 ${config.initialGold} 金 · 大丑牌 ${config.jokerSlots} 槽 · 基础利息上限 ${config.baseInterestCap}\n${config.reroll.allowed?`付费刷新 ${config.reroll.start}–${config.reroll.cap} 金`:'付费与免费刷新均关闭'}\n\n${config.programsEnabled?'章节节目单开启，可选择一项或不选。':'章节节目单关闭。'}确认角色并保存成功后才建立新局。继续会使用此模式上次保存的种子与进度。`;
+      body.textContent=`${rules}\n\n手牌 ${config.baseHandSize} · 每场出牌 ${config.baseHands} · 弃牌 ${config.baseDiscards}\n开局 ${config.initialGold} 金 · 唐宋牌 ${config.jokerSlots} 槽 · 基础利息上限 ${config.baseInterestCap}\n${config.reroll.allowed?`付费刷新 ${config.reroll.start}–${config.reroll.cap} 金`:'付费与免费刷新均关闭'}\n\n${config.programsEnabled?'章节节目单开启，可选择一项或不选。':'章节节目单关闭。'}确认角色并保存成功后才建立新局。继续会使用此模式上次保存的种子与进度。`;
       chooseAction.disabled=busy||!r2ModeUnlocked(progress,selected);resumeAction.disabled=busy||gameSession().working||!!gameSession().pendingRun;
       buttons[0].disabled=chooseAction.disabled;buttons[1].disabled=resumeAction.disabled;
       for(const control of [mode,difficulty,challenge,seed,fixedSeed,skip])control.disabled=busy;

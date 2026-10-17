@@ -1,0 +1,218 @@
+{
+  "base": "c4525b2c2faf77ad2df0b5486e0ea64276856d04",
+  "scope": "Reviewed explicit source/document matches; only current display language is changed. No recursive whole-repository substitution.",
+  "before": {
+    "runtimeFiles": 26,
+    "runtimeLines": 89,
+    "documentFiles": 32,
+    "documentLines": 91
+  },
+  "changedDisplayFiles": [
+    "src/game/BossPressure.ts",
+    "src/game/Brand.ts",
+    "src/game/BuildJourney.ts",
+    "src/game/CharacterRunCopy.ts",
+    "src/game/DetailDialog.ts",
+    "src/game/FailureSummary.ts",
+    "src/game/FinaleKeepsake.ts",
+    "src/game/HandRuleReference.ts",
+    "src/game/HeroIdentity.ts",
+    "src/game/HeroText.ts",
+    "src/game/JokerAssistTemplates.ts",
+    "src/game/JokerMemory.ts",
+    "src/game/JokerPlayerCopy.ts",
+    "src/game/JokerPlayerTemplates.json",
+    "src/game/JokerRouteGrowthTemplates.ts",
+    "src/game/ModeSelectDialog.ts",
+    "src/game/OpeningPlaySample.ts",
+    "src/game/OpponentFacts.ts",
+    "src/game/OpponentPresentation.ts",
+    "src/game/ProgramDialog.ts",
+    "src/game/RunMenu.ts",
+    "src/game/SavedBossImpact.ts",
+    "src/game/ShopDecisionCopy.ts",
+    "src/game/ShopInvestment.ts",
+    "src/game/ShopRecommendation.ts",
+    "src/game/ShopRouteRelations.ts",
+    "src/game/StageIdentity.ts",
+    "src/game/TouyeWagerCopy.ts",
+    "src/game/characters.ts",
+    "src/game/r2Help.ts",
+    "src/game/r2ToolInfo.ts",
+    "src/game/stageNotice.ts",
+    "src/game/tangsongCardNames.ts"
+  ],
+  "changedCurrentDocuments": [
+    "README.md",
+    "docs/GDD.md",
+    "docs/production/ALL_GROWTH_OPPORTUNITY_SCOPE.md",
+    "docs/production/AMO_ASSIST_PROTOTYPE.md",
+    "docs/production/C04_READONLY_CATALOG_SCOPE.md",
+    "docs/production/CARD_AND_HERO_GUIDANCE_SCOPE.md",
+    "docs/production/CONTENT.md",
+    "docs/production/HERO_TEXT_SPEC_20261015.json",
+    "docs/production/HERO_TEXT_SPEC_20261015.md",
+    "docs/production/JOKER_LOW_READING_SCOPE.md",
+    "docs/production/JOKER_TRIGGER_HIGHLIGHT.md",
+    "docs/production/PC_SHOP_REGION_CONTRACT.md",
+    "docs/production/PRODUCT.md",
+    "docs/production/RULES.md",
+    "docs/production/SHORT_ANIMATION_REPAIR_SCOPE.md",
+    "docs/production/W4_KEY_HIGHLIGHT_START_CARD.md"
+  ],
+  "retainedRuntime": [
+    {
+      "files": [
+        "src/domain/r2PublishedContent.json",
+        "src/content/r2-jokers.json",
+        "src/content/r2Modes.ts",
+        "src/domain/r2Chapter.ts"
+      ],
+      "reason": "Immutable published hash inputs; only their projected display strings are normalized."
+    },
+    {
+      "files": [
+        "src/run/shop.ts"
+      ],
+      "reason": "Non-player legacy implementation comment."
+    },
+    {
+      "files": [
+        "src/game/Brand.ts"
+      ],
+      "reason": "Explicit display-alias matcher, not a rendered string."
+    }
+  ],
+  "retainedDocuments": [
+    {
+      "file": "docs/production/ART.md",
+      "reason": "All matches are under the explicitly historical art direction (line 19 onward)."
+    },
+    {
+      "file": "docs/production/BASIC_CHOICE_VISUAL_REPAIR_SCOPE.md",
+      "reason": "Prior candidate handoff; not a current player display."
+    },
+    {
+      "file": "docs/production/CHARACTER_PLAY_PLAN.md",
+      "reason": "The match rejects old troupe wording; historical section starts at line 39."
+    },
+    {
+      "file": "docs/production/DECISIONS.md",
+      "reason": "Dated adopted decision records remain verbatim."
+    },
+    {
+      "file": "docs/production/DELIVERY_PLAN.md",
+      "reason": "Every match is in historical records after line 106; current unified execution plan is unchanged."
+    },
+    {
+      "file": "docs/production/HERO_ART_HANDOFF_20261015.md",
+      "reason": "Superseded dated art instructions remain verbatim; no art requirements are reopened."
+    },
+    {
+      "file": "docs/production/HERO_ATTRACTION_REVIEW.md",
+      "reason": "Prior read-only hero audit remains verbatim."
+    },
+    {
+      "file": "docs/production/OPENING_CLIMAX_EXPERIENCE_SCOPE.md",
+      "reason": "Explicit quotation of the former title, not the current title."
+    },
+    {
+      "file": "docs/production/plan.json",
+      "reason": "Closed historical task titles and an instruction against restoring old faces; no scheduling/status mutation."
+    },
+    {
+      "file": "docs/production/REQUIREMENTS_DECISIONS_COMMITMENTS.md",
+      "reason": "H10 names the old-word audit category; it is not player-facing copy."
+    },
+    {
+      "file": "docs/production/reviews/SINGAPORE_REVIEW_20261017.md",
+      "reason": "Dated audit finding quoting the old README; do not erase the historical finding."
+    },
+    {
+      "file": "docs/production/SOURCE_STAGE_ART_SCOPE.md",
+      "reason": "Prior observed source-art diagnosis remains verbatim."
+    },
+    {
+      "file": "docs/production/UX.md",
+      "reason": "Dated prior candidates, observations and original layout contracts remain verbatim."
+    },
+    {
+      "file": "docs/production/W1_VISUAL_BRIEF.md",
+      "reason": "Historical baseline screenshot interpretation remains verbatim."
+    },
+    {
+      "file": "docs/production/W3_MINIMAL_START_CARD.md",
+      "reason": "Prior bounded handoff/receipt scope remains verbatim."
+    },
+    {
+      "file": "docs/production/WORK_PACKAGES.md",
+      "reason": "Matches are in the historical contracts section after line 11."
+    }
+  ],
+  "protectedPaths": [
+    "src/domain",
+    "src/content",
+    "src/application",
+    "src/platform",
+    "public",
+    "docs/archive",
+    "docs/production/history",
+    "src/game/ShopScene.ts",
+    "src/game/GameScene.ts",
+    "package.json",
+    "package-lock.json"
+  ],
+  "protectedDiff": [],
+  "existingEvidenceDiff": [],
+  "publishedSnapshotSHA256": "47d2b0b0abcc923dc3495bd9059948bf3b8bf279a3da9f11b91696504421dc5f",
+  "publishedIdentities": {
+    "v10": {
+      "version": "quality-r2-content-v10",
+      "hash": "json-fnv-v1:24efe7a905216d85"
+    },
+    "v11": {
+      "version": "quality-r2-content-v11",
+      "hash": "json-fnv-v1:bd4a1230833ab884"
+    }
+  },
+  "checks": {
+    "unit": {
+      "status": "PASS across targeted runs",
+      "files": 15,
+      "tests": 304,
+      "passingGroups": [
+        {
+          "files": 11,
+          "tests": 281,
+          "note": "Passed initial selected run; product source unchanged thereafter."
+        },
+        {
+          "files": 3,
+          "tests": 18,
+          "note": "Updated affected display-name assertions and rechecked."
+        },
+        {
+          "files": 1,
+          "tests": 5,
+          "note": "New display/hash/checkpoint contract; corrected legal fixture parameters and rechecked."
+        }
+      ]
+    },
+    "build": {
+      "status": "PASS",
+      "command": "npm run build",
+      "note": "TypeScript + Vite; existing >500kB chunk warning."
+    },
+    "native": {
+      "status": "PASS",
+      "evidence": "native.json",
+      "scope": "Actual PC version menu and ordinary mode, fresh context; no run or unlock."
+    },
+    "diffCheck": "PASS"
+  },
+  "limitations": [
+    "No complete game journey or physical/mobile-device acceptance.",
+    "Old archived/evidence/decision text and frozen hash inputs intentionally retain their original words.",
+    "Player intent and saved mechanics are unchanged; no automatic unlock or migration."
+  ]
+}

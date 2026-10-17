@@ -65,6 +65,6 @@ export function opponentChoices(hand:readonly PlayingCard[],rules:HandRules,prev
   const types=[...formed.keys()].sort((a,b)=>R2_HAND_TYPES.indexOf(b)-R2_HAND_TYPES.indexOf(a));
   const candidates=previous?[...(formed.has(previous)?[previous]:[]),...types.filter(t=>t!==previous).slice(0,1)]:types.slice(0,2);
   return candidates.map(type=>{const cards=formed.get(type)!,kind=previous?(type===previous?'repeat':'change'):'opening',kept=hand.length-cards.length;
-    return {kind,type,ids:cards.map(c=>c.id),label:(kind==='repeat'?'同型硬闯':kind==='change'?'换型避开':'首手')+' · '+HAND_LABELS[type],detail:cards.map(c=>rankLabel(c.rank)+SUIT_SYMBOL[c.suit]).join(' ')+' · 出'+cards.length+'张，留'+kept+'张\n'+(kind==='repeat'?'仅牌型基础½；牌点数、增强和大丑牌热度照常':kind==='change'?'本手避开基础½；仍需凑够目标，未必得分更高':'首手基础不减半')};
+    return {kind,type,ids:cards.map(c=>c.id),label:(kind==='repeat'?'同型硬闯':kind==='change'?'换型避开':'首手')+' · '+HAND_LABELS[type],detail:cards.map(c=>rankLabel(c.rank)+SUIT_SYMBOL[c.suit]).join(' ')+' · 出'+cards.length+'张，留'+kept+'张\n'+(kind==='repeat'?'仅牌型基础½；牌点数、增强和唐宋牌热度照常':kind==='change'?'本手避开基础½；仍需凑够目标，未必得分更高':'首手基础不减半')};
   });
 }
