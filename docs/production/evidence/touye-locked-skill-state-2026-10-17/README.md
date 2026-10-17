@@ -2,7 +2,7 @@
 
 基线：main `43725f697b58ebb64bfa47197512d2d39fe46a48`。独立分支：`dev/touye-locked-skill-state-20261017`。
 
-本批只改 `HeroSkillPresentation`、`HeroAbilityCue`、`TouyeWagerCopy` 和定向测试。`GameScene`、`ShopScene` 由任务 `01a148ba` 独占，本分支没有编辑它们。
+原候选 b8c89e8c 只改 `HeroSkillPresentation`、`HeroAbilityCue`、`TouyeWagerCopy` 和定向测试。当时 `GameScene`、`ShopScene` 由任务 `01a148ba` 独占，原候选没有编辑它们。以下原候选说明与验证保留；本次获释放后的场景接线见末节。
 
 ## 保存事实与显示
 
@@ -52,3 +52,17 @@ npx vitest run tests/touye-locked-state.test.ts tests/hero-skill-presentation.te
 覆盖真实 `DiscardHand` 锁定、不同选牌不改变目标、存档往返、临时动画不推算成败、真实 `PlayHand` 成功及失败后的记录、条件不足/Q01禁用、旧押注身份及辛弃疾留牌待办。全状态快照断言包括 RNG，展示调用不写运行状态。测试使用已有明确植入的可见牌/牌堆分区夹具，仅证明有界展示责任，不代表自然供给或长局验收。
 
 `npm run build`（TypeScript + Vite）通过；Vite 提示现有主包超过 500kB。`git diff --check` 通过。没有 main 合并、CI 查询或部署。
+
+## 场景最小接线
+
+普通合并提交 `b3ccf59011eb0b9f288a752aab3a2d4e233cd6a5` 原样纳入 b8c89e8c；合入携带的 44 个其他文件逐字节等于候选基线 `origin/main 43725f69`，6 个候选文件逐字节等于 b8c89e8c。场景接线提交为 `1607445bfdbcc3b492424beb3f0a5cc7e0d17714`，已普通 push 到 dev，GameScene 已释放。其余新增运行时改动仅在 `GameScene`，不改领域、计分、经济、存档格式或候选投影模块。
+
+`touyeSkillPhase` 只活在场景中：通过真实操作前置检查后，押注弃牌设为 drawing、已锁定押注出牌设为 settling，传入已有 heroAbilityCue；换牌效果/计分演出等待期间不催促再使用。对应 finally 在仍有效的 lifecycle/intent 中清空并刷新控件，包括保存失败、重复提交和离开 await-input 的结算；create/shutdown 也清空。普通弃牌或未押注出牌不冒用此状态。锁定和两种动画阶段均不启用技能按钮、不亮就绪强调。
+
+新增 `tests/touye-scene-phase.test.ts` 7 项，运行真实领域命令并延迟保存/演出边界，检查真实目标、下一手选牌、失败/重复、过期回调隔离、过关清理和普通动作。10 文件 108 项定向测试通过（原候选 93 项 + 场景/助攻入口/弃牌交接 15 项）。TypeScript 检查和正常 Vite 生产构建通过；325 模块，保留现有大 chunk 提示。增量源码 diff --check 通过。普通合入携带的三条历史日志末尾空行提示原样保留，没有修改其历史内容。
+
+浏览器小范围检查由 [scene-check.mjs](scene-check.mjs) 提供：已验证的受控当前身份存档，通过真实菜单导入、鼠标/触屏选弃牌、确认押注、选下一手、冷继续与出牌；只读收集真实帧状态，无领域或场景动作后门。结果与源码哈希见 [scene-check.json](scene-check.json)。此前脚本菜单文字错误和按钮/卡面双匹配的失败单独保留，均在操作提交前失败；修正的是观察脚本，没有改产品逻辑。软件证据不代替自然长局、真人或物理设备验收。P08 仍 in_progress。
+
+最终 1912×954 鼠标与 390×844 触屏两档 PASS，0 页错误。真实帧序列均为 drawing/换牌中 → locked/已押顺子 → settling/结算中 → used/已用；三个不可操作阶段按钮均 disabled、无 opportunity 强调。下一手选牌不改变完整 RunState，冷继续逐字段等于已保存押注状态，临时阶段为空；真实出牌逐字段等于领域命令产生的结果，包含 RNG 和计分记录。四个运行时源码哈希已与 1607445b 源码逐项核对相等；构建时同版源码尚未提交，不能只据其 build-info 的旧 HEAD 判断运行版本。
+
+已实际查看 [桌面选牌后锁定提示](1912-selected-locked.png) 和 [触屏选牌后锁定提示](390-selected-locked.png)：技能状态均为灰色“已押顺子”，底部“已押顺子 · 出牌后结算”，出牌可继续。原始工具截图和商店证据未被替换。本轮没有 main push、CI、部署或域名操作。

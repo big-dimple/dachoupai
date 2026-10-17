@@ -1,0 +1,21 @@
+{
+  "scope": "One validated controlled current-identity hand per viewport; native import/discard draft/bet/play/cold continue. Real domain results, read-only frame observations. No natural acquisition, long game, physical device or aesthetic acceptance.",
+  "sourceHashes": {
+    "src/game/GameScene.ts": "b6365a95b56237360fcf0b2bd9f194523b7c5852ba38c65f3ec2ccab57748c32",
+    "src/game/HeroAbilityCue.ts": "e10af05418c9926c24f3db4db4d915c4146cf26d551331b5a5dee6e22e663b9f",
+    "src/game/HeroSkillPresentation.ts": "e900fc80f566781f903bbf67147f8f04c5e48b4959bd72a2c0d10d88eb532fbd",
+    "src/game/TouyeWagerCopy.ts": "9b27a35bd9ae1a0132ed8a3a28d8e871fff7013aaf8bc5cd0f7f3a33c1f91a1b"
+  },
+  "cases": [
+    {
+      "viewport": {
+        "width": 1912,
+        "height": 954
+      },
+      "errors": []
+    }
+  ],
+  "browser": "153.0.8010.12",
+  "status": "FAIL",
+  "error": "locator.click: Error: strict mode violation: locator('.touye-discard-grid [data-card-id=\"hearts-4\"]') resolved to 2 elements:\n    1) <button type=\"button\" aria-label=\"弃牌候选 4♥\" aria-pressed=\"false\" data-card-id=\"hearts-4\">…</button> aka getByRole('button', { name: '弃牌候选 4♥' })\n    2) <span data-red=\"true\" data-disabled=\"false\" data-card-id=\"hearts-4\" class=\"candidate-card-face\">…</span> aka getByRole('button', { name: '弃牌候选 4♥' })\n\nCall log:\n\u001b[2m  - waiting for locator('.touye-discard-grid [data-card-id=\"hearts-4\"]')\u001b[22m\n\n    at click (D:\\ai\\dachoupai\\dachoupai\\.codex-remote-attachments\\shop-flow-redesign-20261017\\docs\\production\\evidence\\touye-locked-skill-state-2026-10-17\\scene-check.mjs:29:34)\n    at D:\\ai\\dachoupai\\dachoupai\\.codex-remote-attachments\\shop-flow-redesign-20261017\\docs\\production\\evidence\\touye-locked-skill-state-2026-10-17\\scene-check.mjs:36:35"
+}

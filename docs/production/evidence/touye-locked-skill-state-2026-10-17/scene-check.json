@@ -1,0 +1,189 @@
+{
+  "scope": "One validated controlled current-identity hand per viewport; native import/discard draft/bet/play/cold continue. Real domain results, read-only frame observations. No natural acquisition, long game, physical device or aesthetic acceptance.",
+  "sourceHashes": {
+    "src/game/GameScene.ts": "b6365a95b56237360fcf0b2bd9f194523b7c5852ba38c65f3ec2ccab57748c32",
+    "src/game/HeroAbilityCue.ts": "e10af05418c9926c24f3db4db4d915c4146cf26d551331b5a5dee6e22e663b9f",
+    "src/game/HeroSkillPresentation.ts": "e900fc80f566781f903bbf67147f8f04c5e48b4959bd72a2c0d10d88eb532fbd",
+    "src/game/TouyeWagerCopy.ts": "9b27a35bd9ae1a0132ed8a3a28d8e871fff7013aaf8bc5cd0f7f3a33c1f91a1b"
+  },
+  "cases": [
+    {
+      "viewport": {
+        "width": 1912,
+        "height": 954
+      },
+      "errors": [],
+      "locked": {
+        "phase": null,
+        "state": "locked",
+        "status": "已押顺子",
+        "color": "#59646a",
+        "enabled": false,
+        "opportunity": false,
+        "available": false,
+        "summary": "已押顺子 · 出牌后结算"
+      },
+      "selected": {
+        "phase": null,
+        "state": "locked",
+        "status": "已押顺子",
+        "color": "#59646a",
+        "enabled": false,
+        "opportunity": false,
+        "available": false,
+        "summary": "已押顺子 · 出牌后结算"
+      },
+      "drawingFrames": [
+        {
+          "phase": null,
+          "state": "unavailable",
+          "status": "条件未满足",
+          "enabled": true,
+          "opportunity": true,
+          "available": false
+        },
+        {
+          "phase": "drawing",
+          "state": "drawing",
+          "status": "换牌中",
+          "enabled": false,
+          "opportunity": false,
+          "available": false
+        },
+        {
+          "phase": null,
+          "state": "locked",
+          "status": "已押顺子",
+          "enabled": false,
+          "opportunity": false,
+          "available": false
+        }
+      ],
+      "screenshot": "1912-selected-locked.png",
+      "restored": {
+        "phase": null,
+        "state": "locked",
+        "status": "已押顺子",
+        "color": "#59646a",
+        "enabled": false,
+        "opportunity": false,
+        "available": false,
+        "summary": "已押顺子 · 出牌后结算"
+      },
+      "settlingFrames": [
+        {
+          "phase": null,
+          "state": "locked",
+          "status": "已押顺子",
+          "enabled": false,
+          "opportunity": false
+        },
+        {
+          "phase": "settling",
+          "state": "settling",
+          "status": "结算中",
+          "enabled": false,
+          "opportunity": false
+        },
+        {
+          "phase": null,
+          "state": "used",
+          "status": "已用",
+          "enabled": false,
+          "opportunity": false
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "errors": [],
+      "locked": {
+        "phase": null,
+        "state": "locked",
+        "status": "已押顺子",
+        "color": "#59646a",
+        "enabled": false,
+        "opportunity": false,
+        "available": false,
+        "summary": "已押顺子 · 出牌后结算"
+      },
+      "selected": {
+        "phase": null,
+        "state": "locked",
+        "status": "已押顺子",
+        "color": "#59646a",
+        "enabled": false,
+        "opportunity": false,
+        "available": false,
+        "summary": "已押顺子 · 出牌后结算"
+      },
+      "drawingFrames": [
+        {
+          "phase": null,
+          "state": "unavailable",
+          "status": "条件未满足",
+          "enabled": true,
+          "opportunity": true,
+          "available": false
+        },
+        {
+          "phase": "drawing",
+          "state": "drawing",
+          "status": "换牌中",
+          "enabled": false,
+          "opportunity": false,
+          "available": false
+        },
+        {
+          "phase": null,
+          "state": "locked",
+          "status": "已押顺子",
+          "enabled": false,
+          "opportunity": false,
+          "available": false
+        }
+      ],
+      "screenshot": "390-selected-locked.png",
+      "restored": {
+        "phase": null,
+        "state": "locked",
+        "status": "已押顺子",
+        "color": "#59646a",
+        "enabled": false,
+        "opportunity": false,
+        "available": false,
+        "summary": "已押顺子 · 出牌后结算"
+      },
+      "settlingFrames": [
+        {
+          "phase": null,
+          "state": "locked",
+          "status": "已押顺子",
+          "enabled": false,
+          "opportunity": false
+        },
+        {
+          "phase": "settling",
+          "state": "settling",
+          "status": "结算中",
+          "enabled": false,
+          "opportunity": false
+        },
+        {
+          "phase": null,
+          "state": "used",
+          "status": "已用",
+          "enabled": false,
+          "opportunity": false
+        }
+      ],
+      "status": "PASS"
+    }
+  ],
+  "browser": "153.0.8010.12",
+  "status": "PASS"
+}
