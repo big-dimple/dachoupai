@@ -12,7 +12,7 @@ import {touyeBet,touyeCommand,touyeFixture,touyeSend} from './fixtures/touye-new
 afterEach(()=>vi.clearAllMocks());
 const fixture=()=>touyeFixture('four-straight',{identity:newRunIdentity('touye','group')});
 function node(){
- const data=new Map(),n:any={active:true,text:'',color:'',input:{enabled:false},setData(k:string,v:unknown){data.set(k,v);return n;},getData(k:string){return data.get(k);},setText(text:string){n.text=text;return n;},setColor(color:string){n.color=color;return n;},setStrokeStyle:vi.fn()};return n;
+ const data=new Map(),n:any={active:true,text:'',color:'',scene:{scale:{zoom:1}},style:{resolution:1,color:''},frame:{source:{resolution:1}},input:{enabled:false},setData(k:string,v:unknown){data.set(k,v);return n;},getData(k:string){return data.get(k);},setResolution(value:number){n.style.resolution=value;return n;},setText(text:string){n.text=text;return n;},setColor(color:string){n.color=n.style.color=color;return n;},setStrokeStyle:vi.fn()};return n;
 }
 function deferred(){let resolve!:()=>void;const promise=new Promise<void>(r=>resolve=r);return{promise,resolve};}
 function setup(run:R2RunState,ids:string[]){

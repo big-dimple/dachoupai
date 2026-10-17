@@ -1,0 +1,855 @@
+{
+  "baseline": "af9b0473d78823b06ae54ffe6bc58906803e329b",
+  "mergedStatusModule": "efb066319c6fea3ce5579b9f06692d72f91d0db5",
+  "phases": [
+    {
+      "phase": "prewire",
+      "checkedOutCommit": "af9b0473d78823b06ae54ffe6bc58906803e329b",
+      "sourceUnchangedDuringRun": true,
+      "sourceHashes": {
+        "src/game/ScoreTableMotion.ts": "8ee6c45f881673ee0e38a898026cdbd5d1f4c49039cd9bafd4fcc691989689ae",
+        "src/game/GameScene.ts": "ba6a02fad320bedba48917f849773a4f03ad1470e88a907f2def842a099681d3",
+        "src/game/ShopScene.ts": "994dbfee38972c36fb5ebdf5f4fe0420de3e2fceef5777e5c938ce3d17b0b9ba",
+        "src/game/HeroClimax.ts": "9827f02b5c358745fbbc4bbc6213a366aeaa2d9798b18ce77926fdc0a8c1eb0c",
+        "src/game/HeroClimaxStage.ts": "97f4e7c823ad6d021f3468da5a024dd591a9256159f929c728cd2a6d76d5eb20",
+        "src/game/HeroPayoff.ts": "10a52ab68a19b83e2a69fe9dada8ca8bb9b9af52af6a0dddfa0bfe5958a0c7bb",
+        "src/audio/AudioEngine.ts": "31fc7b066bb6e5404c6b564bbcedc0f191e1bff182f275534dfdffcc94328368",
+        "public/assets/tangsong-eyes/manifest.json": "cfcd478d98477f05694a9bb4f58adee2e2e75cb86086fe9d4f858ff3113a2cf0"
+      },
+      "browser": "153.0.8010.12",
+      "status": "PASS",
+      "cases": [
+        {
+          "key": "amo-1366",
+          "width": 1366,
+          "height": 768,
+          "dpr": 1,
+          "status": "PASS",
+          "checks": [
+            {
+              "name": "empty selection does not commit or show eyes",
+              "status": "PASS",
+              "ui": {
+                "t": 3240,
+                "seq": 3,
+                "status": "条件未满足",
+                "enabled": true,
+                "available": false,
+                "state": "unavailable",
+                "selected": [],
+                "assist": [],
+                "H": "",
+                "M": "",
+                "score": "",
+                "stageHeat": "0",
+                "phase": "await-input"
+              }
+            },
+            {
+              "name": "high-card main cannot trigger assist",
+              "status": "PASS"
+            },
+            {
+              "name": "available/choose/cancel are read-only and do not perform eyes or score SFX",
+              "status": "PASS",
+              "selected": {
+                "t": 5325.30000000447,
+                "seq": 3,
+                "status": "已选择",
+                "enabled": true,
+                "available": false,
+                "state": "selected",
+                "selected": [
+                  "spades-2",
+                  "hearts-2",
+                  "clubs-3",
+                  "diamonds-3"
+                ],
+                "assist": [
+                  "spades-4",
+                  "hearts-4"
+                ],
+                "H": "",
+                "M": "",
+                "score": "",
+                "stageHeat": "0",
+                "phase": "await-input"
+              }
+            },
+            {
+              "name": "double input commits one assisted play and presentation preserves full saved tuple",
+              "status": "PASS"
+            },
+            {
+              "name": "used shortcut cannot perform or commit again",
+              "status": "PASS",
+              "ui": {
+                "t": 11242.5,
+                "seq": 4,
+                "status": "已用",
+                "enabled": false,
+                "available": false,
+                "state": "used",
+                "selected": [],
+                "assist": [],
+                "H": "",
+                "M": "",
+                "score": "",
+                "stageHeat": "300",
+                "phase": "await-input"
+              }
+            },
+            {
+              "name": "next ordinary play has no repeated assist or eyes",
+              "status": "PASS"
+            },
+            {
+              "name": "eye avoids persistent text and source texture density matches actual renderer",
+              "status": "PASS"
+            }
+          ],
+          "errors": [],
+          "eye": {
+            "key": "hero-eyes-amo",
+            "assetId": "amo.eyes",
+            "camera": "dedicated-eye-strip",
+            "url": "blob:http://127.0.0.1:5687/eab587ba-34db-437c-a45f-f74eba6f807f",
+            "width": 768,
+            "height": 288,
+            "alpha": 1,
+            "bounds": {
+              "x": 20,
+              "y": 270,
+              "width": 208,
+              "height": 78
+            },
+            "crop": {
+              "x": 0,
+              "y": 0,
+              "width": 768,
+              "height": 288
+            }
+          },
+          "sourceValues": [
+            {
+              "text": "×2",
+              "x": 255.5,
+              "y": 306,
+              "width": 39,
+              "height": 34,
+              "scaleX": 1,
+              "scaleY": 1,
+              "resolution": 2,
+              "sourceResolution": 2,
+              "textureWidth": 78,
+              "textureHeight": 68,
+              "bounds": {
+                "type": 5,
+                "x": 236,
+                "y": 289,
+                "width": 39,
+                "height": 34
+              },
+              "rootScale": 1,
+              "zoom": 1
+            }
+          ],
+          "firstStrikeMs": 9232.89999999851,
+          "characterSounds": [],
+          "statusRasters": [],
+          "violations": []
+        },
+        {
+          "key": "amo-390",
+          "width": 390,
+          "height": 844,
+          "dpr": 2,
+          "status": "PASS",
+          "checks": [
+            {
+              "name": "empty selection does not commit or show eyes",
+              "status": "PASS",
+              "ui": {
+                "t": 2166.2000000029802,
+                "seq": 3,
+                "status": "条件未满足",
+                "enabled": true,
+                "available": false,
+                "state": "unavailable",
+                "selected": [],
+                "assist": [],
+                "H": "",
+                "M": "",
+                "score": "",
+                "stageHeat": "0",
+                "phase": "await-input"
+              }
+            },
+            {
+              "name": "high-card main cannot trigger assist",
+              "status": "PASS"
+            },
+            {
+              "name": "available/choose/cancel are read-only and do not perform eyes or score SFX",
+              "status": "PASS",
+              "selected": {
+                "t": 3580,
+                "seq": 3,
+                "status": "已选择",
+                "enabled": true,
+                "available": false,
+                "state": "selected",
+                "selected": [
+                  "spades-2",
+                  "hearts-2",
+                  "clubs-3",
+                  "diamonds-3"
+                ],
+                "assist": [
+                  "spades-4",
+                  "hearts-4"
+                ],
+                "H": "",
+                "M": "",
+                "score": "",
+                "stageHeat": "0",
+                "phase": "await-input"
+              }
+            },
+            {
+              "name": "double input commits one assisted play and presentation preserves full saved tuple",
+              "status": "PASS"
+            },
+            {
+              "name": "used shortcut cannot perform or commit again",
+              "status": "PASS",
+              "ui": {
+                "t": 9746.60000000149,
+                "seq": 4,
+                "status": "已用",
+                "enabled": false,
+                "available": false,
+                "state": "used",
+                "selected": [],
+                "assist": [],
+                "H": "",
+                "M": "",
+                "score": "",
+                "stageHeat": "300",
+                "phase": "await-input"
+              }
+            },
+            {
+              "name": "next ordinary play has no repeated assist or eyes",
+              "status": "PASS"
+            },
+            {
+              "name": "eye avoids persistent text and source texture density matches actual renderer",
+              "status": "PASS"
+            }
+          ],
+          "errors": [],
+          "eye": {
+            "key": "hero-eyes-amo",
+            "assetId": "amo.eyes",
+            "camera": "dedicated-eye-strip",
+            "url": "blob:http://127.0.0.1:5687/f1e3c154-7e43-467b-a353-22604440e486",
+            "width": 768,
+            "height": 288,
+            "alpha": 1,
+            "bounds": {
+              "x": 109.66666666666667,
+              "y": 305.6,
+              "width": 170.66666666666666,
+              "height": 64
+            },
+            "crop": {
+              "x": 0,
+              "y": 0,
+              "width": 768,
+              "height": 288
+            }
+          },
+          "sourceValues": [
+            {
+              "text": "×2",
+              "x": 308,
+              "y": 335,
+              "width": 39,
+              "height": 34,
+              "scaleX": 1,
+              "scaleY": 1,
+              "resolution": 3,
+              "sourceResolution": 3,
+              "textureWidth": 117,
+              "textureHeight": 102,
+              "bounds": {
+                "type": 5,
+                "x": 288.5,
+                "y": 318,
+                "width": 39,
+                "height": 34
+              },
+              "rootScale": 1,
+              "zoom": 0.5
+            }
+          ],
+          "firstStrikeMs": 7715.39999999851,
+          "characterSounds": [],
+          "statusRasters": [],
+          "violations": []
+        },
+        {
+          "key": "laohuan-1366",
+          "width": 1366,
+          "height": 768,
+          "dpr": 1,
+          "status": "PASS",
+          "checks": [
+            {
+              "name": "empty selection does not commit or show eyes",
+              "status": "PASS",
+              "ui": {
+                "t": 1930.6999999955297,
+                "seq": 3,
+                "status": "条件未满足",
+                "enabled": true,
+                "available": false,
+                "state": "unavailable",
+                "selected": [],
+                "assist": [],
+                "H": "",
+                "M": "",
+                "score": "",
+                "stageHeat": "0",
+                "phase": "await-input"
+              }
+            },
+            {
+              "name": "available/open/cancel retains selection without saving or eyes",
+              "status": "PASS"
+            },
+            {
+              "name": "saved candidate hide/reopen neither redraws nor performs early eyes",
+              "status": "PASS",
+              "pending": {
+                "t": 4139.19999999553,
+                "seq": 4,
+                "status": "待完成",
+                "enabled": true,
+                "available": false,
+                "state": "pending",
+                "selected": [],
+                "assist": [],
+                "H": "",
+                "M": "",
+                "score": "",
+                "stageHeat": "0",
+                "phase": "pending-refill"
+              }
+            },
+            {
+              "name": "double input saves one retention, no score or fabricated trace",
+              "status": "PASS",
+              "kept": [
+                "diamonds-14"
+              ],
+              "discardedCandidates": [
+                "diamonds-13",
+                "diamonds-12"
+              ]
+            },
+            {
+              "name": "used retention does not trigger twice",
+              "status": "PASS",
+              "ui": {
+                "t": 6247.89999999851,
+                "seq": 5,
+                "status": "已用",
+                "enabled": false,
+                "available": false,
+                "state": "used",
+                "selected": [],
+                "assist": [],
+                "H": "",
+                "M": "",
+                "score": "",
+                "stageHeat": "0",
+                "phase": "await-input"
+              }
+            },
+            {
+              "name": "ordinary score after retention has no invented character score or repeated eyes",
+              "status": "PASS"
+            },
+            {
+              "name": "one saved non-scoring retention sound arrives with the eye strike",
+              "status": "PASS",
+              "call": {
+                "t": 5032.5,
+                "seq": 5,
+                "refillEventId": "bounded-dynamic/laohuan/command/5/laohuan-refill",
+                "heroPhase": "strike",
+                "replay": false,
+                "method": "sourceCue",
+                "args": [
+                  "character"
+                ],
+                "audioTime": 4.022857142857143,
+                "voices": [
+                  {
+                    "semantic": "role",
+                    "start": 4.022857142857143,
+                    "end": 4.222857142857143
+                  },
+                  {
+                    "semantic": "role",
+                    "start": 4.082857142857143,
+                    "end": 4.382857142857143
+                  }
+                ]
+              },
+              "firstStrikeMs": 5049.79999999702
+            },
+            {
+              "name": "eye avoids persistent text and source texture density matches actual renderer",
+              "status": "PASS"
+            }
+          ],
+          "errors": [],
+          "eye": {
+            "key": "hero-eyes-laohuan",
+            "assetId": "laohuan.eyes",
+            "camera": "dedicated-eye-strip",
+            "url": "blob:http://127.0.0.1:5687/265e058c-c0c5-40a3-b844-b3702ab248ad",
+            "width": 768,
+            "height": 288,
+            "alpha": 1,
+            "bounds": {
+              "x": 20,
+              "y": 270,
+              "width": 208,
+              "height": 78
+            },
+            "crop": {
+              "x": 0,
+              "y": 0,
+              "width": 768,
+              "height": 288
+            }
+          },
+          "sourceValues": [],
+          "firstStrikeMs": 5049.79999999702,
+          "characterSounds": [
+            {
+              "at": 5032.5,
+              "seq": 5,
+              "voices": [
+                {
+                  "semantic": "role",
+                  "start": 4.022857142857143,
+                  "end": 4.222857142857143
+                },
+                {
+                  "semantic": "role",
+                  "start": 4.082857142857143,
+                  "end": 4.382857142857143
+                }
+              ],
+              "eyeDelayMs": 17.299999997019768,
+              "eventId": "bounded-dynamic/laohuan/command/5/laohuan-refill"
+            }
+          ],
+          "statusRasters": [],
+          "violations": []
+        },
+        {
+          "key": "laohuan-390",
+          "width": 390,
+          "height": 844,
+          "dpr": 2,
+          "status": "PASS",
+          "checks": [
+            {
+              "name": "empty selection does not commit or show eyes",
+              "status": "PASS",
+              "ui": {
+                "t": 2205.7000000029802,
+                "seq": 3,
+                "status": "条件未满足",
+                "enabled": true,
+                "available": false,
+                "state": "unavailable",
+                "selected": [],
+                "assist": [],
+                "H": "",
+                "M": "",
+                "score": "",
+                "stageHeat": "0",
+                "phase": "await-input"
+              }
+            },
+            {
+              "name": "available/open/cancel retains selection without saving or eyes",
+              "status": "PASS"
+            },
+            {
+              "name": "saved candidate hide/reopen neither redraws nor performs early eyes",
+              "status": "PASS",
+              "pending": {
+                "t": 4724.39999999851,
+                "seq": 4,
+                "status": "待完成",
+                "enabled": true,
+                "available": false,
+                "state": "pending",
+                "selected": [],
+                "assist": [],
+                "H": "",
+                "M": "",
+                "score": "",
+                "stageHeat": "0",
+                "phase": "pending-refill"
+              }
+            },
+            {
+              "name": "double input saves one retention, no score or fabricated trace",
+              "status": "PASS",
+              "kept": [
+                "diamonds-14"
+              ],
+              "discardedCandidates": [
+                "diamonds-13",
+                "diamonds-12"
+              ]
+            },
+            {
+              "name": "used retention does not trigger twice",
+              "status": "PASS",
+              "ui": {
+                "t": 6673.89999999851,
+                "seq": 5,
+                "status": "已用",
+                "enabled": false,
+                "available": false,
+                "state": "used",
+                "selected": [],
+                "assist": [],
+                "H": "",
+                "M": "",
+                "score": "",
+                "stageHeat": "0",
+                "phase": "await-input"
+              }
+            },
+            {
+              "name": "ordinary score after retention has no invented character score or repeated eyes",
+              "status": "PASS"
+            },
+            {
+              "name": "one saved non-scoring retention sound arrives with the eye strike",
+              "status": "PASS",
+              "call": {
+                "t": 5447.80000000447,
+                "seq": 5,
+                "refillEventId": "bounded-dynamic/laohuan/command/5/laohuan-refill",
+                "heroPhase": "strike",
+                "replay": false,
+                "method": "sourceCue",
+                "args": [
+                  "character"
+                ],
+                "audioTime": 4.391473922902494,
+                "voices": [
+                  {
+                    "semantic": "role",
+                    "start": 4.391473922902494,
+                    "end": 4.591473922902495
+                  },
+                  {
+                    "semantic": "role",
+                    "start": 4.451473922902494,
+                    "end": 4.751473922902494
+                  }
+                ]
+              },
+              "firstStrikeMs": 5464.5
+            },
+            {
+              "name": "eye avoids persistent text and source texture density matches actual renderer",
+              "status": "PASS"
+            }
+          ],
+          "errors": [],
+          "eye": {
+            "key": "hero-eyes-laohuan",
+            "assetId": "laohuan.eyes",
+            "camera": "dedicated-eye-strip",
+            "url": "blob:http://127.0.0.1:5687/4757b31d-5664-42f5-99f5-d7b11579b485",
+            "width": 768,
+            "height": 288,
+            "alpha": 1,
+            "bounds": {
+              "x": 109.66666666666667,
+              "y": 305.6,
+              "width": 170.66666666666666,
+              "height": 64
+            },
+            "crop": {
+              "x": 0,
+              "y": 0,
+              "width": 768,
+              "height": 288
+            }
+          },
+          "sourceValues": [],
+          "firstStrikeMs": 5464.5,
+          "characterSounds": [
+            {
+              "at": 5447.80000000447,
+              "seq": 5,
+              "voices": [
+                {
+                  "semantic": "role",
+                  "start": 4.391473922902494,
+                  "end": 4.591473922902495
+                },
+                {
+                  "semantic": "role",
+                  "start": 4.451473922902494,
+                  "end": 4.751473922902494
+                }
+              ],
+              "eyeDelayMs": 16.69999999552965,
+              "eventId": "bounded-dynamic/laohuan/command/5/laohuan-refill"
+            }
+          ],
+          "statusRasters": [],
+          "violations": []
+        }
+      ]
+    },
+    {
+      "phase": "integrated",
+      "checkedOutCommit": "def4722da3bf05402d7097e10a101c92f9c9bee8",
+      "sourceUnchangedDuringRun": true,
+      "sourceHashes": {
+        "src/game/HeroSkillStatusText.ts": "3ac2f7d1d2f48752be8494464775e79962553e7d824a7f62b9046272f5289fb5",
+        "src/game/ScoreTableMotion.ts": "8ee6c45f881673ee0e38a898026cdbd5d1f4c49039cd9bafd4fcc691989689ae",
+        "src/game/GameScene.ts": "6a9cba8c53c882acf87813afe53d86ab65a1c6e112016d25ebad78143981c876",
+        "src/game/ShopScene.ts": "994dbfee38972c36fb5ebdf5f4fe0420de3e2fceef5777e5c938ce3d17b0b9ba",
+        "src/game/HeroClimax.ts": "9827f02b5c358745fbbc4bbc6213a366aeaa2d9798b18ce77926fdc0a8c1eb0c",
+        "src/game/HeroClimaxStage.ts": "97f4e7c823ad6d021f3468da5a024dd591a9256159f929c728cd2a6d76d5eb20",
+        "src/game/HeroPayoff.ts": "10a52ab68a19b83e2a69fe9dada8ca8bb9b9af52af6a0dddfa0bfe5958a0c7bb",
+        "src/audio/AudioEngine.ts": "31fc7b066bb6e5404c6b564bbcedc0f191e1bff182f275534dfdffcc94328368",
+        "public/assets/tangsong-eyes/manifest.json": "cfcd478d98477f05694a9bb4f58adee2e2e75cb86086fe9d4f858ff3113a2cf0"
+      },
+      "browser": "153.0.8010.12",
+      "status": "PASS",
+      "cases": [
+        {
+          "key": "laohuan-390",
+          "width": 390,
+          "height": 740,
+          "dpr": 3,
+          "status": "PASS",
+          "checks": [
+            {
+              "name": "empty selection does not commit or show eyes",
+              "status": "PASS",
+              "ui": {
+                "t": 3654.39999999851,
+                "seq": 3,
+                "status": "条件未满足",
+                "enabled": true,
+                "available": false,
+                "state": "unavailable",
+                "selected": [],
+                "assist": [],
+                "H": "",
+                "M": "",
+                "score": "",
+                "stageHeat": "0",
+                "phase": "await-input"
+              }
+            },
+            {
+              "name": "available/open/cancel retains selection without saving or eyes",
+              "status": "PASS"
+            },
+            {
+              "name": "saved candidate hide/reopen neither redraws nor performs early eyes",
+              "status": "PASS",
+              "pending": {
+                "t": 7483.10000000149,
+                "seq": 4,
+                "status": "待完成",
+                "enabled": true,
+                "available": false,
+                "state": "pending",
+                "selected": [],
+                "assist": [],
+                "H": "",
+                "M": "",
+                "score": "",
+                "stageHeat": "0",
+                "phase": "pending-refill"
+              }
+            },
+            {
+              "name": "double input saves one retention, no score or fabricated trace",
+              "status": "PASS",
+              "kept": [
+                "diamonds-14"
+              ],
+              "discardedCandidates": [
+                "diamonds-13",
+                "diamonds-12"
+              ]
+            },
+            {
+              "name": "used retention does not trigger twice",
+              "status": "PASS",
+              "ui": {
+                "t": 10193.70000000298,
+                "seq": 5,
+                "status": "已用",
+                "enabled": false,
+                "available": false,
+                "state": "used",
+                "selected": [],
+                "assist": [],
+                "H": "",
+                "M": "",
+                "score": "",
+                "stageHeat": "0",
+                "phase": "await-input"
+              }
+            },
+            {
+              "name": "ordinary score after retention has no invented character score or repeated eyes",
+              "status": "PASS"
+            },
+            {
+              "name": "one saved non-scoring retention sound arrives with the eye strike",
+              "status": "PASS",
+              "call": {
+                "t": 8885.10000000149,
+                "seq": 5,
+                "refillEventId": "bounded-dynamic/laohuan/command/5/laohuan-refill",
+                "heroPhase": "strike",
+                "replay": false,
+                "method": "sourceCue",
+                "args": [
+                  "character"
+                ],
+                "audioTime": 6.710566893424036,
+                "voices": [
+                  {
+                    "semantic": "role",
+                    "start": 6.710566893424036,
+                    "end": 6.910566893424036
+                  },
+                  {
+                    "semantic": "role",
+                    "start": 6.770566893424036,
+                    "end": 7.0705668934240355
+                  }
+                ]
+              },
+              "firstStrikeMs": 8908.10000000149
+            },
+            {
+              "name": "actual GameScene wiring keeps native skill status density through real operations",
+              "status": "PASS"
+            },
+            {
+              "name": "eye avoids persistent text and source texture density matches actual renderer",
+              "status": "PASS"
+            }
+          ],
+          "errors": [],
+          "eye": {
+            "key": "hero-eyes-laohuan",
+            "assetId": "laohuan.eyes",
+            "camera": "dedicated-eye-strip",
+            "url": "blob:http://127.0.0.1:5687/3c6ac3a3-dd27-49bb-9530-3862f71afed4",
+            "width": 768,
+            "height": 288,
+            "alpha": 1,
+            "bounds": {
+              "x": 131,
+              "y": 291.6,
+              "width": 128,
+              "height": 48
+            },
+            "crop": {
+              "x": 0,
+              "y": 0,
+              "width": 768,
+              "height": 288
+            }
+          },
+          "sourceValues": [],
+          "firstStrikeMs": 8908.10000000149,
+          "characterSounds": [
+            {
+              "at": 8885.10000000149,
+              "seq": 5,
+              "voices": [
+                {
+                  "semantic": "role",
+                  "start": 6.710566893424036,
+                  "end": 6.910566893424036
+                },
+                {
+                  "semantic": "role",
+                  "start": 6.770566893424036,
+                  "end": 7.0705668934240355
+                }
+              ],
+              "eyeDelayMs": 23,
+              "eventId": "bounded-dynamic/laohuan/command/5/laohuan-refill"
+            }
+          ],
+          "statusRasters": [
+            {
+              "resolution": 3,
+              "sourceResolution": 3,
+              "fontSize": "11px",
+              "texture": [
+                165,
+                39
+              ]
+            },
+            {
+              "resolution": 3,
+              "sourceResolution": 3,
+              "fontSize": "11px",
+              "texture": [
+                66,
+                39
+              ]
+            },
+            {
+              "resolution": 3,
+              "sourceResolution": 3,
+              "fontSize": "11px",
+              "texture": [
+                99,
+                39
+              ]
+            }
+          ],
+          "violations": []
+        }
+      ]
+    }
+  ],
+  "finalSourceHashes": {
+    "src/game/GameScene.ts": "6a9cba8c53c882acf87813afe53d86ab65a1c6e112016d25ebad78143981c876",
+    "src/game/ScoreTableMotion.ts": "8ee6c45f881673ee0e38a898026cdbd5d1f4c49039cd9bafd4fcc691989689ae",
+    "src/game/HeroSkillStatusText.ts": "3ac2f7d1d2f48752be8494464775e79962553e7d824a7f62b9046272f5289fb5",
+    "docs/production/evidence/amo-laohuan-public-fix-2026-10-17/observe.mjs": "87ee67676acd64b9e0401fe8765c0e74933ce8009b56a14be81afe43473c0d08"
+  }
+}

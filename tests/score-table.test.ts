@@ -38,7 +38,7 @@ it('a live source badge is destroyed once on abort and a late animation update c
  const controller=new AbortController(),writes=vi.fn(),destroy=vi.fn();let update:(()=>void)|undefined,finish!:()=>void;
  const label:any={width:40,height:22,scene:{scale:{zoom:1}},style:{resolution:1},setName:()=>label,setResolution:()=>label,setData:()=>label,getData:()=>undefined,setOrigin:()=>label,setPosition:()=>{writes();return label;},setAlpha:()=>label};
  const group:any={setName:()=>group,setData:()=>group,add:()=>group,destroy};
- const scene:any={add:{container:()=>group,text:()=>label}},event=saved.lastTrace!.events.find(e=>scoreArrival(e)?.kind==='heat')!;
+ const scene:any={scale:{zoom:1},add:{container:()=>group,text:()=>label}},event=saved.lastTrace!.events.find(e=>scoreArrival(e)?.kind==='heat')!;
  const animation=presentScoreSource(scene,{add:vi.fn()} as any,{event,source:{x:60,y:200,width:60,height:80},target:{x:100,y:100,width:100,height:60},viewport:{x:0,y:0,width:390,height:844},duration:150,reduced:false,context:{generation:1,signal:controller.signal},animate:config=>{update=config.onUpdate as ()=>void;return new Promise<void>(resolve=>finish=resolve);}});
  controller.abort();expect(destroy).toHaveBeenCalledOnce();const before=writes.mock.calls.length;update?.();expect(writes).toHaveBeenCalledTimes(before);finish();await animation;expect(destroy).toHaveBeenCalledOnce();
 });

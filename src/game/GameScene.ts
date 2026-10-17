@@ -1,4 +1,5 @@
 import {heroSkillButton,heroSkillName,heroSkillTitle,type TouyeSkillPhase} from './HeroSkillPresentation';
+import {updateHeroSkillStatusText} from './HeroSkillStatusText';
 import {showTouyeDiscardChoice} from './TouyeDiscardChoice';
 import {mountHeroDecisionEyes} from './HeroDecisionEyes';
 import {carriedToolAtEntry,carriedToolAtHand,type ToolCarryIntent} from './ToolCarryIntent';
@@ -1147,7 +1148,7 @@ export class GameScene extends Phaser.Scene {
       this.heroActionButton.setData('abilityAvailable',heroAvailable).setData('abilityChosen',heroChosen&&this.ready).setData('abilityState',heroCue?.state??'unavailable').setData('ariaLabel',heroCue?.ariaLabel??'');
       this.view.setEnabled(this.heroActionButton,this.ready&&heroCue?.actionable!==false&&(heroOpportunity||!!this.pendingRefill||heroChosen));
       (this.heroActionButton.getData('label') as Phaser.GameObjects.Text).setText(heroCue?.label??this.heroActionLabel());
-      (this.heroActionButton.getData('skillStatus') as Phaser.GameObjects.Text|undefined)?.setText(heroCue?.status??'').setColor(heroCue?.state==='available'||heroCue?.state==='selected'?C.jade:heroCue?.state==='pending'?C.red:C.mutedInk);
+      updateHeroSkillStatusText(this.heroActionButton.getData('skillStatus') as Phaser.GameObjects.Text|undefined,heroCue?.status??'',heroCue?.state==='available'||heroCue?.state==='selected'?C.jade:heroCue?.state==='pending'?C.red:C.mutedInk);
     }
     this.game?.canvas?.setAttribute('aria-label',GAME_NAME+' · '+getCharacter(this.characterId).name+'牌桌；方向键聚焦手牌，空格选牌，Enter查看详情。'+(heroCue?' '+heroCue.ariaLabel:''));
     this.roleText.setColor(heroAvailable?C.jade:C.mutedInk).setData('abilityAvailable',heroAvailable);
@@ -1658,14 +1659,14 @@ export class GameScene extends Phaser.Scene {
     const eventId=receipt.commandId+'/laohuan-refill';if(this.shownPayoffs.has(eventId))return;
     const cards=ids.map(id=>this.run.deckInstances.find(c=>c.id===id)).filter((c):c is PlayingCard=>!!c),names=cards.map(c=>rankLabel(c.rank)+SUIT_SYMBOL[c.suit]).join(' ');
     const key:JokerKeyHighlight={eventId,kind:'payoff',heroId:'laohuan',cause:heroSkillName('laohuan')+'实际留牌',landing:'留'+cards.length+'张 · 已保存',fact:{eventId,sourceInstanceId:this.run.runId+'/character',definitionId:'',title:characterForRun(this.run).name+' · '+characterForRun(this.run).passiveName+' · 实际留牌',effect:'实际留下 '+names,condition:'换牌与留牌操作成功保存',destination:'当前手牌 · 不增加计分',next:'继续自主选牌'}};
-    this.effects.clear();this.effects.enqueue(async context=>{this.refillPresentation=context;try {const stage=mountHeroClimax(this,this.view.root,{x:0,y:0,...cssViewport(this)},key,{skillName:characterForRun(this.run).passiveName,label:'实际留牌',before:cards.length+'张',after:cards.length+'张',note:'多看'+looked+'张 · '+names+'；不增加计分'},this.reducedMotion);if(!stage){
-      const viewport=cssViewport(this),width=Math.min(480,viewport.width-32),height=140;
-      const group=mountKeyHighlight(this,this.view.root,{x:(viewport.width-width)/2,y:(viewport.height-height)/2,width,height},{...key,heroId:undefined,cause:key.landing+' · 不增加计分'});
-      this.shownPayoffs.add(eventId);let cleaned=false;const cleanup=()=>{if(cleaned)return;cleaned=true;context.signal.removeEventListener('abort',cleanup);group.destroy();};context.signal.addEventListener('abort',cleanup,{once:true});
-      try {await this.waitHeroSubject(context);}finally{cleanup();}return;
+    this.effects.clear();this.effects.enqueue(async context=>{this.refillPresentation=context;try {const l=this.view.layout,stage=mountHeroClimax(this,this.view.root,{x:0,y:0,...cssViewport(this)},key,{skillName:characterForRun(this.run).passiveName,label:'实际留牌',before:cards.length+'张',after:cards.length+'张',note:'多看'+looked+'张 · '+names+'；不增加计分'},this.reducedMotion,{eyes:localHeroEyeSlot(l,toolInventoryPlayedArea(l),this.jokerViews.size)});if(!stage){
+      // No free eye slot: the saved retention remains in the existing HUD.
+      // A local avatar response cannot cover rules or turn retention into score.
+      if(context.signal.aborted)return;this.shownPayoffs.add(eventId);this.audio.sourceCue('character');
+      await this.animateRole(key.landing,this.reducedMotion?120:180,context);return;
     }
       this.heroClimax=stage;this.shownPayoffs.add(eventId);const cleanup=()=>{context.signal.removeEventListener('abort',cleanup);stage.dispose();if(this.heroClimax===stage)this.heroClimax=undefined;};context.signal.addEventListener('abort',cleanup,{once:true});
-      try {await this.wait(this.reducedMotion?0:250,context);if(context.signal.aborted)return;stage.strike();await this.waitHeroSubject(context);if(!context.signal.aborted)await stage.release();}finally{cleanup();}
+      try {await this.wait(this.reducedMotion?0:250,context);if(context.signal.aborted)return;stage.strike();this.audio.sourceCue('character');await this.waitHeroSubject(context);if(!context.signal.aborted)await stage.release();}finally{cleanup();}
     }finally{if(this.refillPresentation===context)this.refillPresentation=undefined;}
     });try {await this.effects.drain();}catch {this.effects.clear();}
   }
