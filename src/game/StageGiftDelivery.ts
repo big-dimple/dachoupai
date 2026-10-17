@@ -10,6 +10,10 @@ export interface StageGiftDeliveryOptions {
   source:(instanceId:string)=>Box|undefined;
   inventory:()=>Box|undefined;
   gold:()=>Box|undefined;
+  viewport?:()=>{width:number;height:number};
+  captionBox?:()=>Box|undefined;
+  route?:(from:{x:number;y:number},to:{x:number;y:number},progress:number)=>{x:number;y:number};
+  flightScale?:number;
   /** The rack's single motion owner moves the inner face. This component never transforms a rack slot. */
   pulseSource:(instanceId:string,context:EffectContext,duration:number)=>void|Promise<void>;
   reducedMotion:()=>boolean;
@@ -24,6 +28,17 @@ const center=(b:Box)=>({x:b.x+b.width/2,y:b.y+b.height/2});
 export function stageGiftFlight(from:{x:number;y:number},to:{x:number;y:number},progress:number){
   const t=Math.min(1,Math.max(0,progress)),u=1-t,mid={x:(from.x+to.x)/2,y:Math.max(16,Math.min(from.y,to.y)-Math.min(70,Math.hypot(to.x-from.x,to.y-from.y)*.15))};
   return {x:u*u*from.x+2*u*t*mid.x+t*t*to.x,y:u*u*from.y+2*u*t*mid.y+t*t*to.y};
+}
+/** Follow the table's clear edge lane rather than cutting across score readouts. */
+export function stageGiftLaneFlight(from:{x:number;y:number},to:{x:number;y:number},progress:number,laneX:number,turnY:number){
+  const points=[from,{x:laneX,y:from.y},{x:laneX,y:turnY},{x:to.x,y:turnY},to];
+  const lengths=points.slice(1).map((p,i)=>Math.hypot(p.x-points[i].x,p.y-points[i].y));
+  let distance=Math.max(0,Math.min(1,progress))*lengths.reduce((a,b)=>a+b,0);
+  for(let i=0;i<lengths.length;i++){
+    if(distance<=lengths[i]&&lengths[i]>0){const t=distance/lengths[i];return{x:points[i].x+(points[i+1].x-points[i].x)*t,y:points[i].y+(points[i+1].y-points[i].y)*t};}
+    distance-=lengths[i];
+  }
+  return {...to};
 }
 
 /** Finite saved-result delivery. Owns only its overlay, not data, source slot transforms, audio or input. */
@@ -78,7 +93,9 @@ export class StageGiftDelivery {
         if(owned.signal.aborted||!scene.sys.settings.active||!root.active||this.options.blocked?.()){finish('cancelled');return;}
         const source=this.options.source(fact.sourceInstanceId),target=coin?this.options.gold():this.options.inventory();
         if(!source||!target){finish('missing-anchor');return;}
-        const viewportWidth=scene.scale.width/scene.scale.zoom;
+        const viewportWidth=this.options.viewport?.().width??scene.scale.width/scene.scale.zoom;
+        const captionBox=this.options.captionBox?.(),route=this.options.route??stageGiftFlight;
+        caption.setWordWrapWidth(Math.max(44,(captionBox?.width??viewportWidth)-28),true);
         // Land beside the real entry, keeping its existing quantity/currency text unobscured.
         const to={x:target.x>=48?target.x-24:target.x+target.width+24,y:center(target).y};
         to.x=Math.max(22,Math.min(viewportWidth-22,to.x));
@@ -90,21 +107,22 @@ export class StageGiftDelivery {
         // The route always joins the actual source to its destination, including the static reduced fallback.
         const segments=24,limit=arrival||reduced?1:flight;
         path.beginPath().moveTo(from.x,from.y);
-        for(let i=1;i<=segments;i++){const p=stageGiftFlight(from,to,limit*i/segments);path.lineTo(p.x,p.y);}path.strokePath();
-        const p=stageGiftFlight(from,to,flight);payload.setPosition(p.x,p.y).setVisible(reduced||elapsed>=WINDUP);
-        const end=stageGiftFlight(from,to,Math.max(0,flight-.04)),angle=Math.atan2(p.y-end.y,p.x-end.x);
+        for(let i=1;i<=segments;i++){const p=route(from,to,limit*i/segments);path.lineTo(p.x,p.y);}path.strokePath();
+        const p=route(from,to,flight);payload.setPosition(p.x,p.y).setVisible(reduced||elapsed>=WINDUP).setScale(arrival?1:this.options.flightScale??1);
+        const end=route(from,to,Math.max(0,flight-.04)),angle=Math.atan2(p.y-end.y,p.x-end.x);
         if(flight>0&&flight<1)path.fillStyle(color,1).fillTriangle(p.x,p.y,p.x-9*Math.cos(angle-.45),p.y-9*Math.sin(angle-.45),p.x-9*Math.cos(angle+.45),p.y-9*Math.sin(angle+.45));
         if(arrival){
           payload.setPosition(to.x,to.y).setScale(reduced?1:1+.12*Math.sin(Math.PI*Math.min(1,(elapsed-WINDUP-FLIGHT)/180)));
           caption.setText(copy);
-          const half=caption.width/2+6,width=scene.scale.width/scene.scale.zoom;
+          const half=caption.width/2+6,width=viewportWidth;
           caption.setPosition(Math.min(width-half,Math.max(half,center(target).x)),target.y-caption.height/2-10);
           if(caption.y-caption.height/2<4)caption.y=target.y+target.height+caption.height/2+8;
           if(!landed){landed=true;root.setData('arrived',true);this.options.arrived?.(fact);}
         }else{
           caption.setText(sourceCopy).setPosition(from.x,from.y+caption.height/2+29);
-          const half=caption.width/2+6,width=scene.scale.width/scene.scale.zoom;caption.x=Math.min(width-half,Math.max(half,caption.x));
+          const half=caption.width/2+6,width=viewportWidth;caption.x=Math.min(width-half,Math.max(half,caption.x));
         }
+        if(captionBox)caption.setPosition(captionBox.x+captionBox.width/2,captionBox.y+captionBox.height/2);
         if(elapsed>=(reduced?READ:WINDUP+FLIGHT+READ))finish('complete');
       };
       const timer=setTimeout(()=>finish('complete'),(reduced?READ:WINDUP+FLIGHT+READ)+250);

@@ -118,7 +118,7 @@ import {addAvatar,avatarKey,portraitKey,portraitURL} from './portraits';
 import {heroPortraitLayout,heroPortraitArea,heroSidebarUtilities} from './HeroPortraitLayout';
 import {mountHeroPortraitScoreMotion,type HeroPortraitScoreMotion} from './HeroPortraitScoreMotion';
 import {savedC12Gifts,type SavedStageGift} from './SavedStageGift';
-import {StageGiftDelivery} from './StageGiftDelivery';
+import {StageGiftDelivery,stageGiftLaneFlight} from './StageGiftDelivery';
 import type {CommandResult} from '../domain/run';
 import {r2ConsumableCapacity} from '../domain/r2Resources';
 import {SceneView} from './SceneView';
@@ -661,6 +661,18 @@ export class GameScene extends Phaser.Scene {
       source:id=>{const marker=this.jokerViews.get(id),frame=marker?.getData('frame') as Phaser.GameObjects.Rectangle|undefined;return marker?.active&&frame?.active?frame.getBounds():undefined;},
       inventory:()=>this.inventoryButton?.active?this.inventoryButton.getBounds():undefined,
       gold:()=>this.goldText?.active?this.goldText.getBounds():undefined,
+      viewport:()=>({width:this.view.layout.width,height:this.view.layout.height}),
+      captionBox:()=>{
+        const l=this.view.layout;if(l.mode==='portrait')return heroPortraitArea(l);
+        const played=playedFootprint(toolInventoryPlayedArea(l),false);
+        return {x:l.scoreBoard.x,y:played.y+played.height+4,width:l.scoreBoard.width,height:Math.max(36,l.hand.y-played.y-played.height-8)};
+      },
+      route:(from,to,progress)=>{
+        const l=this.view.layout,played=playedFootprint(toolInventoryPlayedArea(l),l.mode==='portrait');
+        const lane=l.mode==='portrait'?l.playedArea.x+4:Math.min(l.playedArea.x-4,l.hud.x+l.hud.width+8);
+        return stageGiftLaneFlight(from,to,progress,lane,Math.min(to.y,played.y+played.height+8));
+      },
+      flightScale:.4,
       reducedMotion:()=>this.reducedMotion,
       blocked:()=>document.hidden||!!document.querySelector('dialog[open]')||runController(this)?.status==='readonly'||!this.scene.isActive(),
       pulseSource:(id,context,duration)=>{
@@ -682,13 +694,14 @@ export class GameScene extends Phaser.Scene {
   }
   /** Only a successful saved c12 fact replaces its own onStageClear presentation slot. */
   private async showSavedStageGift(fact:SavedStageGift,event:ScoreEvent,context:EffectContext):Promise<void> {
-    this.giftEvent=event;
+    this.giftEvent=event;const portrait=this.heroPortrait,visible=portrait?.visible;
+    if(this.view.layout.mode==='portrait')portrait?.setVisible(false);
     try {
       const result=await this.giftDelivery?.play(fact,context);
       if(result==='missing-anchor'&&!context.signal.aborted){
         this.resultText.setText(fact.sourceName+' · '+(fact.destination==='tools'?fact.rewardName+'已入道具箱':'道具箱已满，已得'+fact.amount+'金'));
       }
-    }finally{if(this.giftEvent===event)this.giftEvent=undefined;}
+    }finally{if(portrait?.active)portrait.setVisible(visible??true);if(this.giftEvent===event)this.giftEvent=undefined;}
   }
   private renderJokerRack(jokers:readonly R2JokerInstance[]=this.run.jokers):void {
     const v=this.view,l=v.layout;this.jokerViews.clear();

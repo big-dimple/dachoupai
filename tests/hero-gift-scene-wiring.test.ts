@@ -5,6 +5,7 @@ import {heroRefillFixture} from '../harness/fixtures/hero-gift-scene';
 import {heroPortraitRefillCue} from '../src/game/HeroPortraitScoreMotion';
 import {heroPortraitArea,heroPortraitLayout,heroSidebarUtilities} from '../src/game/HeroPortraitLayout';
 import {layout,intersects,playedFootprint} from '../src/game/layout';
+import {stageGiftFlight,stageGiftLaneFlight} from '../src/game/StageGiftDelivery';
 
 it('reacts to saved actual retained cards, never a failed save, duplicate or restored result',async()=>{
   const fixture=heroRefillFixture(),store=new C12EvidenceStore(),run=await SavedRun.start(store,fixture.state,await store.read());
@@ -49,4 +50,11 @@ it('keeps the bounded phone portrait outside both score cells and played cards w
     expect(intersects(area,playedFootprint(l.playedArea,true))).toBe(false);
     expect(heroSidebarUtilities(l)).toBeUndefined();expect(JSON.stringify(l)).toBe(before);
   }
+});
+
+it('moves the real phone gift through the edge lane instead of across the multiplier readout',()=>{
+  const from={x:44,y:160},to={x:238,y:510},readout={x:130,y:218,width:90,height:62};
+  const touches=(p:{x:number;y:number})=>intersects({x:p.x-8,y:p.y-9,width:16,height:18},readout);
+  expect(Array.from({length:101},(_,i)=>stageGiftFlight(from,to,i/100)).some(touches)).toBe(true);
+  expect(Array.from({length:101},(_,i)=>stageGiftLaneFlight(from,to,i/100,16,478)).some(touches)).toBe(false);
 });
