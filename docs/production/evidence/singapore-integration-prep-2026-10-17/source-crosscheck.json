@@ -1,0 +1,229 @@
+{
+  "candidate": "59a2bf60a4eac659b840b3fff9affd8d71b91617",
+  "baseline": "7d7921e76ca794a14e715e3eac3b4d66143862ff",
+  "sources": {
+    "docs": "5a2b3f0af0d59bc8846dd895b3bea6d3fe8277d0",
+    "loading": "73a621e57fd8790f634601aa4ab1906ece25cdd4",
+    "cards": "38bd514a655cd1c507fdc5d135fd7f71c4cac94f"
+  },
+  "cardProduct": "fddb7378112304ead60d67a676e73bb4a3fe2ec0",
+  "intersections": {
+    "docs+loading": [],
+    "docs+cards": [],
+    "loading+cards": []
+  },
+  "mergeConflicts": [],
+  "climaxSourceByteCeiling": 98304,
+  "climaxSourceExcludedByBytes": [
+    {
+      "id": "f04",
+      "bytes": 149642
+    },
+    {
+      "id": "e07",
+      "bytes": 173998
+    },
+    {
+      "id": "f09",
+      "bytes": 163216
+    },
+    {
+      "id": "f07",
+      "bytes": 156240
+    },
+    {
+      "id": "d07",
+      "bytes": 129754
+    },
+    {
+      "id": "a07",
+      "bytes": 148344
+    },
+    {
+      "id": "a08",
+      "bytes": 122154
+    },
+    {
+      "id": "d02",
+      "bytes": 139760
+    },
+    {
+      "id": "e02",
+      "bytes": 132890
+    },
+    {
+      "id": "e09",
+      "bytes": 160322
+    },
+    {
+      "id": "tiesuanpan",
+      "bytes": 147102
+    },
+    {
+      "id": "f10",
+      "bytes": 145566
+    },
+    {
+      "id": "pengci",
+      "bytes": 157184
+    },
+    {
+      "id": "huimaqiang",
+      "bytes": 161066
+    },
+    {
+      "id": "a09",
+      "bytes": 155824
+    },
+    {
+      "id": "d06",
+      "bytes": 137904
+    },
+    {
+      "id": "a04",
+      "bytes": 156056
+    },
+    {
+      "id": "e04",
+      "bytes": 176792
+    },
+    {
+      "id": "f03",
+      "bytes": 165328
+    },
+    {
+      "id": "a03",
+      "bytes": 133074
+    },
+    {
+      "id": "c04",
+      "bytes": 100390
+    },
+    {
+      "id": "d01",
+      "bytes": 150134
+    },
+    {
+      "id": "f02",
+      "bytes": 154252
+    },
+    {
+      "id": "d10",
+      "bytes": 132470
+    },
+    {
+      "id": "e01",
+      "bytes": 164274
+    },
+    {
+      "id": "d05",
+      "bytes": 146824
+    },
+    {
+      "id": "e03",
+      "bytes": 171208
+    },
+    {
+      "id": "e06",
+      "bytes": 169636
+    },
+    {
+      "id": "f05",
+      "bytes": 148948
+    },
+    {
+      "id": "f11",
+      "bytes": 152164
+    },
+    {
+      "id": "a11",
+      "bytes": 107666
+    },
+    {
+      "id": "d04",
+      "bytes": 135810
+    },
+    {
+      "id": "c07",
+      "bytes": 134960
+    },
+    {
+      "id": "d11",
+      "bytes": 142154
+    },
+    {
+      "id": "d08",
+      "bytes": 138140
+    },
+    {
+      "id": "d09",
+      "bytes": 127148
+    },
+    {
+      "id": "a05",
+      "bytes": 167196
+    },
+    {
+      "id": "c06",
+      "bytes": 99968
+    },
+    {
+      "id": "d03",
+      "bytes": 127368
+    },
+    {
+      "id": "a10",
+      "bytes": 142834
+    },
+    {
+      "id": "d12",
+      "bytes": 102824
+    },
+    {
+      "id": "a06",
+      "bytes": 159112
+    },
+    {
+      "id": "a12",
+      "bytes": 156230
+    },
+    {
+      "id": "c12",
+      "bytes": 116224
+    },
+    {
+      "id": "e10",
+      "bytes": 148306
+    },
+    {
+      "id": "e12",
+      "bytes": 155458
+    },
+    {
+      "id": "e05",
+      "bytes": 136284
+    },
+    {
+      "id": "e08",
+      "bytes": 161444
+    },
+    {
+      "id": "e11",
+      "bytes": 139702
+    },
+    {
+      "id": "f06",
+      "bytes": 162364
+    },
+    {
+      "id": "f08",
+      "bytes": 149124
+    },
+    {
+      "id": "f12",
+      "bytes": 146056
+    }
+  ],
+  "excludedCount": 52,
+  "explanation": "Read-only static registration check. Not a browser proof of every highlight. ClimaxSourceArt refuses these detail bytes before fetching; original main already has this guard and failure."
+}

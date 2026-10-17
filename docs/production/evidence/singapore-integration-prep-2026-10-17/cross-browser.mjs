@@ -1,0 +1,24 @@
+import {chromium} from 'playwright';
+import {createServer} from 'vite';
+import {mkdir,writeFile,readFile} from 'node:fs/promises';
+import {execFileSync} from 'node:child_process';
+import assert from 'node:assert/strict';
+import {waitScene,openSelector,tapUI} from '../../../../harness/ui.mjs';
+const out='docs/production/evidence/singapore-integration-prep-2026-10-17';await mkdir(out,{recursive:true});
+const server=await createServer({mode:'e2e',cacheDir:'/tmp/singapore-integration-prep-vite',server:{host:'127.0.0.1',port:5207,strictPort:true},logLevel:'error'});await server.listen();
+const b=await chromium.launch({executablePath:'/usr/bin/chromium',args:['--no-sandbox','--disable-gpu']});
+const p=await b.newPage({viewport:{width:390,height:740},hasTouch:true,deviceScaleFactor:2});p.setDefaultTimeout(15000);
+const r={candidate:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),scope:'Single narrow integration UI path: held actual loading → catalog a11 keyboard zoom → short rotation → old hero portrait. Software Canvas; not full suite, gameplay, audio listening, physical device or online acceptance.',errors:[]};p.on('pageerror',e=>r.errors.push(e.stack));
+const shot=n=>p.screenshot({path:out+'/'+n+'.png',scale:'css'});
+const geometry=()=>p.locator('.card-art-zoom-dialog').evaluate(d=>{const rect=e=>e.getBoundingClientRect().toJSON();return{dialog:rect(d),close:rect(d.querySelector('.card-art-zoom-close')),image:rect(d.querySelector('.card-art-zoom-detail')),fit:getComputedStyle(d.querySelector('.card-art-zoom-detail')).objectFit};});
+let release;const gate=new Promise(resolve=>release=resolve),portraits=JSON.parse(await readFile('public/assets/tangsong-portraits/manifest.json','utf8')),target=portraits.assets.find(a=>a.path.endsWith('/azao.avatar.webp'));
+await p.route('**/assets/**',async route=>{if(new URL(route.request().url()).pathname==='/'+target.path)await gate;await route.continue().catch(()=>{});});
+try{
+ await p.goto('http://127.0.0.1:5207/?harness=1',{waitUntil:'domcontentloaded'});await p.locator('#resource-loading').waitFor();await p.waitForFunction(()=>Number(document.querySelector('#resource-loading')?.dataset.loaded)>0);
+ r.loading=await p.locator('#resource-loading').evaluate(e=>({loaded:e.dataset.loaded,total:e.dataset.total,fish:e.querySelectorAll('[class*="goldfish"]').length,progress:e.querySelector('progress').value,max:e.querySelector('progress').max}));assert.equal(r.loading.fish,0);assert.ok(+r.loading.loaded<+r.loading.total);assert.ok(r.loading.progress<r.loading.max);await shot('390-loading-cross');release();await waitScene(p,'title');await p.unrouteAll({behavior:'wait'});
+ await p.locator('.run-menu-toggle').click();await p.getByRole('button',{name:'图鉴查询',exact:true}).click();await p.getByRole('searchbox',{name:'按名字查找'}).fill('梅开二度');await p.getByRole('button',{name:'查看梅开二度',exact:true}).click();
+ const trigger=p.locator('.dialog-card-zoom-trigger');await trigger.focus();await p.keyboard.press('Enter');await p.locator('.card-art-zoom-detail.is-loaded').waitFor();r.phone=await geometry();assert.equal(r.phone.fit,'contain');assert.ok(r.phone.close.y>=0&&r.phone.close.bottom<=740);await shot('390-a11-cross');
+ await p.setViewportSize({width:740,height:320});await p.waitForTimeout(150);r.short=await geometry();assert.ok(r.short.close.y>=0&&r.short.close.bottom<=320);assert.ok(r.short.image.y>=0&&r.short.image.bottom<=320);await shot('740-a11-cross');await p.keyboard.press('Escape');await p.locator('.card-art-zoom-dialog').waitFor({state:'detached'});r.focusReturned=await trigger.evaluate(e=>document.activeElement===e);assert.equal(r.focusReturned,true);
+ await p.locator('.detail-dialog[open] .dialog-close').click();await p.setViewportSize({width:390,height:740});await openSelector(p,true);await tapUI(p,'character-select','character/amo',true);await tapUI(p,'character-select','opening/portrait-full',true);await p.waitForFunction(()=>{const i=document.querySelector('.hero-portrait-view img');return i&&!i.hidden&&i.complete&&i.naturalWidth>0;});await shot('390-su-shi-cross');await p.getByRole('button',{name:'关闭立绘，回到选角',exact:true}).click();await waitScene(p,'character-select');
+ r.renderer=await p.evaluate(()=>window.__harness.game.renderer.type);r.finalDialogs=await p.locator('dialog[open]').count();assert.equal(r.finalDialogs,0);assert.deepEqual(r.errors,[]);r.status='PASS';
+}catch(e){r.status='FAIL';r.failure=e.stack;await shot('cross-FAIL').catch(()=>{});throw e;}finally{release();await writeFile(out+'/cross-browser-report.json',JSON.stringify(r,null,2));await b.close();await server.close();}

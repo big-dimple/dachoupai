@@ -1,0 +1,42 @@
+{
+  "taskId": "P08",
+  "testedCommit": "59a2bf60a4eac659b840b3fff9affd8d71b91617",
+  "date": "2026-10-17",
+  "status": "PARTIAL_INTEGRATION_WITH_KNOWN_FAILURES",
+  "branch": "dev/singapore-integration-20261017",
+  "mainVerified": "7d7921e76ca794a14e715e3eac3b4d66143862ff",
+  "sources": {
+    "docs": "5a2b3f0af0d59bc8846dd895b3bea6d3fe8277d0",
+    "loading": "73a621e57fd8790f634601aa4ab1906ece25cdd4",
+    "cards": "38bd514a655cd1c507fdc5d135fd7f71c4cac94f",
+    "cardProduct": "fddb7378112304ead60d67a676e73bb4a3fe2ec0"
+  },
+  "mergeConflicts": [],
+  "authorOriginalFullSuite": {
+    "passed": 3800,
+    "failed": 6,
+    "rerunByIntegrator": false
+  },
+  "integrationChecks": {
+    "build": "PASS",
+    "crossTargeted": {
+      "passed": 17,
+      "failed": 3,
+      "failures": "source-stage-art original three"
+    },
+    "singleBrowserPath": "PASS",
+    "pageErrors": 0
+  },
+  "pendingSources": [
+    "audio",
+    "recommendation-and-flow"
+  ],
+  "unresolvedOwnerWindow": "ClimaxSourceArt/highlight resource byte-budget; parent coordination needed",
+  "climaxStaticRejectedDetails": 52,
+  "online": "NOT_RUN_PROXY_403",
+  "listening": "NOT_RUN",
+  "physicalDevice": "NOT_RUN",
+  "mainPushed": false,
+  "ciQueried": false,
+  "productChangesByIntegrator": "Only authorized exact source merges; no independent source/assertion edits."
+}
