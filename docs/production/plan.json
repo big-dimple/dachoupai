@@ -2729,5 +2729,12 @@
     "remaining": "4x phrase tail not progressively dense,human/device/experience/P08 gates",
     "status": "PUBLISHED_MAIN_AND_EYES_a061a7c2",
     "actualPublishedMain": "a061a7c2a0d10dad1da8647fa747011dd1df493b"
+  },
+  "intermissionLayoutFollowup": {
+    "status": "in_progress",
+    "baseline": "e82c7df8d3e004cb9ad5a86b27389496d397b2ad",
+    "sourceCopy": "f135ca11826be4c1b836b8b01453dc91b79085dd",
+    "scope": "**14:37 本场获胜结算布局独立整改（进行中）：** 从已发布e82c7df8独立分支接续。先完成真实1366×768、1920×1080、390×844基线截图：旧900px封顶且整组从顶部约12px起、1920底部约518px止，固定顶对齐是下半屏留白根因。仅Intermission及专用布局/滚动模块改为实际总高度居中，宽屏左右组合、手机纵向超高可滑动；继续按钮48px以上，长数值/奖励不断行截失。GameScene、ShopScene、源牌、音频及领域/存档不动。补PC常见尺寸与手机窄长内容的实际截图/继续完整事务、针对性检查与一次最终构建；按授权普通dev/main发布，不扩无关矩阵/CI/自然长局。父级指定f135ca11的苏轼封禁副组具体提示一并普通合入，复用其20项窄测/type与六英雄正式新开局原生证据，不重跑六人。P08及三目标仍未通过。",
+    "evidence": "docs/production/evidence/intermission-centered-layout-2026-10-17/README.md"
   }
 }

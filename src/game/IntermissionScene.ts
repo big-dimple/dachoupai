@@ -42,22 +42,10 @@ import {DetailDialog} from './DetailDialog';
 import {SKIP_ITEM_LABELS} from './ConsumableDialog';
 import type {Box} from './layout';
 import {PAPER_CSS,PAPER_THEME as T} from './theme';
+import {resultLayout} from './IntermissionLayout';
+import {mountResultViewport} from './IntermissionScroll';
 
 export interface IntermissionResult {cleared:boolean;stageIndex:number;stageHeat:string;handsLeft:number;goldEarned:number;failureCue?:FailureCue;rewardClearId?:string}
-function resultLayout(width:number,height:number,top:number,bottom:number,heroCaption=false,highScore=false,failure=false,contentHeight?:number){
-  const short=height<500,portrait=width<700&&height>width,tight=portrait&&height<=700,w=Math.min(900,width-24),x=(width-w)/2;
-  const bodyY=top+(short?54:portrait?64:88),nextHeight=short?Math.min(94,height-bottom-bodyY-126):portrait?(tight?60:86):116;
-  const available=height-bottom-bodyY-(portrait?nextHeight+128:short?16:nextHeight+44);
-  const preferredHeight=contentHeight??(failure?(short?192:portrait?180:212):short?240:settlementContentHeight(w,heroCaption,highScore));
-  const score:Box={x,y:bodyY,width:short?w*.64-12:w,height:contentHeight??Math.min(available,preferredHeight)};
-  const next:Box=short?{x:x+w*.64,y:bodyY,width:w*.36,height:nextHeight}:{x,y:score.y+score.height+12,width:w,height:nextHeight};
-  const actionX=short?next.x:portrait?x:x+w-288,actionWidth=short?next.width:portrait?w:288;
-  const actionY=short?next.y+next.height+8:portrait?next.y+next.height+8:next.y+8;
-  const primary:Box={x:actionX,y:actionY,width:actionWidth,height:portrait&&tight||short?48:56};
-  const auxY=primary.y+primary.height+4,auxWidth=(actionWidth-8)/2;
-  const nextText:Box={...next,width:short||portrait?next.width:next.width-actionWidth-28};
-  return {x,w,top,short,portrait,tight,score,next,nextText,primary,left:{x:actionX,y:auxY,width:auxWidth,height:44},right:{x:actionX+auxWidth+8,y:auxY,width:auxWidth,height:44},noticeY:Math.max(next.y+next.height,auxY+44)+4};
-}
 
 export class IntermissionScene extends Phaser.Scene {
   private result!:IntermissionResult;
@@ -69,6 +57,9 @@ export class IntermissionScene extends Phaser.Scene {
   private busy=false;
   private notice='';
   private firstRender=true;
+  private resultContent?:Phaser.GameObjects.Container;
+  private releaseViewport?:()=>void;
+  private resultScroll=0;
   private readonly rewardCue=new RewardCoinCue();
   private readonly rewardEffects=new EffectQueue();
   private outcomeMotion?:{dispose:()=>void};
@@ -94,7 +85,7 @@ export class IntermissionScene extends Phaser.Scene {
   }
   create():void {
     warmNextSceneImages(this,'shop');
-    this.lifecycle++;this.busy=false;this.notice='';this.firstRender=true;
+    this.lifecycle++;this.busy=false;this.notice='';this.firstRender=true;this.resultScroll=0;
     const motion=typeof window==='undefined'?undefined:window.matchMedia('(prefers-reduced-motion: reduce)');
     const preference=()=>{if((gameSession().reducedMotion||motion?.matches)&&this.scene.isActive()){this.firstRender=false;this.render();}};
     const suspend=()=>{if(this.scene.isActive()){this.firstRender=false;this.audio.cancelPresentation();this.render();}};
@@ -103,7 +94,7 @@ export class IntermissionScene extends Phaser.Scene {
     motion?.addEventListener('change',preference);
     if(typeof window!=='undefined')window.addEventListener('blur',suspend);
     if(typeof document!=='undefined')document.addEventListener('visibilitychange',visibility);
-    const retire=()=>{if(typeof window!=='undefined'){window.removeEventListener('dachoupai-presentation',preference);window.removeEventListener('blur',suspend);}if(typeof document!=='undefined')document.removeEventListener('visibilitychange',visibility);motion?.removeEventListener('change',preference);this.events.off('shutdown',retire);this.events.off('destroy',retire);this.lifecycle++;this.stopSourceArt();this.paintSourceArt=undefined;this.sourceArtLayer=undefined;this.dialog.close();this.stopCelebration();};
+    const retire=()=>{if(typeof window!=='undefined'){window.removeEventListener('dachoupai-presentation',preference);window.removeEventListener('blur',suspend);}if(typeof document!=='undefined')document.removeEventListener('visibilitychange',visibility);motion?.removeEventListener('change',preference);this.events.off('shutdown',retire);this.events.off('destroy',retire);this.releaseViewport?.();this.releaseViewport=undefined;this.lifecycle++;this.stopSourceArt();this.paintSourceArt=undefined;this.sourceArtLayer=undefined;this.dialog.close();this.stopCelebration();};
     this.events.once('shutdown',retire);this.events.once('destroy',retire);
     const run=runController(this)?.state;if(!run?.stage){this.scene.start('character-select');return;}
     this.cameras.main.setBackgroundColor('#F3EADB');
@@ -121,17 +112,19 @@ export class IntermissionScene extends Phaser.Scene {
     if(this.busy)this.stopSourceArt();
     const v=this.view,l=v.layout,bottom=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--safe-bottom'))||0;
     const run=runController(this)!.state,resultFacts=settlementFacts(run,this.result.cleared,!!run.stage?.skipResult),stage={...getR2Stage(this.result.stageIndex,run.tourMode,run.difficulty,run)!,targetHeat:run.stage!.targetHeat},character=getCharacter(run.characterId);
-    let p=resultLayout(l.width,l.height,l.hud.y,bottom,!!resultFacts.hero,resultFacts.tier>=2,!this.result.cleared&&run.phase==='run-lost');
+    const preferred=settlementContentHeight(l.width,!!resultFacts.hero,resultFacts.tier>=2);
+    let p=resultLayout(l.width,l.height,0,preferred);
     const nextStage=this.result.cleared&&run.phase==='stage-cleared'?getR2Stage(run.stageIndex,run.tourMode,run.difficulty,run):undefined,skipped=run.phase==='run-lost'?null:run.stage?.skipResult,won=run.phase==='run-won',capped=this.result.cleared&&run.phase==='stage-cleared'&&!nextStage,lost=!this.result.cleared&&!skipped&&!won;
     const animateIn=this.firstRender&&!gameSession().reducedMotion&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    this.stopCelebration();v.clear();this.paintSourceArt=undefined;this.sourceArtLayer=undefined;v.paperBackground();
+    this.releaseViewport?.();this.releaseViewport=undefined;this.stopCelebration();v.clear();this.paintSourceArt=undefined;this.sourceArtLayer=undefined;v.paperBackground();const backgroundCount=v.root.length;
+    const content=this.resultContent=this.add.container(0,0).setName('result/content');
     const identity=stageIdentity(stage.index,run.stage!.boss,run.tourMode,run.difficulty,run)!;
     v.text(p.x,p.top,(run.tourMode==='endless'?'无尽 · ':'')+stage.name+' · '+character.name,14,identity.isBoss?PAPER_CSS.red:PAPER_CSS.jade,p.w-116).setName('stage-identity/result');
     const guidance=lost?failureGuidance(run):undefined;
     const title=capped?'本局暂止于此':skipped?'换一场，再对局':won?(run.mode==='tutorial'?'教学对局完成！':run.mode==='challenge'?'挑战完成！':'八章通关'):this.result.cleared?(identity.isBoss?'压轴过关 · '+identity.title:'本场获胜'):guidance?.title??'此局结束，再来一局';
     v.text(p.x,p.top+(p.short?22:28),title,p.short||p.portrait&&identity.isBoss?22:p.portrait?26:34,identity.isBoss&&this.result.cleared?PAPER_CSS.red:PAPER_CSS.ink,p.w).setName('result/title').setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold');
     const paperHeight=this.drawResultHero(p.score,!!skipped,lost,animateIn);
-    p=resultLayout(l.width,l.height,l.hud.y,bottom,!!resultFacts.hero,resultFacts.tier>=2,lost,paperHeight);
+    p=resultLayout(l.width,l.height,0,paperHeight);
     const trace=run.lastTrace;
     const n=p.nextText;
     let heading='下一步',body='';
@@ -163,9 +156,9 @@ export class IntermissionScene extends Phaser.Scene {
       v.add(this.add.graphics().lineStyle(1,T.divider,.75).beginPath().moveTo(p.next.x,p.next.y-2).lineTo(p.next.x+p.next.width,p.next.y-2).strokePath());
       const nextHeading=v.text(n.x,n.y+2,heading,p.portrait&&p.tight?16:18,PAPER_CSS.ink,n.width).setFontStyle('bold').setName('result/next-heading');
       const bodyY=nextHeading.y+nextHeading.height+3;
-      const nextBody=v.text(n.x,bodyY,body,14,PAPER_CSS.jade,n.width).setLineSpacing(1).setStyle({maxLines:Math.max(1,Math.floor((n.y+n.height-bodyY)/17))}).setName('result/next-body');nextBottom=nextBody.y+nextBody.height;
+      const nextBody=v.text(n.x,bodyY,body,14,PAPER_CSS.jade,n.width).setLineSpacing(1).setName('result/next-body');nextBottom=nextBody.y+nextBody.height;
     }
-    if(p.portrait){const shift=nextBottom+8-p.primary.y;p.primary.y+=shift;p.left.y+=shift;p.right.y+=shift;p.noticeY+=shift;}
+    if(p.portrait||p.wide||p.short){const shift=nextBottom+(p.wide?20:8)-p.primary.y;p.primary.y+=shift;p.left.y+=shift;p.right.y+=shift;p.noticeY+=shift;}
     if(nextStage){
       this.auxiliary(p.left,'本场详情','action/result-details',()=>this.inspectResult());
       v.button(p.primary,'前往筹备商店','action/continue-stage',()=>void this.next(),this.ready,true);
@@ -182,7 +175,10 @@ export class IntermissionScene extends Phaser.Scene {
     }
     this.auxiliary(p.right,won||lost?'对局回顾':'回看上手','action/last-hand',()=>{if(won||lost)this.inspectFinale();else this.inspectLastHand();},!this.busy&&(won||lost||!!trace));
     const discovery=this.ready&&!this.notice&&!lost&&!skipped?savedGrowthDiscovery(run):undefined,gift=this.ready&&!this.notice&&!lost&&!skipped?stageGiftReceipt(run):undefined;
-    v.text(p.short?p.next.x:p.x,p.noticeY,this.busy?'正在保存…':this.notice||(!this.ready?'当前进度未保存或只读，请查看菜单。':capped?'已达数值上限，进度已保存':won?run.mode==='standard'?'八章通关已保存，继续无尽由你决定。':'本模式结果已保存，可重试或返回选角。':nextStage?gift?'':discovery?.full||'':lost?'重试从开局开始，金币与构筑不继承。':''),14,this.notice?'#ffd0b1':'#3F606B',p.short?p.next.width:p.w).setStyle(p.short?{maxLines:1}:{}).setName(discovery&&!gift&&nextStage?'growth/discovery':'');
+    v.text(p.short?p.next.x:p.x,p.noticeY,this.busy?'正在保存…':this.notice||(!this.ready?'当前进度未保存或只读，请查看菜单。':capped?'已达数值上限，进度已保存':won?run.mode==='standard'?'八章通关已保存，继续无尽由你决定。':'本模式结果已保存，可重试或返回选角。':nextStage?gift?'':discovery?.full||'':lost?'重试从开局开始，金币与构筑不继承。':''),14,this.notice?'#ffd0b1':'#3F606B',p.short?p.next.width:p.w).setName(discovery&&!gift&&nextStage?'growth/discovery':'result/notice');
+    content.add(v.root.list.slice(backgroundCount));v.add(content);
+    const safeTop=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--safe-top'))||0;
+    this.releaseViewport=mountResultViewport(this,v,content,Math.max(l.hud.y,safeTop+60),l.height-bottom-16,this.resultScroll,offset=>{this.resultScroll=offset;});
     this.firstRender=false;
   }
   private auxiliary(b:Box,label:string,name:string,action:()=>void,enabled=true):void {
@@ -222,7 +218,7 @@ export class IntermissionScene extends Phaser.Scene {
       const reward=presentation.rewardText!;
       const cue=this.firstRender&&this.rewardCue.claim(run,this.result),size=band.height<30?24:32,diameter=size*.7,gap=6;
       const x=center-(reward.width+diameter+gap)/2+diameter/2,coinY=reward.y+reward.height/2-size*.04;
-      const show=()=>{reward.x=center+(diameter+gap)/2;return addRewardCoin(this,v.root,x,coinY,size,run.stage!.clearId!);};
+      const show=()=>{reward.x=center+(diameter+gap)/2;return addRewardCoin(this,this.resultContent?.parentContainer?this.resultContent:v.root,x,coinY,size,run.stage!.clearId!);};
       if(this.result.goldEarned>0&&run.stage?.clearId){
         if(this.textures.exists(REWARD_COIN.key)){const coin=show();if(cue)this.rewardEffects.enqueue(context=>animateRewardCoin(this,coin,context.signal,!animate));}
         else if(cue)this.rewardEffects.enqueue(async context=>{if(!await loadRewardCoin(this,context.signal)||context.signal.aborted)return;const coin=show();await animateRewardCoin(this,coin,context.signal,!animate);});
