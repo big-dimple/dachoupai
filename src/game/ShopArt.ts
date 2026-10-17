@@ -9,7 +9,8 @@ import {PAPER_THEME as T} from './theme';
 export function drawShopBackdrop(scene:Phaser.Scene,view:SceneView,p:ReturnType<typeof shopLayout>,_hero?:CharacterId):void {
  if(p.pc)return;
  if(!p.portrait)view.add(scene.add.rectangle(0,0,view.layout.width,view.layout.height,0xefeee5).setOrigin(0).setName('shop-art/backdrop'));
- view.add(scene.add.graphics().fillStyle(0x203f3b,1).fillRect(0,Math.max(0,p.top-8),view.layout.width,50).lineStyle(1,0xb7a36d,.8).lineBetween(p.x,p.top+42,p.x+p.w,p.top+42).setName('shop-art/ink-header'));
+ const edge=p.top+(p.portrait?48:42),y=Math.max(0,p.top-8);
+ view.add(scene.add.graphics().fillStyle(0x203f3b,1).fillRect(0,y,view.layout.width,edge-y).lineStyle(1,0xb7a36d,.8).lineBetween(p.x,edge,p.x+p.w,edge).setName('shop-art/ink-header'));
 }
 
 /** Quiet sheets follow published shop rectangles; decoration owns no input. */

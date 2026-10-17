@@ -1,6 +1,23 @@
 import {it,expect} from 'vitest';
-import {shopLayout,shopFirstGuideLayout,shopSummaryWrap,shopOfferCopy,shopOwnedDropIndex,shopOwnedHitBox,shopOwnedNameArea,shopGoodsGrid,shopDecisionBox} from '../src/game/ShopLayout';
+import {shopLayout,shopFirstGuideLayout,shopSummaryWrap,shopOfferCopy,shopOwnedDropIndex,shopOwnedHitBox,shopOwnedNameArea,shopGoodsGrid,shopDecisionBox,shopPortraitHeader} from '../src/game/ShopLayout';
 import {intersects} from '../src/game/layout';
+it('reserves the actual menu box for the empty PC toolbar without moving the four goods regions',()=>{
+ for(const [width,height] of [[1000,768],[1180,757],[1366,768]])for(const owned of [0,5]){
+  const menu={x:width-76,y:12,width:64,height:44},before=shopLayout(width,height,12,0,3,true,false,0,0,owned),p=shopLayout(width,height,12,0,3,true,false,0,0,owned,menu);
+  const actions=[p.pc!.inventoryEntry,p.reroll,p.build];
+  for(const [i,b] of actions.entries()){expect(intersects(b,menu)).toBe(false);expect(b.width).toBeGreaterThanOrEqual(44);expect(b.height).toBeGreaterThanOrEqual(44);for(const other of actions.slice(i+1))expect(intersects(b,other)).toBe(false);}
+  if(owned===0)expect(p.pc!.inventoryEntry.x+p.pc!.inventoryEntry.width).toBeLessThanOrEqual(menu.x-8);
+  for(const key of ['shopPanel','jokerOffers','toolOffers','itemOffers','workshop'] as const)expect(p.pc![key]).toEqual(before.pc![key]);
+ }
+});
+it('keeps phone refresh, inventory and coins left of the measured menu including side insets',()=>{
+ for(const width of [320,390,699])for(const right of [0,16]){
+  const menu={x:width-right-56,y:24,width:44,height:44},p=shopLayout(width,900,24,0,3,true,false,8,right,5,menu),h=shopPortraitHeader(p);
+  expect(h.purse.x+h.purse.width).toBeLessThanOrEqual(menu.x-8);
+  for(const b of [h.inventory,h.reroll]){expect(b.y).toBe(menu.y);expect(b.height).toBe(44);expect(b.width).toBeGreaterThanOrEqual(44);expect(intersects(b,menu)).toBe(false);}
+  expect(intersects(h.inventory,h.reroll)).toBe(false);expect(intersects(h.reroll,h.purse)).toBe(false);
+ }
+});
 it('portrait gallery and full-size hit areas remain stable across browser toolbar height changes',()=>{
  for(const width of [320,360,390,412])for(const cols of [2,3])for(const guide of [false,true])for(const height of [640,693,740,844]){
   const p=shopLayout(width,height,12,34,cols,true,guide),tiles=p.shelf.map(b=>shopOfferCopy(p,b,true).tile);
