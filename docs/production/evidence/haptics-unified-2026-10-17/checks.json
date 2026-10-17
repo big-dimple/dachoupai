@@ -1,0 +1,46 @@
+{
+  "testedCommit": "11a7d776bc1e9da4327df7d96a535216d4ba8ca7",
+  "checks": [
+    {
+      "command": "npm exec vitest run tests/shop-haptics.test.ts tests/haptics.test.ts tests/owned-joker-input.test.ts tests/owned-joker-drag-visual.test.ts tests/shop-flow-components.test.ts tests/shop-card-journey.test.ts tests/audio-preferences.test.ts",
+      "status": "PASS",
+      "exitCode": 0,
+      "files": 7,
+      "tests": 69
+    },
+    {
+      "command": "npm run typecheck",
+      "status": "PASS",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run build",
+      "status": "PASS",
+      "exitCode": 0,
+      "scope": "same product source before product commit; final browser harness also builds clean product commit"
+    },
+    {
+      "command": "node tests/haptics.browser.mjs",
+      "status": "PASS",
+      "exitCode": 0,
+      "cases": 10,
+      "buildIdentity": "clean production e2e build; read-only existing harness observers"
+    },
+    {
+      "command": "git diff --check",
+      "status": "PASS",
+      "exitCode": 0
+    },
+    {
+      "command": "git apply --check docs/production/evidence/haptics-unified-2026-10-17/GameScene-score-proposal.patch",
+      "status": "PASS",
+      "exitCode": 0,
+      "scope": "proposal applicability only; not applied or runtime validated"
+    }
+  ],
+  "pending": {
+    "GameScene": "owner integration and runtime checks",
+    "physicalHaptics": "NOT_RUN",
+    "Safari": "NOT_RUN"
+  }
+}

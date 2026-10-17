@@ -1,0 +1,80 @@
+diff --git a/src/game/GameScene.ts b/src/game/GameScene.ts
+index 47bc34e7..cb7ddc6a 100644
+--- a/src/game/GameScene.ts
++++ b/src/game/GameScene.ts
+@@ -84,6 +84,7 @@ import {r2RunModeConfig,R2_MODE_CATALOG} from '../content/r2Modes';
+ import {programEntryLabel,programStatus,showPrograms} from './ProgramDialog';
+ import {bossRulesSeen,trackBossRulesVisible} from './BossPreparationPresentation';
+ import { AudioEngine } from '../audio/AudioEngine';
++import {Haptics,type HapticScope} from '../haptics/Haptics';
+ import { rankLabel, SUIT_SYMBOL, SUITS, type Suit, type PlayingCard } from '../cards/types';
+ import {EffectQueue,type EffectContext} from '../core/EffectQueue';
+ import {r2JokerDefinitionsFor,r2JokerDefinitionFor} from '../domain/r2ContentProfiles';
+@@ -227,6 +228,7 @@ export class GameScene extends Phaser.Scene {
+   private readonly effects = new EffectQueue();
+   private readonly scorePosture = new ScorePosture((config,context)=>this.animate(config,context));
+   private readonly audio = AudioEngine.shared;
++  private scoreHaptic?:HapticScope;
+
+   private view!:SceneView;
+   private handInput?:HandSelectionInput;
+@@ -331,7 +333,7 @@ export class GameScene extends Phaser.Scene {
+       this.candidates.dispose();this.aiCandidates.dispose();this.aiCursor=undefined;this.candidateGhost=undefined;this.candidateUndo=undefined;this.handInput?.destroy();this.handInput=undefined;this.assistIds=[];this.assistGestureStart=undefined;this.controlsLive=false;this.stopScoreFire();
+       if(this.registry.get('runMenuActions')===this.menuActions)this.registry.remove('runMenuActions');
+       this.menuActions=undefined;
+-      this.climaxArtAbort?.abort();if(this.climaxArtId&&this.textures.exists(climaxSourceKey(this.climaxArtId)))this.textures.remove(climaxSourceKey(this.climaxArtId));this.climaxArtId=undefined;this.lifecycle++;this.intent++;this.effects.clear();this.audio.cancelPresentation();this.tweens.killAll();this.time.removeAllEvents();this.jokerViews.clear();this.settledCards.clear();this.cardViews=[];this.selectedIds.clear();this.assistIds=[];this.assistPage=0;this.assistGestureStart=undefined;this.hoveredCardId=undefined;this.hoveredJokerId=undefined;this.jokerHoverPreview=undefined;this.previewCards=undefined;this.presentation=undefined;this.playAuraPulse=undefined;this.playing=false;this.rollingHeat=false;this.dialog.close();
++      this.scoreHaptic?.cancel();this.climaxArtAbort?.abort();if(this.climaxArtId&&this.textures.exists(climaxSourceKey(this.climaxArtId)))this.textures.remove(climaxSourceKey(this.climaxArtId));this.climaxArtId=undefined;this.lifecycle++;this.intent++;this.effects.clear();this.audio.cancelPresentation();this.tweens.killAll();this.time.removeAllEvents();this.jokerViews.clear();this.settledCards.clear();this.cardViews=[];this.selectedIds.clear();this.assistIds=[];this.assistPage=0;this.assistGestureStart=undefined;this.hoveredCardId=undefined;this.hoveredJokerId=undefined;this.jokerHoverPreview=undefined;this.previewCards=undefined;this.presentation=undefined;this.playAuraPulse=undefined;this.playing=false;this.rollingHeat=false;this.dialog.close();
+       window.removeEventListener('keydown',this.keyboard);
+       window.removeEventListener('dachoupai-presentation',settings);
+     });
+@@ -1795,6 +1797,7 @@ export class GameScene extends Phaser.Scene {
+     if(context.signal.aborted||!this.presentation)return Promise.resolve();
+     const positive=Rational.fromJSON(event.after.H).compare(Rational.fromJSON(event.before.H))>0||Rational.fromJSON(event.after.M).compare(Rational.fromJSON(event.before.M))>0;
+     if(positive&&!this.presentation.replay){
++      if(event.operation==='multiply-multiplier'&&Rational.fromJSON(event.after.M).compare(Rational.fromJSON(event.before.M))>0)this.scoreHaptic?.multiplierArrived(event.eventId);
+       const flame=this.ensureScoreFlame();
+       flame.set(scoreFireLevel(this.presentation.originHeat,this.displayedScoreProduct,this.stage.targetHeat),this.reducedMotion);
+       flame.impact(event.eventId,scoreBeat(event).strength==='multiply'?1:event.sourceType==='character'?.75:.5);
+@@ -2087,7 +2090,7 @@ export class GameScene extends Phaser.Scene {
+
+     if(context.signal.aborted)return;
+
+-    if(!presentation.replay){const level=presentation.state.phase==='run-lost'?0:scoreFireLevel(presentation.originHeat,score.finalScore,this.stage.targetHeat);if(!landing)this.ensureScoreFlame().impact('award',level===3?1:level===2?.85:.65);this.audio.scoreImpact(presentation,'award','award',level,score.events.filter(e=>numberImpact(e,this.stage.targetHeat)?.kind==='multiply').length);this.keepScoreReadable();}
++    if(!presentation.replay){this.scoreHaptic?.settlementArrived(score.rootId+'/final-score');const level=presentation.state.phase==='run-lost'?0:scoreFireLevel(presentation.originHeat,score.finalScore,this.stage.targetHeat);if(!landing)this.ensureScoreFlame().impact('award',level===3?1:level===2?.85:.65);this.audio.scoreImpact(presentation,'award','award',level,score.events.filter(e=>numberImpact(e,this.stage.targetHeat)?.kind==='multiply').length);this.keepScoreReadable();}
+     const effects:Promise<void>[]=[];
+     // The credited heat rolls up in the HUD; the exact saved value always lands last.
+     const heatFrom=BigInt(presentation.displayHeat),heatTo=BigInt(presentation.state.stage!.heat);
+@@ -2116,9 +2119,14 @@ export class GameScene extends Phaser.Scene {
+     });this.keepScoreReadable();return Promise.all(effects).then(()=>undefined);
+   }
+   private async presentTrace(score:ScoreTrace,state:RunState,views:readonly CardView[],lifecycle:number,intent:number,beforeHeat=this.heat,replay=false,previousTrace:ScoreTrace|null=this.run.lastTrace,beforeHands?:number,beforeGold?:number):Promise<void> {
+-    this.effects.clear();const generation=this.effects.generation;
++    this.scoreHaptic?.cancel();this.effects.clear();const generation=this.effects.generation;
+     const originHeat=replay?(BigInt(beforeHeat)>BigInt(score.finalScore)?BigInt(beforeHeat)-BigInt(score.finalScore):0n).toString():beforeHeat;
+     const hand=score.cards,presentation={generation,lifecycle,intent,state,score,hand,displayHeat:beforeHeat,originHeat,replay,previousTrace,credited:replay,resourcePlayLeft:!replay&&beforeHands!==undefined?beforeHands-1:undefined,resourceGold:!replay?beforeGold:undefined};this.presentation=presentation;
++    const haptic=this.scoreHaptic=replay?undefined:Haptics.shared.createScope();
++    this.effects.enqueue(async context=>{
++      if(context.signal.aborted){haptic?.cancel();return;}
++      context.signal.addEventListener('abort',()=>haptic?.cancel(),{once:true});
++    });
+     if(replay){
+       this.handStart=0;
+       this.cardViews.forEach(view=>{view.hit?.destroy();view.sheenTween?.remove();this.tweens.killTweensOf(view.container);view.container.destroy();});
+@@ -2189,7 +2197,7 @@ export class GameScene extends Phaser.Scene {
+     for(const cue of opponentCues.filter(cue=>cue.phase==='outcome'))queueOpponent(cue);
+     let failed=false;
+     try {await this.effects.drain();}
+-    catch {failed=true;if(this.alive(lifecycle,intent))this.resultText.setText('演出已停止，确定结果已保存。');}
++    catch {this.scoreHaptic?.cancel();failed=true;if(this.alive(lifecycle,intent))this.resultText.setText('演出已停止，确定结果已保存。');}
+     if(this.alive(lifecycle,intent)&&this.presentation===presentation&&(failed||this.effects.isCurrent(generation)))this.completePresentation(presentation);
+   }
+
+@@ -2202,7 +2210,7 @@ export class GameScene extends Phaser.Scene {
+     this.playing=false;this.render();this.revealDrawnCards(presentation.hand.map(card=>card.id));
+   }
+
+-  fastForward():void {const presentation=this.presentation;if(!presentation){if(this.heroClimax||this.refillPresentation)this.effects.clear();return;}this.effects.clear();this.audio.cancelPresentation();this.cameras.main.resetFX();this.heatText.setScale(1);this.scoreTotal.setScale(1);this.completePresentation(presentation);}
++  fastForward():void {this.scoreHaptic?.cancel();const presentation=this.presentation;if(!presentation){if(this.heroClimax||this.refillPresentation)this.effects.clear();return;}this.effects.clear();this.audio.cancelPresentation();this.cameras.main.resetFX();this.heatText.setScale(1);this.scoreTotal.setScale(1);this.completePresentation(presentation);}
+   replayLastTrace():void {
+     if(this.playing||!this.run.lastTrace)return;
+     this.clearHover();this.playing=true;this.playButton.disableInteractive();const intent=++this.intent;

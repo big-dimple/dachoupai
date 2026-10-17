@@ -82,7 +82,7 @@ export class OwnedJokerDragVisual {
   rebind(){if(this.saving){this.overlay=undefined;this.shadow=undefined;this.label=undefined;this.destinations.clear();this.paint(true);}}
   /** Sample actual tween positions immediately before old faces are destroyed. */
   capture(){for(const [id,art] of this.surface().arts)if(art.active)this.positions.set(id,{x:art.x,y:art.y,scale:art.scaleX});}
-  settle(saved:boolean){
+  settle(saved:boolean,onLanded?:()=>void){
     const s=this.surface();this.removeLayers();
     for(const [i,id] of s.ids.entries()){
       const art=s.arts.get(id),b=s.slots[i];if(!art?.active||!b)continue;
@@ -90,8 +90,8 @@ export class OwnedJokerDragVisual {
       const prior=this.positions.get(id),pose={x:b.x+b.width/2,y:b.y+b.height/2,scaleX:1,scaleY:1,alpha:1,angle:0};
       if(saved&&prior&&!this.reduced()){
         art.setPosition(prior.x,prior.y).setScale(prior.scale);s.root.bringToTop(art);
-        this.scene.tweens.add({targets:art,...pose,duration:OWNED_DRAG.settleMs,ease:'Cubic.easeOut'});
-      }else art.setPosition(pose.x,pose.y).setScale(1).setAlpha(1).setAngle(0);
+        this.scene.tweens.add({targets:art,...pose,duration:OWNED_DRAG.settleMs,ease:'Cubic.easeOut',...(id===this.id&&onLanded?{onComplete:onLanded}:{})});
+      }else {art.setPosition(pose.x,pose.y).setScale(1).setAlpha(1).setAngle(0);if(saved&&id===this.id)onLanded?.();}
     }
   }
   cancel(){if(this.saving)return;this.settle(false);}

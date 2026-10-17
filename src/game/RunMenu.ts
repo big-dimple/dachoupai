@@ -10,6 +10,8 @@ import type {GameScene} from './GameScene';
 import {buildInfo,formatBuildInfo} from '../platform/buildInfo';
 import {AudioEngine} from '../audio/AudioEngine';
 import {readAudioPreferences} from '../audio/preferences';
+import {Haptics} from '../haptics/Haptics';
+import {installHapticSetting} from '../haptics/HapticSetting';
 import {installFullscreen} from '../platform/Fullscreen';
 import {characterForRun} from './CharacterRunCopy';
 import {R2_JOKERS} from '../content/r2Schema';
@@ -35,7 +37,7 @@ export function routeSavedRun(game:Phaser.Game):void {
 
 /** Progress and presentation preferences survive scene changes. */
 export function installRunMenu(game:Phaser.Game,getActions:()=>RunMenuActions|undefined=()=>game.registry.get('runMenuActions') as RunMenuActions|undefined):void {
-  const session=gameSession(),audio=AudioEngine.shared,fullscreen=installFullscreen();
+  const session=gameSession(),audio=AudioEngine.shared,fullscreen=installFullscreen(),haptics=Haptics.shared;
   const host=document.createElement('div'),toggle=document.createElement('button'),fullButton=document.createElement('button'),modal=document.createElement('dialog'),panel=document.createElement('section'),status=document.createElement('p');
   const fullscreenInfo=document.createElement('p'),fullscreenHint=document.createElement('div'),hintCopy=document.createElement('span'),hintClose=document.createElement('button');
   let previousFocus:HTMLElement|undefined,attentionKey='',hintSeen=false;
@@ -56,9 +58,9 @@ export function installRunMenu(game:Phaser.Game,getActions:()=>RunMenuActions|un
     toggle.setAttribute('aria-label',toggle.classList.contains('needs-attention')?'菜单，有进度提示待处理':'菜单');
     if(previousFocus?.isConnected&&!previousFocus.hidden)previousFocus.focus({preventScroll:true});else toggle.focus({preventScroll:true});previousFocus=undefined;
   };
-  const close=()=>{if(modal.open){if(typeof modal.close==='function')modal.close();else modal.removeAttribute('open');}restoreAnchor();};
+  const close=()=>{haptics.stop();if(modal.open){if(typeof modal.close==='function')modal.close();else modal.removeAttribute('open');}restoreAnchor();};
   const open=()=>{
-    if(modal.open)return;previousFocus=document.activeElement instanceof HTMLElement?document.activeElement:undefined;
+    if(modal.open)return;haptics.stop();previousFocus=document.activeElement instanceof HTMLElement?document.activeElement:undefined;
     refreshPlayback();
     // Only the menu anchor stays on the play surface, including browser fullscreen.
     modal.prepend(toggle);toggle.textContent='关闭';toggle.setAttribute('aria-expanded','true');toggle.setAttribute('aria-label','关闭菜单');
@@ -68,7 +70,7 @@ export function installRunMenu(game:Phaser.Game,getActions:()=>RunMenuActions|un
   };
   toggle.onclick=()=>{if(modal.open){audio.cancel();close();}else{audio.select();open();}};
   modal.addEventListener('cancel',event=>{event.preventDefault();close();});
-  modal.addEventListener('close',()=>{if(toggle.parentElement===modal)restoreAnchor();});
+  modal.addEventListener('close',()=>{haptics.stop();if(toggle.parentElement===modal)restoreAnchor();});
   modal.addEventListener('click',event=>{if(event.target===modal)close();});
   modal.addEventListener('keydown',event=>{if(event.key==='Escape'&&typeof modal.showModal!=='function'){event.preventDefault();close();}});
   const button=(name:string,action:()=>void|Promise<unknown>,container:HTMLElement=panel)=>{
@@ -107,7 +109,7 @@ export function installRunMenu(game:Phaser.Game,getActions:()=>RunMenuActions|un
     routeSavedRun(game);
     await new Promise<void>(resolve=>game.events.once('poststep',resolve));close();
   },recovery);
-  const settingsTools=document.createElement('details'),settingsSummary=document.createElement('summary');settingsSummary.textContent='画面与声音';settingsTools.className='run-menu-settings-tools';settingsTools.append(settingsSummary);
+  const settingsTools=document.createElement('details'),settingsSummary=document.createElement('summary');settingsSummary.textContent='画面、声音与触觉';settingsTools.className='run-menu-settings-tools';settingsTools.append(settingsSummary);
   const settings=document.createElement('fieldset'),legend=document.createElement('legend');legend.textContent='演出与音量';settings.className='run-menu-settings';settings.append(legend);settingsTools.append(settings);panel.append(settingsTools);
   const saveTools=document.createElement('details'),saveSummary=document.createElement('summary');saveSummary.textContent='进度与存档';saveTools.append(saveSummary);
   const start=button('开始新局',async()=>{
@@ -136,6 +138,8 @@ export function installRunMenu(game:Phaser.Game,getActions:()=>RunMenuActions|un
   const reduced=document.createElement('input'),reducedLabel=document.createElement('label');reduced.type='checkbox';reduced.checked=session.reducedMotion;reducedLabel.append(reduced,document.createTextNode(' 减少动态'));settings.append(reducedLabel);
   const presentation=()=>session.preferences(Number(speed.value) as 1|2|4,reduced.checked);
   speed.onchange=presentation;reduced.onchange=presentation;
+  const removeHapticSetting=installHapticSetting(settings,haptics);
+  settingsTools.addEventListener('toggle',()=>{if(!settingsTools.open)haptics.stop();});
   const audioControls=document.createElement('div');audioControls.className='audio-controls';settings.append(audioControls);
   for(const [bus,label]of [['music','背景音量'],['sfx','音效音量']] as const){
     const row=document.createElement('label'),name=document.createElement('span'),range=document.createElement('input'),value=document.createElement('output');
@@ -194,5 +198,5 @@ export function installRunMenu(game:Phaser.Game,getActions:()=>RunMenuActions|un
   const refreshLivePlayback=()=>{if(modal.open)refreshPlayback();};game.events.on('poststep',refreshLivePlayback);
   const refreshMenuActions=(_parent:unknown,key:string)=>{if(key==='runMenuActions')refreshPlayback();};
   for(const event of ['setdata','changedata','removedata'])game.registry.events.on(event,refreshMenuActions);
-  game.events.once('destroy',()=>{game.events.off('poststep',refreshLivePlayback);catalogDialog.close();unsubscribe();unsubscribeFullscreen();for(const event of ['setdata','changedata','removedata'])game.registry.events.off(event,refreshMenuActions);fullscreen.dispose();if(modal.open)modal.close();host.remove();});
+  game.events.once('destroy',()=>{game.events.off('poststep',refreshLivePlayback);catalogDialog.close();unsubscribe();unsubscribeFullscreen();for(const event of ['setdata','changedata','removedata'])game.registry.events.off(event,refreshMenuActions);fullscreen.dispose();removeHapticSetting();haptics.dispose();if(modal.open)modal.close();host.remove();});
 }
