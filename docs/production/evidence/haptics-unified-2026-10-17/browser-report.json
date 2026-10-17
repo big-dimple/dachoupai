@@ -1,0 +1,206 @@
+{
+  "testedCommit": "11a7d776bc1e9da4327df7d96a535216d4ba8ca7",
+  "build": {
+    "version": "C03",
+    "builtAt": "2026-10-17T08:48:57.825Z",
+    "revision": "11a7d776bc1e9da4327df7d96a535216d4ba8ca7",
+    "sourceStatus": "clean",
+    "modified": false
+  },
+  "browser": "153.0.8010.12",
+  "headless": true,
+  "viewport": {
+    "width": 390,
+    "height": 740
+  },
+  "scope": "Real Chromium touch input and settings DOM; API requests are not hardware confirmation",
+  "cases": [
+    {
+      "name": "First trusted touch activates on release, not pointerdown",
+      "status": "PASS",
+      "first": {
+        "x": 356,
+        "y": 34,
+        "active": false
+      },
+      "during": false,
+      "released": true,
+      "input": [
+        {
+          "type": "pointerdown",
+          "trusted": true,
+          "active": false
+        },
+        {
+          "type": "pointerup",
+          "trusted": true,
+          "active": true
+        }
+      ]
+    },
+    {
+      "name": "Independent touch control persists off while reduced motion changes",
+      "status": "PASS",
+      "saved": {
+        "version": 1,
+        "enabled": false
+      }
+    },
+    {
+      "name": "Reload retains off; enabling states device uncertainty",
+      "status": "PASS"
+    },
+    {
+      "name": "Real menu close stops the API request and rejects the old scope callback (layer fixture)",
+      "status": "PASS",
+      "requests": [
+        {
+          "pattern": [
+            28,
+            45,
+            36
+          ],
+          "accepted": true
+        },
+        {
+          "pattern": 0,
+          "accepted": true
+        }
+      ]
+    },
+    {
+      "name": "Natural shop purchase follows preview → saved ownership → one API request",
+      "status": "PASS",
+      "before": {
+        "seq": 1,
+        "gold": 6,
+        "ids": [],
+        "offer": {
+          "offerId": "run/1792226948485/laohuan/shop/0/0/joker/0",
+          "definitionId": "e06",
+          "price": 6,
+          "edition": "none",
+          "consumed": false
+        }
+      },
+      "after": {
+        "seq": 2,
+        "ids": [
+          "run/1792226948485/laohuan/joker/run/1792226948485/laohuan/command/2"
+        ],
+        "requests": [
+          {
+            "pattern": [
+              12,
+              30,
+              18
+            ],
+            "accepted": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "Controlled funding checkpoint imported through normal save UI for two-card drag fixture",
+      "status": "PASS",
+      "controlledGold": 100
+    },
+    {
+      "name": "Controlled-funds shop purchase follows preview → saved ownership → one API request",
+      "status": "PASS",
+      "before": {
+        "seq": 2,
+        "gold": 100,
+        "ids": [
+          "run/1792226948485/laohuan/joker/run/1792226948485/laohuan/command/2"
+        ],
+        "offer": {
+          "offerId": "run/1792226948485/laohuan/shop/0/0/joker/1",
+          "definitionId": "e12",
+          "price": 6,
+          "edition": "none",
+          "consumed": false
+        }
+      },
+      "after": {
+        "seq": 3,
+        "ids": [
+          "run/1792226948485/laohuan/joker/run/1792226948485/laohuan/command/2",
+          "run/1792226948485/laohuan/joker/run/1792226948485/laohuan/command/3"
+        ],
+        "requests": [
+          {
+            "pattern": [
+              12,
+              30,
+              18
+            ],
+            "accepted": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "Real touch hold → saved reorder → face landing requests pickup, stop and one landing beat",
+      "status": "PASS",
+      "order": {
+        "seq": 3,
+        "ids": [
+          "run/1792226948485/laohuan/joker/run/1792226948485/laohuan/command/2",
+          "run/1792226948485/laohuan/joker/run/1792226948485/laohuan/command/3"
+        ]
+      },
+      "reordered": {
+        "seq": 4,
+        "ids": [
+          "run/1792226948485/laohuan/joker/run/1792226948485/laohuan/command/3",
+          "run/1792226948485/laohuan/joker/run/1792226948485/laohuan/command/2"
+        ],
+        "requests": [
+          {
+            "pattern": [
+              12
+            ],
+            "accepted": true
+          },
+          {
+            "pattern": 0,
+            "accepted": true
+          },
+          {
+            "pattern": [
+              16
+            ],
+            "accepted": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "Real touch cancellation stops pickup and commits no reorder or success beat",
+      "status": "PASS",
+      "canceled": {
+        "seq": 4,
+        "requests": [
+          {
+            "pattern": [
+              12
+            ],
+            "accepted": true
+          },
+          {
+            "pattern": 0,
+            "accepted": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "Absent API is disabled with an explicit unsupported explanation (capability fixture)",
+      "status": "PASS"
+    }
+  ],
+  "physicalFeel": "NOT_RUN",
+  "sceneSuccessPaths": "Shop purchases, saved drag landing and pointercancel exercised with real UI/persistence; GameScene NOT_RUN",
+  "status": "PASS"
+}
