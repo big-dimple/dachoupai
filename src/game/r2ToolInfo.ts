@@ -232,18 +232,18 @@ export function toolInfo(id:string,identity:R2ContentIdentity={}):ToolInfo {
 function itemDescription(item:R2LongTermDefinition):string {
   const op=item.operation;let effect:string;
   switch(op.kind){
-    case 'hand-limit':effect=`下一场入场手牌上限+${op.amount}，最多${limits.handMaximum}张，当前场不补手牌。`;break;
-    case 'discard-limit':effect=`下一场入场弃牌次数+${op.amount}，当前场次数不增加。`;break;
-    case 'hands-limit':effect=`下一场入场出牌次数+${op.amount}，当前场次数不增加。`;break;
-    case 'interest-cap':effect=`每次过关结算利息上限+${op.amount}金，在奖励前读取；不会直接赠送金币，须有足够存款产生利息。`;break;
-    case 'joker-offer-count':effect=`后续开店与刷新时唐宋牌货位${op.base}→${op.base+op.amount}，当前已生成货架不补货。`;break;
-    case 'paid-reroll-discount':effect=`后续付费刷新价格−${op.amount}金，至少${op.minimum}金；免费刷新照常免费。`;break;
-    case 'consumable-slots':effect=`工具库存容量+${op.amount}，最多${limits.consumableSlotsMaximum}格；立即按真实容量生效，失去其他扩容来源时须仍装得下。`;break;
-    case 'deletion-floor':effect=`主动删牌与幻灵牺牲的牌组下限降为${op.floor}张；仍须保留当前场合法行动。玻璃破碎可以继续低于此下限。`;break;
-    case 'boss-most-used-hand-upgrade':effect=`Boss成功过关时，将本章使用最多的已发现牌型升${op.levels}级；并列按牌型表从低到高选择，已到${limits.handLevelMaximum}级则跳过、不重选，已确定的计分保持原结果。`;break;
-    case 'first-purchase-discount':effect=`每间商店第一次成功购买价格−${op.amount}金，至少${op.minimum}金，可与唐宋牌优惠叠加。采购证自身这次购买不享受自身优惠；取消与失败不占用首购资格。`;break;
-    case 'item-offer-count':effect=`后续开店长期道具货位${op.base}→${op.base+op.amount}；当前货架不补货，刷新也不重抽该货架。`;break;
-    case 'first-normal-clear-per-chapter':effect=`每章首次普通场成功过关时，若已持有此道具则金币+${op.gold}；跳过普通场不占资格。首次成功过关即消耗该章资格，未持有时也如此，之后购买不追补。`;break;
+    case 'hand-limit':effect=`从下一场起，本局每场入场手牌上限+${op.amount}，最多${limits.handMaximum}张；当前场不补手牌。`;break;
+    case 'discard-limit':effect=`从下一场起，本局每场弃牌次数+${op.amount}；当前场次数不增加。`;break;
+    case 'hands-limit':effect=`从下一场起，本局每场出牌次数+${op.amount}；当前场次数不变。`;break;
+    case 'interest-cap':effect=`本局每次过关结算时，利息上限+${op.amount}金，在奖励前读取；不会直接赠送金币，须有足够存款产生利息。`;break;
+    case 'joker-offer-count':effect=`本局后续开店与刷新时，唐宋牌货位${op.base}→${op.base+op.amount}；当前已生成货架不补货。`;break;
+    case 'paid-reroll-discount':effect=`本局后续每次付费刷新价格−${op.amount}金，至少${op.minimum}金；免费刷新照常免费。`;break;
+    case 'consumable-slots':effect=`购入即生效：本局工具库存容量+${op.amount}，最多${limits.consumableSlotsMaximum}格。失去其他扩容来源时，其余工具仍须装得下。`;break;
+    case 'deletion-floor':effect=`购入起，本局主动删牌与幻灵牺牲的牌组下限降为${op.floor}张；仍须保留当前场合法行动。玻璃破碎可以继续低于此下限。`;break;
+    case 'boss-most-used-hand-upgrade':effect=`本局每次Boss成功过关时，将本章使用最多的已发现牌型升${op.levels}级；并列按牌型表从低到高选择，已到${limits.handLevelMaximum}级则跳过、不重选，已确定的计分保持原结果。`;break;
+    case 'first-purchase-discount':effect=`本局每间商店第一次成功购买价格−${op.amount}金，至少${op.minimum}金，可与唐宋牌优惠叠加。采购证自身这次购买不享受自身优惠；取消与失败不占用首购资格。`;break;
+    case 'item-offer-count':effect=`本局后续开店时，长期道具货位${op.base}→${op.base+op.amount}；当前货架不补货，刷新也不重抽该货架。`;break;
+    case 'first-normal-clear-per-chapter':effect=`本局每章首次普通场成功过关时，若已持有此道具则金币+${op.gold}；每章一次，跳过普通场不占资格。首次成功过关即消耗该章资格，未持有时也如此，之后购买不追补。`;break;
     default:return impossible(op);
   }
   return `商店基准售价${item.price}金。${effect}本局持续生效，每种不可重复持有、不可出售，共最多${limits.longTermSlots}件长期道具。`;
