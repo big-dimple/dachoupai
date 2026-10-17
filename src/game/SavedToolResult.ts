@@ -23,7 +23,7 @@ export function savedToolFacts(before:R2RunState,after:R2RunState,action:Extract
  delta('本场剩余弃牌',before.stage?.discardsLeft,after.stage?.discardsLeft);delta('免费刷新',before.shop?.freeRerolls,after.shop?.freeRerolls);
  delta('下场出牌次数永久减少量',before.spectralModifiers.handsPenalty,after.spectralModifiers.handsPenalty);delta('下场手牌上限永久减少量',before.spectralModifiers.handPenalty,after.spectralModifiers.handPenalty);delta('下场手牌上限永久增加量',before.spectralModifiers.cleanSlateBonus,after.spectralModifiers.cleanSlateBonus);
  for(const old of before.jokers){const current=after.jokers.find(j=>j.instanceId===old.instanceId),name=r2JokerDefinitionFor(before,old.definitionId).name;if(!current)resources.push(name+' · 永久献出');else if(current.edition!==old.edition)resources.push(name+' · '+editionLabel(old.edition)+' → '+editionLabel(current.edition));}
- for(const current of after.jokers.filter(j=>!before.jokers.some(old=>old.instanceId===j.instanceId)))resources.push('实际获得大丑牌 · '+r2JokerDefinitionFor(after,current.definitionId).name);
+ for(const current of after.jokers.filter(j=>!before.jokers.some(old=>old.instanceId===j.instanceId)))resources.push('实际获得唐宋牌 · '+r2JokerDefinitionFor(after,current.definitionId).name);
  return {tool,changes,added,levels,resources,deckBefore:liveBefore.length,deckAfter:liveAfter.length,goldBefore:before.gold,goldAfter:after.gold,sacrifice:changes.find(c=>c.before.id===action.sacrificeId&&!c.after),beneficiaries:changes.filter(c=>c.after&&action.targetIds.includes(c.before.id)),key:after.runId+'/'+after.commandSeq};
 }
 /** Readable result remains after optional finite motion; skip/close never own a command. */

@@ -55,18 +55,10 @@ function decorate(dialog:HTMLDialogElement,quote:string):void {
   const identity=document.createElement('div'),seal=document.createElement('b'),role=document.createElement('span');identity.className='opponent-identity';seal.className='opponent-seal';seal.textContent='回音';role.textContent='认招 · 接招 · 见真章';identity.append(seal,role);dialog.querySelector('.dialog-intro')?.prepend(identity);
   const text=document.createElement('p');text.className='opponent-quote';text.textContent='“'+quote+'”';dialog.querySelector('.dialog-intro')?.prepend(text);
 }
+import {presentStageSelection} from './BlindSelectPresentation';
 /** Resolves false on cancel/scene shutdown, with no EnterStage or draw committed. */
-export function presentOpponentEntrance(dialog:DetailDialog,run:R2RunState):Promise<boolean> {
-  const spec=getR2Stage(run.stageIndex,run.tourMode,run.difficulty,run);
-  if(run.phase!=='stage-ready'||run.stageIndex%3!==2||run.boss.definitionId!=='B05'||!spec)return Promise.resolve(true);
-  return new Promise(resolve=>{
-    let entered=false;
-    const d=dialog.open('回音墙 · 入场前',
-      '连续两手同牌型，只将等级后的牌型基础热度减半。普通点数、增强和大丑牌热度正常。首手不减半。',
-      [{label:'入场 · 看手牌',primary:true,run:()=>{entered=true;dialog.close();}}],
-      {closeLabel:'稍后入场',onClose:()=>resolve(entered),summaryBody:spec.name+' · 目标 '+heatText(spec.targetHeat),effectBody:'首手基础正常\n再出同型 → 仅牌型基础½',collapseRules:true,rulesLabel:'具体减什么'});
-    decorate(d,'来，别让我听到第二遍。');d.dataset.opponentPhase='entrance';d.dataset.phase='entrance';d.dataset.attitude='composed';d.dataset.stageIndex=String(run.stageIndex);d.dataset.commandSeq=String(run.commandSeq);
-  });
+export function presentOpponentEntrance(dialog:DetailDialog,run:R2RunState,scene?:Phaser.Scene):Promise<boolean> {
+  return presentStageSelection(dialog,run,scene);
 }
 export function showOpponentChoices(dialog:DetailDialog,run:R2RunState,choices:readonly OpponentChoice[],choose:(choice:OpponentChoice)=>void,extra:()=>void,canChoose:()=>boolean):void {
   const stage=run.stage!,previous=stage.previousHandType;

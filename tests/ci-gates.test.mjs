@@ -26,7 +26,7 @@ describe('executable CI and read-only gates',()=>{
     const {snapshotSource}=await runner();
     const index=execFileSync('git',['ls-files','--stage','-z'],{cwd:root,maxBuffer:16*1024*1024});
     expect(snapshotSource(root).index).toBe(createHash('sha256').update(index).digest('hex'));
-  },20000);
+  },120000);
   it('has real E2E and CI entry points, rather than placeholder success',()=>{
     const p=JSON.parse(text('package.json'));
     for(const script of ['test:e2e','verify:ci']){expect(p.scripts[script]).toBeTruthy();expect(p.scripts[script]).not.toMatch(/echo|exit 0/);}

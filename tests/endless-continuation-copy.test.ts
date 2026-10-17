@@ -23,7 +23,7 @@ describe('endless confirmation reads the actual run target contract',()=>{
     const before=structuredClone(bounded),copy=endlessContinuationCopy(Object.freeze(bounded));
     expect(copy).toContain('同场次目标按 1.1 倍递增，最终向上取整');
     expect(copy).not.toContain('2.4');expect(bounded).toEqual(before);
-    expect(copy).toContain('保留当前牌组、大丑牌、成长、道具与金币，从第九章商店接续');
+    expect(copy).toContain('保留当前牌组、唐宋牌、成长、道具与金币，从第九章商店接续');
     expect(copy).toContain('取消可留在胜利页');
   });
   it.each(historical)('keeps 2.4 for saved $contentVersion',identity=>{

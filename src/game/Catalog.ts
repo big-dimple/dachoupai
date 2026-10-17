@@ -11,7 +11,8 @@ import {r2JokerExtraHelp,r2JokerStateText} from './r2Help';
 import {toolInfo,itemInfo,goodsArtPortrait} from './r2ToolInfo';
 import {jokerArtUrl,jokerArtPreviewUrl} from './jokerArt';
 import {enhancementReference,enhancementAcquisition,enhancementToolReference,enhancementToolAcquisition} from './EnhancementReference';
-export const CATALOG_KINDS={joker:'大丑牌',tool:'道具',enhancement:'扑克增强',item:'长期道具',hand:'牌型'} as const;
+import {cardDisplayName} from './tangsongCardNames';
+export const CATALOG_KINDS={joker:'唐宋牌',tool:'道具',enhancement:'扑克增强',item:'长期道具',hand:'牌型'} as const;
 export const CATALOG_USES=['计分','成长','重触','资源','改牌','扩容'] as const;
 export type CatalogKind=keyof typeof CATALOG_KINDS;
 export type CatalogSource='持有'|'现货'|'上手来源';
@@ -47,7 +48,7 @@ export function catalogFacts(run?:R2RunState){
   const reference=jokerMemoryAbility(d,undefined,publicJokerMemoryContext({phase:'shop',gold:0,stage:null,lastTrace:null,shop:null},{hand:[],scoringLimited:false,deckSize:0,jokerSlots:5,jokerCount:0}));
   const owned=run?.jokers.filter(j=>j.definitionId===d.id)??[],preview=jokerArtPreviewUrl(d.id),url=jokerArtUrl(d.id);
   const current=owned.length?owned.map(j=>'当前持有 · 第'+(run!.jokers.indexOf(j)+1)+'槽\n现存：'+r2JokerStateText(j,d)+'\n实际买价 '+j.paidPrice+' 金').join('\n\n'):run?'未持有当前实例；以下仅为规则资料。':'没有当前保存局；以下仅为规则资料。';
-  entries.push({key:'joker/'+d.id,id:d.id,kind:'joker',name:d.name,summary:reference.plain?.line??reference.condition,rules:[reference.condition,reference.value,reference.rules].filter(Boolean).join('\n'),current,sources:sources('joker',d.id),uses:jokerUses(d),thumbnail:preview,rarity:d.rarity,portrait:url?{url,thumbnailUrl:preview,alt:d.name,layout:'card',caption:d.name}:undefined});
+  entries.push({key:'joker/'+d.id,id:d.id,kind:'joker',name:cardDisplayName(d.id,d.name),summary:reference.plain?.line??reference.condition,rules:[reference.condition,reference.value,reference.rules].filter(Boolean).join('\n'),current,sources:sources('joker',d.id),uses:jokerUses(d),thumbnail:preview,rarity:d.rarity,portrait:url?{url,thumbnailUrl:preview,alt:cardDisplayName(d.id,d.name),layout:'card',caption:cardDisplayName(d.id,d.name)}:undefined});
  }
  for(const d of R2_TOOLS){const info=toolInfo(d.id,identity),reference=enhancementToolReference(d.id),count=run?.consumables.filter(c=>c.definitionId===d.id).length??0;entries.push({key:'tool/'+d.id,id:d.id,kind:'tool',name:info.name,summary:reference?.summary??info.summary,rules:[reference?.rules,info.description,info.cost,info.risk].filter(Boolean).join('\n\n'),...(reference?{example:reference.example,acquisition:enhancementToolAcquisition(d.id,identity,run)}:{}),current:count?'当前道具箱持有 '+count+' 件；这里只查询，不使用。':run?'当前道具箱未持有；以下仅为规则资料。':'没有当前保存局；以下仅为规则资料。',sources:sources('tool',d.id),uses:operationUses(d.operation.kind),thumbnail:info.artUrl,portrait:goodsArtPortrait(info)});}
  for(const d of R2_ENHANCEMENTS){

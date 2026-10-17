@@ -11,7 +11,7 @@ import {purchaseValueWindow,purchaseValueWindowText} from './ShopPurchaseValue';
 export function toolPermanentValue(state:R2RunState,id:string,action?:Extract<Action,{type:'UseConsumable'}>){
  if(!['S03','S04','S07'].includes(id))return '';
  const cost=id==='S03'?`当前每场${r2HandsBudget(state)}次出牌；使用后从下场起永久少1次。`:
-  id==='S04'?`当前手牌上限${r2HandLimit(state)}；使用后从下场起永久少1张。`:'牺牲所选大丑牌，永久失去其本体、已有成长与版次；不返出售金币，不触发出售成长。';
+  id==='S04'?`当前手牌上限${r2HandLimit(state)}；使用后从下场起永久少1张。`:'牺牲所选唐宋牌，永久失去其本体、已有成长与版次；不返出售金币，不触发出售成长。';
  const summary=cost+'未来可活场数、抽到改造牌与回本未知；永久效果不按无限收益计价。';
  if(!action)return summary+'选定对象后核对；当前可保留不买／不用。';
  const result=applyCommand(state,{runId:state.runId,commandId:state.runId+'/tool-value/'+(state.commandSeq+1),expectedSeq:state.commandSeq,action});
