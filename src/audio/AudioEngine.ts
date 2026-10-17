@@ -3,7 +3,7 @@ import bgmManifest from '../../public/assets/audio/bgm/manifest.json';
 import {DEFAULT_AUDIO} from './preferences';
 import {FOLEY,FOLEY_SAMPLES,type FoleyKind,type Layer} from './foley';
 import {sampleBody,type SampleBody} from './sampleBody';
-import {awardForScore,chainRate,scoreStrikeRate,scoreStrikeStep,scoreArrivalKind,MAX_RECORDED_RATE,EFFECT_VOICE_BUDGET,SCORE_VOICE_BUDGET,SCORE_GAIN_BUDGET,ACCENT_TAIL_FLOOR} from './mixPolicy';
+import {awardForScore,chainRate,scoreStrikeRate,scoreStrikeStep,scoreStrikeOrdinal,scoreArrivalKind,MAX_RECORDED_RATE,EFFECT_VOICE_BUDGET,SCORE_VOICE_BUDGET,SCORE_GAIN_BUDGET,ACCENT_TAIL_FLOOR} from './mixPolicy';
 
 export type AudioBus = 'master' | 'music' | 'sfx' | 'ui';
 export type AudioScene = 'menu' | 'shop' | 'table' | 'boss' | 'success' | 'failure';
@@ -335,16 +335,15 @@ export class AudioEngine {
     let seen=this.scoreCues.get(presentation);if(!seen){seen=new Set();this.scoreCues.set(presentation,seen);}const id='recorded/'+eventId+'/'+(kind==='flight'||kind==='award'?kind:'arrival');
     if(seen.has(id)||seen.size>=1024)return;seen.add(id);if(timing.signal?.aborted||Number.isFinite(timing.durationMs)&&timing.durationMs!<=0||!this.canPlay('sfx'))return;
     if(kind!=='award'&&kind!=='flight')kind=scoreArrivalKind(presentation,eventId,kind);
-    const rate=scoreStrikeRate(presentation,eventId,kind,chain);
-    const pulse=Number.isFinite(timing.pulse)?Math.max(0,Math.floor(timing.pulse!)):scoreStrikeStep(presentation,eventId,chain);
-    const paired=!!timing.paired&&kind!=='award'&&kind!=='flight';
     const weight=timing.accentWeight===undefined?1:bounded(timing.accentWeight,1);if(weight===0)return;
-    // Actual multiplication still owns identity/rate; phrase weak beats use a
-    // thinner wood strike, reserving glass for the director's true key factor.
-    const sound=kind==='award'?awardForScore(presentation):kind==='flight'?'flight':timing.pulse!==undefined&&weight<.9?(pulse%2?'scoreKey':'scoreAdd'):kind==='multiply'?(paired?'scoreDoubleImpact':'scoreMultiply'):kind==='key'?(tier>=2?'scoreBurst':'scoreKey'):(['scoreAdd','scoreKey','scoreBurst'] as const)[pulse%3];
+    const rate=kind==='add'||kind==='key'?1:scoreStrikeRate(presentation,eventId,kind,chain);
+    const pulse=scoreStrikeStep(presentation,eventId,chain);
+    const notePulse=Number.isFinite(timing.pulse)?Math.max(0,Math.floor(timing.pulse!))%5:scoreStrikeOrdinal(presentation,eventId,chain)%5;
+    const paired=!!timing.paired&&kind!=='award'&&kind!=='flight';
+    const sound=kind==='award'?awardForScore(presentation):kind==='flight'?'flight':kind==='multiply'?(paired?'scoreDoubleImpact':'scoreMultiply'):kind==='key'?(tier>=2?'scoreBurst':'scoreKey'):(['scoreAdd','scoreKey','scoreBurst'] as const)[pulse];
     const durationMs=paired?(Number.isFinite(timing.durationMs)?Math.min(45,timing.durationMs!):45):timing.durationMs;
     const scale=kind==='award'||!Number.isFinite(durationMs)?1:Math.max(.25,Math.min(1,durationMs!/(Math.max(...FOLEY[sound].layers.map(l=>(l.delay??0)+l.duration))*1000)));
-    const voices=this.cue(sound,'sfx',rate,0,(kind==='award'?1+bounded(tier,3)*.035:1)*weight,undefined,scale);
+    const voices=this.cue(sound,'sfx',rate,0,weight*(kind==='award'?1+bounded(tier,3)*.035:1),undefined,scale,notePulse);
     if(paired&&voices.length){
       let pending=this.scoreRebounds.get(presentation);if(!pending){pending=new Map();this.scoreRebounds.set(presentation,pending);}
       pending.set(eventId,{rate,weight,signal:timing.signal});
@@ -550,7 +549,7 @@ export class AudioEngine {
   /** minGap/per-semantic oldest-voice cap adapted from Inkwave audio.js 258–280 (MIT).
    * Gate complete recipes, so delayed layers survive without setTimeout callbacks.
    * Variants rotate locally; never read the domain RNG or queue a missing recording. */
-  private cue(kind:FoleyKind,bus:VoiceBus='sfx',rate=1,offset=0,strength=1,duration?:number,timeScale=1):Voice[] {
+  private cue(kind:FoleyKind,bus:VoiceBus='sfx',rate=1,offset=0,strength=1,duration?:number,timeScale=1,pulse=0):Voice[] {
     if(!this.canPlay(bus))return [];
     const recipe=FOLEY[kind],now=this.context!.currentTime,time=now+offset,last=this.cueTimes.get(kind);
     if(last!==undefined&&time>=last&&time-last+1e-6<recipe.gap)return [];
@@ -560,7 +559,7 @@ export class AudioEngine {
     // Missing families stay silent; this never queues or retries a past cue.
     const layers=recipe.layers.flatMap(original=>{
       const layer:Layer=timeScale===1?original:{...original,duration:Math.max(.035,original.duration*timeScale),delay:(original.delay??0)*timeScale,attack:(original.attack??.005)*timeScale,...(original.filter?{filter:{...original.filter,sweep:original.filter.sweep*timeScale}}:{})};
-      const rotated=layer.samples.map((_,i)=>layer.samples[(variant+i)%layer.samples.length]);
+      const rotated=layer.pulse?[layer.samples[pulse%layer.samples.length]]:layer.samples.map((_,i)=>layer.samples[(variant+i)%layer.samples.length]);
       const name=rotated.find(sample=>this.scoreSamples.has(sample));
       return name?[{layer,name}]:[];
     });
