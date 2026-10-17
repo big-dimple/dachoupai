@@ -39,6 +39,8 @@ import {usesLaohuanRefill} from '../domain/r2LaohuanRefill';
 import {mountScoreLanding} from './ScoreLanding';
 import {numberImpact,impactBeat,numberPulse,type NumberImpact} from './ScoreEnergy';
 import {ScorePosture} from './ScorePosture';
+import {scoreContributions} from './ScoreContribution';
+import {scorePulseFrame} from './ScoreTextLayout';
 import {bossCardPressure,bossJokerPressure,type BossPressureContext} from './BossPressure';
 import {mountBossPressure} from './BossPressureView';
 import {readableMultiplierEffect} from './ScoreEventCaption';
@@ -75,6 +77,7 @@ import {JOKER_RARITY,createJokerRarityBadge} from './JokerRarity';
 import {mountF09Art} from './F09Art';
 import Phaser from 'phaser';
 import {handActionContent,handActionCountColor} from './HandActionArt';
+import {renderHandSortGroup,handAiButtonLabel} from './HandActionControls';
 import {r2JokerCapacity} from '../domain/r2Resources';
 import {r2RunModeConfig,R2_MODE_CATALOG} from '../content/r2Modes';
 import {showPrograms} from './ProgramDialog';
@@ -531,15 +534,10 @@ export class GameScene extends Phaser.Scene {
     this.previousHandText=v.text(portrait?p.x+10:h.x+12,portrait?p.y+p.height-20:h.y+(short?301:510),'',14,portrait?'#eddfbf':C.brass,portrait?p.width-20:h.width-24).setVisible(!portrait&&!l.shortLandscape);
     this.handCountText=v.text(l.handLabel.x,l.handLabel.y,'',14,'#f0e6cb').setVisible(!portrait&&l.labelHeight>0);
     this.pileText=v.text(l.piles.x+l.piles.width,l.piles.y,'',14,'#c8d4c7').setOrigin(1,0).setVisible(!portrait&&l.labelHeight>0);
-    const brief=portrait||l.shortLandscape||l.buttons.rank.width<80;
-    const sort=l.tools;
-    const sortArt=this.add.graphics().fillStyle(T.jadeSoft).fillRoundedRect(sort.x,sort.y,sort.width,sort.height,6).lineStyle(1,T.jade,.9).strokeRoundedRect(sort.x+.5,sort.y+.5,sort.width-1,sort.height-1,6).lineStyle(1,T.jade,.35);
-    if(sort.height>sort.width){for(const offset of [52,108])sortArt.beginPath().moveTo(sort.x+8,sort.y+offset).lineTo(sort.x+sort.width-8,sort.y+offset).strokePath();}else for(const offset of [36,80,124])sortArt.beginPath().moveTo(sort.x+offset,sort.y+10).lineTo(sort.x+offset,sort.y+sort.height-10).strokePath();
-    v.add(sortArt.setName('action/sort-group').setData('bounds',sort));
-    v.text(sort.x+18,sort.y+sort.height/2,'理牌',14,C.jade).setOrigin(.5).setName('action/sort-title');
-    this.rankButton=v.button(l.buttons.rank,brief?'点数':'点数排序','action/sort-rank',()=>void this.sortHand('rank'),this.ready,false,'sort');
-    this.suitButton=v.button(l.buttons.suit,brief?'花色':'花色排序','action/sort-suit',()=>void this.sortHand('suit'),this.ready,false,'sort');
-    this.aiButton=v.button(l.buttons.ai,this.assistProfile?'AI\n主手':'AI 切','selection/switch-type',()=>this.switchHandType(),false,false,'sort');
+    renderHandSortGroup(this,v,l.tools);
+    this.rankButton=v.button(l.buttons.rank,'点数','action/sort-rank',()=>void this.sortHand('rank'),this.ready,false,'sort');
+    this.suitButton=v.button(l.buttons.suit,'花色','action/sort-suit',()=>void this.sortHand('suit'),this.ready,false,'sort');
+    this.aiButton=v.button(l.buttons.ai,handAiButtonLabel('ready'),'selection/switch-type',()=>this.switchHandType(),false,false,'sort');
     for(const button of [this.rankButton,this.suitButton,this.aiButton])(button.getData('label') as Phaser.GameObjects.Text).setFontSize(14);
     const heroEntry=heroAbilityCue(this.run),heroActions=heroEntry?heroActionShortcut(l.tableActions.discard,l.heroAction):undefined,discardBox=heroActions?.discard??l.tableActions.discard;
     this.heroActionButton=heroActions?v.button(heroActions.shortcut,this.heroActionLabel(),'hero/action-shortcut',()=>this.inspectHeroAction(),false):undefined;
@@ -1049,7 +1047,7 @@ export class GameScene extends Phaser.Scene {
     const aiInput=this.aiInput(),aiResult=this.aiCandidates.result;
     const aiCurrent=aiResult?.key===aiHandKey(aiInput),aiState=!this.ready||this.pendingRefill||this.presentation||document.hidden?'paused':!aiCurrent||aiResult?.status==='working'?'working':aiResult?.status==='ready'&&aiResult.ordered.length?'ready':'unavailable';
     this.view.setEnabled(this.aiButton,aiState==='ready');this.aiButton.setData('aiState',aiState);
-    (this.aiButton.getData('label') as Phaser.GameObjects.Text).setText(aiState==='ready'?(this.assistProfile?'AI\n主手':'AI 切'):aiState==='working'?'AI\n计算':aiState==='paused'?'AI\n稍候':'AI\n不可用');
+    (this.aiButton.getData('label') as Phaser.GameObjects.Text).setText(handAiButtonLabel(aiState));
     const handWindow=this.view.layout;this.handNavigationButtons.forEach((button,i)=>this.view.setEnabled(button,this.ready&&(i===0?handWindow.handStart>0:handWindow.handStart+handWindow.visibleCardCount<this.hand.length)));
     const notice=stageNotice(this.run),discardGoldCost=notice?.discardGoldCost??0;
     (this.playButton.getData('label') as Phaser.GameObjects.Text).setText('出牌');
@@ -1574,10 +1572,11 @@ export class GameScene extends Phaser.Scene {
     texts.forEach((text,i)=>{
       const cell=i===2?impactCell:cells[i];
       text.setFontFamily(SCORE_FONT).setFontStyle('800');
-      fitScoreLine(text,cell,i===2?(s.height>=108?44:28):22,true);
+      const reserve=this.reducedMotion||this.presentation?.replay?1:1.54;
+      fitScoreLine(text,{...cell,width:cell.width/reserve,height:cell.height/reserve},i===2?(s.height>=108?44:28):22,true);
       const pulse=Number(text.getData('scorePulseScale')??1);
-      text.setOrigin(.5).setPosition(cell.x+cell.width/2,cell.y+cell.height/2+Number(text.getData('scorePulseY')??0));
-      text.setScale(Math.min(pulse,cell.width/Math.max(1,text.width),cell.height/Math.max(1,text.height)));
+      const pose=scorePulseFrame(cell,text.width,text.height,pulse,Number(text.getData('scorePulseY')??0));
+      text.setOrigin(.5).setPosition(cell.x+cell.width/2,cell.y+cell.height/2+pose.lift).setScale(pose.scale);
       crispText(text);
     });
     const guarded=[this.resultText,...this.scoreLabels,...texts,this.breakdownText,this.previousHandText].filter(t=>t?.active&&t.visible);
@@ -1784,7 +1783,6 @@ export class GameScene extends Phaser.Scene {
     const source=event.sourceType==='joker'?jokerFrame:event.sourceType==='character'?this.roleFrame:card?.background;
     if(!source)return Promise.resolve();
     const b=source.getBounds(),target=multChanged?this.scoreMult:this.scoreHeat,start={x:b.centerX,y:b.centerY};
-    const s=this.view.layout.scoreBoard,column=s.width/3,index=multChanged?1:0;
     const bounds=target.getBounds(),cell={x:bounds.x-6,y:bounds.y-4,width:bounds.width+12,height:bounds.height+8},end=scoreFlightLanding(start,cell);
 
     const multiply=packetSymbol==='×M',color=multiply?T.red:multChanged?T.jade:T.brass,light=multiply?0xffb995:multChanged?0xc4f0d8:0xffdf9d;
@@ -1799,9 +1797,11 @@ export class GameScene extends Phaser.Scene {
     const {width,height}=this.view.layout; safety.fillStyle(0xffffff);
     for(const b of subtractBoxes({x:0,y:0,width,height},guard))safety.fillRect(b.x,b.y,b.width,b.height);
     const mask=safety.createGeometryMask();trail.setMask(mask);packet.setMask(mask).setData('landing',end).setData('cell',cell);
-    if(multiply){shape.fillStyle(0x762f32,.96).fillPoints([{x:0,y:-15},{x:20,y:0},{x:0,y:15},{x:-20,y:0}],true);shape.lineStyle(2,T.brass,.9).strokePoints([{x:0,y:-15},{x:20,y:0},{x:0,y:15},{x:-20,y:0}],true);}
-    else shape.fillStyle(multChanged?0x285a54:0x715736,.96).fillRoundedRect(-18,-13,36,26,10).lineStyle(1,light,.85).strokeRoundedRect(-18,-13,36,26,10);
-    const symbol=this.add.text(0,-1,packetSymbol,{fontFamily:UI_FONT,fontSize:multiply?'18px':'16px',fontStyle:'bold',color:'#fff3d0',resolution:Math.max(1,1/this.scale.zoom)}).setOrigin(.5);
+    const contribution=scoreContributions(event).find(c=>c.target===(multChanged?'M':'H')),symbol=this.add.text(0,-1,contribution?.label??packetSymbol,{fontFamily:UI_FONT,fontSize:multiply?'18px':'16px',fontStyle:'bold',color:'#fff3d0',resolution:Math.max(1,1/this.scale.zoom)}).setOrigin(.5);
+    const packetWidth=Math.min(104,Math.max(36,symbol.width+14));
+    shape.fillStyle(multiply?0x762f32:multChanged?0x285a54:0x715736,.96).fillRoundedRect(-packetWidth/2,-14,packetWidth,28,multiply?4:10).lineStyle(multiply?2:1,light,.9).strokeRoundedRect(-packetWidth/2,-14,packetWidth,28,multiply?4:10);
+    if(symbol.width>packetWidth-10)symbol.setScale((packetWidth-10)/symbol.width);
+    packet.setData('contribution',contribution);
     packet.add([shape,symbol]);this.keepScoreReadable();
     const flight={t:0};
     return Promise.all([
@@ -1943,10 +1943,6 @@ export class GameScene extends Phaser.Scene {
     }else if(event.sourceType==='character'){
       if(this.view.layout.mode!=='portrait')notes.push(this.floatNote(note,this.roleAvatar.x,this.roleAvatar.y-this.roleFrame.height/2-8,'#ffe3ae',impactDuration+timing.rest,context));
     }else if(card&&this.view.layout.mode!=='portrait')effects.push(this.floatNote(note,card.container.x,card.container.y,'#d3f0d3',impactDuration,context));
-    if(cardResponds&&card&&event.sourceType==='joker'&&!this.reducedMotion){
-      const angle=card.container.angle;
-      effects.push(this.animate({targets:card.container,angle:angle+(event.operation==='retrigger-card'?3:2),duration:impactDuration/4,yoyo:true,repeat:1,ease:'Sine.easeInOut'},context).then(()=>{if(card.container.active)card.container.setAngle(angle);}));
-    }
     await Promise.all(effects);
     if(context.signal.aborted)return;
     this.setAccumulator(event.after);

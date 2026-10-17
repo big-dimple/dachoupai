@@ -13,8 +13,9 @@ export interface ScorePostureOptions {
 export function scoreCardPose(progress:number,ordinal:number){
   const t=Math.max(0,Math.min(1,progress)),direction=ordinal%2===0?1:-1;
   let lift:number,tilt:number,scale:number;
-  if(t<.3){const p=1-(1-t/.3)**3;lift=-18*p;tilt=2.5*p;scale=1+.08*p;}
-  else if(t<.76){const p=(t-.3)/.46,e=1-(1-p)**2;lift=-18+20*e;tilt=2.5-3.1*e;scale=1.08-.09*e;}
+  if(t<.25){const p=1-(1-t/.25)**3;lift=-18*p;tilt=2.5*p;scale=1+.08*p;}
+  else if(t<.4){lift=-18;tilt=2.5;scale=1.08;}
+  else if(t<.76){const p=(t-.4)/.36,e=1-(1-p)**2;lift=-18+20*e;tilt=2.5-3.1*e;scale=1.08-.09*e;}
   else {const p=(t-.76)/.24,e=(1-p)**2;lift=2*e;tilt=-.6*e;scale=1-.01*e;}
   return {lift,angle:direction*tilt,scale};
 }

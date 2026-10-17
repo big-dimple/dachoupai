@@ -1,6 +1,6 @@
 import {describe,it,expect,vi} from 'vitest';
 import type Phaser from 'phaser';
-import {compactScoreText,fitScoreLine,scoreFlightLanding,scoreImpactCell} from '../src/game/ScoreTextLayout';
+import {compactScoreText,fitScoreLine,scoreFlightLanding,scoreImpactCell,scorePulseFrame} from '../src/game/ScoreTextLayout';
 
 function fakeText(value:string){
   let font=26,wrap=0;const data=new Map<string,unknown>();
@@ -46,6 +46,18 @@ describe('score display space and exact value preservation',()=>{
 });
 
 describe('primary numeric impact room',()=>{
+  it('reserves a real 1.54 pulse instead of fitting the resting number to the entire lane',()=>{
+    const text=fakeText('12,345'),cell={x:0,y:0,width:180,height:65};
+    fitScoreLine(text,{...cell,width:cell.width/1.54,height:cell.height/1.54},44,true);
+    const frame=scorePulseFrame(cell,text.width,text.height,1.54,-4);
+    expect(frame.scale).toBeCloseTo(1.54);expect(text.height*frame.scale/2-frame.lift).toBeLessThanOrEqual(cell.height/2);
+    expect(text.getData('fullText')).toBe('12,345');
+  });
+  it('keeps the lifted secondary pulse inside its 24px lane and returns to scale one',()=>{
+    const cell={x:0,y:0,width:100,height:24},frame=scorePulseFrame(cell,42,18,1.28,-4);
+    expect(frame.scale).toBeCloseTo(1.28);expect(frame.lift-18*frame.scale/2).toBeGreaterThanOrEqual(-12);
+    expect(frame.lift+18*frame.scale/2).toBeLessThanOrEqual(12);expect(scorePulseFrame(cell,42,18,1,0)).toEqual({scale:1,lift:0});
+  });
   it('reserves a centred larger primary area inside the original score board',()=>{
     for(const board of [{x:12,y:165,width:366,height:132},{x:188,y:72,width:318,height:58}]){
       const area=scoreImpactCell(board);
