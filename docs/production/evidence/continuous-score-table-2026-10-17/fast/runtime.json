@@ -1,0 +1,2620 @@
+{
+  "mode": "fast",
+  "scope": "Controlled imported public hand; real native decisions, selection and command commit, canonical state comparison. Vibration API, when instrumented, only reports software requests; not natural acquisition, hearing or physical touch acceptance.",
+  "browser": "143.0.3650.80",
+  "viewport": {
+    "width": 1366,
+    "height": 768
+  },
+  "errors": [],
+  "events": {
+    "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/0": {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/0",
+      "source": "full-house",
+      "operation": "base",
+      "before": {
+        "H": {
+          "n": "0",
+          "d": "1"
+        },
+        "M": {
+          "n": "0",
+          "d": "1"
+        }
+      },
+      "after": {
+        "H": {
+          "n": "210",
+          "d": "1"
+        },
+        "M": {
+          "n": "5",
+          "d": "1"
+        }
+      },
+      "phases": [
+        "base-impact"
+      ],
+      "phaseTimes": {
+        "base-impact": 4952.80000000447
+      },
+      "peak": 1.3063729659763315,
+      "cardTravel": 0,
+      "first": 4952.80000000447,
+      "last": 5093.5
+    },
+    "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/1": {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/1",
+      "source": "rank-7",
+      "operation": "add-heat",
+      "before": {
+        "H": {
+          "n": "210",
+          "d": "1"
+        },
+        "M": {
+          "n": "5",
+          "d": "1"
+        }
+      },
+      "after": {
+        "H": {
+          "n": "217",
+          "d": "1"
+        },
+        "M": {
+          "n": "5",
+          "d": "1"
+        }
+      },
+      "phases": [
+        "windup",
+        "impact",
+        "rest"
+      ],
+      "phaseTimes": {
+        "windup": 5111.10000000149,
+        "impact": 5186.5,
+        "rest": 5252.10000000149
+      },
+      "peak": 1.2788921738963075,
+      "cardTravel": 18.70861678004536,
+      "first": 5111.10000000149,
+      "last": 5278.4000000059605
+    },
+    "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/2": {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/2",
+      "source": "spades-2",
+      "operation": "add-multiplier",
+      "before": {
+        "H": {
+          "n": "217",
+          "d": "1"
+        },
+        "M": {
+          "n": "5",
+          "d": "1"
+        }
+      },
+      "after": {
+        "H": {
+          "n": "217",
+          "d": "1"
+        },
+        "M": {
+          "n": "7",
+          "d": "1"
+        }
+      },
+      "phases": [
+        "windup",
+        "impact",
+        "rest"
+      ],
+      "phaseTimes": {
+        "windup": 5287.20000000298,
+        "impact": 5393.80000000447,
+        "rest": 5496.9000000059605
+      },
+      "peak": 1.3521936821465286,
+      "cardTravel": 19.292862882606414,
+      "first": 5287.20000000298,
+      "last": 5530.60000000149
+    },
+    "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/3": {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/3",
+      "source": "spades-2",
+      "operation": "multiply-multiplier",
+      "before": {
+        "H": {
+          "n": "217",
+          "d": "1"
+        },
+        "M": {
+          "n": "7",
+          "d": "1"
+        }
+      },
+      "after": {
+        "H": {
+          "n": "217",
+          "d": "1"
+        },
+        "M": {
+          "n": "21",
+          "d": "2"
+        }
+      },
+      "phases": [
+        "windup",
+        "impact",
+        "rest"
+      ],
+      "phaseTimes": {
+        "windup": 5545.60000000149,
+        "impact": 5660.9000000059605,
+        "rest": 5781.60000000149
+      },
+      "peak": 1.3626524574326773,
+      "cardTravel": 19.890432098765416,
+      "first": 5545.60000000149,
+      "last": 5817.4000000059605
+    },
+    "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/4": {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/4",
+      "source": "a11",
+      "operation": "retrigger-card",
+      "before": {
+        "H": {
+          "n": "217",
+          "d": "1"
+        },
+        "M": {
+          "n": "21",
+          "d": "2"
+        }
+      },
+      "after": {
+        "H": {
+          "n": "217",
+          "d": "1"
+        },
+        "M": {
+          "n": "21",
+          "d": "2"
+        }
+      },
+      "phases": [
+        "windup",
+        "impact",
+        "rest"
+      ],
+      "phaseTimes": {
+        "windup": 5835.80000000447,
+        "impact": 5889.60000000149,
+        "rest": 6010.9000000059605
+      },
+      "peak": 1,
+      "cardTravel": 19.714677640603554,
+      "first": 5835.80000000447,
+      "last": 6045.60000000149
+    },
+    "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/5": {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/5",
+      "source": "b06",
+      "operation": "retrigger-card",
+      "before": {
+        "H": {
+          "n": "217",
+          "d": "1"
+        },
+        "M": {
+          "n": "21",
+          "d": "2"
+        }
+      },
+      "after": {
+        "H": {
+          "n": "217",
+          "d": "1"
+        },
+        "M": {
+          "n": "21",
+          "d": "2"
+        }
+      },
+      "phases": [
+        "windup",
+        "impact",
+        "rest"
+      ],
+      "phaseTimes": {
+        "windup": 6064,
+        "impact": 6116.9000000059605,
+        "rest": 6239.4000000059605
+      },
+      "peak": 1,
+      "cardTravel": 19.99695168419447,
+      "first": 6064,
+      "last": 6274.80000000447
+    },
+    "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/6": {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/6",
+      "source": "rank-7",
+      "operation": "add-heat",
+      "before": {
+        "H": {
+          "n": "217",
+          "d": "1"
+        },
+        "M": {
+          "n": "21",
+          "d": "2"
+        }
+      },
+      "after": {
+        "H": {
+          "n": "224",
+          "d": "1"
+        },
+        "M": {
+          "n": "21",
+          "d": "2"
+        }
+      },
+      "phases": [
+        "windup",
+        "impact",
+        "rest"
+      ],
+      "phaseTimes": {
+        "windup": 6292.80000000447,
+        "impact": 6381.20000000298,
+        "rest": 6450.80000000447
+      },
+      "peak": 1.2775810048537322,
+      "cardTravel": 18.655692729766827,
+      "first": 6292.80000000447,
+      "last": 6468.30000000447
+    },
+    "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/7": {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/7",
+      "source": "spades-2",
+      "operation": "add-multiplier",
+      "before": {
+        "H": {
+          "n": "224",
+          "d": "1"
+        },
+        "M": {
+          "n": "21",
+          "d": "2"
+        }
+      },
+      "after": {
+        "H": {
+          "n": "224",
+          "d": "1"
+        },
+        "M": {
+          "n": "25",
+          "d": "2"
+        }
+      },
+      "phases": [
+        "windup",
+        "impact",
+        "rest"
+      ],
+      "phaseTimes": {
+        "windup": 6485.9000000059605,
+        "impact": 6590.4000000059605,
+        "rest": 6677.5
+      },
+      "peak": 1.3449753214610833,
+      "cardTravel": 19.388888888888914,
+      "first": 6485.9000000059605,
+      "last": 6712.20000000298
+    },
+    "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/8": {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/8",
+      "source": "spades-2",
+      "operation": "multiply-multiplier",
+      "before": {
+        "H": {
+          "n": "224",
+          "d": "1"
+        },
+        "M": {
+          "n": "25",
+          "d": "2"
+        }
+      },
+      "after": {
+        "H": {
+          "n": "224",
+          "d": "1"
+        },
+        "M": {
+          "n": "75",
+          "d": "4"
+        }
+      },
+      "phases": [
+        "windup",
+        "impact",
+        "rest"
+      ],
+      "phaseTimes": {
+        "windup": 6729.9000000059605,
+        "impact": 6853.30000000447,
+        "rest": 6975.80000000447
+      },
+      "peak": 1.3532182103610677,
+      "cardTravel": 19.714677640603554,
+      "first": 6729.9000000059605,
+      "last": 7010.70000000298
+    },
+    "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/9": {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/9",
+      "source": "rank-7",
+      "operation": "add-heat",
+      "before": {
+        "H": {
+          "n": "224",
+          "d": "1"
+        },
+        "M": {
+          "n": "75",
+          "d": "4"
+        }
+      },
+      "after": {
+        "H": {
+          "n": "231",
+          "d": "1"
+        },
+        "M": {
+          "n": "75",
+          "d": "4"
+        }
+      },
+      "phases": [
+        "windup",
+        "impact",
+        "rest"
+      ],
+      "phaseTimes": {
+        "windup": 7028.80000000447,
+        "impact": 7133.60000000149,
+        "rest": 7221.10000000149
+      },
+      "peak": 1.35219368214653,
+      "cardTravel": 18.994411571334638,
+      "first": 7028.80000000447,
+      "last": 7239.20000000298
+    },
+    "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/10": {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/10",
+      "source": "spades-2",
+      "operation": "add-multiplier",
+      "before": {
+        "H": {
+          "n": "231",
+          "d": "1"
+        },
+        "M": {
+          "n": "75",
+          "d": "4"
+        }
+      },
+      "after": {
+        "H": {
+          "n": "231",
+          "d": "1"
+        },
+        "M": {
+          "n": "83",
+          "d": "4"
+        }
+      },
+      "phases": [
+        "windup",
+        "impact",
+        "rest"
+      ],
+      "phaseTimes": {
+        "windup": 7256.60000000149,
+        "impact": 7361.80000000447,
+        "rest": 7449.70000000298
+      },
+      "peak": 1.35219368214653,
+      "cardTravel": 19.18343195266283,
+      "first": 7256.60000000149,
+      "last": 7485.20000000298
+    },
+    "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/11": {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/11",
+      "source": "spades-2",
+      "operation": "multiply-multiplier",
+      "before": {
+        "H": {
+          "n": "231",
+          "d": "1"
+        },
+        "M": {
+          "n": "83",
+          "d": "4"
+        }
+      },
+      "after": {
+        "H": {
+          "n": "231",
+          "d": "1"
+        },
+        "M": {
+          "n": "249",
+          "d": "8"
+        }
+      },
+      "phases": [
+        "windup",
+        "impact",
+        "rest"
+      ],
+      "phaseTimes": {
+        "windup": 7502.70000000298,
+        "impact": 7624.60000000149,
+        "rest": 7746.60000000149
+      },
+      "peak": 1.3668035261441855,
+      "cardTravel": 19.890432098765416,
+      "first": 7502.70000000298,
+      "last": 7781.4000000059605
+    },
+    "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/12": {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/12",
+      "source": "rank-7",
+      "operation": "add-heat",
+      "before": {
+        "H": {
+          "n": "231",
+          "d": "1"
+        },
+        "M": {
+          "n": "249",
+          "d": "8"
+        }
+      },
+      "after": {
+        "H": {
+          "n": "238",
+          "d": "1"
+        },
+        "M": {
+          "n": "249",
+          "d": "8"
+        }
+      },
+      "phases": [
+        "windup",
+        "impact",
+        "rest"
+      ],
+      "phaseTimes": {
+        "windup": 7799.70000000298,
+        "impact": 7904,
+        "rest": 7990.9000000059605
+      },
+      "peak": 1.35219368214653,
+      "cardTravel": 19.388888888888914,
+      "first": 7799.70000000298,
+      "last": 8008.20000000298
+    },
+    "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/13": {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/13",
+      "source": "a11",
+      "operation": "retrigger-card",
+      "before": {
+        "H": {
+          "n": "238",
+          "d": "1"
+        },
+        "M": {
+          "n": "249",
+          "d": "8"
+        }
+      },
+      "after": {
+        "H": {
+          "n": "238",
+          "d": "1"
+        },
+        "M": {
+          "n": "249",
+          "d": "8"
+        }
+      },
+      "phases": [
+        "windup",
+        "impact",
+        "rest"
+      ],
+      "phaseTimes": {
+        "windup": 8026.4000000059605,
+        "impact": 8078.60000000149,
+        "rest": 8200.70000000298
+      },
+      "peak": 1,
+      "cardTravel": 19.714677640603554,
+      "first": 8026.4000000059605,
+      "last": 8236.10000000149
+    },
+    "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/14": {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/14",
+      "source": "b06",
+      "operation": "retrigger-card",
+      "before": {
+        "H": {
+          "n": "238",
+          "d": "1"
+        },
+        "M": {
+          "n": "249",
+          "d": "8"
+        }
+      },
+      "after": {
+        "H": {
+          "n": "238",
+          "d": "1"
+        },
+        "M": {
+          "n": "249",
+          "d": "8"
+        }
+      },
+      "phases": [
+        "windup",
+        "impact",
+        "rest"
+      ],
+      "phaseTimes": {
+        "windup": 8254,
+        "impact": 8305.80000000447,
+        "rest": 8429.60000000149
+      },
+      "peak": 1,
+      "cardTravel": 19.714677640603554,
+      "first": 8254,
+      "last": 8465.40000000596
+    },
+    "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/15": {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/15",
+      "source": "rank-7",
+      "operation": "add-heat",
+      "before": {
+        "H": {
+          "n": "238",
+          "d": "1"
+        },
+        "M": {
+          "n": "249",
+          "d": "8"
+        }
+      },
+      "after": {
+        "H": {
+          "n": "245",
+          "d": "1"
+        },
+        "M": {
+          "n": "249",
+          "d": "8"
+        }
+      },
+      "phases": [
+        "windup",
+        "impact",
+        "rest"
+      ],
+      "phaseTimes": {
+        "windup": 8483.20000000298,
+        "impact": 8587.70000000298,
+        "rest": 8675.20000000298
+      },
+      "peak": 1.3449753214610833,
+      "cardTravel": 19.183431952662716,
+      "first": 8483.20000000298,
+      "last": 8693.5
+    },
+    "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/16": {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/16",
+      "source": "rank-7",
+      "operation": "add-heat",
+      "before": {
+        "H": {
+          "n": "245",
+          "d": "1"
+        },
+        "M": {
+          "n": "249",
+          "d": "8"
+        }
+      },
+      "after": {
+        "H": {
+          "n": "252",
+          "d": "1"
+        },
+        "M": {
+          "n": "249",
+          "d": "8"
+        }
+      },
+      "phases": [
+        "windup",
+        "impact",
+        "rest"
+      ],
+      "phaseTimes": {
+        "windup": 8710.80000000447,
+        "impact": 8816.30000000447,
+        "rest": 8903.5
+      },
+      "peak": 1.3449753214610833,
+      "cardTravel": 19.388888888888914,
+      "first": 8710.80000000447,
+      "last": 8938.30000000447
+    },
+    "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/17": {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/17",
+      "source": "rank-9",
+      "operation": "add-heat",
+      "before": {
+        "H": {
+          "n": "252",
+          "d": "1"
+        },
+        "M": {
+          "n": "249",
+          "d": "8"
+        }
+      },
+      "after": {
+        "H": {
+          "n": "261",
+          "d": "1"
+        },
+        "M": {
+          "n": "249",
+          "d": "8"
+        }
+      },
+      "phases": [
+        "windup",
+        "impact",
+        "rest"
+      ],
+      "phaseTimes": {
+        "windup": 8956.40000000596,
+        "impact": 9062.90000000596,
+        "rest": 9149.30000000447
+      },
+      "peak": 1.3449753214610833,
+      "cardTravel": 19.388888888888914,
+      "first": 8956.40000000596,
+      "last": 9184.80000000447
+    },
+    "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/18": {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/18",
+      "source": "a11",
+      "operation": "retrigger-card",
+      "before": {
+        "H": {
+          "n": "261",
+          "d": "1"
+        },
+        "M": {
+          "n": "249",
+          "d": "8"
+        }
+      },
+      "after": {
+        "H": {
+          "n": "261",
+          "d": "1"
+        },
+        "M": {
+          "n": "249",
+          "d": "8"
+        }
+      },
+      "phases": [
+        "windup",
+        "impact",
+        "rest"
+      ],
+      "phaseTimes": {
+        "windup": 9201.80000000447,
+        "impact": 9254.30000000447,
+        "rest": 9378.30000000447
+      },
+      "peak": 1,
+      "cardTravel": 19.388888888888914,
+      "first": 9201.80000000447,
+      "last": 9413.90000000596
+    },
+    "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/19": {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/19",
+      "source": "rank-9",
+      "operation": "add-heat",
+      "before": {
+        "H": {
+          "n": "261",
+          "d": "1"
+        },
+        "M": {
+          "n": "249",
+          "d": "8"
+        }
+      },
+      "after": {
+        "H": {
+          "n": "270",
+          "d": "1"
+        },
+        "M": {
+          "n": "249",
+          "d": "8"
+        }
+      },
+      "phases": [
+        "windup",
+        "impact",
+        "rest"
+      ],
+      "phaseTimes": {
+        "windup": 9431.80000000447,
+        "impact": 9537.10000000149,
+        "rest": 9626.5
+      },
+      "peak": 1.35219368214653,
+      "cardTravel": 18.994411571334638,
+      "first": 9431.80000000447,
+      "last": 9661.80000000447
+    },
+    "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/20": {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/20",
+      "source": "rank-9",
+      "operation": "add-heat",
+      "before": {
+        "H": {
+          "n": "270",
+          "d": "1"
+        },
+        "M": {
+          "n": "249",
+          "d": "8"
+        }
+      },
+      "after": {
+        "H": {
+          "n": "279",
+          "d": "1"
+        },
+        "M": {
+          "n": "249",
+          "d": "8"
+        }
+      },
+      "phases": [
+        "windup",
+        "impact",
+        "rest"
+      ],
+      "phaseTimes": {
+        "windup": 9680.60000000149,
+        "impact": 9786.20000000298,
+        "rest": 9875.70000000298
+      },
+      "peak": 1.35219368214653,
+      "cardTravel": 18.994411571334638,
+      "first": 9680.60000000149,
+      "last": 9893.40000000596
+    },
+    "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/21": {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/21",
+      "source": "a11",
+      "operation": "retrigger-card",
+      "before": {
+        "H": {
+          "n": "279",
+          "d": "1"
+        },
+        "M": {
+          "n": "249",
+          "d": "8"
+        }
+      },
+      "after": {
+        "H": {
+          "n": "279",
+          "d": "1"
+        },
+        "M": {
+          "n": "249",
+          "d": "8"
+        }
+      },
+      "phases": [
+        "windup",
+        "impact",
+        "rest"
+      ],
+      "phaseTimes": {
+        "windup": 9916.10000000149,
+        "impact": 9965.80000000447,
+        "rest": 10089.80000000447
+      },
+      "peak": 1,
+      "cardTravel": 19.714677640603554,
+      "first": 9916.10000000149,
+      "last": 10125.10000000149
+    },
+    "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/22": {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/22",
+      "source": "rank-9",
+      "operation": "add-heat",
+      "before": {
+        "H": {
+          "n": "279",
+          "d": "1"
+        },
+        "M": {
+          "n": "249",
+          "d": "8"
+        }
+      },
+      "after": {
+        "H": {
+          "n": "288",
+          "d": "1"
+        },
+        "M": {
+          "n": "249",
+          "d": "8"
+        }
+      },
+      "phases": [
+        "windup",
+        "impact",
+        "rest"
+      ],
+      "phaseTimes": {
+        "windup": 10143.70000000298,
+        "impact": 10251.60000000149,
+        "rest": 10341.30000000447
+      },
+      "peak": 1.35219368214653,
+      "cardTravel": 18.994411571334638,
+      "first": 10143.70000000298,
+      "last": 10359.20000000298
+    },
+    "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/23": {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/23",
+      "source": "rank-7",
+      "operation": "add-heat",
+      "before": {
+        "H": {
+          "n": "288",
+          "d": "1"
+        },
+        "M": {
+          "n": "249",
+          "d": "8"
+        }
+      },
+      "after": {
+        "H": {
+          "n": "295",
+          "d": "1"
+        },
+        "M": {
+          "n": "249",
+          "d": "8"
+        }
+      },
+      "phases": [
+        "windup",
+        "impact",
+        "rest"
+      ],
+      "phaseTimes": {
+        "windup": 10377.10000000149,
+        "impact": 10466.30000000447,
+        "rest": 10555.60000000149
+      },
+      "peak": 1.35219368214653,
+      "cardTravel": 18.994411571334638,
+      "first": 10377,
+      "last": 10573.90000000596
+    },
+    "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/24": {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/24",
+      "source": "a11",
+      "operation": "retrigger-card",
+      "before": {
+        "H": {
+          "n": "295",
+          "d": "1"
+        },
+        "M": {
+          "n": "249",
+          "d": "8"
+        }
+      },
+      "after": {
+        "H": {
+          "n": "295",
+          "d": "1"
+        },
+        "M": {
+          "n": "249",
+          "d": "8"
+        }
+      },
+      "phases": [
+        "windup",
+        "impact",
+        "rest"
+      ],
+      "phaseTimes": {
+        "windup": 10592.30000000447,
+        "impact": 10646.10000000149,
+        "rest": 10770.20000000298
+      },
+      "peak": 1,
+      "cardTravel": 19.388888888888914,
+      "first": 10592.30000000447,
+      "last": 10805.60000000149
+    },
+    "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/25": {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/25",
+      "source": "b06",
+      "operation": "retrigger-card",
+      "before": {
+        "H": {
+          "n": "295",
+          "d": "1"
+        },
+        "M": {
+          "n": "249",
+          "d": "8"
+        }
+      },
+      "after": {
+        "H": {
+          "n": "295",
+          "d": "1"
+        },
+        "M": {
+          "n": "249",
+          "d": "8"
+        }
+      },
+      "phases": [
+        "windup",
+        "impact",
+        "rest"
+      ],
+      "phaseTimes": {
+        "windup": 10823.5,
+        "impact": 10876.70000000298,
+        "rest": 10999.90000000596
+      },
+      "peak": 1,
+      "cardTravel": 19.388888888888914,
+      "first": 10823.5,
+      "last": 11037.40000000596
+    },
+    "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/26": {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/26",
+      "source": "rank-7",
+      "operation": "add-heat",
+      "before": {
+        "H": {
+          "n": "295",
+          "d": "1"
+        },
+        "M": {
+          "n": "249",
+          "d": "8"
+        }
+      },
+      "after": {
+        "H": {
+          "n": "302",
+          "d": "1"
+        },
+        "M": {
+          "n": "249",
+          "d": "8"
+        }
+      },
+      "phases": [
+        "windup",
+        "impact",
+        "rest"
+      ],
+      "phaseTimes": {
+        "windup": 11058.10000000149,
+        "impact": 11161.20000000298,
+        "rest": 11252.30000000447
+      },
+      "peak": 1.35219368214653,
+      "cardTravel": 18.994411571334638,
+      "first": 11058.10000000149,
+      "last": 11269.70000000298
+    },
+    "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/27": {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/27",
+      "source": "rank-7",
+      "operation": "add-heat",
+      "before": {
+        "H": {
+          "n": "302",
+          "d": "1"
+        },
+        "M": {
+          "n": "249",
+          "d": "8"
+        }
+      },
+      "after": {
+        "H": {
+          "n": "309",
+          "d": "1"
+        },
+        "M": {
+          "n": "249",
+          "d": "8"
+        }
+      },
+      "phases": [
+        "windup",
+        "impact",
+        "rest"
+      ],
+      "phaseTimes": {
+        "windup": 11287,
+        "impact": 11395.5,
+        "rest": 11484.60000000149
+      },
+      "peak": 1.3521936821465248,
+      "cardTravel": 18.994411571334638,
+      "first": 11287,
+      "last": 11502.5
+    },
+    "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/28": {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/28",
+      "source": "a11",
+      "operation": "add-multiplier",
+      "before": {
+        "H": {
+          "n": "309",
+          "d": "1"
+        },
+        "M": {
+          "n": "249",
+          "d": "8"
+        }
+      },
+      "after": {
+        "H": {
+          "n": "309",
+          "d": "1"
+        },
+        "M": {
+          "n": "265",
+          "d": "8"
+        }
+      },
+      "phases": [
+        "windup",
+        "impact",
+        "rest"
+      ],
+      "phaseTimes": {
+        "windup": 11520.30000000447,
+        "impact": 11628.40000000596,
+        "rest": 11754.60000000149
+      },
+      "peak": 1.35219368214653,
+      "cardTravel": 0,
+      "first": 11520.30000000447,
+      "last": 11772.40000000596
+    },
+    "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/29": {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/29",
+      "source": "f09",
+      "operation": "multiply-multiplier",
+      "before": {
+        "H": {
+          "n": "309",
+          "d": "1"
+        },
+        "M": {
+          "n": "265",
+          "d": "8"
+        }
+      },
+      "after": {
+        "H": {
+          "n": "309",
+          "d": "1"
+        },
+        "M": {
+          "n": "795",
+          "d": "16"
+        }
+      },
+      "phases": [
+        "windup",
+        "impact",
+        "rest"
+      ],
+      "phaseTimes": {
+        "windup": 11790.70000000298,
+        "impact": 11917.20000000298,
+        "rest": 12077.5
+      },
+      "peak": 1.3427575172080666,
+      "cardTravel": 0,
+      "first": 11790.70000000298,
+      "last": 12104.10000000149
+    },
+    "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/30": {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/30",
+      "source": "e03",
+      "operation": "add-heat-per-gold",
+      "before": {
+        "H": {
+          "n": "309",
+          "d": "1"
+        },
+        "M": {
+          "n": "795",
+          "d": "16"
+        }
+      },
+      "after": {
+        "H": {
+          "n": "349",
+          "d": "1"
+        },
+        "M": {
+          "n": "795",
+          "d": "16"
+        }
+      },
+      "phases": [
+        "windup",
+        "impact",
+        "rest"
+      ],
+      "phaseTimes": {
+        "windup": 12113.20000000298,
+        "impact": 12221.30000000447,
+        "rest": 12347.20000000298
+      },
+      "peak": 1.35219368214653,
+      "cardTravel": 0,
+      "first": 12113.20000000298,
+      "last": 12364.90000000596
+    },
+    "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/32": {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/32",
+      "source": "amo",
+      "operation": "multiply-multiplier",
+      "before": {
+        "H": {
+          "n": "349",
+          "d": "1"
+        },
+        "M": {
+          "n": "795",
+          "d": "16"
+        }
+      },
+      "after": {
+        "H": {
+          "n": "349",
+          "d": "1"
+        },
+        "M": {
+          "n": "795",
+          "d": "8"
+        }
+      },
+      "phases": [
+        "windup",
+        "impact",
+        "rest"
+      ],
+      "phaseTimes": {
+        "windup": 12383.30000000447,
+        "impact": 12509.60000000149,
+        "rest": 12671.10000000149
+      },
+      "peak": 1.3427575172080666,
+      "cardTravel": 0,
+      "first": 12383.30000000447,
+      "last": 12742.70000000298
+    },
+    "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/33": {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/33",
+      "source": "full-house",
+      "operation": "final-score",
+      "before": {
+        "H": {
+          "n": "349",
+          "d": "1"
+        },
+        "M": {
+          "n": "795",
+          "d": "8"
+        }
+      },
+      "after": {
+        "H": {
+          "n": "349",
+          "d": "1"
+        },
+        "M": {
+          "n": "795",
+          "d": "8"
+        }
+      },
+      "phases": [
+        "award"
+      ],
+      "phaseTimes": {
+        "award": 12760.70000000298
+      },
+      "peak": 1.3138431110459081,
+      "cardTravel": 0,
+      "first": 12760.70000000298,
+      "last": 12942.40000000596
+    }
+  },
+  "images": [
+    {
+      "key": "heat-source",
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/1",
+      "phase": "windup",
+      "at": 5146.4000000059605,
+      "numeric": [
+        {
+          "text": "210",
+          "full": "210",
+          "bounds": {
+            "x": 422,
+            "y": 257,
+            "width": 68,
+            "height": 48
+          },
+          "scale": 1,
+          "color": "#247b93",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "5",
+          "full": "5",
+          "bounds": {
+            "x": 662,
+            "y": 257,
+            "width": 23,
+            "height": 48
+          },
+          "scale": 1,
+          "color": "#b8473a",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "1,050",
+          "full": "1,050",
+          "bounds": {
+            "x": 898,
+            "y": 258,
+            "width": 97,
+            "height": 46
+          },
+          "scale": 1,
+          "color": "#b8473a",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        }
+      ],
+      "caption": "7♣ · 热度+7",
+      "sourceBadge": "+7",
+      "round": "0",
+      "plays": "3 次",
+      "discards": "3 次",
+      "path": "01-heat-source.png"
+    },
+    {
+      "key": "heat-impact",
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/1",
+      "phase": "impact",
+      "at": 5202.70000000298,
+      "numeric": [
+        {
+          "text": "217",
+          "full": "217",
+          "bounds": {
+            "x": 412,
+            "y": 247,
+            "width": 86.96466782494889,
+            "height": 61.38682434702275
+          },
+          "scale": 1.2788921738963075,
+          "color": "#247b93",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "5",
+          "full": "5",
+          "bounds": {
+            "x": 662,
+            "y": 257,
+            "width": 23,
+            "height": 48
+          },
+          "scale": 1,
+          "color": "#b8473a",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "1,085",
+          "full": "1,085",
+          "bounds": {
+            "x": 885,
+            "y": 248.00000000000003,
+            "width": 124.05254086794184,
+            "height": 58.82903999923016
+          },
+          "scale": 1.2788921738963075,
+          "color": "#26313a",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        }
+      ],
+      "caption": "7♣ · 热度+7",
+      "sourceBadge": "+7",
+      "round": "0",
+      "plays": "3 次",
+      "discards": "3 次",
+      "path": "02-heat-impact.png"
+    },
+    {
+      "key": "heat-settled",
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/1",
+      "phase": "rest",
+      "at": 5252.20000000298,
+      "numeric": [
+        {
+          "text": "217",
+          "full": "217",
+          "bounds": {
+            "x": 422,
+            "y": 257,
+            "width": 68,
+            "height": 48
+          },
+          "scale": 1,
+          "color": "#247b93",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "5",
+          "full": "5",
+          "bounds": {
+            "x": 662,
+            "y": 257,
+            "width": 23,
+            "height": 48
+          },
+          "scale": 1,
+          "color": "#b8473a",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "1,085",
+          "full": "1,085",
+          "bounds": {
+            "x": 898,
+            "y": 258,
+            "width": 97,
+            "height": 46
+          },
+          "scale": 1,
+          "color": "#b8473a",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        }
+      ],
+      "caption": "7♣ · 热度+7",
+      "round": "0",
+      "plays": "3 次",
+      "discards": "3 次",
+      "path": "03-heat-settled.png"
+    },
+    {
+      "key": "add-source",
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/2",
+      "phase": "windup",
+      "at": 5339.80000000447,
+      "numeric": [
+        {
+          "text": "217",
+          "full": "217",
+          "bounds": {
+            "x": 422,
+            "y": 257,
+            "width": 68,
+            "height": 48
+          },
+          "scale": 1,
+          "color": "#247b93",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "5",
+          "full": "5",
+          "bounds": {
+            "x": 662,
+            "y": 257,
+            "width": 23,
+            "height": 48
+          },
+          "scale": 1,
+          "color": "#b8473a",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "1,085",
+          "full": "1,085",
+          "bounds": {
+            "x": 898,
+            "y": 258,
+            "width": 97,
+            "height": 46
+          },
+          "scale": 1,
+          "color": "#b8473a",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        }
+      ],
+      "caption": "7♣ · 倍率+2",
+      "sourceBadge": "+2",
+      "round": "0",
+      "plays": "3 次",
+      "discards": "3 次",
+      "path": "04-add-source.png"
+    },
+    {
+      "key": "add-impact",
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/2",
+      "phase": "impact",
+      "at": 5412.30000000447,
+      "numeric": [
+        {
+          "text": "217",
+          "full": "217",
+          "bounds": {
+            "x": 422,
+            "y": 257,
+            "width": 68,
+            "height": 48
+          },
+          "scale": 1,
+          "color": "#247b93",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "7",
+          "full": "7",
+          "bounds": {
+            "x": 658,
+            "y": 245.00000000000003,
+            "width": 31.100454689370167,
+            "height": 64.9052967430334
+          },
+          "scale": 1.3521936821465286,
+          "color": "#b8473a",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "1,519",
+          "full": "1,519",
+          "bounds": {
+            "x": 881,
+            "y": 246,
+            "width": 131.1627871682133,
+            "height": 62.200909378740334
+          },
+          "scale": 1.3521936821465286,
+          "color": "#b8473a",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        }
+      ],
+      "caption": "7♣ · 倍率+2",
+      "sourceBadge": "+2",
+      "round": "0",
+      "plays": "3 次",
+      "discards": "3 次",
+      "path": "05-add-impact.png"
+    },
+    {
+      "key": "add-settled",
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/2",
+      "phase": "rest",
+      "at": 5496.9000000059605,
+      "numeric": [
+        {
+          "text": "217",
+          "full": "217",
+          "bounds": {
+            "x": 422,
+            "y": 257,
+            "width": 68,
+            "height": 48
+          },
+          "scale": 1,
+          "color": "#247b93",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "7",
+          "full": "7",
+          "bounds": {
+            "x": 662,
+            "y": 257,
+            "width": 23,
+            "height": 48
+          },
+          "scale": 1,
+          "color": "#b8473a",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "1,519",
+          "full": "1,519",
+          "bounds": {
+            "x": 898,
+            "y": 258,
+            "width": 97,
+            "height": 46
+          },
+          "scale": 1,
+          "color": "#b8473a",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        }
+      ],
+      "caption": "7♣ · 倍率+2",
+      "round": "0",
+      "plays": "3 次",
+      "discards": "3 次",
+      "path": "06-add-settled.png"
+    },
+    {
+      "key": "multiply-source",
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/29",
+      "phase": "windup",
+      "at": 11844.60000000149,
+      "numeric": [
+        {
+          "text": "309",
+          "full": "309",
+          "bounds": {
+            "x": 422,
+            "y": 257,
+            "width": 68,
+            "height": 48
+          },
+          "scale": 1,
+          "color": "#247b93",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "≈33.13",
+          "full": "≈33.13",
+          "bounds": {
+            "x": 612,
+            "y": 257,
+            "width": 124,
+            "height": 48
+          },
+          "scale": 1,
+          "color": "#b8473a",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "10,235",
+          "full": "10,235",
+          "bounds": {
+            "x": 887,
+            "y": 258,
+            "width": 119,
+            "height": 46
+          },
+          "scale": 1,
+          "color": "#b8473a",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        }
+      ],
+      "caption": "始终如一 · 本次倍率 ×1.5",
+      "sourceBadge": "×1.5",
+      "eye": {
+        "bounds": {
+          "x": 20,
+          "y": 270,
+          "width": 208,
+          "height": 78
+        },
+        "children": [
+          "hero/climax-eyes"
+        ]
+      },
+      "round": "0",
+      "plays": "3 次",
+      "discards": "3 次",
+      "path": "07-multiply-source.png"
+    },
+    {
+      "key": "multiply-settled",
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/29",
+      "phase": "rest",
+      "at": 12077.60000000149,
+      "numeric": [
+        {
+          "text": "309",
+          "full": "309",
+          "bounds": {
+            "x": 422,
+            "y": 257,
+            "width": 68,
+            "height": 48
+          },
+          "scale": 1,
+          "color": "#247b93",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "≈49.69",
+          "full": "≈49.69",
+          "bounds": {
+            "x": 612,
+            "y": 257,
+            "width": 124,
+            "height": 48
+          },
+          "scale": 1,
+          "color": "#b8473a",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "15,353",
+          "full": "15,353",
+          "bounds": {
+            "x": 887,
+            "y": 258,
+            "width": 119,
+            "height": 46
+          },
+          "scale": 1,
+          "color": "#b8473a",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        }
+      ],
+      "caption": "始终如一 · 本次倍率 ×1.5",
+      "eye": {
+        "bounds": {
+          "x": 20,
+          "y": 270,
+          "width": 208,
+          "height": 78
+        },
+        "children": [
+          "hero/climax-eyes"
+        ]
+      },
+      "round": "0",
+      "plays": "3 次",
+      "discards": "3 次",
+      "path": "08-multiply-settled.png"
+    },
+    {
+      "key": "hero-source",
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/32",
+      "phase": "windup",
+      "at": 12437.30000000447,
+      "numeric": [
+        {
+          "text": "349",
+          "full": "349",
+          "bounds": {
+            "x": 422,
+            "y": 257,
+            "width": 68,
+            "height": 48
+          },
+          "scale": 1,
+          "color": "#247b93",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "≈49.69",
+          "full": "≈49.69",
+          "bounds": {
+            "x": 612,
+            "y": 257,
+            "width": 124,
+            "height": 48
+          },
+          "scale": 1,
+          "color": "#b8473a",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "17,340",
+          "full": "17,340",
+          "bounds": {
+            "x": 887,
+            "y": 258,
+            "width": 119,
+            "height": 46
+          },
+          "scale": 1,
+          "color": "#b8473a",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        }
+      ],
+      "caption": "苏轼·余音袅袅 · 本次倍率 ×2",
+      "sourceBadge": "×2",
+      "eye": {
+        "bounds": {
+          "x": 20,
+          "y": 270,
+          "width": 208,
+          "height": 78
+        },
+        "children": [
+          "hero/climax-eyes"
+        ]
+      },
+      "round": "0",
+      "plays": "3 次",
+      "discards": "3 次",
+      "path": "09-hero-source.png"
+    },
+    {
+      "key": "hero-settled",
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/32",
+      "phase": "rest",
+      "at": 12671.20000000298,
+      "numeric": [
+        {
+          "text": "349",
+          "full": "349",
+          "bounds": {
+            "x": 422,
+            "y": 257,
+            "width": 68,
+            "height": 48
+          },
+          "scale": 1,
+          "color": "#247b93",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "≈99.38",
+          "full": "≈99.38",
+          "bounds": {
+            "x": 612,
+            "y": 257,
+            "width": 124,
+            "height": 48
+          },
+          "scale": 1,
+          "color": "#b8473a",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "34,681",
+          "full": "34,681",
+          "bounds": {
+            "x": 887,
+            "y": 258,
+            "width": 119,
+            "height": 46
+          },
+          "scale": 1,
+          "color": "#b8473a",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        }
+      ],
+      "caption": "苏轼·余音袅袅 · 本次倍率 ×2",
+      "eye": {
+        "bounds": {
+          "x": 20,
+          "y": 270,
+          "width": 208,
+          "height": 78
+        },
+        "children": [
+          "hero/climax-eyes"
+        ]
+      },
+      "round": "0",
+      "plays": "3 次",
+      "discards": "3 次",
+      "path": "10-hero-settled.png"
+    },
+    {
+      "key": "award-credit",
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/33",
+      "phase": "award",
+      "at": 12760.90000000596,
+      "numeric": [
+        {
+          "text": "349",
+          "full": "349",
+          "bounds": {
+            "x": 422,
+            "y": 257,
+            "width": 68,
+            "height": 48
+          },
+          "scale": 1,
+          "color": "#247b93",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "≈99.38",
+          "full": "≈99.38",
+          "bounds": {
+            "x": 612,
+            "y": 257,
+            "width": 124,
+            "height": 48
+          },
+          "scale": 1,
+          "color": "#b8473a",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "34,681",
+          "full": "34,681",
+          "bounds": {
+            "x": 891,
+            "y": 260,
+            "width": 110.66999999999996,
+            "height": 42.77999999999997
+          },
+          "scale": 0.93,
+          "color": "#80551f",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        }
+      ],
+      "caption": "五倍炸场 · +34,681",
+      "round": "0",
+      "plays": "3 次",
+      "discards": "3 次",
+      "path": "11-award-credit.png"
+    },
+    {
+      "key": "award-rolling",
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/33",
+      "phase": "award",
+      "at": 12788.60000000149,
+      "numeric": [
+        {
+          "text": "349",
+          "full": "349",
+          "bounds": {
+            "x": 422,
+            "y": 257,
+            "width": 68,
+            "height": 48
+          },
+          "scale": 1,
+          "color": "#247b93",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "≈99.38",
+          "full": "≈99.38",
+          "bounds": {
+            "x": 612,
+            "y": 257,
+            "width": 124,
+            "height": 48
+          },
+          "scale": 1,
+          "color": "#b8473a",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "34,681",
+          "full": "34,681",
+          "bounds": {
+            "x": 869,
+            "y": 247.99999999999997,
+            "width": 156.347330214463,
+            "height": 60.43678310811177
+          },
+          "scale": 1.3138431110459081,
+          "color": "#80551f",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        }
+      ],
+      "caption": "五倍炸场 · +34,681",
+      "round": "16,444",
+      "plays": "3 次",
+      "discards": "3 次",
+      "path": "12-award-rolling.png",
+      "visibleHeatPixels": 1214
+    },
+    {
+      "key": "award-landed",
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/33",
+      "phase": "award",
+      "at": 12906.10000000149,
+      "numeric": [
+        {
+          "text": "349",
+          "full": "349",
+          "bounds": {
+            "x": 422,
+            "y": 257,
+            "width": 68,
+            "height": 48
+          },
+          "scale": 1,
+          "color": "#247b93",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "≈99.38",
+          "full": "≈99.38",
+          "bounds": {
+            "x": 612,
+            "y": 257,
+            "width": 124,
+            "height": 48
+          },
+          "scale": 1,
+          "color": "#b8473a",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "34,681",
+          "full": "34,681",
+          "bounds": {
+            "x": 887,
+            "y": 258,
+            "width": 119,
+            "height": 46
+          },
+          "scale": 1,
+          "color": "#80551f",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        }
+      ],
+      "caption": "五倍炸场 · +34,681",
+      "round": "34,681",
+      "plays": "3 次",
+      "discards": "3 次",
+      "path": "13-award-landed.png",
+      "visibleHeatPixels": 1214
+    }
+  ],
+  "seen": {
+    "heat": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/1",
+    "add": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/2",
+    "multiply": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/29",
+    "hero": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/32",
+    "award": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/33"
+  },
+  "finished": true,
+  "audio": [
+    {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/0",
+      "kind": "add",
+      "at": 4940.80000000447,
+      "phase": "base-impact",
+      "H": "210",
+      "M": "5"
+    },
+    {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/1",
+      "kind": "add",
+      "at": 5178,
+      "phase": "impact",
+      "H": "217",
+      "M": "5"
+    },
+    {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/2",
+      "kind": "flight",
+      "at": 5279.4000000059605,
+      "phase": "windup",
+      "H": "217",
+      "M": "5"
+    },
+    {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/2",
+      "kind": "key",
+      "at": 5377.10000000149,
+      "phase": "impact",
+      "H": "217",
+      "M": "7"
+    },
+    {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/3",
+      "kind": "flight",
+      "at": 5532.20000000298,
+      "phase": "windup",
+      "H": "217",
+      "M": "7"
+    },
+    {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/3",
+      "kind": "multiply",
+      "at": 5645.4000000059605,
+      "phase": "impact",
+      "H": "217",
+      "M": "10.5"
+    },
+    {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/4",
+      "kind": "add",
+      "at": 5873.10000000149,
+      "phase": "impact",
+      "H": "217",
+      "M": "10.5"
+    },
+    {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/5",
+      "kind": "add",
+      "at": 6099.60000000149,
+      "phase": "impact",
+      "H": "217",
+      "M": "10.5"
+    },
+    {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/6",
+      "kind": "add",
+      "at": 6365.80000000447,
+      "phase": "impact",
+      "H": "224",
+      "M": "10.5"
+    },
+    {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/7",
+      "kind": "flight",
+      "at": 6469.4000000059605,
+      "phase": "windup",
+      "H": "224",
+      "M": "10.5"
+    },
+    {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/7",
+      "kind": "key",
+      "at": 6574.5,
+      "phase": "impact",
+      "H": "224",
+      "M": "12.5"
+    },
+    {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/8",
+      "kind": "flight",
+      "at": 6713.5,
+      "phase": "windup",
+      "H": "224",
+      "M": "12.5"
+    },
+    {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/8",
+      "kind": "multiply",
+      "at": 6837.9000000059605,
+      "phase": "impact",
+      "H": "224",
+      "M": "18.75"
+    },
+    {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/9",
+      "kind": "flight",
+      "at": 7011.80000000447,
+      "phase": "windup",
+      "H": "224",
+      "M": "18.75"
+    },
+    {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/9",
+      "kind": "key",
+      "at": 7117.20000000298,
+      "phase": "impact",
+      "H": "231",
+      "M": "18.75"
+    },
+    {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/10",
+      "kind": "flight",
+      "at": 7240.4000000059605,
+      "phase": "windup",
+      "H": "231",
+      "M": "18.75"
+    },
+    {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/10",
+      "kind": "key",
+      "at": 7346.30000000447,
+      "phase": "impact",
+      "H": "231",
+      "M": "20.75"
+    },
+    {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/11",
+      "kind": "flight",
+      "at": 7486.30000000447,
+      "phase": "windup",
+      "H": "231",
+      "M": "20.75"
+    },
+    {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/11",
+      "kind": "multiply",
+      "at": 7609.30000000447,
+      "phase": "impact",
+      "H": "231",
+      "M": "≈31.13"
+    },
+    {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/12",
+      "kind": "flight",
+      "at": 7782.60000000149,
+      "phase": "windup",
+      "H": "231",
+      "M": "≈31.13"
+    },
+    {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/12",
+      "kind": "key",
+      "at": 7888,
+      "phase": "impact",
+      "H": "238",
+      "M": "≈31.13"
+    },
+    {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/13",
+      "kind": "add",
+      "at": 8061.9000000059605,
+      "phase": "impact",
+      "H": "238",
+      "M": "≈31.13"
+    },
+    {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/14",
+      "kind": "add",
+      "at": 8289.60000000149,
+      "phase": "impact",
+      "H": "238",
+      "M": "≈31.13"
+    },
+    {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/15",
+      "kind": "flight",
+      "at": 8466.5,
+      "phase": "windup",
+      "H": "238",
+      "M": "≈31.13"
+    },
+    {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/15",
+      "kind": "key",
+      "at": 8573.20000000298,
+      "phase": "impact",
+      "H": "245",
+      "M": "≈31.13"
+    },
+    {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/16",
+      "kind": "flight",
+      "at": 8694.30000000447,
+      "phase": "windup",
+      "H": "245",
+      "M": "≈31.13"
+    },
+    {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/16",
+      "kind": "key",
+      "at": 8800.20000000298,
+      "phase": "impact",
+      "H": "252",
+      "M": "≈31.13"
+    },
+    {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/17",
+      "kind": "flight",
+      "at": 8939.40000000596,
+      "phase": "windup",
+      "H": "252",
+      "M": "≈31.13"
+    },
+    {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/17",
+      "kind": "key",
+      "at": 9047.20000000298,
+      "phase": "impact",
+      "H": "261",
+      "M": "≈31.13"
+    },
+    {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/18",
+      "kind": "add",
+      "at": 9238.20000000298,
+      "phase": "impact",
+      "H": "261",
+      "M": "≈31.13"
+    },
+    {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/19",
+      "kind": "flight",
+      "at": 9415,
+      "phase": "windup",
+      "H": "261",
+      "M": "≈31.13"
+    },
+    {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/19",
+      "kind": "key",
+      "at": 9521.70000000298,
+      "phase": "impact",
+      "H": "270",
+      "M": "≈31.13"
+    },
+    {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/20",
+      "kind": "flight",
+      "at": 9663,
+      "phase": "windup",
+      "H": "270",
+      "M": "≈31.13"
+    },
+    {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/20",
+      "kind": "key",
+      "at": 9770.90000000596,
+      "phase": "impact",
+      "H": "279",
+      "M": "≈31.13"
+    },
+    {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/21",
+      "kind": "add",
+      "at": 9950.80000000447,
+      "phase": "impact",
+      "H": "279",
+      "M": "≈31.13"
+    },
+    {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/22",
+      "kind": "flight",
+      "at": 10126.20000000298,
+      "phase": "windup",
+      "H": "279",
+      "M": "≈31.13"
+    },
+    {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/22",
+      "kind": "key",
+      "at": 10234.70000000298,
+      "phase": "impact",
+      "H": "288",
+      "M": "≈31.13"
+    },
+    {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/23",
+      "kind": "flight",
+      "at": 10360.10000000149,
+      "phase": "windup",
+      "H": "288",
+      "M": "≈31.13"
+    },
+    {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/23",
+      "kind": "key",
+      "at": 10449.30000000447,
+      "phase": "impact",
+      "H": "295",
+      "M": "≈31.13"
+    },
+    {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/24",
+      "kind": "add",
+      "at": 10629.70000000298,
+      "phase": "impact",
+      "H": "295",
+      "M": "≈31.13"
+    },
+    {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/25",
+      "kind": "add",
+      "at": 10858.90000000596,
+      "phase": "impact",
+      "H": "295",
+      "M": "≈31.13"
+    },
+    {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/26",
+      "kind": "flight",
+      "at": 11038.60000000149,
+      "phase": "windup",
+      "H": "295",
+      "M": "≈31.13"
+    },
+    {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/26",
+      "kind": "key",
+      "at": 11144.20000000298,
+      "phase": "impact",
+      "H": "302",
+      "M": "≈31.13"
+    },
+    {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/27",
+      "kind": "flight",
+      "at": 11270.60000000149,
+      "phase": "windup",
+      "H": "302",
+      "M": "≈31.13"
+    },
+    {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/27",
+      "kind": "key",
+      "at": 11381,
+      "phase": "impact",
+      "H": "309",
+      "M": "≈31.13"
+    },
+    {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/28",
+      "kind": "flight",
+      "at": 11504.10000000149,
+      "phase": "windup",
+      "H": "309",
+      "M": "≈31.13"
+    },
+    {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/28",
+      "kind": "key",
+      "at": 11612.20000000298,
+      "phase": "impact",
+      "H": "309",
+      "M": "≈33.13"
+    },
+    {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/29",
+      "kind": "flight",
+      "at": 11774.70000000298,
+      "phase": "windup",
+      "H": "309",
+      "M": "≈33.13"
+    },
+    {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/29",
+      "kind": "multiply",
+      "at": 11900.30000000447,
+      "phase": "impact",
+      "H": "309",
+      "M": "≈49.69"
+    },
+    {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/30",
+      "kind": "flight",
+      "at": 12105.30000000447,
+      "phase": "windup",
+      "H": "309",
+      "M": "≈49.69"
+    },
+    {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/30",
+      "kind": "key",
+      "at": 12204.5,
+      "phase": "impact",
+      "H": "349",
+      "M": "≈49.69"
+    },
+    {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/32",
+      "kind": "flight",
+      "at": 12367.40000000596,
+      "phase": "windup",
+      "H": "349",
+      "M": "≈49.69"
+    },
+    {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/32",
+      "kind": "multiply",
+      "at": 12492.5,
+      "phase": "impact",
+      "H": "349",
+      "M": "≈99.38"
+    },
+    {
+      "id": "award",
+      "kind": "award",
+      "at": 12746.40000000596,
+      "phase": "award",
+      "H": "349",
+      "M": "≈99.38"
+    }
+  ],
+  "violations": [],
+  "frames": 463,
+  "lingering": [],
+  "vibrationRequests": [
+    {
+      "pattern": [
+        22
+      ],
+      "at": 5645.80000000447,
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/3",
+      "phase": "impact"
+    },
+    {
+      "pattern": [
+        22
+      ],
+      "at": 6838.20000000298,
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/8",
+      "phase": "impact"
+    },
+    {
+      "pattern": [
+        22
+      ],
+      "at": 7609.60000000149,
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/11",
+      "phase": "impact"
+    },
+    {
+      "pattern": [
+        28,
+        45,
+        36
+      ],
+      "at": 12746.10000000149,
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/33",
+      "phase": "award"
+    }
+  ],
+  "decisions": []
+}

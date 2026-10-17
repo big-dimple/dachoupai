@@ -1,0 +1,233 @@
+{
+  "video": {
+    "duration": 13.815873,
+    "width": 394,
+    "height": 854
+  },
+  "audio": {
+    "duration": 13.815854166666666,
+    "sampleRate": 48000,
+    "channels": 2
+  },
+  "method": "10ms RMS and first-difference energy; positive 30ms attack local maxima above 96.5th percentile. Candidate transients from mixed audio, not a subjective listening or semantic note classification.",
+  "threshold": 0.023499417556253864,
+  "peaks": [
+    {
+      "time": 0.21,
+      "rms": 0.06002695801834426,
+      "high": 0.005592268508838167,
+      "attack": 0.05250254544868394
+    },
+    {
+      "time": 1.18,
+      "rms": 0.03528648012850377,
+      "high": 0.006898695800710334,
+      "attack": 0.03162452145232954
+    },
+    {
+      "time": 1.64,
+      "rms": 0.07616628010587875,
+      "high": 0.012871985189138277,
+      "attack": 0.07328074670832994
+    },
+    {
+      "time": 1.87,
+      "rms": 0.04200358704001215,
+      "high": 0.00561771054716167,
+      "attack": 0.03911462218456327
+    },
+    {
+      "time": 3.22,
+      "rms": 0.060974582574682704,
+      "high": 0.01177256767858164,
+      "attack": 0.05965617544111329
+    },
+    {
+      "time": 3.35,
+      "rms": 0.059964317398489606,
+      "high": 0.0015889889494622577,
+      "attack": 0.05494878389211553
+    },
+    {
+      "time": 3.68,
+      "rms": 0.05232166496702816,
+      "high": 0.0026362008087537875,
+      "attack": 0.03975699037624901
+    },
+    {
+      "time": 3.81,
+      "rms": 0.07217282238490595,
+      "high": 0.00489694608603905,
+      "attack": 0.06499459182968817
+    },
+    {
+      "time": 4.5,
+      "rms": 0.07848037154343693,
+      "high": 0.005186001134446076,
+      "attack": 0.07305537616905089
+    },
+    {
+      "time": 4.93,
+      "rms": 0.030694502711327693,
+      "high": 0.005379336948398387,
+      "attack": 0.02883297733562895
+    },
+    {
+      "time": 5.74,
+      "rms": 0.12948712742186133,
+      "high": 0.007565950820134361,
+      "attack": 0.12089619742954134
+    },
+    {
+      "time": 7.21,
+      "rms": 0.09467549204476604,
+      "high": 0.006759463343846486,
+      "attack": 0.09337471246263732
+    },
+    {
+      "time": 7.75,
+      "rms": 0.05229500456043455,
+      "high": 0.005166091472354313,
+      "attack": 0.044458703650949435
+    },
+    {
+      "time": 8.26,
+      "rms": 0.06684804784116789,
+      "high": 0.009027958113815283,
+      "attack": 0.07041483212034105
+    },
+    {
+      "time": 8.85,
+      "rms": 0.15407141939896307,
+      "high": 0.0011806627956364832,
+      "attack": 0.137037958642538
+    },
+    {
+      "time": 9.38,
+      "rms": 0.053259445414322225,
+      "high": 0.005112792241743167,
+      "attack": 0.034913744332218305
+    },
+    {
+      "time": 9.72,
+      "rms": 0.16131644422409486,
+      "high": 0.011132208285378522,
+      "attack": 0.15173460994547694
+    },
+    {
+      "time": 10.32,
+      "rms": 0.028253569114572278,
+      "high": 0.003803586295868423,
+      "attack": 0.025157478123791984
+    },
+    {
+      "time": 10.83,
+      "rms": 0.027121220602740366,
+      "high": 0.004671845724910424,
+      "attack": 0.02503960339101995
+    },
+    {
+      "time": 12.38,
+      "rms": 0.13160773703415934,
+      "high": 0.0008705136113783144,
+      "attack": 0.1312059149217782
+    }
+  ],
+  "sourceSha256": "39e550b9386ae3c12c396732befbd02e5e7c468cc2bb7a1bfaad0b6c9e1c4eab",
+  "sourceBytes": 2392528,
+  "frames": [
+    {
+      "requestedSec": 3.25,
+      "presentedPTSSec": 3.266667
+    },
+    {
+      "requestedSec": 3.5,
+      "presentedPTSSec": 3.533333
+    },
+    {
+      "requestedSec": 3.75,
+      "presentedPTSSec": 3.766667
+    },
+    {
+      "requestedSec": 4.25,
+      "presentedPTSSec": 4.266667
+    },
+    {
+      "requestedSec": 4.5,
+      "presentedPTSSec": 4.533333
+    },
+    {
+      "requestedSec": 4.75,
+      "presentedPTSSec": 4.766667
+    },
+    {
+      "requestedSec": 5,
+      "presentedPTSSec": 5.033333
+    },
+    {
+      "requestedSec": 5.5,
+      "presentedPTSSec": 5.533333
+    },
+    {
+      "requestedSec": 6,
+      "presentedPTSSec": 6.033333
+    },
+    {
+      "requestedSec": 6.5,
+      "presentedPTSSec": 6.533333
+    },
+    {
+      "requestedSec": 6.75,
+      "presentedPTSSec": 6.766667
+    },
+    {
+      "requestedSec": 7,
+      "presentedPTSSec": 7.033333
+    },
+    {
+      "requestedSec": 7.25,
+      "presentedPTSSec": 7.266667
+    },
+    {
+      "requestedSec": 7.5,
+      "presentedPTSSec": 7.533333
+    },
+    {
+      "requestedSec": 7.75,
+      "presentedPTSSec": 7.766667
+    },
+    {
+      "requestedSec": 8,
+      "presentedPTSSec": 8.033333
+    },
+    {
+      "requestedSec": 8.5,
+      "presentedPTSSec": 8.533333
+    },
+    {
+      "requestedSec": 9.5,
+      "presentedPTSSec": 9.533333
+    },
+    {
+      "requestedSec": 10.5,
+      "presentedPTSSec": 10.533333
+    },
+    {
+      "requestedSec": 11.5,
+      "presentedPTSSec": 11.533333
+    },
+    {
+      "requestedSec": 12,
+      "presentedPTSSec": 12.033333
+    },
+    {
+      "requestedSec": 12.5,
+      "presentedPTSSec": 12.533333
+    },
+    {
+      "requestedSec": 13,
+      "presentedPTSSec": 13.033333
+    }
+  ],
+  "note": "Original and private video frames remain local under ignored shots/user-baseline. Presented PTS was checked after byte-range seeking. Candidate onsets are mixed-track energy events, not an auditory classification."
+}

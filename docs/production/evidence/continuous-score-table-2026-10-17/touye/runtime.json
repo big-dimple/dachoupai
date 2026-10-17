@@ -1,0 +1,926 @@
+{
+  "mode": "touye",
+  "scope": "Controlled imported public hand; real native decisions, selection and command commit, canonical state comparison. Vibration API, when instrumented, only reports software requests; not natural acquisition, hearing or physical touch acceptance.",
+  "browser": "143.0.3650.80",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "errors": [],
+  "events": {
+    "core/unformed-win/hand/core/unformed-win/command/5/event/1": {
+      "id": "core/unformed-win/hand/core/unformed-win/command/5/event/1",
+      "source": "rank-9",
+      "operation": "add-heat",
+      "before": {
+        "H": {
+          "n": "65",
+          "d": "1"
+        },
+        "M": {
+          "n": "2",
+          "d": "1"
+        }
+      },
+      "after": {
+        "H": {
+          "n": "74",
+          "d": "1"
+        },
+        "M": {
+          "n": "2",
+          "d": "1"
+        }
+      },
+      "phases": [
+        "windup",
+        "impact",
+        "rest"
+      ],
+      "phaseTimes": {
+        "windup": 7187.39999999851,
+        "impact": 7413.5,
+        "rest": 7657.39999999851
+      },
+      "peak": 1.2799622071050643,
+      "cardTravel": 19.954648526077108,
+      "first": 7187.39999999851,
+      "last": 7727.20000000298
+    },
+    "core/unformed-win/hand/core/unformed-win/command/5/event/2": {
+      "id": "core/unformed-win/hand/core/unformed-win/command/5/event/2",
+      "source": "rank-13",
+      "operation": "add-heat",
+      "before": {
+        "H": {
+          "n": "74",
+          "d": "1"
+        },
+        "M": {
+          "n": "2",
+          "d": "1"
+        }
+      },
+      "after": {
+        "H": {
+          "n": "84",
+          "d": "1"
+        },
+        "M": {
+          "n": "2",
+          "d": "1"
+        }
+      },
+      "phases": [
+        "windup",
+        "impact",
+        "rest"
+      ],
+      "phaseTimes": {
+        "windup": 7744.89999999851,
+        "impact": 7973.20000000298,
+        "rest": 8200.5
+      },
+      "peak": 1.279999825032894,
+      "cardTravel": 19.976344447243946,
+      "first": 7744.89999999851,
+      "last": 8270.5
+    },
+    "core/unformed-win/hand/core/unformed-win/command/5/event/3": {
+      "id": "core/unformed-win/hand/core/unformed-win/command/5/event/3",
+      "source": "rank-13",
+      "operation": "add-heat",
+      "before": {
+        "H": {
+          "n": "84",
+          "d": "1"
+        },
+        "M": {
+          "n": "2",
+          "d": "1"
+        }
+      },
+      "after": {
+        "H": {
+          "n": "94",
+          "d": "1"
+        },
+        "M": {
+          "n": "2",
+          "d": "1"
+        }
+      },
+      "phases": [
+        "windup",
+        "impact",
+        "rest"
+      ],
+      "phaseTimes": {
+        "windup": 8288.10000000149,
+        "impact": 8516.20000000298,
+        "rest": 8743.60000000149
+      },
+      "peak": 1.2799924982853224,
+      "cardTravel": 19.991041684163406,
+      "first": 8288,
+      "last": 8830.60000000149
+    },
+    "core/unformed-win/hand/core/unformed-win/command/5/event/4": {
+      "id": "core/unformed-win/hand/core/unformed-win/command/5/event/4",
+      "source": "rank-9",
+      "operation": "add-heat",
+      "before": {
+        "H": {
+          "n": "94",
+          "d": "1"
+        },
+        "M": {
+          "n": "2",
+          "d": "1"
+        }
+      },
+      "after": {
+        "H": {
+          "n": "103",
+          "d": "1"
+        },
+        "M": {
+          "n": "2",
+          "d": "1"
+        }
+      },
+      "phases": [
+        "windup",
+        "impact",
+        "rest"
+      ],
+      "phaseTimes": {
+        "windup": 8848.5,
+        "impact": 9075.89999999851,
+        "rest": 9302.89999999851
+      },
+      "peak": 1.2799924982853224,
+      "cardTravel": 19.976344447243946,
+      "first": 8848.39999999851,
+      "last": 9374.39999999851
+    },
+    "core/unformed-win/hand/core/unformed-win/command/5/event/6": {
+      "id": "core/unformed-win/hand/core/unformed-win/command/5/event/6",
+      "source": "touye",
+      "operation": "multiply-multiplier",
+      "before": {
+        "H": {
+          "n": "103",
+          "d": "1"
+        },
+        "M": {
+          "n": "2",
+          "d": "1"
+        }
+      },
+      "after": {
+        "H": {
+          "n": "103",
+          "d": "1"
+        },
+        "M": {
+          "n": "4",
+          "d": "1"
+        }
+      },
+      "phases": [
+        "windup",
+        "impact",
+        "rest"
+      ],
+      "phaseTimes": {
+        "windup": 9394.20000000298,
+        "impact": 9725.70000000298,
+        "rest": 10178.70000000298
+      },
+      "peak": 1.5368045798399361,
+      "cardTravel": 0,
+      "first": 9394.20000000298,
+      "last": 10406.20000000298
+    },
+    "core/unformed-win/hand/core/unformed-win/command/5/event/7": {
+      "id": "core/unformed-win/hand/core/unformed-win/command/5/event/7",
+      "source": "two-pair",
+      "operation": "final-score",
+      "before": {
+        "H": {
+          "n": "103",
+          "d": "1"
+        },
+        "M": {
+          "n": "4",
+          "d": "1"
+        }
+      },
+      "after": {
+        "H": {
+          "n": "103",
+          "d": "1"
+        },
+        "M": {
+          "n": "4",
+          "d": "1"
+        }
+      },
+      "phases": [
+        "award"
+      ],
+      "phaseTimes": {
+        "award": 10423.89999999851
+      },
+      "peak": 1.3199955955169296,
+      "cardTravel": 0,
+      "first": 10423.89999999851,
+      "last": 11124.80000000447
+    }
+  },
+  "images": [
+    {
+      "key": "heat-source",
+      "id": "core/unformed-win/hand/core/unformed-win/command/5/event/1",
+      "phase": "windup",
+      "at": 7273.60000000149,
+      "numeric": [
+        {
+          "text": "65",
+          "full": "65",
+          "bounds": {
+            "x": 44,
+            "y": 215,
+            "width": 45,
+            "height": 48
+          },
+          "scale": 1,
+          "color": "#247b93",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "2",
+          "full": "2",
+          "bounds": {
+            "x": 158,
+            "y": 215,
+            "width": 23,
+            "height": 48
+          },
+          "scale": 1,
+          "color": "#b8473a",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "130",
+          "full": "130",
+          "bounds": {
+            "x": 264,
+            "y": 215,
+            "width": 69,
+            "height": 48
+          },
+          "scale": 1,
+          "color": "#26313a",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        }
+      ],
+      "caption": "9♠ · 热度+9",
+      "sourceBadge": "+9",
+      "round": "0 / 400",
+      "plays": "3 次",
+      "discards": "2 次",
+      "path": "01-heat-source.png"
+    },
+    {
+      "key": "heat-impact",
+      "id": "core/unformed-win/hand/core/unformed-win/command/5/event/1",
+      "phase": "impact",
+      "at": 7465.80000000447,
+      "numeric": [
+        {
+          "text": "74",
+          "full": "74",
+          "bounds": {
+            "x": 38,
+            "y": 205,
+            "width": 56.701756385424545,
+            "height": 60.481873477786166
+          },
+          "scale": 1.260039030787212,
+          "color": "#247b93",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "2",
+          "full": "2",
+          "bounds": {
+            "x": 158,
+            "y": 215,
+            "width": 23,
+            "height": 48
+          },
+          "scale": 1,
+          "color": "#b8473a",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "148",
+          "full": "148",
+          "bounds": {
+            "x": 255,
+            "y": 205,
+            "width": 86.94269312431766,
+            "height": 60.481873477786166
+          },
+          "scale": 1.260039030787212,
+          "color": "#26313a",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        }
+      ],
+      "caption": "9♠ · 热度+9",
+      "sourceBadge": "+9",
+      "round": "0 / 400",
+      "plays": "3 次",
+      "discards": "2 次",
+      "path": "02-heat-impact.png"
+    },
+    {
+      "key": "heat-settled",
+      "id": "core/unformed-win/hand/core/unformed-win/command/5/event/1",
+      "phase": "rest",
+      "at": 7657.60000000149,
+      "numeric": [
+        {
+          "text": "74",
+          "full": "74",
+          "bounds": {
+            "x": 44,
+            "y": 215,
+            "width": 45,
+            "height": 48
+          },
+          "scale": 1,
+          "color": "#247b93",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "2",
+          "full": "2",
+          "bounds": {
+            "x": 158,
+            "y": 215,
+            "width": 23,
+            "height": 48
+          },
+          "scale": 1,
+          "color": "#b8473a",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "148",
+          "full": "148",
+          "bounds": {
+            "x": 264,
+            "y": 215,
+            "width": 69,
+            "height": 48
+          },
+          "scale": 1,
+          "color": "#26313a",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        }
+      ],
+      "caption": "9♠ · 热度+9",
+      "round": "0 / 400",
+      "plays": "3 次",
+      "discards": "2 次",
+      "path": "03-heat-settled.png"
+    },
+    {
+      "key": "hero-source",
+      "id": "core/unformed-win/hand/core/unformed-win/command/5/event/6",
+      "phase": "windup",
+      "at": 9534.70000000298,
+      "numeric": [
+        {
+          "text": "103",
+          "full": "103",
+          "bounds": {
+            "x": 38,
+            "y": 219,
+            "width": 57,
+            "height": 39
+          },
+          "scale": 1,
+          "color": "#247b93",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "2",
+          "full": "2",
+          "bounds": {
+            "x": 158,
+            "y": 215,
+            "width": 23,
+            "height": 48
+          },
+          "scale": 1,
+          "color": "#b8473a",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "206",
+          "full": "206",
+          "bounds": {
+            "x": 264,
+            "y": 215,
+            "width": 69,
+            "height": 48
+          },
+          "scale": 1,
+          "color": "#26313a",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        }
+      ],
+      "caption": "秦琼·跃马冲阵·押两对达成 · 本次倍率 ×2",
+      "sourceBadge": "×2",
+      "eye": {
+        "bounds": {
+          "x": 109.66666666666667,
+          "y": 305.6,
+          "width": 170.66666666666666,
+          "height": 64
+        },
+        "children": [
+          "hero/climax-eyes"
+        ]
+      },
+      "round": "0 / 400",
+      "plays": "3 次",
+      "discards": "2 次",
+      "path": "04-hero-source.png"
+    },
+    {
+      "key": "hero-impact",
+      "id": "core/unformed-win/hand/core/unformed-win/command/5/event/6",
+      "phase": "impact",
+      "at": 9830,
+      "numeric": [
+        {
+          "text": "103",
+          "full": "103",
+          "bounds": {
+            "x": 38,
+            "y": 219,
+            "width": 57,
+            "height": 39
+          },
+          "scale": 1,
+          "color": "#247b93",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "4",
+          "full": "4",
+          "bounds": {
+            "x": 152,
+            "y": 200,
+            "width": 35.34650533631853,
+            "height": 73.7666198323169
+          },
+          "scale": 1.5368045798399361,
+          "color": "#8c561f",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "412",
+          "full": "412",
+          "bounds": {
+            "x": 245,
+            "y": 200,
+            "width": 106.03951600895562,
+            "height": 73.7666198323169
+          },
+          "scale": 1.5368045798399361,
+          "color": "#b8473a",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        }
+      ],
+      "caption": "秦琼·跃马冲阵·押两对达成 · 本次倍率 ×2",
+      "sourceBadge": "×2",
+      "eye": {
+        "bounds": {
+          "x": 109.66666666666667,
+          "y": 305.6,
+          "width": 170.66666666666666,
+          "height": 64
+        },
+        "children": [
+          "hero/climax-eyes"
+        ]
+      },
+      "round": "0 / 400",
+      "plays": "3 次",
+      "discards": "2 次",
+      "path": "05-hero-impact.png"
+    },
+    {
+      "key": "hero-settled",
+      "id": "core/unformed-win/hand/core/unformed-win/command/5/event/6",
+      "phase": "rest",
+      "at": 10178.80000000447,
+      "numeric": [
+        {
+          "text": "103",
+          "full": "103",
+          "bounds": {
+            "x": 38,
+            "y": 219,
+            "width": 57,
+            "height": 39
+          },
+          "scale": 1,
+          "color": "#247b93",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "4",
+          "full": "4",
+          "bounds": {
+            "x": 158,
+            "y": 215,
+            "width": 23,
+            "height": 48
+          },
+          "scale": 1,
+          "color": "#b8473a",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "412",
+          "full": "412",
+          "bounds": {
+            "x": 264,
+            "y": 215,
+            "width": 69,
+            "height": 48
+          },
+          "scale": 1,
+          "color": "#b8473a",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        }
+      ],
+      "caption": "秦琼·跃马冲阵·押两对达成 · 本次倍率 ×2",
+      "eye": {
+        "bounds": {
+          "x": 109.66666666666667,
+          "y": 305.6,
+          "width": 170.66666666666666,
+          "height": 64
+        },
+        "children": [
+          "hero/climax-eyes"
+        ]
+      },
+      "round": "0 / 400",
+      "plays": "3 次",
+      "discards": "2 次",
+      "path": "06-hero-settled.png"
+    },
+    {
+      "key": "award-credit",
+      "id": "core/unformed-win/hand/core/unformed-win/command/5/event/7",
+      "phase": "award",
+      "at": 10424,
+      "numeric": [
+        {
+          "text": "103",
+          "full": "103",
+          "bounds": {
+            "x": 38,
+            "y": 219,
+            "width": 57,
+            "height": 39
+          },
+          "scale": 1,
+          "color": "#247b93",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "4",
+          "full": "4",
+          "bounds": {
+            "x": 158,
+            "y": 215,
+            "width": 23,
+            "height": 48
+          },
+          "scale": 1,
+          "color": "#b8473a",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "412",
+          "full": "412",
+          "bounds": {
+            "x": 266,
+            "y": 216,
+            "width": 64.17000000000002,
+            "height": 44.639999999999986
+          },
+          "scale": 0.93,
+          "color": "#b8473a",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        }
+      ],
+      "caption": "达成目标 · +412",
+      "round": "0 / 400",
+      "plays": "3 次",
+      "discards": "2 次",
+      "path": "07-award-credit.png"
+    },
+    {
+      "key": "award-rolling",
+      "id": "core/unformed-win/hand/core/unformed-win/command/5/event/7",
+      "phase": "award",
+      "at": 10442,
+      "numeric": [
+        {
+          "text": "103",
+          "full": "103",
+          "bounds": {
+            "x": 38,
+            "y": 219,
+            "width": 57,
+            "height": 39
+          },
+          "scale": 1,
+          "color": "#247b93",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "4",
+          "full": "4",
+          "bounds": {
+            "x": 158,
+            "y": 215,
+            "width": 23,
+            "height": 48
+          },
+          "scale": 1,
+          "color": "#b8473a",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "412",
+          "full": "412",
+          "bounds": {
+            "x": 266,
+            "y": 216,
+            "width": 64.17000000000002,
+            "height": 44.639999999999986
+          },
+          "scale": 0.93,
+          "color": "#b8473a",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        }
+      ],
+      "caption": "达成目标 · +412",
+      "round": "38 / 400",
+      "plays": "3 次",
+      "discards": "2 次",
+      "path": "08-award-rolling.png",
+      "visibleHeatPixels": 792
+    },
+    {
+      "key": "award-landed",
+      "id": "core/unformed-win/hand/core/unformed-win/command/5/event/7",
+      "phase": "award",
+      "at": 10985.60000000149,
+      "numeric": [
+        {
+          "text": "103",
+          "full": "103",
+          "bounds": {
+            "x": 38,
+            "y": 219,
+            "width": 57,
+            "height": 39
+          },
+          "scale": 1,
+          "color": "#247b93",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "4",
+          "full": "4",
+          "bounds": {
+            "x": 158,
+            "y": 215,
+            "width": 23,
+            "height": 48
+          },
+          "scale": 1,
+          "color": "#b8473a",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "412",
+          "full": "412",
+          "bounds": {
+            "x": 264,
+            "y": 215,
+            "width": 69,
+            "height": 48
+          },
+          "scale": 1,
+          "color": "#b8473a",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        }
+      ],
+      "caption": "达成目标 · +412",
+      "round": "412 / 400",
+      "plays": "3 次",
+      "discards": "2 次",
+      "path": "09-award-landed.png",
+      "visibleHeatPixels": 792
+    }
+  ],
+  "seen": {
+    "heat": "core/unformed-win/hand/core/unformed-win/command/5/event/1",
+    "hero": "core/unformed-win/hand/core/unformed-win/command/5/event/6",
+    "award": "core/unformed-win/hand/core/unformed-win/command/5/event/7"
+  },
+  "finished": true,
+  "audio": [
+    {
+      "id": "core/unformed-win/hand/core/unformed-win/command/5/event/1",
+      "kind": "add",
+      "at": 7399.89999999851,
+      "phase": "impact",
+      "H": "74",
+      "M": "2"
+    },
+    {
+      "id": "core/unformed-win/hand/core/unformed-win/command/5/event/2",
+      "kind": "add",
+      "at": 7957.30000000447,
+      "phase": "impact",
+      "H": "84",
+      "M": "2"
+    },
+    {
+      "id": "core/unformed-win/hand/core/unformed-win/command/5/event/3",
+      "kind": "add",
+      "at": 8500.20000000298,
+      "phase": "impact",
+      "H": "94",
+      "M": "2"
+    },
+    {
+      "id": "core/unformed-win/hand/core/unformed-win/command/5/event/4",
+      "kind": "add",
+      "at": 9062.30000000447,
+      "phase": "impact",
+      "H": "103",
+      "M": "2"
+    },
+    {
+      "id": "core/unformed-win/hand/core/unformed-win/command/5/event/6",
+      "kind": "flight",
+      "at": 9377.80000000447,
+      "phase": "windup",
+      "H": "103",
+      "M": "2"
+    },
+    {
+      "id": "core/unformed-win/hand/core/unformed-win/command/5/event/6",
+      "kind": "multiply",
+      "at": 9709.30000000447,
+      "phase": "impact",
+      "H": "103",
+      "M": "4"
+    },
+    {
+      "id": "award",
+      "kind": "award",
+      "at": 10409.89999999851,
+      "phase": "award",
+      "H": "103",
+      "M": "4"
+    }
+  ],
+  "violations": [],
+  "frames": 287,
+  "lingering": [],
+  "decisions": [
+    {
+      "text": "秦琼 · 先重新选弃牌\n\n确认换牌才花1次弃牌，不另收金币；确认后不能取消重抽。\n\n先弃牌换牌，再出牌。原拟出牌选择保留；下面重新选1–5张要弃的牌。\n\n只赌下一手；新摸牌只当配牌不算；失败×0.85，押后不能再弃牌。新摸牌参与成型×2，不押仍按原规则。\n\n要弃的牌：0/5 · 尚未选择\n\n9♠\n♠\nJ♦\nK♣\nK♦\n3♠\n♠\n5♥\n♥\n7♣\n♣\n2♦\n♦\n下一步 · 选押注牌型\n返回 · 保留原出牌选择",
+      "phase": "discard-choice",
+      "src": "http://localhost:5188/assets/tangsong-eyes/touye.eyes-12194e100f85.webp?v=12194e100f85",
+      "opacity": "1",
+      "noHeadingOverlap": true
+    },
+    {
+      "text": "秦琼 · 跃马冲阵\n弃1–5张\n每场1次\n已成型也可押\n选1–5张弃牌\n押牌型并换牌\n用新摸牌成型出牌\n\n第2步 · 已选1张弃牌，选下一手目标\n\n下一手用新摸牌凑成所押牌型×2；否则×0.85\n\n押两对\n押三条\n押葫芦\n押顺子\n押同花\n其它查看\n押注与换牌细则\n返回 · 保留原出牌选择",
+      "phase": "target-choice",
+      "src": "http://localhost:5188/assets/tangsong-eyes/touye.eyes-12194e100f85.webp?v=12194e100f85",
+      "opacity": "1",
+      "noHeadingOverlap": true
+    },
+    {
+      "text": "押两对 · 弃1张\n弃1–5张\n每场1次\n已成型也可押\n选要弃的牌\n选押注目标\n确认补牌\n\n③ 确认押两对并补牌\n\n要弃的牌：J♦\n弃1张，补1张 · 花1次弃牌\n只赌下一手；新摸牌只当配牌不算；失败×0.85，押后不能再弃牌；新摸牌参与成型×2。\n\n目标与弃牌明细\n确认押两对并弃1张\n取消 · 不弃牌",
+      "phase": "confirm-target",
+      "src": "http://localhost:5188/assets/tangsong-eyes/touye.eyes-12194e100f85.webp?v=12194e100f85",
+      "opacity": "1",
+      "noHeadingOverlap": true
+    },
+    {
+      "phase": "target-saved",
+      "target": "two-pair"
+    }
+  ]
+}

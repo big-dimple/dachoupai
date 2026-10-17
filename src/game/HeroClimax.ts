@@ -29,5 +29,5 @@ export function heroClimaxValue(state:R2RunState,trace:ScoreTrace,key:JokerKeyHi
  if(cue){const value=scoreSourceClimaxValue(cue,readableMultiplierEffect(key.fact.effect,event.value));return value&&{...value,contribution:scoreContributions(event).find(c=>c.target===(cue.kind==='heat'?'H':'M')),landingValue:readableFractionText(cue.kind==='heat'?event.after.H:event.after.M),landingLabel:cue.kind==='heat'?'累计热度落位':'累计倍率落位'};}
  return {label:'实际热度',before:readableFractionText(event.before.H),after:readableFractionText(event.after.H),note:readableMultiplierEffect(key.fact.effect,event.value)};
 }
-export interface HeroClimaxView {group:Phaser.GameObjects.Container;strike:()=>void;release:()=>Promise<void>;reduce:()=>void;dispose:()=>void}
+export interface HeroClimaxView {group:Phaser.GameObjects.Container;inline?:boolean;strike:()=>void;release:()=>Promise<void>;reduce:()=>void;dispose:()=>void}
 export {mountHeroClimax} from './HeroClimaxStage';

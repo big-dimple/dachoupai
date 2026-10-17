@@ -1,0 +1,1218 @@
+{
+  "base": "4314a2459ade4ea68133f67468c98f9f42b2e251",
+  "haptics": "aac060561724efd62dd06ea764d73b658b68ff3a",
+  "sourceHashFormat": "SHA-256 UTF-8 LF-normalized",
+  "sources": {
+    "src/game/GameScene.ts": "1c47851c73bb5cdacc48f99887facc184076701b09c928dfc998e51619339202",
+    "src/game/HeroClimaxStage.ts": "97f4e7c823ad6d021f3468da5a024dd591a9256159f929c728cd2a6d76d5eb20",
+    "src/game/HeroDecisionEyes.ts": "fe246e3e7f2ab0201e7d4664ab571af505ce37ff1e5fc8ea3d41acca8e8f2f89",
+    "src/game/HeroDecisionEyes.css": "50ce625f88312616647cb308c22193d92404b1d91e2fcf4e05dc3a2910476d70",
+    "src/game/ScoreTableLayout.ts": "0bab9bb275e6dab8fa412be7f125af082286cf1b37ca0d9262e4310449a82f1b",
+    "src/game/ScoreTableMotion.ts": "2a178b6b8e4f1ada7b7fe18479a4c5d117647a350fa5fb4eb8c8cf456e2d7c59",
+    "src/game/ScoreTableReadouts.ts": "043c0d16ade9cc641389691b5ba342dbe754ab5f92b3cea3bd422ba02b6b96e1",
+    "src/game/ScoreTableCredit.ts": "b2ff07bf3de6118e3cabe90add4d9516fe13d9c7e2f6728dd8b4dfe421a99ca7",
+    "src/game/HandSelectionInput.ts": "a502741e795cbca9e4914e089f789b4ed5a175072bed6e20125532000269121e",
+    "harness/continuous-score.mjs": "b6e96d6e74143c08b54a94acffc265110c46080d5de1e2a3a4132e9d049e9b5e"
+  },
+  "cases": [
+    {
+      "mode": "desktop",
+      "sourcePhase": "after neutral-receipt removal; before the final eye-slot/side-value-only display adjustment",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "frames": 1190,
+      "presentedEvents": 33,
+      "visibleTotal": "34,681",
+      "sourceCardMaxTravel": 19.999178172255085,
+      "maxRequestedScale": 1.5389914804252913,
+      "keyImpactAfterWindupMs": 343,
+      "awardVisibleMs": 700.7999999970198,
+      "violations": [],
+      "lingering": [],
+      "audioMatches": [
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/1",
+          "kind": "add",
+          "phase": "impact",
+          "callMs": 737.2999999970198,
+          "firstRenderedImpactMs": 751.1000000014901,
+          "delayToRenderMs": 13.800000004470348
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/2",
+          "kind": "key",
+          "phase": "impact",
+          "callMs": 1303,
+          "firstRenderedImpactMs": 1320.1000000014901,
+          "delayToRenderMs": 17.100000001490116
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/3",
+          "kind": "multiply",
+          "phase": "impact",
+          "callMs": 2006.1000000014901,
+          "firstRenderedImpactMs": 2018.3999999985099,
+          "delayToRenderMs": 12.299999997019768
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/4",
+          "kind": "add",
+          "phase": "impact",
+          "callMs": 2638,
+          "firstRenderedImpactMs": 2655.7000000029802,
+          "delayToRenderMs": 17.700000002980232
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/5",
+          "kind": "add",
+          "phase": "impact",
+          "callMs": 3127.2999999970198,
+          "firstRenderedImpactMs": 3143.10000000149,
+          "delayToRenderMs": 15.800000004470348
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/6",
+          "kind": "add",
+          "phase": "impact",
+          "callMs": 3741.10000000149,
+          "firstRenderedImpactMs": 3753.39999999851,
+          "delayToRenderMs": 12.299999997019768
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/7",
+          "kind": "key",
+          "phase": "impact",
+          "callMs": 4298.89999999851,
+          "firstRenderedImpactMs": 4315,
+          "delayToRenderMs": 16.100000001490116
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/8",
+          "kind": "multiply",
+          "phase": "impact",
+          "callMs": 5000.60000000149,
+          "firstRenderedImpactMs": 5015.70000000298,
+          "delayToRenderMs": 15.100000001490116
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/9",
+          "kind": "key",
+          "phase": "impact",
+          "callMs": 5780.20000000298,
+          "firstRenderedImpactMs": 5795.89999999851,
+          "delayToRenderMs": 15.699999995529652
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/10",
+          "kind": "key",
+          "phase": "impact",
+          "callMs": 6409.60000000149,
+          "firstRenderedImpactMs": 6425.10000000149,
+          "delayToRenderMs": 15.5
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/11",
+          "kind": "multiply",
+          "phase": "impact",
+          "callMs": 7128,
+          "firstRenderedImpactMs": 7143.89999999851,
+          "delayToRenderMs": 15.899999998509884
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/12",
+          "kind": "key",
+          "phase": "impact",
+          "callMs": 7900.79999999702,
+          "firstRenderedImpactMs": 7918.29999999702,
+          "delayToRenderMs": 17.5
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/13",
+          "kind": "add",
+          "phase": "impact",
+          "callMs": 8386.79999999702,
+          "firstRenderedImpactMs": 8404,
+          "delayToRenderMs": 17.200000002980232
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/14",
+          "kind": "add",
+          "phase": "impact",
+          "callMs": 8853.10000000149,
+          "firstRenderedImpactMs": 8867.39999999851,
+          "delayToRenderMs": 14.299999997019768
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/15",
+          "kind": "key",
+          "phase": "impact",
+          "callMs": 9463.5,
+          "firstRenderedImpactMs": 9478.89999999851,
+          "delayToRenderMs": 15.399999998509884
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/16",
+          "kind": "key",
+          "phase": "impact",
+          "callMs": 10089.5,
+          "firstRenderedImpactMs": 10105.79999999702,
+          "delayToRenderMs": 16.299999997019768
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/17",
+          "kind": "key",
+          "phase": "impact",
+          "callMs": 10716.20000000298,
+          "firstRenderedImpactMs": 10733,
+          "delayToRenderMs": 16.799999997019768
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/18",
+          "kind": "add",
+          "phase": "impact",
+          "callMs": 11200,
+          "firstRenderedImpactMs": 11220.10000000149,
+          "delayToRenderMs": 20.100000001490116
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/19",
+          "kind": "key",
+          "phase": "impact",
+          "callMs": 11816,
+          "firstRenderedImpactMs": 11835.20000000298,
+          "delayToRenderMs": 19.200000002980232
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/20",
+          "kind": "key",
+          "phase": "impact",
+          "callMs": 12446.60000000149,
+          "firstRenderedImpactMs": 12466,
+          "delayToRenderMs": 19.399999998509884
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/21",
+          "kind": "add",
+          "phase": "impact",
+          "callMs": 12922.60000000149,
+          "firstRenderedImpactMs": 12943.79999999702,
+          "delayToRenderMs": 21.19999999552965
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/22",
+          "kind": "key",
+          "phase": "impact",
+          "callMs": 13543,
+          "firstRenderedImpactMs": 13560.20000000298,
+          "delayToRenderMs": 17.200000002980232
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/23",
+          "kind": "key",
+          "phase": "impact",
+          "callMs": 14187.5,
+          "firstRenderedImpactMs": 14207.10000000149,
+          "delayToRenderMs": 19.600000001490116
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/24",
+          "kind": "add",
+          "phase": "impact",
+          "callMs": 14658.60000000149,
+          "firstRenderedImpactMs": 14678.70000000298,
+          "delayToRenderMs": 20.100000001490116
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/25",
+          "kind": "add",
+          "phase": "impact",
+          "callMs": 15151,
+          "firstRenderedImpactMs": 15169.20000000298,
+          "delayToRenderMs": 18.200000002980232
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/26",
+          "kind": "key",
+          "phase": "impact",
+          "callMs": 15761.70000000298,
+          "firstRenderedImpactMs": 15780.39999999851,
+          "delayToRenderMs": 18.69999999552965
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/27",
+          "kind": "key",
+          "phase": "impact",
+          "callMs": 16391.29999999702,
+          "firstRenderedImpactMs": 16407.29999999702,
+          "delayToRenderMs": 16
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/28",
+          "kind": "key",
+          "phase": "impact",
+          "callMs": 17018.89999999851,
+          "firstRenderedImpactMs": 17034.89999999851,
+          "delayToRenderMs": 16
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/29",
+          "kind": "multiply",
+          "phase": "impact",
+          "callMs": 17754.70000000298,
+          "firstRenderedImpactMs": 17771.10000000149,
+          "delayToRenderMs": 16.399999998509884
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/30",
+          "kind": "key",
+          "phase": "impact",
+          "callMs": 18581.79999999702,
+          "firstRenderedImpactMs": 18598.39999999851,
+          "delayToRenderMs": 16.600000001490116
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/32",
+          "kind": "multiply",
+          "phase": "impact",
+          "callMs": 19318.20000000298,
+          "firstRenderedImpactMs": 19334.60000000149,
+          "delayToRenderMs": 16.399999998509884
+        }
+      ],
+      "visibleHeatPixels": [
+        {
+          "key": "award-rolling",
+          "pixels": 1214
+        },
+        {
+          "key": "award-landed",
+          "pixels": 1214
+        }
+      ]
+    },
+    {
+      "mode": "erxiang",
+      "sourcePhase": "after neutral-receipt removal; before the final eye-slot/side-value-only display adjustment",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "frames": 252,
+      "presentedEvents": 6,
+      "visibleTotal": "4,394",
+      "sourceCardMaxTravel": 19.976344447243946,
+      "maxRequestedScale": 1.4766492249009733,
+      "keyImpactAfterWindupMs": 331.80000000447035,
+      "awardVisibleMs": 716.3000000044703,
+      "violations": [],
+      "lingering": [],
+      "audioMatches": [
+        {
+          "id": "controlled/continuous-four-sixes/hand/controlled/continuous-four-sixes/command/4/event/2",
+          "kind": "key",
+          "phase": "impact",
+          "callMs": 829,
+          "firstRenderedImpactMs": 842.9000000059605,
+          "delayToRenderMs": 13.900000005960464
+        },
+        {
+          "id": "controlled/continuous-four-sixes/hand/controlled/continuous-four-sixes/command/4/event/3",
+          "kind": "add",
+          "phase": "impact",
+          "callMs": 1531.6000000014901,
+          "firstRenderedImpactMs": 1545.4000000059605,
+          "delayToRenderMs": 13.800000004470348
+        },
+        {
+          "id": "controlled/continuous-four-sixes/hand/controlled/continuous-four-sixes/command/4/event/4",
+          "kind": "add",
+          "phase": "impact",
+          "callMs": 2077.4000000059605,
+          "firstRenderedImpactMs": 2093.5,
+          "delayToRenderMs": 16.099999994039536
+        },
+        {
+          "id": "controlled/continuous-four-sixes/hand/controlled/continuous-four-sixes/command/4/event/5",
+          "kind": "add",
+          "phase": "impact",
+          "callMs": 2638.9000000059605,
+          "firstRenderedImpactMs": 2654,
+          "delayToRenderMs": 15.099999994039536
+        }
+      ],
+      "visibleHeatPixels": [
+        {
+          "key": "award-rolling",
+          "pixels": 871
+        },
+        {
+          "key": "award-landed",
+          "pixels": 871
+        }
+      ]
+    },
+    {
+      "mode": "touye",
+      "sourcePhase": "after neutral-receipt removal; before the final eye-slot/side-value-only display adjustment",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "frames": 287,
+      "presentedEvents": 6,
+      "visibleTotal": "412",
+      "sourceCardMaxTravel": 19.991041684163406,
+      "maxRequestedScale": 1.5368045798399361,
+      "keyImpactAfterWindupMs": 331.5,
+      "awardVisibleMs": 700.9000000059605,
+      "violations": [],
+      "lingering": [],
+      "audioMatches": [
+        {
+          "id": "core/unformed-win/hand/core/unformed-win/command/5/event/1",
+          "kind": "add",
+          "phase": "impact",
+          "callMs": 212.5,
+          "firstRenderedImpactMs": 226.10000000149012,
+          "delayToRenderMs": 13.600000001490116
+        },
+        {
+          "id": "core/unformed-win/hand/core/unformed-win/command/5/event/2",
+          "kind": "add",
+          "phase": "impact",
+          "callMs": 769.9000000059605,
+          "firstRenderedImpactMs": 785.8000000044703,
+          "delayToRenderMs": 15.899999998509884
+        },
+        {
+          "id": "core/unformed-win/hand/core/unformed-win/command/5/event/3",
+          "kind": "add",
+          "phase": "impact",
+          "callMs": 1312.8000000044703,
+          "firstRenderedImpactMs": 1328.8000000044703,
+          "delayToRenderMs": 16
+        },
+        {
+          "id": "core/unformed-win/hand/core/unformed-win/command/5/event/4",
+          "kind": "add",
+          "phase": "impact",
+          "callMs": 1874.9000000059605,
+          "firstRenderedImpactMs": 1888.5,
+          "delayToRenderMs": 13.599999994039536
+        },
+        {
+          "id": "core/unformed-win/hand/core/unformed-win/command/5/event/6",
+          "kind": "multiply",
+          "phase": "impact",
+          "callMs": 2521.9000000059605,
+          "firstRenderedImpactMs": 2538.3000000044703,
+          "delayToRenderMs": 16.399999998509884
+        }
+      ],
+      "visibleHeatPixels": [
+        {
+          "key": "award-rolling",
+          "pixels": 792
+        },
+        {
+          "key": "award-landed",
+          "pixels": 792
+        }
+      ]
+    },
+    {
+      "mode": "erxiang-short",
+      "sourcePhase": "final source, including short-viewport eye placement and side value",
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "frames": 247,
+      "presentedEvents": 6,
+      "visibleTotal": "4,394",
+      "sourceCardMaxTravel": 19.968379944570415,
+      "maxRequestedScale": 1.4766492249009733,
+      "keyImpactAfterWindupMs": 340.3999999985099,
+      "awardVisibleMs": 699.7000000029802,
+      "violations": [],
+      "lingering": [],
+      "audioMatches": [
+        {
+          "id": "controlled/continuous-four-sixes/hand/controlled/continuous-four-sixes/command/4/event/2",
+          "kind": "key",
+          "phase": "impact",
+          "callMs": 848.8999999985099,
+          "firstRenderedImpactMs": 863.7000000029802,
+          "delayToRenderMs": 14.800000004470348
+        },
+        {
+          "id": "controlled/continuous-four-sixes/hand/controlled/continuous-four-sixes/command/4/event/3",
+          "kind": "add",
+          "phase": "impact",
+          "callMs": 1568.6000000014901,
+          "firstRenderedImpactMs": 1582.6000000014901,
+          "delayToRenderMs": 14
+        },
+        {
+          "id": "controlled/continuous-four-sixes/hand/controlled/continuous-four-sixes/command/4/event/4",
+          "kind": "add",
+          "phase": "impact",
+          "callMs": 2121.8000000044703,
+          "firstRenderedImpactMs": 2138,
+          "delayToRenderMs": 16.19999999552965
+        },
+        {
+          "id": "controlled/continuous-four-sixes/hand/controlled/continuous-four-sixes/command/4/event/5",
+          "kind": "add",
+          "phase": "impact",
+          "callMs": 2681,
+          "firstRenderedImpactMs": 2696.10000000149,
+          "delayToRenderMs": 15.100000001490116
+        }
+      ],
+      "visibleHeatPixels": [
+        {
+          "key": "award-rolling",
+          "pixels": 871
+        },
+        {
+          "key": "award-landed",
+          "pixels": 871
+        }
+      ]
+    },
+    {
+      "mode": "touye-short",
+      "sourcePhase": "final source, including short-viewport eye placement and side value",
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "frames": 280,
+      "presentedEvents": 6,
+      "visibleTotal": "412",
+      "sourceCardMaxTravel": 19.814058956916085,
+      "maxRequestedScale": 1.5389914804252913,
+      "keyImpactAfterWindupMs": 340.5,
+      "awardVisibleMs": 702.8000000044703,
+      "violations": [],
+      "lingering": [],
+      "audioMatches": [
+        {
+          "id": "core/unformed-win/hand/core/unformed-win/command/5/event/1",
+          "kind": "add",
+          "phase": "impact",
+          "callMs": 198.10000000149012,
+          "firstRenderedImpactMs": 213.20000000298023,
+          "delayToRenderMs": 15.100000001490116
+        },
+        {
+          "id": "core/unformed-win/hand/core/unformed-win/command/5/event/2",
+          "kind": "add",
+          "phase": "impact",
+          "callMs": 755.2000000029802,
+          "firstRenderedImpactMs": 770.8000000044703,
+          "delayToRenderMs": 15.600000001490116
+        },
+        {
+          "id": "core/unformed-win/hand/core/unformed-win/command/5/event/3",
+          "kind": "add",
+          "phase": "impact",
+          "callMs": 1311.6000000014901,
+          "firstRenderedImpactMs": 1328.7000000029802,
+          "delayToRenderMs": 17.100000001490116
+        },
+        {
+          "id": "core/unformed-win/hand/core/unformed-win/command/5/event/4",
+          "kind": "add",
+          "phase": "impact",
+          "callMs": 1872.7000000029802,
+          "firstRenderedImpactMs": 1886.3000000044703,
+          "delayToRenderMs": 13.600000001490116
+        },
+        {
+          "id": "core/unformed-win/hand/core/unformed-win/command/5/event/6",
+          "kind": "multiply",
+          "phase": "impact",
+          "callMs": 2535.5,
+          "firstRenderedImpactMs": 2551.7000000029802,
+          "delayToRenderMs": 16.200000002980232
+        }
+      ],
+      "visibleHeatPixels": [
+        {
+          "key": "award-rolling",
+          "pixels": 792
+        },
+        {
+          "key": "award-landed",
+          "pixels": 792
+        }
+      ]
+    },
+    {
+      "mode": "fast",
+      "sourcePhase": "after neutral-receipt removal; before the final eye-slot/side-value-only display adjustment",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "frames": 463,
+      "presentedEvents": 33,
+      "visibleTotal": "34,681",
+      "sourceCardMaxTravel": 19.99695168419447,
+      "maxRequestedScale": 1.3668035261441855,
+      "keyImpactAfterWindupMs": 126.29999999701977,
+      "awardVisibleMs": 181.70000000298023,
+      "violations": [],
+      "lingering": [],
+      "vibrationRequests": [
+        {
+          "pattern": [
+            22
+          ],
+          "at": 5645.80000000447,
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/3",
+          "phase": "impact"
+        },
+        {
+          "pattern": [
+            22
+          ],
+          "at": 6838.20000000298,
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/8",
+          "phase": "impact"
+        },
+        {
+          "pattern": [
+            22
+          ],
+          "at": 7609.60000000149,
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/11",
+          "phase": "impact"
+        },
+        {
+          "pattern": [
+            28,
+            45,
+            36
+          ],
+          "at": 12746.10000000149,
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/33",
+          "phase": "award"
+        }
+      ],
+      "audioMatches": [
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/1",
+          "kind": "add",
+          "phase": "impact",
+          "callMs": 225.19999999552965,
+          "firstRenderedImpactMs": 233.69999999552965,
+          "delayToRenderMs": 8.5
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/2",
+          "kind": "key",
+          "phase": "impact",
+          "callMs": 424.29999999701977,
+          "firstRenderedImpactMs": 441,
+          "delayToRenderMs": 16.700000002980232
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/3",
+          "kind": "multiply",
+          "phase": "impact",
+          "callMs": 692.6000000014901,
+          "firstRenderedImpactMs": 708.1000000014901,
+          "delayToRenderMs": 15.5
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/4",
+          "kind": "add",
+          "phase": "impact",
+          "callMs": 920.2999999970198,
+          "firstRenderedImpactMs": 936.7999999970198,
+          "delayToRenderMs": 16.5
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/5",
+          "kind": "add",
+          "phase": "impact",
+          "callMs": 1146.7999999970198,
+          "firstRenderedImpactMs": 1164.1000000014901,
+          "delayToRenderMs": 17.30000000447035
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/6",
+          "kind": "add",
+          "phase": "impact",
+          "callMs": 1413,
+          "firstRenderedImpactMs": 1428.3999999985099,
+          "delayToRenderMs": 15.399999998509884
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/7",
+          "kind": "key",
+          "phase": "impact",
+          "callMs": 1621.6999999955297,
+          "firstRenderedImpactMs": 1637.6000000014901,
+          "delayToRenderMs": 15.900000005960464
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/8",
+          "kind": "multiply",
+          "phase": "impact",
+          "callMs": 1885.1000000014901,
+          "firstRenderedImpactMs": 1900.5,
+          "delayToRenderMs": 15.399999998509884
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/9",
+          "kind": "key",
+          "phase": "impact",
+          "callMs": 2164.39999999851,
+          "firstRenderedImpactMs": 2180.7999999970198,
+          "delayToRenderMs": 16.399999998509884
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/10",
+          "kind": "key",
+          "phase": "impact",
+          "callMs": 2393.5,
+          "firstRenderedImpactMs": 2409,
+          "delayToRenderMs": 15.5
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/11",
+          "kind": "multiply",
+          "phase": "impact",
+          "callMs": 2656.5,
+          "firstRenderedImpactMs": 2671.7999999970198,
+          "delayToRenderMs": 15.299999997019768
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/12",
+          "kind": "key",
+          "phase": "impact",
+          "callMs": 2935.1999999955297,
+          "firstRenderedImpactMs": 2951.1999999955297,
+          "delayToRenderMs": 16
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/13",
+          "kind": "add",
+          "phase": "impact",
+          "callMs": 3109.10000000149,
+          "firstRenderedImpactMs": 3125.7999999970198,
+          "delayToRenderMs": 16.69999999552965
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/14",
+          "kind": "add",
+          "phase": "impact",
+          "callMs": 3336.7999999970198,
+          "firstRenderedImpactMs": 3353,
+          "delayToRenderMs": 16.200000002980232
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/15",
+          "kind": "key",
+          "phase": "impact",
+          "callMs": 3620.39999999851,
+          "firstRenderedImpactMs": 3634.89999999851,
+          "delayToRenderMs": 14.5
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/16",
+          "kind": "key",
+          "phase": "impact",
+          "callMs": 3847.39999999851,
+          "firstRenderedImpactMs": 3863.5,
+          "delayToRenderMs": 16.100000001490116
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/17",
+          "kind": "key",
+          "phase": "impact",
+          "callMs": 4094.39999999851,
+          "firstRenderedImpactMs": 4110.10000000149,
+          "delayToRenderMs": 15.700000002980232
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/18",
+          "kind": "add",
+          "phase": "impact",
+          "callMs": 4285.39999999851,
+          "firstRenderedImpactMs": 4301.5,
+          "delayToRenderMs": 16.100000001490116
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/19",
+          "kind": "key",
+          "phase": "impact",
+          "callMs": 4568.89999999851,
+          "firstRenderedImpactMs": 4584.29999999702,
+          "delayToRenderMs": 15.399999998509884
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/20",
+          "kind": "key",
+          "phase": "impact",
+          "callMs": 4818.10000000149,
+          "firstRenderedImpactMs": 4833.39999999851,
+          "delayToRenderMs": 15.299999997019768
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/21",
+          "kind": "add",
+          "phase": "impact",
+          "callMs": 4998,
+          "firstRenderedImpactMs": 5013,
+          "delayToRenderMs": 15
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/22",
+          "kind": "key",
+          "phase": "impact",
+          "callMs": 5281.89999999851,
+          "firstRenderedImpactMs": 5298.79999999702,
+          "delayToRenderMs": 16.899999998509884
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/23",
+          "kind": "key",
+          "phase": "impact",
+          "callMs": 5496.5,
+          "firstRenderedImpactMs": 5513.5,
+          "delayToRenderMs": 17
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/24",
+          "kind": "add",
+          "phase": "impact",
+          "callMs": 5676.89999999851,
+          "firstRenderedImpactMs": 5693.29999999702,
+          "delayToRenderMs": 16.399999998509884
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/25",
+          "kind": "add",
+          "phase": "impact",
+          "callMs": 5906.10000000149,
+          "firstRenderedImpactMs": 5923.89999999851,
+          "delayToRenderMs": 17.799999997019768
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/26",
+          "kind": "key",
+          "phase": "impact",
+          "callMs": 6191.39999999851,
+          "firstRenderedImpactMs": 6208.39999999851,
+          "delayToRenderMs": 17
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/27",
+          "kind": "key",
+          "phase": "impact",
+          "callMs": 6428.19999999553,
+          "firstRenderedImpactMs": 6442.69999999553,
+          "delayToRenderMs": 14.5
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/28",
+          "kind": "key",
+          "phase": "impact",
+          "callMs": 6659.39999999851,
+          "firstRenderedImpactMs": 6675.60000000149,
+          "delayToRenderMs": 16.200000002980232
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/29",
+          "kind": "multiply",
+          "phase": "impact",
+          "callMs": 6947.5,
+          "firstRenderedImpactMs": 6964.39999999851,
+          "delayToRenderMs": 16.899999998509884
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/30",
+          "kind": "key",
+          "phase": "impact",
+          "callMs": 7251.69999999553,
+          "firstRenderedImpactMs": 7268.5,
+          "delayToRenderMs": 16.80000000447035
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/32",
+          "kind": "multiply",
+          "phase": "impact",
+          "callMs": 7539.69999999553,
+          "firstRenderedImpactMs": 7556.79999999702,
+          "delayToRenderMs": 17.100000001490116
+        }
+      ],
+      "visibleHeatPixels": [
+        {
+          "key": "award-rolling",
+          "pixels": 1214
+        },
+        {
+          "key": "award-landed",
+          "pixels": 1214
+        }
+      ]
+    },
+    {
+      "mode": "cancel",
+      "sourcePhase": "after neutral-receipt removal; before the final eye-slot/side-value-only display adjustment",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "frames": 100,
+      "presentedEvents": 3,
+      "sourceCardMaxTravel": 19.7978779989362,
+      "maxRequestedScale": 1.3129198512491782,
+      "violations": [],
+      "lingering": [],
+      "vibrationRequests": [],
+      "audioMatches": [
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/1",
+          "kind": "add",
+          "phase": "impact",
+          "callMs": 735.3999999985099,
+          "firstRenderedImpactMs": 746.1999999955297,
+          "delayToRenderMs": 10.799999997019768
+        }
+      ],
+      "visibleHeatPixels": []
+    },
+    {
+      "mode": "reduced",
+      "sourcePhase": "after neutral-receipt removal; before the final eye-slot/side-value-only display adjustment",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "frames": 600,
+      "presentedEvents": 33,
+      "visibleTotal": "34,681",
+      "sourceCardMaxTravel": 0,
+      "maxRequestedScale": 1,
+      "keyImpactAfterWindupMs": null,
+      "awardVisibleMs": 373.5,
+      "violations": [],
+      "lingering": [],
+      "vibrationRequests": [
+        {
+          "pattern": [
+            22
+          ],
+          "at": 4822.39999999851,
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/3",
+          "phase": "impact"
+        },
+        {
+          "pattern": [
+            22
+          ],
+          "at": 6396.60000000149,
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/8",
+          "phase": "impact"
+        },
+        {
+          "pattern": [
+            22
+          ],
+          "at": 7345.39999999851,
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/11",
+          "phase": "impact"
+        },
+        {
+          "pattern": [
+            28,
+            45,
+            36
+          ],
+          "at": 13970.29999999702,
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/33",
+          "phase": "award"
+        }
+      ],
+      "audioMatches": [
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/1",
+          "kind": "add",
+          "phase": "impact",
+          "callMs": 127.5,
+          "firstRenderedImpactMs": 139.79999999701977,
+          "delayToRenderMs": 12.299999997019768
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/2",
+          "kind": "key",
+          "phase": "impact",
+          "callMs": 440.29999999701977,
+          "firstRenderedImpactMs": 454.6000000014901,
+          "delayToRenderMs": 14.300000004470348
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/3",
+          "kind": "multiply",
+          "phase": "impact",
+          "callMs": 759.3999999985099,
+          "firstRenderedImpactMs": 772.1000000014901,
+          "delayToRenderMs": 12.700000002980232
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/4",
+          "kind": "add",
+          "phase": "impact",
+          "callMs": 1072.5,
+          "firstRenderedImpactMs": 1087.8999999985099,
+          "delayToRenderMs": 15.399999998509884
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/5",
+          "kind": "add",
+          "phase": "impact",
+          "callMs": 1384.2000000029802,
+          "firstRenderedImpactMs": 1400.2999999970198,
+          "delayToRenderMs": 16.099999994039536
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/6",
+          "kind": "add",
+          "phase": "impact",
+          "callMs": 1701.7000000029802,
+          "firstRenderedImpactMs": 1717.2999999970198,
+          "delayToRenderMs": 15.599999994039536
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/7",
+          "kind": "key",
+          "phase": "impact",
+          "callMs": 2018,
+          "firstRenderedImpactMs": 2033.5,
+          "delayToRenderMs": 15.5
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/8",
+          "kind": "multiply",
+          "phase": "impact",
+          "callMs": 2333.89999999851,
+          "firstRenderedImpactMs": 2349.10000000149,
+          "delayToRenderMs": 15.200000002980232
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/9",
+          "kind": "key",
+          "phase": "impact",
+          "callMs": 2651.7999999970198,
+          "firstRenderedImpactMs": 2666.60000000149,
+          "delayToRenderMs": 14.800000004470348
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/10",
+          "kind": "key",
+          "phase": "impact",
+          "callMs": 2966.7999999970198,
+          "firstRenderedImpactMs": 2982,
+          "delayToRenderMs": 15.200000002980232
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/11",
+          "kind": "multiply",
+          "phase": "impact",
+          "callMs": 3282.7000000029802,
+          "firstRenderedImpactMs": 3297.60000000149,
+          "delayToRenderMs": 14.899999998509884
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/12",
+          "kind": "key",
+          "phase": "impact",
+          "callMs": 3596.2000000029802,
+          "firstRenderedImpactMs": 3612.2999999970198,
+          "delayToRenderMs": 16.099999994039536
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/13",
+          "kind": "add",
+          "phase": "impact",
+          "callMs": 3910.60000000149,
+          "firstRenderedImpactMs": 3926.5,
+          "delayToRenderMs": 15.899999998509884
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/14",
+          "kind": "add",
+          "phase": "impact",
+          "callMs": 4224.5,
+          "firstRenderedImpactMs": 4241.39999999851,
+          "delayToRenderMs": 16.899999998509884
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/15",
+          "kind": "key",
+          "phase": "impact",
+          "callMs": 4543.5,
+          "firstRenderedImpactMs": 4559.39999999851,
+          "delayToRenderMs": 15.899999998509884
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/16",
+          "kind": "key",
+          "phase": "impact",
+          "callMs": 4858.20000000298,
+          "firstRenderedImpactMs": 4873.39999999851,
+          "delayToRenderMs": 15.199999995529652
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/17",
+          "kind": "key",
+          "phase": "impact",
+          "callMs": 5174.89999999851,
+          "firstRenderedImpactMs": 5189.60000000149,
+          "delayToRenderMs": 14.700000002980232
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/18",
+          "kind": "add",
+          "phase": "impact",
+          "callMs": 5489.79999999702,
+          "firstRenderedImpactMs": 5505.60000000149,
+          "delayToRenderMs": 15.800000004470348
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/19",
+          "kind": "key",
+          "phase": "impact",
+          "callMs": 5804.89999999851,
+          "firstRenderedImpactMs": 5820,
+          "delayToRenderMs": 15.100000001490116
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/20",
+          "kind": "key",
+          "phase": "impact",
+          "callMs": 6119.20000000298,
+          "firstRenderedImpactMs": 6134.89999999851,
+          "delayToRenderMs": 15.699999995529652
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/21",
+          "kind": "add",
+          "phase": "impact",
+          "callMs": 6436.89999999851,
+          "firstRenderedImpactMs": 6453.60000000149,
+          "delayToRenderMs": 16.700000002980232
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/22",
+          "kind": "key",
+          "phase": "impact",
+          "callMs": 6757,
+          "firstRenderedImpactMs": 6771.79999999702,
+          "delayToRenderMs": 14.799999997019768
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/23",
+          "kind": "key",
+          "phase": "impact",
+          "callMs": 7072,
+          "firstRenderedImpactMs": 7087.79999999702,
+          "delayToRenderMs": 15.799999997019768
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/24",
+          "kind": "add",
+          "phase": "impact",
+          "callMs": 7384.70000000298,
+          "firstRenderedImpactMs": 7401,
+          "delayToRenderMs": 16.299999997019768
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/25",
+          "kind": "add",
+          "phase": "impact",
+          "callMs": 7701.29999999702,
+          "firstRenderedImpactMs": 7717.70000000298,
+          "delayToRenderMs": 16.400000005960464
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/26",
+          "kind": "key",
+          "phase": "impact",
+          "callMs": 8016.60000000149,
+          "firstRenderedImpactMs": 8031.79999999702,
+          "delayToRenderMs": 15.199999995529652
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/27",
+          "kind": "key",
+          "phase": "impact",
+          "callMs": 8330.79999999702,
+          "firstRenderedImpactMs": 8346.60000000149,
+          "delayToRenderMs": 15.800000004470348
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/28",
+          "kind": "key",
+          "phase": "impact",
+          "callMs": 8647.60000000149,
+          "firstRenderedImpactMs": 8662.70000000298,
+          "delayToRenderMs": 15.100000001490116
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/29",
+          "kind": "multiply",
+          "phase": "impact",
+          "callMs": 8964,
+          "firstRenderedImpactMs": 8977.89999999851,
+          "delayToRenderMs": 13.899999998509884
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/30",
+          "kind": "key",
+          "phase": "impact",
+          "callMs": 9277.60000000149,
+          "firstRenderedImpactMs": 9292.10000000149,
+          "delayToRenderMs": 14.5
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/32",
+          "kind": "multiply",
+          "phase": "impact",
+          "callMs": 9593.60000000149,
+          "firstRenderedImpactMs": 9606.70000000298,
+          "delayToRenderMs": 13.100000001490116
+        }
+      ],
+      "visibleHeatPixels": [
+        {
+          "key": "award-landed",
+          "pixels": 1214
+        }
+      ]
+    }
+  ],
+  "validation": {
+    "unitBatches": [
+      "96 passed: hero-climax / table / layout / inventory / score energy",
+      "35 passed: source lifecycle / hand input / posture",
+      "24 passed: hand input + GameScene arrival hooks",
+      "4 decision-eye lifecycle tests passed",
+      "16 final table + GameScene haptics tests passed; domain-produced trace and SavedRun commit paths"
+    ],
+    "build": "npm run build passed (tsc --noEmit + Vite)",
+    "domainAudioAssetDiff": "No product change to src/domain, src/audio, public or art in this batch; haptics candidate merged normally",
+    "hardware": "NOT_RUN",
+    "safari": "NOT_RUN",
+    "subjectiveListening": "NOT_RUN"
+  }
+}
