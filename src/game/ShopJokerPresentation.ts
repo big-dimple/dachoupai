@@ -8,7 +8,7 @@ import {r2JokerStateText} from './r2Help';
 import {shopOfferGuidance} from './ShopOfferGuidance';
 import {shopReplacementCompactFacts,shopReplacementFacts,shopReplacementTransactionFacts} from './ShopRouteRelations';
 import {currentBuildFocus} from './BuildJourney';
-import {editionLabel,editionEffectText} from './r2ToolInfo';
+import {editionLabel,jokerExtraBonusCopy} from './r2ToolInfo';
 import type {Edition} from '../cards/types';
 import {createJokerRarityElement,type JokerRarity} from './JokerRarity';
 import {SHOP_STAR_POINTS} from './ShopCardValueVisual';
@@ -30,7 +30,7 @@ export function shopComparisonPresentation(run:R2RunState,offer:R2Offer){
 export function createShopIdentityTags(rarity:JokerRarity,edition?:Edition):HTMLElement {
  const row=document.createElement('div'),label=document.createElement('span');row.className='shop-card-tags';
  const badge=createJokerRarityElement(rarity);badge.dataset.axis='rarity';
- label.className='shop-edition-tag';label.dataset.axis='edition';label.dataset.edition=edition??'none';label.textContent='版次 · '+editionLabel(edition);label.title=editionEffectText(edition);
+ label.className='shop-edition-tag';label.dataset.axis='edition';label.dataset.edition=edition??'none';const bonus=jokerExtraBonusCopy(edition);label.textContent=bonus.shelf;label.title=bonus.detail;
  row.append(badge,label);return row;
 }
 /** The same value block appears in the candidate, per-slot comparison and purchase detail. */

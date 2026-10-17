@@ -2,7 +2,7 @@ import {createRun,applyCommand} from '../../src/domain/run';
 import {newRunIdentity} from '../../src/game/RunLaunch';
 import {r2CreateJoker,makeR2Shop} from '../../src/domain/r2Run';
 import {r2JokerDefinitionsFor} from '../../src/domain/r2ContentProfiles';
-import {r2ToolPrice} from '../../src/domain/r2Shop';
+import {r2ToolPrice,r2Price} from '../../src/domain/r2Shop';
 import {makeCheckpoint,readCheckpoint} from '../../src/application/checkpoint';
 import {R2_HAND_TYPES} from '../../src/domain/evaluateR2';
 import type {Action,R2RunState} from '../../src/domain/run';
@@ -21,4 +21,9 @@ export function workshopBossTransition(){
  for(const type of ['SkipStage','OpenShop','SkipStage','OpenShop'] as const)s=send(s,{type});for(const type of R2_HAND_TYPES)s.handLevels[type]=30;const before=s;
  s=send(s,{type:'LeaveShop'});s=send(s,{type:'EnterStage'});s=send(s,{type:'PlayHand',selectedIds:s.handOrder.slice(0,5)});if(s.phase!=='stage-cleared')throw Error('controlled Boss sample did not clear');const won=s;
  return {before,won,after:send(s,{type:'OpenShop'})};
+}
+export function workshopExtraFixture(n=5){
+ const s=structuredClone(workshopLayoutFixture(n).state) as R2RunState;
+ for(const [i,[definitionId,edition]] of ([['c12','polychrome'],['c06','holographic'],['b03','foil']] as const).entries())Object.assign(s.shop!.offers[i],{definitionId,edition,price:r2Price(definitionId,edition,s)});
+ return makeCheckpoint(s,[]);
 }

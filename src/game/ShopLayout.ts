@@ -184,8 +184,8 @@ export function shopPortraitHeader(p:ReturnType<typeof shopLayout>){
  return {purse,reroll,inventory};
 }
 /** A clear full-color hero composition replaces an empty held-card rail. */
-export function shopEmptyPortrait(p:ReturnType<typeof shopLayout>){
+export function shopEmptyPortrait(p:ReturnType<typeof shopLayout>,hasExtra=false,extraRows=1){
  if(!p.portrait)return;
- const y=p.shelf[0].y+p.shelf[0].height+130,height=p.reroll.y-y-10;
+ const y=p.shelf[0].y+p.shelf[0].height+130+(hasExtra?24*extraRows:0),height=p.reroll.y-y-10;
  return height>=60?{x:p.x,y,width:p.w,height}:undefined;
 }
