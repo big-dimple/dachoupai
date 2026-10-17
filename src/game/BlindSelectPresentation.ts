@@ -13,6 +13,8 @@ import {paperSceneStart} from './PaperFlow';
 import {gameSession} from './session';
 import type {IntermissionResult} from './IntermissionScene';
 import './BlindSelectPresentation.css';
+import {trackBossRulesVisible} from './BossPreparationPresentation';
+import {programEntryLabel} from './ProgramDialog';
 
 function element<K extends keyof HTMLElementTagNameMap>(tag: K, className: string, text?: string): HTMLElementTagNameMap[K] {
   const node = document.createElement(tag);
@@ -21,7 +23,7 @@ function element<K extends keyof HTMLElementTagNameMap>(tag: K, className: strin
   return node;
 }
 
-export function presentStageSelection(dialog: DetailDialog, run: R2RunState, scene?: Phaser.Scene): Promise<boolean> {
+export function presentStageSelection(dialog: DetailDialog, run: R2RunState, scene?: Phaser.Scene,program?:()=>void): Promise<boolean> {
   const chapter = Math.floor(run.stageIndex / 3) + 1;
   const start = Math.floor(run.stageIndex / 3) * 3;
   const stage0 = getR2Stage(start, run.tourMode, run.difficulty, run);
@@ -52,20 +54,21 @@ export function presentStageSelection(dialog: DetailDialog, run: R2RunState, sce
     let closed = false;
     let busy = false;
     let retryPending = false;
+    let stopRules=()=>{};
     const owner = scene && runController(scene);
     const stageNames = ['暖场', '正场', '压轴'];
     const currentName = stageNames[currentInChapter];
     const d = dialog.open(
       `第 ${chapter} 章`,
       '',
-      inShop ? [] : [{
+      [...(inShop ? [] : [{
         label: isBoss ? '迎战强敌 ›' : `进入${currentName} ›`,
         primary: true,
         run: () => {
           if (!busy && !closed) {entered = true;dialog.close();}
         },
-      }],
-      {closeLabel: inShop ? '返回商店' : '稍后开战', onClose: () => {closed = true;resolve(entered);}}
+      }]),...(program?[{label:programEntryLabel(run),run:()=>{if(!busy&&!closed){dialog.close(d);queueMicrotask(program);}}}]:[])],
+      {closeLabel: inShop ? '返回商店' : '稍后开战', onClose: () => {closed = true;stopRules();resolve(entered);}}
     );
     d.classList.add('blind-select-dialog');
     d.dataset.currentStage = String(currentInChapter);
@@ -213,5 +216,6 @@ export function presentStageSelection(dialog: DetailDialog, run: R2RunState, sce
     }
     // The shell's initial close-button focus must not scroll the newly populated chapter header away.
     d.scrollTop = 0;
+    if(isBoss)stopRules=trackBossRulesVisible(run,d,()=>!closed&&dialog.active(d)&&(!scene||scene.scene.isActive()&&runController(scene)===owner&&owner?.state===run));
   });
 }

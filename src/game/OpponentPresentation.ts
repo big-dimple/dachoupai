@@ -57,8 +57,8 @@ function decorate(dialog:HTMLDialogElement,quote:string):void {
 }
 import {presentStageSelection} from './BlindSelectPresentation';
 /** Resolves false on cancel/scene shutdown, with no EnterStage or draw committed. */
-export function presentOpponentEntrance(dialog:DetailDialog,run:R2RunState,scene?:Phaser.Scene):Promise<boolean> {
-  return presentStageSelection(dialog,run,scene);
+export function presentOpponentEntrance(dialog:DetailDialog,run:R2RunState,scene?:Phaser.Scene,program?:()=>void):Promise<boolean> {
+  return presentStageSelection(dialog,run,scene,program);
 }
 export function showOpponentChoices(dialog:DetailDialog,run:R2RunState,choices:readonly OpponentChoice[],choose:(choice:OpponentChoice)=>void,extra:()=>void,canChoose:()=>boolean):void {
   const stage=run.stage!,previous=stage.previousHandType;
