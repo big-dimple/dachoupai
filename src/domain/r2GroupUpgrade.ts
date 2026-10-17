@@ -62,7 +62,11 @@ export const R2_CORE_BUILD_HASH=stableHash(R2_CORE_BUILD_CONTRACT);
 export const R2_S04_FINISH_VERSION='quality-r2-s04-finish-v1';
 export const R2_S04_FINISH_CONTRACT=Object.freeze({inherits:R2_CORE_BUILD_HASH,minimumChapter:3,numerator:1,denominator:2,scope:'living-persistent-deck-selected-suit',acquisition:'any-qualified-noncomplete-suit',use:'recheck-selected-suit-no-stored-bypass',operation:'original-whole-deck-suit-only',price:6,handPenalty:1,shelf:'entry-or-original-reroll-only-no-dye-restock',legacy:'exact-no-migration'});
 export const R2_S04_FINISH_HASH=stableHash(R2_S04_FINISH_CONTRACT);
-export function isR2S04Finish(identity:{contentVersion?:unknown;contentHash?:unknown}):boolean{return identity.contentVersion===R2_S04_FINISH_VERSION&&identity.contentHash===R2_S04_FINISH_HASH;}
+export const R2_AMO_EXILE_VERSION='quality-r2-amo-exile-v1';
+export const R2_AMO_EXILE_CONTRACT=Object.freeze({inherits:R2_S04_FINISH_HASH,launch:'amo-new-runs-only',uses:1,cost:'entire-visible-unplayed-hand-at-least-one-to-discard-no-hooks-no-resource-cost',score:'floor-ordinary-hand-score-times4-after-jokers-route-before-final-award',held:'sacrificed-not-held-no-held-effects',refill:'ordinary-hand-limit-no-permanent-removal',disabled:'B08-Q01',legacy:'exact-no-migration'});
+export const R2_AMO_EXILE_HASH=stableHash(R2_AMO_EXILE_CONTRACT);
+export function isR2AmoExile(identity:{contentVersion?:unknown;contentHash?:unknown}):boolean{return identity.contentVersion===R2_AMO_EXILE_VERSION&&identity.contentHash===R2_AMO_EXILE_HASH;}
+export function isR2S04Finish(identity:{contentVersion?:unknown;contentHash?:unknown}):boolean{return identity.contentVersion===R2_S04_FINISH_VERSION&&identity.contentHash===R2_S04_FINISH_HASH||isR2AmoExile(identity);}
 export function isR2CoreBuild(identity:{contentVersion?:unknown;contentHash?:unknown}):boolean{return identity.contentVersion===R2_CORE_BUILD_VERSION&&identity.contentHash===R2_CORE_BUILD_HASH||isR2S04Finish(identity);}
 export function isR2BoundedClear(identity:{contentVersion?:unknown;contentHash?:unknown}):boolean{return identity.contentVersion===R2_BOUNDED_CLEAR_VERSION&&identity.contentHash===R2_BOUNDED_CLEAR_HASH||isR2CoreBuild(identity);}
 export function isR2ActiveMultTiming(identity:{contentVersion?:unknown;contentHash?:unknown}):boolean{return identity.contentVersion===R2_ACTIVE_MULT_VERSION&&identity.contentHash===R2_ACTIVE_MULT_HASH||isR2BoundedClear(identity);}

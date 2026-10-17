@@ -2,7 +2,7 @@ import {it,expect,vi} from 'vitest';
 vi.mock('phaser',()=>({default:{Scene:class {}}}));
 import {createRun,type R2RunState,type Action} from '../src/domain/run';
 import {characterForRun} from '../src/game/CharacterRunCopy';
-import {newRunIdentity} from '../src/game/RunLaunch';
+import {newRunIdentity} from '../harness/fixtures/legacy-assist-launch';
 import {energySend,scoreEnergyFixture} from '../harness/fixtures/score-energy';
 import {finaleReady} from '../harness/fixtures/finale';
 import {r2CreateJoker} from '../src/domain/r2Run';

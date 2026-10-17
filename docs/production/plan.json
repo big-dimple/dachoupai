@@ -2922,5 +2922,19 @@
     "publishedMainBeforeCleanup": "02ce7700fed218ef2405e230cdb381d82a5aa5dd",
     "sourceReachableFromPublishedMain": true,
     "remoteAndSameNameLocalRefsAbsent": true
+  },
+  "sushiExileImplementation": {
+    "status": "in_progress",
+    "base": "a9f48dc1cac8da79b6d16ce8ef0542446a6f4466",
+    "branch": "dev/sushi-exile-implementation-20261017",
+    "approved": "出牌时弃掉全部余牌，本手正常整数得分×4，每场一次；至少1张余牌；取消不消耗。",
+    "scope": "new-Su-Shi-identity-only; exact old saves and five other new identities retained",
+    "evidence": "docs/production/evidence/sushi-exile-2026-10-17/README.md",
+    "pending": [
+      "same-build native six-hero short regression",
+      "parent sequential integration with phone layout 528df08d",
+      "subjective visual/audio/physical-device acceptance"
+    ],
+    "overall": "P08 in_progress; no overall completion percentage"
   }
 }

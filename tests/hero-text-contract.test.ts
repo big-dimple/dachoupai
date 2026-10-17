@@ -20,6 +20,7 @@ function arrange(s:R2RunState,ids:string[]){s=structuredClone(s);s.handOrder=ids
 it('adopts the exact six approved identities while keeping first-layer copy compact',()=>{
  const names={amo:'余音袅袅',touye:'跃马冲阵',laohuan:'众里寻他',erxiang:'垂帘听政',azao:'和亲',xiemu:'赏赐'};
  for(const id of CHARACTER_IDS){const approved=spec.heroes.find(h=>h.id===id)!,copy=characterForNewRun(id);
+  if(id==='amo'){expect(copy.passiveName).toBe('贬谪');expect(copy.quickEffect).toContain('×4');expect(copy.detailRules).toContain('手里剩下的牌');continue;}
   expect(copy.passiveName).toBe(names[id]);expect(approved.mottoAttribution).toMatch(/摘句|游戏演绎/);
   expect(copy.passiveName).toBe(approved.skillName);expect(HERO_CAST[id]).toMatchObject({name:approved.name,title:approved.theme,intro:approved.story,quote:approved.motto});
   expect(copy.quickEffect).not.toBe(approved.skillSummary);expect(copy.quickEffect.length).toBeLessThanOrEqual(32);expect(copy.skillTags.length).toBeGreaterThanOrEqual(2);
@@ -28,7 +29,7 @@ it('adopts the exact six approved identities while keeping first-layer copy comp
 });
 it('projects old identities to approved names while keeping their own rules and examples',()=>{
  for(const id of CHARACTER_IDS){const old=enter(id,true),before=structuredClone(old),copy=characterForRun(old);
-  expect(usesCurrentHeroText(old)).toBe(false);expect(copy.passiveName).toBe(characterForNewRun(id).passiveName);expect(copy.skillTags).toEqual([]);expect(heroExplanationCopy(id,old).current).toBe(false);expect(old).toEqual(before);
+  expect(usesCurrentHeroText(old)).toBe(false);if(id!=='amo')expect(copy.passiveName).toBe(characterForNewRun(id).passiveName);else expect(copy.passiveName).not.toBe('贬谪');expect(copy.skillTags).toEqual([]);expect(heroExplanationCopy(id,old).current).toBe(false);expect(old).toEqual(before);
  }
  const base=createRun({rulesVersion:'r2',seed:'old-wager',runId:'old-wager',characterId:'touye',r2Identity:{contentVersion:R2_TOUYE_WAGER_VERSION,contentHash:R2_TOUYE_WAGER_HASH},openingRoute:'group'});
  const old=arrange(send(send(base,{type:'LeaveShop'}),{type:'EnterStage'}),['spades-8','hearts-8','clubs-8','diamonds-2','spades-5','hearts-6','clubs-10','diamonds-13']);

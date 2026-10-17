@@ -20,6 +20,7 @@ export function handScoringOrder(identity?:HandRuleIdentity):string {
    return start+ordinary+' → '+whole+route+' → '+effect+(identity.characterId==='touye'?'。普通加成与押约结果互斥，不叠加。':'。');
  }
  if(identity.characterId==='amo'){
+   if(profile.amoScoreTiming==='exile-v1')return start+' → '+whole+route+' → 苏轼 · 贬谪：先将正常得分向下取整，再把这一整数得分×4（本手选择使用时）；弃掉的余牌不参与留手效果。';
    if(profile.amoScoreTiming==='assist-v1')return start+' → '+whole+route+' → '+heroSkillTitle('amo')+'倍率（合法主手与副组时）；没有单张×3。';
    if(profile.amoScoreTiming==='after-joker')return start+' → '+whole+route+heroText(' → 阿默单张×3（仅打出1张时）。');
    return start+heroText(' → 阿默单张×3（仅打出1张时） → ')+whole+route+'。';
@@ -53,7 +54,8 @@ export function handTypeRuleReference(type:R2HandType,levels:Partial<Record<R2Ha
 /** Public reference only: reads current saved levels, never evaluates a player's score. */
 export function handRuleReference(levels:Partial<Record<R2HandType,number>>,rules:HandRules={},identity?:HandRuleIdentity):string {
  const rows=R2_HAND_TYPES.map(type=>handTypeRuleReference(type,levels,rules));
- return '按当前保存的等级列出全部12型；同一次选牌只判一种牌型。目录顺序不代表当前收益高低。\n\n'+rows.join('\n\n')+'\n\n判型优先顺序（先符合者）：'+[...R2_HAND_TYPES].reverse().map(t=>HAND_LABELS[t]).join(' → ')+(rules.fourStraight&&rules.fourFlush?'\n同时持有两条四牌规则时，4张同花连续判普通同花，不是同花顺。':'')+'\n\n普通点数：2–10按牌面，J／Q／K为10，A为11。只加有效计分牌；附带牌仍参与判型、打出张数和重复条件。Boss停用的牌仍成型但计分效果停用；普通点数0只停止普通点数，其他效果保留。\n\n计分顺序：'+handScoringOrder(identity)+'各次 +热度、+倍率、×倍率即时发生；先乘不会追溯乘后加的倍率。最后热度×倍率，只向下取整一次。\n固定顺序示例：4倍先+2再×1.5为9倍；先×1.5再+2为8倍。\n\n仅正式打出会发现牌型，不自动升级；升级只作用已有发现型，满级'+SCORE_LIMITS.handLevel+'。未发现项按Lv1参考显示，不写入存档。';
+ const rounding=identity?.characterId==='amo'&&r2RulesetFor(identity)?.amoScoreTiming==='exile-v1'?'正常得分为热度×倍率向下取整；使用贬谪时，再将这个整数得分×4。':'最后热度×倍率，只向下取整一次。';
+ return '按当前保存的等级列出全部12型；同一次选牌只判一种牌型。目录顺序不代表当前收益高低。\n\n'+rows.join('\n\n')+'\n\n判型优先顺序（先符合者）：'+[...R2_HAND_TYPES].reverse().map(t=>HAND_LABELS[t]).join(' → ')+(rules.fourStraight&&rules.fourFlush?'\n同时持有两条四牌规则时，4张同花连续判普通同花，不是同花顺。':'')+'\n\n普通点数：2–10按牌面，J／Q／K为10，A为11。只加有效计分牌；附带牌仍参与判型、打出张数和重复条件。Boss停用的牌仍成型但计分效果停用；普通点数0只停止普通点数，其他效果保留。\n\n计分顺序：'+handScoringOrder(identity)+'各次 +热度、+倍率、×倍率即时发生；先乘不会追溯乘后加的倍率。'+rounding+'\n固定顺序示例：4倍先+2再×1.5为9倍；先×1.5再+2为8倍。\n\n仅正式打出会发现牌型，不自动升级；升级只作用已有发现型，满级'+SCORE_LIMITS.handLevel+'。未发现项按Lv1参考显示，不写入存档。';
 }
 
 /** Read-only front layer for all twelve types; exact order and scoring rules remain below. */

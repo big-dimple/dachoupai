@@ -1,3 +1,4 @@
+import {usesAmoExile,amoExileChoice} from '../domain/r2AmoExile';
 import type {R2RunState} from '../domain/r2Run';
 import type {R2SelectionFacts} from '../domain/r2SelectionFacts';
 import {r2DiscardCost,r2UsesAssist} from '../domain/r2Run';
@@ -19,6 +20,7 @@ export interface HeroAbilityCue extends ReturnType<typeof heroSkillButton> {avai
 export function heroAbilityCue(run:R2RunState,facts?:R2SelectionFacts,ids:readonly string[]=[],assistAvailable=false,draft:HeroSkillDraft={}):HeroAbilityCue|undefined {
  const live=run.phase==='await-input';
  const cue=(detail:string,available=false,opportunity=available,flags:Omit<HeroSkillFlags,'available'>={})=>({...heroSkillButton(run.characterId,{...flags,ended:['stage-cleared','run-won','run-lost'].includes(run.phase),available:live&&available},detail),available:live&&available,opportunity:live&&opportunity});
+ if(usesAmoExile(run)){const c=amoExileChoice(run,ids),result=cue(c.used?'本场已用':!c.enabled?'本场角色能力停用':c.available?(draft.amoExile?'已选：出牌时弃掉'+c.discardedIds.length+'张，得分×4':'出牌前可选择弃掉余牌，得分×4'):ids.length?'需要至少1张余牌可弃':'先选这手要打的牌',c.available,c.enabled&&!c.used,{used:c.used,disabled:!c.enabled,selected:!!draft.amoExile&&c.available});return {...result,label:'贬谪',ariaLabel:'苏轼技能：贬谪；'+result.status+'；'+result.detail};}
  if(usesErxiangHandoff(run)){const c=erxiangChoice(run,facts,draft.erxiangTargetId);return cue(c.used?'本场次数已用':!c.enabled?'本场角色能力停用':c.selected?'已选计分牌，确认出牌后使用':c.candidates.length?'出牌前选一张计分牌':'先选对子及以上',c.candidates.length>0,c.enabled&&!c.used,{used:c.used,disabled:!c.enabled,selected:!!c.selected});}
  if(usesAzaoCharge(run)){const c=azaoChoice(run,facts?.type);return cue(!c.enabled?'本场不蓄层、不释放':!live?c.hold:c.available?'出牌前可选择释放'+c.charge+'层':!c.charge?'先实际出牌蓄层':'先选两对及以上',c.available,c.enabled&&c.charge>0,{disabled:!c.enabled,selected:!!draft.azaoRelease&&c.available});}
  if(usesXiemuBurn(run)){const c=xiemuChoice(run,facts?.type),available=c.choices.some(c=>c.available);return cue(c.used?'本场次数已用':!c.enabled?'本场角色能力停用':run.gold<10?'不足10金':available?'出牌前选择支付档':'先选两对及以上',available,c.enabled&&!c.used&&run.gold>=10,{used:c.used,disabled:!c.enabled,selected:!!draft.xiemuBurn&&c.choices.some(x=>x.available&&x.cost===draft.xiemuBurn)});}
@@ -38,6 +40,7 @@ export function heroAbilityCue(run:R2RunState,facts?:R2SelectionFacts,ids:readon
 export function savedHeroResult(run:R2RunState):string {
  if(usesLaohuanRefill(run)&&run.stage?.laohuanTrickUsed&&!run.pendingRefill)return heroSkillTitle('laohuan')+' · 本场已用 · 实际留牌已保存';
  const t=run.lastTrace;if(!t)return '';
+ if(usesAmoExile(run)&&t.amoExile?.use)return '苏轼 · 贬谪 · 已弃'+t.amoExile.discardedIds.length+'张 · 本手得分×4';
  if(usesErxiangHandoff(run))return savedErxiangHandoff(run);
  if(usesTouyeWager(run)){const settled=touyeChoice(run).settled;return settled?heroSkillTitle('touye')+' · '+settled:'';}
  if(usesAzaoCharge(run))return savedAzaoCharge(run).split('\n')[0];

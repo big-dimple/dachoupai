@@ -15,7 +15,7 @@ it('binds six displayed identities to the existing technical IDs with three youn
  expect(GAME_NAME).toBe('唐宋牌');expect(readFileSync('index.html','utf8')).toContain('<title>'+GAME_NAME+'</title>');
 });
 it('keeps the current skills and real costs while changing their displayed owner',()=>{
- expect(characterForNewRun('amo').passiveDescription).toContain('副组真消耗');
+ expect(characterForNewRun('amo').passiveDescription).toContain('弃掉手里剩下的牌');
  expect(characterForNewRun('touye').passiveDescription).toContain('照常花弃牌次数');
  expect(characterForNewRun('laohuan').passiveDescription).toContain('照付实际弃牌成本');
  expect(characterForNewRun('erxiang').passiveDescription).toContain('首次普通点数');

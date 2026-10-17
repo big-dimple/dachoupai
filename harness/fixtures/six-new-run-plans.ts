@@ -21,8 +21,8 @@ export function sixNewRunPlan(hero:Hero):SixNewRunPlan {
   for(let cursor=0;cursor<600;cursor++){
     const seed='six-new-'+cursor,shop=sixNewRun(hero,seed),initial=enter(shop);let state=initial;const prep:Action[]=[],skill:Action[]=[];
     if(hero==='amo'){
-      const p=pairs(state);if(p.length<3)continue;
-      skill.push({type:'PlayAssistedHand',selectedIds:ordered(state,[...p[0],...p[1]]),assistIds:p[2]});
+      const p=pairs(state).find(ids=>cards(state,ids)[0].rank<=7);if(!p)continue;
+      skill.push({type:'PlayHand',selectedIds:ordered(state,p),amoExile:true});
     }else if(hero==='erxiang'){
       const p=pairs(state)[0];if(!p)continue;skill.push({type:'PlayHand',selectedIds:p,erxiangTargetId:p[0]});
     }else if(hero==='azao'){

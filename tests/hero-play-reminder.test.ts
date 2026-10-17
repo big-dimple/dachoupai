@@ -7,7 +7,7 @@ afterEach(()=>{vi.unstubAllGlobals();vi.restoreAllMocks();vi.clearAllMocks();});
 import {completeControlledRouteHistory} from './fixtures/route-growth-history';
 import {createRun,applyCommand,type R2RunState,type Action} from '../src/domain/run';
 import {CHARACTER_IDS,type CharacterId} from '../src/domain/characters';
-import {newRunIdentity} from '../src/game/RunLaunch';
+import {newRunIdentity} from '../harness/fixtures/legacy-assist-launch';
 import {makeCheckpoint,readCheckpoint} from '../src/application/checkpoint';
 import {r2SelectionFacts} from '../src/domain/r2SelectionFacts';
 import {r2JokerDefinitionsFor} from '../src/domain/r2ContentProfiles';

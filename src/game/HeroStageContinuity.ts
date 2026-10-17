@@ -7,6 +7,7 @@ import {usesXiemuBurn,xiemuInterest} from '../domain/r2XiemuBurn';
 import {usesErxiangHandoff} from '../domain/r2ErxiangHandoff';
 import {usesTouyeWager,usesTouyeNewCore} from '../domain/r2TouyeWager';
 import {usesLaohuanRefill} from '../domain/r2LaohuanRefill';
+import {usesAmoExile} from '../domain/r2AmoExile';
 import {savedHeroResult} from './HeroAbilityCue';
 import {savedXiemuBurn} from './XiemuBurnCopy';
 
@@ -14,7 +15,7 @@ export interface HeroStageContinuity {last?:string;next:string;decision:string}
 /** A completed stage may remain attached in the shop. It is history, never next-stage availability. */
 export function heroStageContinuity(run:R2RunState):HeroStageContinuity|undefined {
  if(!['stage-cleared','shop','stage-ready'].includes(run.phase)||!getR2Stage(run.stageIndex,run.tourMode,run.difficulty,run))return;
- const azao=usesAzaoCharge(run),xiemu=usesXiemuBurn(run),erxiang=usesErxiangHandoff(run),touye=usesTouyeWager(run),laohuan=usesLaohuanRefill(run),amo=r2UsesAssist(run);
+ const azao=usesAzaoCharge(run),xiemu=usesXiemuBurn(run),erxiang=usesErxiangHandoff(run),touye=usesTouyeWager(run),laohuan=usesLaohuanRefill(run),exile=usesAmoExile(run),amo=r2UsesAssist(run)||exile;
  if(!azao&&!xiemu&&!erxiang&&!touye&&!laohuan&&!amo)return;
  const old=run.stage&&run.stage.index<run.stageIndex?run.stage:undefined;
  let last:string|undefined;
@@ -24,7 +25,7 @@ export function heroStageContinuity(run:R2RunState):HeroStageContinuity|undefine
   if(azao){const t=run.lastTrace?.azaoCharge;last=t?result+'；本场结束已清层。':'上一场蓄势已清；没有可读取的上手蓄势记录。';}
   else if(xiemu)last=run.lastTrace?.xiemuBurn?savedXiemuBurn(run):'上一场没有可读取的支付金币结算记录。';
   else if(laohuan)last=old.laohuanTrickUsed?'上一场'+heroSkillName('laohuan')+'已用；留牌已经保存，下一场不重抽旧候选。':'上一场未用'+heroSkillName('laohuan')+'。';
-  else last=result||((erxiang?old.erxiangHandoffUsed:touye?!!old.touyeWager?.commit:old.assistUsed)?'上一场能力已用；最后一手没有对应角色收益记录。':'上一场未用主动能力。');
+  else last=result||((erxiang?old.erxiangHandoffUsed:touye?!!old.touyeWager?.commit:exile?old.amoExileUsed:old.assistUsed)?'上一场能力已用；最后一手没有对应角色收益记录。':'上一场未用主动能力。');
  }
  const enabled=r2RunModeConfig(run).characterAbilityEnabled;
  const sealed=run.stageIndex%3===2&&run.boss.definitionId==='B08'&&!laohuan;
@@ -35,5 +36,6 @@ export function heroStageContinuity(run:R2RunState):HeroStageContinuity|undefine
  if(erxiang)return {last,next:'下场'+heroSkillName('erxiang')+'次数恢复为1次',decision:'先凑对子及以上，再选一张会计分的牌，把一次普通点数改加倍率；可以留到后手，改牌工具与增强仍由你选择。'};
  if(touye)return {last,next:'下场'+heroSkillName('touye')+'次数恢复为1次',decision:usesTouyeNewCore(run)?'已成型也可押；先选要弃的牌和目标，下一手至少用一张刚摸的牌凑成目标才×2，否则×0.85。新牌只当配牌或被封住不算，可不押。':'先看整手哪些目标尚未成型，再选弃牌与目标；只赌下一手，成型×2、未成×0.85，可不押。'};
  if(laohuan)return {last,next:'下场'+heroSkillName('laohuan')+'次数恢复为1次',decision:'先决定保留哪些牌，再自行确认换牌并从真实补牌候选留牌；照付弃牌成本，不能预知补牌。'};
+ if(exile)return {last,next:'下场贬谪次数恢复为1次',decision:'选好这手要打的牌，再决定是否弃掉全部余牌，让本手得分变为4倍；至少要有1张余牌，可留到关键手。'};
  return {last,next:'下场'+heroSkillName('amo')+'次数恢复为1次',decision:'两对及以上主手之外留同点对子或三条，可自己选择助攻；副组真消耗，不算留牌，可留到关键手。'};
 }

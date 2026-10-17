@@ -3,7 +3,7 @@ import {readFileSync} from 'node:fs';
 import {createRun,applyCommand,type R2RunState,type Action,type Command} from '../src/domain/run';
 import {CHARACTER_IDS} from '../src/domain/characters';
 import {newRunIdentity} from '../src/game/RunLaunch';
-import {isR2CoreBuild,R2_S04_FINISH_HASH,R2_S04_FINISH_VERSION} from '../src/domain/r2GroupUpgrade';
+import {isR2CoreBuild,R2_AMO_EXILE_HASH,R2_AMO_EXILE_VERSION,R2_S04_FINISH_HASH,R2_S04_FINISH_VERSION} from '../src/domain/r2GroupUpgrade';
 import {getR2Stage,r2ChapterTargetPreview,r2ScoreContext,assertR2Invariants,r2CreateJoker} from '../src/domain/r2Run';
 import {lockR2ChapterTargets} from '../src/domain/r2Chapter';
 import {r2TargetPolicyFor} from '../src/domain/r2TargetPolicy';
@@ -35,7 +35,7 @@ const practice=(s:R2RunState,type=Object.keys(s.handLevels)[0] as typeof R2_HAND
 
 describe('core build paid growth and public chapter lock',()=>{
  it.each(CHARACTER_IDS)('%s launches the shared identity with all existing skill capabilities',hero=>{
-  const s=start(hero);expect(s).toMatchObject({contentVersion:R2_S04_FINISH_VERSION,contentHash:R2_S04_FINISH_HASH});expect(isR2CoreBuild(s)).toBe(true);round(s);
+  const s=start(hero);expect(s).toMatchObject(hero==='amo'?{contentVersion:R2_AMO_EXILE_VERSION,contentHash:R2_AMO_EXILE_HASH}:{contentVersion:R2_S04_FINISH_VERSION,contentHash:R2_S04_FINISH_HASH});expect(isR2CoreBuild(s)).toBe(true);round(s);
   expect(r2ChapterTargetPreview(s)).toEqual({policyVersion:'core-build-target-v1',chapter:1,targets:['400','600','800'],boss:s.boss});
   const ctx=r2ScoreContext(s,[],[]);expect(ctx.boundedClear).toBe(true);expect(ctx.activeMultTiming).toBe(['touye','xiemu','azao'].includes(hero)?'after-route-growth':undefined);
  });
@@ -110,9 +110,10 @@ describe('core build paid growth and public chapter lock',()=>{
   const weak=score(s,[]),before=score(s),n=send(s,practice(s,type)),after=score(n);
   expect(n.gold).toBe(2);expect(n.handLevels[type]).toBe(2);expect(BigInt(before.finalScore)).toBeGreaterThan(BigInt(weak.finalScore));expect(BigInt(after.finalScore)).toBeGreaterThan(BigInt(before.finalScore));expect(n.routeGrowth).toEqual(s.routeGrowth);round(n);
  });
- it('Amo assist and Erxiang handoff use their actual current-identity qualifications',()=>{
+ it('historical S04 Amo assist and current Erxiang handoff keep their own qualifications',()=>{
   const main=['spades-9','hearts-9','clubs-13','diamonds-13'],side=['spades-12','hearts-12'];
-  let amo=boundedArrange(send(send(start('amo'),{type:'LeaveShop'}),{type:'EnterStage'}),[...main,...side]);expect(r2AssistAvailability(amo)).toEqual({available:true,remaining:1});
+  const historical=createRun({rulesVersion:'r2',seed:'core-build-fixed',runId:'core-build/amo',characterId:'amo',openingRoute:'group',r2Identity:{contentVersion:R2_S04_FINISH_VERSION,contentHash:R2_S04_FINISH_HASH},modeConfig:{mode:'standard',difficulty:0,challengeId:null,programsEnabled:false}});
+  let amo=boundedArrange(send(send(historical,{type:'LeaveShop'}),{type:'EnterStage'}),[...main,...side]);expect(r2AssistAvailability(amo)).toEqual({available:true,remaining:1});
   expect(applyCommand(amo,command(amo,{type:'PlayAssistedHand',selectedIds:main.slice(0,2),assistIds:side}))).toMatchObject({ok:false,code:'assist-unqualified-main',state:amo});
   const assisted=send(amo,{type:'PlayAssistedHand',selectedIds:main,assistIds:side});expect(assisted.stage!.assistUsed).toBe(true);expect(assisted.lastTrace!.assist!.multiplier).toBe(2);round(assisted);
   const pair=['spades-8','hearts-8'],er=boundedArrange(send(send(start('erxiang'),{type:'LeaveShop'}),{type:'EnterStage'}),pair),played=send(er,{type:'PlayHand',selectedIds:pair,erxiangTargetId:pair[0]});expect(played.stage!.erxiangHandoffUsed).toBe(true);expect(played.lastTrace!.erxiangHandoff!.points).toBe(8);round(played);

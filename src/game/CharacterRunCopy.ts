@@ -1,3 +1,5 @@
+import {usesAmoExile} from '../domain/r2AmoExile';
+import {AMO_EXILE_NAME,AMO_EXILE_RULE,AMO_EXILE_DETAILS} from './AmoExileCopy';
 import {heroSkillName} from './HeroSkillPresentation';
 import {usesErxiangHandoff} from '../domain/r2ErxiangHandoff';
 import {usesTouyeWager,usesTouyeNewCore} from '../domain/r2TouyeWager';
@@ -32,9 +34,10 @@ function characterDetailsForRun(run:Pick<R2RunState,'characterId'|'contentVersio
 export function characterForNewRun(characterId:CharacterId){return characterForRun({characterId,...newRunIdentity(characterId,characterId==='erxiang'||characterId==='azao'||characterId==='xiemu'||characterId==='laohuan'||characterId==='touye'?'group':undefined)});}
 
 export function usesCurrentHeroText(run:Pick<R2RunState,'characterId'|'contentVersion'|'contentHash'>):boolean {
- return run.contentVersion===R2_S04_FINISH_VERSION&&run.contentHash===R2_S04_FINISH_HASH;
+ return usesAmoExile(run)||(run.contentVersion===R2_S04_FINISH_VERSION&&run.contentHash===R2_S04_FINISH_HASH);
 }
 export function characterForRun(run:Pick<R2RunState,'characterId'|'contentVersion'|'contentHash'>){
+ if(usesAmoExile(run))return {...getCharacter('amo'),intro:'苏轼曾谪居黄州，仍创作诗文。牌局借贬谪这一主题，让你主动舍弃余牌，换取这一手的爆发。',passiveName:AMO_EXILE_NAME,passiveDescription:AMO_EXILE_DETAILS,openingPlay:AMO_EXILE_RULE,quickEffect:'弃掉余牌，本手得分×4。',skillTags:['每场1次','至少弃1张'],detailRules:AMO_EXILE_DETAILS,buildTip:'选好这手要打的牌，再决定是否弃掉余牌，把这一手得分变为4倍。'};
  const c=characterDetailsForRun(run),current=usesCurrentHeroText(run),quick=HERO_QUICK_COPY[run.characterId];
  return {...c,openingPlay:'openingPlay' in c?c.openingPlay:c.buildTip,
   passiveName:heroSkillName(run.characterId),

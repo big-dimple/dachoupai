@@ -12,6 +12,7 @@ export function heroPayoffs(state:R2RunState,trace:ScoreTrace,replay=false):Joke
  for(const e of trace.events){
   if(seen.has(e.eventId)||!hasActualBenefit(e))continue;
   const character=e.sourceType==='character'&&e.sourceDefinitionId===state.characterId&&(
+   !!trace.amoExile?.use&&e.reasonKey==='amo.exile'||
    !!trace.assist&&e.reasonKey==='amo.assist.'+trace.assist.kind||
    !!trace.erxiangHandoff&&e.reasonKey==='erxiang.handoff'||
    !!trace.azaoCharge?.release&&e.sourceDefinitionId==='azao'&&e.phase==='characterScore'||

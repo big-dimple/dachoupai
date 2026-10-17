@@ -5,7 +5,7 @@ import {assistCandidates} from '../src/game/AssistSelection';
 import {assistRestrictionCopy} from '../src/game/AssistRestrictionCopy';
 import type {PlayingCard} from '../src/cards/types';
 import {createRun,applyCommand} from '../src/domain/run';
-import {newRunIdentity} from '../src/game/RunLaunch';
+import {newRunIdentity} from '../harness/fixtures/legacy-assist-launch';
 import {r2SelectionFacts} from '../src/domain/r2SelectionFacts';
 import {heroAbilityCue} from '../src/game/HeroAbilityCue';
 import {heroSkillGuide} from '../src/game/HeroSkillGuide';

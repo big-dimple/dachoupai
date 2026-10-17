@@ -14,7 +14,7 @@ export type HeroPlayDraft=HeroSkillDraft;
 export function unusedHeroAbility(run:R2RunState,facts:R2SelectionFacts|undefined,ids:readonly string[],assistAvailable:boolean,draft:HeroPlayDraft):boolean {
  if(run.phase!=='await-input'||!run.stage||run.stage.handsLeft<=0||run.pendingRefill||run.stage.wagerSelected||run.stage.touyeWager?.resolution==='pending')return false;
  if(!facts||!ids.length||ids.length>5||new Set(ids).size!==ids.length||ids.some(id=>!run.handOrder.includes(id)))return false;
- if(draft.erxiangTargetId||draft.xiemuBurn||draft.azaoRelease||draft.assistCount)return false;
+ if(draft.erxiangTargetId||draft.xiemuBurn||draft.azaoRelease||draft.amoExile||draft.assistCount)return false;
  return heroAbilityCue(run,facts,ids,assistAvailable)?.available===true;
 }
 export const HERO_PLAY_REMINDER_KEY='dachoupai.hero-play-reminder.v1';

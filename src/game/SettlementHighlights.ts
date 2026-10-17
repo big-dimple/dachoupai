@@ -14,6 +14,7 @@ export function savedSkillName(run:R2RunState,trace:ScoreTrace,event:ScoreEvent)
  if(trace.xiemuBurn?.cost&&run.characterId==='xiemu')return name;
  if(trace.azaoCharge?.release&&run.characterId==='azao')return name;
  if(trace.erxiangHandoff&&event.reasonKey==='erxiang.handoff')return name;
+ if(trace.amoExile?.use&&event.reasonKey==='amo.exile')return '贬谪';
  if(trace.assist&&event.reasonKey==='amo.assist.'+trace.assist.kind)return name;
  if(trace.touyeWager?.commit&&event.reasonKey.startsWith('touye.won.'))return name;
  if(usesTouyeWager(run))return '常规倍率';

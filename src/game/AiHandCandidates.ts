@@ -5,7 +5,7 @@ import {r2OrdinarySuppression} from '../domain/r2Chapter';
 import {previewR2Hand,type ScoreInput} from '../domain/scoreR2';
 
 export const AI_HAND_POLICY='成牌优先，高牌仅兜底。按当前规则的稳妥得分从高到低选牌；随机效果按保底比较，实际结果可能不同。平分先少出牌，再按当前座位顺序。只选牌，仍需自己出牌。';
-export type AiScoreContext=Pick<ScoreInput,'boundedClear'|'activeMultTiming'|'routeGrowth'|'erxiangHandoff'|'touyeWager'|'laohuanTrick'|'xiemuBurn'|'azaoCharge'|'characterId'|'amoScoreTiming'|'assistIds'|'handLevels'|'previousHandType'|'wager'|'jokerSlots'|'previousHandScore'>;
+export type AiScoreContext=Pick<ScoreInput,'amoExile'|'boundedClear'|'activeMultTiming'|'routeGrowth'|'erxiangHandoff'|'touyeWager'|'laohuanTrick'|'xiemuBurn'|'azaoCharge'|'characterId'|'amoScoreTiming'|'assistIds'|'handLevels'|'previousHandType'|'wager'|'jokerSlots'|'previousHandScore'>;
 export interface AiHandInput extends R2CandidateInput {score:AiScoreContext}
 export interface AiHandResult {key:string;status:'working'|'ready'|'unsupported';ordered:R2SelectionFacts[];examined:number;reason?:string}
 export interface AiHandCursor {key:string;index:number;selection:string}
@@ -14,13 +14,14 @@ export function nextAiHand(result:AiHandResult|undefined,key:string,selected:rea
  const selection=JSON.stringify([...selected].sort()),index=cursor?.key===key&&cursor.selection===selection?(cursor.index+1)%result.ordered.length:0,facts=result.ordered[index];
  return{facts,cursor:{key,index,selection:JSON.stringify([...facts.playedIds].sort())}};
 }
-const scoreContext=(s:AiScoreContext):AiScoreContext=>({... (s.boundedClear?{boundedClear:s.boundedClear}:{}),... (s.activeMultTiming?{activeMultTiming:s.activeMultTiming}:{}),... (s.routeGrowth?{routeGrowth:s.routeGrowth}:{}),... (s.erxiangHandoff?{erxiangHandoff:s.erxiangHandoff}:{}),... (s.touyeWager?{touyeWager:s.touyeWager}:{}),... (s.laohuanTrick?{laohuanTrick:s.laohuanTrick}:{}),... (s.xiemuBurn?{xiemuBurn:s.xiemuBurn}:{}),... (s.azaoCharge?{azaoCharge:s.azaoCharge}:{}),... (s.assistIds?{assistIds:s.assistIds}:{}),characterId:s.characterId,amoScoreTiming:s.amoScoreTiming,handLevels:s.handLevels,previousHandType:s.previousHandType,wager:s.wager,jokerSlots:s.jokerSlots,previousHandScore:s.previousHandScore});
+const scoreContext=(s:AiScoreContext):AiScoreContext=>({... (s.amoExile?{amoExile:s.amoExile}:{}),... (s.boundedClear?{boundedClear:s.boundedClear}:{}),... (s.activeMultTiming?{activeMultTiming:s.activeMultTiming}:{}),... (s.routeGrowth?{routeGrowth:s.routeGrowth}:{}),... (s.erxiangHandoff?{erxiangHandoff:s.erxiangHandoff}:{}),... (s.touyeWager?{touyeWager:s.touyeWager}:{}),... (s.laohuanTrick?{laohuanTrick:s.laohuanTrick}:{}),... (s.xiemuBurn?{xiemuBurn:s.xiemuBurn}:{}),... (s.azaoCharge?{azaoCharge:s.azaoCharge}:{}),... (s.assistIds?{assistIds:s.assistIds}:{}),characterId:s.characterId,amoScoreTiming:s.amoScoreTiming,handLevels:s.handLevels,previousHandType:s.previousHandType,wager:s.wager,jokerSlots:s.jokerSlots,previousHandScore:s.previousHandScore});
 /** Already-chosen public intents only. This adapter never chooses or commits a skill. */
-export interface AiSkillDraft {
+export interface AiSkillDraft {amoExile?:boolean;
  erxiangTargetId?:string|null;xiemuBurn?:NonNullable<ScoreInput['xiemuBurn']>['cost'];
  azaoRelease?:boolean;assistIds?:readonly string[];
 }
 export function aiScoreContext(context:AiScoreContext,draft:AiSkillDraft={}):AiScoreContext {
+ if(context.amoExile&&draft.amoExile!==undefined)context={...context,amoExile:{...context.amoExile,use:draft.amoExile}};
  const score=structuredClone(scoreContext(context));
  if(score.erxiangHandoff&&draft.erxiangTargetId!==undefined)score.erxiangHandoff.targetId=draft.erxiangTargetId;
  if(score.xiemuBurn&&draft.xiemuBurn!==undefined)score.xiemuBurn.cost=draft.xiemuBurn;

@@ -1,5 +1,5 @@
 import {createRun,type R2RunState} from '../../src/domain/run';
-import {newRunIdentity} from '../../src/game/RunLaunch';
+import {newRunIdentity} from './legacy-assist-launch';
 import {energySend} from './score-energy';
 import {touyeChoice} from '../../src/game/TouyeWagerCopy';
 import type {CharacterId} from '../../src/domain/characters';

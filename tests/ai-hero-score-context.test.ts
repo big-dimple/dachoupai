@@ -5,7 +5,7 @@ import {r2ScoreContext} from '../src/domain/r2Run';
 import {r2JokerDefinitionsFor} from '../src/domain/r2ContentProfiles';
 import * as scoring from '../src/domain/scoreR2';
 import {SeededRng} from '../src/core/SeededRng';
-import {newRunIdentity} from '../src/game/RunLaunch';
+import {newRunIdentity} from '../harness/fixtures/legacy-assist-launch';
 import {aiHandKey,aiHandScoreInput,aiScoreContext,rankAiHandCandidates,AiHandCandidateCache,type AiHandInput,type AiSkillDraft} from '../src/game/AiHandCandidates';
 import {touyeFixture,touyeBet,touyeSend} from './fixtures/touye-new-core';
 
