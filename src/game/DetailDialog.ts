@@ -11,8 +11,7 @@ import type {CardAbilityCopy} from './CardCopy';
 import {mountF09Detail} from './F09Art';
 import {createJokerRarityElement,type JokerRarity} from './JokerRarity';
 import {openCardArtZoom} from './CardArtZoomModal';
-import {JOKER_ART,jokerArtUrl,jokerArtPreviewUrl} from './jokerArt';
-import {cardDisplayName} from './tangsongCardNames';
+import {portraitCardArt} from './CardArtSource';
 import './DetailDialog.css';
 /** Native modal owns focus and readable, scrollable details independently of canvas resize. */
 let dismissedPointer:{x:number;y:number;until:number}|undefined;
@@ -81,13 +80,11 @@ export class DetailDialog {
       dialog.classList.add('detail-dialog--illustrated');
       if(card){
         const frame=document.createElement('figure'),visual=this.artVisual(image);frame.className='dialog-card-art';frame.append(visual);
-        // Resolve the exact registered model, including versioned paths and BASE_URL.
-        // No filename parsing: goods, snapshots and unregistered URLs have no zoom badge.
-        const cardDefId=JOKER_ART.find(art=>jokerArtUrl(art.id)===portrait.url&&(!portrait.thumbnailUrl||jokerArtPreviewUrl(art.id)===portrait.thumbnailUrl))?.id;
-        if(cardDefId){
-          const zoom=document.createElement('button'),badge=document.createElement('span');zoom.type='button';zoom.className='dialog-card-zoom-trigger';zoom.setAttribute('aria-label','放大鉴赏'+cardDisplayName(cardDefId,portrait.alt));zoom.setAttribute('aria-haspopup','dialog');
+        const artSource=portraitCardArt(portrait);let zoom:HTMLButtonElement|undefined;
+        if(artSource){
+          zoom=document.createElement('button');const badge=document.createElement('span');zoom.type='button';zoom.className='dialog-card-zoom-trigger';zoom.setAttribute('aria-label','放大鉴赏'+artSource.name);zoom.setAttribute('aria-haspopup','dialog');
           badge.className='dialog-card-zoom-badge';badge.textContent='放大鉴赏';zoom.append(badge);visual.append(zoom);
-          let opened:HTMLDialogElement|undefined;zoom.onclick=event=>{event.stopPropagation();opened=openCardArtZoom(cardDefId,portrait.alt);};cleanups.push(()=>{zoom.onclick=null;opened?.close();});
+          let opened:HTMLDialogElement|undefined;zoom.onclick=event=>{event.preventDefault();event.stopPropagation();zoom!.focus({preventScroll:true});opened=openCardArtZoom(artSource.id,portrait.alt);};cleanups.push(()=>{zoom!.onclick=null;opened?.close();});
         }
         image.width=615;image.height=768;
         const thumbnailUrl=portrait.thumbnailUrl??portrait.url;
@@ -110,10 +107,10 @@ export class DetailDialog {
         };
         const showFallback=()=>{
           if(!thumbnailFailed||detailReady||!fallback||showingFallback)return;
-          showingFallback=true;frame.dataset.artFallback='mechanism';image.src=fallback.url;image.alt=fallback.alt;syncLayers();updateStatus();
+          showingFallback=true;if(zoom)zoom.hidden=true;frame.dataset.artFallback='mechanism';image.src=fallback.url;image.alt=fallback.alt;syncLayers();updateStatus();
         };
         const showReal=()=>{
-          image.hidden=false;thumbnailFailed=false;showingFallback=false;delete frame.dataset.artFallback;frame.classList.remove('art-unavailable');image.alt=portrait.alt;syncLayers();updateStatus();
+          image.hidden=false;thumbnailFailed=false;showingFallback=false;if(zoom)zoom.hidden=false;delete frame.dataset.artFallback;frame.classList.remove('art-unavailable');image.alt=portrait.alt;syncLayers();updateStatus();
         };
         this.attachFallback=(url,alt)=>{if(closed)return;fallback={url,alt};showFallback();};
         image.onerror=()=>{
