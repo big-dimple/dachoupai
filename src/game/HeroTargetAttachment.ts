@@ -88,7 +88,7 @@ export class HeroTargetAttachment {
         for(let ribbon=0;ribbon<3;ribbon++){
           const head=phase+ribbon/3,len=Math.min(42,perimeter*.1)/perimeter;
           for(let tail=0;tail<3;tail++){
-            edge.lineStyle(tail===0?3:1.5,tail===0?PALE:BLUE,(tail===0?.9:.5)*(1-release));edge.beginPath();
+            edge.lineStyle(tail===0?3:1.5,tail===0?BLUE:PALE,(tail===0?.95:.6)*(1-release));edge.beginPath();
             for(let point=0;point<=10;point++){
               const p=attachmentEdgePoint(width+release*8,height+release*8,head-len*(point/10+tail*.12));
               if(point===0)edge.moveTo(p.x,p.y);else edge.lineTo(p.x,p.y);

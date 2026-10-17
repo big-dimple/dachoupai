@@ -1,23 +1,28 @@
 import assert from 'node:assert/strict';
-import {createServer} from 'vite';
+import {createServer,build,preview} from 'vite';
 import {chromium} from 'playwright';
-import {mkdir,writeFile,rename} from 'node:fs/promises';
+import {mkdir,writeFile,rename,readFile} from 'node:fs/promises';
+import {resolve} from 'node:path';
 import {execFileSync} from 'node:child_process';
 import {gzipSync} from 'node:zlib';
 import {tapUI,waitScene,tapMenuAction,point} from './ui.mjs';
 
 const out=process.env.ATTACHMENT_OUT??'shots/liue-target-attachment',port=5191;
 await mkdir(out,{recursive:true});
-const server=await createServer({mode:'e2e',server:{host:'127.0.0.1',port,strictPort:true},logLevel:'error'});await server.listen();
-const {liueAttachmentFixture}=await server.ssrLoadModule('/harness/fixtures/liue-target-attachment.ts');
-const {energySend}=await server.ssrLoadModule('/harness/fixtures/score-energy.ts');
-const {makeCheckpoint,readCheckpoint}=await server.ssrLoadModule('/src/application/checkpoint.ts');
+const ssr=await createServer({server:{middlewareMode:true},logLevel:'error'});
+const {liueAttachmentFixture}=await ssr.ssrLoadModule('/harness/fixtures/liue-target-attachment.ts');
+const {energySend}=await ssr.ssrLoadModule('/harness/fixtures/score-energy.ts');
+const {makeCheckpoint,readCheckpoint}=await ssr.ssrLoadModule('/src/application/checkpoint.ts');
+await ssr.close();
+const buildDir=resolve(out,'build');await build({mode:'e2e',build:{outDir:buildDir},logLevel:'error'});
+const server=await preview({build:{outDir:buildDir},preview:{host:'127.0.0.1',port,strictPort:true},logLevel:'error'});
 const report={head:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),dirty:execFileSync('git',['status','--short'],{encoding:'utf8'}),scope:'Controlled public 6-clubs/6-hearts checkpoint, Lv2 pair, mantangcai and b10 growth 0. Boundary case uses Lv1 and omits mantangcai to stay below the original first-stage target for native replay. No rule/target changes. Native import/selection/skill/play/menu inputs. No natural-acquisition/economy/difficulty/device/hearing/touch acceptance.',cases:[]},states=[];
+report.buildInfo=JSON.parse(await readFile(resolve(buildDir,'build-info.json'),'utf8'));
 const browser=await chromium.launch({channel:'msedge',headless:true});report.browser=browser.version();
 const specs=[{key:'pc',width:1366,height:768,dpr:1},{key:'phone',width:390,height:844,dpr:2},{key:'boundaries',width:1366,height:768,dpr:1},{key:'reduced',width:390,height:740,dpr:3,reduced:true}].filter(s=>!process.env.ATTACHMENT_CASES||process.env.ATTACHMENT_CASES.split(',').includes(s.key));
 const snap=p=>p.evaluate(async()=>{const c=window.__harness.game.registry.get('runController');return {state:c.state,journal:c.journal,storage:await c.store.read()};});
 const settled=p=>p.waitForFunction(()=>{const game=window.__harness.game,s=game.scene.getScene('game');return game.scene.isActive('intermission')||s.ready&&!s.playing&&!s.presentation&&s.cardViews.every(v=>!v.dealing&&!s.tweens.isTweening(v.container));});
-const marks=p=>p.evaluate(()=>{const s=window.__harness.game.scene.getScene('game'),all=[],walk=list=>{for(const o of list){if(o.active&&o.name?.startsWith('hero/target-')){const b=o.getBounds();all.push({name:o.name,target:o.getData('targetId'),phase:o.getData('phase'),generation:o.getData('generation'),flow:o.getData('flowPhase'),progress:o.getData('progress'),bounds:{x:b.x,y:b.y,width:b.width,height:b.height}});}if(o.list)walk(o.list);}};walk(s.view.root.list);return all;});
+const marks=p=>p.evaluate(()=>{const s=window.__harness.game.scene.getScene('game'),all=[],walk=list=>{for(const o of list){if(o.active&&o.name?.startsWith('hero/target-')){const b=o.getBounds?.();all.push({name:o.name,target:o.getData('targetId'),phase:o.getData('phase'),generation:o.getData('generation'),flow:o.getData('flowPhase'),progress:o.getData('progress'),bounds:b?{x:b.x,y:b.y,width:b.width,height:b.height}:undefined});}if(o.list)walk(o.list);}};walk(s.view.root.list);return all;});
 const choose=async(p,id,touch)=>{await tapUI(p,'game','hero/action-shortcut',touch);const suit=id==='hearts-6'?'♥':'♣',button=p.getByRole('button',{name:new RegExp('^(已选 )?第\\d+张 · 6'+suit+'$')});if(touch)await button.tap();else await button.click();await p.waitForFunction(()=>!document.querySelector('dialog[open]'));};
 const noMarks=async p=>{await p.waitForFunction(()=>{const s=window.__harness.game.scene.getScene('game'),walk=list=>list.some(o=>o.active&&o.name?.startsWith('hero/target-')||o.list&&walk(o.list));return !walk(s.view?.root?.list??[]);});};
 async function observe(p){await p.evaluate(()=>{
@@ -44,6 +49,7 @@ try{for(const spec of specs){
   const fixture=liueAttachmentFixture(spec.key!=='boundaries'),checkpoint=makeCheckpoint(fixture.state,[]);assert.ok(readCheckpoint(checkpoint).ok);
   let expected=energySend(fixture.state,{type:'PlayHand',selectedIds:fixture.selectedIds,erxiangTargetId:fixture.targetId});if(spec.key==='boundaries')assert.equal(expected.phase,'await-input');else assert.equal(expected.lastTrace.finalScore,'1241');
   const dir=out+'/'+spec.key;await mkdir(dir,{recursive:true});
+  await writeFile(dir+'/public-checkpoint.json',JSON.stringify(checkpoint));
   const viewport={width:spec.width,height:spec.height},touch=spec.width<800,context=await browser.newContext({viewport,deviceScaleFactor:spec.dpr,hasTouch:touch,reducedMotion:spec.reduced?'reduce':'no-preference',recordVideo:{dir,size:viewport}}),p=await context.newPage(),row={...spec,status:'RUNNING',errors:[]};report.cases.push(row);p.setDefaultTimeout(30000);p.on('pageerror',e=>row.errors.push(String(e)));p.on('dialog',d=>d.accept());
   try{
     await p.goto('http://127.0.0.1:'+port+'/?harness=1');await waitScene(p,'title');
@@ -86,4 +92,4 @@ try{for(const spec of specs){
     assert.deepEqual(probe.errors,[]);assert.deepEqual(row.errors,[]);await writeFile(dir+'/frames.json.gz',gzipSync(JSON.stringify(probe)));row.samples=probe.images;row.frames=probe.frames.length;row.releaseEvents=probe.events;row.status='PASS';await p.screenshot({path:dir+'/clean.png'});
   }catch(error){row.status='FAIL';row.error=String(error.stack||error);await p.screenshot({path:dir+'/FAIL.png'}).catch(()=>{});throw error;}
   finally {const video=p.video();await context.close();if(video)await rename(await video.path(),dir+'/continuous.webm').catch(()=>{});}
-}report.status='PASS';}catch(error){report.status='FAIL';report.error=String(error.stack||error);process.exitCode=1;}finally{await writeFile(out+'/report.json',JSON.stringify(report,null,2));await writeFile(out+'/states.json.gz',gzipSync(JSON.stringify(states)));console.log(JSON.stringify({status:report.status,cases:report.cases.map(r=>({key:r.key,status:r.status,error:r.error,frames:r.frames}))}));await browser.close();await server.close();}
+}report.status='PASS';}catch(error){report.status='FAIL';report.error=String(error.stack||error);process.exitCode=1;}finally{await writeFile(out+'/report.json',JSON.stringify(report,null,2));await writeFile(out+'/states.json.gz',gzipSync(JSON.stringify(states)));console.log(JSON.stringify({status:report.status,cases:report.cases.map(r=>({key:r.key,status:r.status,error:r.error,frames:r.frames}))}));await browser.close();await new Promise(r=>server.httpServer.close(r));}
