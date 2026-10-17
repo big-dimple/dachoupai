@@ -5,16 +5,17 @@
   "taskStatus": "in_progress",
   "phase": "FOUR_SOURCES_READY_FOR_NORMAL_RELEASE_THREE_EXPERIENCE_GOALS_UNACCEPTED",
   "baseCommit": "43725f697b58ebb64bfa47197512d2d39fe46a48",
-  "integratedProductCommit": "b418ccac513b504aac0aee4c77d71ce183b6b540",
+  "integratedProductCommit": "4d496e205ed4683bba5db901e16f1c17fe9b590c",
   "branch": "dev/eyes-followups-integration-20261017",
   "compatibility": {
     "protectedDiff": [],
-    "scope": "43725 GameScene/b05 current artwork/climax and all domain/save/audio preserved. ShopScene now intentionally equals505a; b439 highlighter and b8 locked-state exact. fd7 hints retained with505a owner-lifecycle additions in2 explicit paths."
+    "scope": "All prior b439 assets/renderers,b8 projection,b05 and43725 sorting preserved; GameScene changes solely exact1607445b temporary-phase hookup supplied in c9. Shop/c9 continuation intentionally changes fd2 paths and b8 README.",
+    "gameSceneExactSource": "c9f5f5342ec556e59026ab1958ab1887f33463ed"
   },
   "checksReused": {
     "initialEyes": "Original6 files50 only unchanged asset/preload/identity scope; not final clarity acceptance.",
     "eyesClarity": "b4394 files40 followed by only hero-climax12 after final connector lifetime changes; no50+40+12 total.2 cases3 phases source pixels bound exactly.",
-    "touye": "b8 seven files93/type-build unchanged; saved locked target works via existing caller. Drawing/settling GameScene wiring remains outside current sources.",
+    "touye": "Finalc9 contains unchanged b8 core plus1607445b transient GameScene hookup:10 files108 include prior93 and15 scene/assist/discard cases; two native mouse/touch flows0 errors, drawing→locked→settling→used and lifecycle/failure cleanup. No93+108 total, no rerun in integration.",
     "zoomHint": "fd7 historical150/type-build/10 short flows. DetailDialog.ts and its test intentionally superseded by505a lifecycle reuse continuation; final505a223/167 evidence covers its delivered component state.",
     "shop": "505a runtime10 files223/type-build plus final-art167 and native desktop/mobile processes, followed by final modal/graphics narrow check; source raw failures retained, not added as new counts. Parent independently viewed1912 shop/targetless and390 purchased-select-target finals.",
     "boundary": "No new full suite, six-person run, browser matrix, natural game or human acceptance."
@@ -39,16 +40,16 @@
   "publication": {
     "mode": "Normal dev then main fast-forward/push",
     "expectedMain": "43725f697b58ebb64bfa47197512d2d39fe46a48",
-    "authorization": "Latest user explicitly authorizes b439+b8+fd and adds505a because current batch not main-pushed. Do not wait for transient Qin phase wire or whole scoring redesign.",
+    "authorization": "Latest user explicitly says replace505a with finalc9 before main push, preserving b439/b8/fd. Final transient hookup delivered; do not wait for continuous scoring/haptics next batches.",
     "releaseCommit": "Delivery commit containing this receipt; actual full main SHA confirmed by final push receipt.",
     "restrictions": "No force/CI/domain/deploy or natural long game."
   },
   "remaining": [
     "N01计分爽感/N02商店联动/N03Boss压制 explicitly EXPERIENCE_NOT_MET and require redesign; parent comparative/natural review continues; whole scoring re-sequencing is a later independent task",
-    "Qin drawing/settling temporary GameScene connection not in505a; scene owner authorization retry pending, not executed here or used to delay ready delivery",
-    "Full dist45215166B exceeds20000000B; historical originals gaps/source baseline failures remain",
     "New integrated dynamic/Shop/locked-state/zoom acceptance, human identity/comprehension/hearing=false/physical device and formal gates remain",
-    "Unified haptics API/device/felt verification and cross-scene art coverage remain open; natural full climax has occurred and exposed continuity failure, not a missing trigger."
+    "Unified haptics API/device/felt verification and cross-scene art coverage remain open; natural full climax has occurred and exposed continuity failure, not a missing trigger.",
+    "Full dist45215495B exceeds20000000B; aggregate budget failure unchanged.",
+    "Qin transient hookup now integrated; real current merged natural/device flow not yet accepted."
   ],
   "sources": [
     {
@@ -350,8 +351,9 @@
         {
           "path": "docs/production/evidence/touye-locked-skill-state-2026-10-17/README.md",
           "sourceBlob": "68cb67ac2728ddba0b6a7d3f0e6a16b1029e3219",
-          "integratedBlob": "68cb67ac2728ddba0b6a7d3f0e6a16b1029e3219",
-          "exact": true
+          "integratedBlob": "94872001ac8765b89aac99eea3f9a7f5932953e6",
+          "exact": false,
+          "reason": "Superseded by finalc9 delivery: Shop lifecycle continuation or documented completed Qin scene hookup; original feature/command modules preserved."
         },
         {
           "path": "src/game/HeroAbilityCue.ts",
@@ -462,304 +464,415 @@
           "sourceBlob": "8e1e131ff6ba8f689bf1671fab63630a82ff73a3",
           "integratedBlob": "3f61abac6495d11d7cef72214aeb2514ed21be68",
           "exact": false,
-          "reason": "Intentional final505a continuation: lifecycle reuse API/test additions; fd7 image-outside hint retained by source505a, which contains fd7."
+          "reason": "Superseded by finalc9 delivery: Shop lifecycle continuation or documented completed Qin scene hookup; original feature/command modules preserved."
         },
         {
           "path": "tests/detail-dialog.test.ts",
           "sourceBlob": "af689e2da7a46dd1aaf0ac061f09366769c0267b",
           "integratedBlob": "8a77b7ed0979d2622cdfed22eb6647ea7b573dba",
           "exact": false,
-          "reason": "Intentional final505a continuation: lifecycle reuse API/test additions; fd7 image-outside hint retained by source505a, which contains fd7."
+          "reason": "Superseded by finalc9 delivery: Shop lifecycle continuation or documented completed Qin scene hookup; original feature/command modules preserved."
         }
       ]
     },
     {
       "name": "shop-flow-redesign",
-      "sha": "505a1bb97fbc20b9a90f62dc901829ff1d1038e0",
-      "bindingScope": "Actual applied delta of normal505a merge into1bd; common bases fd7 and67b; not an old whole-tree copy.",
+      "sha": "c9f5f5342ec556e59026ab1958ab1887f33463ed",
+      "bindingScope": "Cumulative actual deltas of normal505a then c9 merges; intermediate integration ledger commits excluded; no whole old tree copied.",
       "integrationBefore": "1bdbe06b28bf52005534890619c1d05810bb4d89",
-      "paths": 55,
+      "paths": 64,
       "bindings": [
         {
           "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/1912-first-observer-fail.png",
           "sourceBlob": "4abadbda9e84da7a51ba84b9835c8b61a7b35500",
-          "integratedBlob": "4abadbda9e84da7a51ba84b9835c8b61a7b35500"
+          "integratedBlob": "4abadbda9e84da7a51ba84b9835c8b61a7b35500",
+          "exact": true
         },
         {
           "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/1912-full-art-final.png",
           "sourceBlob": "436fad70ea8d5db26098a4e0b1fb463a78ddc3e2",
-          "integratedBlob": "436fad70ea8d5db26098a4e0b1fb463a78ddc3e2"
+          "integratedBlob": "436fad70ea8d5db26098a4e0b1fb463a78ddc3e2",
+          "exact": true
         },
         {
           "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/1912-nearby-tip-final.png",
           "sourceBlob": "550d9463a6f266ef86f04e6c68287c1a451d5ffa",
-          "integratedBlob": "550d9463a6f266ef86f04e6c68287c1a451d5ffa"
+          "integratedBlob": "550d9463a6f266ef86f04e6c68287c1a451d5ffa",
+          "exact": true
         },
         {
           "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/1912-nearby-tip.png",
           "sourceBlob": "550d9463a6f266ef86f04e6c68287c1a451d5ffa",
-          "integratedBlob": "550d9463a6f266ef86f04e6c68287c1a451d5ffa"
+          "integratedBlob": "550d9463a6f266ef86f04e6c68287c1a451d5ffa",
+          "exact": true
         },
         {
           "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/1912-no-discovery.png",
           "sourceBlob": "5bac9f65f142a80d87399fcb4fb2ea55a8673a02",
-          "integratedBlob": "5bac9f65f142a80d87399fcb4fb2ea55a8673a02"
+          "integratedBlob": "5bac9f65f142a80d87399fcb4fb2ea55a8673a02",
+          "exact": true
         },
         {
           "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/1912-purchased-select-target-final.png",
           "sourceBlob": "4d0829a32238522f7f2858b5824adeeb7f2e352a",
-          "integratedBlob": "4d0829a32238522f7f2858b5824adeeb7f2e352a"
+          "integratedBlob": "4d0829a32238522f7f2858b5824adeeb7f2e352a",
+          "exact": true
         },
         {
           "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/1912-purchased-select-target.png",
           "sourceBlob": "8982980ab667a2792a7bea010e4adbe21f55bdd6",
-          "integratedBlob": "8982980ab667a2792a7bea010e4adbe21f55bdd6"
+          "integratedBlob": "8982980ab667a2792a7bea010e4adbe21f55bdd6",
+          "exact": true
         },
         {
           "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/1912-resized.png",
           "sourceBlob": "7e26102f4bb41d65a24a0c2950e064fe78461827",
-          "integratedBlob": "7e26102f4bb41d65a24a0c2950e064fe78461827"
+          "integratedBlob": "7e26102f4bb41d65a24a0c2950e064fe78461827",
+          "exact": true
         },
         {
           "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/1912-reuse-backdrop-before.png",
           "sourceBlob": "8982980ab667a2792a7bea010e4adbe21f55bdd6",
-          "integratedBlob": "8982980ab667a2792a7bea010e4adbe21f55bdd6"
+          "integratedBlob": "8982980ab667a2792a7bea010e4adbe21f55bdd6",
+          "exact": true
         },
         {
           "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/1912-shop-final.png",
           "sourceBlob": "e7ff9e8db5cbb74be6feca641e9c0f2f8dd64a13",
-          "integratedBlob": "e7ff9e8db5cbb74be6feca641e9c0f2f8dd64a13"
+          "integratedBlob": "e7ff9e8db5cbb74be6feca641e9c0f2f8dd64a13",
+          "exact": true
         },
         {
           "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/1912-shop.png",
           "sourceBlob": "e7ff9e8db5cbb74be6feca641e9c0f2f8dd64a13",
-          "integratedBlob": "e7ff9e8db5cbb74be6feca641e9c0f2f8dd64a13"
+          "integratedBlob": "e7ff9e8db5cbb74be6feca641e9c0f2f8dd64a13",
+          "exact": true
         },
         {
           "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/1912-targetless-tool-final.png",
           "sourceBlob": "df1ee7667c44a02ba0bb7f2796979bece8f42dd2",
-          "integratedBlob": "df1ee7667c44a02ba0bb7f2796979bece8f42dd2"
+          "integratedBlob": "df1ee7667c44a02ba0bb7f2796979bece8f42dd2",
+          "exact": true
         },
         {
           "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/1912-targetless-tool.png",
           "sourceBlob": "3ea4a41737cecfa81726ccc8dbf56bf1af7a6b6e",
-          "integratedBlob": "3ea4a41737cecfa81726ccc8dbf56bf1af7a6b6e"
+          "integratedBlob": "3ea4a41737cecfa81726ccc8dbf56bf1af7a6b6e",
+          "exact": true
         },
         {
           "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/1912-workshop-dyes-final.png",
           "sourceBlob": "87c5ba569594bdd91781c6e3edf732b765184753",
-          "integratedBlob": "87c5ba569594bdd91781c6e3edf732b765184753"
+          "integratedBlob": "87c5ba569594bdd91781c6e3edf732b765184753",
+          "exact": true
         },
         {
           "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/1912-workshop-tools-final.png",
           "sourceBlob": "7d7becbeeb00e0a70fb1811c7f5423221e469f8a",
-          "integratedBlob": "7d7becbeeb00e0a70fb1811c7f5423221e469f8a"
+          "integratedBlob": "7d7becbeeb00e0a70fb1811c7f5423221e469f8a",
+          "exact": true
         },
         {
           "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/1912-workshop.png",
           "sourceBlob": "2964894b8921f78e9cea5f68479e6b6472e95c6d",
-          "integratedBlob": "2964894b8921f78e9cea5f68479e6b6472e95c6d"
+          "integratedBlob": "2964894b8921f78e9cea5f68479e6b6472e95c6d",
+          "exact": true
         },
         {
           "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/390-full-art-final.png",
           "sourceBlob": "f43abff5ef46850c037611e815de81615b9571b7",
-          "integratedBlob": "f43abff5ef46850c037611e815de81615b9571b7"
+          "integratedBlob": "f43abff5ef46850c037611e815de81615b9571b7",
+          "exact": true
         },
         {
           "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/390-purchased-select-target-final.png",
           "sourceBlob": "7f694ff4a6ad0464338c13828f9d24c6aebbdb02",
-          "integratedBlob": "7f694ff4a6ad0464338c13828f9d24c6aebbdb02"
+          "integratedBlob": "7f694ff4a6ad0464338c13828f9d24c6aebbdb02",
+          "exact": true
         },
         {
           "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/390-purchased-select-target.png",
           "sourceBlob": "3ec537672db160796fe806fed5dbabba5632d35f",
-          "integratedBlob": "3ec537672db160796fe806fed5dbabba5632d35f"
+          "integratedBlob": "3ec537672db160796fe806fed5dbabba5632d35f",
+          "exact": true
         },
         {
           "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/390-resized.png",
           "sourceBlob": "89aba8cce3d88b30f00c294170df8ecbdc7ebee9",
-          "integratedBlob": "89aba8cce3d88b30f00c294170df8ecbdc7ebee9"
+          "integratedBlob": "89aba8cce3d88b30f00c294170df8ecbdc7ebee9",
+          "exact": true
         },
         {
           "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/390-shop-final.png",
           "sourceBlob": "1d1ef15865a960c6d8d324cb44c02c2331f6a5e1",
-          "integratedBlob": "1d1ef15865a960c6d8d324cb44c02c2331f6a5e1"
+          "integratedBlob": "1d1ef15865a960c6d8d324cb44c02c2331f6a5e1",
+          "exact": true
         },
         {
           "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/390-shop.png",
           "sourceBlob": "1d1ef15865a960c6d8d324cb44c02c2331f6a5e1",
-          "integratedBlob": "1d1ef15865a960c6d8d324cb44c02c2331f6a5e1"
+          "integratedBlob": "1d1ef15865a960c6d8d324cb44c02c2331f6a5e1",
+          "exact": true
         },
         {
           "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/390-targetless-tool-final.png",
           "sourceBlob": "d85fd6ac71caa8a60beafe0127c4bb0541188e21",
-          "integratedBlob": "d85fd6ac71caa8a60beafe0127c4bb0541188e21"
+          "integratedBlob": "d85fd6ac71caa8a60beafe0127c4bb0541188e21",
+          "exact": true
         },
         {
           "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/390-targetless-tool.png",
           "sourceBlob": "8e85d52216469555e239b5b8719e1bb8e60a06ef",
-          "integratedBlob": "8e85d52216469555e239b5b8719e1bb8e60a06ef"
+          "integratedBlob": "8e85d52216469555e239b5b8719e1bb8e60a06ef",
+          "exact": true
         },
         {
           "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/390-workshop-dyes-final.png",
           "sourceBlob": "b0347e252df4d5096a6e77b8f2f5ec8f3d893798",
-          "integratedBlob": "b0347e252df4d5096a6e77b8f2f5ec8f3d893798"
+          "integratedBlob": "b0347e252df4d5096a6e77b8f2f5ec8f3d893798",
+          "exact": true
         },
         {
           "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/390-workshop-tools-final.png",
           "sourceBlob": "7ddadbc30ac97289db659a005203ac27093a5c2c",
-          "integratedBlob": "7ddadbc30ac97289db659a005203ac27093a5c2c"
+          "integratedBlob": "7ddadbc30ac97289db659a005203ac27093a5c2c",
+          "exact": true
         },
         {
           "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/390-workshop.png",
           "sourceBlob": "eb6d656189f17fda642cc29b2c9164a431d8fcb1",
-          "integratedBlob": "eb6d656189f17fda642cc29b2c9164a431d8fcb1"
+          "integratedBlob": "eb6d656189f17fda642cc29b2c9164a431d8fcb1",
+          "exact": true
         },
         {
           "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/README.md",
-          "sourceBlob": "335dd8142e959284b4f9006957f9c4195412aa64",
-          "integratedBlob": "335dd8142e959284b4f9006957f9c4195412aa64"
+          "sourceBlob": "5a4bcf7b42fd39f533059efa8c2d4df1b66eba14",
+          "integratedBlob": "5a4bcf7b42fd39f533059efa8c2d4df1b66eba14",
+          "exact": true
         },
         {
           "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/browser-check.json",
           "sourceBlob": "6eecb6834fadd6411b5e1abb3a13ff480f28036d",
-          "integratedBlob": "6eecb6834fadd6411b5e1abb3a13ff480f28036d"
+          "integratedBlob": "6eecb6834fadd6411b5e1abb3a13ff480f28036d",
+          "exact": true
         },
         {
           "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/browser-check.mjs",
           "sourceBlob": "30147449428c1f3acad0a2074082b7f74062bc7c",
-          "integratedBlob": "30147449428c1f3acad0a2074082b7f74062bc7c"
+          "integratedBlob": "30147449428c1f3acad0a2074082b7f74062bc7c",
+          "exact": true
         },
         {
           "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/browser-final-check.json",
           "sourceBlob": "1209b86e2ea65dad5d7e046a33b8e76236f77176",
-          "integratedBlob": "1209b86e2ea65dad5d7e046a33b8e76236f77176"
+          "integratedBlob": "1209b86e2ea65dad5d7e046a33b8e76236f77176",
+          "exact": true
         },
         {
           "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/browser-first-fail.json",
           "sourceBlob": "9c30c60bbefd2b4eb5bd406de2b341548fa35bb8",
-          "integratedBlob": "9c30c60bbefd2b4eb5bd406de2b341548fa35bb8"
+          "integratedBlob": "9c30c60bbefd2b4eb5bd406de2b341548fa35bb8",
+          "exact": true
         },
         {
           "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/browser-no-discovery-fail.json",
           "sourceBlob": "62d9b67acdd0936ab02d1c6c2ba9751d92667c1b",
-          "integratedBlob": "62d9b67acdd0936ab02d1c6c2ba9751d92667c1b"
+          "integratedBlob": "62d9b67acdd0936ab02d1c6c2ba9751d92667c1b",
+          "exact": true
         },
         {
           "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/browser-setup-fail.txt",
           "sourceBlob": "cf29226b27a9e2e96dd12e95023f113ad94899d6",
-          "integratedBlob": "cf29226b27a9e2e96dd12e95023f113ad94899d6"
+          "integratedBlob": "cf29226b27a9e2e96dd12e95023f113ad94899d6",
+          "exact": true
         },
         {
           "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/build-check.txt",
           "sourceBlob": "f458b4b14601ccd6fe5909b84a2b574a46fe22a2",
-          "integratedBlob": "f458b4b14601ccd6fe5909b84a2b574a46fe22a2"
+          "integratedBlob": "f458b4b14601ccd6fe5909b84a2b574a46fe22a2",
+          "exact": true
         },
         {
           "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/final-art-check.txt",
           "sourceBlob": "847fb09a00fed2ed6dd070c64ca76b8326cfc6f2",
-          "integratedBlob": "847fb09a00fed2ed6dd070c64ca76b8326cfc6f2"
+          "integratedBlob": "847fb09a00fed2ed6dd070c64ca76b8326cfc6f2",
+          "exact": true
         },
         {
           "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/focused-check.txt",
           "sourceBlob": "00c58ccb666a02d83e0c8deb39214b81fe5149d8",
-          "integratedBlob": "00c58ccb666a02d83e0c8deb39214b81fe5149d8"
+          "integratedBlob": "00c58ccb666a02d83e0c8deb39214b81fe5149d8",
+          "exact": true
         },
         {
           "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/reference-images.json",
           "sourceBlob": "20597bf86392bc77ece37fd95ad2727e858dd789",
-          "integratedBlob": "20597bf86392bc77ece37fd95ad2727e858dd789"
+          "integratedBlob": "20597bf86392bc77ece37fd95ad2727e858dd789",
+          "exact": true
         },
         {
           "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/runtime-build.txt",
           "sourceBlob": "51ee23c954bf033ab6fcb634bf0249da352c2f8e",
-          "integratedBlob": "51ee23c954bf033ab6fcb634bf0249da352c2f8e"
+          "integratedBlob": "51ee23c954bf033ab6fcb634bf0249da352c2f8e",
+          "exact": true
         },
         {
           "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/runtime-focused-check.txt",
           "sourceBlob": "45b07df253b14cfc30f4916264c94c4db0acea91",
-          "integratedBlob": "45b07df253b14cfc30f4916264c94c4db0acea91"
+          "integratedBlob": "45b07df253b14cfc30f4916264c94c4db0acea91",
+          "exact": true
         },
         {
           "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/zoom-integration-check.txt",
           "sourceBlob": "ca5f21790eb814bcd24e451de3867a2564c1d814",
-          "integratedBlob": "ca5f21790eb814bcd24e451de3867a2564c1d814"
+          "integratedBlob": "ca5f21790eb814bcd24e451de3867a2564c1d814",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/touye-locked-skill-state-2026-10-17/1912-selected-locked.png",
+          "sourceBlob": "66eb2a981b7c7104b834cc4fdfd6484f36d4007b",
+          "integratedBlob": "66eb2a981b7c7104b834cc4fdfd6484f36d4007b",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/touye-locked-skill-state-2026-10-17/390-selected-locked.png",
+          "sourceBlob": "bc840bfcea6ee209ce34e6560309d0e348f32958",
+          "integratedBlob": "bc840bfcea6ee209ce34e6560309d0e348f32958",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/touye-locked-skill-state-2026-10-17/README.md",
+          "sourceBlob": "94872001ac8765b89aac99eea3f9a7f5932953e6",
+          "integratedBlob": "94872001ac8765b89aac99eea3f9a7f5932953e6",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/touye-locked-skill-state-2026-10-17/scene-check-first-fail.json",
+          "sourceBlob": "093d6760de0bce4105182a702c8af954605bdd39",
+          "integratedBlob": "093d6760de0bce4105182a702c8af954605bdd39",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/touye-locked-skill-state-2026-10-17/scene-check-selector-fail.json",
+          "sourceBlob": "a72b39726e30db5e81e08b5923aca5225e107843",
+          "integratedBlob": "a72b39726e30db5e81e08b5923aca5225e107843",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/touye-locked-skill-state-2026-10-17/scene-check.json",
+          "sourceBlob": "304e21f2fbfe72b642c745691dfc746b535fec0a",
+          "integratedBlob": "304e21f2fbfe72b642c745691dfc746b535fec0a",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/touye-locked-skill-state-2026-10-17/scene-check.mjs",
+          "sourceBlob": "7b8222c1d6f2cc429532d8940f991ad325d24a60",
+          "integratedBlob": "7b8222c1d6f2cc429532d8940f991ad325d24a60",
+          "exact": true
         },
         {
           "path": "src/game/ConsumableDialog.ts",
           "sourceBlob": "b5841df66c3f6676d1e5c5720acc12aee125cc95",
-          "integratedBlob": "b5841df66c3f6676d1e5c5720acc12aee125cc95"
+          "integratedBlob": "b5841df66c3f6676d1e5c5720acc12aee125cc95",
+          "exact": true
         },
         {
           "path": "src/game/DetailDialog.ts",
           "sourceBlob": "3f61abac6495d11d7cef72214aeb2514ed21be68",
-          "integratedBlob": "3f61abac6495d11d7cef72214aeb2514ed21be68"
+          "integratedBlob": "3f61abac6495d11d7cef72214aeb2514ed21be68",
+          "exact": true
+        },
+        {
+          "path": "src/game/GameScene.ts",
+          "sourceBlob": "47bc34e7ec5e4996bf5914056ab853602bbcff01",
+          "integratedBlob": "47bc34e7ec5e4996bf5914056ab853602bbcff01",
+          "exact": true
         },
         {
           "path": "src/game/MakeCardsDialog.ts",
           "sourceBlob": "da0ee3bd1c9e59753e56647ec4877641aff75a33",
-          "integratedBlob": "da0ee3bd1c9e59753e56647ec4877641aff75a33"
+          "integratedBlob": "da0ee3bd1c9e59753e56647ec4877641aff75a33",
+          "exact": true
         },
         {
           "path": "src/game/ShopAnchoredTip.ts",
           "sourceBlob": "826c3731941900e6ee45f40305e8d077c19727bc",
-          "integratedBlob": "826c3731941900e6ee45f40305e8d077c19727bc"
+          "integratedBlob": "826c3731941900e6ee45f40305e8d077c19727bc",
+          "exact": true
         },
         {
           "path": "src/game/ShopLayout.ts",
           "sourceBlob": "f2d2a42e9c3b860edb7cdd21d266a183aa70a5b4",
-          "integratedBlob": "f2d2a42e9c3b860edb7cdd21d266a183aa70a5b4"
+          "integratedBlob": "f2d2a42e9c3b860edb7cdd21d266a183aa70a5b4",
+          "exact": true
         },
         {
           "path": "src/game/ShopOfferLayout.ts",
           "sourceBlob": "a2396ec10f6f8d3907dd8bb19dd32c154e96aa0d",
-          "integratedBlob": "a2396ec10f6f8d3907dd8bb19dd32c154e96aa0d"
+          "integratedBlob": "a2396ec10f6f8d3907dd8bb19dd32c154e96aa0d",
+          "exact": true
         },
         {
           "path": "src/game/ShopPresentation.css",
           "sourceBlob": "f1707025885ba6416d3779fc49eaec499c793fb1",
-          "integratedBlob": "f1707025885ba6416d3779fc49eaec499c793fb1"
+          "integratedBlob": "f1707025885ba6416d3779fc49eaec499c793fb1",
+          "exact": true
         },
         {
           "path": "src/game/ShopPurchaseFlow.ts",
           "sourceBlob": "b74e0d5f2dee72d8b31cde2cef388e4f5465928a",
-          "integratedBlob": "b74e0d5f2dee72d8b31cde2cef388e4f5465928a"
+          "integratedBlob": "b74e0d5f2dee72d8b31cde2cef388e4f5465928a",
+          "exact": true
         },
         {
           "path": "src/game/ShopScene.ts",
           "sourceBlob": "700c1852ca389d2d3ecf545671965f850e855058",
-          "integratedBlob": "700c1852ca389d2d3ecf545671965f850e855058"
+          "integratedBlob": "700c1852ca389d2d3ecf545671965f850e855058",
+          "exact": true
         },
         {
           "path": "src/game/ShopSynergyPreview.ts",
           "sourceBlob": "07e31ad356af50e3921b1ce41796c40540824969",
-          "integratedBlob": "07e31ad356af50e3921b1ce41796c40540824969"
+          "integratedBlob": "07e31ad356af50e3921b1ce41796c40540824969",
+          "exact": true
         },
         {
           "path": "tests/detail-dialog.test.ts",
           "sourceBlob": "8a77b7ed0979d2622cdfed22eb6647ea7b573dba",
-          "integratedBlob": "8a77b7ed0979d2622cdfed22eb6647ea7b573dba"
+          "integratedBlob": "8a77b7ed0979d2622cdfed22eb6647ea7b573dba",
+          "exact": true
         },
         {
           "path": "tests/shop-card-journey.test.ts",
           "sourceBlob": "fcc004536958279a38f2272eb815b2db859ec95d",
-          "integratedBlob": "fcc004536958279a38f2272eb815b2db859ec95d"
+          "integratedBlob": "fcc004536958279a38f2272eb815b2db859ec95d",
+          "exact": true
         },
         {
           "path": "tests/shop-flow-components.test.ts",
           "sourceBlob": "0ce50f398b5dd367835164fac6ad078d78f5cd39",
-          "integratedBlob": "0ce50f398b5dd367835164fac6ad078d78f5cd39"
+          "integratedBlob": "0ce50f398b5dd367835164fac6ad078d78f5cd39",
+          "exact": true
         },
         {
           "path": "tests/shop-layout.test.ts",
           "sourceBlob": "bee31273d660ac6fff0cbe14252e0484510ce477",
-          "integratedBlob": "bee31273d660ac6fff0cbe14252e0484510ce477"
+          "integratedBlob": "bee31273d660ac6fff0cbe14252e0484510ce477",
+          "exact": true
+        },
+        {
+          "path": "tests/touye-scene-phase.test.ts",
+          "sourceBlob": "fc017d858058dc5f3017438d99e2980e6f82d347",
+          "integratedBlob": "fc017d858058dc5f3017438d99e2980e6f82d347",
+          "exact": true
         }
       ],
       "includedReleasedSources": [
         "67b4b2cdd10ce8b6ffcd1a10f6bdb55a9f6ab865",
         "fd7c888d3a2737d0ab14a3c069d7e804c982ec2e"
-      ]
+      ],
+      "includesShopCandidate": "505a1bb97fbc20b9a90f62dc901829ff1d1038e0",
+      "sceneWiring": "1607445bfdbcc3b492424beb3f0a5cc7e0d17714"
     }
   ],
   "experienceAcceptance": [
@@ -789,7 +902,7 @@
     }
   ],
   "experiencePolicy": "N01/N02/N03 explicitly EXPERIENCE_NOT_MET_REMEDIATION_REQUIRED, per latest user rejection. Software delivery, code/parameters and static frames do not sign goals; continuous audiovisual+haptic process validation required. Ready local batch still has explicit normal-publish authorization.",
-  "testedCommit": "b418ccac513b504aac0aee4c77d71ce183b6b540",
+  "testedCommit": "4d496e205ed4683bba5db901e16f1c17fe9b590c",
   "initialEyesRuntime": {
     "report": "../dedicated-hero-eyes-2026-10-17/runtime.json",
     "scope": "Historical efbed six-eye preload/stability/real score evidence. Original impact frames superseded for clarity, not falsely signed against final highlighter."
@@ -836,11 +949,11 @@
   ],
   "knownBudget": {
     "files": 526,
-    "bytes": 45215166,
+    "bytes": 45215495,
     "budgetBytes": 20000000,
     "status": "FAIL",
-    "testedCommit": "b418ccac513b504aac0aee4c77d71ce183b6b540",
-    "scope": "Actual complete dist including retained old copies; not network transfer."
+    "testedCommit": "4d496e205ed4683bba5db901e16f1c17fe9b590c",
+    "scope": "Complete actual dist including retained old copies; not network transfer."
   },
   "shopBrowserBindings": [
     {
@@ -1081,24 +1194,24 @@
       "files": 2,
       "tests": 20,
       "testedCommit": "1bdbe06b28bf52005534890619c1d05810bb4d89",
-      "reuseAtFinal": "b418ccac513b504aac0aee4c77d71ce183b6b540",
-      "unchangedSourcePaths": [],
-      "log": "checks/eyes-followups-cross.log"
+      "reuseAtFinal": "4d496e205ed4683bba5db901e16f1c17fe9b590c",
+      "log": "checks/eyes-followups-cross.log",
+      "differencesInCrossCheckScope": []
     },
     {
-      "name": "final typecheck after shop delivery",
+      "name": "final typecheck afterc9 hookup",
       "status": "PASS",
       "exitCode": 0,
-      "testedCommit": "b418ccac513b504aac0aee4c77d71ce183b6b540",
-      "log": "checks/eyes-shop-typecheck.log"
+      "testedCommit": "4d496e205ed4683bba5db901e16f1c17fe9b590c",
+      "log": "checks/eyes-final-typecheck.log"
     },
     {
-      "name": "final production build after shop delivery",
+      "name": "final build afterc9 hookup",
       "status": "PASS",
       "exitCode": 0,
       "modules": 326,
-      "testedCommit": "b418ccac513b504aac0aee4c77d71ce183b6b540",
-      "log": "checks/eyes-shop-build.log",
+      "testedCommit": "4d496e205ed4683bba5db901e16f1c17fe9b590c",
+      "log": "checks/eyes-final-build.log",
       "warning": "Existing large chunk warning retained."
     }
   ],
@@ -1107,7 +1220,14 @@
     "typecheck": "checks/eyes-followups-typecheck.log",
     "build": "checks/eyes-followups-build.log",
     "modules": 324,
-    "scope": "Passed before late505a arrival; retained history, not signed as final build."
+    "scope": "Passed before late505a arrival; retained history, not signed as final build.",
+    "afterShopBeforeSceneHook": {
+      "product": "b418ccac513b504aac0aee4c77d71ce183b6b540",
+      "typecheck": "checks/eyes-shop-typecheck.log",
+      "build": "checks/eyes-shop-build.log",
+      "modules": 326,
+      "scope": "Passed before latec9 input; historical snapshot only."
+    }
   },
   "chatReviewRefs": {
     "scope": "Parent audit of06:12–08:26 original project chat plus earlier supplied records; not exhaustive unseen history or physical-device acceptance.",
@@ -1188,5 +1308,67 @@
       "light lift/soft selection glow"
     ],
     "scope": "Shop505a first; cross-scene coverage OPEN"
+  },
+  "qinSceneBrowserBindings": [
+    {
+      "path": "src/game/GameScene.ts",
+      "ownerSHA256": "b6365a95b56237360fcf0b2bd9f194523b7c5852ba38c65f3ec2ccab57748c32",
+      "matches": [
+        "CRLF",
+        "workingFile"
+      ],
+      "hashes": {
+        "gitLF": "c5762b6106252f51e804703c3331b9588e3417551000a5f51eb4bf24302ec0aa",
+        "CRLF": "b6365a95b56237360fcf0b2bd9f194523b7c5852ba38c65f3ec2ccab57748c32",
+        "workingFile": "b6365a95b56237360fcf0b2bd9f194523b7c5852ba38c65f3ec2ccab57748c32"
+      }
+    },
+    {
+      "path": "src/game/HeroAbilityCue.ts",
+      "ownerSHA256": "e10af05418c9926c24f3db4db4d915c4146cf26d551331b5a5dee6e22e663b9f",
+      "matches": [
+        "CRLF",
+        "workingFile"
+      ],
+      "hashes": {
+        "gitLF": "77a44b85893e74cd6bc39ef361c3079e6f75560ed16cd0c1827ada111d402454",
+        "CRLF": "e10af05418c9926c24f3db4db4d915c4146cf26d551331b5a5dee6e22e663b9f",
+        "workingFile": "e10af05418c9926c24f3db4db4d915c4146cf26d551331b5a5dee6e22e663b9f"
+      }
+    },
+    {
+      "path": "src/game/HeroSkillPresentation.ts",
+      "ownerSHA256": "e900fc80f566781f903bbf67147f8f04c5e48b4959bd72a2c0d10d88eb532fbd",
+      "matches": [
+        "CRLF",
+        "workingFile"
+      ],
+      "hashes": {
+        "gitLF": "3cbacc07b632cb8e79f2cb0064f402accdcfece57bd257c170e9c7854487da4b",
+        "CRLF": "e900fc80f566781f903bbf67147f8f04c5e48b4959bd72a2c0d10d88eb532fbd",
+        "workingFile": "e900fc80f566781f903bbf67147f8f04c5e48b4959bd72a2c0d10d88eb532fbd"
+      }
+    },
+    {
+      "path": "src/game/TouyeWagerCopy.ts",
+      "ownerSHA256": "9b27a35bd9ae1a0132ed8a3a28d8e871fff7013aaf8bc5cd0f7f3a33c1f91a1b",
+      "matches": [
+        "CRLF",
+        "workingFile"
+      ],
+      "hashes": {
+        "gitLF": "8ffa6f35e3fb07118b9ef205effbddb2bd046c6431070f61309c0589da1d8f91",
+        "CRLF": "9b27a35bd9ae1a0132ed8a3a28d8e871fff7013aaf8bc5cd0f7f3a33c1f91a1b",
+        "workingFile": "9b27a35bd9ae1a0132ed8a3a28d8e871fff7013aaf8bc5cd0f7f3a33c1f91a1b"
+      }
+    }
+  ],
+  "qinSceneStatus": {
+    "source": "c9f5f5342ec556e59026ab1958ab1887f33463ed",
+    "wiringCommit": "1607445bfdbcc3b492424beb3f0a5cc7e0d17714",
+    "status": "DELIVERED_AND_INTEGRATED",
+    "notSaveState": true,
+    "softwareEvidence": "../touye-locked-skill-state-2026-10-17/scene-check.json",
+    "boundary": "Current merged natural/device experience still not signed; original approval/observer failures retained in source, authorization retry succeeded there."
   }
 }
