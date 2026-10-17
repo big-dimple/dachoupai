@@ -1651,16 +1651,16 @@ export class GameScene extends Phaser.Scene {
   private async chooseRefill():Promise<void> {
     const pending=this.pendingRefill;if(!pending||!this.ready||this.refillHidden||this.selectedIds.size!==pending.required)return;const ids=[...this.selectedIds],lifecycle=this.lifecycle,intent=++this.intent;this.playing=true;this.updateControls();try{const result=await dispatchRun(this,{type:'ChooseRefill',selectedIds:ids});if(!this.alive(lifecycle,intent))return;if(!result.ok){this.statusMessage=result.code==='save-failed'?'补牌未保存 · 菜单重试同一选择':'请留够指定张数';return;}this.run=result.state;this.selectedIds.clear();this.refillHidden=false;this.statusMessage=heroText('老幻·已保存留')+ids.length+'张 · 其余本场不再抽';this.renderHand();this.updateHud();if(!result.duplicate)await this.showLaohuanPayoff(ids,pending.candidateIds.length-pending.required,lifecycle,intent);}finally{if(this.alive(lifecycle,intent)){this.playing=false;this.refreshSelection();}}
   }
-  private async playSelected():Promise<void> {
+  private async playSelected(confirmedUnusedSkill=false):Promise<void> {
     if(this.pendingRefill){await this.chooseRefill();return;}
     if(!this.ready||this.presentation||this.dialog.current||this.selectedIds.size===0||this.handsLeft<=0)return;
     const facts=this.selectionPreview(),ids=[...this.selectedIds],draft={erxiangTargetId:this.erxiangTargetId,xiemuBurn:this.xiemuBurn,azaoRelease:this.azaoRelease,assistCount:this.assistIds.length};
     const assistAvailable=this.assistProfile&&assistCandidates(this.assistInput(),r2AssistAvailability(this.run).available).length>0;
-    if(unusedHeroAbility(this.run,facts,ids,assistAvailable,draft)&&heroPlayReminders.claim(this.run)){
+    if(!confirmedUnusedSkill&&unusedHeroAbility(this.run,facts,ids,assistAvailable,draft)&&heroPlayReminders.enabled()){
       const state=this.run,lifecycle=this.lifecycle,selection=JSON.stringify(ids),chosen=JSON.stringify(draft);
       showHeroPlayReminder(this.dialog,this.run,facts!,ids,assistAvailable,{
         valid:()=>this.lifecycle===lifecycle&&this.run===state&&this.ready&&!this.presentation&&JSON.stringify([...this.selectedIds])===selection&&JSON.stringify({erxiangTargetId:this.erxiangTargetId,xiemuBurn:this.xiemuBurn,azaoRelease:this.azaoRelease,assistCount:this.assistIds.length})===chosen&&unusedHeroAbility(this.run,this.selectionPreview(),[...this.selectedIds],this.assistProfile&&assistCandidates(this.assistInput(),r2AssistAvailability(this.run).available).length>0,draft),
-        back:()=>this.inspectRole(),play:()=>{void this.playSelected();},disable:()=>heroPlayReminders.disable(),
+        back:()=>this.inspectRole(),play:()=>{void this.playSelected(true);},disable:()=>heroPlayReminders.disable(),
       });return;
     }
     const erxiangTargetId=this.erxiangTargetId,xiemuBurn=this.xiemuBurn,azaoRelease=this.azaoRelease,selectedIds=[...this.selectedIds],assistIds=[...this.assistIds],lifecycle=this.lifecycle,intent=++this.intent,beforeHeat=this.heat,previousTrace=this.run.lastTrace,beforeHands=this.handsLeft,beforeGold=this.run.gold;

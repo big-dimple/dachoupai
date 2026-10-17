@@ -1,5 +1,9 @@
-import {it,expect,vi} from 'vitest';
+import {it,expect,vi,afterEach} from 'vitest';
 vi.mock('phaser',()=>({default:{Scene:class {}}}));
+vi.mock('../src/game/runAdapter',()=>({dispatchRun:vi.fn(),runController:vi.fn()}));
+import {GameScene} from '../src/game/GameScene';
+import {dispatchRun} from '../src/game/runAdapter';
+afterEach(()=>{vi.unstubAllGlobals();vi.restoreAllMocks();vi.clearAllMocks();});
 import {completeControlledRouteHistory} from './fixtures/route-growth-history';
 import {createRun,applyCommand,type R2RunState,type Action} from '../src/domain/run';
 import {CHARACTER_IDS,type CharacterId} from '../src/domain/characters';
@@ -10,8 +14,8 @@ import {r2JokerDefinitionsFor} from '../src/domain/r2ContentProfiles';
 import {r2AssistAvailability} from '../src/domain/r2Assist';
 import {assistCandidates} from '../src/game/AssistSelection';
 import {touyeChoice} from '../src/game/TouyeWagerCopy';
-import {createHeroPlayReminders,decodeHeroPlayReminder,HERO_PLAY_REMINDER_KEY,unusedHeroAbility,type HeroPlayDraft} from '../src/game/HeroPlayReminder';
-import {enrollFirstChapterGuide,dismissFirstChapterGuide,firstChapterGuide} from '../src/game/FirstChapterGuide';
+import {createHeroPlayReminders,decodeHeroPlayReminder,HERO_PLAY_REMINDER_KEY,unusedHeroAbility,heroPlayReminders,type HeroPlayDraft} from '../src/game/HeroPlayReminder';
+import {enrollFirstChapterGuide,dismissFirstChapterGuide} from '../src/game/FirstChapterGuide';
 
 const cards=['spades-8','hearts-8','clubs-7','diamonds-7','spades-13','hearts-13','clubs-2','diamonds-4'];
 const main=cards.slice(0,4);
@@ -62,36 +66,56 @@ it('B08 preserves the Laohuan non-scoring exception; Q01 disables all six',()=>{
 });
 
 function memory(){const data=new Map<string,string>();return {data,getItem:(key:string)=>data.get(key)??null,setItem:(key:string,value:string)=>{data.set(key,value);}};}
-it('skipping only an inline hand hint does not silently opt out of the available-skill decision',()=>{
+it.each(['step','run','forever'] as const)('tutorial %s dismissal does not silently disable the separate skill decision',scope=>{
  const storage=memory(),s=prepared('erxiang'),before=structuredClone(s);vi.stubGlobal('localStorage',storage);
- try{enrollFirstChapterGuide(s);expect(firstChapterGuide(s)?.step).toBe('hand');dismissFirstChapterGuide(s,'step');expect(firstChapterGuide(s)).toBeUndefined();expect(eligible(s,cards.slice(0,2))).toBe(true);expect(createHeroPlayReminders(()=>storage).claim(s)).toBe(true);expect(s).toEqual(before);}finally{vi.unstubAllGlobals();}
+ enrollFirstChapterGuide(s);dismissFirstChapterGuide(s,scope);
+ expect(createHeroPlayReminders(()=>storage).enabled()).toBe(true);expect(s).toEqual(before);
 });
-it.each(['run','forever'] as const)('still respects the explicit %s guide opt-out',scope=>{
- const storage=memory(),s=prepared('erxiang');vi.stubGlobal('localStorage',storage);
- try{enrollFirstChapterGuide(s);dismissFirstChapterGuide(s,scope);expect(createHeroPlayReminders(()=>storage).claim(s)).toBe(false);}finally{vi.unstubAllGlobals();}
+it('defaults on for restored, unenrolled and repeated attempts; legacy stage receipts do not suppress prompts',()=>{
+ const storage=memory();storage.setItem(HERO_PLAY_REMINDER_KEY,JSON.stringify({disabled:false,entries:[{run:'previous-run',stages:[0,1]}]}));
+ const before=storage.getItem(HERO_PLAY_REMINDER_KEY),r=createHeroPlayReminders(()=>storage);
+ expect(r.enabled()).toBe(true);expect(r.enabled()).toBe(true);expect(createHeroPlayReminders(()=>storage).enabled()).toBe(true);expect(storage.getItem(HERO_PLAY_REMINDER_KEY)).toBe(before);
 });
-it('claims at most once per each of the first two stages, at most twice per run, without writing game state',()=>{
- const storage=memory(),r=createHeroPlayReminders(()=>storage),s=entered('erxiang'),before=structuredClone(s);
- expect(r.claim(s,false)).toBe(false);expect(r.claim(s,true)).toBe(true);expect(r.claim(s,true)).toBe(false);expect(s).toEqual(before);
- const second={...s,stageIndex:1};expect(r.claim(second,true)).toBe(true);expect(r.claim(second,true)).toBe(false);
- for(const stageIndex of [-1,2,3,8])expect(r.claim({...s,stageIndex},true)).toBe(false);
- expect(r.claim(s,true)).toBe(false);expect(decodeHeroPlayReminder(storage.getItem(HERO_PLAY_REMINDER_KEY)).entries[0].stages).toEqual([0,1]);
+it('retains the explicit global opt-out across sessions and legacy stage receipts',()=>{
+ const storage=memory();storage.setItem(HERO_PLAY_REMINDER_KEY,JSON.stringify({disabled:true,entries:[{run:'previous-run',stages:[0,1]}]}));
+ expect(createHeroPlayReminders(()=>storage).enabled()).toBe(false);
+ const other=memory(),r=createHeroPlayReminders(()=>other);r.disable();expect(r.enabled()).toBe(false);expect(createHeroPlayReminders(()=>other).enabled()).toBe(false);
 });
-it('restoration retains consumed claims, separates runs and persists global disable',()=>{
- const storage=memory(),s=entered('erxiang');expect(createHeroPlayReminders(()=>storage).claim(s,true)).toBe(true);
- const restored=createHeroPlayReminders(()=>storage);expect(restored.claim(structuredClone(s),true)).toBe(false);expect(restored.claim({...s,stageIndex:1},true)).toBe(true);
- expect(restored.claim({...s,runId:'another-run'},true)).toBe(true);restored.disable();
- expect(createHeroPlayReminders(()=>storage).claim({...s,runId:'third-run'},true)).toBe(false);
-});
-it('storage access failure retains session claims and disable without blocking play',()=>{
- const r=createHeroPlayReminders(()=>{throw Error('SecurityError');}),s=entered('erxiang');
- expect(r.claim(s,true)).toBe(true);expect(r.claim(s,true)).toBe(false);expect(r.claim({...s,stageIndex:1},true)).toBe(true);r.disable();expect(r.claim({...s,runId:'another-run'},true)).toBe(false);
-});
-it('failed writes cannot erase an in-memory claim on the next successful read',()=>{
- const storage=memory(),r=createHeroPlayReminders(()=>({...storage,setItem:()=>{throw Error('QuotaExceededError');}})),s=entered('erxiang');
- expect(r.claim(s,true)).toBe(true);expect(r.claim(s,true)).toBe(false);expect(r.claim({...s,stageIndex:1},true)).toBe(true);expect(r.claim({...s,stageIndex:1},true)).toBe(false);r.disable();expect(r.claim({...s,runId:'next'},true)).toBe(false);
+it('storage failure keeps the explicit session opt-out without blocking default play decisions',()=>{
+ const r=createHeroPlayReminders(()=>{throw Error('SecurityError');});expect(r.enabled()).toBe(true);r.disable();expect(r.enabled()).toBe(false);
+ const storage=memory(),quota=createHeroPlayReminders(()=>({...storage,setItem:()=>{throw Error('QuotaExceededError');}}));quota.disable();expect(quota.enabled()).toBe(false);expect(quota.enabled()).toBe(false);
 });
 it('malformed or oversized optional preference data falls back safely',()=>{
  for(const raw of [null,'broken','null','{}',JSON.stringify({disabled:'yes',entries:[]}),JSON.stringify({disabled:false,entries:[{run:'r',stages:[2]}]}),' '.repeat(16385)])expect(decodeHeroPlayReminder(raw)).toEqual({disabled:false,entries:[]});
  expect(decodeHeroPlayReminder(JSON.stringify({disabled:true,entries:[{run:'r',stages:[0,1]}]}))).toEqual({disabled:true,entries:[{run:'r',stages:[0,1]}]});
+});
+function lateRun(){let s=createRun({rulesVersion:'r2',characterId:'erxiang',runId:'late-reminder',seed:'group-natural-17',modeConfig:{mode:'standard',difficulty:0,challengeId:null,programsEnabled:false},r2Identity:newRunIdentity('erxiang','group'),openingRoute:'group'});s=send(s,{type:'LeaveShop'});s.shop=null;s.chapter=3;s.stageIndex=8;s.seenBossIds=['B01','B03','B02'];s.boss={definitionId:'B02',disabledSuit:null};completeControlledRouteHistory(s);return arrange(send(s,{type:'EnterStage'}));}
+function oldActiveRun(){let s=createRun({rulesVersion:'r2',characterId:'amo',runId:'old-active-reminder',seed:'group-natural-17',r2Profile:'amo-assist-v1'});return arrange(send(send(s,{type:'LeaveShop'}),{type:'EnterStage'}));}
+function reminderScene(run=prepared('erxiang')){
+ vi.spyOn(heroPlayReminders,'enabled').mockReturnValue(true);
+ vi.stubGlobal('document',{createElement:()=>({className:'',textContent:'',onclick:null})});
+ const modal:any={classList:{add:vi.fn()},querySelector:()=>({append:vi.fn()})};let choices:any[]=[];
+ const dialog:any={current:undefined,open:vi.fn((_title:string,_body:string,actions:any[])=>{choices=actions;dialog.current=modal;return modal;}),active:(d:any)=>dialog.current===d,close:vi.fn(()=>{dialog.current=undefined;})};
+ const s=Object.create(GameScene.prototype) as any;
+ Object.assign(s,{run,selectedIds:new Set(run.characterId==='amo'?main:cards.slice(0,2)),assistIds:[],erxiangTargetId:null,xiemuBurn:0,azaoRelease:false,lifecycle:1,intent:0,playing:false,presentation:undefined,dialog,scene:{isActive:()=>true},cardViews:[],selectionPreview:()=>r2SelectionFacts(input(s.run,[...s.selectedIds])),clearHover:vi.fn(),cancelAiCandidates:vi.fn(),updateControls:vi.fn(),refreshSelection:vi.fn(),inspectRole:vi.fn(),presentTrace:vi.fn(async()=>{})});
+ Object.defineProperty(s,'ready',{get:()=>!s.playing});
+ vi.mocked(dispatchRun).mockImplementation(async(_scene,action)=>applyCommand(s.run,{runId:s.run.runId,commandId:'confirmed/'+s.run.commandSeq,expectedSeq:s.run.commandSeq,action}) as any);
+ return {s,dialog,choices:()=>choices};
+}
+it.each(['opening','late','old-active'] as const)('%s run reminds on every explicit attempt; close and return preserve the draft',async kind=>{
+ const run=kind==='late'?lateRun():kind==='old-active'?oldActiveRun():prepared('erxiang'),{s,dialog,choices}=reminderScene(run),before=structuredClone(run),selected=[...s.selectedIds];
+ for(let i=0;i<3;i++){await s.playSelected();expect(dialog.open).toHaveBeenCalledTimes(i+1);await s.playSelected();expect(dialog.open).toHaveBeenCalledTimes(i+1);if(i===1)choices()[0].run();else dialog.close();expect(dispatchRun).not.toHaveBeenCalled();expect(s.run).toEqual(before);expect([...s.selectedIds]).toEqual(selected);}
+ expect(s.inspectRole).toHaveBeenCalledOnce();
+});
+it('explicit continue releases only this attempt; duplicate clicks submit one real command',async()=>{
+ const {s,choices}=reminderScene(),before=structuredClone(s.run),ids=[...s.selectedIds];await s.playSelected();const continueAction=choices()[1];continueAction.run();continueAction.run();
+ await vi.waitFor(()=>expect(s.presentTrace).toHaveBeenCalledOnce());expect(dispatchRun).toHaveBeenCalledOnce();expect(dispatchRun).toHaveBeenCalledWith(s,{type:'PlayHand',selectedIds:ids});
+ const expected=applyCommand(before,{runId:before.runId,commandId:'confirmed/'+before.commandSeq,expectedSeq:before.commandSeq,action:{type:'PlayHand',selectedIds:ids}});expect(expected.ok).toBe(true);if(expected.ok)expect(s.run).toEqual(expected.state);expect(s.run.stage.erxiangHandoffUsed).toBe(false);s.selectedIds=new Set(cards.slice(2,4));await s.playSelected();expect(s.dialog.open).toHaveBeenCalledTimes(2);expect(dispatchRun).toHaveBeenCalledOnce();
+});
+it('stale selection or lifecycle invalidates consent without submitting a command',async()=>{
+ const {s,choices}=reminderScene();await s.playSelected();s.selectedIds=new Set([cards[0]]);choices()[1].run();expect(dispatchRun).not.toHaveBeenCalled();s.selectedIds=new Set(cards.slice(0,2));await s.playSelected();s.lifecycle++;choices()[1].run();expect(dispatchRun).not.toHaveBeenCalled();
+});
+
+it('unavailable selection and an explicit reminder opt-out do not open a prompt',async()=>{
+ for(const optedOut of [false,true]){const {s,dialog}=reminderScene();if(optedOut)vi.mocked(heroPlayReminders.enabled).mockReturnValue(false);else s.selectedIds=new Set([cards[0]]);const before=vi.mocked(dispatchRun).mock.calls.length;await s.playSelected();expect(dialog.open).not.toHaveBeenCalled();expect(vi.mocked(dispatchRun).mock.calls.length).toBe(before+1);}
 });

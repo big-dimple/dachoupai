@@ -2,8 +2,6 @@ import './HeroPlayReminder.css';
 import type {R2RunState} from '../domain/r2Run';
 import type {R2SelectionFacts} from '../domain/r2SelectionFacts';
 import {heroAbilityCue} from './HeroAbilityCue';
-import {firstChapterGuideEnrolled} from './FirstChapterGuide';
-import {buildDirectionRunKey} from './BuildDirectionPreferences';
 import {heroSkillGuide} from './HeroSkillGuide';
 import type {DetailDialog} from './DetailDialog';
 import {characterForRun} from './CharacterRunCopy';
@@ -24,17 +22,13 @@ export function decodeHeroPlayReminder(raw:string|null):Preferences {
  if(!raw||raw.length>16384)return empty();
  try{const p=JSON.parse(raw);if(typeof p.disabled==='boolean'&&Array.isArray(p.entries)&&p.entries.length<=8&&p.entries.every((e:{run:string;stages:number[]})=>e&&typeof e.run==='string'&&e.run.length<=1024&&Array.isArray(e.stages)&&e.stages.length<=2&&e.stages.every(s=>s===0||s===1)))return p;}catch{/* Optional local UI preference. */}return empty();
 }
-/** At most once per opening stage, twice per enrolled run. Record before displaying, even on Escape. */
+/** Enabled for every eligible play attempt, independent of tutorial enrollment or prior prompts. */
 export function createHeroPlayReminders(storage:()=>Storage){
  let fallback=empty(),unpersisted=false;
  const read=()=>{if(!unpersisted)try{fallback=decodeHeroPlayReminder(storage().getItem(HERO_PLAY_REMINDER_KEY));}catch{/* Retain session state. */}return fallback;};
  const write=(p:Preferences)=>{fallback=p;try{storage().setItem(HERO_PLAY_REMINDER_KEY,JSON.stringify(p));unpersisted=false;}catch{unpersisted=true;}};
  return {
-  claim(run:R2RunState,enrolled=firstChapterGuideEnrolled(run)):boolean {
-   const p=read(),key=buildDirectionRunKey(run),entry=p.entries.find(e=>e.run===key);
-   if(!enrolled||p.disabled||run.stageIndex<0||run.stageIndex>1||entry?.stages.includes(run.stageIndex)||(entry?.stages.length??0)>=2)return false;
-   write({...p,entries:[...p.entries.filter(e=>e.run!==key),{run:key,stages:[...(entry?.stages??[]),run.stageIndex]}].slice(-8)});return true;
-  },
+  enabled():boolean {return !read().disabled;},
   disable():void {write({...read(),disabled:true});},
  };
 }
