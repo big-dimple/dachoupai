@@ -1,3 +1,4 @@
+import {cardDefinitionName} from './tangsongCardNames';
 import {rankLabel,SUIT_SYMBOL} from '../cards/types';
 import {HAND_LABELS} from '../content/handLabels';
 import {getCharacter} from './characters';
@@ -41,7 +42,7 @@ function sourceName(run:R2RunState,trace:ScoreTrace,event:ScoreEvent):string {
   if(event.sourceType==='joker'){
     const definition=r2JokerDefinitionFor(run,event.sourceDefinitionId),same=trace.sourceJokers.filter(j=>j.definitionId===event.sourceDefinitionId);
     const instance=same.length>1?'（第'+(same.findIndex(j=>j.instanceId===event.sourceInstanceId)+1)+'张）':'';
-    return edition+definition.name+instance;
+    return edition+cardDefinitionName(definition)+instance;
   }
   if(event.sourceType==='character'){
     const hero=getCharacter(run.characterId).name;

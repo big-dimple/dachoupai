@@ -1,3 +1,4 @@
+import {cardDefinitionName} from './tangsongCardNames';
 import {characterForRun,usesCurrentHeroText} from './CharacterRunCopy';
 import {heroText} from './HeroIdentity';
 import {handGrowthChanges} from './SavedGrowthChange';
@@ -81,7 +82,7 @@ export function savedBenefit(state:R2RunState,trace:ScoreTrace,e:ScoreEvent):Sav
   effect=toolInfo(toolId).name+' ×'+(e.resourceAfter!-e.resourceBefore!);destination='道具箱 · 该次库存 '+e.resourceBefore+' → '+e.resourceAfter;next='下一步：打开道具箱，选择工具→目标牌→确认使用。';
  }else if(e.operation==='add-gold'&&e.rewardDefinitionId){effect=toolInfo(e.rewardDefinitionId).name+'未入包 · 包满改收+'+fractionText(e.value)+'金';}
  if(e.operation==='reward-free-reroll'){destination='下一商店免费刷新次数';next='下一步：前往商店查看货架，再决定是否免费刷新。';}
- const name=joker?.name??R2_LONG_TERM_ITEMS.find(i=>i.id===e.sourceDefinitionId)?.name??R2_TOOLS.find(i=>i.id===e.sourceDefinitionId)?.name??R2_MODE_CATALOG.programs.find(i=>i.id===e.sourceDefinitionId)?.name;
+ const name=cardDefinitionName(joker)??R2_LONG_TERM_ITEMS.find(i=>i.id===e.sourceDefinitionId)?.name??R2_TOOLS.find(i=>i.id===e.sourceDefinitionId)?.name??R2_MODE_CATALOG.programs.find(i=>i.id===e.sourceDefinitionId)?.name;
  if(!name)return;
  const cycle=joker?.hooks.flatMap(h=>h.operations).find(o=>o.kind==='reward-consumable-every-clears');
  const timing=e.phase==='afterHand'?'结算后':e.phase==='onStageClear'?'成功过关时':e.phase==='beforeFailure'?'失败前检查':'本手计分时';

@@ -1,3 +1,4 @@
+import {cardDefinitionName} from './tangsongCardNames';
 import {heroText} from './HeroIdentity';
 import {SUIT_SYMBOL} from '../cards/types';
 import {HAND_LABELS} from '../content/handLabels';
@@ -108,7 +109,7 @@ export function stageNotice(run:StageNoticeInput,selectedIds:readonly string[]=[
     details:'本次挑战关闭角色被动、初始牌型等级赠送和押注；角色身份保留。\n\n'+notice.details};
   const ban=run.stage.challengeDisabledJokerId;
   if(ban){
-    const name=r2JokerDefinitionsForContext(run).find(row=>row.id===ban)!.name;
+    const name=cardDefinitionName(r2JokerDefinitionsForContext(run).find(row=>row.id===ban)!);
     notice={...notice,warning:true,symbol:'封',title:notice.warning?notice.title+' · 封角':'封角 · '+name+'计分停用',
       description:notice.description+' 本章'+name+'的计分与版次停用。',
       details:'本章公开封角：'+name+'。仅暂停计分和版次，静态、经济、非数学生命周期仍正常。\n\n'+notice.details,

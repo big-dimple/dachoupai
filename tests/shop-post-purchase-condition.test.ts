@@ -1,3 +1,4 @@
+import {cardDisplayName} from '../src/game/tangsongCardNames';
 import {it,expect} from 'vitest';
 import {createRun,applyCommand,assertRunInvariants,type R2RunState} from '../src/domain/run';
 import {newRunIdentity} from '../src/game/RunLaunch';
@@ -36,7 +37,7 @@ it.each([[26,18,2,false],[28,20,3,true]] as const)('new Baochang uses actual %i�
 });
 it('buying zero-growth b10 accounts for the retained Baochang loss',()=>{
  const {s,o}=setup(26,'b10');s.jokers.push(r2CreateJoker('e08','held/bao',8,'none',s));s.gold=23;
- const before=structuredClone(s),g=shopOfferGuidance(s,o);expect(g.stars).toBe(1);expect(g.operation).toBe('可购买');expect(g.operationShort).toBe('现金风险');expect(g.detail).toContain('23→19');expect(g.detail).toContain('包场买后19金，暂不触发');
+ const before=structuredClone(s),g=shopOfferGuidance(s,o);expect(g.stars).toBe(1);expect(g.operation).toBe('可购买');expect(g.operationShort).toBe('现金风险');expect(g.detail).toContain('23→19');expect(g.detail).toContain((cardDisplayName('e08')+"买后19金，暂不触发"));
  expect(baoEvents(send(s,{type:'BuyOffer',offerId:o.offerId}))).toHaveLength(0);expect(s).toEqual(before);
 });
 it('full slots require the specified actual sale, preserve growth/discount consequences and clear on changing selection',()=>{
@@ -49,7 +50,7 @@ it('full slots require the specified actual sale, preserve growth/discount conse
   expect(g.stars).toBe(stars);expect(tx).toMatchObject({status:'ready',price,goldAfterPurchase:gold});expect(g.purchaseConditionLosses).toEqual(tx.cashLosses);
   expect(shopReplacementCompactFacts(s,sold,tx).join('\n')).toContain(`买后${gold}金`);
   if(gold<20)expect(g.detail).toContain('暂不触发');else expect(g.purchaseConditionLosses).toEqual([]);
-  expect(tx.growthEffects.join('\n')).toContain('旧物新用');expect(tx.growthEffects.join('\n')).toContain('置办行头');
+  expect(tx.growthEffects.join('\n')).toContain((cardDisplayName('e06')));expect(tx.growthEffects.join('\n')).toContain((cardDisplayName('e05')));
  }
  expect(shopOfferGuidance(s,o)).toMatchObject({replaceId:undefined,purchaseConditionLosses:[]});expect(s).toEqual(before);
 });
@@ -60,7 +61,7 @@ it('selling an expansion with excess tools never fabricates affordable purchase 
 it('full Joker slots do not suppress a legal tool purchase warning for retained Baochang',()=>{
  const {s}=setup(23);s.jokers=['e08','b02','e01','e05','e06'].map((id,i)=>r2CreateJoker(id,'held/'+i,8,'none',s));
  const o={offerId:'public/tool',definitionId:'T01',price:4,consumed:false};s.shop!.toolOffers=[o];
- expect(shopPurchaseCashFacts(s,o)).toMatchObject({status:'assessed',goldAfterPurchase:19});expect(shopPurchaseConditionLosses(s,o).join('\n')).toContain('包场买后19金，暂不触发');
+ expect(shopPurchaseCashFacts(s,o)).toMatchObject({status:'assessed',goldAfterPurchase:19});expect(shopPurchaseConditionLosses(s,o).join('\n')).toContain((cardDisplayName('e08')+"买后19金，暂不触发"));
 });
 it('discounted purchase uses the real threshold, while ordinary high / rare low / five-star core remain possible',()=>{
  const {s,o}=setup(26);s.purchaseCoupons=1;expect(shopOfferGuidance(s,o)).toMatchObject({stars:3,condition:expect.stringContaining('买后20金')});s.purchaseCoupons=0;expect(shopOfferGuidance(s,o).stars).toBe(2);

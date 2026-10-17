@@ -1,3 +1,4 @@
+import {cardDisplayName} from '../src/game/tangsongCardNames';
 import {r2RouteSnapshot} from '../src/domain/r2RouteGrowth';
 import {describe,it,expect} from 'vitest';
 import {createRun} from '../src/domain/run';
@@ -25,8 +26,8 @@ describe('saved Boss scoring impact, current identity',()=>{
  });
  it('uses saved source order and seals after the live inventory/seals have changed',()=>{
   const jokers=['b10','b11'].map(id=>({instanceId:'owned/'+id,definitionId:id,paidPrice:4,growth:{}}));
-  const t=score({boss:boss('B06'),jokers}),live=structuredClone(run);live.jokers=[...jokers].reverse();live.boss=boss('B01');expect(savedBossImpact(live,t)).toContain('候场同伴 本手计分与版次停用');expect(savedBossImpact(live,t)).not.toContain('练对子 本手计分');
-  const sealed=score({boss:boss('B15'),jokers,sealedJokerIds:[jokers[0].instanceId]});live.jokers=[];expect(savedBossImpact(live,sealed)).toContain('练对子 本手计分与版次停用');expect(savedBossImpact(live,sealed)).toContain('结算后成长保持原规则');
+  const t=score({boss:boss('B06'),jokers}),live=structuredClone(run);live.jokers=[...jokers].reverse();live.boss=boss('B01');expect(savedBossImpact(live,t)).toContain((cardDisplayName('b11')+" 本手计分与版次停用"));expect(savedBossImpact(live,t)).not.toContain((cardDisplayName('b10')+" 本手计分"));
+  const sealed=score({boss:boss('B15'),jokers,sealedJokerIds:[jokers[0].instanceId]});live.jokers=[];expect(savedBossImpact(live,sealed)).toContain((cardDisplayName('b10')+" 本手计分与版次停用"));expect(savedBossImpact(live,sealed)).toContain('结算后成长保持原规则');
  });
  it('shows saved role restrictions without inventing lost scores or a failure cause',()=>{
   const copy=savedBossImpact(run,score({boss:boss('B08')}));expect(copy).toContain('角色计分能力与押注停用');expect(copy).not.toMatch(/失败|本可|损失.*热度/);

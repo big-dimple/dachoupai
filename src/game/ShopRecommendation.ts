@@ -1,3 +1,4 @@
+import {cardDefinitionName,cardDisplayName} from './tangsongCardNames';
 import type {R2RunState} from '../domain/run';
 import type {R2Offer} from '../domain/r2Shop';
 import {r2CreateJoker,r2ConsumableCapacity} from '../domain/r2Run';
@@ -131,15 +132,15 @@ export function shopRecommendation(state:R2RunState,offer:R2Offer,focus?:BuildFo
   rule==='flush-retrigger'&&flushRetriggerPossible?'可重触同花尾牌，核对尾牌加成':
   rule==='retrigger-growth'?(retriggerSource?'已有重触来源，成长待触发':'尚缺可用重触来源'):
   rule==='diverse-coefficient'?(additiveSource?'已有加倍率来源，换型待触发':'换型待触发，核对加倍率来源'):'';
- const recorded=state.jokers.filter(j=>trace?.events.some(e=>e.sourceType==='joker'&&e.sourceInstanceId===j.instanceId&&['onCardScore','onHeldCard','jokerScore'].includes(e.phase)&&(JSON.stringify(e.before)!==JSON.stringify(e.after)||e.operation==='retrigger-card'&&Rational.fromJSON(e.value).compare(new Rational(0n))>0))).map(j=>definitions.find(d=>d.id===j.definitionId)!.name);
+ const recorded=state.jokers.filter(j=>trace?.events.some(e=>e.sourceType==='joker'&&e.sourceInstanceId===j.instanceId&&['onCardScore','onHeldCard','jokerScore'].includes(e.phase)&&(JSON.stringify(e.before)!==JSON.stringify(e.after)||e.operation==='retrigger-card'&&Rational.fromJSON(e.value).compare(new Rational(0n))>0))).map(j=>cardDefinitionName(definitions.find(d=>d.id===j.definitionId)!));
  const combination=(potential?'组合潜力：'+potential+'。\n':'')+(recorded.length>=2?'组合记录：上手'+recorded.join('、')+'共同计分（新牌未参与）。':'组合记录：尚无两张现持牌共同计分。');
  const result=(stars:RecommendationStars,reason:string,condition:string):ShopRecommendation=>{
-  const limited=replacementCashRisk&&stars>2,actualStars=limited?2:stars,actualReason=limited?'购款将停用包场':reason;
+  const limited=replacementCashRisk&&stars>2,actualStars=limited?2:stars,actualReason=limited?("购款将停用"+cardDisplayName('e08')):reason;
   const actualCondition=limited?`购买前${replacementCashRisk.goldBeforePurchase}→${replacementCashRisk.goldAfterPurchase}金 · 新牌成长为0`:condition;
   const cap=value?.calibrated&&value.status==='blocked'?1:value?.calibrated&&value.status==='needs-selection'?2:value?.status==='assessed'&&value.calibrated?value.ceiling:5;
   const finalStars=Math.min(actualStars,cap) as RecommendationStars;
   const valueReason=stars<=1?actualReason:value?.calibrated&&value.status==='needs-selection'?'替换待核':value?.calibrated&&value.status==='blocked'?'当前不可购买':value?.status==='assessed'&&value.calibrated&&value.negative?(value.positive?'条件对照有得失':'保留对照更高'):value?.status==='assessed'&&value.calibrated&&actualStars>cap?(value.cashLoss?'购后条件受损':value.lostInvestment?'替换会丢已有收益':value.unmeasuredLoss?'替换有未估代价':value.interestLoss?'购款降低利息档':!value.positive?'新购收益待成长':actualReason):actualReason;
-  return {stars:finalStars,reason:valueReason,condition:value?.status==='needs-selection'?'先指定替换对象，再核净补强 · '+actualCondition:actualCondition,stage,combination,combinationHint:potential&&finalStars>=3?'组合潜力：'+potential+'。':'',facts:{...facts,...(value?{purchaseValue:JSON.stringify(value)}:{}),...(limited?{replacementCashRisk:JSON.stringify(replacementCashRisk)}:{})},detail:(value?value.detail+'\n':'')+(limited?'购款将停用包场；'+actualCondition+'。\n':'')+reason+'；'+condition+(d?'。'+d.description:'')+(finalStars>=4?`\n公开依据：最大同点组${largest}张，前两组${largest+second}/${cards.length}张；最大花色${largestSuit}/${cards.length}张；已持逐牌加成${heldCardPayoff?'有':'无'}；剩余场次窗口${potentialStages}。`:'')+'\n'+combination+(routeGrowth?'\n'+routeGrowth.detail:'')};
+  return {stars:finalStars,reason:valueReason,condition:value?.status==='needs-selection'?'先指定替换对象，再核净补强 · '+actualCondition:actualCondition,stage,combination,combinationHint:potential&&finalStars>=3?'组合潜力：'+potential+'。':'',facts:{...facts,...(value?{purchaseValue:JSON.stringify(value)}:{}),...(limited?{replacementCashRisk:JSON.stringify(replacementCashRisk)}:{})},detail:(value?value.detail+'\n':'')+(limited?("购款将停用"+cardDisplayName('e08')+"；")+actualCondition+'。\n':'')+reason+'；'+condition+(d?'。'+d.description:'')+(finalStars>=4?`\n公开依据：最大同点组${largest}张，前两组${largest+second}/${cards.length}张；最大花色${largestSuit}/${cards.length}张；已持逐牌加成${heldCardPayoff?'有':'无'}；剩余场次窗口${potentialStages}。`:'')+'\n'+combination+(routeGrowth?'\n'+routeGrowth.detail:'')};
  };
  if(sold&&cash?.status==='blocked')return result(0,'替换不可执行','先核对出售限制');
  if(!audited||!rule||!d)return result(0,'规则待核','该身份尚未审计');

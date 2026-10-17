@@ -1,3 +1,4 @@
+import {cardDefinitionName} from './tangsongCardNames';
 import {applyCommand,type Action,type R2RunState} from '../domain/run';
 import {r2HandLimit,r2HandsBudget} from '../domain/r2Resources';
 import {r2JokerDefinitionFor} from '../domain/r2ContentProfiles';
@@ -19,6 +20,6 @@ export function toolPermanentValue(state:R2RunState,id:string,action?:Extract<Ac
  const after=result.state,donor=state.jokers.find(j=>j.instanceId===action.sacrificeId);
  const rows=state.phase==='shop'?purchaseValueWindow(state,after,currentBuildFocus(state,state.openingRoute)):[];
  return summary+`\n以保留不用为基线；使用净支出${state.gold-after.gold}金；已持工具不重复扣购价。\n下场出牌${r2HandsBudget(state)}→${r2HandsBudget(after)}；手牌上限${r2HandLimit(state)}→${r2HandLimit(after)}。`+
-  (donor?'\n失去来源：'+r2JokerDefinitionFor(state,donor.definitionId).name+'；'+r2JokerStateText(donor,r2JokerDefinitionFor(state,donor.definitionId))+'；版次 '+editionLabel(donor.edition):'')+
+  (donor?'\n失去来源：'+cardDefinitionName(r2JokerDefinitionFor(state,donor.definitionId))+'；'+r2JokerStateText(donor,r2JokerDefinitionFor(state,donor.definitionId))+'；版次 '+editionLabel(donor.edition):'')+
   (rows.length?'\n'+purchaseValueWindowText(rows):'');
 }

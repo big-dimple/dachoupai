@@ -150,11 +150,11 @@ export function layout(viewport:{width:number;height:number},safe:Insets,request
   l.scoreFire=pedestal?box(pedestal.x,fireTop,pedestal.width,pedestal.y+1-fireTop):box(primary.x-3,s.y+28,primary.width+6,s.height-32);
   // One bottom row: discard — the three 44px sorting hits — play.
   // Hand seats and their lift reserve above remain unchanged.
-  const sortWidth=132,gap=6,remaining=l.actions.width-sortWidth-2*gap;
-  const discardWidth=Math.max(44,Math.min(remaining-44,Math.floor(remaining*.42)));
+  const sortWidth=168,gap=6,remaining=l.actions.width-sortWidth-2*gap;
+  const discardWidth=remaining/2;
   const {x,y,height:actionHeight}=l.actions;
   const tools=box(x+discardWidth+gap,y,sortWidth,actionHeight);
-  const buttons={rank:box(tools.x,tools.y,44,tools.height),suit:box(tools.x+44,tools.y,44,tools.height),ai:box(tools.x+88,tools.y,44,tools.height)};
+  const buttons={rank:box(tools.x+36,tools.y,44,tools.height),suit:box(tools.x+80,tools.y,44,tools.height),ai:box(tools.x+124,tools.y,44,tools.height)};
   const tableActions={discard:box(x,y,discardWidth,actionHeight),play:box(tools.x+sortWidth+gap,y,remaining-discardWidth,actionHeight)};
   // Skills own a separate hit, never a slice of the discard button. Portraits
   // reuse the former sorting area; short tables use the sidebar skill label.

@@ -1,3 +1,4 @@
+import {cardDefinitionName} from './tangsongCardNames';
 import {r2JokerDefinitionsFor} from '../domain/r2ContentProfiles';
 import {heroText} from './HeroIdentity';
 import {usesXiemuBurn,xiemuInterest,type XiemuBurnCost} from '../domain/r2XiemuBurn';
@@ -14,7 +15,7 @@ function lostCashGates(run:R2RunState,after:number):string[]{
   const matches=(gold:number)=>c.kind==='resource-minimum'?gold>=c.minimum:c.kind==='resource-maximum'?gold<=c.maximum:gold===c.equals;
   if(!matches(run.gold)||matches(after))return [];
   const gate=c.kind==='resource-minimum'?'≥'+c.minimum:c.kind==='resource-maximum'?'≤'+c.maximum:'='+c.equals;
-  return [d.name+'：花后'+after+'金，不满足'+gate+'金门槛'];
+  return [cardDefinitionName(d)+'：花后'+after+'金，不满足'+gate+'金门槛'];
  })??[];}))];
 }
 export function xiemuChoice(run:R2RunState,type?:R2HandType,cost:XiemuBurnCost=0){
