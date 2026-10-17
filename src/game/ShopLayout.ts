@@ -63,8 +63,17 @@ function desktopShopLayout(width:number,height:number,top:number,bottom:number,_
     tabs:{x:goodsX,y:shopPanel.y+4,width:goodsWidth,height:20},chapter,items:inventoryEntry,build,reroll,play,noticeY:feedback.y};
 }
 
-export function shopLayout(width:number,height:number,top:number,bottom:number,cols:number,ownedCopy=false,guideActions=false,left=0,right=0,ownedCount=5){
-  return shiftLayout(shopContentLayout(width-left-right,height,top,bottom,cols,ownedCopy,guideActions,ownedCount),left);
+export function shopLayout(width:number,height:number,top:number,bottom:number,cols:number,ownedCopy=false,guideActions=false,left=0,right=0,ownedCount=5,menu?:Box){
+  const p=shiftLayout(shopContentLayout(width-left-right,height,top,bottom,cols,ownedCopy,guideActions,ownedCount),left);
+  if(p.pc&&menu){
+    const bag=p.pc.inventoryEntry;
+    if(bag.y<menu.y+menu.height&&bag.y+bag.height>menu.y){
+      const shift=Math.max(0,bag.x+bag.width-menu.x+8);
+      p.pc.inventoryEntry={...bag,x:bag.x-shift};p.items={...p.items,x:bag.x-shift};
+      p.reroll={...p.reroll,x:p.reroll.x-shift};p.build={...p.build,x:p.build.x-shift};
+    }
+  }
+  return {...p,menu};
 }
 /** Translate every nested box together; safe insets must not change relative hit geometry. */
 function shiftLayout<T>(value:T,left:number):T {
@@ -178,9 +187,10 @@ export function shopOfferSummary(text:string,width:number,measure:(text:string)=
 
 /** Four equal category targets; inventory and paid refresh belong to the header. */
 export function shopPortraitHeader(p:ReturnType<typeof shopLayout>){
- const purse={x:p.x+p.w-44-64,y:p.top-1,width:64,height:34};
- const reroll={x:purse.x-56,y:p.top-5,width:52,height:44};
- const inventory={x:reroll.x-56,y:p.top-5,width:52,height:44};
+ const right=Math.min(p.x+p.w,p.menu?.x??p.x+p.w-44)-8,y=Math.max(p.top,p.menu?.y??p.top);
+ const purse={x:right-64,y:y+5,width:64,height:34};
+ const reroll={x:purse.x-56,y,width:52,height:44};
+ const inventory={x:reroll.x-56,y,width:52,height:44};
  return {purse,reroll,inventory};
 }
 /** A clear full-color hero composition replaces an empty held-card rail. */

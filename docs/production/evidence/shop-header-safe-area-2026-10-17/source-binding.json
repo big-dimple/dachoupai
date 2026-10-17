@@ -1,0 +1,23 @@
+{
+  "base": "0c474ef4d18f8e43349518de634f3dd550c37cf8",
+  "mainBase": "934477727201a83b7b2590ee9a2a4645b5f45606",
+  "iridescenceBase": "1075bd204e364d867528183d8e0c0c162ced93d9",
+  "hashEncoding": "UTF-8 LF",
+  "files": {
+    "src/game/ShopLayout.ts": "1cd33bab1ad5a9d545f3ecfa0abd7b1132845c31f5a79102221a7c50c4ed8088",
+    "src/game/ShopScene.ts": "a2725f9ebccf0f153ad2ce65d44e34b48d6d64621ee418d5d6c467b1e16fcd3e",
+    "src/game/ShopArt.ts": "a99f29fe24719a60b7f2e686afab282624eb0d4e1110fb543c2744cb906bc9a7",
+    "tests/shop-layout.test.ts": "7825e60be1a3ece4146c89a00520409ffad781947714aeea9819116caacc0b94",
+    "harness/shop-header-safe-area.mjs": "2aa69f53017471aa0742f8b178ecde34ba4002c1bbc68eb084f8fa21959785a9"
+  },
+  "iridescenceHooksUnchanged": true,
+  "hooks": [
+    "import {mountPolychromeCardIridescence,mountForgetTechniqueAttention} from './PolychromeCardIridescence';",
+    "      mountPolychromeCardIridescence(this,hover.art,{...artBox,x:artBox.x-hover.art.x,y:artBox.y-hover.art.y},o.edition);",
+    "      mountPolychromeCardIridescence(this,hover.art,{...artBox,x:artBox.x-hover.art.x,y:artBox.y-hover.art.y},j.edition);",
+    "    if(d)mountPolychromeCardIridescence(this,hover.art,artBox,o.edition);",
+    "    else if(kind==='tools')mountForgetTechniqueAttention(this,hover.art,artBox,o.definitionId);",
+    "    if(isTool)mountForgetTechniqueAttention(this,hover.art,{x:b.x+5-hover.art.x,y:b.y+5-hover.art.y,width:b.width-10,height:artHeight},o.definitionId);"
+  ],
+  "domainContentAudioUnchanged": true
+}

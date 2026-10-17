@@ -34,6 +34,7 @@ import {groupGrowthCausality,savedGrowthDiscovery} from './JokerGrowthCausality'
 import {purchaseDiscountStatus} from './PurchasePaymentFacts';
 import {shopPurchaseReceipt,shopPurchaseReceiptExists,type ShopPurchaseReceipt} from './ShopPurchaseReceipt';
 import {SHOP_CATEGORIES,shopOfferGeometry,shopHeldGeometry,shopIdentityText,shopShelfIdentityText,shopOfferSynopsis} from './ShopOfferLayout';
+import {mountPolychromeCardIridescence,mountForgetTechniqueAttention} from './PolychromeCardIridescence';
 import {shopAnchoredTip} from './ShopAnchoredTip';
 import {shopToolContinuation} from './ShopPurchaseFlow';
 import {r2ScoringDisabledJokerIds} from '../domain/scoreR2';
@@ -177,7 +178,9 @@ export class ShopScene extends Phaser.Scene {
   private geometry(){
     const l=this.view.layout,style=getComputedStyle(document.documentElement),inset=(side:string)=>parseFloat(style.getPropertyValue('--safe-'+side))||0;
     const cols=this.shelfKind==='jokers'?this.pageSize:Math.max(1,Math.min(2,this.shelfOffers().length));
-    return shopLayout(l.width,l.height,l.hud.y,inset('bottom'),cols,this.run.jokers.some(j=>!!this.jokerCopy(j.definitionId)),!!firstChapterShopPrompt(this.run)&&this.ready,inset('left'),inset('right'),this.run.jokers.length);
+    const menu=document.querySelector('.run-menu-toggle')?.getBoundingClientRect(),app=document.getElementById('app')!.getBoundingClientRect();
+    const menuBox=menu&&menu.width&&menu.height?{x:(menu.x-app.x)*l.width/app.width,y:(menu.y-app.y)*l.height/app.height,width:menu.width*l.width/app.width,height:menu.height*l.height/app.height}:undefined;
+    return shopLayout(l.width,l.height,l.hud.y,inset('bottom'),cols,this.run.jokers.some(j=>!!this.jokerCopy(j.definitionId)),!!firstChapterShopPrompt(this.run)&&this.ready,inset('left'),inset('right'),this.run.jokers.length,menuBox);
   }
   create():void {
     this.hapticLife?.abort();this.hapticLife=new AbortController();
@@ -296,6 +299,8 @@ export class ShopScene extends Phaser.Scene {
       if(!p.portrait&&!headerTabs&&!stockExtra)this.drawOfferGuidance(o,{x:copyX,y:copy.priceY-(p.copyBeside?36:54),width:copyWidth,height:p.copyBeside?34:52});
       this.markBuildOffer(o,'jokers',b);
       const tile=p.portrait||stockExtra?{...copy.tile,height:Math.max(copy.tile.height,priceY+priceText.height+4-copy.tile.y)}:copy.tile,hover=this.hoverCard(first,tile,o.definitionId,o.offerId),r=v.rect(tile).setFillStyle(0,0).setStrokeStyle().setData('selected',selected);
+      const artBox=p.portrait?b:{x:b.x+4,y:b.y+4,width:b.width-8,height:b.height-8};
+      mountPolychromeCardIridescence(this,hover.art,{...artBox,x:artBox.x-hover.art.x,y:artBox.y-hover.art.y},o.edition);
       this.offerArts.push(hover.art);v.target(r,`offer/${o.offerId}`,{tap:()=>this.selectOffer(o.offerId),detail:()=>this.inspectOffer(o.offerId),...hover});
 
     });
@@ -337,6 +342,8 @@ export class ShopScene extends Phaser.Scene {
       if(p.pc){const caption=v.text(b.x,b.y+b.height+2,jokerRouteCaption(this.run,j,b.width,s=>this.measureShopText(s)),14,'#3F606B').setName('shop/owned-state').setData('instanceId',j.instanceId).setData('fullText',jokerRouteCaption(this.run,j));this.ellipsis(caption,b.width);}
       if(!p.pc&&b.y+b.height+20<=p.reroll.y-4){const roomy='guidanceBelow' in p&&p.guidanceBelow,copy=roomy?jokerApplicableRoutes(this.run,j).map(f=>({group:'同点',straight:'顺子',flush:'同花'})[f]).join('\n'):jokerRouteCaption(this.run,j,b.width);v.text(b.x+b.width/2,b.y+b.height+3,copy,14,'#3F606B').setOrigin(.5,0).setName('shop/owned-route');}
       const hover=this.hoverCard(first,b,j.definitionId),r=v.rect(p.pc?b:shopOwnedHitBox(b,p.reroll.y,!!ability||!p.portrait)).setFillStyle(0,0).setStrokeStyle();
+      const artBox=held?.art??{x:b.x+3,y:b.y+22,width:b.width-6,height:b.height-25};
+      mountPolychromeCardIridescence(this,hover.art,{...artBox,x:artBox.x-hover.art.x,y:artBox.y-hover.art.y},j.edition);
       this.ownedArts.set(j.instanceId,hover.art);
       // Native surface owns mouse/touch; named canvas geometry remains for keyboard/detail fallback and harness observation.
       v.target(r,`joker/${j.instanceId}`,{tap:()=>this.inspectJoker(j.instanceId),detail:()=>this.inspectJoker(j.instanceId),...hover});
@@ -441,6 +448,9 @@ export class ShopScene extends Phaser.Scene {
     v.text(g.price.x,g.price.y,o.consumed?'已购':g.price.width<126?`${r2PurchasePrice(this.run,o)} 金`:`${r2PurchasePrice(this.run,o)} 金 · ${d&&this.run.jokers.length>=r2JokerCapacity(this.run)?'比较替换':'查看'}`,16,priceInk).setFontStyle('bold').setName('shop/offer-price').setData('offerId',o.offerId);
     const reason=o.consumed?'':this.purchaseReason(o,true);if(reason){const note=v.text(g.reason.x,g.reason.y,reason,14,'#B8473A').setName('shop/offer-reason').setData('offerId',o.offerId);this.ellipsis(note,g.reason.width);}
     const hover=this.hoverCard(first,tile,d?.id,d?o.offerId:undefined),hit=v.rect(tile).setFillStyle(0,0).setStrokeStyle().setData('selected',this.selectedOfferId===o.offerId);
+    const artBox={...g.art,x:g.art.x-hover.art.x,y:g.art.y-hover.art.y};
+    if(d)mountPolychromeCardIridescence(this,hover.art,artBox,o.edition);
+    else if(kind==='tools')mountForgetTechniqueAttention(this,hover.art,artBox,o.definitionId);
     this.pcOfferBoxes.set(o.offerId,tile);this.offerArts.push(hover.art);v.target(hit,'offer/'+o.offerId,{tap:()=>this.selectOffer(o.offerId),detail:()=>this.inspectOffer(o.offerId),...hover});
   }
   private get resultReduced():boolean{return gameSession().reducedMotion||window.matchMedia('(prefers-reduced-motion: reduce)').matches;}
@@ -694,6 +704,7 @@ export class ShopScene extends Phaser.Scene {
     const priceInk=this.offerPricePlate(o,{x:copyX-2,y:copy.priceY-2,width:copyWidth+2,height:24});
     v.text(copyX,copy.priceY,o.consumed?'已收入':r2PurchasePrice(this.run,o)+' 金',16,priceInk).setFontStyle('bold').setName('shop/offer-price').setData('offerId',o.offerId);
     const tile=copy.tile,hover=this.hoverCard(first,tile),r=v.rect(tile).setFillStyle(0,0).setStrokeStyle().setData('selected',selected);this.offerArts.push(hover.art);
+    if(isTool)mountForgetTechniqueAttention(this,hover.art,{x:b.x+5-hover.art.x,y:b.y+5-hover.art.y,width:b.width-10,height:artHeight},o.definitionId);
     v.target(r,'offer/'+o.offerId,{tap:()=>this.inspectOffer(o.offerId),detail:()=>this.inspectOffer(o.offerId),...hover});
   }
 

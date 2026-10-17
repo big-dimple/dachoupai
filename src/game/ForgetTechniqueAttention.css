@@ -1,0 +1,11 @@
+.forget-technique-attention { position:relative; }
+.forget-technique-attention::after {
+  content:'';position:absolute;inset:1px;padding:1.6px;border-radius:6px;pointer-events:none;
+  background:linear-gradient(115deg,#b58a4355 5%,#e5bc7655 25%,#fff0bbee 35%,#daa74a99 42%,#b58a4355 55%) 0 0 / 250% 250%;
+  mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask-composite:exclude;
+  animation:forget-technique-flow 5s steps(75) infinite;
+}
+.forget-technique-attention[data-attention-motion='paused']::after { animation-play-state:paused; }
+.forget-technique-attention[data-attention-motion='static']::after { animation:none;background-position:45% 45%; }
+@keyframes forget-technique-flow { to { background-position:200% 200%; } }
+@media (prefers-reduced-motion:reduce) { .forget-technique-attention::after { animation:none;background-position:45% 45%; } }

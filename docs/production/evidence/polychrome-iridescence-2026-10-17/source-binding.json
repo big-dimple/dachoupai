@@ -1,0 +1,54 @@
+{
+  "runtimeReportHead": "afa4760df7ff4e94ef78cc31988a76fe82141187",
+  "sources": [
+    {
+      "gitBlob": "0352739f0370d49d5fb79e11ad470d5f07ad7b6a",
+      "status": "PASS",
+      "path": "src/game/PolychromeCardIridescence.ts",
+      "sha256": "560b19c18a2c3238d079a2f74d47b9910e268155239c4a8c3ef1d915c249e145"
+    },
+    {
+      "gitBlob": "84e3ba3615f3f82454a0be18c0a48a424b1b6b09",
+      "status": "PASS",
+      "path": "src/game/ShopScene.ts",
+      "sha256": "9623e0131e387dc650ec17f17a59a44288627c2a6a7c8e2c4250f92c6cabd732"
+    },
+    {
+      "gitBlob": "7e232395b3fac6667928b735a3a410434c8c3f4a",
+      "status": "PASS",
+      "path": "src/game/ForgetTechniqueAttention.ts",
+      "sha256": "3d7d444f31a1a3c9fd2fd887ce32113fa1ca0e538e7abf3bd6b8da14213f8c6c"
+    },
+    {
+      "gitBlob": "15c5011bc8cbb17ff016a69f3cd69512dda9a727",
+      "status": "PASS",
+      "path": "src/game/ForgetTechniqueAttention.css",
+      "sha256": "259fe94654b41b2412512846b204c6edf9b53fd8fc467a5a3f22f67e97656a28"
+    },
+    {
+      "gitBlob": "b9c79f7e7c8b0c820fe5bbab716099dde6175866",
+      "status": "PASS",
+      "path": "src/game/ConsumableDialog.ts",
+      "sha256": "0f7f21ebae542aaea7bf8f5eb9064b7e6232254ce6f606773b80f6e0bec72d67"
+    }
+  ],
+  "productCommit": "d365708bcd8ae77597c9b7c4e17c57d48b82284f",
+  "buildAssets": [
+    {
+      "sha256": "1d433a0b4d6aade2814bcbbdfe6ee9de6317b6adc85bf2d8764cd74330163241",
+      "file": "index-Be2le79Y.css"
+    },
+    {
+      "sha256": "151b070edff21119a619247cd58f5352b2affa433d5dfea5673e73c4c1b17746",
+      "file": "index-Cb0z588C.js"
+    }
+  ],
+  "buildModules": 336,
+  "node": "v22.20.0",
+  "browser": {
+    "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.12 Safari/537.36",
+    "type": 1,
+    "gl": null
+  },
+  "note": "Runtime test ran immediately before product commit on the same five exact source files; raw SHA256 checked after commit and Git blobs recorded. Report head is preserved, not relabelled."
+}
