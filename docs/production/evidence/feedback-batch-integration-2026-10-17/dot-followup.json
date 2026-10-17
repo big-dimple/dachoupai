@@ -1,0 +1,250 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "taskId": "P08",
+  "taskStatus": "in_progress",
+  "baseCommit": "a470da228a85283eabc00811f610ba6a41a38738",
+  "integratedProductCommit": "b1916e6c6b00bdf6635882755b671ce7a4e8892c",
+  "branch": "dev/dot-followup-integration-20261017",
+  "sources": [
+    {
+      "name": "touye-reminder",
+      "sha": "6a044ee1e21f907212f3464ef7f05b0d7c53b703",
+      "exactPaths": 2,
+      "bindings": [
+        {
+          "path": "src/game/HeroPlayReminder.ts",
+          "sourceBlob": "e3fd75fc6d695bd5a36992402dcbf9443edc294a",
+          "integratedBlob": "e3fd75fc6d695bd5a36992402dcbf9443edc294a"
+        },
+        {
+          "path": "tests/hero-play-reminder.test.ts",
+          "sourceBlob": "d09eb690e1ceade9d4a54b58212e76f8a850f3e4",
+          "integratedBlob": "d09eb690e1ceade9d4a54b58212e76f8a850f3e4"
+        }
+      ]
+    },
+    {
+      "name": "shop-purchase-boss-layout",
+      "sha": "43216be21d1ac551fb1ffdc55ad4bb67eebb0cc5",
+      "exactPaths": 24,
+      "bindings": [
+        {
+          "path": "docs/production/evidence/shop-purchase-consistency-2026-10-17/README.md",
+          "sourceBlob": "421bc2b1fd2af8457bee665ae2c3432fb09ef73a",
+          "integratedBlob": "421bc2b1fd2af8457bee665ae2c3432fb09ef73a"
+        },
+        {
+          "path": "docs/production/evidence/shop-purchase-consistency-2026-10-17/boss-desktop.png",
+          "sourceBlob": "fd4c9ed151d2dd436055fc90cffb98535ae5c7dc",
+          "integratedBlob": "fd4c9ed151d2dd436055fc90cffb98535ae5c7dc"
+        },
+        {
+          "path": "docs/production/evidence/shop-purchase-consistency-2026-10-17/boss-phone.png",
+          "sourceBlob": "98f8793f377dae7e2ccce740a506264e5b5e9467",
+          "integratedBlob": "98f8793f377dae7e2ccce740a506264e5b5e9467"
+        },
+        {
+          "path": "docs/production/evidence/shop-purchase-consistency-2026-10-17/boss-recheck.txt",
+          "sourceBlob": "28e7cc3c2bfe565bb01c666b23ed31574dcdc313",
+          "integratedBlob": "28e7cc3c2bfe565bb01c666b23ed31574dcdc313"
+        },
+        {
+          "path": "docs/production/evidence/shop-purchase-consistency-2026-10-17/browser-check.json",
+          "sourceBlob": "7f7f86632c56386f9b88d113475e12d606b75c6e",
+          "integratedBlob": "7f7f86632c56386f9b88d113475e12d606b75c6e"
+        },
+        {
+          "path": "docs/production/evidence/shop-purchase-consistency-2026-10-17/browser-check.mjs",
+          "sourceBlob": "734333c3d84d3176e0f53e619e54be10f3ac9caf",
+          "integratedBlob": "734333c3d84d3176e0f53e619e54be10f3ac9caf"
+        },
+        {
+          "path": "docs/production/evidence/shop-purchase-consistency-2026-10-17/browser-fixture-initial-fail.json",
+          "sourceBlob": "c800d46d7632612ad62473cfd86706448a0e4092",
+          "integratedBlob": "c800d46d7632612ad62473cfd86706448a0e4092"
+        },
+        {
+          "path": "docs/production/evidence/shop-purchase-consistency-2026-10-17/browser-fixture-initial-fail.txt",
+          "sourceBlob": "6666829680bf620bc7a583619e97deff9a19b15e",
+          "integratedBlob": "6666829680bf620bc7a583619e97deff9a19b15e"
+        },
+        {
+          "path": "docs/production/evidence/shop-purchase-consistency-2026-10-17/browser-fixture-program-fail.json",
+          "sourceBlob": "7cb55fa748091a12fe942c79aef5e361b1f1c030",
+          "integratedBlob": "7cb55fa748091a12fe942c79aef5e361b1f1c030"
+        },
+        {
+          "path": "docs/production/evidence/shop-purchase-consistency-2026-10-17/browser-fixture-program-fail.txt",
+          "sourceBlob": "1102b2f078a52fc1b8391ff1a4607cd5e4a825ca",
+          "integratedBlob": "1102b2f078a52fc1b8391ff1a4607cd5e4a825ca"
+        },
+        {
+          "path": "docs/production/evidence/shop-purchase-consistency-2026-10-17/browser-fixture-stage-fail.json",
+          "sourceBlob": "af740bc1114718312db5d16a02a0c2286a67eb8d",
+          "integratedBlob": "af740bc1114718312db5d16a02a0c2286a67eb8d"
+        },
+        {
+          "path": "docs/production/evidence/shop-purchase-consistency-2026-10-17/browser-fixture-stage-fail.txt",
+          "sourceBlob": "63dbbc2c1c66475b961f73898e4f71ac36181939",
+          "integratedBlob": "63dbbc2c1c66475b961f73898e4f71ac36181939"
+        },
+        {
+          "path": "docs/production/evidence/shop-purchase-consistency-2026-10-17/build-check.txt",
+          "sourceBlob": "755e6cb01e52090fd1ef9bde5bdd429a82e36617",
+          "integratedBlob": "755e6cb01e52090fd1ef9bde5bdd429a82e36617"
+        },
+        {
+          "path": "docs/production/evidence/shop-purchase-consistency-2026-10-17/build-initial-fail.txt",
+          "sourceBlob": "a47c8f45c53afda35913a91596fa92d7d0902a52",
+          "integratedBlob": "a47c8f45c53afda35913a91596fa92d7d0902a52"
+        },
+        {
+          "path": "docs/production/evidence/shop-purchase-consistency-2026-10-17/controlled-checkpoint.json",
+          "sourceBlob": "f01f51ba3d773974151004c158d3e464e851ef03",
+          "integratedBlob": "f01f51ba3d773974151004c158d3e464e851ef03"
+        },
+        {
+          "path": "docs/production/evidence/shop-purchase-consistency-2026-10-17/focused-check-initial-fail.txt",
+          "sourceBlob": "1f39c8b148757add777b1dfb40d184cdbcd07531",
+          "integratedBlob": "1f39c8b148757add777b1dfb40d184cdbcd07531"
+        },
+        {
+          "path": "docs/production/evidence/shop-purchase-consistency-2026-10-17/purchase-copy-recheck.txt",
+          "sourceBlob": "40087d16c774ef15ddf2e21bde897c10680b50ce",
+          "integratedBlob": "40087d16c774ef15ddf2e21bde897c10680b50ce"
+        },
+        {
+          "path": "docs/production/evidence/shop-purchase-consistency-2026-10-17/purchase-desktop.png",
+          "sourceBlob": "b7185dd7371bb2421a6be43b01219f12b7b774b0",
+          "integratedBlob": "b7185dd7371bb2421a6be43b01219f12b7b774b0"
+        },
+        {
+          "path": "src/game/BossPreparationPresentation.css",
+          "sourceBlob": "4dbe1bd5d9c74ff0a01f6ef645f309b1d8139be0",
+          "integratedBlob": "4dbe1bd5d9c74ff0a01f6ef645f309b1d8139be0"
+        },
+        {
+          "path": "src/game/BossPreparationPresentation.ts",
+          "sourceBlob": "3723db281379fd685becdd63a8eba336e9f4f8d7",
+          "integratedBlob": "3723db281379fd685becdd63a8eba336e9f4f8d7"
+        },
+        {
+          "path": "src/game/ShopDecisionCopy.ts",
+          "sourceBlob": "faf77008132b1ea08b10d4038d6862339d303c20",
+          "integratedBlob": "faf77008132b1ea08b10d4038d6862339d303c20"
+        },
+        {
+          "path": "src/game/ShopScene.ts",
+          "sourceBlob": "117e9d7f0656ede894aadf7f560d63e5745d508f",
+          "integratedBlob": "117e9d7f0656ede894aadf7f560d63e5745d508f"
+        },
+        {
+          "path": "tests/boss-preparation-presentation.test.ts",
+          "sourceBlob": "4196f7f220d4fa035794782ba27c5392cd38ffaf",
+          "integratedBlob": "4196f7f220d4fa035794782ba27c5392cd38ffaf"
+        },
+        {
+          "path": "tests/shop-decision-copy.test.ts",
+          "sourceBlob": "715021cb2fa843b2ae116381ec966db6383fedea",
+          "integratedBlob": "715021cb2fa843b2ae116381ec966db6383fedea"
+        }
+      ]
+    }
+  ],
+  "protectedDiff": [],
+  "phase": "INTEGRATED_CHECKS_PASS",
+  "sourceChecksReused": [
+    {
+      "sha": "6a044ee1e21f907212f3464ef7f05b0d7c53b703",
+      "directedChecks": 31,
+      "typecheck": "owner reported PASS",
+      "build": "owner reported PASS",
+      "evidence": "Parent handoff; source contains product/test only. No invented committed log.",
+      "boundary": "HeroPlayReminder compact first layer, true regular/B01/B07 costs, folded rules, three actions, cancel/reselect preserves draft, opt-out and every eligible attempt."
+    },
+    {
+      "sha": "43216be21d1ac551fb1ffdc55ad4bb67eebb0cc5",
+      "directedChecks": 60,
+      "evidence": "../shop-purchase-consistency-2026-10-17/README.md",
+      "boundary": "Last result per file; original unit/stub/import-build and controlled-fixture failures preserved in owner directory. Local controlled purchase23→19 and cancel unchanged, not natural gameplay."
+    }
+  ],
+  "newUnitOrBrowserRun": false,
+  "parentNaturalObservation": {
+    "reportedVersionPrefix": "a470",
+    "versionNote": "Parent dot reports a470 site actually visible; no new claim about clean deployed source or current b191 candidate.",
+    "character": "秦琼",
+    "chapter": 2,
+    "regular": {
+      "stageTotal": 1705,
+      "target": 1350,
+      "lastHand": 1092
+    },
+    "boss": {
+      "stageTotal": 1874,
+      "target": 1800,
+      "lastHand": 145
+    },
+    "observed": [
+      "source connection lines",
+      "numeric increments",
+      "sorting group top caption",
+      "equal-width main buttons",
+      "current true skill names",
+      "discard flow"
+    ],
+    "notObserved": [
+      "naturally triggered full-screen eye climax"
+    ],
+    "heard": false,
+    "hearingReason": "Audio input unsupported",
+    "newIssue": "Same Boss rule repeats at preparation page, chapter catalog and in-game confirmation; not fixed in this batch."
+  },
+  "remaining": [
+    "H14 prebattle program selection entry",
+    "H15 historical/new72-art original-source chain reconciliation",
+    "H16 same-Boss rule repeated across three presenters; coordinate shared visible identity record later, no saved-state change or skipping dangerous confirmations",
+    "Current follow-up dot natural review, full eye climax, listening, comprehension and physical device acceptance",
+    "P08 in_progress and C04/A03/V01/L01 gates unchanged"
+  ],
+  "publication": {
+    "authorized": "Normal dev/main merge and push after checks; user specifically requests this batch, no CI or deployment.",
+    "expectedMainBeforeRelease": "a470da228a85283eabc00811f610ba6a41a38738",
+    "releaseCommit": "Delivery commit containing this record; actual full main SHA reported after successful normal push.",
+    "restrictions": [
+      "No force",
+      "No CI/domain/deploy",
+      "No natural long game or repeated matrix",
+      "No reset/clean"
+    ]
+  },
+  "testedCommit": "b1916e6c6b00bdf6635882755b671ce7a4e8892c",
+  "rulesVersion": "r2",
+  "checks": [
+    {
+      "name": "typecheck",
+      "status": "PASS",
+      "exitCode": 0,
+      "command": "node node_modules/typescript/bin/tsc --noEmit",
+      "log": "checks/dot-followup-typecheck.log",
+      "testedCommit": "b1916e6c6b00bdf6635882755b671ce7a4e8892c"
+    },
+    {
+      "name": "production-build",
+      "status": "PASS",
+      "exitCode": 0,
+      "command": "node node_modules/vite/bin/vite.js build",
+      "log": "checks/dot-followup-build.log",
+      "modules": 321,
+      "testedCommit": "b1916e6c6b00bdf6635882755b671ce7a4e8892c",
+      "warning": "Existing chunk>500kB warning retained."
+    }
+  ],
+  "environment": {
+    "os": "Windows",
+    "node": "v22.20.0",
+    "browser": "NOT_RUN in integration; source short browser evidence reused",
+    "device": "NOT_RUN"
+  }
+}
