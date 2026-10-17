@@ -81,7 +81,8 @@ import {handActionContent,handActionCountColor} from './HandActionArt';
 import {renderHandSortGroup,handAiButtonLabel} from './HandActionControls';
 import {r2JokerCapacity} from '../domain/r2Resources';
 import {r2RunModeConfig,R2_MODE_CATALOG} from '../content/r2Modes';
-import {showPrograms} from './ProgramDialog';
+import {programEntryLabel,programStatus,showPrograms} from './ProgramDialog';
+import {bossRulesSeen,trackBossRulesVisible} from './BossPreparationPresentation';
 import { AudioEngine } from '../audio/AudioEngine';
 import { rankLabel, SUIT_SYMBOL, SUITS, type Suit, type PlayingCard } from '../cards/types';
 import {EffectQueue,type EffectContext} from '../core/EffectQueue';
@@ -274,6 +275,8 @@ export class GameScene extends Phaser.Scene {
   private controlsLive=false;
   private waitingForStage=false;
   private reopenStageDirectory?:()=>void;
+  private enterPreparedStage?:()=>void;
+  private openStagePrograms?:()=>void;
 
   constructor() {
     super('game');
@@ -293,8 +296,8 @@ export class GameScene extends Phaser.Scene {
   private get reducedMotion():boolean {return gameSession().reducedMotion||window.matchMedia('(prefers-reduced-motion: reduce)').matches;}
 
   private carriedTool?:ToolCarryIntent;
-  async create(data?:{carriedTool?:ToolCarryIntent}): Promise<void> {
-    this.carriedTool=undefined;this.waitingForStage=false;this.reopenStageDirectory=undefined;
+  async create(data?:{carriedTool?:ToolCarryIntent;preparedBossOwner?:object}): Promise<void> {
+    this.carriedTool=undefined;this.waitingForStage=false;this.reopenStageDirectory=undefined;this.enterPreparedStage=undefined;this.openStagePrograms=undefined;
     // Phaser reuses this Scene instance. Its former controls were destroyed on shutdown.
     this.controlsLive=false;this.candidates.dispose();this.aiCandidates.dispose();this.aiCursor=undefined;this.candidateGhost=undefined;this.candidateUndo=undefined;
     // Default Phaser lag smoothing turns every >500ms frame into only 33ms.
@@ -342,7 +345,7 @@ export class GameScene extends Phaser.Scene {
     const carried=carriedToolAtEntry(controller.state,data?.carriedTool)?data?.carriedTool:undefined;
     let enteredStage=false;
     if(controller.state.phase==='stage-ready'){
-      const enter=await this.awaitStageEntry(lifecycle);
+      const enter=await this.awaitStageEntry(lifecycle,data?.preparedBossOwner===controller);
       if(lifecycle!==this.lifecycle||!this.scene.isActive())return;
       if(!enter)return;
       enteredStage=true;
@@ -377,7 +380,12 @@ export class GameScene extends Phaser.Scene {
     });
     this.ownedInput.surface.addEventListener('pointerleave',()=>{if(this.hoveredJokerId&&!this.ownedDrag)this.hoverJoker(this.hoveredJokerId,false);});
     const inspectOpponent=()=>{
-      if(this.run.stage?.boss?.definitionId!=='B05'){this.inspectRole();return;}
+      if(this.run.stage?.boss?.definitionId!=='B05'){
+        const run=this.run,notice=stageNotice(run);if(!run.stage?.boss||!notice){this.inspectRole();return;}
+        const identity=stageIdentity(run.stage.index,run.stage.boss,run.tourMode,run.difficulty)!;
+        const modal=this.dialog.open(identity.title,notice.details,[{label:'角色技能与物品',run:()=>this.inspectRole()}],{summaryBody:'目标 '+heatText(run.stage.targetHeat),effectBody:notice.description,collapseRules:true,rulesLabel:'完整限制与应对',closeLabel:'返回牌桌'});
+        modal.classList.add('stage-identity-rules');const stop=trackBossRulesVisible(run,modal,()=>this.lifecycle===lifecycle&&this.scene.isActive()&&controller.state===run&&this.dialog.active(modal));this.events.once('shutdown',stop);return;
+      }
       const seq=this.run.commandSeq,choices=opponentChoices(this.hand,r2ScoreContext(this.run,this.hand,[]).handRules,this.run.stage.previousHandType);
       showOpponentChoices(this.dialog,this.run,choices,choice=>{
         this.erxiangTargetId=null;this.assistIds=[];
@@ -395,30 +403,32 @@ export class GameScene extends Phaser.Scene {
     this.events.once('shutdown',unsubscribeInventory);
     if(enteredStage)this.revealDrawnCards([]);
     const notice=stageNotice(this.run);
-    if(enteredStage&&this.run.stage.boss?.definitionId==='B05')inspectOpponent();
-    else if(enteredStage&&notice?.warning){
+    const introduceBoss=!!this.run.stage.boss&&!bossRulesSeen(this.run)&&!document.querySelector('dialog[open]');
+    if(introduceBoss&&this.run.stage.boss?.definitionId==='B05')inspectOpponent();
+    else if((introduceBoss||enteredStage&&!this.run.stage.boss)&&notice?.warning){
       const identity=stageIdentity(this.run.stage.index,this.run.stage.boss,this.run.tourMode,this.run.difficulty)!;
       const dialog=this.dialog.open(identity.title,notice.details,[{label:'开始出牌',primary:true,run:()=>this.dialog.close()}],{summaryBody:identity.stageName+' · 目标 '+heatText(this.run.stage.targetHeat),effectBody:notice.description,collapseRules:true,rulesLabel:'完整限制与应对'});
       dialog.classList.add('stage-identity-entry');
       dialog.dataset.stageKind=identity.isBoss?'boss':'normal';
     }
+    if(introduceBoss&&this.dialog.current){const modal=this.dialog.current,stop=trackBossRulesVisible(this.run,modal,()=>this.lifecycle===lifecycle&&this.scene.isActive()&&controller.state===this.run&&this.dialog.active(modal));this.events.once('shutdown',stop);}
   }
 
   /** Closing the directory keeps this stage-ready run mounted until the player reopens it. */
-  private awaitStageEntry(lifecycle:number):Promise<boolean> {
+  private awaitStageEntry(lifecycle:number,enterPreparedBoss=false):Promise<boolean> {
     const controller=runController(this)!;
     this.waitingForStage=true;this.cameras.main.setBackgroundColor(C.paper);
     return new Promise(resolve=>{
       let opening=false;
-      const finish=(entered:boolean)=>{this.events.off('shutdown',cancel);this.waitingForStage=false;this.reopenStageDirectory=undefined;resolve(entered);};
+      const finish=(entered:boolean)=>{this.events.off('shutdown',cancel);this.events.off('create',autoEnter);this.waitingForStage=false;this.reopenStageDirectory=undefined;this.enterPreparedStage=undefined;this.openStagePrograms=undefined;resolve(entered);};
       const cancel=()=>finish(false);
       this.events.once('shutdown',cancel);
-      this.reopenStageDirectory=()=>{
-        if(opening||lifecycle!==this.lifecycle)return;
+      const open=(directory:boolean)=>{
+        if(opening||lifecycle!==this.lifecycle||runController(this)!==controller)return;
         opening=true;
         void (async()=>{
           try {
-            const enter=await presentOpponentEntrance(this.dialog,controller.state,this);
+            const enter=!directory&&bossRulesSeen(controller.state)||await presentOpponentEntrance(this.dialog,controller.state,this,()=>this.openStagePrograms?.());
             if(lifecycle!==this.lifecycle||!this.scene.isActive()||runController(this)!==controller)return;
             if(controller.state.phase!=='stage-ready'){finish(false);return;}
             if(!enter)return;
@@ -430,15 +440,32 @@ export class GameScene extends Phaser.Scene {
           finally {opening=false;if(this.waitingForStage&&lifecycle===this.lifecycle&&this.scene.isActive())this.renderStageReady();}
         })();
       };
-      this.renderStageReady();this.reopenStageDirectory();
+      this.reopenStageDirectory=()=>open(true);this.enterPreparedStage=()=>open(false);
+      this.openStagePrograms=()=>{
+        if(opening||!this.ready||lifecycle!==this.lifecycle||runController(this)!==controller||controller.state.phase!=='stage-ready')return;
+        const run=controller.state;this.run=run;
+        const valid=()=>this.waitingForStage&&lifecycle===this.lifecycle&&runController(this)===controller&&controller.state===run&&run.phase==='stage-ready';
+        showPrograms(this.dialog,run,this.ready,async(action,seq)=>{
+          if(opening||!valid()||!this.ready)return false;opening=true;
+          try{const result=await dispatchRun(this,action,seq);if(lifecycle!==this.lifecycle||runController(this)!==controller)return false;this.run=controller.state;this.statusMessage=result.ok?programStatus(this.run):'节目单尚未完成，请返回查看；保存暂停可在菜单重试。';return result.ok;}
+          finally{opening=false;if(this.waitingForStage&&lifecycle===this.lifecycle&&this.scene.isActive())this.renderStageReady();}
+        },{valid,directory:()=>this.reopenStageDirectory?.()});
+      };
+      const autoEnter=()=>this.enterPreparedStage?.();
+      this.renderStageReady();
+      if(bossRulesSeen(controller.state)){if(enterPreparedBoss){if(this.scene.isActive())autoEnter();else this.events.once('create',autoEnter);}}
+      else this.reopenStageDirectory();
     });
   }
   private renderStageReady():void {
-    const v=this.view,l=v.layout,w=Math.min(560,l.width-32),x=(l.width-w)/2,y=Math.max(52,(l.height-210)/2);
+    this.run=runController(this)?.state??this.run;
+    const v=this.view,l=v.layout,w=Math.min(560,l.width-32),x=(l.width-w)/2,y=Math.max(32,(l.height-310)/2),known=bossRulesSeen(this.run);
     v.clear();v.text(x,y,getCharacter(this.run.characterId).name+' · 本章待开战',24,C.ink,w).setName('stage-ready/title');
-    v.text(x,y+48,'本局进度已保留。准备好后，打开节目录选择入场或跳场。',16,C.jade,w);
-    v.button({x,y:y+112,width:w,height:52},'打开本章节目录','action/stage-directory',()=>this.reopenStageDirectory?.(),true,true);
-    if(this.statusMessage)v.text(x,y+178,this.statusMessage,14,C.red,w);
+    v.text(x,y+48,known?'本场规则已看过，准备好即可入场。':'本局进度已保留，可先选节目单，再查看对手入场。',16,C.jade,w);
+    v.button({x,y:y+100,width:w,height:48},programEntryLabel(this.run),'action/stage-program',()=>this.openStagePrograms?.(),this.ready);
+    v.button({x,y:y+160,width:w,height:52},known?'进入牌桌':'打开本章节目录',known?'action/start-stage':'action/stage-directory',()=>known?this.enterPreparedStage?.():this.reopenStageDirectory?.(),this.ready,true);
+    if(known)v.button({x,y:y+222,width:w,height:44},'查看本章对手与规则','action/stage-directory',()=>this.reopenStageDirectory?.(),this.ready);
+    if(this.statusMessage)v.text(x,y+(known?274:224),this.statusMessage,14,C.red,w);
   }
 
   private readonly keyboard=(event:KeyboardEvent)=>{

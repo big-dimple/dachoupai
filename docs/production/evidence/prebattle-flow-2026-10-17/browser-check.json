@@ -1,0 +1,25 @@
+{
+  "scope": "One finite desktop native-UI sequence: existing validated Boss fixture, new standard program choice, and Q11 with programs off. Same-state phone program panel only; no scored hands or long matrix.",
+  "errors": [],
+  "checks": [
+    "seen Boss shop goes directly to the board; exactly LeaveShop/EnterStage; canonical state matches",
+    "manual in-battle rules remain available and read-only",
+    "restored seen stage-ready Boss waits for an explicit entry click",
+    "unseen active restore introduces rules once, then a seen restore does not repeat; no domain save fields added",
+    "shop cancel is read-only; accepting persists one exact ChooseProgram; abandonment still requires confirmation",
+    "declining submits ChooseProgram(null), distinct from cancel",
+    "stage-ready directory exposes the same program choice before first EnterStage",
+    "disabled program and Q11 actual chapter ban are visible without choice actions or mutations"
+  ],
+  "browser": "153.0.8010.12",
+  "bossInput": "docs/production/evidence/shop-purchase-consistency-2026-10-17/controlled-checkpoint.json",
+  "status": "PASS",
+  "sourceSHA256": {
+    "src/game/BossPreparationPresentation.ts": "c9a37315b80f37b09b27f3cd108a77cdc33dbd398d66840cac0f7e84a2eed582",
+    "src/game/BlindSelectPresentation.ts": "abf21efbf0c5e5a77c2b6b6eb4780ffb3c2dc14e09e52dd01782581c4279767a",
+    "src/game/OpponentPresentation.ts": "a92c0e88f4a0c3f6bcba6245c7129d9542fd7222418c2260c2cf03445ec4bb19",
+    "src/game/GameScene.ts": "c62c1f3753046ecb74c0a3e0ba0a1f337b356556b3c13644c40260161b646b52",
+    "src/game/ShopScene.ts": "06723ab7a057559ab7f656c7d4f5b438f6612c47e33efc40f1d0b879b9dfbeb4",
+    "src/game/ProgramDialog.ts": "bbd3cd9bedde5059067f5aefe65cec4c31379e43f56cc5330f80d2f6a5103035"
+  }
+}

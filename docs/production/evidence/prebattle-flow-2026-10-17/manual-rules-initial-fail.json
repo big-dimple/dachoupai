@@ -1,0 +1,19 @@
+{
+  "scope": "One finite desktop native-UI sequence: existing validated Boss fixture, new standard program choice, and Q11 with programs off. Same-state phone program panel only; no scored hands or long matrix.",
+  "errors": [],
+  "checks": [
+    "seen Boss shop goes directly to the board; exactly LeaveShop/EnterStage; canonical state matches"
+  ],
+  "browser": "153.0.8010.12",
+  "bossInput": "docs/production/evidence/shop-purchase-consistency-2026-10-17/controlled-checkpoint.json",
+  "status": "FAIL",
+  "failure": "AssertionError [ERR_ASSERTION]: false == true\n    at file:///D:/ai/dachoupai/dachoupai/.codex-remote-attachments/shop-purchase-copy-fix-20261017/docs/production/evidence/prebattle-flow-2026-10-17/browser-check.mjs:26:168",
+  "sourceSHA256": {
+    "src/game/BossPreparationPresentation.ts": "c9a37315b80f37b09b27f3cd108a77cdc33dbd398d66840cac0f7e84a2eed582",
+    "src/game/BlindSelectPresentation.ts": "abf21efbf0c5e5a77c2b6b6eb4780ffb3c2dc14e09e52dd01782581c4279767a",
+    "src/game/OpponentPresentation.ts": "a92c0e88f4a0c3f6bcba6245c7129d9542fd7222418c2260c2cf03445ec4bb19",
+    "src/game/GameScene.ts": "55c8067cc2b6a1f1c246c3da2decfd96051a04f6550866c8adcc592ea6f45cb6",
+    "src/game/ShopScene.ts": "3e2a47f189b8f5429e398142475d0f42544ce740733e865b6d56babd2b287da1",
+    "src/game/ProgramDialog.ts": "bbd3cd9bedde5059067f5aefe65cec4c31379e43f56cc5330f80d2f6a5103035"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "checks": [
+    "seen Boss shop goes directly to the board; exactly LeaveShop/EnterStage; canonical state matches",
+    "manual in-battle rules remain available and read-only",
+    "restored seen stage-ready Boss waits for an explicit entry click",
+    "unseen active restore introduces rules once, then a seen restore does not repeat; no domain save fields added",
+    "shop cancel is read-only; accepting persists one exact ChooseProgram; abandonment still requires confirmation",
+    "declining submits ChooseProgram(null), distinct from cancel",
+    "stage-ready directory exposes the same program choice before first EnterStage",
+    "disabled program and Q11 actual chapter ban are visible without choice actions or mutations"
+  ]
+}

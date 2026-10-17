@@ -18,6 +18,15 @@ export interface BossPreparationFacts {
   readonly suit: string | null;
 }
 
+/** The same saved Boss identity before and after EnterStage; never a checkpoint field. */
+export function bossRulesKey(run:R2RunState):string|undefined {
+  if(!['shop','stage-ready','await-input','pending-refill'].includes(run.phase))return;
+  const active=run.phase==='await-input'||run.phase==='pending-refill',index=active?run.stage?.index:run.stageIndex,boss=active?run.stage?.boss:run.boss;
+  if(index===undefined||index%3!==2||!boss||!R2_BOSSES.some(row=>row.id===boss.definitionId)||boss.definitionId==='B03'&&!boss.disabledSuit)return;
+  return JSON.stringify([run.runId,run.characterId,run.contentVersion,run.contentHash,run.mode,
+    run.challengeId,run.difficulty,run.programsEnabled,run.tourMode,index,boss.definitionId,boss.disabledSuit]);
+}
+
 /** Only an already-saved preparation shop is eligible; no stage or reward is entered here. */
 export function bossPreparationFacts(run: R2RunState): BossPreparationFacts | undefined {
   if (run.phase !== 'shop' || !run.shop || run.stageIndex % 3 !== 2) return;
@@ -25,8 +34,7 @@ export function bossPreparationFacts(run: R2RunState): BossPreparationFacts | un
   const definition = R2_BOSSES.find(boss => boss.id === run.boss.definitionId);
   if (!stage || !definition || definition.id === 'B03' && !run.boss.disabledSuit) return;
   return {
-    key: JSON.stringify([run.runId, run.characterId, run.contentVersion, run.contentHash, run.mode,
-      run.challengeId, run.difficulty, run.programsEnabled, run.tourMode, run.stageIndex, run.boss.definitionId, run.boss.disabledSuit]),
+    key: bossRulesKey(run)!,
     chapter: Math.floor(run.stageIndex / 3) + 1,
     stageIndex: run.stageIndex,
     name: definition.name,
@@ -66,6 +74,20 @@ export function createBossPreparationHistory(storage: () => SeenStorage): BossPr
   };
 }
 const sessionHistory = createBossPreparationHistory(() => globalThis.sessionStorage);
+
+export function bossRulesSeen(run:R2RunState,history:BossPreparationHistory=sessionHistory):boolean {
+  const key=bossRulesKey(run);return !!key&&history.has(key);
+}
+
+/** Directory/restore introductions count only after their actual rule dialog is visible. */
+export function trackBossRulesVisible(run:R2RunState,modal:HTMLDialogElement,valid:()=>boolean,history:BossPreparationHistory=sessionHistory):()=>void {
+  const key=bossRulesKey(run);if(!key)return ()=>{};
+  let stopped=false,frame:number|undefined;
+  const stop=()=>{stopped=true;if(frame!==undefined)cancelAnimationFrame(frame);frame=undefined;document.removeEventListener('visibilitychange',schedule);modal.removeEventListener('close',stop);};
+  const check=()=>{frame=undefined;if(stopped)return;if(!valid()){stop();return;}if(document.hidden||!modal.open||!modal.isConnected||!modal.getClientRects().length)return;history.mark(key);stop();};
+  const schedule=()=>{if(!stopped&&!document.hidden&&frame===undefined)frame=requestAnimationFrame(check);};
+  document.addEventListener('visibilitychange',schedule);modal.addEventListener('close',stop,{once:true});schedule();return stop;
+}
 
 export type BossPreparationStatus = 'shown' | 'seen' | 'not-applicable' | 'deferred';
 export interface BossPreparationOptions {

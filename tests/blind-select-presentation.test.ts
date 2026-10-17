@@ -126,6 +126,8 @@ beforeEach(() => {
   vi.stubGlobal('HTMLElement', MockElement);
   vi.stubGlobal('HTMLDialogElement', MockElement);
   vi.stubGlobal('HTMLButtonElement', MockElement);
+  Object.assign(dom,{addEventListener:vi.fn(),removeEventListener:vi.fn()});
+  vi.stubGlobal('requestAnimationFrame',vi.fn(()=>1));vi.stubGlobal('cancelAnimationFrame',vi.fn());
 });
 
 describe('directory commands and settlement contract',()=>{
