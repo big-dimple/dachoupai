@@ -1,0 +1,166 @@
+{
+  "product": "bdafa60443b4a20cb1b95950facb10e8da45597e",
+  "sourceMatch": true,
+  "heard": false,
+  "physicalPhone": false,
+  "cases": [
+    {
+      "key": "pc",
+      "status": "PASS",
+      "stateExact": true,
+      "frames": 1071,
+      "strikes": [
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/6/event/28",
+          "target": "M",
+          "kind": "add",
+          "frames": 21,
+          "flightSamples": 7
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/6/event/29",
+          "target": "M",
+          "kind": "multiply",
+          "frames": 24,
+          "flightSamples": 8
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/6/event/30",
+          "target": "H",
+          "kind": "heat",
+          "frames": 22,
+          "flightSamples": 8
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/6/event/31",
+          "target": "H",
+          "kind": "heat",
+          "frames": 21,
+          "flightSamples": 7
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/6/event/32",
+          "target": "M",
+          "kind": "multiply",
+          "frames": 26,
+          "flightSamples": 9
+        }
+      ],
+      "hover": true,
+      "keyboard": true,
+      "nativeReorder": true,
+      "preFinalTotalPulseMax": 1,
+      "maxScoreVoices": 3,
+      "doubleBeatMs": [
+        81.6000000089407,
+        131.5
+      ],
+      "webmBytes": 3223302,
+      "errors": []
+    },
+    {
+      "key": "phone",
+      "status": "PASS",
+      "stateExact": true,
+      "frames": 1064,
+      "strikes": [
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/6/event/28",
+          "target": "M",
+          "kind": "add",
+          "frames": 21,
+          "flightSamples": 7
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/6/event/29",
+          "target": "M",
+          "kind": "multiply",
+          "frames": 24,
+          "flightSamples": 8
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/6/event/30",
+          "target": "H",
+          "kind": "heat",
+          "frames": 21,
+          "flightSamples": 7
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/6/event/31",
+          "target": "H",
+          "kind": "heat",
+          "frames": 21,
+          "flightSamples": 7
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/6/event/32",
+          "target": "M",
+          "kind": "multiply",
+          "frames": 26,
+          "flightSamples": 9
+        }
+      ],
+      "nativeTap": true,
+      "nativeReorder": true,
+      "preFinalTotalPulseMax": 1,
+      "maxScoreVoices": 3,
+      "doubleBeatMs": [
+        64.20000000298023,
+        131
+      ],
+      "webmBytes": 3663240,
+      "errors": []
+    },
+    {
+      "key": "fast",
+      "status": "PASS",
+      "stateExact": true,
+      "frames": 510,
+      "strikes": [
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/28",
+          "target": "M",
+          "kind": "add",
+          "frames": 12,
+          "flightSamples": 5
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/29",
+          "target": "M",
+          "kind": "multiply",
+          "frames": 12,
+          "flightSamples": 5
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/30",
+          "target": "H",
+          "kind": "heat",
+          "frames": 12,
+          "flightSamples": 5
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/31",
+          "target": "H",
+          "kind": "heat",
+          "frames": 12,
+          "flightSamples": 5
+        },
+        {
+          "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/32",
+          "target": "M",
+          "kind": "multiply",
+          "frames": 12,
+          "flightSamples": 5
+        }
+      ],
+      "preFinalTotalPulseMax": 1,
+      "maxScoreVoices": 3,
+      "doubleBeatMs": [
+        62.30000001192093,
+        82.19999998807907
+      ],
+      "webmBytes": 1928907,
+      "errors": []
+    }
+  ]
+}

@@ -7,7 +7,7 @@ import {gzipSync} from 'node:zlib';
 import {createHash} from 'node:crypto';
 import {createServer,build} from 'vite';
 import {chromium} from 'playwright';
-import {tapUI,waitScene,openMenuSection,point} from './ui.mjs';
+import {tapUI,waitScene,openMenuSection,openRunMenu,point} from './ui.mjs';
 
 const out=process.env.OWNED_MOTION_OUT??'shots/owned-joker-score-motion',fullPhrase=process.env.OWNED_MOTION_PHRASE==='1',strikeMode=process.env.OWNED_MOTION_STRIKE==='1',entry='.vite/owned-joker-motion-entry.html',bundle='.vite/owned-joker-motion-build',port=5596;
 await mkdir(out,{recursive:true});await mkdir('.vite',{recursive:true});
@@ -67,7 +67,7 @@ try{for(const spec of specs){
  try{
   if(spec.speed)await p.addInitScript(speed=>localStorage.setItem('dachoupai-presentation-v1',JSON.stringify({speed})),spec.speed);
   console.log(spec.key+': loading local compiled page');await p.goto('http://127.0.0.1:'+port+'/?harness=1');await waitScene(p,'title');console.log(spec.key+': title ready');
-  await p.locator('.run-menu-toggle').click();const section=p.getByText('进度与存档',{exact:true}).locator('..');if(!await section.evaluate(e=>e.open))await section.locator('summary').click();
+  await openRunMenu(p,spec.width<800);const section=p.getByText('进度与存档',{exact:true}).locator('..');if(!await section.evaluate(e=>e.open))await section.locator('summary').click();
   await p.screenshot({path:dir+'/import-menu.png'});row.importMenu=await p.locator('.run-menu-modal').innerText();
   const chooser=p.waitForEvent('filechooser');chooser.catch(()=>{});await p.getByRole('button',{name:'导入本局',exact:true}).click();await(await chooser).setFiles({name:'owned-motion-public.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(checkpoint))});
   await waitScene(p,'game');await p.waitForFunction(()=>{const s=window.__harness.game.scene.getScene('game');return s.ready&&!s.playing&&s.cardViews.every(v=>!v.dealing);});console.log(spec.key+': real public import ready');

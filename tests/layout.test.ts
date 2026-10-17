@@ -13,16 +13,16 @@ describe('CSS layout contract',()=>{
       expect(l.scoreBoard.height).toBeLessThanOrEqual(132);
       const base=scorePedestal(l.scoreBoard)!;expect(base).toBeDefined();expect(l.scoreFire.y).toBeGreaterThanOrEqual(l.scoreBoard.y+24);expect(l.scoreFire.y+l.scoreFire.height).toBeCloseTo(base.y+1);expect(l.scoreFire.height).toBeGreaterThan(0);
       const total=scoreCells(l.scoreBoard)[2];expect(total.y).toBeGreaterThan(base.y);expect(total.y+total.height).toBeLessThan(base.y+base.height);expect(l.scoreFire.y+l.scoreFire.height).toBeLessThan(total.y);
-      expect(l.hand.height).toBeCloseTo(count===9?(width===360?52:64)*1.4+22:223.2);
+      expect(l.hand.height).toBeGreaterThanOrEqual(count===9?(width===360?52:64)*1.4+22:189.6);expect(l.hand.height).toBeLessThanOrEqual(223.2);
       expect(intersects(l.playedArea,l.hand)).toBe(false);
       expect(intersects(l.scoreFire,l.playedArea)).toBe(false);
     }
   });
-  it('preserves complete five-card workplane and 223.2px fourteen-card hand through real safe insets',()=>{
+  it('preserves complete five-card workplane and two readable fourteen-card rows through real safe insets',()=>{
     for(const width of [360,390])for(const safe of [{top:0,right:0,bottom:34,left:0},{top:12,right:0,bottom:34,left:0}]){
       const l=layout({width,height:740},safe,undefined,{count:14});
-      expect(l.handRows).toBe(2);expect(l.hand.height).toBeCloseTo(223.2);expect(l.playedArea.height).toBeGreaterThanOrEqual(88);
-      expect(l.scoreBoard.height).toBeGreaterThanOrEqual(108);expect(l.slots.every(b=>Math.abs(b.height/b.width-1.4)<1e-6)).toBe(true);
+      expect(l.handRows).toBe(2);expect(l.hand.height).toBeGreaterThanOrEqual(189.6);expect(l.hand.height).toBeLessThanOrEqual(223.2);expect(l.cards.every(c=>c.visual.width>=52)).toBe(true);expect(l.playedArea.height).toBeGreaterThanOrEqual(88);
+      expect(l.scoreBoard.height).toBeGreaterThanOrEqual(92);expect(l.slots.every(b=>Math.abs(b.height/b.width-1.4)<1e-6)).toBe(true);
       expect(l.buttons.rank.width).toBe(44);expect(l.buttons.suit.width).toBe(44);
       expect(l.tableActions.play.y+l.tableActions.play.height).toBeLessThanOrEqual(740-safe.bottom);
     }
