@@ -1,0 +1,26 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/score-recorded-audio.test.ts (12 tests | 1 failed) 37ms
+   × ordinary hits stay light and key multiplication has bounded three-layer timbre, all cancellable 7ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/score-recorded-audio.test.ts > ordinary hits stay light and key multiplication has bounded three-layer timbre, all cancellable
+AssertionError: expected 1.107 to be close to 0.8815, received difference is 0.22550000000000003, but expected 0.005
+ ❯ tests/score-recorded-audio.test.ts:6:457
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 5 passed (6)
+      Tests  1 failed | 75 passed (76)
+   Start at  01:56:46
+   Duration  1.17s (transform 1.03s, setup 0ms, import 1.29s, tests 173ms, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

@@ -1,0 +1,94 @@
+{
+  "taskId": "audio-lifecycle-regression",
+  "date": "2026-10-17",
+  "baselineCommit": "7d7921e76ca794a14e715e3eac3b4d66143862ff",
+  "productCommit": "5a02e647d9d7b5e7ebbff23897822aadc8b7199d",
+  "branch": "dev/audio-lifecycle-regression-20261017",
+  "runHeadDuringFinalBrowser": "9440bf4c61b5f8284daabb573d6506dd94716e52",
+  "sourceBinding": "Browser ran before the final product commit; every reported source SHA256 was compared with the committed Git blob, including unchanged scene sources. Baseline runtime sources separately match 7d7921e; both use the same test observer.",
+  "sourceHashes": {
+    "src/audio/AudioEngine.ts": "d15e6c1abd2a1ce5815b70ae9b0df8271d9ad2dd2bb8c7f2b07e9d564450e4a2",
+    "src/audio/mixPolicy.ts": "633d79d7f86ae892d17d515b21a5f87021ec94b5b5146faa9e853ac10c43dfef",
+    "src/main.ts": "0ae81a85f2ed680fbceaefde86ddd6f8af32b20c1e40f96e308cce9ae3d3b4e3",
+    "src/game/GameScene.ts": "3bd220bbf4bc353d6aa59a51143e5cf91f4c4dfc74bc88c08ff9fd7064caf92a",
+    "src/game/ShopScene.ts": "8b5a2e0a1ea7385f560392b6ec3f128ff8b27234cd0709fd04273f814fad9277",
+    "src/game/CharacterSelectScene.ts": "c873dcce234501da0941b5fe2a53b8b1f703d5d2a59e64b87ad2b7b07ca47243",
+    "tests/audio-lifecycle.browser.mjs": "3af7349c2a365c033fc9ddb0ccc96aeb0e136c4f23c19469578d91d41b455927"
+  },
+  "environment": {
+    "os": "Linux 6.18.55",
+    "arch": "x64",
+    "node": "v24.19.0",
+    "browser": "151.0.7922.173",
+    "renderer": {
+      "type": "Canvas",
+      "viewport": {
+        "width": 1366,
+        "height": 900,
+        "dpr": 1
+      }
+    },
+    "measuredBuild": "after-card-verified",
+    "heard": false,
+    "physicalDevice": "NOT_RUN"
+  },
+  "checks": [
+    {
+      "name": "original existing audio suites",
+      "status": "FAIL",
+      "passed": 75,
+      "failed": 1
+    },
+    {
+      "name": "new lifecycle tests on baseline",
+      "status": "FAIL",
+      "passed": 5,
+      "failed": 10
+    },
+    {
+      "name": "real card numeric path on first lifecycle candidate 9440bf4c",
+      "status": "FAIL",
+      "passed": 20,
+      "failed": 2
+    },
+    {
+      "name": "final audio and score-energy unit suites",
+      "status": "PASS",
+      "files": 8,
+      "tests": 117
+    },
+    {
+      "name": "typecheck and production build",
+      "status": "PASS"
+    },
+    {
+      "name": "baseline browser with lifecycle and actual card-rate assertions",
+      "status": "FAIL",
+      "passed": 0,
+      "failed": 8
+    },
+    {
+      "name": "final browser with lifecycle and actual card-rate assertions",
+      "status": "PASS",
+      "passed": 8,
+      "failed": 0
+    },
+    {
+      "name": "source hash binding and git diff --check",
+      "status": "PASS"
+    }
+  ],
+  "musicPeak": {
+    "peak": 0.00007246492168633267,
+    "music": 0.07,
+    "sfx": 1
+  },
+  "limits": [
+    "heard:false; no listening or subjective crossfade/timbre acceptance.",
+    "No physical Android/iPhone or hardware GPU, Firefox/WebKit, root-plus-subdirectory matrix, 30-minute soak or 100 native scene transitions.",
+    "Ordinary unforced native restarts played on baseline too; exact original user device/incident was not reproduced without controlled faults.",
+    "Six lifecycle failures use labelled network abort/delay, real media near-end seek, or direct rapid audio service requests; no altered scene/domain code.",
+    "Final new-run card rates are observed on actual AudioBufferSourceNode playbackRate values, not inferred from chainRate.",
+    "Scene changes from the other workstream require their own integrated version checks. No main push, force push, CI queries or deployment."
+  ]
+}

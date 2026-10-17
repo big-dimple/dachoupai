@@ -1,0 +1,111 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/score-recorded-audio.test.ts (22 tests | 2 failed) 52ms
+   × real scoring-card events reach rising recorded rates through the scene numeric path (target 10000) 8ms
+   × real scoring-card events reach rising recorded rates through the scene numeric path (target 16) 5ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/score-recorded-audio.test.ts > real scoring-card events reach rising recorded rates through the scene numeric path (target 10000)
+AssertionError: expected [ [ 1 ], [ 1 ], [ 1 ], [ 1 ], [ 1 ] ] to deeply equal [ [ 1 ], [ 1.12 ], [ 1.25 ], …(2) ]
+
+- Expected
++ Received
+
+  [
+    [
+      1,
+    ],
+    [
+-     1.12,
++     1,
+    ],
+    [
+-     1.25,
++     1,
+    ],
+    [
+-     1.35,
++     1,
+    ],
+    [
+-     1.5,
++     1,
+    ],
+  ]
+
+ ❯ tests/score-recorded-audio.test.ts:33:19
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/score-recorded-audio.test.ts > real scoring-card events reach rising recorded rates through the scene numeric path (target 16)
+AssertionError: expected [ [ 0.76, 1.1, 0.9, 0.84 ], …(4) ] to deeply equal [ [ 0.76, 1.1, 0.9, 0.84 ], …(4) ]
+
+- Expected
++ Received
+
+@@ -4,29 +4,29 @@
+      1.1,
+      0.9,
+      0.84,
+    ],
+    [
+-     0.8512000000000001,
+-     1.2320000000000002,
+-     1.0080000000000002,
+-     0.9408000000000001,
++     0.76,
++     1.1,
++     0.9,
++     0.84,
+    ],
+    [
+-     0.95,
+-     1.375,
+-     1.125,
+-     1.05,
++     0.76,
++     1.1,
++     0.9,
++     0.84,
+    ],
+    [
+-     1.026,
+-     1.4850000000000003,
+-     1.215,
+-     1.1340000000000001,
++     0.76,
++     1.1,
++     0.9,
++     0.84,
+    ],
+    [
+-     1.1400000000000001,
+-     1.6500000000000001,
+-     1.35,
+-     1.26,
++     0.76,
++     1.1,
++     0.9,
++     0.84,
+    ],
+  ]
+
+ ❯ tests/score-recorded-audio.test.ts:33:19
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 20 passed (22)
+   Start at  02:12:44
+   Duration  596ms (transform 391ms, setup 0ms, import 461ms, tests 52ms, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

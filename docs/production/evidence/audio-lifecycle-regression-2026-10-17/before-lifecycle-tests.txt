@@ -1,0 +1,208 @@
+
+ RUN  v4.1.11 /workspace/audio-baseline
+
+ ❯ tests/audio-music-lifecycle.test.ts (15 tests | 10 failed) 26ms
+   × creates no music before a gesture and shares one pending play per requested track 9ms
+   × a new scene starts while the previous play is pending, and late success cannot replace it 2ms
+   × old active media callbacks cannot fail or advance a later request that reuses the same slot 1ms
+   × background clears both fades and pending deadlines, then resumes the current scene on foreground 2ms
+   × play denial waits for a new gesture and can recover without recreating the app context 2ms
+   × a failed recording cannot permanently silence another scene or a later same-scene gesture 1ms
+   × a stalled first table track has a finite deadline and falls through once to the second track 2ms
+   × an unavailable playlist exhausts each track once without an automatic retry loop 1ms
+   × natural playlist completion advances both directions; one-track scenes use native looping 1ms
+   × keeps the old song during slow loading and uses complementary 250ms ramps with two reusable slots 1ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 10 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/audio-music-lifecycle.test.ts > creates no music before a gesture and shares one pending play per requested track
+AssertionError: expected [ Media{ …(15) }, …(39) ] to have a length of +0 but got 40
+
+- Expected
++ Received
+
+- 0
++ 40
+
+ ❯ tests/audio-music-lifecycle.test.ts:51:42
+     49|   const {engine, inside, media, begin, finish} = fixture();
+     50|   for (let i = 0; i < 20; i++) engine.preloadSceneMusic('table');
+     51|   engine.setScene('shop'); expect(media).toHaveLength(0);
+       |                                          ^
+     52|   await begin(); const element = inside.musicElement;
+     53|   for (let i = 0; i < 10; i++) await engine.unlock();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/10]⎯
+
+ FAIL  tests/audio-music-lifecycle.test.ts > a new scene starts while the previous play is pending, and late success cannot replace it
+AssertionError: expected 1 to be 4 // Object.is equality
+
+- Expected
++ Received
+
+- 4
++ 1
+
+ ❯ tests/audio-music-lifecycle.test.ts:81:67
+     79|   expect(inside.musicElement).toBe(latest); expect(latest.paused).toBe…
+     80|   expect(media.filter(e => e !== latest).every(e => e.paused)).toBe(tr…
+     81|   expect(media.reduce((n, e) => n + e.play.mock.calls.length, 0)).toBe…
+       |                                                                   ^
+     82| });
+     83|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/10]⎯
+
+ FAIL  tests/audio-music-lifecycle.test.ts > old active media callbacks cannot fail or advance a later request that reuses the same slot
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ tests/audio-music-lifecycle.test.ts:103:24
+    101|   staleError(); staleEnded();
+    102|   expect(inside.musicElement).toBe(first); expect(first.src).toContain…
+    103|   expect(first.paused).toBe(false); expect(first.play).toHaveBeenCalle…
+       |                        ^
+    104| });
+    105|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/10]⎯
+
+ FAIL  tests/audio-music-lifecycle.test.ts > background clears both fades and pending deadlines, then resumes the current scene on foreground
+AssertionError: expected [ Media{ …(17) } ] to have a length of 2 but got 1
+
+- Expected
++ Received
+
+- 2
++ 1
+
+ ❯ tests/audio-music-lifecycle.test.ts:134:17
+    132|   engine.setSuspended(false); await flush(); await finish();
+    133|   expect(inside.musicElement).toBe(table); expect(table.paused).toBe(f…
+    134|   expect(media).toHaveLength(2); expect(vi.getTimerCount()).toBe(0);
+       |                 ^
+    135| });
+    136|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/10]⎯
+
+ FAIL  tests/audio-music-lifecycle.test.ts > play denial waits for a new gesture and can recover without recreating the app context
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/audio-music-lifecycle.test.ts:142:37
+    140|   element.attempts[0].reject(new DOMException('gesture required', 'Not…
+    141|   expect(element.play).toHaveBeenCalledTimes(1); expect(vi.getTimerCou…
+    142|   expect(engine.needsGestureUnlock).toBe(true);
+       |                                     ^
+    143|   await engine.unlock(); await finish();
+    144|   expect(inside.context).toBe(context); expect(media).toHaveLength(1);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/10]⎯
+
+ FAIL  tests/audio-music-lifecycle.test.ts > a failed recording cannot permanently silence another scene or a later same-scene gesture
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/audio-music-lifecycle.test.ts:151:37
+    149|   const {engine, inside, begin, finish} = fixture();
+    150|   const first = await begin(), staleError = first.onerror; first.fail(…
+    151|   expect(engine.needsGestureUnlock).toBe(true); expect(vi.getTimerCoun…
+       |                                     ^
+    152|   engine.setScene('shop'); const shop = inside.musicElement; await fin…
+    153|   staleError(); expect(shop.paused).toBe(false); expect(inside.musicEl…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/10]⎯
+
+ FAIL  tests/audio-music-lifecycle.test.ts > a stalled first table track has a finite deadline and falls through once to the second track
+AssertionError: expected '/assets/audio/bgm/table-chinese-zuiyu…' to contain 'table-tango'
+
+Expected: "table-tango"
+Received: "/assets/audio/bgm/table-chinese-zuiyu.mp3"
+
+ ❯ tests/audio-music-lifecycle.test.ts:163:58
+    161|   const first = inside.musicElement, obsolete = first.attempts[0];
+    162|   await vi.advanceTimersByTimeAsync(8001);
+    163|   const second = inside.musicElement; expect(second.src).toContain('ta…
+       |                                                          ^
+    164|   await finish(second); obsolete.resolve(); await flush();
+    165|   expect(inside.musicElement).toBe(second); expect(second.paused).toBe…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/10]⎯
+
+ FAIL  tests/audio-music-lifecycle.test.ts > an unavailable playlist exhausts each track once without an automatic retry loop
+AssertionError: expected 1 to be 2 // Object.is equality
+
+- Expected
++ Received
+
+- 2
++ 1
+
+ ❯ tests/audio-music-lifecycle.test.ts:173:67
+    171|   engine.setScene('table'); await engine.unlock();
+    172|   await vi.advanceTimersByTimeAsync(100000);
+    173|   expect(media.reduce((n, e) => n + e.play.mock.calls.length, 0)).toBe…
+       |                                                                   ^
+    174|   expect(vi.getTimerCount()).toBe(0); expect(engine.needsGestureUnlock…
+    175|   expect(inside.pendingMusic).toBeUndefined();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/10]⎯
+
+ FAIL  tests/audio-music-lifecycle.test.ts > natural playlist completion advances both directions; one-track scenes use native looping
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ tests/audio-music-lifecycle.test.ts:181:57
+    179|   const {engine, inside, finish} = fixture();
+    180|   engine.setScene('table'); await engine.unlock(); await finish();
+    181|   const first = inside.musicElement; expect(first.loop).toBe(false); f…
+       |                                                         ^
+    182|   expect(inside.musicElement.src).toContain('table-tango'); await fini…
+    183|   inside.musicElement.end(); expect(inside.musicElement.src).toContain…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/10]⎯
+
+ FAIL  tests/audio-music-lifecycle.test.ts > keeps the old song during slow loading and uses complementary 250ms ramps with two reusable slots
+TypeError: Cannot read properties of undefined (reading 'find')
+ ❯ tests/audio-music-lifecycle.test.ts:195:16
+    193|   expect(first.paused).toBe(false);
+    194|   const slots = inside.musicSlots;
+    195|   expect(slots.find((s: any) => s.element === first).gain.gain.linearR…
+       |                ^
+    196|   expect(slots.find((s: any) => s.element === next).gain.gain.linearRa…
+    197|   await vi.advanceTimersByTimeAsync(251); expect(first.paused).toBe(tr…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/10]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  10 failed | 5 passed (15)
+   Start at  02:06:53
+   Duration  428ms (transform 216ms, setup 0ms, import 238ms, tests 26ms, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
