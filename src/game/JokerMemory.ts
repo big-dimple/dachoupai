@@ -1,3 +1,4 @@
+import {cardDefinitionName} from './tangsongCardNames';
 import {coefficientLabelCandidates} from './JokerLabel';
 import {R2_ROUTE_GROWTH_JOKERS} from '../content/r2RouteGrowthJokers';
 import {r2DiscardCost} from '../domain/r2Run';
@@ -155,7 +156,7 @@ export function jokerMemory(definition:R2JokerDefinition,instance:R2JokerInstanc
  const grouped=R2_GROUP_UPGRADE_IDS.includes(definition.id)&&R2_GROUP_UPGRADE_JOKERS.includes(definition);
  const labelCandidates=stateCandidates.length?stateCandidates:grouped?groupLabels[definition.id]:combo?comboLabels[definition.id]:(R2_ASSIST_JOKERS.includes(definition)?JOKER_ASSIST_COMPACT[definition.id]:undefined)??JOKER_COMPACT[definition.id]??[R2_OFFER_USE[definition.id]??'条件 ›'];
  const short=labelCandidates[0],savedShort=stateCandidates[0]??'';
- return{instanceId:instance?.instanceId,definitionId:definition.id,name:definition.name,short,labelCandidates,stateLabel:stateCandidates.length>0,status,statusDetail,saved,savedShort,remaining,remainingUses,usageResetsOnEntry,staticRules,hooks,scoreLimited:ctx.scoringLimited};
+ return{instanceId:instance?.instanceId,definitionId:definition.id,name:cardDefinitionName(definition),short,labelCandidates,stateLabel:stateCandidates.length>0,status,statusDetail,saved,savedShort,remaining,remainingUses,usageResetsOnEntry,staticRules,hooks,scoreLimited:ctx.scoringLimited};
 }
 export function jokerMemoryAbility(definition:R2JokerDefinition,instance:R2JokerInstance|undefined,ctx:JokerMemoryContext,events?:readonly ScoreEvent[]):CardAbilityCopy {
  return jokerPlayerCopy(definition,instance,ctx,jokerMemory(definition,instance,ctx),events);

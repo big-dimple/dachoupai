@@ -1,71 +1,8 @@
-import {describe, it, expect} from 'vitest';
+import {it,expect} from 'vitest';
 import {findShopSynergy} from '../src/game/ShopSynergy';
-import {createRun} from '../src/domain/run';
-
-describe('Shop Synergy Detection (构筑微光联动)', () => {
-  it('detects hero synergy when candidate matches hero playstyle', () => {
-    // Su Shi (sushi / erxiang) specializes in pairs / groups
-    const run = createRun({
-      rulesVersion: 'r2',
-      r2Profile: 'group-upgrade-v1',
-      seed: 'test-synergy-1',
-      runId: 'run/synergy-1',
-      characterId: 'erxiang',
-    });
-
-    // b10 is group / pair focused
-    const syn = findShopSynergy(run, 'b10');
-    expect(syn.hasSynergy).toBe(true);
-    expect(syn.heroSynergy).toBe(true);
-  });
-
-  it('detects synergy between candidate and currently held jokers', () => {
-    const run = createRun({
-      rulesVersion: 'r2',
-      r2Profile: 'group-upgrade-v1',
-      seed: 'test-synergy-2',
-      runId: 'run/synergy-2',
-      characterId: 'erxiang',
-    });
-
-    // Add a held joker that gives chips/heat
-    const modifiedRun = {
-      ...run,
-      jokers: [
-        {
-          instanceId: 'joker/held-1',
-          definitionId: 'b10',
-          paidPrice: 4,
-          edition: 'none' as const,
-          growth: {},
-        },
-      ],
-    };
-
-    // Candidate b03 or multiplier
-    const syn = findShopSynergy(modifiedRun, 'b03');
-    expect(syn.hasSynergy).toBe(true);
-    expect(syn.heldInstanceIds).toContain('joker/held-1');
-    expect(syn.tag).toContain('联动');
-  });
-
-  it('returns clean negative synergy when items do not match', () => {
-    const run = createRun({
-      rulesVersion: 'r2',
-      r2Profile: 'group-upgrade-v1',
-      seed: 'test-synergy-3',
-      runId: 'run/synergy-3',
-      characterId: 'erxiang',
-    });
-
-    const modifiedRun = {
-      ...run,
-      jokers: [],
-    };
-
-    // A card unrelated to erxiang's pairs
-    const syn = findShopSynergy(modifiedRun, 'nonexistent-card');
-    expect(syn.hasSynergy).toBe(false);
-    expect(syn.heldInstanceIds).toHaveLength(0);
-  });
-});
+import {createRun,applyCommand} from '../src/domain/run';
+import {r2CreateJoker} from '../src/domain/r2Run';
+function fixture(){let s=createRun({rulesVersion:'r2',r2Profile:'group-upgrade-v1',seed:'synergy',runId:'synergy',characterId:'erxiang'});for(const type of ['LeaveShop','SkipStage','OpenShop'] as const){const r=applyCommand(s,{runId:s.runId,commandId:'synergy/'+s.commandSeq,expectedSeq:s.commandSeq,action:{type}});if(!r.ok)throw Error(r.code);s=r.state;}s.gold=30;s.purchaseCoupons=0;s.shop!.offers=[{offerId:'stock',definitionId:'b03',price:4,edition:'none',consumed:false}];return s;}
+it('does not infer a hero bonus from display names or playstyle keywords',()=>{const s=fixture();for(const characterId of ['erxiang','amo'] as const){s.characterId=characterId;expect(findShopSynergy(s,'b03')).toMatchObject({hasSynergy:false,heroSynergy:false,heldInstanceIds:[]});}});
+it('reports a real hand-type condition intersection without promising extra strength',()=>{const s=fixture();s.jokers=[r2CreateJoker('b10','held',4,'none',s)];const before=structuredClone(s),result=findShopSynergy(s,'b03');expect(result.hasSynergy).toBe(true);expect(result.heldInstanceIds).toEqual(['held']);expect(result.tag).toBe('条件交集');expect(result.reason).toContain('炉火纯青');expect(result.reason).toContain('对子');expect(result.reason).toContain('不代表额外加成');expect(result.reason).not.toMatch(/强力|协同强化/);expect(s).toEqual(before);});
+it('unknown or absent offers never produce a highlight',()=>{const s=fixture();expect(findShopSynergy(s,'nonexistent-card').hasSynergy).toBe(false);expect(findShopSynergy(s,'b10').hasSynergy).toBe(false);});

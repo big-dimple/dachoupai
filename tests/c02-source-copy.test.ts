@@ -1,3 +1,4 @@
+import {cardDisplayName} from '../src/game/tangsongCardNames';
 import {describe,expect,it} from 'vitest';
 import {r2JokerValue,r2ScoreOperationText} from '../src/game/r2Help';
 import {scoreR2Hand,type ScoreEvent} from '../src/domain/scoreR2';
@@ -10,7 +11,7 @@ function event(operation:string,value:{n:string;d:string},extra:Record<string,un
 }
 describe('C02 committed sources distinguish probability, prizes and multiplicative growth',()=>{
   it.each(['0','1'])('names the F08 %s check as one per hand with its public 1/3 probability',hit=>{
-    expect(r2ScoreOperationText(event('chance-heat-check',fraction(hit),{phase:'jokerScore',sourceDefinitionId:'f08'}))).toBe(`试试手气 · ${hit==='1'?'命中':'未命中'}（每手1次，概率1/3）`);
+    expect(r2ScoreOperationText(event('chance-heat-check',fraction(hit),{phase:'jokerScore',sourceDefinitionId:'f08'}))).toBe(`${cardDisplayName('f08')} · ${hit==='1'?'命中':'未命中'}（每手1次，概率1/3）`);
   });
   it('states coefficient reads and changes with multiplication and future timing',()=>{
     expect(r2ScoreOperationText(event('read-coefficient',fraction('11','10'),{phase:'jokerScore'}))).toBe('×1.1 系数 · 本手读取');

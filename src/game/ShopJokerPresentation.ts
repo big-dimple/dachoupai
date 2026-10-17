@@ -1,3 +1,4 @@
+import {cardDefinitionName} from './tangsongCardNames';
 import type {R2RunState} from '../domain/run';
 import type {R2Offer} from '../domain/r2Shop';
 import {r2PurchasePrice} from '../domain/r2Shop';
@@ -17,10 +18,10 @@ import {jokerArtPreviewUrl} from './jokerArt';
 export function shopComparisonPresentation(run:R2RunState,offer:R2Offer){
   const definition=r2JokerDefinitionFor(run,offer.definitionId),focus=currentBuildFocus(run,run.openingRoute),guidance=shopOfferGuidance(run,offer);
   const remaining=(id:string,used=0)=>{const operation=r2JokerDefinitionFor(run,id).hooks.flatMap(h=>h.operations).find(o=>o.kind==='expire-after-hands');return operation?.kind==='expire-after-hands'?'余 '+Math.max(0,operation.limit-used)+' 次':undefined;};
-  return {candidate:{name:definition.name,rarity:definition.rarity,edition:editionLabel(offer.edition),editionId:offer.edition,url:jokerArtPreviewUrl(definition.id),price:r2PurchasePrice(run,offer),uses:remaining(definition.id),guidance},
+  return {candidate:{name:cardDefinitionName(definition),rarity:definition.rarity,edition:editionLabel(offer.edition),editionId:offer.edition,url:jokerArtPreviewUrl(definition.id),price:r2PurchasePrice(run,offer),uses:remaining(definition.id),guidance},
     gold:run.gold,capacity:r2JokerCapacity(run),rows:run.jokers.map((held,index)=>{
       const d=r2JokerDefinitionFor(run,held.definitionId),facts=shopReplacementFacts(run,offer,held,focus),transaction=shopReplacementTransactionFacts(run,offer,held),g=shopOfferGuidance(run,offer,held);
-      return {id:held.instanceId,slot:index+1,name:d.name,rarity:d.rarity,edition:editionLabel(held.edition),editionId:held.edition,uses:remaining(d.id,held.counters?.handsScored??0),url:jokerArtPreviewUrl(d.id),state:r2JokerStateText(held,d),guidance:g,
+      return {id:held.instanceId,slot:index+1,name:cardDefinitionName(d),rarity:d.rarity,edition:editionLabel(held.edition),editionId:held.edition,uses:remaining(d.id,held.counters?.handsScored??0),url:jokerArtPreviewUrl(d.id),state:r2JokerStateText(held,d),guidance:g,
         costs:shopReplacementCompactFacts(run,held,transaction),details:[g.detail,transaction.summary,...transaction.growthEffects,facts.loss,facts.connections,facts.money,facts.held.body].join('\n')};
     })};
 }

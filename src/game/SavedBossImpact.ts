@@ -1,3 +1,4 @@
+import {cardDefinitionName} from './tangsongCardNames';
 import {rankLabel,SUIT_SYMBOL} from '../cards/types';
 import {r2BossText} from '../domain/r2Chapter';
 import {r2JokerDefinitionsFor} from '../domain/r2ContentProfiles';
@@ -19,7 +20,7 @@ export function savedBossImpact(run:R2RunState,trace:ScoreTrace):string {
   }
   if(['B06','B15','B16'].includes(boss.definitionId)){
     const definitions=r2JokerDefinitionsFor(run),disabled=r2ScoringDisabledJokerIds(boss,trace.sourceJokers,definitions,trace.bossContext.sealedJokerIds);
-    const names=trace.sourceJokers.filter(j=>disabled.includes(j.instanceId)).map(j=>definitions.find(d=>d.id===j.definitionId)?.name??j.definitionId);
+    const names=trace.sourceJokers.filter(j=>disabled.includes(j.instanceId)).map(j=>cardDefinitionName(definitions.find(d=>d.id===j.definitionId))??j.definitionId);
     if(names.length)lines.push(names.join('、')+' 本手计分与版次停用；静态资源、经济与结算后成长保持原规则。');
   }
   if(boss.definitionId==='B08')lines.push('本手角色计分能力与押注停用；初始牌型等级和非计分收益保留。');

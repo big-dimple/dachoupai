@@ -1,3 +1,4 @@
+import {cardDefinitionName} from './tangsongCardNames';
 import {buildFallback} from './BuildFallback';
 import {buildKeepsake} from './BuildKeepsake';
 import {attachFirstChapterGuide} from './FirstChapterGuide';
@@ -40,7 +41,7 @@ export function showBuildJourney(dialog:DetailDialog,state:R2RunState,actions:Jo
   const inspectChoice=()=>{if(!choice||!offer)return;if(choice.replaceId&&actions.compare)actions.compare(choice.id,choice.replaceId);else actions.offers?.(choice.id,offer.kind);};
   const compareRepair=()=>{const c=fallback?.choice;if(!c)return;if(c.source==='held')actions.tool(c.id);else if(c.source==='offer')actions.offers?.(c.id,'tools');else if(c.source==='practice'&&c.quote)actions.practice?.(c.quote,all);else actions.basicTool?.(c.id||undefined);};
   const cards=offer&&choice?[{title:offer.title,url:offer.url,body:choice.loss??'查看后仍由你确认，不会自动购买。',action:{label:choice.replaceId?'查看这张替换':'查看这件购买',run:inspectChoice}}]:fallback?.choice&&fallback.choice.source!=='practice'?[{title:fallback.choice.title,url:fallback.choice.url,body:fallback.choice.body,action:{label:fallback.choice.label,run:compareRepair}}]:[];
-  const d=dialog.open('这轮怎么选 · '+facts.title,[buildDirectionSummary(state),'这是按当前持牌、已存成长、实际货架与成本给出的保守建议，可自行选择其它方案。不是数学最优，也不保证下手成型。',...decision.items.map(i=>r2JokerDefinitionFor(state,i.offer.definitionId).name+'：'+i.reason),facts.cash.body,...facts.owned.map(o=>o.title+'\n'+o.body)].join('\n\n'),[
+  const d=dialog.open('这轮怎么选 · '+facts.title,[buildDirectionSummary(state),'这是按当前持牌、已存成长、实际货架与成本给出的保守建议，可自行选择其它方案。不是数学最优，也不保证下手成型。',...decision.items.map(i=>cardDefinitionName(r2JokerDefinitionFor(state,i.offer.definitionId))+'：'+i.reason),facts.cash.body,...facts.owned.map(o=>o.title+'\n'+o.body)].join('\n\n'),[
    ...(choice&&offer?[{label:(choice.replaceId?'查看替换':'查看购买')+' · '+offer.price+'金',primary:true,disabled:!actions.ready||!offer.affordable,run:inspectChoice}]:[]),
    {label:'查看全部现货与持牌',run:()=>showBuildJourney(dialog,state,actions,false,true)},
    {label:'更换方向',run:()=>showBuildJourney(dialog,state,actions,true)},

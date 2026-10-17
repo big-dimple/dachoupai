@@ -1,3 +1,4 @@
+import {cardDefinitionName} from './tangsongCardNames';
 import {AudioEngine} from '../audio/AudioEngine';
 import {routeFitCue,markRouteDetail} from './RouteFitCue';
 import {renderToolCard} from './CandidateCardPreview';
@@ -128,7 +129,7 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
   const expectedSeq=state.commandSeq,focus=currentBuildFocus(state,state.openingRoute);
   const known=(state.phase==='shop'?state.deckInstances.filter(card=>!state.destroyedIds.includes(card.id)):state.phase==='await-input'?state.handOrder.map(id=>state.deckInstances.find(card=>card.id===id)!):[]);
   const cardChoices:Choice[]=known.map((card,index)=>({id:card.id,name:cardName(card),detail:`${card.enhancement?enhancementName(card):'普通'}${(card.edition??'none')==='none'?'':' · '+editionLabel(card.edition)}\n第 ${index+1} 张`,card}));
-  const jokerChoices:Choice[]=state.jokers.map(joker=>({id:joker.instanceId,name:R2_JOKERS.find(definition=>definition.id===joker.definitionId)!.name,detail:`${editionLabel(joker.edition)} · 原支付 ${joker.paidPrice} 金`,joker}));
+  const jokerChoices:Choice[]=state.jokers.map(joker=>({id:joker.instanceId,name:cardDefinitionName(R2_JOKERS.find(definition=>definition.id===joker.definitionId)!),detail:`${editionLabel(joker.edition)} · 原支付 ${joker.paidPrice} 金`,joker}));
   const showItem=(id:string)=>{const info=itemInfo(id),d=dialog.open(info.name+' · 长期道具',info.description+'\n\n已持有；本局持续生效，不能出售。',[],{portrait:goodsArtPortrait(info),effectBody:info.summary,collapseRules:true});d.classList.add('tool-item-detail');};
   const openTool=(instanceId:string)=>{
     const item=state.consumables.find(consumable=>consumable.instanceId===instanceId),definition=item&&R2_TOOLS.find(candidate=>candidate.id===item.definitionId);if(!item||!definition)return;
@@ -309,7 +310,7 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
         if(cost.kind==='permanent-hands-penalty')lines.push(`下一场起永久减少出牌次数：${r2HandsBudget(state)} → ${r2HandsBudget({...state,spectralModifiers:{...state.spectralModifiers,handsPenalty:state.spectralModifiers.handsPenalty+cost.amount}})}；原牌保留，复制 ${operation.kind==='copy-card'?operation.copies:0} 张。`);
         if(cost.kind==='permanent-hand-penalty')lines.push(`下一场起永久减少手牌上限：${r2HandLimit(state)} → ${r2HandLimit({...state,spectralModifiers:{...state.spectralModifiers,handPenalty:state.spectralModifiers.handPenalty+cost.amount}})}；整副 ${state.deckInstances.length-state.destroyedIds.length} 张改为${selection.suit?SUIT_NAMES[selection.suit]:'所选花色'}。`);
       }
-      if(operation.kind==='rare-joker-reward'){const pool=rarePool(state);lines.push(`当前公开稀有池：${pool.length?pool.map(joker=>joker.name).join('、'):'无候选'}。${pool.length?`每张概率 1/${pool.length}。`:''}`);}
+      if(operation.kind==='rare-joker-reward'){const pool=rarePool(state);lines.push(`当前公开稀有池：${pool.length?pool.map(joker=>cardDefinitionName(joker)).join('、'):'无候选'}。${pool.length?`每张概率 1/${pool.length}。`:''}`);}
       if(operation.kind==='clear-deck-specials')lines.push(`所有增强与特殊版次都将清除。下一场起手牌容量：${r2HandLimit(state)} → ${r2HandLimit({...state,spectralModifiers:{...state.spectralModifiers,cleanSlateBonus:state.spectralModifiers.cleanSlateBonus+operation.handBonus}})}。`);
       if(operation.kind==='restore-discard')lines.push(`本场弃牌：${state.stage?.discardsLeft??'尚未入场'} → ${state.stage?Math.min(state.stage.initialDiscards,state.stage.discardsLeft+operation.amount):'须先入场'}；上限为本场初始预算 ${state.stage?.initialDiscards??'待入场确定'}。`);
       if(operation.kind==='add-gold')lines.push(`金币 ${state.gold} → ${state.gold+operation.amount}。`);

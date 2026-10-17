@@ -1,3 +1,4 @@
+import {cardDefinitionName} from './tangsongCardNames';
 import type Phaser from 'phaser';
 import type {R2RunState} from '../domain/r2Run';
 import type {ScoreEvent} from '../domain/scoreR2';
@@ -34,7 +35,7 @@ export function settlementFacts(run:R2RunState,cleared:boolean,skipped=false){
  const tag=skipped?'换场留影':!cleared?'本局结束':tier===3?'亿分落定':tier===2?(score>=10000000n?'千万喝彩':'百万喝彩'):tier===1?'连锁成势':'本场结算';
  const hero=trace?.events.find(e=>scoring(e)&&e.sourceType==='character'&&e.sourceDefinitionId===run.characterId&&(increased(e,'H')||increased(e,'M')));
  const cardEvent=(trace&&strongestJokerFactor(trace,factors))??trace?.events.find(e=>e.sourceType==='joker'&&benefited(e));
- const card=cardEvent?{id:cardEvent.sourceDefinitionId,name:r2JokerDefinitionFor(run,cardEvent.sourceDefinitionId).name,event:cardEvent}:undefined;
+ const card=cardEvent?{id:cardEvent.sourceDefinitionId,name:cardDefinitionName(r2JokerDefinitionFor(run,cardEvent.sourceDefinitionId)),event:cardEvent}:undefined;
  const operation=(e:ScoreEvent)=>multiplicative(e)?'×'+readableFractionText(scoreSourceProcess(trace!,e,'')?.factor??e.value):increased(e,'H')?'热度 +'+readableFractionText(e.value):'倍率 +'+readableFractionText(e.value);
  const cardEvents=card?trace!.events.filter(e=>e.sourceType==='joker'&&e.sourceInstanceId===card.event.sourceInstanceId&&benefited(e)):[];
  const reads=new Map<string,number>();
@@ -49,7 +50,7 @@ export function settlementFacts(run:R2RunState,cleared:boolean,skipped=false){
  const routeSummary=isR2BoundedClear(run)&&routes.length?'过关加成 · '+routes.map(route=>'×'+readableFractionText(route.value)).join(' · '):routes.length?'本局'+routes.map(route=>({G:'同点',S:'顺子',F:'同花'}[route.routeFamily!])+route.resourceBefore+'场').join(' · '):undefined;
  // Keep the complete ordered trace in the existing inspection. This line is a subset, never a claimed total.
  const jokerFactorSourceCount=new Set(factors.filter(e=>e.sourceType==='joker').map(e=>e.sourceInstanceId)).size;
- const chain=factors.filter(e=>e.sourceType==='joker').slice(0,3).map(e=>r2JokerDefinitionFor(run,e.sourceDefinitionId).name+' ×'+readableFractionText(e.value));
+ const chain=factors.filter(e=>e.sourceType==='joker').slice(0,3).map(e=>cardDefinitionName(r2JokerDefinitionFor(run,e.sourceDefinitionId))+' ×'+readableFractionText(e.value));
  return {...saved,tier,tag,hero,heroSkill,heroCopy,card,cardCopy,operation,routeCopy,routeSummary,chain,jokerFactorSourceCount,factorCount:factors.length};
 }
 

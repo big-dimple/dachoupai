@@ -1,3 +1,4 @@
+import {cardDefinitionName} from './tangsongCardNames';
 import type {R2RunState,DomainEvent} from '../domain/run';
 import type {ScoreTrace} from '../domain/scoreR2';
 import {r2JokerDefinitionFor} from '../domain/r2ContentProfiles';
@@ -15,7 +16,7 @@ export function transactionGrowthChange(before:R2RunState,after:R2RunState,event
  if(!op||!('key' in op))return;
  const a=saved.growth[op.key]??{n:'0',d:'1'},b=source.growth[op.key]??{n:'0',d:'1'},prefix=op.key==='coefficient'?'×':'+';
  const delta=Rational.fromJSON(a).add(Rational.fromJSON(b).multiply(new Rational(-1n))),tail=event.operation==='reset-coefficient'?'已重置':delta.n>0n?'实际新增+'+fractionText(delta.toJSON()):'实际未新增';
- return d.name+(compact?' 已保存 ':' · '+phaseName[event.phase as keyof typeof phaseName]+'已保存 ')+prefix+fractionText(b)+'→'+prefix+fractionText(a)+(compact?'':' · '+tail);
+ return cardDefinitionName(d)+(compact?' 已保存 ':' · '+phaseName[event.phase as keyof typeof phaseName]+'已保存 ')+prefix+fractionText(b)+'→'+prefix+fractionText(a)+(compact?'':' · '+tail);
 }
 /** A prior hand record, labelled as such; never claims the current holding was read. */
 export function handGrowthChanges(state:R2RunState,trace:ScoreTrace=state.lastTrace!):{instanceId:string;line:string}[]{
@@ -27,7 +28,7 @@ export function handGrowthChanges(state:R2RunState,trace:ScoreTrace=state.lastTr
    const own=trace.events.filter(e=>e.sourceType==='joker'&&e.sourceInstanceId===source.instanceId&&e.sourceDefinitionId===source.definitionId&&['add-growth','add-coefficient','multiply-coefficient','reset-growth','reset-coefficient','consume-growth'].includes(e.operation));if(!own.length)return [];
    const b=source.growth[key]??{n:'0',d:'1'},a=saved.growth[key]??{n:'0',d:'1'},prefix=key==='coefficient'?'×':'+';
    const delta=Rational.fromJSON(a).add(Rational.fromJSON(b).multiply(new Rational(-1n))),change=delta.n>0n?'实际新增+'+fractionText(delta.toJSON()):delta.n<0n?'实际减少'+fractionText(delta.multiply(new Rational(-1n)).toJSON()):'实际未新增';
-   return [{instanceId:source.instanceId,line:d.name+' · 上手已保存 '+prefix+fractionText(b)+'→'+prefix+fractionText(a)+' · '+change}];
+   return [{instanceId:source.instanceId,line:cardDefinitionName(d)+' · 上手已保存 '+prefix+fractionText(b)+'→'+prefix+fractionText(a)+' · '+change}];
   });
  });
 }

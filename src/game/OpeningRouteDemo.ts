@@ -1,3 +1,4 @@
+import {cardDefinitionName} from './tangsongCardNames';
 import type {BuildFocus} from './BuildJourney';
 import type {CharacterId} from './characters';
 import {R2_ROUTE_STARTERS} from '../domain/r2GroupUpgrade';
@@ -11,5 +12,5 @@ export function openingRouteDemo(focus:BuildFocus,id:CharacterId){
  const method={group:'改点数凑同点，再升两对／三条',straight:'微调缺口点数，再升顺子',flush:'染成同花色，再升同花'}[focus];
  const operations=starter.hooks.flatMap(h=>h.operations),heat=operations.find(op=>op.kind==='add-heat'),growth=operations.find(op=>op.kind==='add-growth');
  const payoff=heat?.kind==='add-heat'?(focus==='group'?'成组':'顺子')+'后热度 +'+fractionText(heat.value):growth?.kind==='add-growth'?'同花 +'+fractionText(growth.value)+'成长 · 下手生效':'完整条件见起手详情';
- return {shape,method,payoff,starter:starter.name,id:starter.id};
+ return {shape,method,payoff,starter:cardDefinitionName(starter),id:starter.id};
 }
