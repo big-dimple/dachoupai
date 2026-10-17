@@ -9,6 +9,7 @@ import {PAPER_THEME,PAPER_CSS,UI_FONT} from './theme';
 import {alignViewportCamera,cssViewport} from '../platform/Viewport';
 import {crispText} from './TextRaster';
 import {drawHandActionGlyph,type HandButtonSkin} from './HandActionArt';
+import {attachHandSortVisual,isHandSortControl} from './HandSortButtonVisual';
 
 type TouchActions={tap:()=>void;detail?:()=>void;drag?:(x:number,y:number)=>void;dragMove?:(x:number,y:number)=>void;swipe?:(dx:number,dy:number)=>void;cancel?:()=>void;press?:()=>void;release?:()=>void;enter?:()=>void;leave?:()=>void;holdToDrag?:boolean};
 // A repeated release can outlive its scene and hit a different action in the next view.
@@ -128,6 +129,10 @@ export class SceneView {
     const t=this.text(b.x+b.width/2,b.y+b.height/2-1,label,primary?22:15).setOrigin(.5).setFontStyle('bold').setColor(primary?PAPER_CSS.paperLight:PAPER_CSS.jade);
     const r=this.rect(b).setFillStyle(0,0).setStrokeStyle();
     r.setData('label',t).setData('buttonArt',art).setData('buttonFace',g).setData('buttonBounds',b).setData('buttonPrimary',primary).setData('buttonSkin',skin).setData('buttonGlyph',glyph);
+    if(skin==='sort'&&isHandSortControl(name)){
+      const visual=attachHandSortVisual(this.scene,r,{art,face:g,edge,glow,label:t,bounds:b},()=>gameSession().reducedMotion);
+      this.target(r,name,{tap:()=>{AudioEngine.shared.select();action();},...visual});this.setEnabled(r,enabled);return r;
+    }
     const stop=()=>this.scene.tweens.killTweensOf([art,t]);
     const rest=()=>{stop();art.setScale(1).setPosition(b.x,b.y);t.setScale(1);t.y=Number(t.getData('restY')??b.y+b.height/2-1);crispText(t);glow.setAlpha(0);};
     const press=()=>{
@@ -149,7 +154,9 @@ export class SceneView {
     const art=object.getData('buttonArt') as Phaser.GameObjects.Container|undefined;art?.setAlpha(1);
     const face=object.getData('buttonFace') as Phaser.GameObjects.Graphics|undefined,b=object.getData('buttonBounds') as Box|undefined;
     const skin=object.getData('buttonSkin') as HandButtonSkin|undefined,glyph=object.getData('buttonGlyph') as Phaser.GameObjects.Graphics|undefined;
-    if(face&&b){face.clear();if(skin!=='sort'){face.fillStyle(PAPER_THEME.ink,.08).fillRoundedRect(0,2,b.width,b.height,6);face.fillStyle(enabled?(primary?PAPER_THEME.red:PAPER_THEME.paperLight):PAPER_THEME.disabled).fillRoundedRect(0,0,b.width,b.height,6);}}
+    const sortRefresh=object.getData('sortVisualRefresh') as (()=>void)|undefined;
+    if(face&&b&&!sortRefresh){face.clear();if(skin!=='sort'){face.fillStyle(PAPER_THEME.ink,.08).fillRoundedRect(0,2,b.width,b.height,6);face.fillStyle(enabled?(primary?PAPER_THEME.red:PAPER_THEME.paperLight):PAPER_THEME.disabled).fillRoundedRect(0,0,b.width,b.height,6);}}
     if(glyph&&skin&&skin!=='sort')drawHandActionGlyph(glyph,skin,enabled?(primary?PAPER_THEME.paperLight:PAPER_THEME.jade):PAPER_THEME.disabledInk);
+    sortRefresh?.();
   }
 }

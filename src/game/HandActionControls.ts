@@ -2,6 +2,7 @@ import type Phaser from 'phaser';
 import type {Box,LayoutMode} from './layout';
 import type {SceneView} from './SceneView';
 import {PAPER_CSS,PAPER_THEME} from './theme';
+import {crispText} from './TextRaster';
 
 const SORT_TITLE_HEIGHT=14;
 export function handSortTitleBox(tools:Box):Box {return {...tools,height:SORT_TITLE_HEIGHT};}
@@ -21,8 +22,10 @@ export function handActionControls(actions:Box,mode:LayoutMode,bottomLimit?:numb
 export function renderHandSortGroup(scene:Phaser.Scene,view:SceneView,tools:Box):void {
  const title=handSortTitleBox(tools),g=scene.add.graphics();
  g.fillStyle(PAPER_THEME.jadeSoft).fillRoundedRect(tools.x,tools.y,tools.width,tools.height,6).lineStyle(1,PAPER_THEME.jade,.9).strokeRoundedRect(tools.x+.5,tools.y+.5,tools.width-1,tools.height-1,6);
+ g.lineStyle(1,PAPER_THEME.jade,.2);
+ for(const index of [1,2]){const x=Math.round(tools.x+tools.width*index/3)+.5;g.beginPath().moveTo(x,tools.y+SORT_TITLE_HEIGHT+13).lineTo(x,tools.y+tools.height-13).strokePath();}
  view.add(g.setName('action/sort-group').setData('bounds',tools));
- view.text(title.x+title.width/2,title.y+title.height/2,'理牌',11,PAPER_CSS.jade).setOrigin(.5).setName('action/sort-title');
+ const caption=view.text(title.x+title.width/2,title.y+title.height/2,'理牌',11,PAPER_CSS.mutedInk).setOrigin(.5).setName('action/sort-title');crispText(caption);
 }
 
 export type HandAiButtonState='ready'|'working'|'paused'|'unavailable';
