@@ -1,8 +1,9 @@
 import {jokerArtUrl, jokerArtPreviewUrl} from './jokerArt';
 import {cardDisplayName} from './tangsongCardNames';
+import {progressiveArt} from './DetailArt';
 import {AudioEngine} from '../audio/AudioEngine';
 
-let activeZoomDialog: HTMLDialogElement | null = null;
+let activeZoom: {dialog: HTMLDialogElement; returnFocus: HTMLElement | null; dispose: (restore?: boolean) => void} | undefined;
 
 function ensureZoomStyles(): void {
   if (document.getElementById('card-art-zoom-styles')) return;
@@ -10,289 +11,119 @@ function ensureZoomStyles(): void {
   style.id = 'card-art-zoom-styles';
   style.textContent = `
     .card-art-zoom-dialog {
-      border: 1px solid #d4c7b4;
-      border-radius: 10px;
-      padding: 0;
-      background: #1e1b18;
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.1);
-      width: min(92vw, 480px);
-      max-height: 90vh;
-      color: #f7eedf;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
       position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      inset: 0;
+      margin: 0;
+      transform: none;
+      box-sizing: border-box;
+      width: 100%;
+      max-width: none;
+      height: 100vh;
+      height: 100dvh;
+      max-height: none;
+      padding: max(8px, var(--safe-top, 0px), env(safe-area-inset-top)) max(8px, var(--safe-right, 0px), env(safe-area-inset-right)) max(8px, var(--safe-bottom, 0px), env(safe-area-inset-bottom)) max(8px, var(--safe-left, 0px), env(safe-area-inset-left));
+      border: 0;
+      border-radius: 0;
+      background: #000;
+      color: #eee;
+      overflow: hidden;
       z-index: 99999;
     }
-    .card-art-zoom-dialog::backdrop {
-      background: rgba(14, 12, 10, 0.78);
-      backdrop-filter: blur(4px);
-    }
-    .card-art-zoom-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 12px 16px;
-      background: rgba(36, 32, 28, 0.95);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    }
-    .card-art-zoom-title {
-      font-family: Georgia, "Noto Serif SC", SimSun, serif;
-      font-size: clamp(16px, 4vw, 19px);
-      font-weight: bold;
-      color: #ffd97d;
-      letter-spacing: 0.06em;
-      margin: 0;
-    }
-    .card-art-zoom-badge {
-      font-size: 11px;
-      color: #a89f91;
-      margin-left: 8px;
-      font-weight: normal;
-    }
+    .card-art-zoom-dialog[open] { display: grid; grid-template-rows: auto minmax(0, 1fr) auto; gap: 4px; }
+    .card-art-zoom-dialog::backdrop { background: #000; }
+    .card-art-zoom-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-width: 0; }
+    .card-art-zoom-title { margin: 0; font-size: 16px; line-height: 1.4; font-weight: normal; }
     .card-art-zoom-close {
-      background: transparent;
-      border: none;
-      color: #c9bfb0;
-      font-size: 22px;
-      line-height: 1;
-      width: 32px;
-      height: 32px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      border-radius: 4px;
-      transition: background 0.15s ease, color 0.15s ease;
-    }
-    .card-art-zoom-close:hover,
-    .card-art-zoom-close:focus {
-      background: rgba(255, 255, 255, 0.1);
-      color: #ffffff;
-    }
-    .card-art-zoom-body {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 16px;
-      position: relative;
-      overflow: auto;
-      max-height: calc(90vh - 90px);
-    }
-    .card-art-zoom-img-wrapper {
-      position: relative;
-      width: 100%;
-      max-width: 360px;
-      aspect-ratio: 615 / 768;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      flex: 0 0 44px;
+      width: 44px;
+      height: 44px;
+      min-width: 44px;
+      min-height: 44px;
+      padding: 0;
+      border: 1px solid #777;
       border-radius: 6px;
-      overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-      background: #2a2520;
+      background: #111;
+      color: #fff;
+      font-size: 28px;
+      cursor: pointer;
     }
-    .card-art-zoom-thumb {
+    .card-art-zoom-dialog button:focus-visible { outline: 3px solid #ffd97d; outline-offset: 2px; }
+    .card-art-zoom-body { position: relative; min-width: 0; min-height: 0; }
+    .card-art-zoom-thumb, .card-art-zoom-detail {
       position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      filter: blur(8px);
-      transform: scale(1.05);
-      transition: opacity 0.3s ease;
+      max-width: none;
+      max-height: none;
+      object-fit: contain;
+      filter: none;
+      transform: none;
     }
-    .card-art-zoom-detail {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0;
-      transition: opacity 0.35s ease;
-      z-index: 2;
-    }
-    .card-art-zoom-detail.is-loaded {
-      opacity: 1;
-    }
-    .card-art-zoom-loading {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 13px;
-      color: #ffd97d;
-      background: rgba(20, 18, 16, 0.85);
-      padding: 6px 14px;
-      border-radius: 20px;
-      border: 1px solid rgba(255, 217, 125, 0.3);
-      z-index: 3;
-      pointer-events: none;
-      transition: opacity 0.25s ease;
-    }
-    .card-art-zoom-loading.is-hidden {
-      opacity: 0;
-    }
-    .card-art-zoom-footer {
-      padding: 8px 16px 12px;
-      text-align: center;
-      font-size: 12px;
-      color: #9c9182;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-    }
-    /* Subtle zoom indicator on card preview in DetailDialog */
-    .dialog-card-art {
-      position: relative;
-      cursor: zoom-in;
-    }
-    .dialog-card-zoom-badge {
-      position: absolute;
-      bottom: 8px;
-      right: 8px;
-      background: rgba(30, 27, 24, 0.88);
-      color: #ffd97d;
-      font-size: 11px;
-      font-weight: bold;
-      padding: 2px 7px;
-      border-radius: 4px;
-      border: 1px solid rgba(255, 217, 125, 0.4);
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
-      pointer-events: none;
-      opacity: 0.88;
-      transition: opacity 0.15s ease, transform 0.15s ease;
-    }
-    .dialog-card-art:hover .dialog-card-zoom-badge {
-      opacity: 1;
-      transform: scale(1.05);
-    }
+    .card-art-zoom-detail { opacity: 0; }
+    .card-art-zoom-detail.is-loaded { opacity: 1; }
+    .card-art-zoom-recovery { min-height: 20px; display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px; }
+    .card-art-zoom-recovery[hidden] { display: none; }
+    .card-art-zoom-recovery .detail-art-status { margin: 0; color: #ddd; font-size: 13px; line-height: 20px; }
+    .card-art-zoom-recovery .detail-art-retry { min-height: 44px; margin: 0; padding: 6px 16px; background: #111; color: #fff; border: 1px solid #777; }
+    .card-art-zoom-recovery [hidden] { display: none; }
   `;
   document.head.appendChild(style);
 }
 
-/**
- * Opens a full-fidelity artwork inspection modal for a Tang-Song card.
- * Loads the 615x768 detail image live on demand with instant thumbnail preview.
- */
+/** Full artwork, bounded on-demand HD loading, and a readable thumbnail on failure. */
 export function openCardArtZoom(definitionId: string, customName?: string): HTMLDialogElement {
   ensureZoomStyles();
-
-  if (activeZoomDialog) {
-    activeZoomDialog.close();
-    activeZoomDialog.remove();
-    activeZoomDialog = null;
-  }
-
+  // Replacing a zoom retains the original opener, never a soon-to-be-removed close button.
+  const returnFocus = activeZoom?.returnFocus ?? (document.activeElement instanceof HTMLElement ? document.activeElement : null);
+  activeZoom?.dispose(false);
   const name = cardDisplayName(definitionId, customName);
-  const detailUrl = jokerArtUrl(definitionId);
-  const thumbUrl = jokerArtPreviewUrl(definitionId);
-
+  const detailUrl = jokerArtUrl(definitionId), thumbUrl = jokerArtPreviewUrl(definitionId);
   const dialog = document.createElement('dialog');
   dialog.className = 'card-art-zoom-dialog';
   dialog.setAttribute('aria-label', `${name} · 高清细节鉴赏`);
-
-  // Header
-  const header = document.createElement('div');
-  header.className = 'card-art-zoom-header';
-
-  const titleWrap = document.createElement('div');
-  titleWrap.style.display = 'flex';
-  titleWrap.style.alignItems = 'baseline';
-
-  const title = document.createElement('h3');
-  title.className = 'card-art-zoom-title';
-  title.textContent = `【${name}】`;
-
-  const badge = document.createElement('span');
-  badge.className = 'card-art-zoom-badge';
-  badge.textContent = '手绘卡面 · 高清鉴赏';
-
-  titleWrap.append(title, badge);
-
-  const closeBtn = document.createElement('button');
-  closeBtn.type = 'button';
-  closeBtn.className = 'card-art-zoom-close';
-  closeBtn.innerHTML = '&times;';
-  closeBtn.setAttribute('aria-label', '关闭赏析');
-  closeBtn.onclick = () => {
-    AudioEngine.shared.cancel();
-    dialog.close();
+  const header = document.createElement('header'), title = document.createElement('h3'), close = document.createElement('button');
+  header.className = 'card-art-zoom-header';title.className = 'card-art-zoom-title';title.textContent = name;
+  close.type = 'button';close.className = 'card-art-zoom-close';close.textContent = '×';close.setAttribute('aria-label', '关闭赏析');
+  header.append(title, close);
+  const body = document.createElement('div'), thumb = document.createElement('img'), detail = document.createElement('img'), recovery = document.createElement('div');
+  body.className = 'card-art-zoom-body';recovery.className = 'card-art-zoom-recovery';recovery.setAttribute('aria-live', 'polite');
+  thumb.className = 'card-art-zoom-thumb';thumb.alt = `${name} 缩略卡面`;
+  thumb.onerror = () => {thumb.hidden = true;};
+  detail.className = 'card-art-zoom-detail';detail.alt = `${name} 高清卡面`;detail.decoding = 'async';detail.hidden = true;
+  let disposed = false, stopLoading: (() => void) | undefined;
+  const dispose = (restore = true) => {
+    if (disposed) return;
+    disposed = true;stopLoading?.();thumb.onload = null;thumb.onerror = null;
+    thumb.removeAttribute('src');detail.removeAttribute('src');
+    dialog.close();dialog.remove();
+    if (activeZoom?.dialog === dialog) activeZoom = undefined;
+    if (restore && returnFocus?.isConnected) returnFocus.focus({preventScroll: true});
   };
-
-  header.append(titleWrap, closeBtn);
-
-  // Body with live on-demand image loader
-  const body = document.createElement('div');
-  body.className = 'card-art-zoom-body';
-
-  const imgWrapper = document.createElement('div');
-  imgWrapper.className = 'card-art-zoom-img-wrapper';
-
-  const loadingIndicator = document.createElement('div');
-  loadingIndicator.className = 'card-art-zoom-loading';
-  loadingIndicator.textContent = '正在加载高清卡面…';
-
-  // Fast thumbnail
-  const thumbImg = document.createElement('img');
-  thumbImg.className = 'card-art-zoom-thumb';
-  thumbImg.alt = name;
-  if (thumbUrl) thumbImg.src = thumbUrl;
-
-  // Live on-demand detail image
-  const detailImg = document.createElement('img');
-  detailImg.className = 'card-art-zoom-detail';
-  detailImg.alt = `${name} 高清细节`;
-  detailImg.decoding = 'async';
-
-  detailImg.onload = async () => {
-    try {
-      await detailImg.decode();
-    } catch {
-      // Decode fallback
-    }
-    detailImg.classList.add('is-loaded');
-    loadingIndicator.classList.add('is-hidden');
-    thumbImg.style.opacity = '0';
-  };
-
-  detailImg.onerror = () => {
-    loadingIndicator.textContent = '高清原画加载失败，保留原图';
-  };
-
-  if (detailUrl) {
-    detailImg.src = detailUrl;
-  }
-
-  imgWrapper.append(thumbImg, detailImg, loadingIndicator);
-  body.append(imgWrapper);
-
-  // Footer
-  const footer = document.createElement('div');
-  footer.className = 'card-art-zoom-footer';
-  footer.textContent = '唐宋手绘卡牌工笔原画 · 点击任意处返回';
-
-  dialog.append(header, body, footer);
-  document.body.appendChild(dialog);
-
-  // Dismiss on clicking backdrop
-  dialog.addEventListener('click', (event) => {
-    if (event.target === dialog) {
-      AudioEngine.shared.cancel();
-      dialog.close();
-    }
+  const dismiss = () => {AudioEngine.shared.cancel();dispose();};
+  close.onclick = dismiss;
+  dialog.addEventListener('cancel', event => {event.preventDefault();dismiss();});
+  dialog.addEventListener('close', () => dispose(), {once: true});
+  // The black area around the contained image is an outside click, even on the img element.
+  dialog.addEventListener('click', event => {
+    if (event.target === dialog || event.target === body) {dismiss();return;}
+    if (event.target !== thumb && event.target !== detail) return;
+    const image = event.target as HTMLImageElement, rect = image.getBoundingClientRect();
+    const scale = Math.min(rect.width / image.naturalWidth, rect.height / image.naturalHeight);
+    const width = image.naturalWidth * scale, height = image.naturalHeight * scale;
+    const left = rect.left + (rect.width - width) / 2, top = rect.top + (rect.height - height) / 2;
+    if (event.clientX < left || event.clientX > left + width || event.clientY < top || event.clientY > top + height) dismiss();
   });
-
-  dialog.addEventListener('close', () => {
-    dialog.remove();
-    if (activeZoomDialog === dialog) {
-      activeZoomDialog = null;
-    }
+  body.append(thumb, detail);dialog.append(header, body, recovery);document.body.append(dialog);
+  activeZoom = {dialog, returnFocus, dispose};dialog.showModal();close.focus({preventScroll: true});
+  if (thumbUrl) thumb.src = thumbUrl;
+  if (detailUrl) stopLoading = progressiveArt(recovery, detail, detailUrl, () => {
+    if (disposed || !dialog.open) return;
+    detail.hidden = false;detail.classList.add('is-loaded');thumb.hidden = true;
+    if (recovery.contains(document.activeElement)) close.focus({preventScroll: true});
+    recovery.hidden = true;
   });
-
-  dialog.showModal();
-  activeZoomDialog = dialog;
+  else recovery.textContent = '卡面暂未收录';
   AudioEngine.shared.select();
-
   return dialog;
 }

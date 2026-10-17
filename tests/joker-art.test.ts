@@ -19,7 +19,16 @@ it('maps all72 production IDs to their exact reviewed handdrawn faces without bo
 });
 
 it('covers C00/C02 additions and keeps unknown fixture IDs on the mechanism fallback',()=>{
-  for(const id of [...c00Pool,...c02Pool]){expect(jokerArtKey(id)).toBe('p08-joker-'+id);expect(jokerArtUrl(id)).toContain(id==='a11'?'assets/handdrawn-p08/cards/a11-v2-aa4e6a9988ab.detail.webp':'assets/handdrawn-p08/cards/'+id+'.detail.webp');}
+  for(const id of [...c00Pool,...c02Pool]){expect(jokerArtKey(id)).toBe('p08-joker-'+id);expect(jokerArtUrl(id)).toContain(id==='a11'?'assets/handdrawn-p08/cards/a11-v3-9a3c66b239fc.detail.webp':'assets/handdrawn-p08/cards/'+id+'.detail.webp');}
   expect(jokerArtKey('fixture/never-registered')).toBeUndefined();expect(jokerArtUrl('fixture/never-registered')).toBeUndefined();
   for(const joker of R2_JOKERS)expect([...approvedPool,...c00Pool,...c02Pool]).toContain(joker.id);
+});
+
+// All 72 were replaced in place on 2026-10-17; both loading paths must bypass old HTTP entries.
+it('versions thumbnail and HD requests with the exact manifest hash',async()=>{
+ const {HANDDRAWN_ART,handdrawnPath}=await import('../src/game/HanddrawnArt');
+ for(const art of JOKER_ART)for(const purpose of ['thumbnail','detail']){
+  const output=HANDDRAWN_ART.find(a=>a.id===art.id)!.outputs.find(o=>o.purpose===purpose)!;
+  const path=purpose==='thumbnail'?art.path:art.detailPath;expect(path).toBe(handdrawnPath(art.id,purpose)+'?v='+output.sha256);
+ }
 });
