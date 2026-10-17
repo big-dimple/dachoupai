@@ -8,7 +8,15 @@ import {Rational} from '../domain/rational';
 import {HAND_LABELS} from '../content/handLabels';
 import {shopGoldConditionMatches,shopPurchaseCashFacts,shopPurchaseConditionLosses} from './ShopRouteRelations';
 import {cardDefinitionName} from './tangsongCardNames';
-export interface ShopSynergyResult {hasSynergy:boolean;heldInstanceIds:string[];heroSynergy:boolean;tag:string;reason:string}
+import {usesTouyeWager} from '../domain/r2TouyeWager';
+export interface ShopSynergyMatch {instanceId:string;name:string;shortReason:string;reason:string}
+export interface ShopSynergyResult {hasSynergy:boolean;heldInstanceIds:string[];matches:ShopSynergyMatch[];heroSynergy:boolean;tag:string;reason:string;cashNote?:string;tradeoff?:string}
+/** An actual no-discard hook and the current discard skill establish a tradeoff, never a hero bonus. */
+export function shopCandidateTradeoff(run:R2RunState,candidateDefId:string):string|undefined {
+ if(!usesTouyeWager(run))return;
+ let d;try{d=r2JokerDefinitionsFor(run).find(d=>d.id===candidateDefId);}catch{return;}
+ if(d?.hooks.some(h=>h.condition.kind==='resource'&&h.condition.resource==='discards-used'&&h.condition.equals===0&&h.operations.some(o=>o.kind==='multiply-multiplier'&&Rational.fromJSON(o.value).compare(new Rational(1n))>0)))return '走不弃牌打法可用；发动秦琼弃牌技能会停用本场加成。';
+}
 function conditionTypes(c:Condition,gold:number):readonly R2HandType[]|undefined {
  if(c.kind==='always')return R2_HAND_TYPES;
  if(c.kind==='hand-type-in')return c.values;
@@ -27,11 +35,12 @@ function supportedConditions(d:R2JokerDefinition,j:R2JokerInstance,gold:number){
 }
 /** Condition intersection at the real purchase price, never a strength or activation promise. */
 export function findShopSynergy(run:R2RunState,candidateDefId:string):ShopSynergyResult {
- const result:ShopSynergyResult={hasSynergy:false,heldInstanceIds:[],heroSynergy:false,tag:'条件交集',reason:''};
+ const result:ShopSynergyResult={hasSynergy:false,heldInstanceIds:[],matches:[],heroSynergy:false,tag:'条件交集',reason:''};
  if(run?.phase!=='shop'||!run.shop||!candidateDefId)return result;
  let definitions;try{definitions=r2JokerDefinitionsFor(run);}catch{return result;}
  const d=definitions.find(d=>d.id===candidateDefId),offer=run.shop.offers.find(o=>o.definitionId===candidateDefId&&!o.consumed);
  if(!d||!offer)return result;
+ result.tradeoff=shopCandidateTradeoff(run,candidateDefId);
  if(run.jokers.some(j=>j.definitionId===candidateDefId))return {...result,reason:'已持同名牌；不能按重复买入推断配合。'};
  const cash=shopPurchaseCashFacts(run,offer);
  if(cash.status!=='assessed')return {...result,reason:'先指定替换对象，再核对出售与购买后的条件。'};
@@ -43,10 +52,12 @@ export function findShopSynergy(run:R2RunState,candidateDefId:string):ShopSynerg
   if(disabled.has(j.instanceId))continue;const held=definitions.find(d=>d.id===j.definitionId);if(!held)continue;
   const common=[...new Set(supportedConditions(held,j,cash.goldAfterPurchase).flatMap(a=>conditions.flatMap(b=>a.filter(t=>b.includes(t)))))];
   if(!common.length)continue;result.heldInstanceIds.push(j.instanceId);
-  reasons.push('与已持「'+cardDefinitionName(held)+'」的条件'+(common.length===R2_HAND_TYPES.length?'可同时满足': '交集含'+common.map(t=>HAND_LABELS[t]).join('／'))+'；仍须按各自时点触发，不代表额外加成。');
+  const name=cardDefinitionName(held),shared=common.length===R2_HAND_TYPES.length?'条件可同时满足':'同走'+common.slice(0,2).map(t=>HAND_LABELS[t]).join('／')+(common.length>2?'等':''),reason='与已持「'+name+'」的条件'+(common.length===R2_HAND_TYPES.length?'可同时满足': '交集含'+common.map(t=>HAND_LABELS[t]).join('／'))+'；仍须按各自时点触发，不代表额外加成。';
+  result.matches.push({instanceId:j.instanceId,name,shortReason:shared,reason});reasons.push(reason);
  }
  result.hasSynergy=!!result.heldInstanceIds.length;
  const losses=shopPurchaseConditionLosses(run,offer);
+ result.cashNote='购后'+cash.goldAfterPurchase+'金';
  result.reason='按实际购款'+run.gold+'→'+cash.goldAfterPurchase+'金核对；'+(reasons.length?reasons.join(' '):'未核实可共同满足的条件，各自查看规则。')+(losses.length?'\n'+losses.join('\n'):'');
  return result;
 }
