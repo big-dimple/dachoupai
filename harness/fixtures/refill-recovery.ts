@@ -3,7 +3,7 @@ import {newRunIdentity} from '../../src/game/RunLaunch';
 export function refillSend(state:R2RunState,action:Action):R2RunState {
   const r=applyCommand(state,{runId:state.runId,commandId:state.runId+'/command/'+(state.commandSeq+1),expectedSeq:state.commandSeq,action});if(!r.ok)throw Error(r.code);return r.state;
 }
-/** Current identity, original difficulty2 target600; public deterministic cards and explicit 3-gold fixture. */
+/** Current identity and published target; public deterministic cards and explicit 3-gold fixture. */
 export function refillRecoveryFixture(discardCount=5){
   let state=createRun({seed:'xin-refill-entry',runId:'fixture/xin-refill-entry',characterId:'laohuan',rulesVersion:'r2',r2Identity:newRunIdentity('laohuan','group'),openingRoute:'group',modeConfig:{mode:'standard',difficulty:2,challengeId:null,programsEnabled:false}});
   state=refillSend(refillSend(state,{type:'LeaveShop'}),{type:'EnterStage'});state=structuredClone(state);
