@@ -33,7 +33,7 @@ async function observe(p){await p.evaluate(()=>{
     const nodes=[],walk=list=>{for(const o of list){if(o.active&&o.name?.startsWith('hero/target-'))nodes.push(o);if(o.list)walk(o.list);}};walk(s.view.root.list);
     const edge=nodes.find(o=>o.name==='hero/target-edge'),flight=nodes.find(o=>o.name==='hero/target-travel'),tag=nodes.find(o=>o.name==='hero/target-tag');
     const target=s.cardViews.find(v=>v.card.id==='hearts-6')??s.settledCards.get('hearts-6'),other=s.cardViews.find(v=>v.card.id==='clubs-6')??s.settledCards.get('clubs-6'),index=target?.container.list.find(o=>o.name==='rank-index');
-    const row={at:performance.now(),phase:edge?.getData('phase'),target:edge?.getData('targetId'),flow:edge?.getData('flowPhase'),generation:edge?.getData('generation'),travel:flight?.getData('progress'),tag:tag?.text,tagBounds:tag?box(tag):undefined,indexBounds:index?box(index):undefined,targetBounds:target?box(target.background):undefined,otherBounds:other?box(other.background):undefined,edgeCount:nodes.filter(o=>o.name==='hero/target-edge').length,event:s.scoreTotal?.getData('eventId'),eventPhase:s.scoreTotal?.getData('eventPhase'),H:s.scoreHeat?.text,M:s.scoreMult?.text};
+    const row={at:performance.now(),phase:edge?.getData('phase'),target:edge?.getData('targetId'),flow:edge?.getData('flowPhase'),generation:edge?.getData('generation'),travel:flight?.getData('progress'),tag:tag?.text,tagBounds:tag?box(tag):undefined,indexBounds:index?box(index):undefined,targetBounds:target?box(target.background):undefined,otherBounds:other?box(other.background):undefined,visibleCards:s.cardViews.filter(v=>v.container.active&&v.container.visible).map(v=>({id:v.card.id,...box(v.background)})),edgeCount:nodes.filter(o=>o.name==='hero/target-edge').length,event:s.scoreTotal?.getData('eventId'),eventPhase:s.scoreTotal?.getData('eventPhase'),H:s.scoreHeat?.text,M:s.scoreMult?.text};
     if(probe.frames.length<3500)probe.frames.push(row);
     if(row.phase==='release'&&!probe.events.some(e=>e.event===row.event))probe.events.push(row);
     let key;if(flight){const bucket=Math.floor((row.travel??0)*3);key='travel-'+row.generation+'-'+bucket;}
@@ -64,6 +64,7 @@ try{for(const spec of specs){
     if(spec.key==='boundaries'){
       await choose(p,fixture.otherId,false);await p.waitForTimeout(250);row.retarget=await marks(p);assert.ok(row.retarget.length&&row.retarget.every(m=>m.target===fixture.otherId));assert.notEqual(row.retarget.find(m=>m.name==='hero/target-edge').generation,row.accepted.find(m=>m.name==='hero/target-edge').generation);
       await tapUI(p,'game','hero/action-shortcut',false);await p.getByRole('button',{name:'取消本手选牌',exact:true}).click();await noMarks(p);assert.deepEqual(await snap(p),initial);row.cancelNoCommit=true;
+      await choose(p,fixture.targetId,false);await tapUI(p,'game','card/'+fixture.targetId,false);await noMarks(p);assert.deepEqual(await snap(p),initial);await tapUI(p,'game','card/'+fixture.targetId,false);await noMarks(p);row.removeTargetClearsWithoutRearming=true;
       await choose(p,fixture.targetId,false);await p.waitForTimeout(230);const generation=(await marks(p)).find(m=>m.name==='hero/target-edge').generation;
       const cardPoint=await point(p,'game','card/'+fixture.targetId);await p.mouse.move(cardPoint.x,cardPoint.y);await p.mouse.down();await p.waitForTimeout(430);await p.mouse.up();await p.getByRole('button',{name:'右移',exact:true}).click();await p.getByRole('button',{name:'关闭',exact:true}).click();await settled(p);await p.waitForTimeout(220);
       const reordered=await snap(p);assert.deepEqual(reordered.state,energySend(initial.state,{type:'ReorderHand',ids:reordered.state.handOrder}));initial=reordered;expected=energySend(initial.state,{type:'PlayHand',selectedIds:fixture.selectedIds,erxiangTargetId:fixture.targetId});
@@ -76,7 +77,7 @@ try{for(const spec of specs){
     const beforePlay=performance.now();await tapUI(p,'game','action/play',touch);
     await p.waitForFunction(()=>window.__harness.game.scene.getScene('game').presentation||!window.__harness.game.scene.getScene('game').playing);row.submitMs=performance.now()-beforePlay;
     if(spec.key==='boundaries'){
-      await p.waitForFunction(()=>window.__harness.game.scene.getScene('game').scoreTotal?.getData('eventPhase')==='base-impact');await tapMenuAction(p,'快进当前手');await settled(p);await noMarks(p);assert.deepEqual((await snap(p)).state,expected);row.fastForwardNoTail=true;
+      await p.waitForFunction(()=>{const s=window.__harness.game.scene.getScene('game');return s.presentation&&s.targetAttachment?.state.value?.phase==='committed';});await tapMenuAction(p,'快进当前手');await settled(p);await noMarks(p);assert.deepEqual((await snap(p)).state,expected);row.fastForwardNoTail=true;
       const saved=await snap(p);await tapMenuAction(p,'回看上一手');await p.waitForTimeout(300);await noMarks(p);await tapMenuAction(p,'快进当前手');await settled(p);assert.deepEqual(await snap(p),saved);row.replayNoDraftOrWrite=true;
     }else{
       await p.waitForFunction(()=>{const s=window.__harness.game.scene.getScene('game');return s.presentation&&s.scoreTotal.getData('eventPhase')==='impact'&&s.presentation.score.events.some(e=>e.eventId===s.scoreTotal.getData('eventId')&&e.reasonKey==='erxiang.handoff');});
@@ -87,6 +88,7 @@ try{for(const spec of specs){
     for(const image of probe.images){await writeFile(dir+'/'+image.key+'.png',Buffer.from(image.png.split(',')[1],'base64'));delete image.png;}
     if(!spec.reduced&&spec.key!=='boundaries'){
       const idle=probe.frames.filter(f=>f.phase==='idle');assert.ok(idle.at(-1).at-idle[0].at>=3000);assert.ok(new Set(idle.map(f=>Math.round(f.flow*100))).size>15);assert.ok(probe.images.filter(i=>i.key.startsWith('idle-')).length>=16);assert.equal(probe.events.length,1);assert.equal(probe.events[0].target,fixture.targetId);assert.equal(probe.events[0].eventPhase,'impact');
+      for(const f of idle)for(const c of f.visibleCards){const b=f.tagBounds;assert.ok(!(b.x<c.x+c.width-.5&&b.x+b.width>c.x+.5&&b.y<c.y+c.height-.5&&b.y+b.height>c.y+.5),'target tag must not hide a printed card');}
     }
     if(spec.reduced){assert.ok(!probe.frames.some(f=>f.travel!==undefined));assert.ok(probe.frames.filter(f=>f.phase==='idle').every(f=>f.flow===0));}
     assert.deepEqual(probe.errors,[]);assert.deepEqual(row.errors,[]);await writeFile(dir+'/frames.json.gz',gzipSync(JSON.stringify(probe)));row.samples=probe.images;row.frames=probe.frames.length;row.releaseEvents=probe.events;row.status='PASS';await p.screenshot({path:dir+'/clean.png'});

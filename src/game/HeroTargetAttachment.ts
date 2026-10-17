@@ -76,7 +76,7 @@ export class HeroTargetAttachment {
     }
     const edge=this.edge!,label=this.label!,sx=Math.max(.2,Math.abs(container.scaleX)),sy=Math.max(.2,Math.abs(container.scaleY));
     const releasing=state.phase==='release',release=releasing?Math.min(1,state.elapsed/ATTACHMENT_RELEASE_MS):0,full=this.options.motion()==='full';
-    label.setText(releasing?'已转':'待转').setScale(1/sx,1/sy).setPosition(0,height/2+11/sy).setAlpha(1-release);
+    label.setText(releasing?'已转':'待转').setScale(1/sx,1/sy).setPosition(-width/2+(label.width/2+2)/sx,height/2+11/sy).setAlpha(1-release);
     edge.setData('phase',state.phase).setData('generation',state.generation).setData('flowPhase',full?state.clock%1600/1600:0).setData('width',width).setData('height',height);
     const staticKey=full?'':state.phase+'/'+width+'/'+height;
     if(full||this.lastStatic!==staticKey){

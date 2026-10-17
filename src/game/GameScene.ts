@@ -358,7 +358,7 @@ export class GameScene extends Phaser.Scene {
     this.targetAttachment=new HeroTargetAttachment(this,{
       root:()=>this.view?.root,
       target:id=>{const view=this.settledCards.get(id)??this.cardViews.find(v=>v.card.id===id);return view?{container:view.container,width:Number(view.container.getData('width')),height:Number(view.container.getData('height'))}:undefined;},
-      source:()=>{const source=this.heroActionButton?.active&&this.heroActionButton.visible?this.heroActionButton:this.roleAvatar;if(!source?.active||!source.visible)return;const b=source.getBounds();return {x:b.x+b.width/2,y:b.y+b.height/2};},
+      source:()=>{const source=this.heroActionButton?.active&&this.heroActionButton.visible?this.heroActionButton:this.roleAvatar;if(!source?.active||!source.visible)return;const b=source.getBounds(),viewport=cssViewport(this);return b.x+b.width+28<=viewport.width?{x:b.x+b.width+16,y:b.y+b.height/2}:{x:b.x+b.width/2,y:Math.max(16,b.y-16)};},
       motion:()=>this.reducedMotion?'reduced':'full',
       blocked:()=>!this.scene.isActive()||!!document.querySelector('dialog[open]')||!this.ready&&!this.presentation,
     });
