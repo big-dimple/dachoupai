@@ -1,0 +1,26 @@
+
+ RUN  v4.1.11 C:/Users/wanghongping/AppData/Local/Temp/dachoupai-windows-integration-20261017
+
+ ❯ tests/touye-discard-handoff.test.ts (3 tests | 1 failed) 122ms
+   × keeps the original play through a fresh discard draft and confirms only the newly chosen cards once 85ms
+
+ Test Files  1 failed | 4 passed (5)
+      Tests  1 failed | 71 passed (72)
+   Start at  17:39:18
+   Duration  6.76s (transform 14.30s, setup 0ms, import 17.09s, tests 2.77s, environment 1ms)
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/touye-discard-handoff.test.ts > keeps the original play through a fresh discard draft and confirms only the newly chosen cards once
+ReferenceError: document is not defined
+ ❯ new GameSession src/game/session.ts:27:5
+
+ ❯ gameSession src/game/session.ts:156:52
+ ❯ GameScene.get reducedMotion [as reducedMotion] src/game/GameScene.ts:296:47
+ ❯ GameScene.inspectTouyeTargets src/game/GameScene.ts:1333:112
+ ❯ src/game/GameScene.ts:1324:140
+ ❯ tests/touye-discard-handoff.test.ts:12:480
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+

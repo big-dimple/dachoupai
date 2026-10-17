@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "auditCommit": "7d7921e76ca794a14e715e3eac3b4d66143862ff",
   "currentTask": "P08",
-  "selectionPolicy": "连续计分e2e64946及aac触觉已合dev，正式GameScene接线已到；待手机shop最终SHA与六英雄两路复核回执齐备、关键回归修复后，集中验证并按既有授权普通发布，不等用户再回复。录像已收到并固定为文件，录制限制解除；连续计分实际接线及手机修复齐源后集中验证，检查通过按既有授权普通发布main，不等待用户再回复。当前产品4d496e20四路软件合批可按授权普通发布；既有共用放大/理牌已发布43725，a73/fb6只历史绑定。三大体验08:10明确未达标/重新整改；08:15自然两对1199+四条8906=10105/1800已触发完整高光并暴露小HUD/长射线/opaque割裂，连续计分重编排另行开发。动态视听触由连续过程验收，统一触觉01a148f7在补，API/设备/体感分别验；用户休息/无录屏不停止。505a商店细分及跨景美术余项见原表，Qin临时hooks已由c9/1607445b交付，108/鼠标触屏证据复用，不等后续连续计分/触觉。H01既有规则17领域检查不重做，H10a14d已合；P08/预算/缺证/真人听感真机正式门保持，不签三目标完成。",
+  "selectionPolicy": "手机小字清晰度及计分关键字段副作用纳本轮，gallery独立模块/整合GameScene最小补丁协调待核；aac/e2e/a6已齐源合dev产品1629c0d2，72窄交叉/最终类型/326构建通过；只待两路四英雄动态回执补齐六人，关键回归先修再main，已有发布授权不等用户回复。背景只标准PC/手机竖屏；三目标体验未达标、整包45167559B超20MB、源FAIL/历史缺证及真人听感实体触感Safari/正式门保持；P08仍in_progress，无整体完成百分比。",
   "resumeContract": {
     "candidateCommit": "4bf6a7d63d7738d3c415d09439a1bdca878dc685",
     "gateTask": "A01",
@@ -1550,11 +1550,11 @@
     }
   },
   "recordingHold": {
-    "status": "WAITING_FOR_MOBILE_SOURCE_AND_ALL_SIX_HERO_REVIEWS",
+    "status": "SOFTWARE_CHECKS_PASS_PENDING_HERO_TEXT_AND_KEY_FIELD_REVIEWS",
     "baseline": "4314a2459ade4ea68133f67468c98f9f42b2e251",
-    "reason": "Recording hold released. Continuous scoring and actual GameScene haptics premerged. Await mobile shop source and all-six-hero bounded dynamic review receipts, repair critical regressions, then concentrated validation and normal main publication under existing authorization.",
+    "reason": "All runtime sources merged and concentrated software checks passed. Await both four-hero dynamic review receipts to complete all-six coverage; repair critical regressions before normal main publication under existing authorization.",
     "devBranch": "dev/recording-followups-integration-20261017",
-    "devProduct": "32f05a43771d34292dbda5c248c9e1279adc4a47",
+    "devProduct": "1629c0d2ac33851e950f4ca50ddb5fe0f5a6136e",
     "mergedCandidate": "aac060561724efd62dd06ea764d73b658b68ff3a",
     "sourcePathsExactIncludingDeletions": 18,
     "sourceChecksReused": {
@@ -1564,20 +1564,62 @@
       "typecheck": "PASS at source",
       "build": "PASS at source"
     },
-    "integratedChecks": "PENDING until next sources ready; no new full source rerun",
+    "integratedChecks": {
+      "product": "1629c0d2ac33851e950f4ca50ddb5fe0f5a6136e",
+      "cross": {
+        "files": 5,
+        "latestPerFileTests": 72,
+        "status": "PASS_AFTER_FIXTURE_ADAPTATION",
+        "firstRun": {
+          "passed": 71,
+          "failed": 1,
+          "log": "docs/production/evidence/feedback-batch-integration-2026-10-17/checks/continuous-shop-cross.log"
+        },
+        "recheck": {
+          "files": 1,
+          "tests": 3,
+          "passed": 3,
+          "log": "docs/production/evidence/feedback-batch-integration-2026-10-17/checks/continuous-shop-handoff-recheck.log"
+        },
+        "fixtureOnlyChange": "No assertion/product change; no-DOM intent fixture supplies reducedMotion and null header query for new decorative eyes.",
+        "fixtureSHA256LF": "b978d26b47a54db18620d017d61cbe2591a77d2a55df2d7e3b4e14c14e041507",
+        "countBoundary": "72 by latest result per file, not75; source batches reused, not added."
+      },
+      "typecheck": {
+        "status": "PASS",
+        "exitCode": 0,
+        "log": "docs/production/evidence/feedback-batch-integration-2026-10-17/checks/continuous-shop-typecheck-final.log"
+      },
+      "build": {
+        "status": "PASS",
+        "exitCode": 0,
+        "modules": 326,
+        "log": "docs/production/evidence/feedback-batch-integration-2026-10-17/checks/continuous-shop-build.log",
+        "boundary": "Product code unchanged after build; subsequent change only test fixture/ledgers. Existing large chunk warning."
+      },
+      "newBrowserMatrix": "NOT_RUN; exact source evidence reused",
+      "distBudget": {
+        "files": 526,
+        "bytes": 45167559,
+        "maxBytes": 20000000,
+        "status": "FAIL",
+        "scope": "Complete filesystem dist, not network-transfer measurement; no assets deleted or threshold relaxed."
+      }
+    },
     "pendingOwners": [
-      "shop owner: final mobile/mid-width fix SHA",
       "hero owner 01a147eb: Su Shi / Xin Qiji bounded dynamic review on e2e",
-      "footer owner 01a147ec: Princess Wencheng / Lady Huarui bounded dynamic review on e2e"
+      "footer owner 01a147ec: Princess Wencheng / Lady Huarui bounded dynamic review on e2e",
+      "gallery owner 01a148b9: portrait hero skill small-text clarity module; integration coordinates minimal GameScene hook"
     ],
     "qinSkillObservation": "Original user video counterexample retained. e2e provides controlled native-touch decision/commit/real next-hand win chain; not natural or physical-device acceptance.",
     "physicalHaptics": "NOT_RUN",
     "reference": "docs/production/CURRENT_BATCH_20261017.md",
     "videoReview": "Root analyzes timestamps and reports regressions to source owners.",
-    "nextAction": "Collect mobile source plus both bounded hero review receipts; repair critical regressions before main; then concentrated cross-check/typecheck/build and normal dev/main push. No new long matrix, no repeated full source suites, no further user reply required.",
+    "nextAction": "Collect remaining four-hero dynamic receipts and gallery text-clarity result; coordinate minimal GameScene hook and repair reproduced missing key information/critical regressions. Recheck affected scope after actual product changes, then normal dev/main push under existing authorization without further user reply.",
     "mergedCandidates": [
       "aac060561724efd62dd06ea764d73b658b68ff3a",
-      "e2e64946f6fabe6fc0e8b369a6b3b52c5bda9d29"
+      "e2e64946f6fabe6fc0e8b369a6b3b52c5bda9d29",
+      "a6b49d6254ea1ecbde9277f38246f4156d434444"
     ],
     "continuousScore": {
       "source": "e2e64946f6fabe6fc0e8b369a6b3b52c5bda9d29",
@@ -1604,7 +1646,7 @@
         "touye-short 390x740"
       ],
       "earlierRevisionCases": "desktop/erxiang/touye/fast/cancel/reduced precede last eye-slot/side-value display adjustment; preserve scoped reuse",
-      "integratedValidation": "PENDING until mobile shop source ready"
+      "integratedValidation": "PASS scoped72/typecheck/build; dynamic all-six receipts pending"
     },
     "sixHeroReview": {
       "base": "e2e64946f6fabe6fc0e8b369a6b3b52c5bda9d29",
@@ -1640,6 +1682,35 @@
       ],
       "criticalRegressionPolicy": "Repair before main publication",
       "boundary": "Bounded dynamic source review only; no shared-file edits, long matrix, physical-device/Safari/subjective-hearing/felt-haptics claims."
+    },
+    "mobileShop": {
+      "source": "a6b49d6254ea1ecbde9277f38246f4156d434444",
+      "runtime": "c482e80324c6f39bcbc41f6cbda73314a6f39972",
+      "appliedSourcePathsExact": 39,
+      "sourceHashesMatched": 5,
+      "hashBoundary": "Source reports mix raw CRLF and LF; match only newline-normalization variants, git blobs exact.",
+      "checksReused": {
+        "files": 9,
+        "tests": 240,
+        "sourceTypecheck": "PASS",
+        "sourceBuildModules": 327,
+        "browser": "medium/mobile final reports PASS,0 errors; controlled saves/touch, not natural/physical"
+      },
+      "backgroundScope": "alpha .18 complete contain; standard PC >=1000w and >=712h, mobile portrait <700w only. Short landscape/700-999 intermediate and battle/settlement not changed."
+    },
+    "keyInfoReview": {
+      "status": "IN_PROGRESS_NOT_ACCEPTED",
+      "required": [
+        "target and current stage heat",
+        "actual plays/discards remaining",
+        "hero skill name/state/actual effect",
+        "real source and actual H/M change",
+        "heat/multiplier/hand score labels and values"
+      ],
+      "currentEvidence": "Existing e2e harness checks target/current heat/resource visibility through events; integrator viewed source touye-short hero-impact snapshot showing target0/400,remaining2/3,settling,actual wager effect and source. This is source controlled evidence, not new integrated browser or physical device.",
+      "actions": "Current e2e disables action input during playing; setSettlementFocus hides only playAura, not HUD/resource fields. Do not call action suppression information removal.",
+      "secondaryText": "breakdownText is hidden in e2e while source/effect moves to resultText; audit unique information loss before restoring any duplicate line. Not signed clear-screen success.",
+      "pending": "Gallery clarity result and minimal GameScene patch if needed; precise critical-field review remains open."
     }
   }
 }
