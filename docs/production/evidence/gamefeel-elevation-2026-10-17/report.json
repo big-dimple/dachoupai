@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-10-17T14:31:11.796Z",
+  "timestamp": "2026-10-17T15:34:27.084Z",
   "port": 5589,
-  "totalAssertions": 28,
-  "passedAssertions": 28,
+  "totalAssertions": 33,
+  "passedAssertions": 33,
   "failedAssertions": 0,
   "pageErrors": [],
   "allPassed": true,
@@ -14,16 +14,36 @@
       "details": {}
     },
     {
+      "scenario": "Scenario 8 [触控解锁]",
+      "check": "Real user gesture activates AudioContext to RUNNING",
+      "status": "PASS",
+      "details": {}
+    },
+    {
+      "scenario": "Scenario 8 [声部清理]",
+      "check": "Initial voice count is exactly 0",
+      "status": "PASS",
+      "details": {}
+    },
+    {
       "scenario": "Scenario 10 [姿态复位]",
-      "check": "reset() restores all cards to baseline without throwing",
+      "check": "reset() restores all 3 layers to baseline without throwing",
       "status": "PASS",
       "details": {}
     },
     {
       "scenario": "Scenario 10 [倾斜隔离]",
-      "check": "Tilt modifies innerVisual without altering container position",
+      "check": "Tilt modifies tiltLayer without altering outer container position",
       "status": "PASS",
       "details": {}
+    },
+    {
+      "scenario": "Scenario 10 [倾斜生效]",
+      "check": "2.5D perspective tilt angle correctly rotated",
+      "status": "PASS",
+      "details": {
+        "rot": 0.053272410275907234
+      }
     },
     {
       "scenario": "Scenario 1 [起势阶段]",
@@ -32,11 +52,14 @@
       "details": {
         "history": [
           "idle",
-          "idle",
           "windup",
           "striking",
-          "resolution",
-          "completed"
+          "striking",
+          "striking",
+          "striking",
+          "striking",
+          "striking",
+          "resolution"
         ]
       }
     },
@@ -47,11 +70,14 @@
       "details": {
         "history": [
           "idle",
-          "idle",
           "windup",
           "striking",
-          "resolution",
-          "completed"
+          "striking",
+          "striking",
+          "striking",
+          "striking",
+          "striking",
+          "resolution"
         ]
       }
     },
@@ -62,7 +88,7 @@
       "details": {
         "scoreMatches": true,
         "isVictory": true,
-        "finalScore": "704"
+        "finalScore": "206"
       }
     },
     {
@@ -72,12 +98,33 @@
       "details": {}
     },
     {
-      "scenario": "Scenario 2 [连乘爆点]",
-      "check": "Trace contains real multiply-multiplier operations",
+      "scenario": "Scenario 3 [事件全量]",
+      "check": "All trace events processed without skipping or repeating",
+      "status": "PASS",
+      "details": {}
+    },
+    {
+      "scenario": "Scenario 3 [严格原序]",
+      "check": "Events processed in exact chronological order",
+      "status": "PASS",
+      "details": {}
+    },
+    {
+      "scenario": "Scenario 3 [小数精度]",
+      "check": "Preserves 1.5x multiplier precision without integer truncation",
+      "status": "PASS",
+      "details": {}
+    },
+    {
+      "scenario": "Scenario 2 [多帧顿挫冻结]",
+      "check": "Card transforms hold completely frozen across sampled frames during Hit-Stop",
       "status": "PASS",
       "details": {
-        "hasMultOps": true,
-        "multCount": 2
+        "valid": true,
+        "totalSamples": 3,
+        "episodesCount": 1,
+        "multiFrameEpisodes": 1,
+        "allEpisodesStrictlyFrozen": true
       }
     },
     {
@@ -99,12 +146,6 @@
       "details": {}
     },
     {
-      "scenario": "Scenario 3 [无倍率]",
-      "check": "Hand contains 0 multiply-multiplier events without fake ×2",
-      "status": "PASS",
-      "details": {}
-    },
-    {
       "scenario": "Scenario 4 [未通关]",
       "check": "isVictory is false when finalScore < goalScore",
       "status": "PASS",
@@ -112,43 +153,43 @@
     },
     {
       "scenario": "Scenario 5 [六英技能 - sushi]",
-      "check": "Produces valid non-empty trace",
+      "check": "Produces genuine character payoff event (multiply-multiplier)",
       "status": "PASS",
       "details": {}
     },
     {
       "scenario": "Scenario 5 [六英技能 - liue]",
-      "check": "Produces valid non-empty trace",
+      "check": "Produces genuine character payoff event (add-multiplier)",
       "status": "PASS",
       "details": {}
     },
     {
       "scenario": "Scenario 5 [六英技能 - qinqiong]",
-      "check": "Produces valid non-empty trace",
+      "check": "Produces genuine character payoff event (multiply-multiplier)",
       "status": "PASS",
       "details": {}
     },
     {
       "scenario": "Scenario 5 [六英技能 - xinqiji]",
-      "check": "Produces valid non-empty trace",
+      "check": "Produces genuine character payoff event (add-heat)",
       "status": "PASS",
       "details": {}
     },
     {
       "scenario": "Scenario 5 [六英技能 - wencheng]",
-      "check": "Produces valid non-empty trace",
+      "check": "Produces genuine character payoff event (add-multiplier)",
       "status": "PASS",
       "details": {}
     },
     {
       "scenario": "Scenario 5 [六英技能 - huarui]",
-      "check": "Produces valid non-empty trace",
+      "check": "Produces genuine character payoff event (multiply-multiplier)",
       "status": "PASS",
       "details": {}
     },
     {
       "scenario": "Scenario 6 [1x/4x速率]",
-      "check": "4x fast-forward completes within 1200ms",
+      "check": "4x fast-forward completes within 1500ms (elapsed: 771ms)",
       "status": "PASS",
       "details": {}
     },

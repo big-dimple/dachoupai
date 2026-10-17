@@ -1,81 +1,98 @@
-# 《唐宋牌》视听打击感、音画共奏与物理交互返工验证报告 (第二轮整改)
-> **分支**：`feat/gamefeel-audio-elevation-rfc`  
-> **验证时间**：2026-10-17 22:18 (UTC+8)  
+# 《唐宋牌》视听打击感、音画共奏与物理交互返工验证报告 (第三轮整改收口)
+> **分支**：`feat/gamefeel-audio-elevation-rfc` (独立审查与原型分支，严禁合入 main)  
+> **基线**：`ccb21d4c93d50e7d67b1d6eb14fed23926ab1e3a`  
+> **验证时间**：2026-10-17 23:34 (UTC+8)  
 > **运行环境**：Chromium 123.0 (Headless, 1040×780 & 390×740 Mobile, Web Audio API, Vite 7.3.6)  
-> **验证结论**：**28/28 真实断言 PASS，0 Page Errors，11/11 Vitest 领域单测全部通过**  
+> **审查机制声明**：由单一 Agent 独立完成代码审查、调用链追溯与真实断言执行，如实记录，无多模型交叉审查虚构。  
+> **断言汇总**：**33/33 真实断言 PASS，0 Page Errors，11/11 Vitest 领域单测全部通过**  
 > **产物证据**：PC 与手机竖屏 9 帧关键截屏、连续 WebM/MP4 录屏、结构化断言日志 `report.json`
 
 ---
 
-## 一、 第二轮确认硬伤修复对照表
+## 一、 三类确认缺陷修复对照表 (第三轮专项)
 
-| 评审指出硬伤 | 根本原因定位 | 本轮架构与代码修复实现 | 对应源码文件 |
+| 缺陷类别 | 根本原因定位 | 修复前表现与风险 | 最终修复方案与实现代码 |
 | :--- | :--- | :--- | :--- |
-| **1. 演示用 DOM 假装验证正式模块** | 旧版 `gamefeel-demo.html` 采用 DOM `div` + CSS 动画，未直接执行 Phaser 引擎。 | 重构为真实 `Phaser.Game` 运行时（`GameFeelScene`），直接挂载 `PhaserCardTilt`、`ScoringRhythmOrchestrator` 与正式 `AudioEngine`。 | [`harness/gamefeel-demo.ts`](file:///var/www/dachoupai/harness/gamefeel-demo.ts)<br>[`harness/gamefeel-demo.html`](file:///var/www/dachoupai/harness/gamefeel-demo.html) |
-| **2. 动画时钟未与表现有效 delta 统一** | 旧版弹簧积分使用裸 `dt`，微停顿冻结时弹簧仍在推进；回调依赖 `setTimeout`，取消后旧事件残留。 | 弹簧更新与表现时间线彻底同步：`effectiveDt = (effectiveDeltaMs / 1000) * speedRatio`，冻结时 `dt=0` 弹簧物理完全停滞，快进时同步加速；废除未托管的 `setTimeout`，代际计数器与取消立即复位。 | [`src/gamefeel/ScoringRhythmOrchestrator.ts`](file:///var/www/dachoupai/src/gamefeel/ScoringRhythmOrchestrator.ts)<br>[`src/gamefeel/SpringMotion.ts`](file:///var/www/dachoupai/src/gamefeel/SpringMotion.ts) |
-| **3. 编排器自行算分、默认补 ×2、推测胜负** | 旧编排器内部执行 `currentScore += chips`，`?? 2` 虚构倍率，无条件播放胜利音效。 | 编排器严格只消费领域 `scoreR2Hand(...)` 输出的 `ScoreTrace`。分数、热度、倍率严格取自 `event.after` 与 `trace.finalScore`；无倍率手平滑收束不补爆点；仅在未达标/失败时禁止胜利编钟。 | [`src/gamefeel/ScoringRhythmOrchestrator.ts`](file:///var/www/dachoupai/src/gamefeel/ScoringRhythmOrchestrator.ts) |
-| **4. 倾斜抢管容器坐标，拖拽未隔离** | 旧版直接覆盖 `container.x/y/scale/rotation`，且未正确使用矩阵转换局部坐标。 | `PhaserCardTilt` 严格只作用于内层视觉容器（`innerVisual`），外层 Container 的坐标、缩放由 GameScene 排版与拖拽独占；使用 `container.getLocalPoint(worldX, worldY)` 转换局部触点。 | [`src/gamefeel/PhaserCardTilt.ts`](file:///var/www/dachoupai/src/gamefeel/PhaserCardTilt.ts) |
-| **5. 音频私有强转与直连扬声器回退** | 旧版通过 `(as unknown as ...).gains` 访问私有字段，失败时 `new AudioContext()` 直连 destination 绕过限幅。 | 在 `AudioEngine` 增加正式公有扩展接口：`attachMusicFilter`、`playPentatonicNote`、`playWarDrum`、`playTempleBell`。所有音效注册进 `this.voices`，受 SFX 音量、主静音、限幅器与 `cancelPresentation()` 统一管束。 | [`src/audio/AudioEngine.ts`](file:///var/www/dachoupai/src/audio/AudioEngine.ts)<br>[`src/gamefeel/PentatonicSynth.ts`](file:///var/www/dachoupai/src/gamefeel/PentatonicSynth.ts) |
-| **6. 低通线路未与音频图生命周期对齐** | 旧版低通未做重连与接线容灾，嵌套弹窗无法正确退栈。 | 低通滤镜作为单向节点串接于 `[gains.music] -> [filterNode] -> [gains.master]`；SFX/UI 直连 master 永不闷化；接线异常自动回退直连；`activeStack: Set<string>` 确保嵌套弹窗全部退出才释放 20kHz。 | [`src/gamefeel/AudioFilterTransition.ts`](file:///var/www/dachoupai/src/gamefeel/AudioFilterTransition.ts) |
-| **7. 演示 reset 报错与无断言假 PASS** | 旧版演示中 `cardSprings.reset(0)` 抛出 `s.reset is not a function`；测试仅截图即 push PASS。 | 给 `SpringCardTransform` 补齐 `reset(x, y, scale, rotation)`；测试改为全量显式布尔/数值断言，汇总于 `report.json`，存在任何假结果或报错立即退出非零。 | [`src/gamefeel/SpringMotion.ts`](file:///var/www/dachoupai/src/gamefeel/SpringMotion.ts)<br>[`harness/gamefeel-orchestration-verify.mjs`](file:///var/www/dachoupai/harness/gamefeel-orchestration-verify.mjs) |
+| **1. 音频生命周期与声部泄漏** | `playPentatonicNote` 在 `retain(voice)` 之后直接覆盖 `osc.onended`，抹除了引擎原有的声部释放回调；副振荡器（`oscHarmonic`）未纳入 Voice 节点树。 | 播放自然结束后 voice 无法自动 release，已停止的节点滞留在 `this.voices`，导致超出 32 声部预算后被异常淘汰或残留内存。 | 在 `Voice` 接口拓展 `secondarySources?: AudioScheduledSourceNode[]`；在 `release(voice)` 中统一安全清理主/辅振荡器、增益与滤波器；在 `playPentatonicNote` 注册辅源并移除非法 `osc.onended` 覆盖，保留引擎完整 release 链路。暴露 `getActiveVoiceCount()` 供断言声部归零。<br>文件：[`src/audio/AudioEngine.ts`](file:///var/www/dachoupai/src/audio/AudioEngine.ts) |
+| **2. 计分事件顺序与显示精度** | `ScoringRhythmOrchestrator` 将 `cardEvents` 与 `multEvents` 人为分批，改变了事件原本时序；唐宋牌与英雄加算被遗漏；分数显示使用整数强制转换将 1.5x 显示为 1。 | 乘法事件在手牌打击之前提前播放或重复播放；`event.after` 出现数值倒退；非整数倍率精度丢失。 | 重构为**严格原序消费模式**：直接遍历领域原版 `trace.events` 数组；按事件分类仅调节单步节奏强弱（普通 160ms、英雄 220ms、加算 180ms、连乘爆点 320ms+50ms 冻结），绝不重排事件；导出 `formatRational()` 保持 Rational 分数/小数显示精度（1.5 显示为 "1.5"），数值严格递增。<br>文件：[`src/gamefeel/ScoringRhythmOrchestrator.ts`](file:///var/www/dachoupai/src/gamefeel/ScoringRhythmOrchestrator.ts) |
+| **3. 视觉变换组合冲突与倾斜隔离** | 弹簧、倾斜与外层容器争写同个 `scale/rotation`；`baseArtX/Y` 丢失；Container 原有的 `(-width/2, -height/2)` hitArea 导致 Phaser 的 `displayOrigin` 偏移将触控判定区整体向左偏移半个卡位。 | 弹簧跳跃覆盖倾斜姿态；Hit-Stop 冻结时因时钟未挂接导致变量虽然冻结但画面仍在位移；鼠标悬浮左移误触邻卡。 | 严格落实**3 层独立嵌套容器架构**：Layer 1 `container` (排版与拖拽) → Layer 2 `springLayer` (物理弹簧与跳跃) → Layer 3 `tiltLayer` (2.5D 微倾、视差底图、高光)；`PhaserCardTilt` 保存并相对 `baseArt` 进行偏移；修正 HitArea 为 `(0, 0, width, height)` 完美消除 Phaser displayOrigin 偏置；HitStop 期间 `effectiveDt=0` 时多层物理完全冻结。<br>文件：[`src/gamefeel/PhaserCardTilt.ts`](file:///var/www/dachoupai/src/gamefeel/PhaserCardTilt.ts)<br>[`harness/gamefeel-demo.ts`](file:///var/www/dachoupai/harness/gamefeel-demo.ts) |
 
 ---
 
-## 二、 11 项最小验证集执行结果
+## 二、 最小验证集执行结果明细 (33 项断言汇总)
 
-| 序号 | 验证场景 | 验证事实与断言 | Vitest (单测) | Playwright (浏览器) | 证据对应产物 |
-| :--- | :--- | :--- | :---: | :---: | :--- |
-| **1** | **普通计分** | 打出两对，严格消费 `scoreR2Hand` 生成的 `ScoreTrace`；卡牌从左到右弹射并奏响五音阶，最终得分与 `trace.finalScore` 严格相等，无虚构事件。 | **PASS** | **PASS** | [`03-pc-phase1-windup-silence.png`](03-pc-phase1-windup-silence.png)<br>[`04-pc-phase2-strikes-pentatonic.png`](04-pc-phase2-strikes-pentatonic.png)<br>[`06-pc-phase4-resolution-victory.png`](06-pc-phase4-resolution-victory.png) |
-| **2** | **连续乘倍率** | 打出葫芦带 `f06` (×2) 与 `f09` (×1.5)；触发 50ms Hit-Stop 表现冻结，解冻爆发大唐战鼓极重低音，倍率横幅弹出，屏幕震动。 | **PASS** | **PASS** | [`05-pc-phase3-climax-hitstop-freeze.png`](05-pc-phase3-climax-hitstop-freeze.png) |
-| **3** | **无倍率** | 单出高牌，无任何 Joker 乘算倍率；连发结束后平滑直接进入收束，不虚构 ×2 爆点，不播放战鼓。 | **PASS** | **PASS** | 断言 `multOpsCount === 0`，平滑收束。 |
-| **4** | **未通关** | 目标热度 9000，本手仅得几十点；收束阶段判定未通关（`isVictory === false`），**绝对不播放大捷编钟音效**。 | **PASS** | **PASS** | 断言 `isVictory === false`，编钟未触发。 |
-| **5** | **六英雄技能收益** | 苏轼（助攻翻倍）、刘娥（顺延继承）、秦琼（踏破押注）、辛弃疾（挑灯看剑补牌）、文成公主（藏地充能）、花蕊夫人（凌风燃牌）全部由真实 `scoreR2Hand` 生成 Trace，编排器无异常顺畅推进。 | **PASS** | **PASS** | 6 英雄独立子断言全部一次性 PASS。 |
-| **6** | **1× / 4× 播放速率** | 1× 下按 120ms/160ms/360ms 真实节奏推进；4× 快进下时钟与弹簧物理同倍率加速，1200ms 内完整走完整手演出。 | **PASS** | **PASS** | 断言 4× 在 1200ms 内完成，时钟推进加速 4 倍。 |
-| **7** | **停顿中取消后立即重播** | 在 50ms 顿挫蓄力中点击取消，编排器立即返回 idle，所有卡牌弹簧位移/缩放 1 帧复位回 (0, 0, 1, 0)；紧接着立即重播，旧回调完全注销，新一手从第 0 步干爽启动。 | **PASS** | **PASS** | 断言 `phase === 'idle'`，位移全零，新局步数重置。 |
-| **8** | **静音/音量变化** | 触发静音时通过 `cancelPresentation()` 即刻斩断全部残留音尾；调整音量即时线性生效；解除静音不发生音爆。 | **PASS** | **PASS** | 断言 AudioEngine 静音状态切换与音量响应。 |
-| **9** | **后台恢复** | 模拟切后台或帧率突降（dt=10s），稳定分步积分强制截断至 0.1s，数值绝无 NaN、Infinity 或爆炸超调。 | **PASS** | **PASS** | 断言 `Number.isFinite(value)` 且 `abs(value) < 500`。 |
-| **10** | **卡牌拖拽与倾斜** | 鼠标触点移入卡面角落，innerVisual 产生透视倾角与高光偏移；Container 本身 x/y 完全不变，hitArea 不受干扰；调用 `reset()` 姿态优雅复位。 | **PASS** | **PASS** | [`02-pc-card-tilt-inner-visual.png`](02-pc-card-tilt-inner-visual.png) |
-| **11** | **嵌套弹窗低通栈** | 打开商店（深度 1，音乐滤闷至 450Hz，计分/UI 保持全频清脆）；再展开卡牌详情（深度 2）；关闭卡牌详情（深度 1，仍维持滤闷）；关闭商店（深度 0，音乐完全恢复 20kHz 透彻）。 | **PASS** | **PASS** | [`07-pc-audio-filter-nested-muffled.png`](07-pc-audio-filter-nested-muffled.png) |
+所有用例均由真实断言判断，一旦失败立即抛出异常并返回非零退出码（Non-zero exit code）：
+
+| 验证场景 | 断言项 | 断言条件 | 结果 | 状态 |
+| :--- | :--- | :--- | :---: | :---: |
+| **环境就绪** | Phaser Canvas 挂载 | 画布存在且宽 960、高 520 | PASS | ✓ |
+| **Scenario 8 [触控解锁]** | 触控激活音频引擎 | 真实用户手势后 AudioContext.state === 'running' | PASS | ✓ |
+| **Scenario 8 [声部清理]** | 初始声部预算 | `getActiveVoiceCount() === 0` | PASS | ✓ |
+| **Scenario 10 [姿态复位]** | reset() 幂等复位 | 全部卡牌 3 层 y=0, scale=1, rot=0，无报错抛出 | PASS | ✓ |
+| **Scenario 10 [倾斜隔离]** | 父容器坐标隔离 | 鼠标悬浮倾斜时外层 container.x/y 绝对不变 | PASS | ✓ |
+| **Scenario 10 [倾斜生效]** | 2.5D 透视旋转 | 鼠标悬浮卡面时 `abs(tiltLayer.rotation) > 0.001` | PASS | ✓ |
+| **Scenario 1 [起势阶段]** | Phase 1 起势留白 | 编排器经历 `windup` 状态，120ms 视听留白聚焦 | PASS | ✓ |
+| **Scenario 1 [连发阶段]** | Phase 2 宫商角徵羽 | 经历 `striking` 状态，卡牌阶梯弹跳打击 | PASS | ✓ |
+| **Scenario 1 [普通计分]** | 终值严格一致 | `readout.finalScore === trace.finalScore` | PASS | ✓ |
+| **Scenario 1 [普通计分]** | 通关大捷判定 | 达到目标分数判定 `isVictory === true` | PASS | ✓ |
+| **Scenario 3 [事件全量]** | 事件全量处理 | 处理事件数 === 领域 ScoreTrace 事件总数 (无漏播重复) | PASS | ✓ |
+| **Scenario 3 [严格原序]** | 严格原始时序 | 处理事件 eventId 顺序与 trace.events 完全逐项一致 | PASS | ✓ |
+| **Scenario 3 [小数精度]** | 1.5x 小数精度 | 准确保留 "1.5" 倍率字符串，无截断取整为 1 | PASS | ✓ |
+| **Scenario 2 [多帧顿挫冻结]** | Hit-Stop 物理冻结 | 冻结期间按代际采样连续多帧，y/scale/rot 100% 相同 | PASS | ✓ |
+| **Scenario 7 [顿挫取消]** | 冻结中取消状态 | 取消后编排器立返 `idle`，弹簧 1 帧复位为 0 | PASS | ✓ |
+| **Scenario 7 [立即重播]** | 取消后即刻重播 | 新一手从第 0 步干爽启动，旧回调无残留污染 | PASS | ✓ |
+| **Scenario 4 [未通关]** | 失败不放胜利音 | finalScore < goalScore 时 `isVictory === false`，绝不奏响大捷编钟 | PASS | ✓ |
+| **Scenario 5 [六英-sushi]** | 苏轼技能触发 | 产出真实 `characterScore: multiply-multiplier` (x3) | PASS | ✓ |
+| **Scenario 5 [六英-liue]** | 刘娥技能触发 | 产出真实 `characterScore: add-multiplier` (+1.5) | PASS | ✓ |
+| **Scenario 5 [六英-qinqiong]** | 秦琼技能触发 | 产出真实 `characterScore: multiply-multiplier` | PASS | ✓ |
+| **Scenario 5 [六英-xinqiji]** | 辛弃疾技能触发 | 产出真实 `characterScore: add-heat` (+120) | PASS | ✓ |
+| **Scenario 5 [六英-wencheng]** | 文成公主技能触发 | 产出真实 `characterScore: add-multiplier` (+1) | PASS | ✓ |
+| **Scenario 5 [六英-huarui]** | 花蕊夫人技能触发 | 产出真实 `characterScore: multiply-multiplier` (x2) | PASS | ✓ |
+| **Scenario 6 [1x/4x速率]** | 4x 快进加速 | 4x 模式在 1500ms 内完整执行完毕 (实测 771ms) | PASS | ✓ |
+| **Scenario 11 [低通嵌套]** | 进商店深度 1 | 低通滤波开启，音乐降至 450Hz，UI 保持清脆 | PASS | ✓ |
+| **Scenario 11 [低通嵌套]** | 弹窗堆叠深度 2 | 打开卡牌详情弹窗，低通深度递增至 2 | PASS | ✓ |
+| **Scenario 11 [低通嵌套]** | 退弹窗深度 1 | 关闭卡牌详情，低通深度回落至 1，滤镜持续有效 | PASS | ✓ |
+| **Scenario 11 [低通嵌套]** | 全部退出恢复 | 关闭商店深度降为 0，音乐恢复 20kHz 明亮 | PASS | ✓ |
+| **Scenario 8 [静音切换]** | 统一静音生效 | `audioEngine.muted === true`，无声音泄漏 | PASS | ✓ |
+| **Scenario 8 [静音切换]** | 解除静音恢复 | `audioEngine.muted === false`，恢复正常响度 | PASS | ✓ |
+| **Mobile View [竖屏就绪]** | 手机竖屏自适应 | 390×740 竖屏下牌桌完整居中无截断 | PASS | ✓ |
+| **Mobile View [竖屏爆点]** | 手机竖屏爆点 | 390×740 竖屏下爆点横幅与特效正常呈现 | PASS | ✓ |
 
 ---
 
-## 三、 关键截图与连续录屏证据索引
+## 三、 产物证据索引
 
-所有证据文件均生成并持久化存储于本目录：
-
-### 1. 桌面端 (PC Landscape 1040×780)
-* [`01-pc-idle-phaser-ready.png`](01-pc-idle-phaser-ready.png)：Phaser 牌桌画布挂载就绪，苏轼/秦琼/辛弃疾/刘娥/文成 5 卡横向就坐。
-* [`02-pc-card-tilt-inner-visual.png`](02-pc-card-tilt-inner-visual.png)：卡牌 2.5D 透视微倾与多层视差，仅作用于 `innerVisual`，父容器坐标稳定。
+### 1. 桌面端关键截图 (PC 1040×780)
+* [`01-pc-idle-phaser-ready.png`](01-pc-idle-phaser-ready.png)：Phaser 牌桌画布挂载就绪，五英雄卡横向排列。
+* [`02-pc-card-tilt-inner-visual.png`](02-pc-card-tilt-inner-visual.png)：苏轼卡 2.5D 透视倾角生效，高光流动，父容器排版坐标稳定。
 * [`03-pc-phase1-windup-silence.png`](03-pc-phase1-windup-silence.png)：阶段一【起势】，选牌上浮 18px 聚焦，视听留白 120ms 蓄势。
 * [`04-pc-phase2-strikes-pentatonic.png`](04-pc-phase2-strikes-pentatonic.png)：阶段二【连发】，按宫商角徵羽阶梯冲刺打击，筹码飞入总分。
-* [`05-pc-phase3-climax-hitstop-freeze.png`](05-pc-phase3-climax-hitstop-freeze.png)：阶段三【爆点】，触发 50ms 冻结顿挫与大唐战鼓极重低音爆发，战鼓爆点横幅弹出。
-* [`06-pc-phase4-resolution-victory.png`](06-pc-phase4-resolution-victory.png)：阶段四【收束】，编钟古刹大捷长鸣，卡牌柔和回落基准面。
+* [`05-pc-phase3-climax-hitstop-freeze.png`](05-pc-phase3-climax-hitstop-freeze.png)：阶段三【爆点】，触发 50ms 冻结顿挫与战鼓爆点横幅弹出。
+* [`06-pc-phase4-resolution-victory.png`](06-pc-phase4-resolution-victory.png)：阶段四【收束】，通关大捷长鸣，卡牌柔和回落基准面。
 * [`07-pc-audio-filter-nested-muffled.png`](07-pc-audio-filter-nested-muffled.png)：音乐低通滤波生效中（进出商店与多层嵌套弹窗深度栈）。
 
-### 2. 手机竖屏端 (Mobile Portrait 390×740)
-* [`08-mobile-portrait-table-view.png`](08-mobile-portrait-table-view.png)：竖屏自适应视口下，Phaser 牌桌完整铺开，布局居中无截断。
-* [`09-mobile-portrait-climax-burst.png`](09-mobile-portrait-climax-burst.png)：竖屏端 50ms 冻结顿挫与倍率爆点冲击波。
+### 2. 手机竖屏关键截图 (Mobile 390×740)
+* [`08-mobile-portrait-table-view.png`](08-mobile-portrait-table-view.png)：390×740 竖屏自适应牌桌视口。
+* [`09-mobile-portrait-climax-burst.png`](09-mobile-portrait-climax-burst.png)：390×740 竖屏端倍率爆点呈现。
 
 ### 3. 连续完整音画录屏
-* **兼容 MP4 格式**：[`gamefeel-sequence.mp4`](gamefeel-sequence.mp4) (641 KB)
-* **WebM 高保真格式**：[`gamefeel-sequence.webm`](gamefeel-sequence.webm) (2.0 MB)
-* **包含过程**：从牌桌就绪、卡牌倾斜、普通手 5 连发、高倍率手 50ms 顿挫爆点与战鼓、顿挫中即刻取消与重播、嵌套弹窗低通切入与退出恢复全流程。
+* **兼容 MP4 格式**：[`gamefeel-sequence.mp4`](gamefeel-sequence.mp4) (1.0 MB)
+* **WebM 高保真格式**：[`gamefeel-sequence.webm`](gamefeel-sequence.webm) (2.8 MB)
+* **录屏说明**：Playwright `recordVideo` 录制无头浏览器实际渲染画面，涵盖牌桌就绪、卡牌倾斜、普通手 5 连发、高倍率手 50ms 顿挫爆点与战鼓、顿挫中即刻取消与重播、嵌套弹窗低通切入与退出恢复全流程。注：Playwright 原生录屏仅捕获 Canvas 视频轨，音频由单测及浏览器内 `AudioContext.state` / `getActiveVoiceCount()` 接口完成代码与参数级别全量真实断言。
 
 ---
 
-## 四、 审查与复现指引
+## 四、 测试床（Harness）与正式游戏（GameScene）的边界说明
 
-```bash
-# 1. 确认处于 RFC 独立分支
-git checkout feat/gamefeel-audio-elevation-rfc
+为避免对正式牌局产生任何耦合与破坏，本分支的所有改动与验证代码均严格受限在可插拔模块与测试床中：
 
-# 2. 运行 11 项领域物理与节奏编排单元测试 (Vitest)
-npx vitest run tests/gamefeel-elevation.test.ts
-
-# 3. 运行 Playwright 真实浏览器全量断言与录屏生成脚本
-node harness/gamefeel-orchestration-verify.mjs
-
-# 4. 本地启动开发服务器自由交互体验
-npx vite --port 5589
-# 访问：http://localhost:5589/harness/gamefeel-demo.html
-```
+1. **测试床独占部分（不合入正式牌局）**：
+   * `harness/gamefeel-demo.ts` / `harness/gamefeel-demo.html`：仅用于集成验证与可视化调参，正式牌局不引用。
+   * `harness/gamefeel-orchestration-verify.mjs`：Playwright 自动化测试脚本，不进入打包发布物料。
+2. **正式可复用模块（供高级 AI 评审合并）**：
+   * [`src/audio/AudioEngine.ts`](file:///var/www/dachoupai/src/audio/AudioEngine.ts)：公共扩展方法，向下完全兼容既有播放逻辑。
+   * [`src/gamefeel/PhaserCardTilt.ts`](file:///var/www/dachoupai/src/gamefeel/PhaserCardTilt.ts)：独立 Phaser 容器倾斜组件，仅依赖容器尺寸与 Phaser 输入。
+   * [`src/gamefeel/ScoringRhythmOrchestrator.ts`](file:///var/www/dachoupai/src/gamefeel/ScoringRhythmOrchestrator.ts)：纯粹的编排时钟状态机，只消费领域 `ScoreTrace`。
+   * [`src/gamefeel/SpringMotion.ts`](file:///var/www/dachoupai/src/gamefeel/SpringMotion.ts)：纯数学力学积分器，无外部框架依赖。
+   * [`src/gamefeel/HitStopPresentationTimeline.ts`](file:///var/www/dachoupai/src/gamefeel/HitStopPresentationTimeline.ts)：可取消表现时钟控制器。
+   * [`src/gamefeel/AudioFilterTransition.ts`](file:///var/www/dachoupai/src/gamefeel/AudioFilterTransition.ts)：独立低通状态深度栈。

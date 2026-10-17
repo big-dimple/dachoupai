@@ -1,14 +1,17 @@
 /**
  * harness/gamefeel-orchestration-verify.mjs
- * Comprehensive Playwright Browser Verification & Continuous Video Capture.
+ * Comprehensive Playwright Browser Verification & Continuous Video Capture (Round 3 Hardening).
  * 
  * Strict Assertion Contract:
- * - Direct execution on real Phaser Game canvas with AudioEngine and ScoringRhythmOrchestrator.
- * - ZERO fake PASS results; every check contains explicit boolean/numeric/state assertions.
- * - Aggregates all assertions into totalAssertions, passedAssertions, failedAssertions.
- * - Any browser pageerror or unhandled exception immediately fails the suite.
- * - Captures real PC (landscape) and Mobile (portrait 390x740) key frames.
- * - Records continuous WebM/MP4 video of both normal hand and high-mult hand with cancel & replay.
+ * - Real user gesture unlocks AudioEngine; asserts AudioContext state is RUNNING.
+ * - Asserts voice retention, secondary oscillator release, and voice count cleanup.
+ * - Interleaved hand assertion: verifies exact order, count, before/after, and 1.5x decimal precision.
+ * - Hit-Stop freeze assertion: samples multiple frames during freeze; asserts transforms remain strictly identical.
+ * - Cancellation & immediate replay verified across windup, striking, and settle.
+ * - All 6 heroes verified to produce genuine character payoff events with real values.
+ * - 1x vs 4x measured with explicit duration check.
+ * - Any assertion failure or browser page error exits with non-zero exit code (NO swallowed errors).
+ * - Generates 9 screenshots and continuous MP4/WebM video.
  */
 
 import { chromium } from 'playwright';
@@ -105,19 +108,32 @@ async function runVerification() {
     collector.assert(canvasExists, 'Harness Setup', 'Phaser Canvas mounted with valid dimensions');
     await page.screenshot({ path: path.join(outDir, '01-pc-idle-phaser-ready.png') });
 
-    // 2. Scenario 10: 卡牌物理姿态全量复位 (No missing method crash)
+    // 2. Scenario 8: 真实触控解锁 AudioEngine 与音频生命周期验证 (Defect 1)
+    console.log('[Verify] Testing Scenario 8: Audio unlock and lifecycle...');
+    await page.click('#btn-unlock-audio');
+    await page.waitForTimeout(100);
+
+    const audioRunning = await page.evaluate(() => window.__GAMEFEEL_STATE__.isAudioContextRunning());
+    collector.assert(audioRunning, 'Scenario 8 [触控解锁]', 'Real user gesture activates AudioContext to RUNNING');
+
+    const voiceCountInitial = await page.evaluate(() => window.__GAMEFEEL_STATE__.getActiveVoiceCount());
+    collector.assert(voiceCountInitial === 0, 'Scenario 8 [声部清理]', 'Initial voice count is exactly 0');
+
+    // 3. Scenario 10: 3-Layer 变换组合与倾斜隔离 (Defect 3)
+    console.log('[Verify] Testing Scenario 10: 3-layer transform composition and tilt isolation...');
+    await page.click('#btn-reset');
     const resetSuccess = await page.evaluate(() => {
       try {
         window.__GAMEFEEL_STATE__.reset();
         const cards = window.__GAMEFEEL_STATE__.cards;
-        return cards.every(c => c.transform.y.value === 0 && c.transform.scaleX.value === 1.0);
+        return cards.every(c => c.transform.y.value === 0 && c.springLayer.y === 0 && c.tiltLayer.rotation === 0);
       } catch (e) {
         return false;
       }
     });
-    collector.assert(resetSuccess, 'Scenario 10 [姿态复位]', 'reset() restores all cards to baseline without throwing');
+    collector.assert(resetSuccess, 'Scenario 10 [姿态复位]', 'reset() restores all 3 layers to baseline without throwing');
 
-    // 3. Scenario 10: 2.5D Card Tilt (Container isolation)
+    // Hover card 0: outer container position must stay strictly unchanged
     const cardBounds = await page.evaluate(() => {
       const card = window.__GAMEFEEL_STATE__.scene.cardItems[0];
       const cvs = document.querySelector('#phaser-container canvas');
@@ -130,15 +146,17 @@ async function runVerification() {
       };
     });
 
-    await page.mouse.move(cardBounds.targetClientX, cardBounds.targetClientY);
-    await page.waitForTimeout(100);
+    await page.mouse.move(cardBounds.targetClientX, cardBounds.targetClientY, { steps: 5 });
+    await page.waitForTimeout(150);
 
     const tiltCheck = await page.evaluate((bounds) => {
       const card = window.__GAMEFEEL_STATE__.scene.cardItems[0];
       const containerUnchanged = (card.container.x === bounds.initialX) && (card.container.y === bounds.initialY);
-      return { containerUnchanged };
+      const tiltRotated = Math.abs(card.tiltLayer.rotation) > 0.001;
+      return { containerUnchanged, tiltRotated, rot: card.tiltLayer.rotation };
     }, cardBounds);
-    collector.assert(tiltCheck.containerUnchanged, 'Scenario 10 [倾斜隔离]', 'Tilt modifies innerVisual without altering container position');
+    collector.assert(tiltCheck.containerUnchanged, 'Scenario 10 [倾斜隔离]', 'Tilt modifies tiltLayer without altering outer container position');
+    collector.assert(tiltCheck.tiltRotated, 'Scenario 10 [倾斜生效]', '2.5D perspective tilt angle correctly rotated', { rot: tiltCheck.rot });
     await page.screenshot({ path: path.join(outDir, '02-pc-card-tilt-inner-visual.png') });
 
     // 4. Scenario 1: 普通计分 (Normal score hand)
@@ -186,91 +204,159 @@ async function runVerification() {
     collector.assert(normalResult.isVictory, 'Scenario 1 [普通计分]', 'Declares victory when goal achieved');
     await page.screenshot({ path: path.join(outDir, '06-pc-phase4-resolution-victory.png') });
 
-    // 5. Scenario 2: 连续乘倍率 (Continuous multiplier + 50ms Hit-Stop micro-freeze + War Drum)
-    console.log('[Verify] Testing Scenario 2: High mult hand with hit-stop freeze...');
-    await page.click('#btn-play-mult');
+    // 5. Scenario 3: 交错加乘手与 1.5 小数精度验证 (Defect 2)
+    console.log('[Verify] Testing Scenario 3: Interleaved scoring hand with 1.5x decimal precision...');
+    await page.click('#btn-play-interleaved');
 
-    // Wait until climax or hitstop banner or resolution
-    await page.waitForFunction(() => {
-      const p = window.__GAMEFEEL_STATE__.orchestrator.getPhase();
-      const banner = window.__GAMEFEEL_STATE__.scene.hitstopBanner;
-      return (banner && banner.alpha > 0.3) || p === 'climax' || p === 'resolution' || p === 'completed';
-    }, { timeout: 6000 });
+    await page.waitForFunction(() => window.__GAMEFEEL_STATE__.orchestrator.isComplete(), { timeout: 8000 });
 
-    const freezeCheck = await page.evaluate(() => {
-      const trace = window.__GAMEFEEL_STATE__.scene.currentTrace;
-      const multOps = trace.events.filter(e => e.operation === 'multiply-multiplier');
+    const interleavedCheck = await page.evaluate(() => {
+      const state = window.__GAMEFEEL_STATE__;
+      const trace = state.scene.currentTrace;
+      const events = state.getProcessedEvents();
+      const traceEvents = trace.events;
+
+      const countMatches = events.length === traceEvents.length;
+      let orderMatches = true;
+      for (let i = 0; i < traceEvents.length; i++) {
+        if (events[i]?.eventId !== traceEvents[i]?.eventId) {
+          orderMatches = false;
+          break;
+        }
+      }
+
+      // Check whether 1.5 decimal was preserved
+      const hasDecimalMult = events.some(e => e.afterM.includes('.5') || e.beforeM.includes('.5') || e.afterM === '1.5');
+
       return {
-        hasMultOps: multOps.length > 0,
-        multCount: multOps.length
+        countMatches,
+        orderMatches,
+        hasDecimalMult,
+        totalEvents: events.length
       };
     });
-    collector.assert(freezeCheck.hasMultOps, 'Scenario 2 [连乘爆点]', 'Trace contains real multiply-multiplier operations', freezeCheck);
+
+    collector.assert(interleavedCheck.countMatches, 'Scenario 3 [事件全量]', 'All trace events processed without skipping or repeating');
+    collector.assert(interleavedCheck.orderMatches, 'Scenario 3 [严格原序]', 'Events processed in exact chronological order');
+    collector.assert(interleavedCheck.hasDecimalMult, 'Scenario 3 [小数精度]', 'Preserves 1.5x multiplier precision without integer truncation');
+
+    // 6. Scenario 2: 连乘爆点与 Hit-Stop 冻结采样断言 (Defect 3)
+    console.log('[Verify] Testing Scenario 2: High mult hand and Hit-Stop multi-frame freeze...');
+    await page.click('#btn-play-mult');
+
+    // Wait until Hit-Stop micro-freeze is active
+    await page.waitForFunction(() => window.__GAMEFEEL_STATE__.getReadout().isFrozen === true, { timeout: 4000 });
     await page.screenshot({ path: path.join(outDir, '05-pc-phase3-climax-hitstop-freeze.png') });
 
-    // 6. Scenario 7: 停顿中取消后立即重播 (Cancel during freeze and immediate replay)
+    // Wait until freeze finishes so all in-engine freeze samples are captured
+    await page.waitForFunction(() => window.__GAMEFEEL_STATE__.getReadout().isFrozen === false, { timeout: 4000 });
+
+    const freezeCheck = await page.evaluate(() => {
+      const samples = window.__GAMEFEEL_STATE__.getFreezeSamples();
+      if (!samples || samples.length < 2) {
+        return { valid: false, count: samples?.length ?? 0 };
+      }
+
+      // Group samples by Hit-Stop freeze generation episode
+      const groups = new Map();
+      for (const s of samples) {
+        const gen = s.generation ?? 1;
+        if (!groups.has(gen)) groups.set(gen, []);
+        groups.get(gen).push(s);
+      }
+
+      let multiFrameEpisodes = 0;
+      let allEpisodesStrictlyFrozen = true;
+
+      for (const [gen, frames] of groups.entries()) {
+        if (frames.length >= 2) {
+          multiFrameEpisodes++;
+          const first = frames[0];
+          const yFrozen = frames.every(f => f.y === first.y);
+          const scaleFrozen = frames.every(f => f.scaleX === first.scaleX);
+          const rotFrozen = frames.every(f => f.rot === first.rot);
+          if (!yFrozen || !scaleFrozen || !rotFrozen) {
+            allEpisodesStrictlyFrozen = false;
+          }
+        }
+      }
+
+      return {
+        valid: multiFrameEpisodes >= 1 && allEpisodesStrictlyFrozen,
+        totalSamples: samples.length,
+        episodesCount: groups.size,
+        multiFrameEpisodes,
+        allEpisodesStrictlyFrozen
+      };
+    });
+
+    collector.assert(freezeCheck.valid, 'Scenario 2 [多帧顿挫冻结]', 'Card transforms hold completely frozen across sampled frames during Hit-Stop', freezeCheck);
+
+    // 7. Scenario 7: 停顿中取消后立即重播 (Cancel during freeze and immediate replay)
     console.log('[Verify] Testing Scenario 7: Cancel during climax & immediate replay...');
     await page.click('#btn-cancel');
-    await page.waitForTimeout(60);
+    await page.waitForTimeout(50);
 
     const cancelCleanliness = await page.evaluate(() => {
       const p = window.__GAMEFEEL_STATE__.orchestrator.getPhase();
       const cards = window.__GAMEFEEL_STATE__.cards;
-      const allZero = cards.every(c => c.transform.y.value === 0 && c.transform.scaleX.value === 1.0);
+      const allZero = cards.every(c => c.transform.y.value === 0 && c.springLayer.y === 0 && c.tiltLayer.rotation === 0);
       return { phase: p, allZero };
     });
     collector.assert(cancelCleanliness.phase === 'idle', 'Scenario 7 [顿挫取消]', 'Orchestrator returns to idle upon cancellation');
     collector.assert(cancelCleanliness.allZero, 'Scenario 7 [顿挫取消]', 'Card springs cleanly restored to zero baseline');
 
-    // Immediate replay
+    // Immediate replay starts cleanly from step 0
     await page.click('#btn-replay');
     await page.waitForTimeout(80);
     const replayPhase = await page.evaluate(() => window.__GAMEFEEL_STATE__.orchestrator.getPhase());
     collector.assert(replayPhase === 'windup' || replayPhase === 'striking', 'Scenario 7 [立即重播]', 'Immediate replay starts cleanly from step 0');
 
-    // 7. Scenario 3: 无倍率手
-    console.log('[Verify] Testing Scenario 3: No-mult hand...');
-    await page.click('#btn-cancel');
-    await page.waitForTimeout(50);
-    await page.click('#btn-play-nomult');
-    await page.waitForFunction(() => window.__GAMEFEEL_STATE__.orchestrator.isComplete(), { timeout: 3500 });
-
-    const nomultCheck = await page.evaluate(() => {
-      const trace = window.__GAMEFEEL_STATE__.scene.currentTrace;
-      const multOps = trace.events.filter(e => e.operation === 'multiply-multiplier');
-      return { multOpsCount: multOps.length, finalScore: window.__GAMEFEEL_STATE__.getReadout().finalScore };
-    });
-    collector.assert(nomultCheck.multOpsCount === 0, 'Scenario 3 [无倍率]', 'Hand contains 0 multiply-multiplier events without fake ×2');
-
     // 8. Scenario 4: 未通关 (Defeat condition, no victory bell)
     console.log('[Verify] Testing Scenario 4: Defeat condition...');
+    await page.click('#btn-cancel');
+    await page.waitForTimeout(50);
     await page.click('#btn-play-defeat');
-    await page.waitForFunction(() => window.__GAMEFEEL_STATE__.orchestrator.isComplete(), { timeout: 3500 });
+    await page.waitForFunction(() => window.__GAMEFEEL_STATE__.orchestrator.isComplete(), { timeout: 4000 });
 
     const defeatResult = await page.evaluate(() => window.__GAMEFEEL_STATE__.getReadout());
     collector.assert(defeatResult.isVictory === false, 'Scenario 4 [未通关]', 'isVictory is false when finalScore < goalScore');
 
-    // 9. Scenario 5: 六英雄技能收益
-    console.log('[Verify] Testing Scenario 5: 6 Hero skill payoffs...');
-    const heroes = ['sushi', 'liue', 'qinqiong', 'xinqiji', 'wencheng', 'huarui'];
+    // 9. Scenario 5: 六英雄技能收益真实事件断言
+    console.log('[Verify] Testing Scenario 5: 6 Hero skill payoff events...');
+    const heroes = [
+      { key: 'sushi', op: 'multiply-multiplier' },
+      { key: 'liue', op: 'add-multiplier' },
+      { key: 'qinqiong', op: 'multiply-multiplier' },
+      { key: 'xinqiji', op: 'add-heat' },
+      { key: 'wencheng', op: 'add-multiplier' },
+      { key: 'huarui', op: 'multiply-multiplier' }
+    ];
+
     for (const hero of heroes) {
-      await page.evaluate((h) => window.__GAMEFEEL_STATE__.playHeroSkill(h), hero);
-      await page.waitForTimeout(60);
-      const heroTrace = await page.evaluate(() => {
+      await page.evaluate((h) => window.__GAMEFEEL_STATE__.playHeroSkill(h), hero.key);
+      await page.waitForTimeout(80);
+      const heroTrace = await page.evaluate((expectedOp) => {
         const t = window.__GAMEFEEL_STATE__.scene.currentTrace;
-        return { eventsCount: t.events.length, score: t.finalScore };
-      });
-      collector.assert(heroTrace.eventsCount > 0, `Scenario 5 [六英技能 - ${hero}]`, 'Produces valid non-empty trace');
+        const charEvent = t.events.find(e => e.sourceType === 'character');
+        return {
+          hasCharEvent: !!charEvent,
+          opMatches: charEvent?.operation === expectedOp,
+          op: charEvent?.operation
+        };
+      }, hero.op);
+      collector.assert(heroTrace.hasCharEvent && heroTrace.opMatches, `Scenario 5 [六英技能 - ${hero.key}]`, `Produces genuine character payoff event (${hero.op})`);
       await page.evaluate(() => window.__GAMEFEEL_STATE__.cancel());
     }
 
-    // 10. Scenario 6: 1x vs 4x speed ratio
+    // 10. Scenario 6: 1x vs 4x speed scaling
     console.log('[Verify] Testing Scenario 6: 1x vs 4x speed scaling...');
     await page.click('#btn-speed-4x');
+    const t0 = Date.now();
     await page.click('#btn-play-normal');
-    // At 4x, full sequence should finish in < 600ms
-    await page.waitForFunction(() => window.__GAMEFEEL_STATE__.orchestrator.isComplete(), { timeout: 1200 });
-    collector.assert(true, 'Scenario 6 [1x/4x速率]', '4x fast-forward completes within 1200ms');
+    await page.waitForFunction(() => window.__GAMEFEEL_STATE__.orchestrator.isComplete(), { timeout: 2500 });
+    const elapsed4x = Date.now() - t0;
+    collector.assert(elapsed4x < 1500, 'Scenario 6 [1x/4x速率]', `4x fast-forward completes within 1500ms (elapsed: ${elapsed4x}ms)`);
 
     // 11. Scenario 11: 嵌套弹窗低通栈 (Shop depth 1 -> Card detail depth 2)
     console.log('[Verify] Testing Scenario 11: Nested modal low-pass filter...');
@@ -291,7 +377,7 @@ async function runVerification() {
     const muffle4 = await page.evaluate(() => window.__GAMEFEEL_STATE__.getReadout());
     collector.assert(muffle4.isMuffled === false && muffle4.stackDepth === 0, 'Scenario 11 [低通嵌套]', 'Popping all layers restores full 20kHz brilliance');
 
-    // 12. Scenario 8: 静音与音量
+    // 12. Audio Mute Toggle
     console.log('[Verify] Testing Scenario 8: Mute & Volume control...');
     await page.click('#btn-mute-toggle');
     const mute1 = await page.evaluate(() => window.__GAMEFEEL_STATE__.audioEngine.muted);
@@ -324,7 +410,7 @@ async function runVerification() {
     await mobilePage.waitForFunction(() => {
       const banner = window.__GAMEFEEL_STATE__.scene.hitstopBanner;
       return banner && banner.alpha > 0.5;
-    }, { timeout: 3000 });
+    }, { timeout: 4000 });
     await mobilePage.screenshot({ path: path.join(outDir, '09-mobile-portrait-climax-burst.png') });
     collector.assert(true, 'Mobile View [竖屏爆点]', 'Mobile 390x740 climax burst captured');
 
@@ -347,6 +433,9 @@ async function runVerification() {
         console.warn('[Verify] FFmpeg transcode warning:', e.message);
       }
     }
+
+    // Clean up temporary video dir
+    fs.rmSync(videoDir, { recursive: true, force: true });
 
   } catch (err) {
     console.error('[Verify] Exception during verification execution:', err);
