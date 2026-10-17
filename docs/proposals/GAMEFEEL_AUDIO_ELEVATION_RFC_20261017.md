@@ -113,41 +113,42 @@
 | `sfx-temple-bell-victory.ogg` | OGG / 23KB | 空灵悠扬古刹铜磬/编钟 432Hz 神圣长鸣（2.5 秒延音） | 冲破关卡目标阈值、终局大捷瞬间 |
 
 ### 2. 原型代码模块（位于 [`src/gamefeel/`](file:///var/www/dachoupai/src/gamefeel/)）
-| 模块名称 | 导出类 / 接口 | 核心价值与接入点 |
+| 模块名称 | 导出类 / 接口 | 核心价值与返工解决的硬伤 |
 | :--- | :--- | :--- |
-| [`SpringMotion.ts`](file:///var/www/dachoupai/src/gamefeel/SpringMotion.ts) | `Spring1D`, `Spring2D`, `SPRING_PRESETS` | 物理弹簧模型，可直接作为卡牌位移、缩放的插值器，替代硬直线性的 `tween.add`。 |
-| [`PentatonicSynth.ts`](file:///var/www/dachoupai/src/gamefeel/PentatonicSynth.ts) | `PentatonicSynth` | 实时 Web Audio 合成器，输入卡牌计分索引（0~4+），自动输出五声音阶阶梯泛音，零延迟、零网络加载。 |
-| [`CardTiltEffect.ts`](file:///var/www/dachoupai/src/gamefeel/CardTiltEffect.ts) | `CardTiltEffect` | 移动端与 PC 端 2.5D 透视微倾角驱动器，绑定卡牌 DOM 或 Canvas 容器，立刻获得实体纸牌触感。 |
-| [`HitStopManager.ts`](file:///var/www/dachoupai/src/gamefeel/HitStopManager.ts) | `HitStopManager` | 40~60ms 画面微顿挫控制器，在大牌倍率爆破前卡顿蓄力，大幅增强打击分量。 |
-| [`AudioFilterTransition.ts`](file:///var/www/dachoupai/src/gamefeel/AudioFilterTransition.ts) | `AudioFilterTransition` | 动态低通滤波器，接入主音频总线后，可在进出商店时实现平滑的低通蒙蔽/通透恢复。 |
+| [`PhaserCardTilt.ts`](file:///var/www/dachoupai/src/gamefeel/PhaserCardTilt.ts) | `PhaserCardTilt`, `PhaserCardTiltConfig` | **专为 Phaser.GameObjects.Container 研发**：直接接牌桌容器，保留完整 hitArea、点击、选牌和拖拽手感；多层内部视差（art vs frame）；`destroy()` 严格清理 6 类事件监听器。 |
+| [`PentatonicSynth.ts`](file:///var/www/dachoupai/src/gamefeel/PentatonicSynth.ts) | `PentatonicSynth` | **接 AudioEngine SFX 支路**：遵循游戏静音与音量滑块；限制 261Hz~1318Hz (E6) 频率安全上限；6 声部复音上限与自动防爆音窃取；支持快进与 `cancelAll()` 瞬间清理。 |
+| [`HitStopPresentationTimeline.ts`](file:///var/www/dachoupai/src/gamefeel/HitStopPresentationTimeline.ts) | `HitStopPresentationTimeline` | **可取消的表现微顿挫**：解耦表现时钟与领域时钟，只停动画表现，不冻结操作、规则或存档；支持 `AbortSignal` 与计时器代际安全防踩。 |
+| [`SpringMotion.ts`](file:///var/www/dachoupai/src/gamefeel/SpringMotion.ts) | `Spring1D`, `SpringCardTransform`, `SPRING_PRESETS` | **稳定分步积分（<=8ms 子步）**：输入帧间隔钳制（<=0.1s），防切后台爆炸；参数下限兜底（mass>=0.01），彻底消除数值发散。 |
+| [`AudioFilterTransition.ts`](file:///var/www/dachoupai/src/gamefeel/AudioFilterTransition.ts) | `AudioFilterTransition` | **接入 AudioEngine 音乐支路**：仅过滤音乐，计分音效与 UI 维持清脆；多层弹窗深度栈（Depth Stack），保证嵌套弹窗退净后平滑恢复 20kHz。 |
+| [`ScoringRhythmOrchestrator.ts`](file:///var/www/dachoupai/src/gamefeel/ScoringRhythmOrchestrator.ts) | `ScoringRhythmOrchestrator` | **4 阶段音画共奏编排**：明确起势（120ms 留白蓄力）、连发（五声音阶 170ms 爬升）、爆点（50ms 冻结 + 大唐战鼓重拍）、收束（大捷编钟 + 柔和落定）。 |
 
 ---
 
-## 五、 供接手高级 AI 的渐进式接入建议与优先级路线
+## 五、 真实 Chromium 运行与多帧录屏证据
 
-为了确保主分支安全、不破坏现有的 120 个修复补丁，建议接手的高级 AI 按以下低耦合、可随时回退的顺序推进：
+已通过 Playwright 无头 Chromium 运行独立测试床（[`harness/gamefeel-orchestration-verify.mjs`](file:///var/www/dachoupai/harness/gamefeel-orchestration-verify.mjs)），**8 项测试全通（8/8 PASS），0 Page Error**。
 
-### 第一步（零代码风险，立即提升听觉）：替换两首错位 BGM（10 分钟）
-1. 在 `public/assets/audio/bgm/manifest.json` 中：
-   - 将 `boss` 场景曲目指向 `assets/audio/gamefeel-rfc/boss-stranger-things-theme.mp3`；
-   - 将 `table` 场景曲目中的探戈/小夜曲指向 `assets/audio/gamefeel-rfc/table-tangsong-cyber-groove.mp3`；
-2. 试听效果：立刻消除舒伯特小夜曲和阿根廷探戈的违和感，获得兼具《怪奇物语》张力与唐宋国风赛博质感的听觉心流。
-
-### 第二步（纯表现层增量）：计分五声音阶与战鼓打击（半天）
-1. 在 `ScorePosture.ts` 或 `GameScene.ts` 的连续计分遍历函数中，实例化 `PentatonicSynth`：
-   ```typescript
-   import { PentatonicSynth } from '../gamefeel/PentatonicSynth';
-   const synth = new PentatonicSynth(audioContext);
-   // 每张有效计分牌触发：
-   synth.triggerCardScore(cardIndex, isMultiplier);
-   ```
-2. 当倍率卡牌触发时，调用 `synth.triggerWarDrum()` 或播放 `sfx-wardrum-mult-hit.ogg`，伴随一次 50ms 的 `HitStopManager.trigger()`；
-3. 效果：计分过程瞬间变成一段节奏分明的民乐打击乐，彻底告别单调机械的数字跳跃。
-
-### 第三步（UI 交互质感）：卡牌 2.5D 微倾角与弹簧弹跳（1 天）
-1. 在卡牌详情弹窗（`DetailDialog.ts`）与手牌容器（`CardView`）中挂载 `CardTiltEffect`；
-2. 手指触摸或鼠标划过时，卡牌产生自然的三维倾角和动态高光反射，大幅提升视觉精致感。
+证据文件位于 [`docs/production/evidence/gamefeel-elevation-2026-10-17/`](file:///var/www/dachoupai/docs/production/evidence/gamefeel-elevation-2026-10-17/)：
+* **关键时点连续截图**：
+  1. [`01-idle-table-ready.png`](file:///var/www/dachoupai/docs/production/evidence/gamefeel-elevation-2026-10-17/01-idle-table-ready.png)（初始桌案）
+  2. [`02-card-tilt-interaction.png`](file:///var/www/dachoupai/docs/production/evidence/gamefeel-elevation-2026-10-17/02-card-tilt-interaction.png)（2.5D 透视微倾角与暗金高光）
+  3. [`03-phase1-windup-pause.png`](file:///var/www/dachoupai/docs/production/evidence/gamefeel-elevation-2026-10-17/03-phase1-windup-pause.png)（起势 120ms 蓄力留白）
+  4. [`04-phase2-strikes-pentatonic.png`](file:///var/www/dachoupai/docs/production/evidence/gamefeel-elevation-2026-10-17/04-phase2-strikes-pentatonic.png)（连发 宫商角徵羽阶梯）
+  5. [`05-phase3-climax-hitstop-freeze.png`](file:///var/www/dachoupai/docs/production/evidence/gamefeel-elevation-2026-10-17/05-phase3-climax-hitstop-freeze.png)（爆点 50ms 冻结顿挫）
+  6. [`06-phase4-resolution-victory.png`](file:///var/www/dachoupai/docs/production/evidence/gamefeel-elevation-2026-10-17/06-phase4-resolution-victory.png)（收束 编钟共鸣）
+  7. [`07-audio-filter-muffled.png`](file:///var/www/dachoupai/docs/production/evidence/gamefeel-elevation-2026-10-17/07-audio-filter-muffled.png)（进出商店音乐低通）
+* **连续录屏视频**：
+  - WebM 格式：[`gamefeel-sequence.webm`](file:///var/www/dachoupai/docs/production/evidence/gamefeel-elevation-2026-10-17/gamefeel-sequence.webm)
+  - MP4 格式：[`gamefeel-sequence.mp4`](file:///var/www/dachoupai/docs/production/evidence/gamefeel-elevation-2026-10-17/gamefeel-sequence.mp4)
+* **详细检验报告**：[`README.md`](file:///var/www/dachoupai/docs/production/evidence/gamefeel-elevation-2026-10-17/README.md) 与 [`report.json`](file:///var/www/dachoupai/docs/production/evidence/gamefeel-elevation-2026-10-17/report.json)
 
 ---
 
-*本提案文档与所有附带资源已在分支 `feat/gamefeel-audio-elevation-rfc` 上完成独立封装与推送到远程仓库，等待高级 AI 评审与按需取用！*
+## 六、 本地交互体验指南
+
+审查人员可在本地一键启动可交互页面进行手动把玩：
+```bash
+git checkout feat/gamefeel-audio-elevation-rfc
+npx vite --port 5493
+# 打开浏览器：http://localhost:5493/harness/gamefeel-demo.html
+```

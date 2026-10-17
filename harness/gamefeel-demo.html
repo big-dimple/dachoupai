@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="icon" href="data:,">
+  <title>《唐宋牌》视听打击感与节奏编排可运行演示 (GameFeel Elevation RFC)</title>
+  <style>
+    :root {
+      --bg-dark: #121318;
+      --panel-bg: rgba(26, 28, 38, 0.88);
+      --accent-gold: #d4af37;
+      --accent-cyan: #4ecdc4;
+      --accent-red: #ff4757;
+      --text-main: #f1f2f6;
+      --text-dim: #a4b0be;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
+    body {
+      background: radial-gradient(circle at 50% 30%, #1e2230 0%, #0e1017 100%);
+      color: var(--text-main);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Noto Sans SC", sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 16px;
+      overflow-x: hidden;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 12px;
+    }
+    h1 {
+      font-size: 1.35rem;
+      color: var(--accent-gold);
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .badge {
+      font-size: 0.72rem;
+      padding: 2px 8px;
+      border-radius: 12px;
+      background: rgba(212, 175, 55, 0.2);
+      border: 1px solid var(--accent-gold);
+      color: var(--accent-gold);
+    }
+    .status-panel {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .indicator {
+      background: var(--panel-bg);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 6px 14px;
+      font-size: 0.82rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      backdrop-filter: blur(8px);
+    }
+    .indicator-val {
+      font-weight: bold;
+      color: var(--accent-cyan);
+    }
+    #stage-container {
+      width: min(94vw, 760px);
+      height: 380px;
+      background: rgba(15, 17, 24, 0.75);
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      border-radius: 16px;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.55), inset 0 0 40px rgba(0, 0, 0, 0.4);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    #hud-overlay {
+      position: absolute;
+      top: 14px;
+      left: 18px;
+      right: 18px;
+      display: flex;
+      justify-content: space-between;
+      pointer-events: none;
+      z-index: 10;
+    }
+    .hud-box {
+      background: rgba(10, 12, 18, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 8px;
+      padding: 6px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .hud-label { font-size: 0.68rem; color: var(--text-dim); text-transform: uppercase; }
+    .hud-score { font-size: 1.45rem; font-weight: 800; color: #fff; transition: transform 0.1s; }
+    .hud-score.punch { color: #ffbe76; transform: scale(1.22); }
+    .hud-mult { font-size: 1.15rem; font-weight: bold; color: var(--accent-red); }
+    .hitstop-alert {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(255, 71, 87, 0.95);
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: 900;
+      padding: 8px 24px;
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(255, 71, 87, 0.8);
+      display: none;
+      z-index: 50;
+      letter-spacing: 2px;
+    }
+    .card-row {
+      display: flex;
+      gap: 16px;
+      position: relative;
+      z-index: 5;
+    }
+    .card {
+      width: 104px;
+      height: 144px;
+      background: linear-gradient(145deg, #2a2d3d, #1a1b24);
+      border: 2px solid #57606f;
+      border-radius: 10px;
+      cursor: pointer;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 10px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
+      transform-style: preserve-3d;
+      will-change: transform;
+      touch-action: none;
+    }
+    .card.active-strike {
+      border-color: var(--accent-gold);
+      box-shadow: 0 0 24px rgba(212, 175, 55, 0.7);
+    }
+    .card.climax-mult {
+      border-color: var(--accent-red);
+      box-shadow: 0 0 32px rgba(255, 71, 87, 0.85);
+    }
+    .card-glare {
+      position: absolute;
+      inset: 0;
+      border-radius: 8px;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .card-header { display: flex; justify-content: space-between; font-weight: bold; font-size: 0.9rem; }
+    .card-art {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.8rem;
+    }
+    .card-name { font-size: 0.78rem; text-align: center; color: var(--accent-gold); font-weight: 600; }
+    .card-footer { font-size: 0.68rem; color: var(--text-dim); text-align: center; }
+
+    .controls-panel {
+      margin-top: 14px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: min(94vw, 760px);
+    }
+    button {
+      background: linear-gradient(135deg, #2f3542, #1e222d);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: #fff;
+      padding: 9px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.84rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s ease;
+    }
+    button:hover {
+      background: linear-gradient(135deg, #404859, #292e3d);
+      border-color: var(--accent-gold);
+      transform: translateY(-2px);
+    }
+    button:active { transform: translateY(0); }
+    button.primary {
+      background: linear-gradient(135deg, #d4af37, #b8860b);
+      color: #121318;
+      border-color: #ffd700;
+      font-weight: 800;
+    }
+    button.primary:hover {
+      background: linear-gradient(135deg, #ffd700, #d4af37);
+      box-shadow: 0 4px 16px rgba(212, 175, 55, 0.4);
+    }
+    button.danger {
+      background: linear-gradient(135deg, #ff4757, #c0392b);
+      border-color: #ff6b81;
+    }
+    #event-log {
+      margin-top: 12px;
+      width: min(94vw, 760px);
+      height: 90px;
+      background: rgba(10, 12, 18, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-family: monospace;
+      font-size: 0.72rem;
+      color: #7bed9f;
+      overflow-y: auto;
+      line-height: 1.4;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>《唐宋牌》视听打击感与节奏编排演示 <span class="badge">RFC 可运行验证版</span></h1>
+  </header>
+
+  <div class="status-panel">
+    <div class="indicator">当前阶段：<span id="phase-text" class="indicator-val">就绪 (IDLE)</span></div>
+    <div class="indicator">时钟状态：<span id="clock-text" class="indicator-val">正常运行 (1.0x)</span></div>
+    <div class="indicator">音乐低通滤波：<span id="filter-text" class="indicator-val">全频通透 (20 kHz)</span></div>
+    <div class="indicator">多巴胺音阶：<span id="penta-text" class="indicator-val">等待演奏</span></div>
+  </div>
+
+  <div id="stage-container">
+    <div id="hud-overlay">
+      <div class="hud-box">
+        <span class="hud-label">本手点数 (CHIPS)</span>
+        <span id="chips-val" class="hud-score">0</span>
+      </div>
+      <div class="hud-box">
+        <span class="hud-label">英雄倍率 (MULT)</span>
+        <span id="mult-val" class="hud-mult">× 1.0</span>
+      </div>
+      <div class="hud-box">
+        <span class="hud-label">总分 / 过关目标</span>
+        <span id="total-val" class="hud-score" style="color:var(--accent-gold);">0 / 300</span>
+      </div>
+    </div>
+
+    <div id="hitstop-banner" class="hitstop-alert">⚡ 50ms 冻结顿挫蓄力中 ⚡</div>
+
+    <div class="card-row" id="card-row">
+      <!-- 5 Interactive Demo Cards with 2.5D Tilt and Spring Transforms -->
+      <div class="card" id="card-0" data-chips="50" data-note="宫 (C5)">
+        <div class="card-glare"></div>
+        <div class="card-header"><span>♠ A</span><span>+50</span></div>
+        <div class="card-art">🎴</div>
+        <div class="card-name">赤壁怀古</div>
+        <div class="card-footer">苏轼 · 基础点数</div>
+      </div>
+
+      <div class="card" id="card-1" data-chips="40" data-note="商 (D5)">
+        <div class="card-glare"></div>
+        <div class="card-header"><span>♥ K</span><span>+40</span></div>
+        <div class="card-art">⚔️</div>
+        <div class="card-name">踏破山河</div>
+        <div class="card-footer">秦琼 · 基础点数</div>
+      </div>
+
+      <div class="card" id="card-2" data-chips="60" data-note="角 (E5)">
+        <div class="card-glare"></div>
+        <div class="card-header"><span>♣ Q</span><span>+60</span></div>
+        <div class="card-art">🍷</div>
+        <div class="card-name">挑灯看剑</div>
+        <div class="card-footer">辛弃疾 · 基础点数</div>
+      </div>
+
+      <div class="card" id="card-3" data-chips="50" data-note="徵 (G5)">
+        <div class="card-glare"></div>
+        <div class="card-header"><span>♦ J</span><span>+50</span></div>
+        <div class="card-art">👑</div>
+        <div class="card-name">大宋之母</div>
+        <div class="card-footer">刘娥 · 基础点数</div>
+      </div>
+
+      <div class="card" id="card-4" data-chips="0" data-mult="2.5" data-note="羽 (A5 爆点)">
+        <div class="card-glare"></div>
+        <div class="card-header"><span style="color:var(--accent-red)">★ 10</span><span style="color:var(--accent-red)">×2.5</span></div>
+        <div class="card-art">🌸</div>
+        <div class="card-name" style="color:var(--accent-red)">执剑凌风</div>
+        <div class="card-footer" style="color:var(--accent-red)">花蕊夫人 · 乘倍率</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="controls-panel">
+    <button id="btn-play" class="primary">▶ 触发整手计分 (起势/连发/爆点/收束)</button>
+    <button id="btn-fast">⏩ 2倍速快进计分</button>
+    <button id="btn-cancel" class="danger">⏹ 中途取消 (验证无残留)</button>
+    <button id="btn-muffle">🎧 进/出商店低通滤波 (Toggle)</button>
+    <button id="btn-tilt-reset">🔄 复位卡牌姿态</button>
+  </div>
+
+  <div id="event-log"></div>
+
+  <!-- Standalone ES Module Engine Script -->
+  <script type="module">
+    import { Spring1D, SpringCardTransform, SPRING_PRESETS } from '../src/gamefeel/SpringMotion.ts';
+    import { PentatonicSynth } from '../src/gamefeel/PentatonicSynth.ts';
+    import { HitStopPresentationTimeline } from '../src/gamefeel/HitStopPresentationTimeline.ts';
+    import { AudioFilterTransition } from '../src/gamefeel/AudioFilterTransition.ts';
+
+    const logEl = document.getElementById('event-log');
+    function log(msg) {
+      const now = new Date().toISOString().substring(11, 23);
+      logEl.innerHTML = `[${now}] ${msg}<br>` + logEl.innerHTML;
+    }
+
+    // Audio Context and Synthesizer setup
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    const ctx = new AudioCtx();
+    const synth = new PentatonicSynth(ctx);
+    const timeline = HitStopPresentationTimeline.shared;
+    const audioFilter = AudioFilterTransition.shared;
+
+    // Background Audio Simulator (Ambient Lo-Fi Drone through filter)
+    const bgOsc = ctx.createOscillator();
+    const bgGain = ctx.createGain();
+    bgOsc.type = 'sawtooth';
+    bgOsc.frequency.value = 65.41; // C2 drone
+    bgGain.gain.value = 0.08;
+    const filterNode = audioFilter.wireIntoMusicPipeline(ctx, bgOsc, bgGain);
+    bgGain.connect(ctx.destination);
+    try { bgOsc.start(); } catch(e) {}
+
+    // Initialize Card Data and Spring Physics
+    const cardElements = [0, 1, 2, 3, 4].map(i => document.getElementById(`card-${i}`));
+    const cardSprings = cardElements.map(() => new SpringCardTransform(0, 0, 1.0, 0));
+
+    // 2.5D Pointer Tilt Integration for DOM elements
+    cardElements.forEach((el, idx) => {
+      const glare = el.querySelector('.card-glare');
+      let isHover = false;
+      let targetRotX = 0, targetRotY = 0;
+      let curRotX = 0, curRotY = 0;
+
+      el.addEventListener('pointerenter', () => {
+        isHover = true;
+        glare.style.opacity = '0.3';
+      });
+
+      el.addEventListener('pointermove', (e) => {
+        const rect = el.getBoundingClientRect();
+        const nx = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+        const ny = ((e.clientY - rect.top) / rect.height) * 2 - 1;
+        targetRotX = -ny * 12; // tilt degrees
+        targetRotY = nx * 12;
+        glare.style.background = `radial-gradient(circle at ${(nx+1)*50}% ${(ny+1)*50}%, rgba(255,215,0,0.5) 0%, transparent 70%)`;
+      });
+
+      el.addEventListener('pointerleave', () => {
+        isHover = false;
+        targetRotX = 0;
+        targetRotY = 0;
+        glare.style.opacity = '0';
+      });
+
+      // Frame render loop hook
+      el._updateTilt = () => {
+        curRotX += (targetRotX - curRotX) * 0.18;
+        curRotY += (targetRotY - curRotY) * 0.18;
+        return { curRotX, curRotY };
+      };
+    });
+
+    // Orchestration State Machine
+    let phase = 'idle';
+    let phaseTime = 0;
+    let strikeIndex = 0;
+    let chips = 0;
+    let mult = 1.0;
+    let speedRatio = 1.0;
+    let abortController = null;
+    let lastTimestamp = performance.now();
+
+    const phaseEl = document.getElementById('phase-text');
+    const clockEl = document.getElementById('clock-text');
+    const filterEl = document.getElementById('filter-text');
+    const pentaEl = document.getElementById('penta-text');
+    const chipsVal = document.getElementById('chips-val');
+    const multVal = document.getElementById('mult-val');
+    const totalVal = document.getElementById('total-val');
+    const hitstopBanner = document.getElementById('hitstop-banner');
+
+    function setPhase(newPhase, label) {
+      phase = newPhase;
+      phaseTime = 0;
+      phaseEl.textContent = label;
+      log(`阶段流转 ➔ [${label}]`);
+    }
+
+    function startScoring(speed = 1.0) {
+      if (ctx.state === 'suspended') ctx.resume();
+      cancelScoring();
+
+      speedRatio = speed;
+      abortController = new AbortController();
+      chips = 0;
+      mult = 1.0;
+      strikeIndex = 0;
+      chipsVal.textContent = '0';
+      multVal.textContent = '× 1.0';
+      totalVal.textContent = '0 / 300';
+      totalVal.classList.remove('punch');
+      cardElements.forEach(el => el.classList.remove('active-strike', 'climax-mult'));
+
+      // Phase 1: 起势 (Windup & 留白)
+      setPhase('windup', '起势 (蓄力留白 120ms)');
+      clockEl.textContent = `${speedRatio.toFixed(1)}x`;
+
+      // Visual: Selected cards lift up simultaneously
+      cardSprings.forEach((spring, i) => {
+        spring.y.setConfig(SPRING_PRESETS.snappy);
+        spring.y.setTarget(-16);
+        spring.scaleX.setTarget(1.04);
+        spring.scaleY.setTarget(1.04);
+      });
+    }
+
+    function cancelScoring() {
+      if (abortController) abortController.abort();
+      timeline.cancelHitStop();
+      synth.cancelAll();
+      hitstopBanner.style.display = 'none';
+      cardElements.forEach(el => el.classList.remove('active-strike', 'climax-mult'));
+      cardSprings.forEach(spring => {
+        spring.y.setConfig(SPRING_PRESETS.gentle);
+        spring.y.setTarget(0);
+        spring.scaleX.setTarget(1.0);
+        spring.scaleY.setTarget(1.0);
+      });
+      setPhase('idle', '就绪 (IDLE)');
+      pentaEl.textContent = '等待演奏';
+    }
+
+    function strikeCard(idx) {
+      if (idx >= cardElements.length) return;
+      const el = cardElements[idx];
+      const spring = cardSprings[idx];
+      const cardChips = parseInt(el.dataset.chips, 10);
+      const noteName = el.dataset.note;
+
+      el.classList.add('active-strike');
+      pentaEl.textContent = noteName;
+
+      // Spring Punch forward
+      spring.y.setTarget(-36);
+      spring.scaleX.setTarget(1.14);
+      spring.scaleY.setTarget(1.14);
+
+      // Pentatonic Ascending Chime
+      synth.triggerCardScore(idx, false, speedRatio);
+
+      // Score accumulation
+      chips += cardChips;
+      chipsVal.textContent = chips;
+      totalVal.textContent = `${chips * mult} / 300`;
+      totalVal.classList.add('punch');
+      setTimeout(() => totalVal.classList.remove('punch'), 100);
+
+      log(`第 ${idx+1} 张卡结算: +${cardChips} 筹码 [音符: ${noteName}]`);
+
+      setTimeout(() => {
+        if (phase !== 'idle') {
+          el.classList.remove('active-strike');
+          spring.y.setTarget(-12);
+          spring.scaleX.setTarget(1.02);
+          spring.scaleY.setTarget(1.02);
+        }
+      }, 90 / speedRatio);
+    }
+
+    function triggerClimax() {
+      const idx = 4;
+      const el = cardElements[idx];
+      const spring = cardSprings[idx];
+      mult = 2.5;
+
+      el.classList.add('climax-mult');
+      pentaEl.textContent = '羽调 (重拍战鼓爆点)';
+
+      // Trigger 50ms Hit-Stop Micro-freeze
+      timeline.triggerHitStop({
+        durationMs: 50 / speedRatio,
+        signal: abortController.signal,
+        onFreezeStart: () => {
+          hitstopBanner.style.display = 'block';
+          clockEl.textContent = '⚡ 50ms 冻结顿挫 ⚡';
+          // Card leaps and springs forward
+          spring.y.setConfig(SPRING_PRESETS.bouncy);
+          spring.y.setTarget(-48);
+          spring.scaleX.setTarget(1.24);
+          spring.scaleY.setTarget(1.24);
+          log(`【重拍爆点】进入 50ms 微顿挫 (Hit-Stop Freeze Frame)`);
+        },
+        onFreezeEnd: () => {
+          hitstopBanner.style.display = 'none';
+          clockEl.textContent = `${speedRatio.toFixed(1)}x`;
+          // Release: War Drum Sub-Bass
+          synth.triggerWarDrum(speedRatio);
+          multVal.textContent = `× ${mult.toFixed(1)}`;
+          const finalScore = chips * mult;
+          totalVal.textContent = `${finalScore} / 300`;
+          totalVal.classList.add('punch');
+          log(`【顿挫解除】大唐战鼓下潜撞击 ➔ 乘数爆发 ×${mult} (总分: ${finalScore})`);
+        }
+      });
+    }
+
+    function resolveTotal() {
+      const finalScore = chips * mult;
+      const isVictory = finalScore >= 300;
+      log(`【收束大捷】最终得分: ${finalScore} / 目标 300 ➔ ${isVictory ? '大捷胜利！' : '惜败'}`);
+
+      cardSprings.forEach(spring => {
+        spring.y.setConfig(SPRING_PRESETS.gentle);
+        spring.y.setTarget(0);
+        spring.scaleX.setTarget(1.0);
+        spring.scaleY.setTarget(1.0);
+      });
+
+      if (isVictory) {
+        // Victory Temple Bell Resonance
+        synth.triggerCardScore(4, true, speedRatio);
+        totalVal.style.color = '#7bed9f';
+        log(`【编钟长鸣】触发 432Hz 神圣铜磬 2.5s 余韵共鸣`);
+      }
+    }
+
+    // Main Animation Loop
+    function frame(now) {
+      const dtSeconds = Math.min((now - lastTimestamp) / 1000, 0.05);
+      lastTimestamp = now;
+
+      // Advance Card Springs
+      cardSprings.forEach(s => s.step(dtSeconds));
+
+      // Advance 2.5D Tilt
+      cardElements.forEach((el, idx) => {
+        const { curRotX, curRotY } = el._updateTilt();
+        const s = cardSprings[idx];
+        el.style.transform = `perspective(800px) translate3d(${s.x.value.toFixed(1)}px, ${s.y.value.toFixed(1)}px, 0) scale(${s.scaleX.value.toFixed(3)}) rotateX(${curRotX.toFixed(2)}deg) rotateY(${curRotY.toFixed(2)}deg)`;
+      });
+
+      // Advance Orchestrator Timeline
+      const effectiveDeltaMs = timeline.update(dtSeconds * 1000) * speedRatio;
+      if (effectiveDeltaMs > 0 && phase !== 'idle' && phase !== 'completed') {
+        phaseTime += effectiveDeltaMs;
+
+        if (phase === 'windup' && phaseTime >= 120) {
+          setPhase('striking', '连发 (五声音阶爬升)');
+          strikeCard(0);
+        } else if (phase === 'striking') {
+          const interval = 170;
+          if (phaseTime >= interval) {
+            phaseTime -= interval;
+            strikeIndex++;
+            if (strikeIndex < 4) {
+              strikeCard(strikeIndex);
+            } else {
+              setPhase('climax', '爆点 (大招倍率顿挫)');
+              triggerClimax();
+            }
+          }
+        } else if (phase === 'climax' && phaseTime >= 400) {
+          setPhase('resolution', '收束 (编钟鸣响与留白)');
+          resolveTotal();
+        } else if (phase === 'resolution' && phaseTime >= 600) {
+          setPhase('completed', '流程结算完毕');
+        }
+      }
+
+      requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+
+    // Button Listeners
+    document.getElementById('btn-play').onclick = () => startScoring(1.0);
+    document.getElementById('btn-fast').onclick = () => startScoring(2.0);
+    document.getElementById('btn-cancel').onclick = cancelScoring;
+
+    let isMuffled = false;
+    document.getElementById('btn-muffle').onclick = () => {
+      isMuffled = !isMuffled;
+      if (isMuffled) {
+        audioFilter.enterMuffled('demo-shop', 0.4);
+        filterEl.textContent = '进入商店低通 (450 Hz 室内电音)';
+        filterEl.style.color = '#ffbe76';
+        log(`[音频管道] 进商店: 背景音乐进入 450Hz 低通滤波 (计分音效仍完全清脆)`);
+      } else {
+        audioFilter.exitMuffled('demo-shop', 0.3);
+        filterEl.textContent = '全频通透 (20 kHz)';
+        filterEl.style.color = 'var(--accent-cyan)';
+        log(`[音频管道] 出商店: 背景音乐平滑恢复 20kHz 通透全频`);
+      }
+    };
+
+    document.getElementById('btn-tilt-reset').onclick = () => {
+      cardSprings.forEach(s => s.reset(0));
+      log(`卡牌姿态物理复位完成`);
+    };
+
+    log(`《唐宋牌》视听打击感可运行环境加载就绪。`);
+  </script>
+</body>
+</html>
