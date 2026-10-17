@@ -2,19 +2,22 @@ import{it,expect}from'vitest';import{readFileSync}from'node:fs';import{createHas
 const HALF1_IDS=new Set(['pengci','tiesuanpan','a03','a04','a05','a06','a07','a08','a09','a10','a11','a12','mantangcai','b02','b03','b04','b05','b06','b07','b08','b09','b10','b11','b12','jiedongfeng','c02','c03','c04','c05','c06','c07','c08','c09','c10','c11','c12']);
 const HALF2_IDS=new Set(['d01','d02','d03','d04','d05','d06','d07','d08','d09','d10','d11','d12','e01','e02','e03','e04','e05','e06','e07','e08','e09','e10','e11','e12','huimaqiang','f02','f03','f04','f05','f06','f07','f08','f09','f10','f11','f12']);
 const ALL72_IDS=new Set([...HALF1_IDS,...HALF2_IDS]);
-it('pins exact authorized81 artwork165 runtime hashes/sizes and purpose mapping',()=>{expect(HANDDRAWN_SOURCE).toBe('c618cee93089bb2e556f16567709b0ea23abbcb9');expect(HANDDRAWN_ART).toHaveLength(81);let n=0,total=0;for(const a of manifest.assets)for(const o of a.outputs){const b=readFileSync(new URL('../public/assets/handdrawn-p08/'+o.path,import.meta.url));expect(b.length).toBe(o.bytes);expect(createHash('sha256').update(b).digest('hex')).toBe(o.sha256);expect(handdrawnPath(a.id,o.purpose)).toBe('assets/handdrawn-p08/'+o.path);n++;total+=b.length;}expect(n).toBe(165);expect(total).toBe(10054634);});
+it('pins exact authorized81 artwork165 runtime hashes/sizes and purpose mapping',()=>{expect(HANDDRAWN_SOURCE).toBe('c618cee93089bb2e556f16567709b0ea23abbcb9');expect(HANDDRAWN_ART).toHaveLength(81);let n=0,total=0;for(const a of manifest.assets)for(const o of a.outputs){const b=readFileSync(new URL('../public/assets/handdrawn-p08/'+o.path,import.meta.url));expect(b.length).toBe(o.bytes);expect(createHash('sha256').update(b).digest('hex')).toBe(o.sha256);expect(handdrawnPath(a.id,o.purpose)).toBe('assets/handdrawn-p08/'+o.path);n++;total+=b.length;}expect(n).toBe(165);expect(total).toBe(10112306);expect(manifest.runtimeBytes).toBe(total);});
 it('six role IDs own their portrait/avatar/selection; JQK are rank-specific independent faces',()=>{for(const c of CHARACTERS){expect(c.portrait).toContain('/assets/tangsong-portraits/');for(const purpose of['avatar','selection','portrait'])expect(handdrawnPath(c.id,purpose)).toBeTruthy();}expect(COURT_ART.map(a=>a.rank)).toEqual([11,12,13]);for(const rank of[11,12,13])expect(courtArtKey(rank)).toBe('p08-court-'+(['j','q','k'][rank-11]));expect(courtArtKey(10)).toBeUndefined();});
 it('exact72 functional replacements cover the full production pool; new flat f09 never claims aligned layers',()=>{const changed=HANDDRAWN_ART.filter(a=>a.category==='functional-card');expect(changed).toHaveLength(72);for(const a of changed){const r=JOKER_ART.find(r=>r.id===a.id)!;expect(r.path).toBe(reviewedCardPath(a.id,'thumbnail'));expect(r.detailPath).toBe(reviewedCardPath(a.id,'detail'));expect(r.detailOnDemand).toBe(true);}expect(JOKER_ART).toHaveLength(72);expect(jokerArtKey('f09')).toBe('p08-joker-f09');expect(jokerArtAlignedLayers('f09')).toBe(false);expect(JOKER_ART.find(a=>a.id==='e05')?.path).toBe(reviewedCardPath('e05','thumbnail'));expect(jokerArtKey('c11')).toBe('p08-joker-c11');});
 
-it('half1 20261017 batch binds 36 approved replacements (A01-C12) to exact receipt and on-demand derivatives',()=>{
+it('half1 20261017 batch binds 36 mappings with an explicit C06 user-art override',()=>{
  const receipt=JSON.parse(readFileSync(new URL('../art/sources/handdrawn-runtime-20261017-half1/manifest.json',import.meta.url),'utf8'));
+ const replacement=JSON.parse(readFileSync(new URL('../art/sources/qingchuyulan-art-20261017/manifest.json',import.meta.url),'utf8'));
  expect(receipt.assets).toHaveLength(36);
  for(const item of receipt.assets){
   const asset=HANDDRAWN_ART.find(a=>a.id===item.id)!;expect(asset).toBeDefined();
   expect(asset.outputs.map(o=>[o.purpose,o.width,o.height])).toEqual([['thumbnail',128,160],['detail',615,768]]);
   const thumb=asset.outputs.find(o=>o.purpose==='thumbnail')!,detail=asset.outputs.find(o=>o.purpose==='detail')!;
-  expect(thumb.sha256).toBe(item.thumbnail.sha256);expect(thumb.bytes).toBe(item.thumbnail.bytes);
-  expect(detail.sha256).toBe(item.detail.sha256);expect(detail.bytes).toBe(item.detail.bytes);
+  const expectedThumb=item.id==='c06'?replacement.outputs.find((o:{purpose:string})=>o.purpose==='thumbnail'):item.thumbnail,expectedDetail=item.id==='c06'?replacement.outputs.find((o:{purpose:string})=>o.purpose==='detail'):item.detail;
+  expect(thumb.sha256).toBe(expectedThumb.sha256);expect(thumb.bytes).toBe(expectedThumb.bytes);
+  expect(detail.sha256).toBe(expectedDetail.sha256);expect(detail.bytes).toBe(expectedDetail.bytes);
+  if(item.id==='c06')expect(replacement.previous.outputs).toEqual([{purpose:'thumbnail',...item.thumbnail},{purpose:'detail',...item.detail}]);
   expect(jokerArtKey(item.id)).toBe('p08-joker-'+item.id);expect(jokerArtAlignedLayers(item.id)).toBe(false);
   expect(JOKER_ART.find(a=>a.id===item.id)?.detailOnDemand).toBe(true);
  }
@@ -160,4 +163,15 @@ it('preserves untouched assets records including all six roles and JQK',()=>{
 });
 it('uses approved receipt for a11-v2 compatibility or half1 fresh assets',()=>{
  expect(HANDDRAWN_ART.find(a=>a.id==='a11')?.outputs.length).toBe(2);
+});
+
+it('binds the user-replaced 青出于蓝 to c06 with intact source bytes and new cache paths',()=>{
+ const receipt=JSON.parse(readFileSync(new URL('../art/sources/qingchuyulan-art-20261017/manifest.json',import.meta.url),'utf8'));
+ const original=readFileSync(new URL('../art/sources/qingchuyulan-art-20261017/'+receipt.sourceFilename,import.meta.url));
+ expect(receipt.id).toBe('c06');expect(receipt.displayName).toBe('青出于蓝');expect(receipt.domainName).toBe('越染越深');
+ expect(createHash('sha256').update(original).digest('hex')).toBe('7b530adb5ede95719ad37f4813e90f0ad42faa657763b7f5c60152a3f3b963e9');expect(original.length).toBe(3937366);
+ expect(receipt.geometry).toMatchObject({fit:'contain',entireSourceSampled:true,noStretch:true,sourceCropPixels:{left:0,top:0,width:1122,height:1402}});
+ const active=HANDDRAWN_ART.find(a=>a.id==='c06')!;expect(active.outputs).toEqual(receipt.outputs);
+ expect(active.replacementSource).toBeDefined();expect(active.replacementSource!.sourceManifestSHA256).toBe(createHash('sha256').update(JSON.stringify(receipt,null,2)+'\n').digest('hex'));
+ for(const o of active.outputs)expect(o.path).toBe('cards/c06-v3-'+o.sha256.slice(0,12)+'.'+o.purpose+'.webp');
 });

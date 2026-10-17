@@ -1,0 +1,104 @@
+{
+  "status": "PASS",
+  "baseCommit": "f81724b57736c7d4f299cf1d95705a7ba3ef9497",
+  "mapping": {
+    "id": "c06",
+    "displayName": "青出于蓝",
+    "domainName": "越染越深",
+    "priorSource": "30_c06_青出于蓝.jpg"
+  },
+  "sourceSHA256": "7b530adb5ede95719ad37f4813e90f0ad42faa657763b7f5c60152a3f3b963e9",
+  "sourceBytes": 3937366,
+  "sourceDimensions": [
+    1122,
+    1402
+  ],
+  "sourceMatchesUserFile": true,
+  "outputs": [
+    {
+      "purpose": "thumbnail",
+      "path": "cards/c06-v3-45e28c8be0e9.thumbnail.webp",
+      "width": 128,
+      "height": 160,
+      "bytes": 8492,
+      "sha256": "45e28c8be0e9b99889849355026f8442c30a9e3662a761c7f1083165ed2a7493"
+    },
+    {
+      "purpose": "detail",
+      "path": "cards/c06-v3-2cac9ea20520.detail.webp",
+      "width": 615,
+      "height": 768,
+      "bytes": 155372,
+      "sha256": "2cac9ea20520b03c13de76a42dbb55fb5229990e209ecda1975d3c192c55c07e"
+    }
+  ],
+  "climax": {
+    "id": "c06",
+    "kind": "stage-derivative",
+    "sourcePath": "assets/handdrawn-p08/cards/c06-v3-2cac9ea20520.detail.webp",
+    "sourceSHA256": "2cac9ea20520b03c13de76a42dbb55fb5229990e209ecda1975d3c192c55c07e",
+    "path": "assets/handdrawn-climax/c06-8658c7e678da.webp",
+    "width": 320,
+    "height": 400,
+    "bytes": 54670,
+    "sha256": "8658c7e678da39352b225d3d95ceef67a5b072fe0b0eb012a85e36a447986568",
+    "geometry": {
+      "fit": "inside",
+      "entireSourceSampled": true,
+      "noUpscale": true,
+      "sourceCropPixels": {
+        "left": 0,
+        "top": 0,
+        "width": 615,
+        "height": 768
+      }
+    }
+  },
+  "otherRuntimeAndClimaxEntriesUnchanged": true,
+  "protectedProductAndToolPathsUnchanged": true,
+  "remoteVisualAcceptance": "PENDING",
+  "localBrowserMatrix": "NOT_RUN",
+  "longRun": "NOT_RUN",
+  "checks": {
+    "sourceAndDerivatives": "PASS",
+    "singleCardReproduction": "PASS",
+    "singleClimaxReproduction": "PASS",
+    "targetedTests": {
+      "files": 3,
+      "passed": 36
+    },
+    "productionBuild": "PASS",
+    "builtAssetsMatchActiveSHA256": true
+  },
+  "buildInfo": {
+    "version": "C03",
+    "builtAt": "2026-10-17T04:05:15.539Z",
+    "revision": "f81724b57736c7d4f299cf1d95705a7ba3ef9497",
+    "sourceStatus": "dirty",
+    "modified": true,
+    "modifiedFileCount": 7,
+    "modifiedFiles": [
+      "art/sources/handdrawn-runtime-20261004-b10/manifest.json",
+      "art/sources/handdrawn-runtime-20261004-b11/manifest.json",
+      "art/sources/handdrawn-runtime-20261004-b9/manifest.json",
+      "public/assets/handdrawn-climax/manifest.json",
+      "public/assets/handdrawn-p08/manifest.json",
+      "scripts/build-climax-source-art.mjs",
+      "tests/handdrawn-art.test.ts"
+    ]
+  },
+  "buildBundles": [
+    {
+      "path": "assets/index-BjICR4K5.css",
+      "sha256": "0eb622be28a6de07f8df947f711b51254f07a9ceea9cb3fc64da3ca5534b1231"
+    },
+    {
+      "path": "assets/index-WcgZIUCL.js",
+      "sha256": "c85b3a9fdd7a2c57f8eafc4d573a70f08254791834dbc19601bedcc27c9bf257"
+    }
+  ],
+  "gitIndex": {
+    "binaryFiles": 4,
+    "sourceAndThreeDerivativesMatch": true
+  }
+}
