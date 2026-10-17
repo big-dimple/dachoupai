@@ -1,0 +1,35 @@
+
+ RUN  v4.1.11 C:/Users/wanghongping/AppData/Local/Temp/dachoupai-windows-integration-20261017
+
+ 鉂?tests/tangsong-ui-boundaries.test.ts (3 tests | 3 failed) 128ms
+   脳 receipt/comparison/growth names use IDs without renaming profile definitions (current=false) 37ms
+   脳 receipt/comparison/growth names use IDs without renaming profile definitions (current=true) 69ms
+   脳 actual saved events and replay use the same name while keeping raw trace, numbers and identity 21ms
+
+鈳幆鈳幆鈳幆鈳?Failed Tests 3 鈳幆鈳幆鈳幆鈳?
+ FAIL  tests/tangsong-ui-boundaries.test.ts > receipt/comparison/growth names use IDs without renaming profile definitions (current=false)
+ FAIL  tests/tangsong-ui-boundaries.test.ts > receipt/comparison/growth names use IDs without renaming profile definitions (current=true)
+AssertionError: expected '缁冨瀛? to be '鐐夌伀绾潚' // Object.is equality
+
+Expected: "鐐夌伀绾潚"
+Received: "缁冨瀛?
+
+ 鉂?tests/tangsong-ui-boundaries.test.ts:17:238
+
+
+鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆[1/3]鈳?
+ FAIL  tests/tangsong-ui-boundaries.test.ts > actual saved events and replay use the same name while keeping raw trace, numbers and identity
+AssertionError: expected '鑰佹惌妗? to be '鑾€嗕箣浜? // Object.is equality
+
+Expected: "鑾€嗕箣浜?
+Received: "鑰佹惌妗?
+
+ 鉂?tests/tangsong-ui-boundaries.test.ts:22:665
+
+
+鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆[2/3]鈳?
+
+ Test Files  1 failed (1)
+      Tests  3 failed (3)
+   Start at  11:20:25
+   Duration  3.20s (transform 2.50s, setup 0ms, import 2.77s, tests 128ms, environment 0ms)

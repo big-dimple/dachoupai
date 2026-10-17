@@ -1,0 +1,323 @@
+
+ RUN  v4.1.11 C:/Users/wanghongping/AppData/Local/Temp/dachoupai-windows-integration-20261017
+
+ ❯ tests/joker-experience.test.ts (7 tests | 2 failed) 125ms
+   × shared actual ledger distinguishes reads, saved growth and individual retrigger objects without writes 36ms
+   × all gift sources preserve ordered distinct names and overflow destinations 13ms
+ ❯ tests/build-journey.test.ts (10 tests | 1 failed) 123ms
+   × three directions report current deck counts, compatible holdings and tools without future order 21ms
+ ❯ tests/shop-recommendation.test.ts (20 tests | 2 failed) 400ms
+     × actual clone-only sale and buy include positive growth, reset losses, coupons and fresh editions 22ms
+     × compact comparison keeps money, nonzero edition/growth, reset and real hooks, omitting zero rules 8ms
+ ❯ tests/build-fallback.test.ts (9 tests | 1 failed) 541ms
+   × slot capacity and held cash thresholds block a purchase suggestion while keeping an owned tool usable 84ms
+ ❯ tests/build-journey-dialog.test.ts (7 tests | 1 failed) 156ms
+   × a genuine all-route support can be shown but is explicitly labeled general support 15ms
+ ❯ tests/shop-current-decisions.test.ts (14 tests | 4 failed) 175ms
+   × missing direct component is considered ahead of a generic card 21ms
+   × full build can suggest an uninvested off-route slot but exposes the exact lost source 11ms
+   × spending cannot hide the current held gold-condition loss in a positive conclusion 6ms
+   × route tool spending also preserves the held gold gate and names the actual loss 5ms
+ ❯ tests/settlement-presentation.test.ts (23 tests | 2 failed) 538ms
+   × hero, joker factors, final cumulative M and prior run seniority remain distinct 30ms
+   × an actual e11 1.3 reading belongs to the source while Amo has no triggered ability 37ms
+ ❯ tests/xiemu-cash-choice.test.ts (3 tests | 2 failed) 72ms
+     × warns for20 ->10 before the command and leaves saved data unchanged 37ms
+     × keeps the inclusive20 boundary and warns only for tiers that cross it 9ms
+ ❯ tests/c02-source-copy.test.ts (8 tests | 2 failed) 33ms
+     × names the F08 0 check as one per hand with its public 1/3 probability 11ms
+     × names the F08 1 check as one per hand with its public 1/3 probability 2ms
+ ❯ tests/joker-growth-causality.test.ts (8 tests | 1 failed) 36ms
+   × every narrow discovery retains source, actual gain and saved total, and conditional timing 7ms
+ ❯ tests/saved-boss-impact.test.ts (7 tests | 1 failed) 40ms
+     × uses saved source order and seals after the live inventory/seals have changed 11ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 19 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/build-fallback.test.ts > slot capacity and held cash thresholds block a purchase suggestion while keeping an owned tool usable
+AssertionError: expected '当前唐宋牌现货没有明确补强；留21金入场也是完整选择。\n购款金币21→1…' to contain '包场'
+
+- Expected
++ Received
+
+- 包场
++ 当前唐宋牌现货没有明确补强；留21金入场也是完整选择。
++ 购款金币21→19；一掷千金买后19金，暂不触发倍率×1.8（需本手开始金币至少20；本手新收入不改变资格）；这轮先留金。
+
+ ❯ tests/build-fallback.test.ts:32:231
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/19]⎯
+
+ FAIL  tests/build-journey-dialog.test.ts > a genuine all-route support can be shown but is explicitly labeled general support
+AssertionError: expected '保留同点牌，试两对、三条等成组。\n现货 · 通用辅助：陈年佳酿 · 实付…' to contain '等得住'
+
+- Expected
++ Received
+
+- 等得住
++ 保留同点牌，试两对、三条等成组。
++ 现货 · 通用辅助：陈年佳酿 · 实付4金
+
+ ❯ tests/build-journey-dialog.test.ts:20:164
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/19]⎯
+
+ FAIL  tests/build-journey.test.ts > three directions report current deck counts, compatible holdings and tools without future order
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/build-journey.test.ts:7:299
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/19]⎯
+
+ FAIL  tests/c02-source-copy.test.ts > C02 committed sources distinguish probability, prizes and multiplicative growth > names the F08 0 check as one per hand with its public 1/3 probability
+AssertionError: expected '上上大吉 · 未命中（每手1次，概率1/3）' to be '试试手气 · 未命中（每手1次，概率1/3）' // Object.is equality
+
+Expected: "试试手气 · 未命中（每手1次，概率1/3）"
+Received: "上上大吉 · 未命中（每手1次，概率1/3）"
+
+ ❯ tests/c02-source-copy.test.ts:13:122
+     11| describe('C02 committed sources distinguish probability, prizes and mu…
+     12|   it.each(['0','1'])('names the F08 %s check as one per hand with its …
+     13|     expect(r2ScoreOperationText(event('chance-heat-check',fraction(hit…
+       |                                                                                                                          ^
+     14|   });
+     15|   it('states coefficient reads and changes with multiplication and fut…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/19]⎯
+
+ FAIL  tests/c02-source-copy.test.ts > C02 committed sources distinguish probability, prizes and multiplicative growth > names the F08 1 check as one per hand with its public 1/3 probability
+AssertionError: expected '上上大吉 · 命中（每手1次，概率1/3）' to be '试试手气 · 命中（每手1次，概率1/3）' // Object.is equality
+
+Expected: "试试手气 · 命中（每手1次，概率1/3）"
+Received: "上上大吉 · 命中（每手1次，概率1/3）"
+
+ ❯ tests/c02-source-copy.test.ts:13:122
+     11| describe('C02 committed sources distinguish probability, prizes and mu…
+     12|   it.each(['0','1'])('names the F08 %s check as one per hand with its …
+     13|     expect(r2ScoreOperationText(event('chance-heat-check',fraction(hit…
+       |                                                                                                                          ^
+     14|   });
+     15|   it('states coefficient reads and changes with multiplication and fut…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/19]⎯
+
+ FAIL  tests/joker-experience.test.ts > shared actual ledger distinguishes reads, saved growth and individual retrigger objects without writes
+AssertionError: expected [] to have a length of 1 but got +0
+
+- Expected
++ Received
+
+- 1
++ 0
+
+ ❯ tests/joker-experience.test.ts:15:68
+     13|  expect(rows.some(r=>r?.effect==='读取已有 10 热度')).toBe(true);expect(rows…
+     14|  expect(rows.some(r=>r?.destination.includes('该手后已存 20'))).toBe(true);…
+     15|  expect(savedExperienceCards(s,trace).filter(r=>r.title==='再说一遍')).toH…
+       |                                                                    ^
+     16| });
+     17| it('caps and zero reads produce no fake benefit, while source rules re…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/19]⎯
+
+ FAIL  tests/joker-experience.test.ts > all gift sources preserve ordered distinct names and overflow destinations
+AssertionError: expected '锦上添花 · 方片染 ×1\n原因：成功过关时 · 本场已成功打出顺子／同…' to contain '换一身'
+
+- Expected
++ Received
+
+- 换一身
++ 锦上添花 · 方片染 ×1
++ 原因：成功过关时 · 本场已成功打出顺子／同花全部普通型；当前未提交与同花顺不算
++ 去向：道具箱 · 该次库存 0 → 1
++ 下一步：打开道具箱，选择工具→目标牌→确认使用。
++
++ 倾囊相授 · 练一招 ×1
++ 原因：成功过关时 · 持有期间每2次实际过关的赠品事件
++ 去向：道具箱 · 该次库存 1 → 2
++ 下一步：打开道具箱，选择工具→目标牌→确认使用。
++
++ 当前余额 30 金；查看不重复领奖。
+
+ ❯ tests/joker-experience.test.ts:43:67
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/19]⎯
+
+ FAIL  tests/joker-growth-causality.test.ts > every narrow discovery retains source, actual gain and saved total, and conditional timing
+AssertionError: expected '炉火纯青成长+10→10 · 下手按条件读' to contain '练对子'
+
+Expected: "练对子"
+Received: "炉火纯青成长+10→10 · 下手按条件读"
+
+ ❯ tests/joker-growth-causality.test.ts:19:280
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/19]⎯
+
+ FAIL  tests/saved-boss-impact.test.ts > saved Boss scoring impact, current identity > uses saved source order and seals after the live inventory/seals have changed
+AssertionError: expected '压轴实际影响 · 半边灯\n蓄势待发 本手计分与版次停用；静态资源、经济与…' to contain '候场同伴 本手计分与版次停用'
+
+- Expected
++ Received
+
+- 候场同伴 本手计分与版次停用
++ 压轴实际影响 · 半边灯
++ 蓄势待发 本手计分与版次停用；静态资源、经济与结算后成长保持原规则。
+
+ ❯ tests/saved-boss-impact.test.ts:28:158
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/19]⎯
+
+ FAIL  tests/settlement-presentation.test.ts > hero, joker factors, final cumulative M and prior run seniority remain distinct
+AssertionError: expected [ '柳暗花明 ×3', '一掷千金 ×1.8', '一舞倾城 ×1.5' ] to deeply equal [ '冷场救火 ×3', '包场 ×1.8', '独家戏 ×1.5' ]
+
+- Expected
++ Received
+
+  [
+-   "冷场救火 ×3",
+-   "包场 ×1.8",
+-   "独家戏 ×1.5",
++   "柳暗花明 ×3",
++   "一掷千金 ×1.8",
++   "一舞倾城 ×1.5",
+  ]
+
+ ❯ tests/settlement-presentation.test.ts:39:18
+     37|  const run=settle('billion'),f=settlementFacts(run,true);
+     38|  expect(f.heroCopy).toBe('燃30金 · ×4');expect(f.card?.id).toBe('f10');e…
+     39|  expect(f.chain).toEqual(['冷场救火 ×3','包场 ×1.8','独家戏 ×1.5']);
+       |                  ^
+     40|  expect(f.routeCopy).toBe('本局资历 S21 · ×≈426.88');
+     41|  expect(f.trace?.finalScore).toBe('733884590');expect(f.cardCopy).not.…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/19]⎯
+
+ FAIL  tests/settlement-presentation.test.ts > an actual e11 1.3 reading belongs to the source while Amo has no triggered ability
+AssertionError: expected '薪火相传' to be '长期捧场' // Object.is equality
+
+Expected: "长期捧场"
+Received: "薪火相传"
+
+ ❯ tests/settlement-presentation.test.ts:68:123
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/19]⎯
+
+ FAIL  tests/shop-current-decisions.test.ts > missing direct component is considered ahead of a generic card
+AssertionError: expected '优先考虑：炉火纯青' to contain '练对子'
+
+Expected: "练对子"
+Received: "优先考虑：炉火纯青"
+
+ ❯ tests/shop-current-decisions.test.ts:14:223
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/19]⎯
+
+ FAIL  tests/shop-current-decisions.test.ts > full build can suggest an uninvested off-route slot but exposes the exact lost source
+AssertionError: expected '出售会失去一步之遥：普通顺子允许4张连续不同点数，A234合法，也保留5张…' to contain '少一级'
+
+Expected: "少一级"
+Received: "出售会失去一步之遥：普通顺子允许4张连续不同点数，A234合法，也保留5张顺子；基础卖价4金。"
+
+ ❯ tests/shop-current-decisions.test.ts:16:334
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/19]⎯
+
+ FAIL  tests/shop-current-decisions.test.ts > spending cannot hide the current held gold-condition loss in a positive conclusion
+AssertionError: expected '炉火纯青：购款金币21→17；一掷千金买后17金，暂不触发倍率×1.8（需…' to contain '包场'
+
+Expected: "包场"
+Received: "炉火纯青：购款金币21→17；一掷千金买后17金，暂不触发倍率×1.8（需本手开始金币至少20；本手新收入不改变资格）；这轮先留金。"
+
+ ❯ tests/shop-current-decisions.test.ts:22:327
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/19]⎯
+
+ FAIL  tests/shop-current-decisions.test.ts > route tool spending also preserves the held gold gate and names the actual loss
+AssertionError: expected '购款金币21→17；一掷千金买后17金，暂不触发倍率×1.8（需本手开始金…' to contain '包场'
+
+Expected: "包场"
+Received: "购款金币21→17；一掷千金买后17金，暂不触发倍率×1.8（需本手开始金币至少20；本手新收入不改变资格）；这轮先留金。"
+
+ ❯ tests/shop-current-decisions.test.ts:64:332
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/19]⎯
+
+ FAIL  tests/shop-recommendation.test.ts > audited sustained recommendation, separate from purchase and replacement > actual clone-only sale and buy include positive growth, reset losses, coupons and fresh editions
+AssertionError: expected '薪火相传 · 售后：乘法系数 ×1.5 → 乘法系数 ×1\n点石成金 ·…' to contain '长期捧场'
+
+- Expected
++ Received
+
+- 长期捧场
++ 薪火相传 · 售后：乘法系数 ×1.5 → 乘法系数 ×1
++ 点石成金 · 售后：无成长或使用计数 → 倍率成长 0.5
++ 鲜衣怒马 · 购后：无成长或使用计数 → 热度成长 8
+
+ ❯ tests/shop-recommendation.test.ts:54:496
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/19]⎯
+
+ FAIL  tests/shop-recommendation.test.ts > audited sustained recommendation, separate from purchase and replacement > compact comparison keeps money, nonzero edition/growth, reset and real hooks, omitting zero rules
+AssertionError: expected '返4金 · 实付1金 · 买后24金\n失去：闪箔（热度+25）\n薪火相…' to contain '旧物新用'
+
+- Expected
++ Received
+
+- 旧物新用
++ 返4金 · 实付1金 · 买后24金
++ 失去：闪箔（热度+25）
++ 薪火相传售后：系数×1.5→×1
++ 点石成金售后：倍率0→0.5
++ 鲜衣怒马购后：热度0→8
++ 薪火相传：下一场未售成长失效
+
+ ❯ tests/shop-recommendation.test.ts:57:515
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[17/19]⎯
+
+ FAIL  tests/xiemu-cash-choice.test.ts > burn choice names lost public held-card gold gates > warns for20 ->10 before the command and leaves saved data unchanged
+AssertionError: expected '花后10金；按当前本金，常规息少2、角色息少0金；一掷千金：花后10金，不…' to contain '包场：花后10金，不满足≥20金门槛'
+
+Expected: "包场：花后10金，不满足≥20金门槛"
+Received: "花后10金；按当前本金，常规息少2、角色息少0金；一掷千金：花后10金，不满足≥20金门槛"
+
+ ❯ tests/xiemu-cash-choice.test.ts:8:179
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[18/19]⎯
+
+ FAIL  tests/xiemu-cash-choice.test.ts > burn choice names lost public held-card gold gates > keeps the inclusive20 boundary and warns only for tiers that cross it
+AssertionError: expected '花后10金；按当前本金，常规息少3、角色息少0金；一掷千金：花后10金，不…' to contain '包场'
+
+Expected: "包场"
+Received: "花后10金；按当前本金，常规息少3、角色息少0金；一掷千金：花后10金，不满足≥20金门槛"
+
+ ❯ tests/xiemu-cash-choice.test.ts:9:214
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[19/19]⎯
+
+
+ Test Files  11 failed | 18 passed (29)
+      Tests  19 failed | 274 passed (293)
+   Start at  11:27:16
+   Duration  6.82s (transform 43.51s, setup 0ms, import 69.64s, tests 9.08s, environment 5ms)
