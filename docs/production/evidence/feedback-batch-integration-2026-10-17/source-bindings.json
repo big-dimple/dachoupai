@@ -1,6 +1,6 @@
 {
   "baseCommit": "212e23d547d4fcfdd886f9dfe80699318e77a738",
-  "integratedProductCommit": "565be54e0b588ddd98c54aae43d144637be9ff9e",
+  "integratedProductCommit": "a54cb1efea32f6b42fdad37a490e70bfdd864e89",
   "branch": "dev/feedback-batch-integration-20261017",
   "sources": [
     {
@@ -388,6 +388,24 @@
           "integratedBlob": "fa6c06c6c42ff8dd2cadaa30ebf6b4b53d91e23b"
         }
       ]
+    },
+    {
+      "name": "mobile-settlement",
+      "sha": "236acc4cac8b990af9b622179dff4ccdc1e5c774",
+      "paths": 2,
+      "bindings": [
+        {
+          "path": "src/game/IntermissionScene.ts",
+          "sourceBlob": "1e21a9225537f8e35005d3ccc61d73268ba95943",
+          "integratedBlob": "1e21a9225537f8e35005d3ccc61d73268ba95943"
+        },
+        {
+          "path": "src/game/SettlementPresentation.ts",
+          "sourceBlob": "727c664564af40740603a4658190619c11195e61",
+          "integratedBlob": "727c664564af40740603a4658190619c11195e61"
+        }
+      ],
+      "ownerEvidence": "Parent delivery:44 related contracts/type/build and4 local visual cases; this commit contains only2 product files, no new evidence files."
     }
   ],
   "changedPathOverlap": [],
@@ -404,8 +422,8 @@
   "protectedRootsUnchanged": true,
   "gameSceneExactSource": "09249ad5c6e382c56f19a395cbde150d0e3b9153",
   "gameSceneBlob": "f57dc64c5f6e85cf33d6723d1a6773f7eb3b2601",
-  "priorPartialSnapshot": "689251951120d69d24daae5b8d91545f350d4ed3",
-  "latestMerge": "565be54e0b588ddd98c54aae43d144637be9ff9e c11ece7b252c920b9cf4046c753c66d2632f0032 09249ad5c6e382c56f19a395cbde150d0e3b9153 Integrate final score footer and hero skill display 09249ad5 [skip ci]",
+  "priorPartialSnapshot": "565be54e0b588ddd98c54aae43d144637be9ff9e",
+  "latestMerge": "a54cb1efea32f6b42fdad37a490e70bfdd864e89 83d8ebe690c68c7c446f7512bad3d3e1a476a9e9 236acc4cac8b990af9b622179dff4ccdc1e5c774 Integrate mobile settlement content rhythm 236acc4c [skip ci]",
   "sourceLineage": [
     "deee66633965266c558704bf05b419ea0e45e4c5",
     "1eacdcd0a8d31bffa57fdd8433f4cb06176b42de"

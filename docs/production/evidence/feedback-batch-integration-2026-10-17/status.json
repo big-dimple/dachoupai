@@ -5,7 +5,7 @@
   "taskStatus": "in_progress",
   "phase": "PARTIAL_SOURCES_MERGED_WAITING_REMAINDER",
   "baseCommit": "212e23d547d4fcfdd886f9dfe80699318e77a738",
-  "integratedProductCommit": "565be54e0b588ddd98c54aae43d144637be9ff9e",
+  "integratedProductCommit": "a54cb1efea32f6b42fdad37a490e70bfdd864e89",
   "branch": "dev/feedback-batch-integration-20261017",
   "sources": [
     {
@@ -16,6 +16,11 @@
     {
       "name": "score-burst-footer-hero-names",
       "commit": "09249ad5c6e382c56f19a395cbde150d0e3b9153",
+      "status": "MERGED_EXACT_OWNER_PATHS"
+    },
+    {
+      "name": "mobile-settlement",
+      "commit": "236acc4cac8b990af9b622179dff4ccdc1e5c774",
       "status": "MERGED_EXACT_OWNER_PATHS"
     }
   ],
@@ -42,7 +47,8 @@
     "audio": "113 source contracts/type/build and3.56s SFX-only OfflineAudioContext render at exact audio source, not combined acceptance.",
     "visual": "Owner reports51 checks/type/build and local-only short frame observations in its README; no private/local screenshots copied or uploaded.",
     "footer": "Owner75 component/layout cases and9 wiring cancellation cases/type/build as scoped in source README, not added into a new aggregate total.",
-    "heroNames": "Owner226 name-projection cases and17 final owner wiring cases/type/build, per final sourceREADME. Not rerun and not aggregated with other overlapping source counts."
+    "heroNames": "Owner226 name-projection cases and17 final owner wiring cases/type/build, per final sourceREADME. Not rerun and not aggregated with other overlapping source counts.",
+    "mobile": "Parent reports44 related checks/type/build and4 local visual cases at236acc4c; source has2 product files only. No matrix rerun or fabricated committed evidence link."
   },
   "waitingSources": [
     {
@@ -51,12 +57,6 @@
       "status": "WAITING_FINAL_SHOP_SHA",
       "bossModuleCandidate": "d77fd635c91b52d71ebbceaa635e2d5ae10825a0",
       "instruction": "Wait combined Shop source; no standalone duplicate patch/merge."
-    },
-    {
-      "owner": "01a147f5",
-      "scope": "Mobile settlement",
-      "status": "WAITING_SHA",
-      "conflictRule": "Keep final hero-name projection in SettlementHighlights/ScoreReview and incoming layout; resolve locally, never choose one whole old module."
     }
   ],
   "hearing": {
@@ -91,5 +91,18 @@
     "刘娥": "垂帘听政",
     "文成公主": "文成和亲",
     "花蕊夫人": "花蕊赏赐"
+  },
+  "settlementCross": {
+    "status": "STATIC_MERGE_PRESERVED_BOTH",
+    "mobileFiles": [
+      "src/game/IntermissionScene.ts",
+      "src/game/SettlementPresentation.ts"
+    ],
+    "namesFiles": [
+      "src/game/SettlementHighlights.ts",
+      "src/game/ScoreReview.ts",
+      "src/game/HeroSkillPresentation.ts"
+    ],
+    "note": "No source-path collision. Mobile render consumes savedSkillName from final names module; each owner file remains exact. Runtime cross-check waits final batch."
   }
 }
