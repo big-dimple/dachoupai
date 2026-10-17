@@ -1,0 +1,32 @@
+
+> dachoupai@0.1.0 test
+> vitest run --run tests/score-table.test.ts tests/hero-ability-cue.test.ts tests/touye-scene-phase.test.ts tests/score-table-haptics.test.ts
+
+
+ RUN  v4.1.11 D:/ai/dachoupai/dachoupai/.codex-remote-attachments/score-posture-pressure
+
+
+ Test Files  4 passed (4)
+      Tests  30 passed (30)
+   Start at  17:52:18
+   Duration  4.43s (transform 7.74s, setup 0ms, import 10.72s, tests 1.48s, environment 1ms)
+
+
+> dachoupai@0.1.0 build
+> tsc --noEmit && vite build
+
+vite v7.3.6 building client environment for production...
+transforming...
+✓ 326 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/build-info.json                0.28 kB │ gzip:   0.22 kB
+dist/index.html                    14.39 kB │ gzip:   4.75 kB
+dist/assets/index-Y3ByiIW2.css    110.28 kB │ gzip:  19.97 kB
+dist/assets/index-DHXaWTuZ.js   2,831.23 kB │ gzip: 821.67 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 7.93s
