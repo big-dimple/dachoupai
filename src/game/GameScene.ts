@@ -2106,7 +2106,7 @@ export class GameScene extends Phaser.Scene {
     const base=score.events[0],baseProduct=Rational.fromJSON(base.after.H).multiply(Rational.fromJSON(base.after.M)).floor().toString();
     const baseCue=!replay&&BigInt(baseProduct)>0n&&scoreFireLevel(originHeat,baseProduct,this.stage.targetHeat)>0;
     this.effects.enqueue(async context=>{
-      const handoff=!replay&&score.events.find(e=>e.reasonKey==='erxiang.handoff'&&e.targetCardId===score.erxiangHandoff?.targetId);
+      const handoff=replay?undefined:score.events.find(e=>e.reasonKey==='erxiang.handoff'&&e.targetCardId===score.erxiangHandoff?.targetId);
       if(handoff?.targetCardId)this.targetAttachment?.consume(handoff.targetCardId,handoff.eventId,context);else this.targetAttachment?.clear();
       this.scoreHaptic?.scope.cancel();this.scoreHaptic=replay?undefined:{generation:context.generation,scope:Haptics.shared.createScope(context.signal)};
       this.audio.playHand();
