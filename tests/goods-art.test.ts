@@ -6,30 +6,36 @@ import {GOODS_ART,goodsArtUrl} from '../src/game/GoodsArt';
 import {JOKER_ART} from '../src/game/jokerArt';
 import {toolInfo,itemInfo,goodsArtPortrait} from '../src/game/r2ToolInfo';
 const finalToolIds=['P08','P09','P10','P12','S01','T19','S03','S04','S05','S06','S07','S08'];
-it('binds all twelve approved items and thirty-nine tools to exact full-contain derivatives',()=>{
-  expect(manifest.sourceCommit).toBe('11ae7a464fdcf54c4e338da9171d827265742e3c');
-  const receipt=readFileSync(new URL('../art/sources/handdrawn-runtime-tools-20261004-s1/manifest.json',import.meta.url));
-  expect(createHash('sha256').update(receipt).digest('hex')).toBe(manifest.sourceManifestSHA256);
-  expect(GOODS_ART.map(a=>a.id)).toEqual(['tool-t12','item-u07','tool-p11','tool-s02',...Array.from({length:6},(_,i)=>'item-u0'+(i+1)),...Array.from({length:5},(_,i)=>'item-u'+String(i+8).padStart(2,'0')),...Array.from({length:6},(_,i)=>'tool-t'+String(i+6).padStart(2,'0')),...Array.from({length:6},(_,i)=>'tool-t'+String(i+13).padStart(2,'0')),...Array.from({length:5},(_,i)=>'tool-t'+String(i+1).padStart(2,'0')),'tool-p01',...Array.from({length:6},(_,i)=>'tool-p'+String(i+2).padStart(2,'0')),...finalToolIds.map(id=>'tool-'+id.toLowerCase())]);
-  const sources=[['34dab048aea452e6e9175afa80878193be3bf1bc','c8cb24b8e1d50b173219cbf83cb118ca9da204347a6e64ecdcf5da2d9d3a26ed'],['e11f7f8efaf2114b1ef0b928855230cfdb5c4863','4ae735d35fada6777b3b4471ae730837780b1d7c53d763ca0ced37bd05a6d474'],['b25f00aaafbd79a475fa045eceea18a5d4df6b29','3bc142e8e050e220a29e1f98e90cb5d8fbeb6fcebbd77fd5d40c8b3983d7c215'],['a8cab71d56d24aeaef919e6c04c5c22bf0106da3','6c93741739a10ef676f2ba989988b70e580eecb16b51f6bfa45f867ad5bb7866'],['0df5c1afac5e07e439c0cb164a06896bba9608ab','092ec0b2bf83d2c566609598195e2abcfb09a1318966ac316d37f0afcae84207'],['c139d70f5411c4991a73ac9ed50fc8fc13f478a7','6690aff014c9298c1f558b6b8669341ecbf2e7e356858bc186dde800af38fc5e'],['1cbc3e7cbfe31ba522514c79b866787f2866cbe8','e7a076ef322f97c0d838a57e03018ca46143d3088bdceadad0f63ce4da82d688'],['6d3596b728008aa35caed454ab46038fdb7ac975','8df6bbdd64a2e6d6fddd91150c03c36a133441e174f91629777d98b1bd0b8344']];
-  expect(manifest.additionalSources).toHaveLength(sources.length);
-  for(const [index,extra] of manifest.additionalSources.entries()){
-    const extraReceipt=readFileSync(new URL('../'+extra.sourceManifestPath,import.meta.url));
-    expect(extra.sourceCommit).toBe(sources[index][0]);expect(extra.sourceManifestSHA256).toBe(sources[index][1]);expect(createHash('sha256').update(extraReceipt).digest('hex')).toBe(extra.sourceManifestSHA256);
-    const incoming=JSON.parse(extraReceipt.toString());for(const a of incoming.assets){const runtime=GOODS_ART.find(row=>row.id===a.id)!;expect(runtime.domainId).toBe(a.domainId);expect(runtime.category).toBe(a.category);for(const o of a.outputs){const actual=runtime.outputs.find(row=>row.purpose===o.kind)!;expect(actual.sha256).toBe(o.sha256);expect(actual.bytes).toBe(o.bytes);}}
+it('binds all twelve items and thirty-nine tools to reviewed, complete source derivatives',()=>{
+  const expectedIds=[...Array.from({length:19},(_,i)=>'T'+String(i+1).padStart(2,'0')),...Array.from({length:12},(_,i)=>'P'+String(i+1).padStart(2,'0')),...Array.from({length:8},(_,i)=>'S'+String(i+1).padStart(2,'0')),...Array.from({length:12},(_,i)=>'U'+String(i+1).padStart(2,'0'))].sort();
+  expect(GOODS_ART.map(a=>a.domainId).sort()).toEqual(expectedIds);
+  expect(manifest.replacementSources).toHaveLength(1);
+  const source=manifest.replacementSources[0],raw=readFileSync(new URL('../'+source.sourceManifestPath,import.meta.url));
+  expect(createHash('sha256').update(JSON.stringify(JSON.parse(raw.toString()),null,2)+'\n').digest('hex')).toBe(source.sourceManifestSHA256);
+  const receipt=JSON.parse(raw.toString());
+  expect(source.domainIds).toEqual(expectedIds);expect(receipt.unmapped).toEqual([]);
+  expect(receipt.assets).toHaveLength(51);
+  for(const a of receipt.assets){
+    const original=readFileSync(new URL('../art/sources/'+receipt.batch+'/'+a.sourceFilename,import.meta.url));
+    expect(createHash('sha256').update(original).digest('hex')).toBe(a.sourceSHA256);
+    expect(original.length).toBe(a.sourceBytes);expect(a.pixelObservation).toBeTruthy();
+    expect(a.geometry).toEqual({fit:'contain',entireSourceSampled:true,noStretch:true,sourceCropPixels:{left:0,top:0,width:a.sourceWidth,height:a.sourceHeight},background:'#F3EADB',insetBoundingBoxes:{thumbnail:{left:4,top:5,width:120,height:150},detail:{left:19,top:24,width:576,height:720}}});
+    const runtime=GOODS_ART.find(row=>row.domainId===a.domainId)!;
+    expect(runtime.id).toBe(a.id);expect(runtime.category).toBe(a.category);
+    expect(runtime.sourceBatch).toBe(receipt.batch);expect(runtime.outputs).toEqual(a.outputs);
   }
-  expect(JSON.parse(receipt.toString()).assets[0].sourceFilename).toBe('tool-t12-v2-original.png');
-  const firstTools=JSON.parse(readFileSync(new URL('../art/sources/handdrawn-runtime-tools-20261004-t01-t05-p01/manifest.json',import.meta.url),'utf8'));
-  expect(firstTools.assets.find((a:{domainId:string})=>a.domainId==='T02').sourceFilename).toBe('tool-t02-v2-original.png');
-  expect(firstTools.assets.filter((a:{sourceAspectExceptionApproved:boolean})=>a.sourceAspectExceptionApproved).map((a:{domainId:string;sourceWidth:number;sourceHeight:number})=>[a.domainId,a.sourceWidth,a.sourceHeight])).toEqual([['T04',1073,1466],['T05',1060,1484]]);
-  const planets=JSON.parse(readFileSync(new URL('../art/sources/handdrawn-runtime-tools-20261004-p02-p07/manifest.json',import.meta.url),'utf8'));
-  expect(planets.assets.filter((a:{sourceAspectExceptionApproved:boolean})=>a.sourceAspectExceptionApproved).map((a:{domainId:string;sourceWidth:number;sourceHeight:number})=>[a.domainId,a.sourceWidth,a.sourceHeight])).toEqual([['P04',1060,1484]]);
-  const spectral=JSON.parse(readFileSync(new URL('../art/sources/handdrawn-runtime-tools-20261004-s03-s08/manifest.json',import.meta.url),'utf8'));
-  expect(spectral.assets.find((a:{domainId:string})=>a.domainId==='S04').sourceFilename).toBe('tool-s04-v2-original.png');
-  let bytes=0,count=0;for(const a of GOODS_ART){expect(a.category).toBe(a.domainId.startsWith('U')?'item-card':'tool-card');expect(JOKER_ART.some(j=>j.id===a.id||j.id===a.domainId)).toBe(false);
+  let bytes=0,count=0;for(const a of GOODS_ART){
+    expect(a.category).toBe(a.domainId.startsWith('U')?'item-card':'tool-card');
+    expect(JOKER_ART.some(j=>j.id===a.id||j.id===a.domainId)).toBe(false);
     expect(a.outputs.map(o=>[o.purpose,o.width,o.height])).toEqual([['thumbnail',128,160],['detail',615,768]]);
-    for(const o of a.outputs){const b=readFileSync(new URL('../public/assets/handdrawn-tools/'+o.path,import.meta.url));expect(b.length).toBe(o.bytes);expect(createHash('sha256').update(b).digest('hex')).toBe(o.sha256);bytes+=b.length;count++;}
-  }expect(bytes).toBe(1742780);expect(count).toBe(102);expect(manifest.runtimeBytes).toBe(bytes);expect(manifest.runtimeFileCount).toBe(count);
+    for(const o of a.outputs){
+      expect(o.path).toBe(a.id+'-v3-'+o.sha256.slice(0,12)+'.'+o.purpose+'.webp');
+      const b=readFileSync(new URL('../public/assets/handdrawn-tools/'+o.path,import.meta.url));
+      expect(b.length).toBe(o.bytes);expect(b.length).toBeLessThanOrEqual(o.purpose==='thumbnail'?10000:100000);
+      expect(createHash('sha256').update(b).digest('hex')).toBe(o.sha256);bytes+=b.length;count++;
+    }
+  }
+  expect(count).toBe(102);expect(manifest.runtimeBytes).toBe(bytes);expect(manifest.runtimeFileCount).toBe(count);
   expect(GOODS_ART.filter(a=>a.category==='item-card')).toHaveLength(12);expect(GOODS_ART.filter(a=>a.category==='tool-card')).toHaveLength(39);
 });
 it('keeps categories distinct and only requests HD via an illustrated detail descriptor',()=>{

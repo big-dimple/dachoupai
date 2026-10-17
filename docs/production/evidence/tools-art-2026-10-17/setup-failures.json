@@ -1,0 +1,25 @@
+{
+  "status": "FAIL",
+  "attempts": [
+    {
+      "action": "Initial full-size encoding",
+      "reason": "P01 quality 78, P10 minimum quality 50 and P11 minimum quality 34 exceeded the existing 100000-byte detail budget; corrected by reusing the existing complete-source inset and bounded encoding."
+    },
+    {
+      "action": "Initial test startup",
+      "reason": "Removed basic reporter unsupported by installed Vitest; then used task-local TEMP/TMP to resolve sandbox EPERM."
+    },
+    {
+      "action": "Initial local browser",
+      "reason": "Set installed browser-cache path; sandbox blocked localhost navigation with ERR_NETWORK_ACCESS_DENIED. No runtime screenshots or mapping pass from that attempt."
+    },
+    {
+      "action": "P12 shelf observer",
+      "reason": "Older harness expected a Phaser shelf holder; current portrait action opens the native tool-list dialog. The screenshot already showed the correct P12 image. Updated only the observation/click path, no product code."
+    },
+    {
+      "action": "P12 native list observer selector",
+      "reason": "Random stock tiles use data-make-id=offerId (review/P12), unlike basic choice tiles using the definition ID T03; corrected to the existing DOM contract after reading MakeCardsDialog.ts."
+    }
+  ]
+}
