@@ -1,0 +1,345 @@
+{
+  "base": "f81724b5",
+  "head": "f81724b57736c7d4f299cf1d95705a7ba3ef9497",
+  "sourceHashes": {
+    "src/game/BlindSelectPresentation.ts": "50640126dbd84710f3c7160623f6d6ef548ed899662fff83d01ba3a0859e26e9",
+    "src/game/BlindSelectPresentation.css": "7ab0b0b21a64f3d995c3dbcf8de617dda6b971bbf3d70ac284f3e1911cc0050b",
+    "tests/blind-select-presentation.browser.mjs": "7bda96a841fa42cb210ab246518833463a68acadd0b257272c2237fa5c808b6d"
+  },
+  "cases": [
+    {
+      "name": "ordinary shop chapter open/close",
+      "status": "PASS"
+    },
+    {
+      "name": "pc",
+      "status": "PASS",
+      "viewport": {
+        "width": 1366,
+        "height": 900
+      },
+      "geometry": {
+        "overflow": false,
+        "width": 1100,
+        "x": 133,
+        "headerVisible": true,
+        "currentTargetVisible": true,
+        "buttons": [
+          {
+            "label": "进入暖场 ›",
+            "width": 770,
+            "height": 48,
+            "visible": true
+          },
+          {
+            "label": "跳过此场",
+            "width": 160,
+            "height": 48,
+            "visible": true
+          },
+          {
+            "label": "稍后开战",
+            "width": 88,
+            "height": 48,
+            "visible": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "portrait390",
+      "status": "PASS",
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "geometry": {
+        "overflow": false,
+        "width": 352,
+        "x": 19,
+        "headerVisible": true,
+        "currentTargetVisible": true,
+        "buttons": [
+          {
+            "label": "进入暖场 ›",
+            "width": 322,
+            "height": 48,
+            "visible": true
+          },
+          {
+            "label": "跳过此场",
+            "width": 222,
+            "height": 44,
+            "visible": true
+          },
+          {
+            "label": "稍后开战",
+            "width": 88,
+            "height": 44,
+            "visible": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "portrait320",
+      "status": "PASS",
+      "viewport": {
+        "width": 320,
+        "height": 640
+      },
+      "geometry": {
+        "overflow": false,
+        "width": 282,
+        "x": 19,
+        "headerVisible": true,
+        "currentTargetVisible": true,
+        "buttons": [
+          {
+            "label": "进入暖场 ›",
+            "width": 252,
+            "height": 48,
+            "visible": true
+          },
+          {
+            "label": "跳过此场",
+            "width": 152,
+            "height": 44,
+            "visible": true
+          },
+          {
+            "label": "稍后开战",
+            "width": 88,
+            "height": 44,
+            "visible": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "shortLandscape",
+      "status": "PASS",
+      "viewport": {
+        "width": 740,
+        "height": 320
+      },
+      "geometry": {
+        "overflow": false,
+        "width": 702,
+        "x": 19,
+        "headerVisible": true,
+        "currentTargetVisible": true,
+        "buttons": [
+          {
+            "label": "进入暖场 ›",
+            "width": 388,
+            "height": 44,
+            "visible": true
+          },
+          {
+            "label": "跳过此场",
+            "width": 160,
+            "height": 44,
+            "visible": true
+          },
+          {
+            "label": "稍后开战",
+            "width": 88,
+            "height": 44,
+            "visible": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "ordinary skip confirmation/Escape cancellation and directory reopen",
+      "status": "PASS"
+    },
+    {
+      "name": "ordinary unique enter action and card select/deselect",
+      "status": "PASS"
+    },
+    {
+      "name": "boss-pc",
+      "kind": "display-only fixture",
+      "status": "PASS",
+      "viewport": {
+        "width": 1366,
+        "height": 900
+      },
+      "geometry": {
+        "overflow": false,
+        "width": 1100,
+        "x": 133,
+        "headerVisible": true,
+        "currentTargetVisible": true,
+        "buttons": [
+          {
+            "label": "迎战强敌 ›",
+            "width": 942,
+            "height": 48,
+            "visible": true
+          },
+          {
+            "label": "稍后开战",
+            "width": 88,
+            "height": 48,
+            "visible": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "boss390",
+      "kind": "display-only fixture",
+      "status": "PASS",
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "geometry": {
+        "overflow": false,
+        "width": 352,
+        "x": 19,
+        "headerVisible": true,
+        "currentTargetVisible": true,
+        "buttons": [
+          {
+            "label": "迎战强敌 ›",
+            "width": 322,
+            "height": 48,
+            "visible": true
+          },
+          {
+            "label": "稍后开战",
+            "width": 310,
+            "height": 44,
+            "visible": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "boss320",
+      "kind": "display-only fixture",
+      "status": "PASS",
+      "viewport": {
+        "width": 320,
+        "height": 640
+      },
+      "geometry": {
+        "overflow": false,
+        "width": 282,
+        "x": 19,
+        "headerVisible": true,
+        "currentTargetVisible": true,
+        "buttons": [
+          {
+            "label": "迎战强敌 ›",
+            "width": 252,
+            "height": 48,
+            "visible": true
+          },
+          {
+            "label": "稍后开战",
+            "width": 240,
+            "height": 44,
+            "visible": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "boss-shortLandscape",
+      "kind": "display-only fixture",
+      "status": "PASS",
+      "viewport": {
+        "width": 740,
+        "height": 320
+      },
+      "geometry": {
+        "overflow": false,
+        "width": 702,
+        "x": 19,
+        "headerVisible": true,
+        "currentTargetVisible": true,
+        "buttons": [
+          {
+            "label": "迎战强敌 ›",
+            "width": 560,
+            "height": 44,
+            "visible": true
+          },
+          {
+            "label": "稍后开战",
+            "width": 88,
+            "height": 44,
+            "visible": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "middle390",
+      "kind": "display-only fixture",
+      "status": "PASS",
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "geometry": {
+        "overflow": false,
+        "width": 352,
+        "x": 19,
+        "headerVisible": true,
+        "currentTargetVisible": true,
+        "buttons": [
+          {
+            "label": "进入正场 ›",
+            "width": 322,
+            "height": 48,
+            "visible": true
+          },
+          {
+            "label": "跳过此场",
+            "width": 222,
+            "height": 44,
+            "visible": true
+          },
+          {
+            "label": "稍后开战",
+            "width": 88,
+            "height": 44,
+            "visible": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "ordinary four low-card hands, failure and same-seed retry",
+      "status": "PASS",
+      "hands": 4
+    },
+    {
+      "name": "ordinary confirmed skip saves one result and reaches intermission",
+      "status": "PASS"
+    }
+  ],
+  "screenshots": [
+    "shots/chapter-confrontation/pc.png",
+    "shots/chapter-confrontation/portrait390.png",
+    "shots/chapter-confrontation/portrait320.png",
+    "shots/chapter-confrontation/shortLandscape.png",
+    "shots/chapter-confrontation/skip-confirm390.png",
+    "shots/chapter-confrontation/boss-pc.png",
+    "shots/chapter-confrontation/boss390.png",
+    "shots/chapter-confrontation/boss320.png",
+    "shots/chapter-confrontation/boss-shortLandscape.png",
+    "shots/chapter-confrontation/middle390.png"
+  ],
+  "physicalDevice": "NOT_RUN",
+  "humanAcceptance": "NOT_RUN",
+  "browser": "153.0.8010.12",
+  "status": "PASS",
+  "errors": []
+}
