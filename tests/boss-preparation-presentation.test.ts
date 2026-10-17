@@ -121,6 +121,8 @@ describe('Boss page lifecycle and reveal signal', () => {
     expect(onReveal).not.toHaveBeenCalled();expect(seen.has(bossPreparationFacts(run)!.key)).toBe(false);
     expect(dialog.current?.textContent).toContain('进入备战商店');expect(dialog.current?.textContent).toContain('本场限制');
     expect(dialog.current?.textContent).toContain(bossPreparationFacts(run)!.advice);
+    expect(dialog.current?.textContent.split(bossPreparationFacts(run)!.rule)).toHaveLength(2);
+    expect(dialog.current?.querySelector('.boss-preparation-scope')).toBeUndefined();
     flush();expect(onReveal).toHaveBeenCalledTimes(1);expect(seen.has(bossPreparationFacts(run)!.key)).toBe(true);
     dialog.current!.querySelector('.dialog-primary')!.onclick!();
     await Promise.resolve();

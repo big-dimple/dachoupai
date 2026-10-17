@@ -1,0 +1,13 @@
+{
+  "scope": "One controlled, validator-accepted Qin Qiong chapter-two Boss shop fixture with the reported four held cards, 23 gold and c04 stock. Native import, dismiss, cancel and purchase; one same-state phone resize. No hands or long matrix.",
+  "errors": [],
+  "browser": "153.0.8010.12",
+  "status": "FAIL",
+  "failure": "page.evaluate: Error: Run invariant: program snapshot\n    at check (http://127.0.0.1:5621/src/domain/r2Run.ts:129:27)\n    at assertR2Invariants (http://127.0.0.1:5621/src/domain/r2Run.ts:180:3)\n    at assertRunInvariants (http://127.0.0.1:5621/src/domain/run.ts:258:43)\n    at eval (eval at evaluate (:311:30), <anonymous>:10:3)\n    at async <anonymous>:337:30\n    at D:\\ai\\dachoupai\\dachoupai\\.codex-remote-attachments\\shop-purchase-copy-fix-20261017\\docs\\production\\evidence\\shop-purchase-consistency-2026-10-17\\browser-check.mjs:16:27",
+  "sourceSHA256": {
+    "src/game/ShopDecisionCopy.ts": "4ccad3460edd3e4af2c2c10649dd22e6e5127eb7c7702959c08afe30a8703617",
+    "src/game/ShopScene.ts": "5f4bcc9ebf0381afcd76c9960da8ff824ce6d01002034007695a13495c16bae3",
+    "src/game/BossPreparationPresentation.ts": "beb24ed355c74e394d36bd8e8e00db723cb70036e129e613043ba60781a954cf",
+    "src/game/BossPreparationPresentation.css": "657e1e99558f4a3b78794c8ca77f99b502a39c3cfce0a879dc27144bb3840c87"
+  }
+}

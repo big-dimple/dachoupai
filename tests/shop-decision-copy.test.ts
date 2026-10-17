@@ -22,6 +22,14 @@ it('candidate spending and Qin Qiong conflicts remain explicit instead of becomi
  const s=shop();s.gold=21;s.jokers=[r2CreateJoker('e08','capital',8,'none',s)];s.shop!.offers=[{offerId:'new',definitionId:'b10',price:4,consumed:false}];expect(shopOfferGuidance(s,s.shop!.offers[0]).decision.connection).toContain('20');expect(shopOfferGuidance(s,s.shop!.offers[0]).decision.later).toBe('成组后+10，下手用');
  const q=createRun({rulesVersion:'r2',seed:'qin-decision',runId:'qin-decision',characterId:'touye',r2Identity:newRunIdentity('touye','group'),openingRoute:'group'});q.shop!.offers=[{offerId:'qin',definitionId:'f09',price:4,consumed:false}];expect(shopOfferGuidance(q,q.shop!.offers[0]).decision.connection).toContain('秦琼弃牌技能');
 });
+it('new c04 keeps its conditional fixed heat and zero initial growth separate in shelf and purchase copy',()=>{
+ const s=createRun({rulesVersion:'r2',seed:'qin-step-up',runId:'qin-step-up',characterId:'touye',r2Identity:newRunIdentity('touye','group'),openingRoute:'group'});
+ s.gold=23;s.jokers=['c06','d07','f09','a08'].map((id,i)=>r2CreateJoker(id,'held/'+i,4,'none',s));s.jokers[0].growth.multiplier={n:'2',d:'1'};
+ const offer={offerId:'step-up',definitionId:'c04',price:4,consumed:false},before=structuredClone(s),copy=shopOfferGuidance(s,offer).decision;
+ expect(copy.now).toBe('顺子/同花顺热度+50；新购成长+0');expect(copy.later).toBe('上述牌型结算后成长+10，下手用');expect(copy.transaction).toBe('购后19金');
+ expect(copy.purchaseAbility?.plain).toMatchObject({effectLine:copy.now,timingLine:copy.later+'（上限100）',essential:'已有成长每手可用，跨场保留。'});
+ expect(copy.purchaseAbility?.plain?.details).toContain('其他牌型不增加成长');expect(copy.purchaseAbility?.plain?.details).toContain('重买从0开始');expect(s).toEqual(before);
+});
 it('T18 shows the short exchange-ticket copy while keeping its price and published definition',()=>{
  const s=shop(),offer={offerId:'T18',definitionId:'T18',price:4,consumed:false},before=structuredClone(s),definition=structuredClone(getR2Tool('T18'));
  const info=toolInfo('T18',s);expect(info.name).toBe('换货券');expect(info.label).toBe('补给 · 换货券');expect(info.summary).toBe('刷新一次商店商品');expect(toolPurpose(s,'T18')).toBe(info.summary);expect(info.description).toContain('长期道具不变');

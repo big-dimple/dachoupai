@@ -1,0 +1,101 @@
+{
+  "scope": "One controlled, validator-accepted Qin Qiong chapter-two Boss shop fixture with the reported four held cards, 23 gold and c04 stock. Native import, dismiss, cancel and purchase; one same-state phone resize. No hands or long matrix.",
+  "errors": [],
+  "browser": "153.0.8010.12",
+  "facts": {
+    "key": "[\"purchase-copy-fix\",\"touye\",\"quality-r2-s04-finish-v1\",\"json-fnv-v1:65b545bd97c0fdf1\",\"standard\",null,0,true,\"normal\",5,\"B01\",null]",
+    "chapter": 2,
+    "stageIndex": 5,
+    "name": "贵宾场",
+    "scope": "首手前每次弃牌耗2次，之后每次耗1次",
+    "rule": "第一手前每次弃牌消耗2次额度；第一手后恢复1次。",
+    "advice": "先判断手牌能否开场，保留足够额度再弃牌。",
+    "targetHeat": "1800",
+    "suit": null
+  },
+  "frames": [
+    {
+      "phase": "attached",
+      "music": "menu"
+    },
+    {
+      "phase": "visible-frame",
+      "music": "boss",
+      "visible": true
+    }
+  ],
+  "desktopBoss": {
+    "dialog": {
+      "x": 210,
+      "y": 148.609375,
+      "width": 760,
+      "height": 459.78125,
+      "bottom": 608.390625
+    },
+    "content": {
+      "x": 211,
+      "y": 264.609375,
+      "width": 758,
+      "height": 269.78125,
+      "bottom": 534.390625
+    },
+    "page": {
+      "x": 237,
+      "y": 284.609375,
+      "width": 706,
+      "height": 229.78125,
+      "bottom": 514.390625
+    },
+    "actions": {
+      "x": 211,
+      "y": 534.390625,
+      "width": 758,
+      "height": 73,
+      "bottom": 607.390625
+    }
+  },
+  "phoneBoss": {
+    "dialog": {
+      "x": 19,
+      "y": 196.828125,
+      "width": 352,
+      "height": 450.34375,
+      "bottom": 647.171875
+    },
+    "content": {
+      "x": 20,
+      "y": 302.828125,
+      "width": 350,
+      "height": 270.34375,
+      "bottom": 573.171875
+    },
+    "page": {
+      "x": 40,
+      "y": 322.828125,
+      "width": 310,
+      "height": 230.34375,
+      "bottom": 553.171875
+    },
+    "actions": {
+      "x": 20,
+      "y": 573.171875,
+      "width": 350,
+      "height": 73,
+      "bottom": 646.171875
+    }
+  },
+  "purchaseText": "● 普通\n版次 · 普通\n顺子/同花顺热度+50；新购成长+0\n上述牌型结算后成长+10，下手用（上限100）\n已有成长每手可用，跨场保留。\n\n已持「青出于蓝」都可用于顺子／同花顺\n\n版次：普通（无额外计分）\n\n实付 4 金 · 余额 23 → 19 金",
+  "purchase": {
+    "goldBefore": 23,
+    "goldAfter": 19,
+    "newGrowth": {},
+    "commandDelta": 1
+  },
+  "status": "PASS",
+  "sourceSHA256": {
+    "src/game/ShopDecisionCopy.ts": "4ccad3460edd3e4af2c2c10649dd22e6e5127eb7c7702959c08afe30a8703617",
+    "src/game/ShopScene.ts": "5f4bcc9ebf0381afcd76c9960da8ff824ce6d01002034007695a13495c16bae3",
+    "src/game/BossPreparationPresentation.ts": "beb24ed355c74e394d36bd8e8e00db723cb70036e129e613043ba60781a954cf",
+    "src/game/BossPreparationPresentation.css": "657e1e99558f4a3b78794c8ca77f99b502a39c3cfce0a879dc27144bb3840c87"
+  }
+}
