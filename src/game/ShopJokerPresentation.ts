@@ -37,6 +37,6 @@ export function createShopIdentityTags(rarity:JokerRarity,edition?:Edition):HTML
 export function createShopOfferValue(guidance:ReturnType<typeof shopOfferGuidance>,label='选购依据'):HTMLElement {
   const block=document.createElement('section'),head=document.createElement('div'),name=document.createElement('span'),reason=document.createElement('p');
   block.className='shop-offer-value';block.dataset.axis='purchase-facts';head.className='shop-value-heading';name.textContent=label;head.append(name);reason.textContent=guidance.decision.now+'\n条件：'+guidance.decision.later;block.append(head,reason);
-  const combination=document.createElement('p');combination.className='shop-value-combination';combination.dataset.axis='combination';combination.textContent=guidance.decision.connection;block.append(combination);
+  if(!/尚未确认与已持牌配合|尚无持牌|尚无已持配合/.test(guidance.decision.connection)){const combination=document.createElement('p');combination.className='shop-value-combination';combination.dataset.axis='combination';combination.textContent=guidance.decision.connection;block.append(combination);}
   return block;
 }

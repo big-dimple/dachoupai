@@ -3,6 +3,16 @@
   "auditCommit": "7d7921e76ca794a14e715e3eac3b4d66143862ff",
   "currentTask": "P08",
   "selectionPolicy": "用户明确指定音频4a1/cbf独立合27f32fa3，15交叉及类型340构建PASS，先普通eyes/main发布；无GameScene/源牌/规则/存档/美术改动，不等原型评审或CI。英雄/c12独立dev仍在验证，随后继续，不将WIP夹入main。ca843整分支仍不合，其他外部内容仍等用户通知；P08/三目标/预算/真人正式门保持。",
+  "shopCategoryRefreshFollowup": {
+    "status": "dev_ready_for_integration",
+    "baseMain": "8ebff2a2470ca37d64bafc99827bbf4bcc456cb9",
+    "branch": "dev/shop-header-refresh-groups-20261017",
+    "latestUserDecision": "14:04 PC四分类切换共享大展示区；14:06边缘箭头展开唯一菜单；14:09排序给用途、培养降为次级；14:22/27/34单击直接详情仅商店，不新增普遍tooltip、不改对战悬停拖动。",
+    "scope": "明确金币与铜钱图标、紧凑带标签背包、刷新实价确认及幂等输入、PC共享展示区与三路互斥自选、共享菜单小改；不改GameScene、规则存档或美术资源。",
+    "plan": "docs/production/SHOP_CATEGORY_REFINEMENT_20261017.md",
+    "evidence": "docs/production/evidence/shop-header-refresh-groups-2026-10-17/README.md",
+    "delivery": "49项相关测试、类型构建通过；1180/1366/390三组原生交互及320补查通过，含刷新取消/双击、真实三路升级与触摸长按排序。计划总校验与main均有相同15条P08历史记录错误，本批不改。普通dev推送交集成，P08及人验保持。"
+  },
   "resumeContract": {
     "candidateCommit": "4bf6a7d63d7738d3c415d09439a1bdca878dc685",
     "gateTask": "A01",

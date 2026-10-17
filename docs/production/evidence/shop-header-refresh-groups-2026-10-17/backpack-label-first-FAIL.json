@@ -1,0 +1,345 @@
+{
+  "base": "8ebff2a2470ca37d64bafc99827bbf4bcc456cb9",
+  "browser": "153.0.8010.12",
+  "scope": "Three controlled public imports, native mouse/touch, no player save, physical device, natural acquisition or listening claim.",
+  "profiles": [
+    {
+      "width": 1180,
+      "height": 757,
+      "owned": 0,
+      "dpr": 1,
+      "errors": [],
+      "commands": [],
+      "checks": [],
+      "initial": {
+        "pc": true,
+        "collapsed": false,
+        "kind": "jokers",
+        "workshop": false,
+        "offers": [
+          "controlled/workshop-0/shop/0/0/joker/0",
+          "controlled/workshop-0/shop/0/0/joker/1",
+          "controlled/workshop-0/shop/0/0/joker/2"
+        ],
+        "menu": {
+          "x": 1136,
+          "y": 12,
+          "width": 44,
+          "height": 44
+        },
+        "nodes": [
+          {
+            "name": "shop/title",
+            "text": "辛弃疾 · 筹备",
+            "hit": false,
+            "bounds": {
+              "x": 40,
+              "y": 24,
+              "width": 145,
+              "height": 30
+            }
+          },
+          {
+            "name": "shop/gold",
+            "text": "金币 40",
+            "hit": false,
+            "bounds": {
+              "x": 66,
+              "y": 153,
+              "width": 85,
+              "height": 30
+            }
+          },
+          {
+            "name": "action/chapter",
+            "text": "节目单 · 关闭",
+            "hit": true,
+            "bounds": {
+              "x": 36,
+              "y": 184,
+              "width": 200,
+              "height": 44
+            }
+          },
+          {
+            "name": "shop/owned-heading",
+            "text": "已持唐宋牌 0/5 · 从左向右结算",
+            "hit": false,
+            "bounds": {
+              "x": 272,
+              "y": 20,
+              "width": 220,
+              "height": 19
+            }
+          },
+          {
+            "name": "action/build",
+            "text": "培养建议 ›",
+            "hit": true,
+            "bounds": {
+              "x": 700,
+              "y": 14,
+              "width": 132,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/tool-inventory",
+            "text": "道具箱 0/2",
+            "hit": true,
+            "bounds": {
+              "x": 960,
+              "y": 12,
+              "width": 168,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/reroll",
+            "text": "刷新 2金币",
+            "hit": true,
+            "bounds": {
+              "x": 844,
+              "y": 12,
+              "width": 104,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/start-stage",
+            "text": "进入牌桌  →",
+            "hit": true,
+            "bounds": {
+              "x": 904,
+              "y": 681,
+              "width": 240,
+              "height": 56
+            }
+          },
+          {
+            "name": "action/shelf-jokers",
+            "text": "唐宋牌 · 3",
+            "hit": true,
+            "bounds": {
+              "x": 284,
+              "y": 80,
+              "width": 213.5,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/shelf-tools",
+            "text": "消耗工具 · 1",
+            "hit": true,
+            "bounds": {
+              "x": 499.5,
+              "y": 80,
+              "width": 213.5,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/shelf-workshop",
+            "text": "自选做牌 · 共用1次",
+            "hit": true,
+            "bounds": {
+              "x": 715,
+              "y": 80,
+              "width": 213.5,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/shelf-items",
+            "text": "长期物品 · 1",
+            "hit": true,
+            "bounds": {
+              "x": 930.5,
+              "y": 80,
+              "width": 213.5,
+              "height": 44
+            }
+          },
+          {
+            "name": "shop/offer-name",
+            "text": "浮生半日",
+            "id": "controlled/workshop-0/shop/0/0/joker/0",
+            "hit": false,
+            "bounds": {
+              "x": 292.000010172526,
+              "y": 476,
+              "width": 60,
+              "height": 19
+            }
+          },
+          {
+            "name": "shop/offer-identity",
+            "text": "普通 · 普通版",
+            "id": "controlled/workshop-0/shop/0/0/joker/0",
+            "hit": false,
+            "bounds": {
+              "x": 292.000010172526,
+              "y": 498,
+              "width": 82,
+              "height": 17
+            }
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "获得1金\n成功弃1张",
+            "id": "controlled/workshop-0/shop/0/0/joker/0",
+            "hit": false,
+            "bounds": {
+              "x": 292.000010172526,
+              "y": 516,
+              "width": 65,
+              "height": 34
+            }
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "4 金 · 查看详情",
+            "id": "controlled/workshop-0/shop/0/0/joker/0",
+            "hit": false,
+            "bounds": {
+              "x": 292.000010172526,
+              "y": 615,
+              "width": 112,
+              "height": 19
+            }
+          },
+          {
+            "name": "offer/controlled/workshop-0/shop/0/0/joker/0",
+            "hit": true,
+            "bounds": {
+              "x": 284,
+              "y": 136,
+              "width": 278.66666666666674,
+              "height": 529
+            }
+          },
+          {
+            "name": "shop/offer-name",
+            "text": "宾主尽欢",
+            "id": "controlled/workshop-0/shop/0/0/joker/1",
+            "hit": false,
+            "bounds": {
+              "x": 582.9999999999999,
+              "y": 476,
+              "width": 60,
+              "height": 19
+            }
+          },
+          {
+            "name": "shop/offer-identity",
+            "text": "普通 · 普通版",
+            "id": "controlled/workshop-0/shop/0/0/joker/1",
+            "hit": false,
+            "bounds": {
+              "x": 582.9999999999999,
+              "y": 498,
+              "width": 82,
+              "height": 17
+            }
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "每手1次 热度+30\n≥2张都计分",
+            "id": "controlled/workshop-0/shop/0/0/joker/1",
+            "hit": false,
+            "bounds": {
+              "x": 582.9999999999999,
+              "y": 516,
+              "width": 110,
+              "height": 34
+            }
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "4 金 · 查看详情",
+            "id": "controlled/workshop-0/shop/0/0/joker/1",
+            "hit": false,
+            "bounds": {
+              "x": 582.9999999999999,
+              "y": 615,
+              "width": 112,
+              "height": 19
+            }
+          },
+          {
+            "name": "offer/controlled/workshop-0/shop/0/0/joker/1",
+            "hit": true,
+            "bounds": {
+              "x": 574.6666666666667,
+              "y": 136,
+              "width": 278.66666666666674,
+              "height": 529
+            }
+          },
+          {
+            "name": "shop/offer-name",
+            "text": "满堂喝彩",
+            "id": "controlled/workshop-0/shop/0/0/joker/2",
+            "hit": false,
+            "bounds": {
+              "x": 873.000020345052,
+              "y": 476,
+              "width": 60,
+              "height": 19
+            }
+          },
+          {
+            "name": "shop/offer-identity",
+            "text": "普通 · 普通版",
+            "id": "controlled/workshop-0/shop/0/0/joker/2",
+            "hit": false,
+            "bounds": {
+              "x": 873.000020345052,
+              "y": 498,
+              "width": 82,
+              "height": 17
+            }
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "每手1次 热度+90\n对子等同点组合",
+            "id": "controlled/workshop-0/shop/0/0/joker/2",
+            "hit": false,
+            "bounds": {
+              "x": 873.000020345052,
+              "y": 516,
+              "width": 110,
+              "height": 34
+            }
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "4 金 · 查看详情",
+            "id": "controlled/workshop-0/shop/0/0/joker/2",
+            "hit": false,
+            "bounds": {
+              "x": 873.000020345052,
+              "y": 615,
+              "width": 112,
+              "height": 19
+            }
+          },
+          {
+            "name": "offer/controlled/workshop-0/shop/0/0/joker/2",
+            "hit": true,
+            "bounds": {
+              "x": 865.3333333333334,
+              "y": 136,
+              "width": 278.66666666666663,
+              "height": 529
+            }
+          }
+        ]
+      },
+      "status": "FAIL",
+      "error": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert.ok(g.nodes.find(o=>o.name==='action/tool-inventory').text.includes('背包'))\n\n    at file:///C:/Users/wanghongping/AppData/Local/Temp/dachoupai-common-art-zoom-20261017/harness/shop-category-refinement.mjs:29:80\n    at runNextTicks (node:internal/process/task_queues:65:5)\n    at process.processImmediate (node:internal/timers:453:9)\n    at process.callbackTrampoline (node:internal/async_hooks:130:17)"
+    }
+  ],
+  "status": "FAIL",
+  "error": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert.ok(g.nodes.find(o=>o.name==='action/tool-inventory').text.includes('背包'))\n\n    at file:///C:/Users/wanghongping/AppData/Local/Temp/dachoupai-common-art-zoom-20261017/harness/shop-category-refinement.mjs:29:80\n    at runNextTicks (node:internal/process/task_queues:65:5)\n    at process.processImmediate (node:internal/timers:453:9)\n    at process.callbackTrampoline (node:internal/async_hooks:130:17)"
+}

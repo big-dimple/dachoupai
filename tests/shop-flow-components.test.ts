@@ -23,7 +23,7 @@ it('medium desktop spends space on full merchandise while keeping two-line infor
 it('held phone identity stays outside complete art and above its route and action rows',()=>{
  for(const width of [360,390])for(const height of [740,844]){
   const p=shopLayout(width,height,8,0,3,true);
-  for(const b of p.slots){const g=shopHeldGeometry(b,true);expect(g.art.height/g.art.width).toBeCloseTo(1.25);expect(intersects(g.art,g.name)).toBe(false);expect(intersects(g.art,g.identity)).toBe(false);expect(g.identity.y+g.identity.height).toBeLessThanOrEqual(b.y+b.height);expect(b.y+b.height+20).toBeLessThan(p.reroll.y);}
+  for(const b of p.slots){const g=shopHeldGeometry(b,true);expect(g.art.height/g.art.width).toBeCloseTo(1.25);expect(intersects(g.art,g.name)).toBe(false);expect(intersects(g.art,g.identity)).toBe(false);expect(g.identity.y+g.identity.height).toBeLessThanOrEqual(b.y+b.height);if(!p.inventoryCollapsed)expect(b.y+b.height).toBeLessThan(p.build.y);expect(b.y+b.height+20).toBeLessThan(p.play.y);}
   expect(shopIdentityText('common')).toContain('普通');expect(shopIdentityText('rare','foil',true)).toBe('稀有 · 闪箔');
  }
 });

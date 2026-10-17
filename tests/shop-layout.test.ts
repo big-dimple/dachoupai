@@ -14,7 +14,7 @@ it('keeps phone refresh, inventory and coins left of the measured menu including
  for(const width of [320,390,699])for(const right of [0,16]){
   const menu={x:width-right-56,y:24,width:44,height:44},p=shopLayout(width,900,24,0,3,true,false,8,right,5,menu),h=shopPortraitHeader(p);
   expect(h.purse.x+h.purse.width).toBeLessThanOrEqual(menu.x-8);
-  for(const b of [h.inventory,h.reroll]){expect(b.y).toBe(menu.y);expect(b.height).toBe(44);expect(b.width).toBeGreaterThanOrEqual(44);expect(intersects(b,menu)).toBe(false);}
+  for(const b of [h.inventory,h.reroll]){expect(b.y).toBe(menu.y+(p.headerRows-1)*44);expect(b.height).toBe(44);expect(b.width).toBeGreaterThanOrEqual(44);expect(intersects(b,menu)).toBe(false);}
   expect(intersects(h.inventory,h.reroll)).toBe(false);expect(intersects(h.reroll,h.purse)).toBe(false);
  }
 });
@@ -49,7 +49,7 @@ it('three complete 4:5 portrait goods keep readable information and visible inve
   for(const b of l.shelf){expect(b.width).toBeGreaterThanOrEqual(l.copyBeside?60:88);expect(b.width).toBeLessThanOrEqual(108);expect(b.height/b.width).toBeCloseTo(1.25);const tile=shopOfferCopy(l,b,true).tile;if(!l.inventoryCollapsed)expect(tile.y+tile.height).toBeLessThan(l.slots[0].y-18);expect(intersects(tile,l.reroll)).toBe(false);}
   expect(l.slots.every(b=>b.height>=b.width*1.25+32)).toBe(true);
   expect(l.play.y).toBeGreaterThan(l.reroll.y+l.reroll.height);expect(l.play.y+l.play.height).toBeLessThan(height-bottom);expect(l.play.height).toBeGreaterThanOrEqual(48);
-  expect(l.slots[0].y+l.slots[0].height).toBeLessThan(l.reroll.y);
+  if(!l.inventoryCollapsed)expect(l.slots[0].y+l.slots[0].height).toBeLessThan(l.build.y);
  }
 });
 
@@ -77,7 +77,7 @@ it('compact inventory names retain measured four-character14px room without cove
   const l=shopLayout(width,height,12,bottom,3,true);
   for(const [i,b] of l.slots.entries()){
    const name=shopOwnedNameArea(b,l.slots[i+1]?.x,width);expect(name.width).toBeGreaterThanOrEqual(56);expect(name.x).toBeGreaterThanOrEqual(8);expect(name.x+name.width).toBeLessThanOrEqual(width-8);if(l.slots[i+1])expect(name.x+name.width).toBeLessThanOrEqual(l.slots[i+1].x);
-   const hit=shopOwnedHitBox(b,l.reroll.y,true);expect(hit.width).toBeGreaterThanOrEqual(44);expect(hit.height).toBeGreaterThanOrEqual(b.height);expect(hit.y+hit.height).toBeLessThanOrEqual(l.reroll.y-4);for(const a of [l.reroll,l.build,l.play])expect(intersects(hit,a)).toBe(false);
+   const hit=shopOwnedHitBox(b,l.build.y,true);expect(hit.width).toBeGreaterThanOrEqual(44);expect(hit.height).toBeGreaterThanOrEqual(b.height);expect(hit.y+hit.height).toBeLessThanOrEqual(l.build.y-4);for(const a of [l.reroll,l.build,l.play])expect(intersects(hit,a)).toBe(false);
   }
  }
 });
@@ -85,7 +85,7 @@ it('compact inventory names retain measured four-character14px room without cove
 it('toolbar and action anchors stay fixed while compact stock reserves an owned heading',()=>{
  for(const [width,height,top,bottom] of [[320,568,12,0],[390,740,12,0],[844,300,12,34]]){
   const l=shopLayout(width,height,top,bottom,3,true);
-  if(width===320){expect(l.tabs).toEqual({x:12,y:64,width:296,height:44});expect(l.reroll).toEqual({x:12,y:424,width:144,height:44});expect(l.play).toEqual({x:12,y:476,width:296,height:56});expect(l.shelf[0]).toMatchObject({y:116,width:88,height:88*1.25});expect(l.slots[0].y+l.slots[0].height).toBeLessThanOrEqual(l.reroll.y-4);}
+  if(width===320){expect(l.headerRows).toBe(2);expect(l.tabs).toEqual({x:12,y:108,width:296,height:44});expect(l.reroll).toEqual({x:90,y:56,width:72,height:44});expect(l.play).toEqual({x:12,y:476,width:296,height:56});expect(l.shelf[0]).toMatchObject({y:160,width:88,height:88*1.25});expect(l.build.width).toBe(104);expect(l.inventoryCollapsed).toBe(true);}
   for(const b of l.shelf)expect(b.x).toBeGreaterThanOrEqual(0);
   for(const b of l.slots){const hit=shopOwnedHitBox(b,l.reroll.y,true);for(const a of [l.reroll,l.build,l.play])expect(intersects(hit,a)).toBe(false);}
  }
@@ -150,11 +150,12 @@ it('short landscape stock, tabs and the shared action row fit inside top/bottom/
  }
 });
 
-it('PC portrait art spends actual remaining height without clipping three goods and independent lower groups',()=>{
+it('PC uses one shared gallery below four tabs and spends its height on larger complete art',()=>{
  for(const [width,height] of [[1000,768],[1280,720],[1366,768],[1920,1080]]){
   const p=shopLayout(width,height,8,0,3,true);expect(p.shelf).toHaveLength(3);
-  for(const face of p.shelf){expect(face.width).toBeGreaterThan(88);expect(face.width).toBeLessThanOrEqual(224);expect(face.height/face.width).toBeCloseTo(1.25);expect(face.y+face.height).toBeLessThan(p.pc!.groupY);}
-  for(const g of [p.pc!.toolOffers,p.pc!.itemOffers]){expect(g.height).toBeGreaterThanOrEqual(96);expect(g.y+g.height).toBeLessThanOrEqual(p.pc!.feedback.y);}
+  expect(p.tabs.height).toBe(44);expect(p.tabs.y+p.tabs.height).toBeLessThanOrEqual(p.pc!.shared.y);
+  for(const face of p.shelf){expect(face.width).toBeGreaterThan(88);expect(face.width).toBeLessThanOrEqual(288);expect(face.height/face.width).toBeCloseTo(1.25);expect(face.y+face.height).toBeLessThan(p.pc!.shared.y+p.pc!.shared.height);}
+  for(const g of [p.pc!.toolOffers,p.pc!.itemOffers,p.pc!.workshop]){expect(g).toEqual(p.pc!.shared);expect(g.height).toBeGreaterThanOrEqual(96);expect(g.y+g.height).toBeLessThanOrEqual(p.pc!.feedback.y);}
  }
 });
 

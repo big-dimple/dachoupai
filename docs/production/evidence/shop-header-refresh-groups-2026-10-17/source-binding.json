@@ -1,0 +1,93 @@
+{
+  "baseMain": "8ebff2a2470ca37d64bafc99827bbf4bcc456cb9",
+  "branch": "dev/shop-header-refresh-groups-20261017",
+  "normalization": "UTF-8 text normalized to LF; no Unicode/content normalization",
+  "finalSource": {
+    "harness/fixtures/workshop-layout.ts": {
+      "sha256Utf8LF": "636972f0d84c06eaf8e0fa2e193101f986513118b549b06cacda0d0df6f3301a"
+    },
+    "harness/shop-category-refinement.mjs": {
+      "sha256Utf8LF": "ce440ad0a33c80dd5d2dca8653b1efc93f745b6a0eaa1eb679c2875d5f771a30"
+    },
+    "harness/ui.mjs": {
+      "sha256Utf8LF": "0fa65b88f59ed65b19deefd0f89e9c88e1109e112391f3bc8a87725145160dbe"
+    },
+    "src/game/RunMenu.ts": {
+      "sha256Utf8LF": "d5d9db283819b4fd233755a49b27bc9ae3c021d4be8fe8a99a52947c8ebf92f9"
+    },
+    "src/game/ShopArt.ts": {
+      "sha256Utf8LF": "6df8a2950c4f37920df30759c32a8789099e4d258b89bc54b8632b387baf32ec"
+    },
+    "src/game/ShopJokerPresentation.ts": {
+      "sha256Utf8LF": "3166a80c6316edb3e4faab00581aa1f4e5d74337f4084292150d8c3cde183714"
+    },
+    "src/game/ShopLayout.ts": {
+      "sha256Utf8LF": "d5aeeea9bf959e40b55366314b85b75581ac013b606e7fc7faca4f34a700d298"
+    },
+    "src/game/ShopOfferLayout.ts": {
+      "sha256Utf8LF": "c35c9649b073dccc167ff7d8bfdb397e662defeeb3f2afcfd6fc409939a9eb71"
+    },
+    "src/game/ShopRefreshConfirmation.ts": {
+      "sha256Utf8LF": "e03a40eaf15c8f3b43ddc307ad23edb05f18ad9fb1e21533f38f4b0fd9addd03"
+    },
+    "src/game/ShopScene.ts": {
+      "sha256Utf8LF": "c76d7e55c8060df2b8c4cb4dfa2f6ee313a5b58a15ffb2b57dac60176aeef1a5"
+    },
+    "src/game/ShopSynergyPreview.ts": {
+      "sha256Utf8LF": "d36410a866ba9f2a3d2b0e7e0ab9d6c51f9406554ef24875d2b61550ed4d0573"
+    },
+    "src/game/ShopToolbar.css": {
+      "sha256Utf8LF": "5e0c47d06344b367e9fa5006fc122f6da4961b490b45d864e2e2cded2db460eb"
+    },
+    "src/game/ShopToolbarArt.ts": {
+      "sha256Utf8LF": "b4a19f1e710976f6c9cb9664c027cfbb48af376ff6466f771b033f24ab5c5e50"
+    },
+    "src/style.css": {
+      "sha256Utf8LF": "2a737ca38a78fc8ea7f035f578ec671d30ac997f45592cfca2b4f7ec5d77a0e0"
+    },
+    "tests/shop-flow-components.test.ts": {
+      "sha256Utf8LF": "d208ce95a994dd9415e5c856c84f30730fa92141397134e812edccc5a3204c08"
+    },
+    "tests/shop-layout.test.ts": {
+      "sha256Utf8LF": "e4a3adfc856a3f58af45f093d925c2ade7a1aaeee724b61a7209dfabd7acab75"
+    },
+    "tests/shop-refresh-confirmation.test.ts": {
+      "sha256Utf8LF": "7aa1ee6fa33a9f57cc57f03bf1e3627aaa216b93f9c05480d6198af8ed4b3dba"
+    }
+  },
+  "protectedPathsUnchanged": [
+    "src/domain",
+    "src/content",
+    "src/application",
+    "src/audio",
+    "src/game/GameScene.ts",
+    "src/game/OwnedJokerInput.ts",
+    "src/game/SceneView.ts",
+    "src/game/PointerIntent.ts",
+    "src/game/OwnedJokerDragVisual.ts",
+    "src/game/PolychromeCardIridescence.ts",
+    "public",
+    "package.json",
+    "package-lock.json",
+    ".github"
+  ],
+  "existingEditionMounts": {
+    "unchanged": true,
+    "calls": 5,
+    "lines": [
+      "import {mountPolychromeCardIridescence,mountForgetTechniqueAttention} from './PolychromeCardIridescence';",
+      "      mountPolychromeCardIridescence(this,hover.art,{...artBox,x:artBox.x-hover.art.x,y:artBox.y-hover.art.y},o.edition);",
+      "      mountPolychromeCardIridescence(this,hover.art,{...artBox,x:artBox.x-hover.art.x,y:artBox.y-hover.art.y},j.edition);",
+      "    if(d)mountPolychromeCardIridescence(this,hover.art,artBox,o.edition);",
+      "    else if(kind==='tools')mountForgetTechniqueAttention(this,hover.art,artBox,o.definitionId);",
+      "    if(isTool)mountForgetTechniqueAttention(this,hover.art,{x:b.x+5-hover.art.x,y:b.y+5-hover.art.y,width:b.width-10,height:artHeight},o.definitionId);"
+    ]
+  },
+  "validation": {
+    "relatedTests": 49,
+    "typecheck": "PASS",
+    "productionBuild": "PASS",
+    "browser": "three profiles PASS before final two instruction-copy corrections; no behavior/layout change afterwards",
+    "planChecker": "FAIL: 15 identical P08 historical evidence-record errors on branch and main"
+  }
+}
