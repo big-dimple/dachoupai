@@ -36,6 +36,7 @@ import {heroAbilityCue,savedHeroResult} from './HeroAbilityCue';
 import {unusedHeroAbility,heroPlayReminders,showHeroPlayReminder} from './HeroPlayReminder';
 import {usesErxiangHandoff} from '../domain/r2ErxiangHandoff';
 import {erxiangChoice,savedErxiangHandoff} from './ErxiangHandoffCopy';
+import {HeroTargetAttachment} from './HeroTargetAttachment';
 import {drawStageTableArt,playedCaptionBox} from './StageTableArt';
 import {paperSceneStart} from './PaperFlow';
 import {usesTouyeWager,usesTouyeNewCore,type TouyeBet,type TouyeTarget} from '../domain/r2TouyeWager';
@@ -225,6 +226,7 @@ export class GameScene extends Phaser.Scene {
   private presentation?:{generation:number;lifecycle:number;intent:number;state:RunState;score:ScoreTrace;hand:readonly PlayingCard[];displayHeat:string;originHeat:string;replay:boolean;previousTrace:ScoreTrace|null;credited:boolean;resourcePlayLeft?:number;resourceGold?:number};
   private characterId!: CharacterId;
   private erxiangTargetId:string|null=null;
+  private targetAttachment?:HeroTargetAttachment;
   private azaoRelease=false;
   private xiemuBurn:XiemuBurnCost=0;
   private readonly effects = new EffectQueue();
@@ -300,6 +302,7 @@ export class GameScene extends Phaser.Scene {
 
   private carriedTool?:ToolCarryIntent;
   async create(data?:{carriedTool?:ToolCarryIntent;preparedBossOwner?:object}): Promise<void> {
+    this.targetAttachment?.destroy();this.targetAttachment=undefined;
     this.touyeSkillPhase=undefined;
     this.carriedTool=undefined;this.waitingForStage=false;this.reopenStageDirectory=undefined;this.enterPreparedStage=undefined;this.openStagePrograms=undefined;
     // Phaser reuses this Scene instance. Its former controls were destroyed on shutdown.
@@ -331,6 +334,7 @@ export class GameScene extends Phaser.Scene {
     };
     window.addEventListener('dachoupai-presentation',settings);
     this.events.once('shutdown',()=>{
+      this.targetAttachment?.destroy();this.targetAttachment=undefined;
       this.touyeSkillPhase=undefined;
       this.game.canvas.removeAttribute('data-hand-input');this.stopHandHint();window.removeEventListener('pointerdown',this.pointerFocus,true);document.removeEventListener('focusin',this.focusFeedback);document.removeEventListener('focusout',this.focusFeedback);window.removeEventListener('blur',this.stopHandHint);document.removeEventListener('visibilitychange',this.hintVisibility);
       this.ownedInput?.destroy();this.ownedInput=undefined;if(this.ownedDrag?.saving)this.input.enabled=true;this.ownedDrag?.destroy();this.ownedDrag=undefined;
@@ -351,6 +355,13 @@ export class GameScene extends Phaser.Scene {
       if(this.toolHand){this.effects.clear();this.toolHand=undefined;}
       if(this.controlsLive)this.render();
     },()=>({count:this.run?.handOrder.length??0,start:this.handStart}));
+    this.targetAttachment=new HeroTargetAttachment(this,{
+      root:()=>this.view?.root,
+      target:id=>{const view=this.settledCards.get(id)??this.cardViews.find(v=>v.card.id===id);return view?{container:view.container,width:Number(view.container.getData('width')),height:Number(view.container.getData('height'))}:undefined;},
+      source:()=>{const source=this.heroActionButton?.active&&this.heroActionButton.visible?this.heroActionButton:this.roleAvatar;if(!source?.active||!source.visible)return;const b=source.getBounds();return {x:b.x+b.width/2,y:b.y+b.height/2};},
+      motion:()=>this.reducedMotion?'reduced':'full',
+      blocked:()=>!this.scene.isActive()||!!document.querySelector('dialog[open]')||!this.ready&&!this.presentation,
+    });
     const carried=carriedToolAtEntry(controller.state,data?.carriedTool)?data?.carriedTool:undefined;
     let enteredStage=false;
     if(controller.state.phase==='stage-ready'){
@@ -921,6 +932,11 @@ export class GameScene extends Phaser.Scene {
     this.cardViews.forEach(view=>this.view.root.bringToTop(view.container));
     this.view.root.bringToTop(this.handCountText);this.view.root.bringToTop(this.pileText);
   }
+  private syncHeroTargetAttachment():void {
+    if(this.presentation||this.playing)return;
+    const target=usesErxiangHandoff(this.run)?erxiangChoice(this.run,this.selectionPreview(),this.erxiangTargetId).selected?.card.id:undefined;
+    this.targetAttachment?.preview(target?{key:JSON.stringify([this.run.runId,this.run.stage?.index,[...this.selectedIds].sort()]),targetId:target}:undefined);
+  }
   private refreshSelection(animateId?:string):void {
     if(!this.presentation&&!this.playing&&this.run.phase==='await-input'){this.validateAssistSelection();this.ensureCandidates();}
     const preview=this.selectionPreview();
@@ -931,7 +947,7 @@ export class GameScene extends Phaser.Scene {
       const selected=this.selectedIds.has(v.card.id),scoring=active.includes(v.card.id);
       v.container.setData('selected',selected).setData('activeScoring',scoring);
       const assisted=(this.presentation?.score.sets.assistConsumedIds??this.assistIds).includes(v.card.id);
-      v.selectionMark?.setText(assisted?'助':this.erxiangTargetId===v.card.id?'交':this.assistProfile?'主':'✓').setVisible(selected||assisted);
+      v.selectionMark?.setText(assisted?'助':this.erxiangTargetId===v.card.id?'交':this.assistProfile||usesErxiangHandoff(this.run)?'主':'✓').setVisible(selected||assisted);
       if(this.assistProfile&&v.selectionMark)v.selectionMark.setPosition(-Number(v.container.getData('width'))/2+12,Number(v.container.getData('height'))/2+10).setBackgroundColor(assisted?C.paperLight:C.jadeSoft).setName('selection/draft-role').setData('cardId',v.card.id);
       const disabled=disabledIds.includes(v.card.id),pointsZero=suppressed.includes(v.card.id);v.background.setFillStyle(disabled?0xd2d0cb:T.paper);
       this.refreshCardPressure(v);
@@ -943,6 +959,7 @@ export class GameScene extends Phaser.Scene {
     this.orderSelectedCards();
     if(!this.presentation){this.refreshJokerLabels(preview);this.previewSelection(preview);this.renderSelectedCards(preview);}
     this.updateControls();
+    this.syncHeroTargetAttachment();
   }
   private landingBoxes(count:number,reserved=0):Box[] {
     const area=toolInventoryPlayedArea(this.view.layout),p={...area,y:area.y+reserved,height:area.height-reserved},bottomNote=0,h=Math.max(24,p.height-bottomNote-14),gap=8;
@@ -1157,6 +1174,7 @@ export class GameScene extends Phaser.Scene {
     this.roleText.setColor(heroAvailable?C.jade:C.mutedInk).setData('abilityAvailable',heroAvailable);
     this.roleFrame.setStrokeStyle(heroOpportunity||heroChosen?2:1,heroAvailable||heroChosen?T.jade:T.brass,heroOpportunity||heroChosen?1:.6);
     this.fitMobileHeroCaption();
+    this.syncHeroTargetAttachment();
   }
   /** Full identity has its own line; a compact action never competes with a four-character name. */
   private fitMobileHeroCaption():void {
@@ -1900,6 +1918,7 @@ export class GameScene extends Phaser.Scene {
     if(context.signal.aborted)return;
     // The domain result is already saved. Only the display and SFX arrive with this hit.
     this.scoreTotal.setData('eventPhase','impact');process?.arrive();
+    if(!this.presentation?.replay)this.targetAttachment?.release(event,context);
     const impactCue=!scoreArrival(event)&&this.presentation?sourceImpact(this.presentation.score,event):undefined,impactSource=impactCue?this.jokerViews.get(impactCue.instanceId):undefined;
     const releaseSourceImpact=impactCue&&impactSource?mountSourceImpact(this,impactSource,impactCue,context.signal):undefined;
     restoreKey?.strike?.();
@@ -2087,6 +2106,8 @@ export class GameScene extends Phaser.Scene {
     const base=score.events[0],baseProduct=Rational.fromJSON(base.after.H).multiply(Rational.fromJSON(base.after.M)).floor().toString();
     const baseCue=!replay&&BigInt(baseProduct)>0n&&scoreFireLevel(originHeat,baseProduct,this.stage.targetHeat)>0;
     this.effects.enqueue(async context=>{
+      const handoff=!replay&&score.events.find(e=>e.reasonKey==='erxiang.handoff'&&e.targetCardId===score.erxiangHandoff?.targetId);
+      if(handoff?.targetCardId)this.targetAttachment?.consume(handoff.targetCardId,handoff.eventId,context);else this.targetAttachment?.clear();
       this.scoreHaptic?.scope.cancel();this.scoreHaptic=replay?undefined:{generation:context.generation,scope:Haptics.shared.createScope(context.signal)};
       this.audio.playHand();
       await Promise.all([...(beforeHands!==undefined&&!replay?[this.pulseResource('play',beforeHands,context,beforeHands-1)]:[]),...landing.map(async({view,box},i)=>{
@@ -2146,6 +2167,7 @@ export class GameScene extends Phaser.Scene {
 
   private completePresentation(presentation:NonNullable<GameScene['presentation']>):void {
     if(!this.alive(presentation.lifecycle,presentation.intent))return;
+    this.targetAttachment?.clear();
     this.stopScoreFire();this.setSettlementFocus(false);
     this.erxiangTargetId=null;this.azaoRelease=false;this.xiemuBurn=0;this.presentation=undefined;this.run=presentation.state;this.selectedIds.clear();this.assistIds=[];this.assistGestureStart=undefined;this.statusMessage=opponentSavedStatus(presentation.score)||savedHeroResult(this.run)||handGrowthChanges(this.run)[0]?.line||'';this.updateHud();
     if(this.run.phase==='stage-cleared'||this.run.phase==='run-won'){this.finishStage(true,true,!presentation.replay);return;}
@@ -2153,9 +2175,10 @@ export class GameScene extends Phaser.Scene {
     this.playing=false;this.render();this.revealDrawnCards(presentation.hand.map(card=>card.id));
   }
 
-  fastForward():void {const presentation=this.presentation;if(!presentation){if(this.heroClimax||this.refillPresentation)this.effects.clear();return;}this.effects.clear();this.audio.cancelPresentation();this.cameras.main.resetFX();this.heatText.setScale(1);this.scoreTotal.setScale(1);this.completePresentation(presentation);}
+  fastForward():void {this.targetAttachment?.clear();const presentation=this.presentation;if(!presentation){if(this.heroClimax||this.refillPresentation)this.effects.clear();return;}this.effects.clear();this.audio.cancelPresentation();this.cameras.main.resetFX();this.heatText.setScale(1);this.scoreTotal.setScale(1);this.completePresentation(presentation);}
   replayLastTrace():void {
     if(this.playing||!this.run.lastTrace)return;
+    this.targetAttachment?.clear();
     this.clearHover();this.playing=true;this.playButton.disableInteractive();const intent=++this.intent;
     void this.presentTrace(this.run.lastTrace,this.run,[],this.lifecycle,intent,this.heat,true);
   }
