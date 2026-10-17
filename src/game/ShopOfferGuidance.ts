@@ -12,8 +12,10 @@ const routes=['group','straight','flush'] as const;
 const names={group:'同点',straight:'顺子',flush:'同花'};
 /** Applicability of public effects, not activation or a recommendation. All three remain visible. */
 export function jokerApplicableRoutes(state:R2RunState,j:R2JokerInstance){return routes.filter(f=>{const r=shopRouteRelation(state,j,f);return r.kind==='direct'||r.kind==='support';});}
-export function jokerRouteCaption(state:R2RunState,j:R2JokerInstance,heldWidth?:number){
+/** A measured rail keeps one line; the unbounded detail retains complete route names. */
+export function jokerRouteCaption(state:R2RunState,j:R2JokerInstance,heldWidth?:number,measure?:(text:string)=>number){
  const applicable=jokerApplicableRoutes(state,j),labels=applicable.map(f=>names[f]);
+ if(heldWidth!==undefined&&measure){const full=labels.join('/')||'核对条件';return measure(full)<=heldWidth?full:applicable.map(f=>({group:'同',straight:'顺',flush:'花'})[f]).join('/')||full;}
  if(heldWidth!==undefined&&heldWidth<64)return applicable.map(f=>({group:'同',straight:'顺',flush:'花'})[f]).join('/');
  if(heldWidth!==undefined&&applicable.length===3)return labels.slice(0,2).join('/')+'\n'+labels[2];
  return labels.join('/')||'核对条件';

@@ -1,0 +1,1053 @@
+{
+  "phase": "after",
+  "scope": "Validated controlled Qin Qiong shop checkpoint with five distinct held cards, all three full applicability routes, all three rarities and four editions. Native menu import and held-card inspection only; no transaction matrix or natural-play claim.",
+  "fixture": [
+    {
+      "id": "controlled/owned/0",
+      "name": "一束光",
+      "rarity": "普通",
+      "artKey": "p08-joker-a03",
+      "routes": "同点/顺子/同花"
+    },
+    {
+      "id": "controlled/owned/1",
+      "name": "铁算盘",
+      "rarity": "特别",
+      "artKey": "p08-joker-tiesuanpan",
+      "routes": "同点/顺子/同花"
+    },
+    {
+      "id": "controlled/owned/2",
+      "name": "回马枪",
+      "rarity": "稀有",
+      "artKey": "p08-joker-huimaqiang",
+      "routes": "同点/顺子/同花"
+    },
+    {
+      "id": "controlled/owned/3",
+      "name": "借东风",
+      "rarity": "特别",
+      "artKey": "p08-joker-jiedongfeng",
+      "routes": "同点/顺子/同花"
+    },
+    {
+      "id": "controlled/owned/4",
+      "name": "熟面孔",
+      "rarity": "特别",
+      "artKey": "p08-joker-a05",
+      "routes": "同点/顺子/同花"
+    }
+  ],
+  "sourceHashes": {
+    "src/game/ShopScene.ts": "f7e3faf1a4f366a6b1603b1bd56996c8259215ceb4576c3459781ca35010211a",
+    "src/game/ShopOfferGuidance.ts": "10cc136df03892124ca68a77bd9ee06179ddbe53ce9f21e97a6aa5681ef37a87"
+  },
+  "cases": [
+    {
+      "viewport": {
+        "width": 1180,
+        "height": 757
+      },
+      "errors": [],
+      "shots": [
+        "1180-five-held-after.png"
+      ],
+      "layout": {
+        "geometry": {
+          "x": 24,
+          "w": 1132,
+          "top": 8,
+          "pc": {
+            "left": {
+              "x": 24,
+              "y": 8,
+              "width": 224,
+              "height": 741
+            },
+            "ownedRail": {
+              "x": 272,
+              "y": 8,
+              "width": 884,
+              "height": 149.6
+            },
+            "inventoryEntry": {
+              "x": 988,
+              "y": 72,
+              "width": 168,
+              "height": 44
+            },
+            "shopPanel": {
+              "x": 272,
+              "y": 177.6,
+              "width": 884,
+              "height": 571.4
+            },
+            "actionRail": {
+              "x": 1016,
+              "y": 205.6,
+              "width": 128,
+              "height": 519.4
+            },
+            "jokerOffers": [
+              {
+                "x": 288,
+                "y": 205.6,
+                "width": 228,
+                "height": 351.4
+              },
+              {
+                "x": 528,
+                "y": 205.6,
+                "width": 228,
+                "height": 351.4
+              },
+              {
+                "x": 768,
+                "y": 205.6,
+                "width": 228,
+                "height": 351.4
+              }
+            ],
+            "toolOffers": {
+              "x": 288,
+              "y": 589,
+              "width": 346,
+              "height": 128
+            },
+            "itemOffers": {
+              "x": 650,
+              "y": 589,
+              "width": 346,
+              "height": 128
+            },
+            "feedback": {
+              "x": 284,
+              "y": 725,
+              "width": 860,
+              "height": 20
+            },
+            "groupY": 565,
+            "guidanceHeight": 0
+          },
+          "desktop": true,
+          "short": false,
+          "copyBeside": false,
+          "inventoryCollapsed": false,
+          "compact": false,
+          "wideHeader": false,
+          "portrait": false,
+          "slots": [
+            {
+              "x": 272,
+              "y": 64,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 348,
+              "y": 64,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 424,
+              "y": 64,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 500,
+              "y": 64,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 576,
+              "y": 64,
+              "width": 64,
+              "height": 89.6
+            }
+          ],
+          "shelf": [
+            {
+              "x": 317.44,
+              "y": 213.6,
+              "width": 169.12,
+              "height": 211.4
+            },
+            {
+              "x": 557.44,
+              "y": 213.6,
+              "width": 169.12,
+              "height": 211.4
+            },
+            {
+              "x": 797.44,
+              "y": 213.6,
+              "width": 169.12,
+              "height": 211.4
+            }
+          ],
+          "tabs": {
+            "x": 288,
+            "y": 181.6,
+            "width": 708,
+            "height": 20
+          },
+          "chapter": {
+            "x": 24,
+            "y": 184,
+            "width": 224,
+            "height": 44
+          },
+          "items": {
+            "x": 988,
+            "y": 72,
+            "width": 168,
+            "height": 44
+          },
+          "build": {
+            "x": 664,
+            "y": 14,
+            "width": 132,
+            "height": 44
+          },
+          "reroll": {
+            "x": 1016,
+            "y": 273.6,
+            "width": 128,
+            "height": 44
+          },
+          "play": {
+            "x": 1016,
+            "y": 205.6,
+            "width": 128,
+            "height": 56
+          },
+          "noticeY": 725
+        },
+        "fields": [
+          {
+            "name": "shop/owned-name",
+            "text": "掌灯破雾",
+            "instanceId": "controlled/owned/0",
+            "fullText": "掌灯破雾",
+            "x": 272,
+            "y": 46.000003051757815,
+            "width": 48,
+            "height": 15
+          },
+          {
+            "name": "shop/owned-identity",
+            "text": "普通",
+            "instanceId": "controlled/owned/0",
+            "fullText": "普通",
+            "x": 272,
+            "y": 138.0000030517578,
+            "width": 22,
+            "height": 13
+          },
+          {
+            "name": "shop/owned-state",
+            "text": "同/顺/花",
+            "instanceId": "controlled/owned/0",
+            "fullText": "同/顺/花",
+            "x": 272,
+            "y": 157.0000030517578,
+            "width": 54,
+            "height": 17
+          },
+          {
+            "name": "shop/owned-name",
+            "text": "精打细算",
+            "instanceId": "controlled/owned/1",
+            "fullText": "精打细算",
+            "x": 348,
+            "y": 46.000003051757815,
+            "width": 48,
+            "height": 15
+          },
+          {
+            "name": "shop/owned-identity",
+            "text": "特别 · 闪箔",
+            "instanceId": "controlled/owned/1",
+            "fullText": "特别 · 闪箔",
+            "x": 348,
+            "y": 138.0000030517578,
+            "width": 54,
+            "height": 13
+          },
+          {
+            "name": "shop/owned-state",
+            "text": "同/顺/花",
+            "instanceId": "controlled/owned/1",
+            "fullText": "同/顺/花",
+            "x": 348,
+            "y": 157.0000030517578,
+            "width": 54,
+            "height": 17
+          },
+          {
+            "name": "shop/owned-name",
+            "text": "回马枪",
+            "instanceId": "controlled/owned/2",
+            "fullText": "回马枪",
+            "x": 424,
+            "y": 46.000003051757815,
+            "width": 36,
+            "height": 15
+          },
+          {
+            "name": "shop/owned-identity",
+            "text": "稀有 · 全息",
+            "instanceId": "controlled/owned/2",
+            "fullText": "稀有 · 全息",
+            "x": 424,
+            "y": 138.0000030517578,
+            "width": 54,
+            "height": 13
+          },
+          {
+            "name": "shop/owned-state",
+            "text": "同/顺/花",
+            "instanceId": "controlled/owned/2",
+            "fullText": "同/顺/花",
+            "x": 424,
+            "y": 157.0000030517578,
+            "width": 54,
+            "height": 17
+          },
+          {
+            "name": "shop/owned-name",
+            "text": "巧借东风",
+            "instanceId": "controlled/owned/3",
+            "fullText": "巧借东风",
+            "x": 500,
+            "y": 46.000003051757815,
+            "width": 48,
+            "height": 15
+          },
+          {
+            "name": "shop/owned-identity",
+            "text": "特别 · 多彩",
+            "instanceId": "controlled/owned/3",
+            "fullText": "特别 · 多彩",
+            "x": 500,
+            "y": 138.0000030517578,
+            "width": 54,
+            "height": 13
+          },
+          {
+            "name": "shop/owned-state",
+            "text": "同/顺/花",
+            "instanceId": "controlled/owned/3",
+            "fullText": "同/顺/花",
+            "x": 500,
+            "y": 157.0000030517578,
+            "width": 54,
+            "height": 17
+          },
+          {
+            "name": "shop/owned-name",
+            "text": "轻车熟路",
+            "instanceId": "controlled/owned/4",
+            "fullText": "轻车熟路",
+            "x": 576,
+            "y": 46.000003051757815,
+            "width": 48,
+            "height": 15
+          },
+          {
+            "name": "shop/owned-identity",
+            "text": "特别",
+            "instanceId": "controlled/owned/4",
+            "fullText": "特别",
+            "x": 576,
+            "y": 138.0000030517578,
+            "width": 22,
+            "height": 13
+          },
+          {
+            "name": "shop/owned-state",
+            "text": "同/顺/花",
+            "instanceId": "controlled/owned/4",
+            "fullText": "同/顺/花",
+            "x": 576,
+            "y": 157.0000030517578,
+            "width": 54,
+            "height": 17
+          }
+        ],
+        "owned": {
+          "x": 272,
+          "y": 8,
+          "width": 884,
+          "height": 165.6
+        },
+        "saleHeading": {
+          "x": 288,
+          "y": 184,
+          "width": 123,
+          "height": 17
+        }
+      },
+      "captions": [
+        {
+          "name": "shop/owned-state",
+          "text": "同/顺/花",
+          "instanceId": "controlled/owned/0",
+          "fullText": "同/顺/花",
+          "x": 272,
+          "y": 157.0000030517578,
+          "width": 54,
+          "height": 17
+        },
+        {
+          "name": "shop/owned-state",
+          "text": "同/顺/花",
+          "instanceId": "controlled/owned/1",
+          "fullText": "同/顺/花",
+          "x": 348,
+          "y": 157.0000030517578,
+          "width": 54,
+          "height": 17
+        },
+        {
+          "name": "shop/owned-state",
+          "text": "同/顺/花",
+          "instanceId": "controlled/owned/2",
+          "fullText": "同/顺/花",
+          "x": 424,
+          "y": 157.0000030517578,
+          "width": 54,
+          "height": 17
+        },
+        {
+          "name": "shop/owned-state",
+          "text": "同/顺/花",
+          "instanceId": "controlled/owned/3",
+          "fullText": "同/顺/花",
+          "x": 500,
+          "y": 157.0000030517578,
+          "width": 54,
+          "height": 17
+        },
+        {
+          "name": "shop/owned-state",
+          "text": "同/顺/花",
+          "instanceId": "controlled/owned/4",
+          "fullText": "同/顺/花",
+          "x": 576,
+          "y": 157.0000030517578,
+          "width": 54,
+          "height": 17
+        }
+      ],
+      "overflows": [],
+      "status": "PASS"
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "errors": [],
+      "shots": [
+        "390-full-routes-detail-after.png"
+      ],
+      "layout": {
+        "geometry": {
+          "x": 12,
+          "w": 366,
+          "top": 8,
+          "pc": null,
+          "desktop": false,
+          "short": false,
+          "copyBeside": false,
+          "inventoryCollapsed": false,
+          "compact": true,
+          "wideHeader": false,
+          "portrait": true,
+          "guidanceBelow": false,
+          "slots": [
+            {
+              "x": 53,
+              "y": 443,
+              "width": 52,
+              "height": 101
+            },
+            {
+              "x": 111,
+              "y": 443,
+              "width": 52,
+              "height": 101
+            },
+            {
+              "x": 169,
+              "y": 443,
+              "width": 52,
+              "height": 101
+            },
+            {
+              "x": 227,
+              "y": 443,
+              "width": 52,
+              "height": 101
+            },
+            {
+              "x": 285,
+              "y": 443,
+              "width": 52,
+              "height": 101
+            }
+          ],
+          "shelf": [
+            {
+              "x": 16.333333333333336,
+              "y": 112,
+              "width": 108,
+              "height": 135
+            },
+            {
+              "x": 141.00000000000003,
+              "y": 112,
+              "width": 108,
+              "height": 135
+            },
+            {
+              "x": 265.6666666666667,
+              "y": 112,
+              "width": 108,
+              "height": 135
+            }
+          ],
+          "tabs": {
+            "x": 12,
+            "y": 60,
+            "width": 366,
+            "height": 44
+          },
+          "chapter": {
+            "x": 12,
+            "y": 568,
+            "width": 179,
+            "height": 44
+          },
+          "items": {
+            "x": 199,
+            "y": 568,
+            "width": 179,
+            "height": 44
+          },
+          "reroll": {
+            "x": 12,
+            "y": 700,
+            "width": 179,
+            "height": 44
+          },
+          "build": {
+            "x": 199,
+            "y": 700,
+            "width": 179,
+            "height": 44
+          },
+          "play": {
+            "x": 12,
+            "y": 752,
+            "width": 366,
+            "height": 56
+          },
+          "noticeY": 816
+        },
+        "fields": [
+          {
+            "name": "shop/owned-name",
+            "text": "掌灯破雾",
+            "instanceId": "controlled/owned/0",
+            "fullText": "掌灯破雾",
+            "x": 53,
+            "y": 510,
+            "width": 48,
+            "height": 15
+          },
+          {
+            "name": "shop/owned-identity",
+            "text": "普通",
+            "instanceId": "controlled/owned/0",
+            "fullText": "普通",
+            "x": 53,
+            "y": 528,
+            "width": 22,
+            "height": 13
+          },
+          {
+            "name": "shop/owned-route",
+            "text": "同/顺/花",
+            "x": 52,
+            "y": 547,
+            "width": 54,
+            "height": 17
+          },
+          {
+            "name": "shop/owned-name",
+            "text": "精打细算",
+            "instanceId": "controlled/owned/1",
+            "fullText": "精打细算",
+            "x": 111,
+            "y": 510,
+            "width": 48,
+            "height": 15
+          },
+          {
+            "name": "shop/owned-identity",
+            "text": "特别 · 闪…",
+            "instanceId": "controlled/owned/1",
+            "fullText": "特别 · 闪箔",
+            "x": 111,
+            "y": 528,
+            "width": 52,
+            "height": 13
+          },
+          {
+            "name": "shop/owned-route",
+            "text": "同/顺/花",
+            "x": 110,
+            "y": 547,
+            "width": 54,
+            "height": 17
+          },
+          {
+            "name": "shop/owned-name",
+            "text": "回马枪",
+            "instanceId": "controlled/owned/2",
+            "fullText": "回马枪",
+            "x": 169,
+            "y": 510,
+            "width": 36,
+            "height": 15
+          },
+          {
+            "name": "shop/owned-identity",
+            "text": "稀有 · 全…",
+            "instanceId": "controlled/owned/2",
+            "fullText": "稀有 · 全息",
+            "x": 169,
+            "y": 528,
+            "width": 52,
+            "height": 13
+          },
+          {
+            "name": "shop/owned-route",
+            "text": "同/顺/花",
+            "x": 168,
+            "y": 547,
+            "width": 54,
+            "height": 17
+          },
+          {
+            "name": "shop/owned-name",
+            "text": "巧借东风",
+            "instanceId": "controlled/owned/3",
+            "fullText": "巧借东风",
+            "x": 227,
+            "y": 510,
+            "width": 48,
+            "height": 15
+          },
+          {
+            "name": "shop/owned-identity",
+            "text": "特别 · 多…",
+            "instanceId": "controlled/owned/3",
+            "fullText": "特别 · 多彩",
+            "x": 227,
+            "y": 528,
+            "width": 52,
+            "height": 13
+          },
+          {
+            "name": "shop/owned-route",
+            "text": "同/顺/花",
+            "x": 226,
+            "y": 547,
+            "width": 54,
+            "height": 17
+          },
+          {
+            "name": "shop/owned-name",
+            "text": "轻车熟路",
+            "instanceId": "controlled/owned/4",
+            "fullText": "轻车熟路",
+            "x": 285,
+            "y": 510,
+            "width": 48,
+            "height": 15
+          },
+          {
+            "name": "shop/owned-identity",
+            "text": "特别",
+            "instanceId": "controlled/owned/4",
+            "fullText": "特别",
+            "x": 285,
+            "y": 528,
+            "width": 22,
+            "height": 13
+          },
+          {
+            "name": "shop/owned-route",
+            "text": "同/顺/花",
+            "x": 284,
+            "y": 547,
+            "width": 54,
+            "height": 17
+          }
+        ]
+      },
+      "captions": [
+        {
+          "name": "shop/owned-route",
+          "text": "同/顺/花",
+          "x": 52,
+          "y": 547,
+          "width": 54,
+          "height": 17
+        },
+        {
+          "name": "shop/owned-route",
+          "text": "同/顺/花",
+          "x": 110,
+          "y": 547,
+          "width": 54,
+          "height": 17
+        },
+        {
+          "name": "shop/owned-route",
+          "text": "同/顺/花",
+          "x": 168,
+          "y": 547,
+          "width": 54,
+          "height": 17
+        },
+        {
+          "name": "shop/owned-route",
+          "text": "同/顺/花",
+          "x": 226,
+          "y": 547,
+          "width": 54,
+          "height": 17
+        },
+        {
+          "name": "shop/owned-route",
+          "text": "同/顺/花",
+          "x": 284,
+          "y": 547,
+          "width": 54,
+          "height": 17
+        }
+      ],
+      "overflows": [],
+      "status": "PASS"
+    },
+    {
+      "viewport": {
+        "width": 360,
+        "height": 844
+      },
+      "errors": [],
+      "shots": [],
+      "layout": {
+        "geometry": {
+          "x": 12,
+          "w": 336,
+          "top": 8,
+          "pc": null,
+          "desktop": false,
+          "short": false,
+          "copyBeside": false,
+          "inventoryCollapsed": false,
+          "compact": true,
+          "wideHeader": false,
+          "portrait": true,
+          "guidanceBelow": false,
+          "slots": [
+            {
+              "x": 38,
+              "y": 431.33333333333337,
+              "width": 52,
+              "height": 101
+            },
+            {
+              "x": 96,
+              "y": 431.33333333333337,
+              "width": 52,
+              "height": 101
+            },
+            {
+              "x": 154,
+              "y": 431.33333333333337,
+              "width": 52,
+              "height": 101
+            },
+            {
+              "x": 212,
+              "y": 431.33333333333337,
+              "width": 52,
+              "height": 101
+            },
+            {
+              "x": 270,
+              "y": 431.33333333333337,
+              "width": 52,
+              "height": 101
+            }
+          ],
+          "shelf": [
+            {
+              "x": 16,
+              "y": 112,
+              "width": 98.66666666666667,
+              "height": 123.33333333333334
+            },
+            {
+              "x": 130.66666666666669,
+              "y": 112,
+              "width": 98.66666666666667,
+              "height": 123.33333333333334
+            },
+            {
+              "x": 245.33333333333334,
+              "y": 112,
+              "width": 98.66666666666667,
+              "height": 123.33333333333334
+            }
+          ],
+          "tabs": {
+            "x": 12,
+            "y": 60,
+            "width": 336,
+            "height": 44
+          },
+          "chapter": {
+            "x": 12,
+            "y": 556.3333333333334,
+            "width": 164,
+            "height": 44
+          },
+          "items": {
+            "x": 184,
+            "y": 556.3333333333334,
+            "width": 164,
+            "height": 44
+          },
+          "reroll": {
+            "x": 12,
+            "y": 700,
+            "width": 164,
+            "height": 44
+          },
+          "build": {
+            "x": 184,
+            "y": 700,
+            "width": 164,
+            "height": 44
+          },
+          "play": {
+            "x": 12,
+            "y": 752,
+            "width": 336,
+            "height": 56
+          },
+          "noticeY": 816
+        },
+        "fields": [
+          {
+            "name": "shop/owned-name",
+            "text": "掌灯破雾",
+            "instanceId": "controlled/owned/0",
+            "fullText": "掌灯破雾",
+            "x": 38,
+            "y": 498.000010172526,
+            "width": 48,
+            "height": 15
+          },
+          {
+            "name": "shop/owned-identity",
+            "text": "普通",
+            "instanceId": "controlled/owned/0",
+            "fullText": "普通",
+            "x": 38,
+            "y": 516.000010172526,
+            "width": 22,
+            "height": 13
+          },
+          {
+            "name": "shop/owned-route",
+            "text": "同/顺/花",
+            "x": 37,
+            "y": 535.000010172526,
+            "width": 54,
+            "height": 17
+          },
+          {
+            "name": "shop/owned-name",
+            "text": "精打细算",
+            "instanceId": "controlled/owned/1",
+            "fullText": "精打细算",
+            "x": 96,
+            "y": 498.000010172526,
+            "width": 48,
+            "height": 15
+          },
+          {
+            "name": "shop/owned-identity",
+            "text": "特别 · 闪…",
+            "instanceId": "controlled/owned/1",
+            "fullText": "特别 · 闪箔",
+            "x": 96,
+            "y": 516.000010172526,
+            "width": 52,
+            "height": 13
+          },
+          {
+            "name": "shop/owned-route",
+            "text": "同/顺/花",
+            "x": 95,
+            "y": 535.000010172526,
+            "width": 54,
+            "height": 17
+          },
+          {
+            "name": "shop/owned-name",
+            "text": "回马枪",
+            "instanceId": "controlled/owned/2",
+            "fullText": "回马枪",
+            "x": 154,
+            "y": 498.000010172526,
+            "width": 36,
+            "height": 15
+          },
+          {
+            "name": "shop/owned-identity",
+            "text": "稀有 · 全…",
+            "instanceId": "controlled/owned/2",
+            "fullText": "稀有 · 全息",
+            "x": 154,
+            "y": 516.000010172526,
+            "width": 52,
+            "height": 13
+          },
+          {
+            "name": "shop/owned-route",
+            "text": "同/顺/花",
+            "x": 153,
+            "y": 535.000010172526,
+            "width": 54,
+            "height": 17
+          },
+          {
+            "name": "shop/owned-name",
+            "text": "巧借东风",
+            "instanceId": "controlled/owned/3",
+            "fullText": "巧借东风",
+            "x": 212,
+            "y": 498.000010172526,
+            "width": 48,
+            "height": 15
+          },
+          {
+            "name": "shop/owned-identity",
+            "text": "特别 · 多…",
+            "instanceId": "controlled/owned/3",
+            "fullText": "特别 · 多彩",
+            "x": 212,
+            "y": 516.000010172526,
+            "width": 52,
+            "height": 13
+          },
+          {
+            "name": "shop/owned-route",
+            "text": "同/顺/花",
+            "x": 211,
+            "y": 535.000010172526,
+            "width": 54,
+            "height": 17
+          },
+          {
+            "name": "shop/owned-name",
+            "text": "轻车熟路",
+            "instanceId": "controlled/owned/4",
+            "fullText": "轻车熟路",
+            "x": 270,
+            "y": 498.000010172526,
+            "width": 48,
+            "height": 15
+          },
+          {
+            "name": "shop/owned-identity",
+            "text": "特别",
+            "instanceId": "controlled/owned/4",
+            "fullText": "特别",
+            "x": 270,
+            "y": 516.000010172526,
+            "width": 22,
+            "height": 13
+          },
+          {
+            "name": "shop/owned-route",
+            "text": "同/顺/花",
+            "x": 269,
+            "y": 535.000010172526,
+            "width": 54,
+            "height": 17
+          }
+        ]
+      },
+      "captions": [
+        {
+          "name": "shop/owned-route",
+          "text": "同/顺/花",
+          "x": 37,
+          "y": 535.000010172526,
+          "width": 54,
+          "height": 17
+        },
+        {
+          "name": "shop/owned-route",
+          "text": "同/顺/花",
+          "x": 95,
+          "y": 535.000010172526,
+          "width": 54,
+          "height": 17
+        },
+        {
+          "name": "shop/owned-route",
+          "text": "同/顺/花",
+          "x": 153,
+          "y": 535.000010172526,
+          "width": 54,
+          "height": 17
+        },
+        {
+          "name": "shop/owned-route",
+          "text": "同/顺/花",
+          "x": 211,
+          "y": 535.000010172526,
+          "width": 54,
+          "height": 17
+        },
+        {
+          "name": "shop/owned-route",
+          "text": "同/顺/花",
+          "x": 269,
+          "y": 535.000010172526,
+          "width": 54,
+          "height": 17
+        }
+      ],
+      "overflows": [],
+      "status": "PASS"
+    }
+  ],
+  "browser": "153.0.8010.12",
+  "status": "PASS",
+  "screenshotRetention": "Retain baseline/initial-fix PC and one full-route detail only; complete geometry remains in this report."
+}

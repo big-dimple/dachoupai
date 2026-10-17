@@ -22,6 +22,11 @@ export function shopIdentityText(rarity:JokerRarity,edition:Edition='none',compa
   return JOKER_RARITY[rarity].label+(compact&&edition==='none'?'':' · '+(compact?editions[edition].replace('版',''):editions[edition]));
 }
 
+/** Keep both axes on narrow shelves; the purchase detail spells out the edition. */
+export function shopShelfIdentityText(rarity:JokerRarity,edition:Edition='none'):string {
+  return shopIdentityText(rarity,edition,true).replaceAll(' ','')+(edition==='none'?'·原版':'');
+}
+
 /** Held cards use their real image ratio; their identity never overlays the picture. */
 export function shopHeldGeometry(card:Box,portrait:boolean){
   const aspect=4/5,artHeight=Math.min(card.width/aspect,card.height-(portrait?36:18)),artWidth=artHeight*aspect;
