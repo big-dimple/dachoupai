@@ -1,0 +1,336 @@
+AI parity: loading the public fixture without dev discovery/watchers
+AI parity: public fixture ready, building the integrated e2e app
+AI parity: actual Edge input sequence starting
+AI parity: plain-pair
+AI parity: chosen-pair
+AI parity: AI-keeps-chosen-target
+AI parity: cancel-target
+AI parity: AI-after-cancel
+AI parity: reselect-target
+AI parity: AI-first-compatible
+AI parity: AI-next-compatible
+AI parity: undo-restores-target-and-hand
+{
+  "status": "PASS",
+  "steps": [
+    {
+      "label": "plain-pair",
+      "target": null,
+      "selected": [
+        "clubs-6",
+        "hearts-6"
+      ],
+      "candidates": [
+        {
+          "type": "straight",
+          "ids": [
+            "clubs-6",
+            "spades-2",
+            "hearts-3",
+            "diamonds-4",
+            "clubs-5"
+          ],
+          "canonicalScore": "580",
+          "aiInputMinimum": "580"
+        },
+        {
+          "type": "pair",
+          "ids": [
+            "clubs-6",
+            "hearts-6"
+          ],
+          "canonicalScore": "380",
+          "aiInputMinimum": "380"
+        },
+        {
+          "type": "high-card",
+          "ids": [
+            "spades-10"
+          ],
+          "canonicalScore": "30",
+          "aiInputMinimum": "30"
+        }
+      ]
+    },
+    {
+      "label": "chosen-pair",
+      "target": "hearts-6",
+      "selected": [
+        "clubs-6",
+        "hearts-6"
+      ],
+      "candidates": [
+        {
+          "type": "straight",
+          "ids": [
+            "hearts-6",
+            "spades-2",
+            "hearts-3",
+            "diamonds-4",
+            "clubs-5"
+          ],
+          "canonicalScore": "1390",
+          "aiInputMinimum": "1390"
+        },
+        {
+          "type": "pair",
+          "ids": [
+            "clubs-6",
+            "hearts-6"
+          ],
+          "canonicalScore": "1241",
+          "aiInputMinimum": "1241"
+        }
+      ]
+    },
+    {
+      "label": "AI-keeps-chosen-target",
+      "target": "hearts-6",
+      "selected": [
+        "hearts-6",
+        "spades-2",
+        "hearts-3",
+        "diamonds-4",
+        "clubs-5"
+      ],
+      "candidates": [
+        {
+          "type": "straight",
+          "ids": [
+            "hearts-6",
+            "spades-2",
+            "hearts-3",
+            "diamonds-4",
+            "clubs-5"
+          ],
+          "canonicalScore": "1390",
+          "aiInputMinimum": "1390"
+        },
+        {
+          "type": "pair",
+          "ids": [
+            "clubs-6",
+            "hearts-6"
+          ],
+          "canonicalScore": "1241",
+          "aiInputMinimum": "1241"
+        }
+      ]
+    },
+    {
+      "label": "cancel-target",
+      "target": null,
+      "selected": [
+        "hearts-6",
+        "spades-2",
+        "hearts-3",
+        "diamonds-4",
+        "clubs-5"
+      ],
+      "candidates": [
+        {
+          "type": "straight",
+          "ids": [
+            "clubs-6",
+            "spades-2",
+            "hearts-3",
+            "diamonds-4",
+            "clubs-5"
+          ],
+          "canonicalScore": "580",
+          "aiInputMinimum": "580"
+        },
+        {
+          "type": "pair",
+          "ids": [
+            "clubs-6",
+            "hearts-6"
+          ],
+          "canonicalScore": "380",
+          "aiInputMinimum": "380"
+        },
+        {
+          "type": "high-card",
+          "ids": [
+            "spades-10"
+          ],
+          "canonicalScore": "30",
+          "aiInputMinimum": "30"
+        }
+      ]
+    },
+    {
+      "label": "AI-after-cancel",
+      "target": null,
+      "selected": [
+        "clubs-6",
+        "spades-2",
+        "hearts-3",
+        "diamonds-4",
+        "clubs-5"
+      ],
+      "candidates": [
+        {
+          "type": "straight",
+          "ids": [
+            "clubs-6",
+            "spades-2",
+            "hearts-3",
+            "diamonds-4",
+            "clubs-5"
+          ],
+          "canonicalScore": "580",
+          "aiInputMinimum": "580"
+        },
+        {
+          "type": "pair",
+          "ids": [
+            "clubs-6",
+            "hearts-6"
+          ],
+          "canonicalScore": "380",
+          "aiInputMinimum": "380"
+        },
+        {
+          "type": "high-card",
+          "ids": [
+            "spades-10"
+          ],
+          "canonicalScore": "30",
+          "aiInputMinimum": "30"
+        }
+      ]
+    },
+    {
+      "label": "reselect-target",
+      "target": "hearts-6",
+      "selected": [
+        "clubs-6",
+        "hearts-6"
+      ],
+      "candidates": [
+        {
+          "type": "straight",
+          "ids": [
+            "hearts-6",
+            "spades-2",
+            "hearts-3",
+            "diamonds-4",
+            "clubs-5"
+          ],
+          "canonicalScore": "1390",
+          "aiInputMinimum": "1390"
+        },
+        {
+          "type": "pair",
+          "ids": [
+            "clubs-6",
+            "hearts-6"
+          ],
+          "canonicalScore": "1241",
+          "aiInputMinimum": "1241"
+        }
+      ]
+    },
+    {
+      "label": "AI-first-compatible",
+      "target": "hearts-6",
+      "selected": [
+        "hearts-6",
+        "spades-2",
+        "hearts-3",
+        "diamonds-4",
+        "clubs-5"
+      ],
+      "candidates": [
+        {
+          "type": "straight",
+          "ids": [
+            "hearts-6",
+            "spades-2",
+            "hearts-3",
+            "diamonds-4",
+            "clubs-5"
+          ],
+          "canonicalScore": "1390",
+          "aiInputMinimum": "1390"
+        },
+        {
+          "type": "pair",
+          "ids": [
+            "clubs-6",
+            "hearts-6"
+          ],
+          "canonicalScore": "1241",
+          "aiInputMinimum": "1241"
+        }
+      ]
+    },
+    {
+      "label": "AI-next-compatible",
+      "target": "hearts-6",
+      "selected": [
+        "clubs-6",
+        "hearts-6"
+      ],
+      "candidates": [
+        {
+          "type": "straight",
+          "ids": [
+            "hearts-6",
+            "spades-2",
+            "hearts-3",
+            "diamonds-4",
+            "clubs-5"
+          ],
+          "canonicalScore": "1390",
+          "aiInputMinimum": "1390"
+        },
+        {
+          "type": "pair",
+          "ids": [
+            "clubs-6",
+            "hearts-6"
+          ],
+          "canonicalScore": "1241",
+          "aiInputMinimum": "1241"
+        }
+      ]
+    },
+    {
+      "label": "undo-restores-target-and-hand",
+      "target": "hearts-6",
+      "selected": [
+        "hearts-6",
+        "spades-2",
+        "hearts-3",
+        "diamonds-4",
+        "clubs-5"
+      ],
+      "candidates": [
+        {
+          "type": "straight",
+          "ids": [
+            "hearts-6",
+            "spades-2",
+            "hearts-3",
+            "diamonds-4",
+            "clubs-5"
+          ],
+          "canonicalScore": "1390",
+          "aiInputMinimum": "1390"
+        },
+        {
+          "type": "pair",
+          "ids": [
+            "clubs-6",
+            "hearts-6"
+          ],
+          "canonicalScore": "1241",
+          "aiInputMinimum": "1241"
+        }
+      ]
+    }
+  ],
+  "finalScore": "1390"
+}

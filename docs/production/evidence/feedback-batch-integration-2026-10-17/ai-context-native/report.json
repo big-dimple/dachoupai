@@ -1,0 +1,599 @@
+{
+  "product": "10c92404fb4e0cac7ca89a10fd47fdcecc6b7ec6",
+  "workingTree": "?? harness/ai-hero-context-integration.mjs\n",
+  "buildInfo": {
+    "version": "C03",
+    "builtAt": "2026-10-17T12:33:52.806Z",
+    "revision": "10c92404fb4e0cac7ca89a10fd47fdcecc6b7ec6",
+    "sourceStatus": "clean",
+    "modified": false
+  },
+  "browser": "143.0.3650.80",
+  "scope": "One controlled current-identity Liu E native import/select/cancel/AI-cycle/undo/play sequence on actual PC input. Canonical commands independently verify captured AI score inputs and final full state. Not natural acquisition, global optimal AI, all heroes/devices, hearing or experience acceptance.",
+  "status": "PASS",
+  "errors": [],
+  "steps": [
+    {
+      "label": "plain-pair",
+      "target": null,
+      "selected": [
+        "clubs-6",
+        "hearts-6"
+      ],
+      "cacheKey": "[\"{\\\"hand\\\":[{\\\"id\\\":\\\"clubs-6\\\",\\\"suit\\\":\\\"clubs\\\",\\\"rank\\\":6},{\\\"id\\\":\\\"hearts-6\\\",\\\"suit\\\":\\\"hearts\\\",\\\"rank\\\":6},{\\\"id\\\":\\\"spades-2\\\",\\\"suit\\\":\\\"spades\\\",\\\"rank\\\":2},{\\\"id\\\":\\\"hearts-3\\\",\\\"suit\\\":\\\"hearts\\\",\\\"rank\\\":3},{\\\"id\\\":\\\"diamonds-4\\\",\\\"suit\\\":\\\"diamonds\\\",\\\"rank\\\":4},{\\\"id\\\":\\\"clubs-5\\\",\\\"suit\\\":\\\"clubs\\\",\\\"rank\\\":5},{\\\"id\\\":\\\"diamonds-8\\\",\\\"suit\\\":\\\"diamonds\\\",\\\"rank\\\":8},{\\\"id\\\":\\\"spades-10\\\",\\\"suit\\\":\\\"spades\\\",\\\"rank\\\":10}],\\\"jokers\\\":[{\\\"instanceId\\\":\\\"controlled/liue-attachment/0\\\",\\\"definitionId\\\":\\\"mantangcai\\\",\\\"paidPrice\\\":8,\\\"growth\\\":{},\\\"edition\\\":\\\"none\\\"},{\\\"instanceId\\\":\\\"controlled/liue-attachment/1\\\",\\\"definitionId\\\":\\\"b10\\\",\\\"paidPrice\\\":8,\\\"growth\\\":{},\\\"edition\\\":\\\"none\\\"}],\\\"rules\\\":{\\\"fourStraight\\\":false,\\\"fourFlush\\\":false},\\\"disabled\\\":[],\\\"suppressed\\\":[],\\\"boss\\\":null,\\\"index\\\":0,\\\"sealed\\\":[],\\\"challenge\\\":null,\\\"resources\\\":{\\\"gold\\\":6,\\\"handsLeft\\\":4,\\\"playIndex\\\":0,\\\"discardsUsed\\\":0,\\\"stageHeat\\\":\\\"0\\\",\\\"target\\\":\\\"400\\\"},\\\"version\\\":[\\\"quality-r2-s04-finish-v1/json-fnv-v1:65b545bd97c0fdf1\\\",\\\"14595931\\\"]}\",{\"boundedClear\":true,\"routeGrowth\":{\"clears\":0,\"G\":0,\"S\":0,\"F\":0},\"erxiangHandoff\":{\"targetId\":null,\"beforeUsed\":false},\"characterId\":\"erxiang\",\"amoScoreTiming\":\"after-joker\",\"handLevels\":{\"pair\":2},\"previousHandType\":null,\"wager\":false,\"jokerSlots\":5,\"previousHandScore\":null}]",
+      "scoreContext": {
+        "boundedClear": true,
+        "routeGrowth": {
+          "clears": 0,
+          "G": 0,
+          "S": 0,
+          "F": 0
+        },
+        "erxiangHandoff": {
+          "targetId": null,
+          "beforeUsed": false
+        },
+        "characterId": "erxiang",
+        "amoScoreTiming": "after-joker",
+        "handLevels": {
+          "pair": 2
+        },
+        "previousHandType": null,
+        "wager": false,
+        "jokerSlots": 5,
+        "previousHandScore": null
+      },
+      "edges": [],
+      "candidates": [
+        {
+          "type": "straight",
+          "ids": [
+            "clubs-6",
+            "spades-2",
+            "hearts-3",
+            "diamonds-4",
+            "clubs-5"
+          ],
+          "canonicalScore": "580",
+          "aiInputMinimum": "580"
+        },
+        {
+          "type": "pair",
+          "ids": [
+            "clubs-6",
+            "hearts-6"
+          ],
+          "canonicalScore": "380",
+          "aiInputMinimum": "380"
+        },
+        {
+          "type": "high-card",
+          "ids": [
+            "spades-10"
+          ],
+          "canonicalScore": "30",
+          "aiInputMinimum": "30"
+        }
+      ]
+    },
+    {
+      "label": "chosen-pair",
+      "target": "hearts-6",
+      "selected": [
+        "clubs-6",
+        "hearts-6"
+      ],
+      "cacheKey": "[\"{\\\"hand\\\":[{\\\"id\\\":\\\"clubs-6\\\",\\\"suit\\\":\\\"clubs\\\",\\\"rank\\\":6},{\\\"id\\\":\\\"hearts-6\\\",\\\"suit\\\":\\\"hearts\\\",\\\"rank\\\":6},{\\\"id\\\":\\\"spades-2\\\",\\\"suit\\\":\\\"spades\\\",\\\"rank\\\":2},{\\\"id\\\":\\\"hearts-3\\\",\\\"suit\\\":\\\"hearts\\\",\\\"rank\\\":3},{\\\"id\\\":\\\"diamonds-4\\\",\\\"suit\\\":\\\"diamonds\\\",\\\"rank\\\":4},{\\\"id\\\":\\\"clubs-5\\\",\\\"suit\\\":\\\"clubs\\\",\\\"rank\\\":5},{\\\"id\\\":\\\"diamonds-8\\\",\\\"suit\\\":\\\"diamonds\\\",\\\"rank\\\":8},{\\\"id\\\":\\\"spades-10\\\",\\\"suit\\\":\\\"spades\\\",\\\"rank\\\":10}],\\\"jokers\\\":[{\\\"instanceId\\\":\\\"controlled/liue-attachment/0\\\",\\\"definitionId\\\":\\\"mantangcai\\\",\\\"paidPrice\\\":8,\\\"growth\\\":{},\\\"edition\\\":\\\"none\\\"},{\\\"instanceId\\\":\\\"controlled/liue-attachment/1\\\",\\\"definitionId\\\":\\\"b10\\\",\\\"paidPrice\\\":8,\\\"growth\\\":{},\\\"edition\\\":\\\"none\\\"}],\\\"rules\\\":{\\\"fourStraight\\\":false,\\\"fourFlush\\\":false},\\\"disabled\\\":[],\\\"suppressed\\\":[],\\\"boss\\\":null,\\\"index\\\":0,\\\"sealed\\\":[],\\\"challenge\\\":null,\\\"resources\\\":{\\\"gold\\\":6,\\\"handsLeft\\\":4,\\\"playIndex\\\":0,\\\"discardsUsed\\\":0,\\\"stageHeat\\\":\\\"0\\\",\\\"target\\\":\\\"400\\\"},\\\"version\\\":[\\\"quality-r2-s04-finish-v1/json-fnv-v1:65b545bd97c0fdf1\\\",\\\"14595931\\\"]}\",{\"boundedClear\":true,\"routeGrowth\":{\"clears\":0,\"G\":0,\"S\":0,\"F\":0},\"erxiangHandoff\":{\"targetId\":\"hearts-6\",\"beforeUsed\":false},\"characterId\":\"erxiang\",\"amoScoreTiming\":\"after-joker\",\"handLevels\":{\"pair\":2},\"previousHandType\":null,\"wager\":false,\"jokerSlots\":5,\"previousHandScore\":null}]",
+      "scoreContext": {
+        "boundedClear": true,
+        "routeGrowth": {
+          "clears": 0,
+          "G": 0,
+          "S": 0,
+          "F": 0
+        },
+        "erxiangHandoff": {
+          "targetId": "hearts-6",
+          "beforeUsed": false
+        },
+        "characterId": "erxiang",
+        "amoScoreTiming": "after-joker",
+        "handLevels": {
+          "pair": 2
+        },
+        "previousHandType": null,
+        "wager": false,
+        "jokerSlots": 5,
+        "previousHandScore": null
+      },
+      "edges": [
+        {
+          "targetId": "hearts-6",
+          "phase": "idle"
+        }
+      ],
+      "candidates": [
+        {
+          "type": "straight",
+          "ids": [
+            "hearts-6",
+            "spades-2",
+            "hearts-3",
+            "diamonds-4",
+            "clubs-5"
+          ],
+          "canonicalScore": "1390",
+          "aiInputMinimum": "1390"
+        },
+        {
+          "type": "pair",
+          "ids": [
+            "clubs-6",
+            "hearts-6"
+          ],
+          "canonicalScore": "1241",
+          "aiInputMinimum": "1241"
+        }
+      ]
+    },
+    {
+      "label": "AI-keeps-chosen-target",
+      "target": "hearts-6",
+      "selected": [
+        "hearts-6",
+        "spades-2",
+        "hearts-3",
+        "diamonds-4",
+        "clubs-5"
+      ],
+      "cacheKey": "[\"{\\\"hand\\\":[{\\\"id\\\":\\\"clubs-6\\\",\\\"suit\\\":\\\"clubs\\\",\\\"rank\\\":6},{\\\"id\\\":\\\"hearts-6\\\",\\\"suit\\\":\\\"hearts\\\",\\\"rank\\\":6},{\\\"id\\\":\\\"spades-2\\\",\\\"suit\\\":\\\"spades\\\",\\\"rank\\\":2},{\\\"id\\\":\\\"hearts-3\\\",\\\"suit\\\":\\\"hearts\\\",\\\"rank\\\":3},{\\\"id\\\":\\\"diamonds-4\\\",\\\"suit\\\":\\\"diamonds\\\",\\\"rank\\\":4},{\\\"id\\\":\\\"clubs-5\\\",\\\"suit\\\":\\\"clubs\\\",\\\"rank\\\":5},{\\\"id\\\":\\\"diamonds-8\\\",\\\"suit\\\":\\\"diamonds\\\",\\\"rank\\\":8},{\\\"id\\\":\\\"spades-10\\\",\\\"suit\\\":\\\"spades\\\",\\\"rank\\\":10}],\\\"jokers\\\":[{\\\"instanceId\\\":\\\"controlled/liue-attachment/0\\\",\\\"definitionId\\\":\\\"mantangcai\\\",\\\"paidPrice\\\":8,\\\"growth\\\":{},\\\"edition\\\":\\\"none\\\"},{\\\"instanceId\\\":\\\"controlled/liue-attachment/1\\\",\\\"definitionId\\\":\\\"b10\\\",\\\"paidPrice\\\":8,\\\"growth\\\":{},\\\"edition\\\":\\\"none\\\"}],\\\"rules\\\":{\\\"fourStraight\\\":false,\\\"fourFlush\\\":false},\\\"disabled\\\":[],\\\"suppressed\\\":[],\\\"boss\\\":null,\\\"index\\\":0,\\\"sealed\\\":[],\\\"challenge\\\":null,\\\"resources\\\":{\\\"gold\\\":6,\\\"handsLeft\\\":4,\\\"playIndex\\\":0,\\\"discardsUsed\\\":0,\\\"stageHeat\\\":\\\"0\\\",\\\"target\\\":\\\"400\\\"},\\\"version\\\":[\\\"quality-r2-s04-finish-v1/json-fnv-v1:65b545bd97c0fdf1\\\",\\\"14595931\\\"]}\",{\"boundedClear\":true,\"routeGrowth\":{\"clears\":0,\"G\":0,\"S\":0,\"F\":0},\"erxiangHandoff\":{\"targetId\":\"hearts-6\",\"beforeUsed\":false},\"characterId\":\"erxiang\",\"amoScoreTiming\":\"after-joker\",\"handLevels\":{\"pair\":2},\"previousHandType\":null,\"wager\":false,\"jokerSlots\":5,\"previousHandScore\":null}]",
+      "scoreContext": {
+        "boundedClear": true,
+        "routeGrowth": {
+          "clears": 0,
+          "G": 0,
+          "S": 0,
+          "F": 0
+        },
+        "erxiangHandoff": {
+          "targetId": "hearts-6",
+          "beforeUsed": false
+        },
+        "characterId": "erxiang",
+        "amoScoreTiming": "after-joker",
+        "handLevels": {
+          "pair": 2
+        },
+        "previousHandType": null,
+        "wager": false,
+        "jokerSlots": 5,
+        "previousHandScore": null
+      },
+      "edges": [
+        {
+          "targetId": "hearts-6",
+          "phase": "travel"
+        }
+      ],
+      "candidates": [
+        {
+          "type": "straight",
+          "ids": [
+            "hearts-6",
+            "spades-2",
+            "hearts-3",
+            "diamonds-4",
+            "clubs-5"
+          ],
+          "canonicalScore": "1390",
+          "aiInputMinimum": "1390"
+        },
+        {
+          "type": "pair",
+          "ids": [
+            "clubs-6",
+            "hearts-6"
+          ],
+          "canonicalScore": "1241",
+          "aiInputMinimum": "1241"
+        }
+      ]
+    },
+    {
+      "label": "cancel-target",
+      "target": null,
+      "selected": [
+        "hearts-6",
+        "spades-2",
+        "hearts-3",
+        "diamonds-4",
+        "clubs-5"
+      ],
+      "cacheKey": "[\"{\\\"hand\\\":[{\\\"id\\\":\\\"clubs-6\\\",\\\"suit\\\":\\\"clubs\\\",\\\"rank\\\":6},{\\\"id\\\":\\\"hearts-6\\\",\\\"suit\\\":\\\"hearts\\\",\\\"rank\\\":6},{\\\"id\\\":\\\"spades-2\\\",\\\"suit\\\":\\\"spades\\\",\\\"rank\\\":2},{\\\"id\\\":\\\"hearts-3\\\",\\\"suit\\\":\\\"hearts\\\",\\\"rank\\\":3},{\\\"id\\\":\\\"diamonds-4\\\",\\\"suit\\\":\\\"diamonds\\\",\\\"rank\\\":4},{\\\"id\\\":\\\"clubs-5\\\",\\\"suit\\\":\\\"clubs\\\",\\\"rank\\\":5},{\\\"id\\\":\\\"diamonds-8\\\",\\\"suit\\\":\\\"diamonds\\\",\\\"rank\\\":8},{\\\"id\\\":\\\"spades-10\\\",\\\"suit\\\":\\\"spades\\\",\\\"rank\\\":10}],\\\"jokers\\\":[{\\\"instanceId\\\":\\\"controlled/liue-attachment/0\\\",\\\"definitionId\\\":\\\"mantangcai\\\",\\\"paidPrice\\\":8,\\\"growth\\\":{},\\\"edition\\\":\\\"none\\\"},{\\\"instanceId\\\":\\\"controlled/liue-attachment/1\\\",\\\"definitionId\\\":\\\"b10\\\",\\\"paidPrice\\\":8,\\\"growth\\\":{},\\\"edition\\\":\\\"none\\\"}],\\\"rules\\\":{\\\"fourStraight\\\":false,\\\"fourFlush\\\":false},\\\"disabled\\\":[],\\\"suppressed\\\":[],\\\"boss\\\":null,\\\"index\\\":0,\\\"sealed\\\":[],\\\"challenge\\\":null,\\\"resources\\\":{\\\"gold\\\":6,\\\"handsLeft\\\":4,\\\"playIndex\\\":0,\\\"discardsUsed\\\":0,\\\"stageHeat\\\":\\\"0\\\",\\\"target\\\":\\\"400\\\"},\\\"version\\\":[\\\"quality-r2-s04-finish-v1/json-fnv-v1:65b545bd97c0fdf1\\\",\\\"14595931\\\"]}\",{\"boundedClear\":true,\"routeGrowth\":{\"clears\":0,\"G\":0,\"S\":0,\"F\":0},\"erxiangHandoff\":{\"targetId\":null,\"beforeUsed\":false},\"characterId\":\"erxiang\",\"amoScoreTiming\":\"after-joker\",\"handLevels\":{\"pair\":2},\"previousHandType\":null,\"wager\":false,\"jokerSlots\":5,\"previousHandScore\":null}]",
+      "scoreContext": {
+        "boundedClear": true,
+        "routeGrowth": {
+          "clears": 0,
+          "G": 0,
+          "S": 0,
+          "F": 0
+        },
+        "erxiangHandoff": {
+          "targetId": null,
+          "beforeUsed": false
+        },
+        "characterId": "erxiang",
+        "amoScoreTiming": "after-joker",
+        "handLevels": {
+          "pair": 2
+        },
+        "previousHandType": null,
+        "wager": false,
+        "jokerSlots": 5,
+        "previousHandScore": null
+      },
+      "edges": [],
+      "candidates": [
+        {
+          "type": "straight",
+          "ids": [
+            "clubs-6",
+            "spades-2",
+            "hearts-3",
+            "diamonds-4",
+            "clubs-5"
+          ],
+          "canonicalScore": "580",
+          "aiInputMinimum": "580"
+        },
+        {
+          "type": "pair",
+          "ids": [
+            "clubs-6",
+            "hearts-6"
+          ],
+          "canonicalScore": "380",
+          "aiInputMinimum": "380"
+        },
+        {
+          "type": "high-card",
+          "ids": [
+            "spades-10"
+          ],
+          "canonicalScore": "30",
+          "aiInputMinimum": "30"
+        }
+      ]
+    },
+    {
+      "label": "AI-after-cancel",
+      "target": null,
+      "selected": [
+        "clubs-6",
+        "spades-2",
+        "hearts-3",
+        "diamonds-4",
+        "clubs-5"
+      ],
+      "cacheKey": "[\"{\\\"hand\\\":[{\\\"id\\\":\\\"clubs-6\\\",\\\"suit\\\":\\\"clubs\\\",\\\"rank\\\":6},{\\\"id\\\":\\\"hearts-6\\\",\\\"suit\\\":\\\"hearts\\\",\\\"rank\\\":6},{\\\"id\\\":\\\"spades-2\\\",\\\"suit\\\":\\\"spades\\\",\\\"rank\\\":2},{\\\"id\\\":\\\"hearts-3\\\",\\\"suit\\\":\\\"hearts\\\",\\\"rank\\\":3},{\\\"id\\\":\\\"diamonds-4\\\",\\\"suit\\\":\\\"diamonds\\\",\\\"rank\\\":4},{\\\"id\\\":\\\"clubs-5\\\",\\\"suit\\\":\\\"clubs\\\",\\\"rank\\\":5},{\\\"id\\\":\\\"diamonds-8\\\",\\\"suit\\\":\\\"diamonds\\\",\\\"rank\\\":8},{\\\"id\\\":\\\"spades-10\\\",\\\"suit\\\":\\\"spades\\\",\\\"rank\\\":10}],\\\"jokers\\\":[{\\\"instanceId\\\":\\\"controlled/liue-attachment/0\\\",\\\"definitionId\\\":\\\"mantangcai\\\",\\\"paidPrice\\\":8,\\\"growth\\\":{},\\\"edition\\\":\\\"none\\\"},{\\\"instanceId\\\":\\\"controlled/liue-attachment/1\\\",\\\"definitionId\\\":\\\"b10\\\",\\\"paidPrice\\\":8,\\\"growth\\\":{},\\\"edition\\\":\\\"none\\\"}],\\\"rules\\\":{\\\"fourStraight\\\":false,\\\"fourFlush\\\":false},\\\"disabled\\\":[],\\\"suppressed\\\":[],\\\"boss\\\":null,\\\"index\\\":0,\\\"sealed\\\":[],\\\"challenge\\\":null,\\\"resources\\\":{\\\"gold\\\":6,\\\"handsLeft\\\":4,\\\"playIndex\\\":0,\\\"discardsUsed\\\":0,\\\"stageHeat\\\":\\\"0\\\",\\\"target\\\":\\\"400\\\"},\\\"version\\\":[\\\"quality-r2-s04-finish-v1/json-fnv-v1:65b545bd97c0fdf1\\\",\\\"14595931\\\"]}\",{\"boundedClear\":true,\"routeGrowth\":{\"clears\":0,\"G\":0,\"S\":0,\"F\":0},\"erxiangHandoff\":{\"targetId\":null,\"beforeUsed\":false},\"characterId\":\"erxiang\",\"amoScoreTiming\":\"after-joker\",\"handLevels\":{\"pair\":2},\"previousHandType\":null,\"wager\":false,\"jokerSlots\":5,\"previousHandScore\":null}]",
+      "scoreContext": {
+        "boundedClear": true,
+        "routeGrowth": {
+          "clears": 0,
+          "G": 0,
+          "S": 0,
+          "F": 0
+        },
+        "erxiangHandoff": {
+          "targetId": null,
+          "beforeUsed": false
+        },
+        "characterId": "erxiang",
+        "amoScoreTiming": "after-joker",
+        "handLevels": {
+          "pair": 2
+        },
+        "previousHandType": null,
+        "wager": false,
+        "jokerSlots": 5,
+        "previousHandScore": null
+      },
+      "edges": [],
+      "candidates": [
+        {
+          "type": "straight",
+          "ids": [
+            "clubs-6",
+            "spades-2",
+            "hearts-3",
+            "diamonds-4",
+            "clubs-5"
+          ],
+          "canonicalScore": "580",
+          "aiInputMinimum": "580"
+        },
+        {
+          "type": "pair",
+          "ids": [
+            "clubs-6",
+            "hearts-6"
+          ],
+          "canonicalScore": "380",
+          "aiInputMinimum": "380"
+        },
+        {
+          "type": "high-card",
+          "ids": [
+            "spades-10"
+          ],
+          "canonicalScore": "30",
+          "aiInputMinimum": "30"
+        }
+      ]
+    },
+    {
+      "label": "reselect-target",
+      "target": "hearts-6",
+      "selected": [
+        "clubs-6",
+        "hearts-6"
+      ],
+      "cacheKey": "[\"{\\\"hand\\\":[{\\\"id\\\":\\\"clubs-6\\\",\\\"suit\\\":\\\"clubs\\\",\\\"rank\\\":6},{\\\"id\\\":\\\"hearts-6\\\",\\\"suit\\\":\\\"hearts\\\",\\\"rank\\\":6},{\\\"id\\\":\\\"spades-2\\\",\\\"suit\\\":\\\"spades\\\",\\\"rank\\\":2},{\\\"id\\\":\\\"hearts-3\\\",\\\"suit\\\":\\\"hearts\\\",\\\"rank\\\":3},{\\\"id\\\":\\\"diamonds-4\\\",\\\"suit\\\":\\\"diamonds\\\",\\\"rank\\\":4},{\\\"id\\\":\\\"clubs-5\\\",\\\"suit\\\":\\\"clubs\\\",\\\"rank\\\":5},{\\\"id\\\":\\\"diamonds-8\\\",\\\"suit\\\":\\\"diamonds\\\",\\\"rank\\\":8},{\\\"id\\\":\\\"spades-10\\\",\\\"suit\\\":\\\"spades\\\",\\\"rank\\\":10}],\\\"jokers\\\":[{\\\"instanceId\\\":\\\"controlled/liue-attachment/0\\\",\\\"definitionId\\\":\\\"mantangcai\\\",\\\"paidPrice\\\":8,\\\"growth\\\":{},\\\"edition\\\":\\\"none\\\"},{\\\"instanceId\\\":\\\"controlled/liue-attachment/1\\\",\\\"definitionId\\\":\\\"b10\\\",\\\"paidPrice\\\":8,\\\"growth\\\":{},\\\"edition\\\":\\\"none\\\"}],\\\"rules\\\":{\\\"fourStraight\\\":false,\\\"fourFlush\\\":false},\\\"disabled\\\":[],\\\"suppressed\\\":[],\\\"boss\\\":null,\\\"index\\\":0,\\\"sealed\\\":[],\\\"challenge\\\":null,\\\"resources\\\":{\\\"gold\\\":6,\\\"handsLeft\\\":4,\\\"playIndex\\\":0,\\\"discardsUsed\\\":0,\\\"stageHeat\\\":\\\"0\\\",\\\"target\\\":\\\"400\\\"},\\\"version\\\":[\\\"quality-r2-s04-finish-v1/json-fnv-v1:65b545bd97c0fdf1\\\",\\\"14595931\\\"]}\",{\"boundedClear\":true,\"routeGrowth\":{\"clears\":0,\"G\":0,\"S\":0,\"F\":0},\"erxiangHandoff\":{\"targetId\":\"hearts-6\",\"beforeUsed\":false},\"characterId\":\"erxiang\",\"amoScoreTiming\":\"after-joker\",\"handLevels\":{\"pair\":2},\"previousHandType\":null,\"wager\":false,\"jokerSlots\":5,\"previousHandScore\":null}]",
+      "scoreContext": {
+        "boundedClear": true,
+        "routeGrowth": {
+          "clears": 0,
+          "G": 0,
+          "S": 0,
+          "F": 0
+        },
+        "erxiangHandoff": {
+          "targetId": "hearts-6",
+          "beforeUsed": false
+        },
+        "characterId": "erxiang",
+        "amoScoreTiming": "after-joker",
+        "handLevels": {
+          "pair": 2
+        },
+        "previousHandType": null,
+        "wager": false,
+        "jokerSlots": 5,
+        "previousHandScore": null
+      },
+      "edges": [
+        {
+          "targetId": "hearts-6",
+          "phase": "idle"
+        }
+      ],
+      "candidates": [
+        {
+          "type": "straight",
+          "ids": [
+            "hearts-6",
+            "spades-2",
+            "hearts-3",
+            "diamonds-4",
+            "clubs-5"
+          ],
+          "canonicalScore": "1390",
+          "aiInputMinimum": "1390"
+        },
+        {
+          "type": "pair",
+          "ids": [
+            "clubs-6",
+            "hearts-6"
+          ],
+          "canonicalScore": "1241",
+          "aiInputMinimum": "1241"
+        }
+      ]
+    },
+    {
+      "label": "AI-first-compatible",
+      "target": "hearts-6",
+      "selected": [
+        "hearts-6",
+        "spades-2",
+        "hearts-3",
+        "diamonds-4",
+        "clubs-5"
+      ],
+      "cacheKey": "[\"{\\\"hand\\\":[{\\\"id\\\":\\\"clubs-6\\\",\\\"suit\\\":\\\"clubs\\\",\\\"rank\\\":6},{\\\"id\\\":\\\"hearts-6\\\",\\\"suit\\\":\\\"hearts\\\",\\\"rank\\\":6},{\\\"id\\\":\\\"spades-2\\\",\\\"suit\\\":\\\"spades\\\",\\\"rank\\\":2},{\\\"id\\\":\\\"hearts-3\\\",\\\"suit\\\":\\\"hearts\\\",\\\"rank\\\":3},{\\\"id\\\":\\\"diamonds-4\\\",\\\"suit\\\":\\\"diamonds\\\",\\\"rank\\\":4},{\\\"id\\\":\\\"clubs-5\\\",\\\"suit\\\":\\\"clubs\\\",\\\"rank\\\":5},{\\\"id\\\":\\\"diamonds-8\\\",\\\"suit\\\":\\\"diamonds\\\",\\\"rank\\\":8},{\\\"id\\\":\\\"spades-10\\\",\\\"suit\\\":\\\"spades\\\",\\\"rank\\\":10}],\\\"jokers\\\":[{\\\"instanceId\\\":\\\"controlled/liue-attachment/0\\\",\\\"definitionId\\\":\\\"mantangcai\\\",\\\"paidPrice\\\":8,\\\"growth\\\":{},\\\"edition\\\":\\\"none\\\"},{\\\"instanceId\\\":\\\"controlled/liue-attachment/1\\\",\\\"definitionId\\\":\\\"b10\\\",\\\"paidPrice\\\":8,\\\"growth\\\":{},\\\"edition\\\":\\\"none\\\"}],\\\"rules\\\":{\\\"fourStraight\\\":false,\\\"fourFlush\\\":false},\\\"disabled\\\":[],\\\"suppressed\\\":[],\\\"boss\\\":null,\\\"index\\\":0,\\\"sealed\\\":[],\\\"challenge\\\":null,\\\"resources\\\":{\\\"gold\\\":6,\\\"handsLeft\\\":4,\\\"playIndex\\\":0,\\\"discardsUsed\\\":0,\\\"stageHeat\\\":\\\"0\\\",\\\"target\\\":\\\"400\\\"},\\\"version\\\":[\\\"quality-r2-s04-finish-v1/json-fnv-v1:65b545bd97c0fdf1\\\",\\\"14595931\\\"]}\",{\"boundedClear\":true,\"routeGrowth\":{\"clears\":0,\"G\":0,\"S\":0,\"F\":0},\"erxiangHandoff\":{\"targetId\":\"hearts-6\",\"beforeUsed\":false},\"characterId\":\"erxiang\",\"amoScoreTiming\":\"after-joker\",\"handLevels\":{\"pair\":2},\"previousHandType\":null,\"wager\":false,\"jokerSlots\":5,\"previousHandScore\":null}]",
+      "scoreContext": {
+        "boundedClear": true,
+        "routeGrowth": {
+          "clears": 0,
+          "G": 0,
+          "S": 0,
+          "F": 0
+        },
+        "erxiangHandoff": {
+          "targetId": "hearts-6",
+          "beforeUsed": false
+        },
+        "characterId": "erxiang",
+        "amoScoreTiming": "after-joker",
+        "handLevels": {
+          "pair": 2
+        },
+        "previousHandType": null,
+        "wager": false,
+        "jokerSlots": 5,
+        "previousHandScore": null
+      },
+      "edges": [
+        {
+          "targetId": "hearts-6",
+          "phase": "travel"
+        }
+      ],
+      "candidates": [
+        {
+          "type": "straight",
+          "ids": [
+            "hearts-6",
+            "spades-2",
+            "hearts-3",
+            "diamonds-4",
+            "clubs-5"
+          ],
+          "canonicalScore": "1390",
+          "aiInputMinimum": "1390"
+        },
+        {
+          "type": "pair",
+          "ids": [
+            "clubs-6",
+            "hearts-6"
+          ],
+          "canonicalScore": "1241",
+          "aiInputMinimum": "1241"
+        }
+      ]
+    },
+    {
+      "label": "AI-next-compatible",
+      "target": "hearts-6",
+      "selected": [
+        "clubs-6",
+        "hearts-6"
+      ],
+      "cacheKey": "[\"{\\\"hand\\\":[{\\\"id\\\":\\\"clubs-6\\\",\\\"suit\\\":\\\"clubs\\\",\\\"rank\\\":6},{\\\"id\\\":\\\"hearts-6\\\",\\\"suit\\\":\\\"hearts\\\",\\\"rank\\\":6},{\\\"id\\\":\\\"spades-2\\\",\\\"suit\\\":\\\"spades\\\",\\\"rank\\\":2},{\\\"id\\\":\\\"hearts-3\\\",\\\"suit\\\":\\\"hearts\\\",\\\"rank\\\":3},{\\\"id\\\":\\\"diamonds-4\\\",\\\"suit\\\":\\\"diamonds\\\",\\\"rank\\\":4},{\\\"id\\\":\\\"clubs-5\\\",\\\"suit\\\":\\\"clubs\\\",\\\"rank\\\":5},{\\\"id\\\":\\\"diamonds-8\\\",\\\"suit\\\":\\\"diamonds\\\",\\\"rank\\\":8},{\\\"id\\\":\\\"spades-10\\\",\\\"suit\\\":\\\"spades\\\",\\\"rank\\\":10}],\\\"jokers\\\":[{\\\"instanceId\\\":\\\"controlled/liue-attachment/0\\\",\\\"definitionId\\\":\\\"mantangcai\\\",\\\"paidPrice\\\":8,\\\"growth\\\":{},\\\"edition\\\":\\\"none\\\"},{\\\"instanceId\\\":\\\"controlled/liue-attachment/1\\\",\\\"definitionId\\\":\\\"b10\\\",\\\"paidPrice\\\":8,\\\"growth\\\":{},\\\"edition\\\":\\\"none\\\"}],\\\"rules\\\":{\\\"fourStraight\\\":false,\\\"fourFlush\\\":false},\\\"disabled\\\":[],\\\"suppressed\\\":[],\\\"boss\\\":null,\\\"index\\\":0,\\\"sealed\\\":[],\\\"challenge\\\":null,\\\"resources\\\":{\\\"gold\\\":6,\\\"handsLeft\\\":4,\\\"playIndex\\\":0,\\\"discardsUsed\\\":0,\\\"stageHeat\\\":\\\"0\\\",\\\"target\\\":\\\"400\\\"},\\\"version\\\":[\\\"quality-r2-s04-finish-v1/json-fnv-v1:65b545bd97c0fdf1\\\",\\\"14595931\\\"]}\",{\"boundedClear\":true,\"routeGrowth\":{\"clears\":0,\"G\":0,\"S\":0,\"F\":0},\"erxiangHandoff\":{\"targetId\":\"hearts-6\",\"beforeUsed\":false},\"characterId\":\"erxiang\",\"amoScoreTiming\":\"after-joker\",\"handLevels\":{\"pair\":2},\"previousHandType\":null,\"wager\":false,\"jokerSlots\":5,\"previousHandScore\":null}]",
+      "scoreContext": {
+        "boundedClear": true,
+        "routeGrowth": {
+          "clears": 0,
+          "G": 0,
+          "S": 0,
+          "F": 0
+        },
+        "erxiangHandoff": {
+          "targetId": "hearts-6",
+          "beforeUsed": false
+        },
+        "characterId": "erxiang",
+        "amoScoreTiming": "after-joker",
+        "handLevels": {
+          "pair": 2
+        },
+        "previousHandType": null,
+        "wager": false,
+        "jokerSlots": 5,
+        "previousHandScore": null
+      },
+      "edges": [
+        {
+          "targetId": "hearts-6",
+          "phase": "travel"
+        }
+      ],
+      "candidates": [
+        {
+          "type": "straight",
+          "ids": [
+            "hearts-6",
+            "spades-2",
+            "hearts-3",
+            "diamonds-4",
+            "clubs-5"
+          ],
+          "canonicalScore": "1390",
+          "aiInputMinimum": "1390"
+        },
+        {
+          "type": "pair",
+          "ids": [
+            "clubs-6",
+            "hearts-6"
+          ],
+          "canonicalScore": "1241",
+          "aiInputMinimum": "1241"
+        }
+      ]
+    },
+    {
+      "label": "undo-restores-target-and-hand",
+      "target": "hearts-6",
+      "selected": [
+        "hearts-6",
+        "spades-2",
+        "hearts-3",
+        "diamonds-4",
+        "clubs-5"
+      ],
+      "cacheKey": "[\"{\\\"hand\\\":[{\\\"id\\\":\\\"clubs-6\\\",\\\"suit\\\":\\\"clubs\\\",\\\"rank\\\":6},{\\\"id\\\":\\\"hearts-6\\\",\\\"suit\\\":\\\"hearts\\\",\\\"rank\\\":6},{\\\"id\\\":\\\"spades-2\\\",\\\"suit\\\":\\\"spades\\\",\\\"rank\\\":2},{\\\"id\\\":\\\"hearts-3\\\",\\\"suit\\\":\\\"hearts\\\",\\\"rank\\\":3},{\\\"id\\\":\\\"diamonds-4\\\",\\\"suit\\\":\\\"diamonds\\\",\\\"rank\\\":4},{\\\"id\\\":\\\"clubs-5\\\",\\\"suit\\\":\\\"clubs\\\",\\\"rank\\\":5},{\\\"id\\\":\\\"diamonds-8\\\",\\\"suit\\\":\\\"diamonds\\\",\\\"rank\\\":8},{\\\"id\\\":\\\"spades-10\\\",\\\"suit\\\":\\\"spades\\\",\\\"rank\\\":10}],\\\"jokers\\\":[{\\\"instanceId\\\":\\\"controlled/liue-attachment/0\\\",\\\"definitionId\\\":\\\"mantangcai\\\",\\\"paidPrice\\\":8,\\\"growth\\\":{},\\\"edition\\\":\\\"none\\\"},{\\\"instanceId\\\":\\\"controlled/liue-attachment/1\\\",\\\"definitionId\\\":\\\"b10\\\",\\\"paidPrice\\\":8,\\\"growth\\\":{},\\\"edition\\\":\\\"none\\\"}],\\\"rules\\\":{\\\"fourStraight\\\":false,\\\"fourFlush\\\":false},\\\"disabled\\\":[],\\\"suppressed\\\":[],\\\"boss\\\":null,\\\"index\\\":0,\\\"sealed\\\":[],\\\"challenge\\\":null,\\\"resources\\\":{\\\"gold\\\":6,\\\"handsLeft\\\":4,\\\"playIndex\\\":0,\\\"discardsUsed\\\":0,\\\"stageHeat\\\":\\\"0\\\",\\\"target\\\":\\\"400\\\"},\\\"version\\\":[\\\"quality-r2-s04-finish-v1/json-fnv-v1:65b545bd97c0fdf1\\\",\\\"14595931\\\"]}\",{\"boundedClear\":true,\"routeGrowth\":{\"clears\":0,\"G\":0,\"S\":0,\"F\":0},\"erxiangHandoff\":{\"targetId\":\"hearts-6\",\"beforeUsed\":false},\"characterId\":\"erxiang\",\"amoScoreTiming\":\"after-joker\",\"handLevels\":{\"pair\":2},\"previousHandType\":null,\"wager\":false,\"jokerSlots\":5,\"previousHandScore\":null}]",
+      "scoreContext": {
+        "boundedClear": true,
+        "routeGrowth": {
+          "clears": 0,
+          "G": 0,
+          "S": 0,
+          "F": 0
+        },
+        "erxiangHandoff": {
+          "targetId": "hearts-6",
+          "beforeUsed": false
+        },
+        "characterId": "erxiang",
+        "amoScoreTiming": "after-joker",
+        "handLevels": {
+          "pair": 2
+        },
+        "previousHandType": null,
+        "wager": false,
+        "jokerSlots": 5,
+        "previousHandScore": null
+      },
+      "edges": [
+        {
+          "targetId": "hearts-6",
+          "phase": "travel"
+        }
+      ],
+      "candidates": [
+        {
+          "type": "straight",
+          "ids": [
+            "hearts-6",
+            "spades-2",
+            "hearts-3",
+            "diamonds-4",
+            "clubs-5"
+          ],
+          "canonicalScore": "1390",
+          "aiInputMinimum": "1390"
+        },
+        {
+          "type": "pair",
+          "ids": [
+            "clubs-6",
+            "hearts-6"
+          ],
+          "canonicalScore": "1241",
+          "aiInputMinimum": "1241"
+        }
+      ]
+    }
+  ],
+  "command": {
+    "runId": "controlled/liue-target-attachment",
+    "commandId": "controlled/liue-target-attachment/command/4",
+    "expectedSeq": 3,
+    "action": {
+      "type": "PlayHand",
+      "selectedIds": [
+        "hearts-6",
+        "spades-2",
+        "hearts-3",
+        "diamonds-4",
+        "clubs-5"
+      ],
+      "erxiangTargetId": "hearts-6"
+    }
+  },
+  "finalScore": "1390",
+  "savedTarget": "hearts-6"
+}

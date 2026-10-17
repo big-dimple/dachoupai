@@ -1,5 +1,26 @@
 # 本轮反馈整合回执 · 2026-10-17
 
+## 刘娥样例与AI实际操作一致性后继整合
+
+先完成商店main/eyes `934477727201a83b7b2590ee9a2a4645b5f45606` 的成功普通push及双ref核实，才接本批。正常合入[刘娥387](../liue-target-attachment-2026-10-17/README.md)与AI8cf，产品 `10c92404fb4e0cac7ca89a10fd47fdcecc6b7ec6`。e32149e8/24285a60底层模块是8cf真实祖先；387的证据末提交不是8cf祖先，二者共享b0a52c96产品，故另合387保留录像/原FAIL/31项日志。最终GameScene、AiHandCandidates、HeroSkillDraftLifecycle及两附着模块五文件逐blob精确8cf，无覆盖旧场景；刚发布ShopScene/规则/数值/保存/音频/public/art/包锁/.github零差异。
+
+[新增3文件27项交叉](checks/liue-ai-cross.log)通过，覆盖AI显式上下文、选定草稿合法性及原辛弃疾目标交接；[含类型336模块生产构建](checks/liue-ai-build.log)通过。来源刘娥31项/type与b0a52c96四段连续动态、AI51项/type及底层152项各自按原版本复用，不机械相加。其余五英雄附着、物理设备/听感、低端新增CPU预算与用户审美未验，不能把b0a52四段说成8cf新合版全矩阵。
+
+### 本批必需的真实AI选择／取消／切换
+
+[实际原生报告](ai-context-native/report.json)、[连续录像](ai-context-native/continuous.webm)、[完整初末状态](ai-context-native/states.json.gz)、[可复跑驱动](../../../../harness/ai-hero-context-integration.mjs)。使用真实Windows Edge143.0.3650.80、1366×768/DPR1鼠标输入，真实菜单导入合法公开夹具。e2e产物revision精确10c92404、builtAt2026-10-17T12:33:52.806Z，sourceStatus=clean/modified=false；报告同时保留当时未跟踪harness工作树行，不能把编译source状态冒称所有工作文件都已提交。
+
+- 原6♣/6♥对子未发动按canonical380；明确选6♥后同一对子1241，兼容顺子1390。AI采用顺子保留6♥，取消目标后缓存key和评分输入更新、顺子回580，之后AI不自动重选技能。
+- 重选6♥后，实际AI在顺子/对子两种合法候选间循环；撤销换组恢复先前手牌与6♥目标。9次观察中完整state/journal/storage不变；每组实际捕获的aiInput经正式preview计算，逐候选与独立applyCommand结果比较相同，非只看一个label或模块单测。
+- 最后真正点击出牌只保存一次PlayHand，目标6♥、所选顺子及最终1390保存结果与独立canonical完整状态、checkpoint一致。原高牌最后策略未改，不签全部主动技能最优、随机结果保证、六人实际流程或自然经营。
+
+整合者核看[撤销后真实待转画面](ai-context-native/AI-before-play.png)和[取消后真实画面](ai-context-native/cancelled.png)；[初选](ai-context-native/chosen.png)、[保存后](ai-context-native/saved.png)一并保留。首轮[SSR加载超时FAIL](checks/ai-context-native-initial-ssr-FAIL.log)发生在浏览器前；仅修改自有驱动关闭不必要的dev发现/监听，产品保持原五文件，随后同一窄流程[实际PASS日志](checks/ai-context-native.log)。未扩大重跑旧矩阵或修改产品迎合验证。
+
+**核心优先级不被此样例代签。** 用户12:26指定的顶部五张唐宋牌分散悬浮、去红粗框、真实触发左右回弹及音效同步仍是最高下一项，源牌owner01a147ec正在联合声音8a9b；本批没有完成该整改。声音源105/type/build/无削波不等于实际试听，不单合声音签三目标。虹彩176仅Shop接线候选（战斗未接）、图鉴及额外美化后排；63145旧词保障、极简手册最新证据7b18（产品4fef）可并后续小批，不抢核心，也不重复手册产品测试。
+
+当前完整dist **389文件/37,479,977B** 仍超20,000,000B，原chunk/CI缺口/原日志FAIL保留。按持续授权普通eyes/main交付，完整main SHA以成功回执为准；无CI重跑、域名/部署或自然长局，P08仍in_progress，三目标、用户理解/审美/听感/触感/真机及正式门开放。
+
+
 ## 商店四区、自选三路与额外收益最终整合
 
 基线已发布main/eyes `7f40cd1b07d2fac8c0cddfb0860ba79fb27ba5b6`；[主体c048及最终7db6来源](../shop-workshop-structure-2026-10-17/README.md)已正常无冲突合入产品 `77b19cae62904a45647a8b7c7c30f02d5daabfb7`。先合已交付c048，收到最终SHA后同批正常接7db6；没有发布中途c048。最终来源相对4b0的74路径中73逐blob相同，唯一r2ToolInfo组合保留已发布9c12的12长期物品文案。

@@ -1,0 +1,40 @@
+20:32:42 [vite] (ssr) Error when evaluating SSR module /harness/fixtures/liue-target-attachment.ts: transport invoke timed out after 60000ms (data: {"type":"custom","event":"vite:invoke","data":{"name":"fetchModule","id":"send:oY2bp5v0bnXZgGjypGNJD","data":["/src/domain/r2QualifiedHands.ts","C:/Users/wanghongping/AppData/Local/Temp/dachoupai-windows-integration-20261017/src/content/r2AssistJokers.ts",{"cached":false,"startOffset":2}]}})
+      at reviveInvokeError (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/module-runner.js:475:14)
+      at Object.invoke (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/module-runner.js:549:11)
+      at async SSRCompatModuleRunner.getModuleInformation (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/module-runner.js:1086:7)
+      at async request (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/module-runner.js:1103:83)
+      at async eval (C:/Users/wanghongping/AppData/Local/Temp/dachoupai-windows-integration-20261017/src/content/r2AssistJokers.ts:6:31)
+      at async ESModulesEvaluator.runInlinedModule (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/module-runner.js:913:3)
+      at async SSRCompatModuleRunner.directRequest (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/module-runner.js:1146:59)
+      at async SSRCompatModuleRunner.directRequest (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/chunks/config.js:15184:22)
+      at async SSRCompatModuleRunner.cachedRequest (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/module-runner.js:1053:73)
+      at async eval (C:/Users/wanghongping/AppData/Local/Temp/dachoupai-windows-integration-20261017/src/content/r2ComboGrowthJokers.ts:5:31)
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+Error: transport invoke timed out after 60000ms (data: {"type":"custom","event":"vite:invoke","data":{"name":"fetchModule","id":"send:oY2bp5v0bnXZgGjypGNJD","data":["/src/domain/r2QualifiedHands.ts","C:/Users/wanghongping/AppData/Local/Temp/dachoupai-windows-integration-20261017/src/content/r2AssistJokers.ts",{"cached":false,"startOffset":2}]}})
+    at reviveInvokeError (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/module-runner.js:475:14)
+    at Object.invoke (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/module-runner.js:549:11)
+    at async SSRCompatModuleRunner.getModuleInformation (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/module-runner.js:1086:7)
+    at async request (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/module-runner.js:1103:83)
+    at async eval (C:/Users/wanghongping/AppData/Local/Temp/dachoupai-windows-integration-20261017/src/content/r2AssistJokers.ts:6:31)
+    at async ESModulesEvaluator.runInlinedModule (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/module-runner.js:913:3)
+    at async SSRCompatModuleRunner.directRequest (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/module-runner.js:1146:59)
+    at async SSRCompatModuleRunner.directRequest (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/chunks/config.js:15184:22)
+    at async SSRCompatModuleRunner.cachedRequest (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/module-runner.js:1053:73)
+    at async eval (C:/Users/wanghongping/AppData/Local/Temp/dachoupai-windows-integration-20261017/src/content/r2ComboGrowthJokers.ts:5:31) {
+  runnerError: Error: RunnerError
+      at reviveInvokeError (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/module-runner.js:476:64)
+      at Object.invoke (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/module-runner.js:549:11)
+      at async SSRCompatModuleRunner.getModuleInformation (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/module-runner.js:1086:7)
+      at async request (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/module-runner.js:1103:83)
+      at async eval (C:/Users/wanghongping/AppData/Local/Temp/dachoupai-windows-integration-20261017/src/content/r2AssistJokers.ts:6:31)
+      at async ESModulesEvaluator.runInlinedModule (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/module-runner.js:913:3)
+      at async SSRCompatModuleRunner.directRequest (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/module-runner.js:1146:59)
+      at async SSRCompatModuleRunner.directRequest (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/chunks/config.js:15184:22)
+      at async SSRCompatModuleRunner.cachedRequest (file:///D:/ai/dachoupai/dachoupai/node_modules/vite/dist/node/module-runner.js:1053:73)
+      at async eval (C:/Users/wanghongping/AppData/Local/Temp/dachoupai-windows-integration-20261017/src/content/r2ComboGrowthJokers.ts:5:31)
+}
+
+Node.js v22.20.0
