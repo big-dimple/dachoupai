@@ -1,0 +1,717 @@
+{
+  "baseline": "e9a8036d0cba3513ef39bc78db1be81bfb142f94",
+  "afterHead": "e9a8036d0cba3513ef39bc78db1be81bfb142f94",
+  "sources": {
+    "src/game/layout.ts": "334a5c50f5dcef58c2bd3c956674261336f969670c379fd1ba36fd9961a33b15",
+    "src/game/GameScene.ts": "55b8be4f34dfcda8c245f3725b9f33424a0b803473fc644136f4656d3d9b2dd9",
+    "src/game/HeroPortraitLayout.ts": "3209652aaf613b85422233e6bcacf1f3e85bed715556b9255f124162b2c56166",
+    "src/game/ToolInventoryEntry.ts": "20c2e98d0827904132a0a368c1e03f46544d68a75a086da7df900314b4a548f0",
+    "src/game/StageTableArt.ts": "a5925341ff0bfd1d9c4a94b3c67e8fe00f9c2aa36204403b0f3b6d276c7c9dae",
+    "src/game/ScoreTableLayout.ts": "7e5bf2adfee5314a6a7db99b12d398fdf17e436c2fa90fdf245b7ab63a55d07b"
+  },
+  "sourceMatch": true,
+  "geometry": [
+    {
+      "key": "390x740-idle",
+      "score": {
+        "x": 12,
+        "y": 165,
+        "width": 366,
+        "height": 108
+      },
+      "livePlayed": {
+        "x": 12,
+        "y": 295,
+        "width": 366,
+        "height": 112
+      },
+      "idleLanding": [],
+      "skill": {
+        "x": 12,
+        "y": 449.6,
+        "width": 218,
+        "height": 52
+      },
+      "hero": {
+        "x": 19,
+        "y": 455.6,
+        "width": 32,
+        "height": 40
+      },
+      "help": {
+        "x": 334,
+        "y": 453.6,
+        "width": 44,
+        "height": 44
+      },
+      "hand": {
+        "x": 12,
+        "y": 509.6,
+        "width": 366,
+        "height": 156.4
+      },
+      "actions": {
+        "x": 12,
+        "y": 674,
+        "width": 366,
+        "height": 58
+      },
+      "beforeTitleToPlayedCaption": 153,
+      "handFaceWidth": 96,
+      "beforeHandFaceWidth": 64
+    },
+    {
+      "key": "390x740-selected",
+      "score": {
+        "x": 12,
+        "y": 165,
+        "width": 366,
+        "height": 108
+      },
+      "livePlayed": {
+        "x": 12,
+        "y": 295,
+        "width": 366,
+        "height": 112
+      },
+      "idleLanding": [
+        {
+          "x": 24,
+          "y": 237.6,
+          "width": 62,
+          "height": 86.8
+        },
+        {
+          "x": 94,
+          "y": 237.6,
+          "width": 62,
+          "height": 86.8
+        },
+        {
+          "x": 164,
+          "y": 237.6,
+          "width": 62,
+          "height": 86.8
+        },
+        {
+          "x": 234,
+          "y": 237.6,
+          "width": 62,
+          "height": 86.8
+        },
+        {
+          "x": 304,
+          "y": 237.6,
+          "width": 62,
+          "height": 86.8
+        }
+      ],
+      "skill": {
+        "x": 12,
+        "y": 449.6,
+        "width": 218,
+        "height": 52
+      },
+      "hero": {
+        "x": 19,
+        "y": 455.6,
+        "width": 32,
+        "height": 40
+      },
+      "help": {
+        "x": 334,
+        "y": 453.6,
+        "width": 44,
+        "height": 44
+      },
+      "hand": {
+        "x": 12,
+        "y": 509.6,
+        "width": 366,
+        "height": 156.4
+      },
+      "actions": {
+        "x": 12,
+        "y": 674,
+        "width": 366,
+        "height": 58
+      },
+      "titleToPlayedCaption": 11,
+      "beforeTitleToPlayedCaption": 153,
+      "handFaceWidth": 96,
+      "beforeHandFaceWidth": 64
+    },
+    {
+      "key": "360x640-selected",
+      "score": {
+        "x": 8,
+        "y": 150.9,
+        "width": 344,
+        "height": 96
+      },
+      "livePlayed": {
+        "x": 8,
+        "y": 268.9,
+        "width": 344,
+        "height": 98.3
+      },
+      "idleLanding": [
+        {
+          "x": 20,
+          "y": 226.6,
+          "width": 57.6,
+          "height": 80.6
+        },
+        {
+          "x": 85.6,
+          "y": 226.6,
+          "width": 57.6,
+          "height": 80.6
+        },
+        {
+          "x": 151.2,
+          "y": 226.6,
+          "width": 57.6,
+          "height": 80.6
+        },
+        {
+          "x": 216.8,
+          "y": 226.6,
+          "width": 57.6,
+          "height": 80.6
+        },
+        {
+          "x": 282.4,
+          "y": 226.6,
+          "width": 57.6,
+          "height": 80.6
+        }
+      ],
+      "skill": {
+        "x": 8,
+        "y": 371.2,
+        "width": 196,
+        "height": 44
+      },
+      "hero": {
+        "x": 18.2,
+        "y": 377.2,
+        "width": 25.6,
+        "height": 32
+      },
+      "help": {
+        "x": 308,
+        "y": 371.2,
+        "width": 44,
+        "height": 44
+      },
+      "hand": {
+        "x": 8,
+        "y": 419.2,
+        "width": 344,
+        "height": 150.8
+      },
+      "actions": {
+        "x": 8,
+        "y": 574,
+        "width": 344,
+        "height": 58
+      },
+      "titleToPlayedCaption": 10.9,
+      "beforeTitleToPlayedCaption": 91,
+      "handFaceWidth": 92,
+      "beforeHandFaceWidth": 52
+    },
+    {
+      "key": "390x600-selected",
+      "score": {
+        "x": 12,
+        "y": 157,
+        "width": 366,
+        "height": 96
+      },
+      "livePlayed": {
+        "x": 12,
+        "y": 275,
+        "width": 366,
+        "height": 60
+      },
+      "idleLanding": [
+        {
+          "x": 24,
+          "y": 229.6,
+          "width": 62,
+          "height": 86.8
+        },
+        {
+          "x": 94,
+          "y": 229.6,
+          "width": 62,
+          "height": 86.8
+        },
+        {
+          "x": 164,
+          "y": 229.6,
+          "width": 62,
+          "height": 86.8
+        },
+        {
+          "x": 234,
+          "y": 229.6,
+          "width": 62,
+          "height": 86.8
+        },
+        {
+          "x": 304,
+          "y": 229.6,
+          "width": 62,
+          "height": 86.8
+        }
+      ],
+      "skill": {
+        "x": 12,
+        "y": 339,
+        "width": 218,
+        "height": 44
+      },
+      "hero": {
+        "x": 22.2,
+        "y": 345,
+        "width": 25.6,
+        "height": 32
+      },
+      "help": {
+        "x": 334,
+        "y": 339,
+        "width": 44,
+        "height": 44
+      },
+      "hand": {
+        "x": 12,
+        "y": 387,
+        "width": 366,
+        "height": 143
+      },
+      "actions": {
+        "x": 12,
+        "y": 534,
+        "width": 366,
+        "height": 58
+      },
+      "titleToPlayedCaption": 11,
+      "beforeTitleToPlayedCaption": 90,
+      "handFaceWidth": 86.4,
+      "beforeHandFaceWidth": 64
+    },
+    {
+      "key": "320x568-selected",
+      "score": {
+        "x": 8,
+        "y": 139.7,
+        "width": 304,
+        "height": 96
+      },
+      "livePlayed": {
+        "x": 8,
+        "y": 257.7,
+        "width": 304,
+        "height": 93.5
+      },
+      "idleLanding": [
+        {
+          "x": 20,
+          "y": 221,
+          "width": 49.6,
+          "height": 69.4
+        },
+        {
+          "x": 77.6,
+          "y": 221,
+          "width": 49.6,
+          "height": 69.4
+        },
+        {
+          "x": 135.2,
+          "y": 221,
+          "width": 49.6,
+          "height": 69.4
+        },
+        {
+          "x": 192.8,
+          "y": 221,
+          "width": 49.6,
+          "height": 69.4
+        },
+        {
+          "x": 250.4,
+          "y": 221,
+          "width": 49.6,
+          "height": 69.4
+        }
+      ],
+      "skill": {
+        "x": 8,
+        "y": 355.2,
+        "width": 156,
+        "height": 44
+      },
+      "hero": {
+        "x": 18.2,
+        "y": 361.2,
+        "width": 25.6,
+        "height": 32
+      },
+      "help": {
+        "x": 268,
+        "y": 355.2,
+        "width": 44,
+        "height": 44
+      },
+      "hand": {
+        "x": 8,
+        "y": 403.2,
+        "width": 304,
+        "height": 94.8
+      },
+      "actions": {
+        "x": 8,
+        "y": 502,
+        "width": 304,
+        "height": 58
+      },
+      "titleToPlayedCaption": 11.2,
+      "handFaceWidth": 52,
+      "beforeHandFaceWidth": 52
+    },
+    {
+      "key": "390x844-selected",
+      "score": {
+        "x": 12,
+        "y": 189,
+        "width": 366,
+        "height": 108
+      },
+      "livePlayed": {
+        "x": 12,
+        "y": 319,
+        "width": 366,
+        "height": 112
+      },
+      "idleLanding": [
+        {
+          "x": 24,
+          "y": 261.6,
+          "width": 62,
+          "height": 86.8
+        },
+        {
+          "x": 94,
+          "y": 261.6,
+          "width": 62,
+          "height": 86.8
+        },
+        {
+          "x": 164,
+          "y": 261.6,
+          "width": 62,
+          "height": 86.8
+        },
+        {
+          "x": 234,
+          "y": 261.6,
+          "width": 62,
+          "height": 86.8
+        },
+        {
+          "x": 304,
+          "y": 261.6,
+          "width": 62,
+          "height": 86.8
+        }
+      ],
+      "skill": {
+        "x": 12,
+        "y": 519.6,
+        "width": 218,
+        "height": 52
+      },
+      "hero": {
+        "x": 19,
+        "y": 525.6,
+        "width": 32,
+        "height": 40
+      },
+      "help": {
+        "x": 334,
+        "y": 523.6,
+        "width": 44,
+        "height": 44
+      },
+      "hand": {
+        "x": 12,
+        "y": 579.6,
+        "width": 366,
+        "height": 156.4
+      },
+      "actions": {
+        "x": 12,
+        "y": 744,
+        "width": 366,
+        "height": 58
+      },
+      "titleToPlayedCaption": 11,
+      "beforeTitleToPlayedCaption": 212,
+      "handFaceWidth": 96,
+      "beforeHandFaceWidth": 64
+    },
+    {
+      "key": "844x390-selected",
+      "score": {
+        "x": 188,
+        "y": 88,
+        "width": 318,
+        "height": 86
+      },
+      "livePlayed": {
+        "x": 514,
+        "y": 88,
+        "width": 318,
+        "height": 86
+      },
+      "idleLanding": [
+        {
+          "x": 528.4,
+          "y": 95,
+          "width": 51.4,
+          "height": 72
+        },
+        {
+          "x": 587.9,
+          "y": 95,
+          "width": 51.4,
+          "height": 72
+        },
+        {
+          "x": 647.3,
+          "y": 95,
+          "width": 51.4,
+          "height": 72
+        },
+        {
+          "x": 706.7,
+          "y": 95,
+          "width": 51.4,
+          "height": 72
+        },
+        {
+          "x": 766.1,
+          "y": 95,
+          "width": 51.4,
+          "height": 72
+        }
+      ],
+      "skill": {
+        "x": 88,
+        "y": 76,
+        "width": 72,
+        "height": 44
+      },
+      "hero": {
+        "x": 67.2,
+        "y": 181,
+        "width": 49.6,
+        "height": 62
+      },
+      "help": {
+        "x": 16,
+        "y": 255,
+        "width": 112,
+        "height": 44
+      },
+      "hand": {
+        "x": 188,
+        "y": 200,
+        "width": 644,
+        "height": 122
+      },
+      "actions": {
+        "x": 188,
+        "y": 326,
+        "width": 644,
+        "height": 58
+      },
+      "handFaceWidth": 71.4,
+      "beforeHandFaceWidth": 71.4
+    },
+    {
+      "key": "1366x768-selected",
+      "score": {
+        "x": 349,
+        "y": 232,
+        "width": 760,
+        "height": 114.2
+      },
+      "livePlayed": {
+        "x": 252,
+        "y": 354.2,
+        "width": 954,
+        "height": 108
+      },
+      "idleLanding": [
+        {
+          "x": 545.1,
+          "y": 361.2,
+          "width": 67.1,
+          "height": 94
+        },
+        {
+          "x": 620.3,
+          "y": 361.2,
+          "width": 67.1,
+          "height": 94
+        },
+        {
+          "x": 695.4,
+          "y": 361.2,
+          "width": 67.1,
+          "height": 94
+        },
+        {
+          "x": 770.6,
+          "y": 361.2,
+          "width": 67.1,
+          "height": 94
+        },
+        {
+          "x": 845.7,
+          "y": 361.2,
+          "width": 67.1,
+          "height": 94
+        }
+      ],
+      "skill": {
+        "x": 252,
+        "y": 466.2,
+        "width": 132,
+        "height": 44
+      },
+      "hero": {
+        "x": 24,
+        "y": 324.6,
+        "width": 200,
+        "height": 249.8
+      },
+      "help": {
+        "x": 24,
+        "y": 694,
+        "width": 200,
+        "height": 44
+      },
+      "hand": {
+        "x": 252,
+        "y": 514.2,
+        "width": 954,
+        "height": 161.8
+      },
+      "actions": {
+        "x": 489,
+        "y": 680,
+        "width": 480,
+        "height": 58
+      },
+      "handFaceWidth": 99.8,
+      "beforeHandFaceWidth": 99.8
+    },
+    {
+      "key": "390x740-limit-message",
+      "score": {
+        "x": 12,
+        "y": 165,
+        "width": 366,
+        "height": 108
+      },
+      "livePlayed": {
+        "x": 12,
+        "y": 295,
+        "width": 366,
+        "height": 112
+      },
+      "idleLanding": [
+        {
+          "x": 24,
+          "y": 237.6,
+          "width": 62,
+          "height": 86.8
+        },
+        {
+          "x": 94,
+          "y": 237.6,
+          "width": 62,
+          "height": 86.8
+        },
+        {
+          "x": 164,
+          "y": 237.6,
+          "width": 62,
+          "height": 86.8
+        },
+        {
+          "x": 234,
+          "y": 237.6,
+          "width": 62,
+          "height": 86.8
+        },
+        {
+          "x": 304,
+          "y": 237.6,
+          "width": 62,
+          "height": 86.8
+        }
+      ],
+      "skill": {
+        "x": 12,
+        "y": 449.6,
+        "width": 218,
+        "height": 52
+      },
+      "hero": {
+        "x": 19,
+        "y": 455.6,
+        "width": 32,
+        "height": 40
+      },
+      "help": {
+        "x": 334,
+        "y": 453.6,
+        "width": 44,
+        "height": 44
+      },
+      "hand": {
+        "x": 12,
+        "y": 509.6,
+        "width": 366,
+        "height": 156.4
+      },
+      "actions": {
+        "x": 12,
+        "y": 674,
+        "width": 366,
+        "height": 58
+      },
+      "handFaceWidth": 96
+    }
+  ],
+  "pcGeometryExact": true,
+  "shortLandscapeGeometryExact": true,
+  "pcChangedPixels": 0,
+  "pcPixelCount": 4196352,
+  "critical": {
+    "visible": true,
+    "title": false,
+    "text": "每手最多选择 5 张牌",
+    "selected": 5
+  },
+  "nativeSelectionAfterRotation": true,
+  "helpStatePreserved": true,
+  "physicalPhone": false
+}

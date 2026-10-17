@@ -15,9 +15,9 @@ describe('visible tool inventory entry reuses space around existing actions',()=
  it.each(profiles.slice(0,4))('%s×%s retains the published nine-card played mat without resizing the hand layout', (width,height,top,bottom)=>{
   const l=layout({width,height},{top,bottom,left:0,right:0},undefined,{count:9});expect(toolInventoryPlayedArea(l)).toEqual(l.playedArea);
  });
- it('an expanded portrait preview can reserve its tool button without moving any hand seat or main control',()=>{
+ it('the expanded portrait has a separate utility band without truncating its real played area',()=>{
   const l=layout({width:390,height:740},{top:0,bottom:0,left:0,right:0},undefined,{count:14}),before=JSON.stringify(l),area=toolInventoryPlayedArea(l);
-  expect(area.height).toBeGreaterThanOrEqual(72);expect(area.height).toBeLessThan(l.playedArea.height);expect(JSON.stringify(l)).toBe(before);
+  expect(area.height).toBeGreaterThanOrEqual(88);expect(area).toEqual(l.playedArea);expect(intersects(area,gameToolInventoryBox(l))).toBe(false);expect(JSON.stringify(l)).toBe(before);
  });
  it.each(profiles)('%s×%s splits the existing shop tabs without touching goods or purchase/control rows', (width,height,top,bottom)=>{
   const p=shopLayout(width,height,top+12,bottom,3),before=JSON.stringify(p),row=shopToolInventoryRow(p.tabs);expect(intersects(row.inventory,row.shelves)).toBe(false);expect(row.inventory.width).toBe(88);expect(row.inventory.height).toBe(44);expect(row.inventory.x+row.inventory.width).toBe(p.tabs.x+p.tabs.width);

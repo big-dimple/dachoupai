@@ -12,6 +12,7 @@ export function heroSidebarUtilities(l:TableLayout){
 /** Only hero decoration uses this space; source slots, score cells and hand seats never move. */
 export function heroPortraitArea(l:TableLayout):Box {
   if(l.mode==='portrait'){
+    if(l.heroPortraitSlot)return l.heroPortraitSlot;
     const top=l.scoreBoard.y+l.scoreBoard.height+4,bottom=playedFootprint(toolInventoryPlayedArea(l),true).y-22;
     return {x:l.playedArea.x+50,y:top,width:Math.max(0,l.playedArea.width-56),height:Math.max(0,bottom-top)};
   }

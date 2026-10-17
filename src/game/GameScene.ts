@@ -42,7 +42,7 @@ import {usesTouyeWager,usesTouyeNewCore,type TouyeBet,type TouyeTarget} from '..
 import {touyeChoice,touyeConfirmationCopy} from './TouyeWagerCopy';
 import {usesLaohuanRefill} from '../domain/r2LaohuanRefill';
 import {presentScoreCredit,presentScoreConvergence} from './ScoreTableCredit';
-import {tableScoreCells,tableScoreCaption,localHeroEyeSlot} from './ScoreTableLayout';
+import {tableScoreCells,tableScoreCaption,localHeroEyeSlot,idlePlayedArea} from './ScoreTableLayout';
 import {mountTableScoreMarks,fitTableScoreReadouts} from './ScoreTableReadouts';
 import {presentScoreSource,presentScoreArrival,scoreArrival,isNeutralScoreReceipt,SCORE_CHANNEL} from './ScoreTableMotion';
 import {numberImpact,numberPulse,type NumberImpact} from './ScoreEnergy';
@@ -613,9 +613,10 @@ export class GameScene extends Phaser.Scene {
     this.heroActionButton=heroActions?v.button(heroActions.shortcut,this.heroActionLabel(),'hero/action-shortcut',()=>this.inspectHeroAction(),false):undefined;
     if(this.heroActionButton&&heroActions){
       const b=heroActions.shortcut,art=this.heroActionButton.getData('buttonArt') as Phaser.GameObjects.Container;
-      (this.heroActionButton.getData('label') as Phaser.GameObjects.Text).setFontSize(14).setPosition(b.x+(b.width+18)/2,b.y+13).setData('restY',b.y+13);
-      art.add(this.add.graphics().fillStyle(T.jade,.8).fillPoints([{x:13,y:13},{x:18,y:22},{x:13,y:31},{x:8,y:22}],true).setName('hero/skill-mark'));
-      const status=this.add.text((b.width+18)/2,32,'',{fontFamily:UI_FONT,fontSize:'11px',color:C.mutedInk}).setOrigin(.5).setName('hero/skill-status');art.add(status);this.heroActionButton.setData('skillStatus',status);
+      const centerX=(b.width+(portrait?42:18))/2;this.heroActionButton.setData('skillEdge',art.list[1]).setData('portraitSkill',portrait);
+      (this.heroActionButton.getData('label') as Phaser.GameObjects.Text).setFontSize(14).setPosition(b.x+centerX,b.y+13).setData('restY',b.y+13);
+      if(!portrait)art.add(this.add.graphics().fillStyle(T.jade,.8).fillPoints([{x:13,y:13},{x:18,y:22},{x:13,y:31},{x:8,y:22}],true).setName('hero/skill-mark'));
+      const status=this.add.text(centerX,32,'',{fontFamily:UI_FONT,fontSize:'11px',color:C.mutedInk}).setOrigin(.5).setName('hero/skill-status');art.add(status);this.heroActionButton.setData('skillStatus',status);
     }
     this.discardButton=v.button(discardBox,'弃牌','action/discard',()=>void this.discardSelected(),this.ready&&this.selectedIds.size>0&&this.run.stage!.discardsLeft>=r2DiscardCost(this.run),false,'discard');
     this.playButton=v.button(l.tableActions.play,'出牌','action/play',()=>void this.playSelected(),this.ready&&this.selectedIds.size>0&&this.handsLeft>0,true,'play');
@@ -641,7 +642,7 @@ export class GameScene extends Phaser.Scene {
     whenTextureReady(this,holder,key,()=>{
       const protectedBounds:Box[]=this.view.root.list.filter(object=>object instanceof Phaser.GameObjects.Text&&object.visible)
         .map(object=>(object as Phaser.GameObjects.Text).getBounds());
-      for(const object of [this.roleAvatar,this.inventoryButton,this.heroActionButton,this.progressBar])
+      for(const object of [this.roleAvatar,this.inventoryButton,...(l.mode==='portrait'?[]:[this.heroActionButton]),this.progressBar])
         if(object?.active&&object.visible)protectedBounds.push(object.getBounds());
       protectedBounds.push(this.tableHelpBox());
       const image=this.add.image(0,0,key),placement=heroPortraitLayout(area,{width:image.width,height:image.height},protectedBounds,l.mode==='portrait'?3:6);
@@ -650,8 +651,10 @@ export class GameScene extends Phaser.Scene {
         .setData('heroId',this.characterId).setData('assetId',this.characterId+'.portrait').setData('bounds',placement.imageBounds);
       holder.add(image);this.heroPortrait=image;
       this.heroPortraitMotion=mountHeroPortraitScoreMotion(this,image,{heroId:this.characterId,bounds:placement.safeBounds,reducedMotion:()=>this.reducedMotion});
-      const hit=this.view.rect(placement.imageBounds).setFillStyle(0,0).setStrokeStyle();
-      this.view.target(hit,'hero/portrait-details',{tap:()=>this.inspectHeroExplanation(),detail:()=>this.inspectHeroExplanation()});
+      if(l.mode!=='portrait'){
+        const hit=this.view.rect(placement.imageBounds).setFillStyle(0,0).setStrokeStyle();
+        this.view.target(hit,'hero/portrait-details',{tap:()=>this.inspectHeroExplanation(),detail:()=>this.inspectHeroExplanation()});
+      }
     });
   }
   private playSavedRefillPortrait(before:RunState,result:CommandResult<RunState>,context:EffectContext):void {
@@ -1077,12 +1080,19 @@ export class GameScene extends Phaser.Scene {
     this.syncHeroTargetAttachment();
   }
   private landingBoxes(count:number,reserved=0):Box[] {
-    const area=toolInventoryPlayedArea(this.view.layout),left=this.view.layout.mode==='portrait'?54:0,p={...area,x:area.x+left,width:area.width-left,y:area.y+reserved,height:area.height-reserved},bottomNote=0,h=Math.max(24,p.height-bottomNote-14),gap=8;
-    const width=Math.min(this.view.layout.mode==='portrait'?52:96,h/1.4,(p.width-24-gap*(count-1))/Math.max(count,1)),height=width*1.4,total=count*width+(count-1)*gap;
+    const area=this.presentation?toolInventoryPlayedArea(this.view.layout):idlePlayedArea(this.view.layout),p={...area,y:area.y+reserved,height:area.height-reserved},bottomNote=0,h=Math.max(24,p.height-bottomNote-14),gap=8;
+    const width=Math.min(this.view.layout.mode==='portrait'?64:96,h/1.4,(p.width-24-gap*(count-1))/Math.max(count,1)),height=width*1.4,total=count*width+(count-1)*gap;
     return Array.from({length:count},(_,i)=>({x:p.x+(p.width-total)/2+i*(width+gap),y:p.y+(p.height-bottomNote-height)/2,width,height}));
+  }
+  private placePlayedCaption(presenting:boolean):void {
+    const l=this.view.layout;if(l.mode!=='portrait')return;
+    const label=this.view.root.list.find(o=>o.name==='table/played-label') as Phaser.GameObjects.Text|undefined;if(!label)return;
+    const area=presenting||this.pendingRefill?toolInventoryPlayedArea(l):idlePlayedArea(l),plane=playedFootprint(area,true);
+    label.setPosition(plane.x,plane.y-18).setVisible(presenting||!!this.pendingRefill||this.selectedIds.size>0);
   }
   private renderSelectedCards(preview?:HandPreview):void {
     this.previewCards?.destroy();this.previewCards=this.view.add(this.add.container(0,0));this.resultText.setVisible(true);(this.view.root.list.find(o=>o.name==='table/played-label') as Phaser.GameObjects.Text|undefined)?.setText('待出牌');const p=toolInventoryPlayedArea(this.view.layout);
+    this.placePlayedCaption(false);
     if(this.pendingRefill){const pending=this.pendingRefill,held=this.run.handOrder.map(id=>this.run.deckInstances.find(c=>c.id===id)!).map(c=>rankLabel(c.rank)+SUIT_SYMBOL[c.suit]).join(' '),score=this.view.layout.scoreBoard;
       (this.view.root.list.find(o=>o.name==='table/played-label') as Phaser.GameObjects.Text|undefined)?.setText('候选补牌');this.resultText.setVisible(false);
       const text=this.add.text(p.x+p.width/2,p.y+p.height/2,this.refillHidden?'候选已收起 · 点英雄继续选择':`留 ${pending.required} 张 · 已选 ${this.selectedIds.size} / ${pending.required}\n确认后其余 ${pending.candidateIds.length-pending.required} 张进已用区`,{fontFamily:UI_FONT,fontSize:'16px',color:C.jade,align:'center',wordWrap:{width:p.width-16,useAdvancedWrap:true}}).setOrigin(.5).setName('refill/instruction');this.previewCards.add(text);
@@ -1117,6 +1127,7 @@ export class GameScene extends Phaser.Scene {
     const l=this.view.layout;
     if(l.mode==='desktop')return heroSidebarUtilities(l)!.help;
     if(l.mode==='landscape')return {x:l.hud.x+4,y:l.status.y-95,width:112,height:44};
+    if(l.helpEntry)return l.helpEntry;
     return {x:l.playedArea.x,y:l.playedArea.y,width:44,height:44};
   }
   private renderSelectionQuickButtons(_score:Box):void {
@@ -1127,7 +1138,7 @@ export class GameScene extends Phaser.Scene {
   }
   private inspectTableHelp():void {
     const identity=stageIdentity(this.stage.index,this.run.stage!.boss,this.run.tourMode,this.run.difficulty)!,notice=stageNotice(this.run),preview=this.selectionPreview();
-    this.dialog.open('本场与选牌帮助',identity.stageName+' · 目标 '+heatText(this.stage.targetHeat)+(notice?'\n'+notice.title+'：'+notice.description:'')+'\n选1–5张，按全部所选判型。点击来源卡查看实际条件；长按可调序。',[
+    this.dialog.open('本场与选牌帮助',identity.stageName+' · 目标 '+heatText(this.stage.targetHeat)+(notice?'\n'+notice.title+'：'+notice.description:'')+'\n选1–5张，按全部所选判型。点击来源卡查看实际条件；长按可调序。\n手牌横滑可连续选择；再点已选牌可取消，长按看详情。',[
       {label:preview?'所选来源条件':'持有来源条件',primary:true,run:()=>preview?this.inspectSelection(preview):this.inspectHeldConditions()},
       {label:this.candidateEntry(),run:()=>this.inspectCandidates()},
       ...(this.assistProfile?[{label:'选择主手与助攻',run:()=>this.inspectHeroAction()}]:[]),
@@ -1197,6 +1208,7 @@ export class GameScene extends Phaser.Scene {
     }
     if(usesTouyeWager(this.run)){const copy=touyeChoice(this.run,[...this.selectedIds]);this.roleText.setText(copy.compact);if(!criticalStatus&&!this.playing&&!this.presentation&&copy.status)this.statusText.setText(copy.status);if(this.pendingTouye)this.view.setEnabled(this.discardButton,false);}
     const safeBottom=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--safe-bottom'))||0;
+    if(portrait){this.statusText.setVisible(!!criticalStatus);if(criticalStatus)this.resultText.setVisible(false);}
     fitStatusSummary(this.statusText,{...handWindow.status,height:Math.max(0,Math.min(handWindow.status.height+(handWindow.mode==='landscape'?12:0),handWindow.height-safeBottom-handWindow.status.y))},!criticalStatus&&selectedReminder?'点所选条件':undefined);
     if(usesLaohuanRefill(this.run))this.roleText.setText(this.roleCaption());
     this.updateHeroControl();this.fitHudReadouts();
@@ -1378,7 +1390,14 @@ export class GameScene extends Phaser.Scene {
     const blocked=!!(this.playing||this.presentation||document.hidden||document.querySelector('dialog[open]'));
     const visual=heroShortcutReminder(!!this.roleFrame.getData('abilityAvailable'),!!this.roleFrame.getData('abilityChosen'),this.ready,blocked,this.reducedMotion,time);
     this.roleFrame.setAlpha(visual.alpha).setData('reminderState',visual.state);
-    if(this.heroActionButton)this.heroActionButton.setStrokeStyle(visual.width,T.jade,visual.opacity).setData('reminderState',visual.state);
+    if(this.heroActionButton){
+      if(this.heroActionButton.getData('portraitSkill')){
+        this.heroActionButton.setStrokeStyle();const edge=this.heroActionButton.getData('skillEdge') as Phaser.GameObjects.Graphics,b=this.heroActionButton.getData('buttonBounds') as Box;
+        if(this.heroActionButton.getData('reminderState')!==visual.state)edge.clear().lineStyle(visual.width||1,T.jade,.9).strokeRoundedRect(.5,.5,b.width-1,b.height-1,6);
+        edge.setAlpha(visual.alpha);
+      }else this.heroActionButton.setStrokeStyle(visual.width,T.jade,visual.opacity);
+      this.heroActionButton.setData('reminderState',visual.state);
+    }
   }
   private inspectAssistChoices():void {
     if(!this.ready||this.presentation||!this.assistProfile)return;
@@ -2180,7 +2199,7 @@ export class GameScene extends Phaser.Scene {
       this.cardViews=score.cards.map((card,i)=>{const box=this.view.layout.cards[i],view=this.cardPiece(card,box.visual);this.view.add(view.container);view.container.setVisible(box.visible);return view;});
       this.jokerViews.forEach(view=>{(view.getData('hit') as Phaser.GameObjects.GameObject|undefined)?.destroy();view.destroy();});this.renderJokerRack(score.sourceJokers);
     }
-    this.refreshSelection();this.updateHud();this.setSettlementFocus(true);this.previewCards?.destroy();this.previewCards=undefined;(this.view.root.list.find(o=>o.name==='table/played-label') as Phaser.GameObjects.Text|undefined)?.setText('已出牌');
+    this.refreshSelection();this.updateHud();this.setSettlementFocus(true);this.previewCards?.destroy();this.previewCards=undefined;(this.view.root.list.find(o=>o.name==='table/played-label') as Phaser.GameObjects.Text|undefined)?.setText('已出牌');this.placePlayedCaption(true);
     [this.scoreHeat,this.scoreMult,this.scoreTotal,...this.scoreLabels].forEach(text=>text.setVisible(true));
     this.scoreTotal.setAlpha(replay?1:.62);
     this.view.root.list.filter(o=>o.name.startsWith('score/formula-')).forEach(o=>(o as Phaser.GameObjects.Text).setVisible(true));
@@ -2327,7 +2346,7 @@ export class GameScene extends Phaser.Scene {
   }
 
   private refreshToolInventory():void {
-    if(this.inventoryButton?.active){const count=this.presentation?.resourceTools,label=count===undefined?toolInventoryLabel(this.run):'道具箱 '+count+'/'+r2ConsumableCapacity(this.run);(this.inventoryButton.getData('label') as Phaser.GameObjects.Text).setText(label);}
+    if(this.inventoryButton?.active){const count=this.presentation?.resourceTools,narrow=this.inventoryButton.width<112,label=count===undefined?toolInventoryLabel(this.run,narrow):'道具箱'+(narrow?'\n':' ')+count+'/'+r2ConsumableCapacity(this.run);(this.inventoryButton.getData('label') as Phaser.GameObjects.Text).setText(label);}
   }
   private updateHud(): void {
     this.refreshToolInventory();

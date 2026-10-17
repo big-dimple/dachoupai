@@ -103,6 +103,29 @@ export function scoreCells(s:Box){
 export function scorePedestal(s:Box):Box|undefined {
   const total=scoreCells(s)[2];return s.height<108?box(total.x-4,total.y-3,total.width+8,36):box(total.x-4,total.y-22,total.width+8,69);
 }
+/** Phone bands use the actual vertical budget; the preview no longer owns a tall empty centre. */
+function phoneTableAreas(l:ReturnType<typeof capacityLayout>,safe:Insets,start=0){
+ const net=l.height-safe.top-safe.bottom,gap=net<680?4:8,x=l.hud.x,w=l.hud.width,count=l.cards.length,pitch=l.width<360&&count===9?30:36;
+ const hud=box(x,safe.top+8,w,52),slotGap=12,slotWidth=Math.min(64,(w-slotGap*4)/5),rackWidth=slotWidth*5+slotGap*4;
+ const jokers=box(x,hud.y+hud.height+gap,w,slotWidth*1.4),slots=Array.from({length:5},(_,i)=>box(x+(w-rackWidth)/2+i*(slotWidth+slotGap),jokers.y,slotWidth,slotWidth*1.4));
+ const scoreBoard=box(x,jokers.y+jokers.height+gap,w,net<550?72:net<660?96:count>=10&&net<720?92:108),playedTop=scoreBoard.y+scoreBoard.height+22;
+ const actions=box(x,l.height-safe.bottom-8-58,w,58),utilityHeight=net>=700?52:44,minPlayed=net<620?60:88;
+ const maxHand=actions.y-gap-utilityHeight-gap*2-playedTop-minPlayed;
+ const rows=count>=10&&count<=14&&maxHand>=2*(52*1.4+22)?2:1;
+ const columns=rows===2?Math.ceil(count/2):count>9?8:count,desiredWidth=rows===2?64:Math.min(96,w-Math.max(0,columns-1)*pitch);
+ const handHeight=Math.min(rows*(desiredWidth*1.4+22),maxHand),cardWidth=(handHeight/rows-22)/1.4;
+ const hand=box(x,actions.y-gap-handHeight,w,handHeight),utilityY=hand.y-gap-utilityHeight;
+ const helpEntry=box(x+w-44,utilityY+(utilityHeight-44)/2,44,44),inventory=box(helpEntry.x-8-88,helpEntry.y,88,44);
+ const heroAction=box(x,utilityY,inventory.x-x-8,utilityHeight),heroPortraitSlot=box(x+4,utilityY+3,38,utilityHeight-6);
+ const playedArea=box(x,playedTop,w,Math.min(112,utilityY-gap-playedTop));
+ const handOverflow=rows===1&&count>Math.floor((w-cardWidth)/pitch)+1,cardArea=handOverflow?box(x+48,hand.y,w-96,hand.height):hand;
+ const visibleCardCount=rows===2?count:Math.min(count,Math.max(1,Math.floor((cardArea.width-cardWidth)/pitch)+1)),handStart=Math.max(0,Math.min(count-visibleCardCount,Number.isSafeInteger(start)?start:0));
+ const visibleColumns=rows===2?columns:visibleCardCount,seatPitch=visibleColumns>1?(cardArea.width-cardWidth)/(visibleColumns-1):0,rowHeight=handHeight/rows;
+ const cards=Array.from({length:count},(_,i)=>{const row=rows===2?Math.floor(i/columns):0,col=rows===2?i%columns:i-handStart,seatX=cardArea.x+(visibleColumns===1?(cardArea.width-cardWidth)/2:col*seatPitch),seatY=hand.y+row*rowHeight,last=col===visibleColumns-1||i===count-1;return {visible:i>=handStart&&i<handStart+visibleCardCount,visual:box(seatX,seatY+22,cardWidth,cardWidth*1.4),hit:box(seatX,seatY,last?cardWidth:Math.min(cardWidth,seatPitch),rowHeight)};});
+ return {hud,jokers,slots,jokerLabels:slots,scoreBoard,playedArea,preview:box(x,scoreBoard.y,w,playedArea.y+playedArea.height-scoreBoard.y),hand,cards,handRows:rows,handOverflow,visibleCardCount,handStart,actions,
+  handLabel:box(x,hand.y-18,116,18),piles:box(x+116,hand.y-18,w-116,18),status:box(scoreBoard.x+10,scoreBoard.y+4,w-20,18),
+  handNavigation:{previous:box(x,hand.y+(hand.height-44)/2,44,44),next:box(x+w-44,hand.y+(hand.height-44)/2,44,44)},heroAction,helpEntry,inventory,heroPortraitSlot};
+}
 export function layout(viewport:{width:number;height:number},safe:Insets,requested?:LayoutMode,handWindow:HandWindow={count:8}){
   const l=capacityLayout(viewport,safe,requested,handWindow),{width,height}=viewport,count=l.cards.length;
   const portrait=l.mode==='portrait',desktop=l.mode==='desktop';
@@ -146,19 +169,20 @@ export function layout(viewport:{width:number;height:number},safe:Insets,request
   // On capacity-limited short screens retain the established readable window.
   // Every troupe exterior still has the same 5:7 proportion.
   if(!(portrait&&scoreBudget>=108)&&!desktop)l.slots=l.slots.map(b=>({...b,height:Math.min(b.height,b.width*1.4)}));
+  const phone=portrait?phoneTableAreas(l,safe,handWindow.start):undefined;if(phone)Object.assign(l,phone);
   const s=l.scoreBoard,primary=scoreCells(s)[2];
   const pedestal=scorePedestal(s);
-  const fireTop=s.y+(s.height>=108?26:2);
+  const fireTop=s.y+(portrait||s.height>=108?26:2);
   l.scoreFire=pedestal?box(pedestal.x,fireTop,pedestal.width,pedestal.y+1-fireTop):box(primary.x-3,s.y+28,primary.width+6,s.height-32);
   // The caption uses its own top rail; all three sorting hits retain 44px.
   // Keep the status row and existing hand seats clear on compact phones.
-  const footer=handActionControls(l.actions,l.mode,l.mode==='portrait'?l.status.y-2:undefined);
+  const footer=handActionControls(l.actions,l.mode);
   // Skills own a separate hit, never a slice of the discard button. Portraits
   // reuse the former sorting area; short tables use the sidebar skill label.
-  const heroAction=l.mode==='landscape'?box(l.hud.x+76,l.hud.y+64,l.hud.width-88,44):box(l.hand.x,l.hand.y-48,132,44);
+  const heroAction=phone?.heroAction??(l.mode==='landscape'?box(l.hud.x+76,l.hud.y+64,l.hud.width-88,44):box(l.hand.x,l.hand.y-48,132,44));
   const playedArea=desktop?{...l.playedArea,height:Math.max(0,Math.min(l.playedArea.height,heroAction.y-4-l.playedArea.y))}:l.playedArea;
   const table=continuousScoreAreas({...l,playedArea});
-  return {...l,...footer,toolsInHud:false,heroAction,scoreBoard:table.scoreBoard,playedArea:table.playedArea,scoreEyes:table.eyes};
+  return {...l,...footer,toolsInHud:false,heroAction,helpEntry:phone?.helpEntry,inventoryEntry:phone?.inventory,heroPortraitSlot:phone?.heroPortraitSlot,scoreBoard:table.scoreBoard,playedArea:table.playedArea,scoreEyes:table.eyes};
 }
 export type TableLayout=ReturnType<typeof layout>;
 

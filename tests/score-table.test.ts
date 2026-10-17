@@ -1,6 +1,6 @@
 import {expect,it,vi} from 'vitest';
 import {layout,intersects} from '../src/game/layout';
-import {tableScoreCells,localHeroEyeSlot} from '../src/game/ScoreTableLayout';
+import {tableScoreCells,localHeroEyeSlot,idlePlayedArea} from '../src/game/ScoreTableLayout';
 import {toolInventoryPlayedArea} from '../src/game/ToolInventoryEntry';
 import {scoreArrival,isNeutralScoreReceipt,SCORE_CHANNEL,presentScoreSource,presentScoreArrival} from '../src/game/ScoreTableMotion';
 import {scoreSourceProcessFixture} from '../harness/fixtures/score-source-process';
@@ -19,9 +19,10 @@ it('distinguishes actual chips, added multiplier, multiplied multiplier and fina
  expect(cues.some(c=>c!.kind==='heat'&&c!.label.startsWith('+'))).toBe(true);expect(cues.some(c=>c!.kind==='mult-add'&&c!.label.startsWith('+'))).toBe(true);expect(cues.some(c=>c!.kind==='mult-multiply'&&c!.label.startsWith('×'))).toBe(true);expect(cues.some(c=>c!.kind==='total')).toBe(true);
  expect(new Set(['heat','mult-add','mult-multiply'].map(k=>SCORE_CHANNEL[k as keyof typeof SCORE_CHANNEL].color)).size).toBe(3);expect(JSON.stringify(saved)).toBe(before);
 });
-it('a shortened phone uses space above the actual card apex or empty rack seats without moving the hand',()=>{
+it('phone hero closeups stay in their skill band and idle cards reuse only hidden readout space',()=>{
  const l=layout({width:390,height:740},{top:0,right:0,bottom:0,left:0}),before=JSON.stringify(l),area=toolInventoryPlayedArea(l);
- for(const occupied of [0,1,4,5]){const eyes=localHeroEyeSlot(l,area,occupied)!;expect(eyes).toBeDefined();expect(intersects(eyes,l.scoreBoard)).toBe(false);expect(intersects(eyes,l.hand)).toBe(false);expect(eyes.y+eyes.height).toBeLessThanOrEqual(area.y+(area.height-52*1.4)/2-18-4);}
+ for(const occupied of [0,1,4,5]){const eyes=localHeroEyeSlot(l,area,occupied)!;expect(eyes).toBeDefined();expect(intersects(eyes,l.scoreBoard)).toBe(false);expect(intersects(eyes,l.hand)).toBe(false);expect(eyes.y).toBeGreaterThanOrEqual(l.heroAction.y);expect(eyes.y+eyes.height).toBeLessThanOrEqual(l.heroAction.y+l.heroAction.height);}
+ const idle=idlePlayedArea(l);expect(idle.y).toBeGreaterThanOrEqual(l.scoreBoard.y+60);expect(idle.y).toBeLessThan(area.y);expect(intersects(idle,l.heroAction)).toBe(false);expect(intersects(idle,l.hand)).toBe(false);expect(l.scoreBoard.height).toBeGreaterThanOrEqual(108);
  expect(JSON.stringify(l)).toBe(before);
 });
 it('an aborted visual cannot create nodes or notify a device adapter',async()=>{
