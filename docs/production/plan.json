@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "auditCommit": "7d7921e76ca794a14e715e3eac3b4d66143862ff",
   "currentTask": "P08",
-  "selectionPolicy": "商店/说明已完成小批实际合277d13cc，38交叉及类型340构建PASS，按既有授权普通eyes/main发布，最终SHA以远端回执为准；不占GameScene。最高源牌音画优先级不变：最新6609真实回弹双拍必须等01a147ec同版GameScene/序列证据，不单发旧8a9。三目标/P08及预算/人验/CI正式门保持。",
+  "selectionPolicy": "13:02起新加坡AI仅独立分支建议/素材/音乐/示例，等用户通知才逐项评审，不合并、不自动吸收未知分支/远端提交/外部计划；当前只接我方已指派且有精确回执的白名单，已有我方优化继续且不等待外部。main已发布2f0dd4e6，本次仅dev边界登记；未知main变化先保留报告，不reset/force。最高源牌音画仍等01a147ec同版GameScene/实际序列与最新6609双拍联合包。三目标/P08及预算/真人正式门保持。",
   "resumeContract": {
     "candidateCommit": "4bf6a7d63d7738d3c415d09439a1bdca878dc685",
     "gateTask": "A01",
@@ -2326,7 +2326,7 @@
       "candidate": "1075bd204e364d867528183d8e0c0c162ced93d9",
       "branch": "dev/polychrome-iridescence-20261017",
       "baseSource": "7db6e8395b10f58b19986c181e0e29fd8d4b2192",
-      "status": "INTEGRATED_VERIFIED_277d13cc_NORMAL_MAIN_DEV_DELIVERY_AUTHORIZED",
+      "status": "PUBLISHED_MAIN_AND_EYES_2f0dd4e6",
       "scope": "Shop shelf/held/full-slots continuous polychrome;separate warm-gold S05忘招 shelf/inventory",
       "GameSceneWired": false,
       "notClaimed": "battle-table effect active;real source-card action remains separate",
@@ -2338,7 +2338,7 @@
     "toolCopyBoundaryAudit": {
       "candidate": "63145adfdecd06af006ea62e21b24455a88367fc",
       "branch": "dev/tool-copy-boundary-audit-20261017",
-      "status": "INTEGRATED_VERIFIED_277d13cc_NORMAL_MAIN_DEV_DELIVERY_AUTHORIZED",
+      "status": "PUBLISHED_MAIN_AND_EYES_2f0dd4e6",
       "parentReceipt": "30tests/build/189views no old term;original现场cause unknown",
       "integratedProduct": "277d13cc381545e4b2965d2aa019c6bb7e11ad1c",
       "sourceEvidence": "30tests/build/189views reused at exact renderer product;original现场cause unknown"
@@ -2347,7 +2347,7 @@
       "candidate": "7b18d9d9098464fefcc1562e6a7730b18a1a9d41",
       "product": "4fef9dd41f2201daf2e8aee75ae319959212e2a8",
       "branch": "dev/minimal-handbook-copy-20261017",
-      "status": "INTEGRATED_VERIFIED_277d13cc_NORMAL_MAIN_DEV_DELIVERY_AUTHORIZED",
+      "status": "PUBLISHED_MAIN_AND_EYES_2f0dd4e6",
       "parentReceipt": "74related/type PASS;latest evidence-only tool-name correction,no product test rerun requested",
       "U08": "whole poker deck floor16 vs original20;T02精简节目 andS01献纸 affected;S05忘招 handlevel+3/-1 unaffected",
       "sharedFile": "coordinated with63145;inspect local merge when accepting",
@@ -2358,7 +2358,7 @@
       "candidate": "aceb2403856440ba280f2dc1453718ee46883620",
       "branch": "dev/shop-header-safe-area-20261017",
       "includesIridescence": "1075bd204e364d867528183d8e0c0c162ced93d9",
-      "status": "INTEGRATED_VERIFIED_277d13cc_NORMAL_MAIN_DEV_DELIVERY_AUTHORIZED",
+      "status": "PUBLISHED_MAIN_AND_EYES_2f0dd4e6",
       "integratedProduct": "277d13cc381545e4b2965d2aa019c6bb7e11ad1c",
       "sourceEvidence": "28related/type/build;1180/390 native menu geometry8px,12edge clicks and canonical tuples reused at five exact LF source hashes",
       "fourAreasAndIridescenceHooks": "preserved"
@@ -2507,7 +2507,7 @@
     ],
     "product": "277d13cc381545e4b2965d2aa019c6bb7e11ad1c",
     "devBranch": "dev/eyes-followups-integration-20261017",
-    "status": "CHECKS_PASS_NORMAL_MAIN_AND_DEV_DELIVERY_AUTHORIZED",
+    "status": "PUBLISHED_MAIN_AND_EYES_2f0dd4e6_SCOPED_EVIDENCE_RETAINED",
     "binding": "35of35,22of23(main-existing c01 duration test retained),4of4;header5LFhashes exact",
     "cross": {
       "files": 4,
@@ -2524,6 +2524,33 @@
       "status": "FAIL"
     },
     "sourceCardAudioCore": "highest next, latest6609 double beat,await same-version GameScene and actual sequence from01a147ec",
-    "remaining": "battle iridescence unconnected;original old-word trigger unknown;three goals/P08,human/device/hearing/performance/formal gates open"
+    "remaining": "battle iridescence unconnected;original old-word trigger unknown;three goals/P08,human/device/hearing/performance/formal gates open",
+    "actualPublishedMain": "2f0dd4e6fcb8d343de79e719b0e9e4ce2d382679"
+  },
+  "externalCollaborationBoundary": {
+    "userDecisionLabel": "2026-10-17 13:02",
+    "externalActor": "new Singapore server AI work",
+    "externalScope": [
+      "independent branch suggestions",
+      "art/material and music materials",
+      "example code"
+    ],
+    "externalMergeRole": "none",
+    "reviewGate": "await explicit user notice,then review and absorb each item by own integration owner",
+    "currentOwnWorkWaitsForExternal": false,
+    "allowedCandidates": "only currently assigned own sources with exact handoff receipts;later trusted user/parent handoff explicitly extends whitelist",
+    "autoAbsorbUnknownBranchesOrRemoteCommits": false,
+    "autoAdoptExternalPlanEdits": false,
+    "priorOwnReceiptsRetained": true,
+    "expectedMain": "2f0dd4e6fcb8d343de79e719b0e9e4ce2d382679",
+    "unexpectedMainPolicy": "preserve commit and changes;report SHA and comparison before proceeding;never reset/force overwrite",
+    "pendingAssignedCore": {
+      "owner": "01a147ec",
+      "audioCandidate": "6609f4f609199ee1d5c9271c9389daaebb943bd7",
+      "GameSceneCandidate": "await owner exact combined receipt",
+      "conditions": "same-version source motion and actual scoreRebound double-beat sequence,not audio alone"
+    },
+    "recordingOnly": true,
+    "repositoryPermissionsChanged": false
   }
 }
