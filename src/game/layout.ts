@@ -1,3 +1,4 @@
+import {handActionControls} from './HandActionControls';
 export interface Box {x:number;y:number;width:number;height:number}
 export interface Insets {top:number;right:number;bottom:number;left:number}
 export type LayoutMode='portrait'|'landscape'|'desktop';
@@ -148,19 +149,14 @@ export function layout(viewport:{width:number;height:number},safe:Insets,request
   const pedestal=scorePedestal(s);
   const fireTop=s.y+(s.height>=108?26:2);
   l.scoreFire=pedestal?box(pedestal.x,fireTop,pedestal.width,pedestal.y+1-fireTop):box(primary.x-3,s.y+28,primary.width+6,s.height-32);
-  // One bottom row: discard — the three 44px sorting hits — play.
-  // Hand seats and their lift reserve above remain unchanged.
-  const sortWidth=168,gap=6,remaining=l.actions.width-sortWidth-2*gap;
-  const discardWidth=remaining/2;
-  const {x,y,height:actionHeight}=l.actions;
-  const tools=box(x+discardWidth+gap,y,sortWidth,actionHeight);
-  const buttons={rank:box(tools.x+36,tools.y,44,tools.height),suit:box(tools.x+80,tools.y,44,tools.height),ai:box(tools.x+124,tools.y,44,tools.height)};
-  const tableActions={discard:box(x,y,discardWidth,actionHeight),play:box(tools.x+sortWidth+gap,y,remaining-discardWidth,actionHeight)};
+  // The caption uses its own top rail; all three sorting hits retain 44px.
+  // Keep the status row and existing hand seats clear on compact phones.
+  const footer=handActionControls(l.actions,l.mode,l.mode==='portrait'?l.status.y-2:undefined);
   // Skills own a separate hit, never a slice of the discard button. Portraits
   // reuse the former sorting area; short tables use the sidebar skill label.
   const heroAction=l.mode==='landscape'?box(l.hud.x+76,l.hud.y+64,l.hud.width-88,44):box(l.hand.x,l.hand.y-48,132,44);
   const playedArea=desktop?{...l.playedArea,height:Math.max(0,Math.min(l.playedArea.height,heroAction.y-4-l.playedArea.y))}:l.playedArea;
-  return {...l,buttons,tools,toolsInHud:false,tableActions,heroAction,playedArea};
+  return {...l,...footer,toolsInHud:false,heroAction,playedArea};
 }
 export type TableLayout=ReturnType<typeof layout>;
 

@@ -4,24 +4,30 @@ import {describe,expect,it} from 'vitest';
 import {layout,intersects} from '../src/game/layout';
 import {HAND_ACTION_LINES,drawHandActionGlyph,handActionContent,handActionCountColor} from '../src/game/HandActionArt';
 import {PAPER_THEME,PAPER_CSS} from '../src/game/theme';
+import {handSortTitleBox,handAiButtonLabel} from '../src/game/HandActionControls';
 const profiles=[[390,740,0,0],[320,568,0,0],[844,300,12,12],[844,300,12,34]];
 const layouts=()=>profiles.map(([width,height,top,bottom])=>layout({width,height},{top,bottom,left:0,right:0},undefined,{count:9}));
-describe('explicit sorting group beside equal primary actions',()=>{
- it('preserves the complete non-control layout from a14d3b55, including every hand seat and vertical budget',()=>{
+describe('sorting caption above three controls beside equal primary actions',()=>{
+ it('preserves the complete non-footer layout from 212e23d5, including every hand seat and vertical budget',()=>{
   // Short-landscape status only gives its former spare right gutter to AI.
-  const fixed=layouts().map(l=>{const {buttons,tableActions,tools,toolsInHud,...rest}=l;return {...rest,status:l.mode==='landscape'?{...rest.status,width:l.hud.width}:rest.status};});
-  expect(createHash('sha256').update(JSON.stringify(fixed)).digest('hex')).toBe('533ee5770d20df6b4a681a868bda5e3a4edccd42596579992551354ebe3c4c95');
+  const fixed=layouts().map(l=>{const {buttons,tableActions,tools,toolsInHud,actions,...rest}=l;return {...rest,status:l.mode==='landscape'?{...rest.status,width:l.hud.width}:rest.status};});
+  expect(createHash('sha256').update(JSON.stringify(fixed)).digest('hex')).toBe('ebf7da44e82184ba939dadbf55c54d59db06856f803fd2d745c3dbecb6a01df1');
  });
  it.each(profiles)('%s×%s safe %s/%s keeps three44px sort targets together and preserves primary dimensions', (width,height,top,bottom)=>{
   const l=layout({width,height},{top,bottom,left:0,right:0},undefined,{count:9});
-  expect(l.tools.width).toBe(168);expect(l.tools.y).toBe(l.actions.y);expect(l.buttons.rank.x).toBe(l.tools.x+36);expect(l.buttons.suit.x).toBe(l.buttons.rank.x+44);expect(l.buttons.ai.x).toBe(l.buttons.rank.x+88);expect(l.tableActions.discard.width).toBe(l.tableActions.play.width);
+  expect(l.tools.width).toBe(l.mode==='desktop'?144:132);expect(l.tools.y).toBe(l.actions.y);expect(l.buttons.rank.x).toBe(l.tools.x);expect(l.buttons.suit.x).toBe(l.buttons.rank.x+l.tools.width/3);expect(l.buttons.ai.x).toBe(l.buttons.rank.x+l.tools.width*2/3);expect(l.tableActions.discard.width).toBe(l.tableActions.play.width);
+  const title=handSortTitleBox(l.tools);expect(title.height).toBe(14);expect(title.y+title.height).toBe(l.buttons.rank.y);for(const b of Object.values(l.buttons))expect(intersects(title,b)).toBe(false);
+  expect(l.tableActions.discard.width).toBeGreaterThan((l.actions.width-168-12)/2);
   const controls=[...Object.values(l.buttons),...Object.values(l.tableActions)];
   for(const b of controls){expect(b.width).toBeGreaterThanOrEqual(44);expect(b.height).toBeGreaterThanOrEqual(44);expect(b.x).toBeGreaterThanOrEqual(l.hud.x);expect(b.x+b.width).toBeLessThanOrEqual(width);expect(b.y+b.height).toBeLessThanOrEqual(height-bottom);expect(intersects(b,l.hand)).toBe(false);}
   for(let i=0;i<controls.length;i++)for(let j=i+1;j<controls.length;j++)expect(intersects(controls[i],controls[j])).toBe(false);
   for(const b of Object.values(l.tableActions)){const c=handActionContent(b);expect(c.text.width).toBeGreaterThanOrEqual(32);if(c.glyph.width)expect(c.glyph.x+c.glyph.width).toBeLessThan(c.text.x);else expect(c.centerX).toBe(b.x+b.width/2);expect(c.glyph.y).toBeGreaterThan(b.y);expect(c.glyph.y+c.glyph.height).toBeLessThan(b.y+b.height);expect(c.countY+10).toBeLessThan(b.y+b.height);}
  });
- it('keeps the original primary56px height and equal submit/discard widths on the390 main layout',()=>{
-  const l=layouts()[0];expect(l.tableActions.play.height).toBe(56);expect(l.tableActions.play.width).toBe(l.tableActions.discard.width);
+ it('adds a readable caption without taking height from the44px sort targets',()=>{
+  const l=layouts()[0];expect(l.tableActions.play.height).toBe(58);expect(l.buttons.rank.height).toBe(44);expect(l.tableActions.play.width).toBe(l.tableActions.discard.width);
+ });
+ it('shortens only the ready AI label and preserves computing, paused and unavailable feedback',()=>{
+  expect(['ready','working','paused','unavailable'].map(s=>handAiButtonLabel(s as Parameters<typeof handAiButtonLabel>[0]))).toEqual(['AI','AI\n计算','AI\n稍候','AI\n不可用']);
  });
 });
 describe('card actions remain readable as different ink shapes',()=>{

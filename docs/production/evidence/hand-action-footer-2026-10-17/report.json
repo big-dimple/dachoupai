@@ -1,0 +1,318 @@
+{
+  "status": "PASS",
+  "browser": "153.0.8010.12",
+  "scope": "One isolated component page using real SceneView buttons, three widths; GameScene integration pending.",
+  "sourceSHA256": {
+    "src/game/HandActionControls.ts": "06154c046b831384993ca31922ec6100c6b6bc5e9670be0d7d1b6d06c8f11801",
+    "src/game/layout.ts": "ea3b80ab9fddd31e4ce5cdfeae77886ff74cc4c0f90ffed19a91029ab889c805",
+    "src/game/GameScene.ts": "389283df6f44967ecc8fca6fb03abf2565269c8c596e85509fbb2dc918f77a58"
+  },
+  "rows": [
+    {
+      "name": "PC",
+      "sourceWidth": 1366,
+      "buttons": [
+        {
+          "key": "discard",
+          "box": {
+            "x": 12,
+            "y": 18,
+            "width": 162,
+            "height": 58
+          },
+          "text": "弃牌",
+          "label": {
+            "x": 94,
+            "y": 24,
+            "width": 28,
+            "height": 18
+          },
+          "interactive": true
+        },
+        {
+          "key": "rank",
+          "box": {
+            "x": 180,
+            "y": 32,
+            "width": 48,
+            "height": 44
+          },
+          "text": "点数",
+          "label": {
+            "x": 190,
+            "y": 44,
+            "width": 28,
+            "height": 18
+          },
+          "interactive": true
+        },
+        {
+          "key": "suit",
+          "box": {
+            "x": 228,
+            "y": 32,
+            "width": 48,
+            "height": 44
+          },
+          "text": "花色",
+          "label": {
+            "x": 238,
+            "y": 44,
+            "width": 28,
+            "height": 18
+          },
+          "interactive": true
+        },
+        {
+          "key": "ai",
+          "box": {
+            "x": 276,
+            "y": 32,
+            "width": 48,
+            "height": 44
+          },
+          "text": "AI",
+          "label": {
+            "x": 292,
+            "y": 44,
+            "width": 16,
+            "height": 18
+          },
+          "interactive": true
+        },
+        {
+          "key": "play",
+          "box": {
+            "x": 330,
+            "y": 18,
+            "width": 162,
+            "height": 58
+          },
+          "text": "出牌",
+          "label": {
+            "x": 410,
+            "y": 23.5,
+            "width": 32,
+            "height": 19
+          },
+          "interactive": true
+        }
+      ],
+      "title": {
+        "text": "理牌",
+        "fontSize": "11px",
+        "box": {
+          "x": 241,
+          "y": 18.5,
+          "width": 22,
+          "height": 13
+        },
+        "interactive": false
+      }
+    },
+    {
+      "name": "390",
+      "sourceWidth": 390,
+      "buttons": [
+        {
+          "key": "discard",
+          "box": {
+            "x": 12,
+            "y": 18,
+            "width": 111,
+            "height": 58
+          },
+          "text": "弃牌",
+          "label": {
+            "x": 68.5,
+            "y": 24,
+            "width": 28,
+            "height": 18
+          },
+          "interactive": true
+        },
+        {
+          "key": "rank",
+          "box": {
+            "x": 129,
+            "y": 32,
+            "width": 44,
+            "height": 44
+          },
+          "text": "点数",
+          "label": {
+            "x": 137,
+            "y": 44,
+            "width": 28,
+            "height": 18
+          },
+          "interactive": true
+        },
+        {
+          "key": "suit",
+          "box": {
+            "x": 173,
+            "y": 32,
+            "width": 44,
+            "height": 44
+          },
+          "text": "花色",
+          "label": {
+            "x": 181,
+            "y": 44,
+            "width": 28,
+            "height": 18
+          },
+          "interactive": true
+        },
+        {
+          "key": "ai",
+          "box": {
+            "x": 217,
+            "y": 32,
+            "width": 44,
+            "height": 44
+          },
+          "text": "AI",
+          "label": {
+            "x": 231,
+            "y": 44,
+            "width": 16,
+            "height": 18
+          },
+          "interactive": true
+        },
+        {
+          "key": "play",
+          "box": {
+            "x": 267,
+            "y": 18,
+            "width": 111,
+            "height": 58
+          },
+          "text": "出牌",
+          "label": {
+            "x": 321.5,
+            "y": 23.5,
+            "width": 32,
+            "height": 19
+          },
+          "interactive": true
+        }
+      ],
+      "title": {
+        "text": "理牌",
+        "fontSize": "11px",
+        "box": {
+          "x": 184,
+          "y": 18.5,
+          "width": 22,
+          "height": 13
+        },
+        "interactive": false
+      }
+    },
+    {
+      "name": "320",
+      "sourceWidth": 320,
+      "buttons": [
+        {
+          "key": "discard",
+          "box": {
+            "x": 12,
+            "y": 18,
+            "width": 80,
+            "height": 58
+          },
+          "text": "弃牌",
+          "label": {
+            "x": 38,
+            "y": 24,
+            "width": 28,
+            "height": 18
+          },
+          "interactive": true
+        },
+        {
+          "key": "rank",
+          "box": {
+            "x": 98,
+            "y": 32,
+            "width": 44,
+            "height": 44
+          },
+          "text": "点数",
+          "label": {
+            "x": 106,
+            "y": 44,
+            "width": 28,
+            "height": 18
+          },
+          "interactive": true
+        },
+        {
+          "key": "suit",
+          "box": {
+            "x": 142,
+            "y": 32,
+            "width": 44,
+            "height": 44
+          },
+          "text": "花色",
+          "label": {
+            "x": 150,
+            "y": 44,
+            "width": 28,
+            "height": 18
+          },
+          "interactive": true
+        },
+        {
+          "key": "ai",
+          "box": {
+            "x": 186,
+            "y": 32,
+            "width": 44,
+            "height": 44
+          },
+          "text": "AI",
+          "label": {
+            "x": 200,
+            "y": 44,
+            "width": 16,
+            "height": 18
+          },
+          "interactive": true
+        },
+        {
+          "key": "play",
+          "box": {
+            "x": 236,
+            "y": 18,
+            "width": 80,
+            "height": 58
+          },
+          "text": "出牌",
+          "label": {
+            "x": 260,
+            "y": 23.5,
+            "width": 32,
+            "height": 19
+          },
+          "interactive": true
+        }
+      ],
+      "title": {
+        "text": "理牌",
+        "fontSize": "11px",
+        "box": {
+          "x": 153,
+          "y": 18.5,
+          "width": 22,
+          "height": 13
+        },
+        "interactive": false
+      }
+    }
+  ]
+}

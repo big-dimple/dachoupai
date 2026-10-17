@@ -100,7 +100,7 @@ describe('CSS layout contract',()=>{
         expect(intersects(b,l.hand)).toBe(false);
       }
       for(let i=0;i<controls.length;i++)for(let j=i+1;j<controls.length;j++)expect(intersects(controls[i],controls[j])).toBe(false);
-      expect(l.buttons.rank.x).toBe(l.tools.x+36);expect(l.buttons.ai.x).toBe(l.tools.x+124);expect(l.tableActions.discard.width).toBe(l.tableActions.play.width);
+      expect(l.buttons.rank.x).toBe(l.tools.x);expect(l.buttons.ai.x).toBe(l.tools.x+l.tools.width*2/3);expect(l.buttons.rank.y).toBe(l.tools.y+14);expect(l.tableActions.discard.width).toBe(l.tableActions.play.width);
       expect(l.tableActions.discard.x+l.tableActions.discard.width).toBeLessThan(l.tools.x);
       expect(l.tools.x+l.tools.width).toBeLessThan(l.tableActions.play.x);
       if(l.mode==='portrait'&&!l.handOverflow)expect((l.tableActions.discard.x+l.tableActions.play.x+l.tableActions.play.width)/2).toBeCloseTo(l.actions.x+l.actions.width/2);
@@ -164,7 +164,7 @@ describe('CSS layout contract',()=>{
   });
 });
 describe('bottom discard — sorting — play row and independent skill',()=>{
-  it.each([[320,568,0,0,62,62],[390,740,0,0,93,93],[844,300,12,12,232,232],[844,300,12,34,232,232]])('%s×%s safe%s/%s reserves usable submit/discard sizes and all nine seats', (width,height,top,bottom,discard,play)=>{
+  it.each([[320,568,0,0,80,80],[390,740,0,0,111,111],[844,300,12,12,250,250],[844,300,12,34,250,250]])('%s×%s safe%s/%s reserves usable submit/discard sizes and all nine seats', (width,height,top,bottom,discard,play)=>{
     const l=layout({width,height},{top,bottom,left:0,right:0},undefined,{count:9}),entry=gameToolInventoryBox(l);
     expect(l.visibleCardCount).toBe(9);expect(l.handOverflow).toBe(false);
     expect(l.tableActions.discard.width).toBe(discard);expect(l.tableActions.play.width).toBe(play);
