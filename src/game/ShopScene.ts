@@ -50,6 +50,7 @@ import {shopOfferGuidance,jokerRouteCaption,jokerApplicableRoutes} from './ShopO
 import {goodsArtKey,goodsArtLoadState,requestGoodsArt,retryGoodsArt} from './GoodsArtLoading';
 import {ShopResultFeedback,shopResultBox,shopResultPages,type ShopResultLine} from './ShopResultFeedback';
 import {requestJokerArt,jokerArtLoadState,retryJokerArt} from './JokerArtLoading';
+import {requestShopJokerGalleryArt,shopJokerPictureKey} from './ShopJokerGalleryArt';
 import {JOKER_RARITY,createJokerRarityBadge,type JokerRarity} from './JokerRarity';
 import {findShopSynergy,shopCandidateTradeoff} from './ShopSynergy';
 import {ShopSynergyPreview} from './ShopSynergyPreview';
@@ -245,6 +246,7 @@ export class ShopScene extends Phaser.Scene {
     warmShopToolImages(this,this.run);
     const selectedIndex=this.shelfOffers().findIndex(offer=>offer.offerId===this.selectedOfferId);if(selectedIndex>=0)this.shelfPage=Math.floor(selectedIndex/this.pageSize);
     this.shelfPage=Math.min(this.shelfPage,Math.max(0,Math.ceil(this.shelfOffers().length/this.pageSize)-1));
+    requestShopJokerGalleryArt(this,this.geometry().pc&&!this.workshopSelected&&this.shelfKind==='jokers'?this.visibleOffers().map(o=>o.definitionId):[],()=>this.refreshJokerPictures());
     const v=this.view,p=this.geometry(),stage=getR2Stage(this.run.stageIndex,this.run.tourMode,this.run.difficulty,this.run)!;this.hideHoverPicture();this.ownedInput?.setBounds(undefined);this.ownedArts.clear();this.ownedHint=undefined;v.clear();v.paperBackground();drawShopBackdrop(this,v,p,this.run.characterId);this.offerArts=[];this.artTargets.clear();this.jokerArtTargets.clear();
     const isBossNext=!!shopBossPreparation(this.run);
     if(!isBossNext&&this.run.phase==='shop')this.audio.setScene('shop');
@@ -823,7 +825,7 @@ export class ShopScene extends Phaser.Scene {
   private paintJokerPicture(holder:Phaser.GameObjects.Container,definitionId:string,b:Box,alpha:number):void {
     holder.removeAll(true);
     const first=this.view.root.length;
-    const v=this.view,d=this.jokerDefinition(definitionId),badge=mechanismBadge(d),key=jokerArtKey(definitionId),g=this.add.graphics();
+    const v=this.view,d=this.jokerDefinition(definitionId),badge=mechanismBadge(d),key=shopJokerPictureKey(this,definitionId,b),g=this.add.graphics();
     if(key&&this.textures.exists(key)){
       const picture=this.add.image(b.x+b.width/2,b.y+b.height/2,key),scale=Math.min(b.width/picture.width,b.height/picture.height);
       v.add(picture.setScale(scale).setAlpha(alpha));

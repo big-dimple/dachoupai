@@ -1,0 +1,37 @@
+{
+  "baseProduct": "610816ad1a87201ae47248817bcaba64fafb36f3",
+  "branch": "dev/shop-gallery-detail-20261017",
+  "normalization": "UTF-8 LF",
+  "source": {
+    "src/game/ShopScene.ts": "bbdac86867779df9fe231c322a8bc8a629099946c40c5279badb75a89680d6e2",
+    "src/game/ShopJokerGalleryArt.ts": "74bd2b593a95eb5b8eb12f8f182d238cc266172e02614b64e822052a348ff38b",
+    "tests/shop-gallery-art.test.ts": "24210e7086260cbf68a015fbd2a34a3519017541c27c5551ba8ffa90ef31d356",
+    "harness/shop-gallery-detail.mjs": "6bca90b511087166cc0f1410b7ab6c279c4d28a19f0ffbfe1622b32691b59385"
+  },
+  "protectedPathsUnchanged": [
+    "src/domain",
+    "src/application",
+    "src/content",
+    "public",
+    "src/game/GameScene.ts",
+    "src/game/ShopLayout.ts",
+    "src/game/ShopOfferLayout.ts",
+    "src/game/ShopToolbar.css",
+    "src/game/RunMenu.ts",
+    "src/style.css",
+    "src/game/DetailArt.ts",
+    "src/game/JokerArtLoading.ts",
+    "src/game/ArtTextureLoading.ts",
+    "src/game/PolychromeCardIridescence.ts",
+    "package.json",
+    "package-lock.json"
+  ],
+  "shopSceneOnlyThreeChangesVerified": true,
+  "editionAndForgetHooksUnchanged": true,
+  "validation": {
+    "relatedTests": 23,
+    "typecheck": "PASS",
+    "build": "PASS",
+    "browser": "one 1366x900 DPR1 profile; baseline, delayed HD, failed HD and recovery; zero page errors"
+  }
+}
