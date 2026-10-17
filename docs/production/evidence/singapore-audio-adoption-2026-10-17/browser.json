@@ -18,7 +18,7 @@
       "duration": 41.739116,
       "loop": true,
       "at": 41.649116,
-      "after": 0.008707
+      "after": 0
     },
     {
       "scene": "boss",
@@ -50,5 +50,15 @@
       "traceUnchanged": true
     }
   ],
-  "recordingBytes": 22514
+  "recordingBytes": 22514,
+  "binding": {
+    "headAtCapture": "4a1f9227e137aaf57122ce812fb52d95eda0bf49",
+    "sha256NormalizedLF": {
+      "src/audio/AudioEngine.ts": "9f549cda5de0788a15e4005dc3f8a93659fee136a2f1cb36449713c60411be8d",
+      "src/audio/foley.ts": "c0ffa0a2993f532fefc43de93948994b2bdd369b8d4ebb2c5ee8f0c10bb36046",
+      "src/audio/mixPolicy.ts": "3abd98b483249c68703b4fa01dbaa2b54fd876b9e253c7d8a936476dafd74fdf",
+      "public/assets/audio/bgm/manifest.json": "e76ecbb44f3c4965fb4439fb217058989d7af5bdf8591e6097672eaa027661cf",
+      "public/assets/audio/gamefeel-rfc/sources.json": "f93d5aee900f9ceb93dffebba91f4ef28503e29252a0450a9de951c0fffbaf13"
+    }
+  }
 }
