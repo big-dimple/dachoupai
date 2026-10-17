@@ -1,0 +1,184 @@
+{
+  "baseCommit": "50e82e5d44d25b1884415731a5d37e8228526a36",
+  "sourceCommit": "4d9910a76c90cdea76f0f61709f7192675359f96",
+  "integratedProductCommit": "2ef939c3446b2c176c1ed746bb1bdb3cc143fa40",
+  "conflicts": 0,
+  "productRoots": [
+    "src",
+    "tests",
+    "scripts",
+    "harness",
+    "public",
+    "art",
+    "package.json",
+    "package-lock.json"
+  ],
+  "productAndAllTestTreesEqualToSource": true,
+  "protectedRoots": [
+    "src/domain",
+    "src/application",
+    "src/platform",
+    "src/content",
+    "src/audio",
+    "public",
+    "art",
+    "package.json",
+    "package-lock.json",
+    "src/game/GameScene.ts",
+    "src/game/ScorePosture.ts",
+    "src/game/HeroClimax.ts"
+  ],
+  "protectedRootsEqualToBase": true,
+  "bindings": [
+    {
+      "path": "docs/production/evidence/card-detail-tail-2026-10-17/README.md",
+      "sourceBlob": "8fc682921f42bd3ec0c028a06b199904d250666a",
+      "integratedBlob": "8fc682921f42bd3ec0c028a06b199904d250666a",
+      "equal": true
+    },
+    {
+      "path": "docs/production/evidence/card-detail-tail-2026-10-17/browser-check.json",
+      "sourceBlob": "63f555df8cc43314086bcca6b79bca86fb7da4c5",
+      "integratedBlob": "63f555df8cc43314086bcca6b79bca86fb7da4c5",
+      "equal": true
+    },
+    {
+      "path": "docs/production/evidence/card-detail-tail-2026-10-17/browser-check.mjs",
+      "sourceBlob": "ce253e81b69cf9752635b7c3d0cc79ea4047ef19",
+      "integratedBlob": "ce253e81b69cf9752635b7c3d0cc79ea4047ef19",
+      "equal": true
+    },
+    {
+      "path": "docs/production/evidence/card-detail-tail-2026-10-17/browser-check.txt",
+      "sourceBlob": "d750b945387dcc4050163167ef470b2962a550ef",
+      "integratedBlob": "d750b945387dcc4050163167ef470b2962a550ef",
+      "equal": true
+    },
+    {
+      "path": "docs/production/evidence/card-detail-tail-2026-10-17/build-check.txt",
+      "sourceBlob": "1fe36888ac7f487fc7a6d709fe9d1b19b45f7c7f",
+      "integratedBlob": "1fe36888ac7f487fc7a6d709fe9d1b19b45f7c7f",
+      "equal": true
+    },
+    {
+      "path": "docs/production/evidence/card-detail-tail-2026-10-17/desktop-collapsed.png",
+      "sourceBlob": "275686e04e420896002c76f38c651b2cc4d6019a",
+      "integratedBlob": "275686e04e420896002c76f38c651b2cc4d6019a",
+      "equal": true
+    },
+    {
+      "path": "docs/production/evidence/card-detail-tail-2026-10-17/desktop-expanded.png",
+      "sourceBlob": "37ba55f9555da9ee4df48ecf1a19c3c08c79b58d",
+      "integratedBlob": "37ba55f9555da9ee4df48ecf1a19c3c08c79b58d",
+      "equal": true
+    },
+    {
+      "path": "docs/production/evidence/card-detail-tail-2026-10-17/unit-check.txt",
+      "sourceBlob": "f8beafda03e97a49cd8651cb0d372c828252a4f5",
+      "integratedBlob": "f8beafda03e97a49cd8651cb0d372c828252a4f5",
+      "equal": true
+    },
+    {
+      "path": "src/game/DetailDialog.css",
+      "sourceBlob": "620c9c08bd62cdd095a2c8ab06139c36ac65ed46",
+      "integratedBlob": "620c9c08bd62cdd095a2c8ab06139c36ac65ed46",
+      "equal": true
+    },
+    {
+      "path": "src/game/DetailDialog.ts",
+      "sourceBlob": "68b0b1751b3d2cb6be250fcac164cb672d43ed70",
+      "integratedBlob": "68b0b1751b3d2cb6be250fcac164cb672d43ed70",
+      "equal": true
+    },
+    {
+      "path": "src/game/JokerPlainCopy.ts",
+      "sourceBlob": "582a147d911ba35ef932bf9617c430ae5cd3568b",
+      "integratedBlob": "582a147d911ba35ef932bf9617c430ae5cd3568b",
+      "equal": true
+    },
+    {
+      "path": "tests/detail-dialog.test.ts",
+      "sourceBlob": "01356229e040f8d9fc13e29ef025ecccc4a2b616",
+      "integratedBlob": "01356229e040f8d9fc13e29ef025ecccc4a2b616",
+      "equal": true
+    },
+    {
+      "path": "tests/player-copy-closeout.test.ts",
+      "sourceBlob": "8ba0e2028a821484bf13e3151c99b634f8852efe",
+      "integratedBlob": "8ba0e2028a821484bf13e3151c99b634f8852efe",
+      "equal": true
+    }
+  ],
+  "browserSourceBindings": [
+    {
+      "path": "src/game/DetailDialog.ts",
+      "expectedSHA256": "5a7136796f43ddd9bc3040ba84c4f23b9df50936772bb56bb8c32534a6308c1d",
+      "candidates": {
+        "worktree": "5a7136796f43ddd9bc3040ba84c4f23b9df50936772bb56bb8c32534a6308c1d",
+        "gitCanonical": "4e4340a7fb1fb72e70f2d09c504132139251d63f76facb4217a6e471aff57f24",
+        "windowsCRLF": "5a7136796f43ddd9bc3040ba84c4f23b9df50936772bb56bb8c32534a6308c1d"
+      },
+      "receiptMatches": [
+        "worktree",
+        "windowsCRLF"
+      ],
+      "gitBlobsEqual": true
+    },
+    {
+      "path": "src/game/DetailDialog.css",
+      "expectedSHA256": "2b75bdbe974f2a43e0ccba58700a9ba002fe9245d3a45c7fdfc8003b31ba32a4",
+      "candidates": {
+        "worktree": "2b75bdbe974f2a43e0ccba58700a9ba002fe9245d3a45c7fdfc8003b31ba32a4",
+        "gitCanonical": "4611166ccbab4f465eddb06e2be1525e01c44bc62366b5c34cef9b9ea11a4664",
+        "windowsCRLF": "2b75bdbe974f2a43e0ccba58700a9ba002fe9245d3a45c7fdfc8003b31ba32a4"
+      },
+      "receiptMatches": [
+        "worktree",
+        "windowsCRLF"
+      ],
+      "gitBlobsEqual": true
+    },
+    {
+      "path": "src/game/JokerPlainCopy.ts",
+      "expectedSHA256": "c1bddd7eb40ec957aaf1870d1e92bd68f5e495ec535f937a2aba830c3b5c2941",
+      "candidates": {
+        "worktree": "c1bddd7eb40ec957aaf1870d1e92bd68f5e495ec535f937a2aba830c3b5c2941",
+        "gitCanonical": "544c88e7298fce9d185647bc1a6cc2e05d7146777c61b6f30967e5aefb33dedb",
+        "windowsCRLF": "c1bddd7eb40ec957aaf1870d1e92bd68f5e495ec535f937a2aba830c3b5c2941"
+      },
+      "receiptMatches": [
+        "worktree",
+        "windowsCRLF"
+      ],
+      "gitBlobsEqual": true
+    },
+    {
+      "path": "src/style.css",
+      "expectedSHA256": "059eae18ac0862b5276d18e8b0960e39d0a07898354f897e721048fdc594e047",
+      "candidates": {
+        "worktree": "059eae18ac0862b5276d18e8b0960e39d0a07898354f897e721048fdc594e047",
+        "gitCanonical": "8d0b995ed68069596363a949cf31d7b4813578976c0d1d45b48b3fdca2528d32",
+        "windowsCRLF": "059eae18ac0862b5276d18e8b0960e39d0a07898354f897e721048fdc594e047"
+      },
+      "receiptMatches": [
+        "worktree",
+        "windowsCRLF"
+      ],
+      "gitBlobsEqual": true
+    }
+  ],
+  "reuse": {
+    "unit": {
+      "files": 4,
+      "cases": 122,
+      "status": "PASS_REUSED_NOT_RERUN",
+      "evidence": "../card-detail-tail-2026-10-17/unit-check.txt"
+    },
+    "component": {
+      "status": "PASS_REUSED_EXACT_SOURCE",
+      "evidence": "../card-detail-tail-2026-10-17/browser-check.json",
+      "scope": "Focused software browser fixture using the actual DetailDialog, c06 public copy and source CSS. No GameScene navigation, full game run, dot acceptance or physical-device acceptance."
+    },
+    "note": "No new unit, browser, screenshot matrix or gameplay run. SHA receipt matches allow explicitly recorded Windows line endings; Git source blobs are identical."
+  }
+}

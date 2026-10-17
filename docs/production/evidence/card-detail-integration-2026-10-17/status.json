@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "taskId": "P08",
+  "taskStatus": "in_progress",
+  "baseCommit": "50e82e5d44d25b1884415731a5d37e8228526a36",
+  "sourceCommit": "4d9910a76c90cdea76f0f61709f7192675359f96",
+  "testedCommit": "2ef939c3446b2c176c1ed746bb1bdb3cc143fa40",
+  "branch": "dev/current-batch-integration-20261017",
+  "conflicts": 0,
+  "scope": "c06首层条件去重，完整长规则和旧局排除保留；与标题完全重复的caption省略；限定桌面图文详情按内容高度，长规则滚动和按钮安全区保留。",
+  "checks": [
+    {
+      "name": "Exact handed-off paths and product/test tree",
+      "status": "PASS",
+      "evidence": "source-reuse.json",
+      "paths": 13,
+      "browserSourceBindings": 4,
+      "note": "All product/test roots match source; all13 source paths unchanged, including original evidence; four browser source SHA receipts matched raw or explicitly recorded Git/Windows newline bytes."
+    },
+    {
+      "name": "Source 122 unit contracts",
+      "status": "PASS",
+      "execution": "REUSED_NOT_RERUN",
+      "files": 4,
+      "cases": 122,
+      "evidence": "../card-detail-tail-2026-10-17/unit-check.txt"
+    },
+    {
+      "name": "Source focused Chromium component check",
+      "status": "PASS",
+      "execution": "REUSED_NOT_RERUN",
+      "evidence": "../card-detail-tail-2026-10-17/browser-check.json",
+      "scope": "Actual DetailDialog/source CSS/c06 software fixture; 1180x757 collapsed880x499.296875, expanded880x695.75, long-rule scroll and one390x844 inherited-layout sanity. No GameScene/dot/physical-device acceptance."
+    },
+    {
+      "name": "Integrated TypeScript",
+      "command": "node node_modules/typescript/bin/tsc --noEmit",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "checks/typecheck-PASS.txt"
+    },
+    {
+      "name": "Integrated production build",
+      "command": "node node_modules/vite/bin/vite.js build",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "checks/build-PASS.txt",
+      "sourceBinding": "checks/built-source-info.json",
+      "modules": 315,
+      "warning": "Existing large-chunk advisory remains."
+    },
+    {
+      "name": "Integrated dot card-detail review",
+      "status": "NOT_RUN",
+      "reason": "Parent owns remote review; integrator adds no browser/matrix/gameplay."
+    }
+  ],
+  "protectedUnchanged": [
+    "src/domain",
+    "src/application",
+    "src/platform",
+    "src/content",
+    "src/audio",
+    "public",
+    "art",
+    "package.json",
+    "package-lock.json",
+    "src/game/GameScene.ts",
+    "src/game/ScorePosture.ts",
+    "src/game/HeroClimax.ts"
+  ],
+  "limitations": [
+    "Source heights belong to one local component viewport, not new integrated dot measurements.",
+    "Mobile result is one software inherited-layout sanity, not physical-phone acceptance.",
+    "Complex/legacy long rules were not rewritten; only this proven repeated inclusion is removed from first-layer limits, while full rules and legacy exclusions remain.",
+    "No new assets, rules, numbers, save migration, GameScene, score animation or audio change.",
+    "Prior online lockfile modified flag remains its original version observation; no online version/source cleanliness claim for this batch.",
+    "P08 in_progress; human understanding, sound, complete hero-climax dynamics and formal gates remain unaccepted."
+  ],
+  "publication": {
+    "authorization": "Parent relayed renewed explicit user approval for this detail closeout normal main merge/push after checks.",
+    "status": "Ready for ordinary dev/main pushes. Exact final publication commit comes from actual push receipt; subsequent changes are docs/evidence only.",
+    "restrictions": "No force push, CI/domain query, deployment, new browser matrix or natural long game."
+  }
+}
