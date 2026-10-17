@@ -1,0 +1,151 @@
+{
+  "sourceHashes": {
+    "src/game/CardArtSource.ts": "430fd4c92a36f626e64d9fa392ec54bb62439f7e15476eec93de096b8564fdf9",
+    "src/game/CardArtZoomModal.ts": "edbdd7e9ef0a9fa8b25d03b506d79e847f412b703e2c68848dc1678f927171b4",
+    "src/game/DetailDialog.ts": "277461188bdb455b362d722ba4c20df5727534d0c36403fa9d84b0135722027d",
+    "src/game/DetailDialog.css": "476065f8f376d157ac4a36b281eada55d16bb89369ff1c43a3d2b84fcb020ea8"
+  },
+  "browser": "153.0.8010.12",
+  "scope": "One local bundled component page: production showCatalog, showConsumables, DetailDialog and styles. Controlled shop-state inventory, no actual ShopScene/GameScene journey or physical-device claim.",
+  "checks": [
+    {
+      "entry": "production catalog/T12",
+      "status": "PASS",
+      "geometry": {
+        "dialog": {
+          "width": 390,
+          "height": 844
+        },
+        "image": {
+          "width": 390,
+          "height": 844
+        },
+        "close": {
+          "width": 44,
+          "height": 44
+        },
+        "fit": "contain",
+        "background": "rgb(0, 0, 0)",
+        "natural": [
+          615,
+          768
+        ],
+        "transition": "0.18s"
+      }
+    },
+    {
+      "entry": "production catalog/P01",
+      "status": "PASS",
+      "geometry": {
+        "dialog": {
+          "width": 390,
+          "height": 844
+        },
+        "image": {
+          "width": 390,
+          "height": 844
+        },
+        "close": {
+          "width": 44,
+          "height": 44
+        },
+        "fit": "contain",
+        "background": "rgb(0, 0, 0)",
+        "natural": [
+          615,
+          768
+        ],
+        "transition": "0.18s"
+      }
+    },
+    {
+      "entry": "production catalog/U01",
+      "status": "PASS",
+      "geometry": {
+        "dialog": {
+          "width": 390,
+          "height": 844
+        },
+        "image": {
+          "width": 390,
+          "height": 844
+        },
+        "close": {
+          "width": 44,
+          "height": 44
+        },
+        "fit": "contain",
+        "background": "rgb(0, 0, 0)",
+        "natural": [
+          615,
+          768
+        ],
+        "transition": "0.18s"
+      }
+    },
+    {
+      "entry": "production catalog/c06",
+      "status": "PASS",
+      "geometry": {
+        "dialog": {
+          "width": 390,
+          "height": 844
+        },
+        "image": {
+          "width": 390,
+          "height": 844
+        },
+        "close": {
+          "width": 44,
+          "height": 44
+        },
+        "fit": "contain",
+        "background": "rgb(0, 0, 0)",
+        "natural": [
+          615,
+          768
+        ],
+        "transition": "0.18s"
+      }
+    },
+    {
+      "entry": "P11 503 → readable thumbnail → retry → HD",
+      "status": "PASS"
+    },
+    {
+      "entry": "controlled production inventory/controlled/T16",
+      "status": "PASS"
+    },
+    {
+      "entry": "controlled production inventory/controlled/P01",
+      "status": "PASS"
+    },
+    {
+      "entry": "controlled production inventory/U01",
+      "status": "PASS"
+    },
+    {
+      "entry": "purchase image isolates actions; parent close disposes zoom",
+      "status": "PASS"
+    },
+    {
+      "entry": "mechanism-only portrait has no entry",
+      "status": "PASS"
+    }
+  ],
+  "errors": [],
+  "smallTrigger": {
+    "imageWidth": 60,
+    "imageHeight": 84,
+    "hintBelowImage": true,
+    "hintInsideTrigger": false,
+    "hintBackground": "rgba(0, 0, 0, 0)",
+    "hintWhiteSpace": "nowrap",
+    "label": "放大鉴赏小红包",
+    "keys": [
+      "Enter",
+      "Space"
+    ]
+  },
+  "status": "PASS"
+}

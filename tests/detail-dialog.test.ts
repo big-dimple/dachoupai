@@ -88,6 +88,13 @@ beforeEach(()=>{
 afterEach(()=>{vi.unstubAllGlobals();});
 
 describe('detail art recovery and stable rarity',()=>{
+  it('keeps the quiet hint outside the picture and retains one native accessible image button',()=>{
+    const owner=new DetailDialog(),info=toolInfo('T16'),zoom={close:vi.fn()};art.zoom.mockReturnValue(zoom);
+    const dialog=owner.open(info.name,'规则',[],{portrait:goodsArtPortrait(info)}),frame=find(dialog,'.dialog-card-art'),visual=find(frame,'.dialog-art-visual'),trigger=find(visual,'.dialog-card-zoom-trigger'),hint=find(frame,'.dialog-card-zoom-badge');
+    expect(hint.parentElement).toBe(frame);expect(visual.contains(hint)).toBe(false);expect(trigger.textContent).toBe('');expect(hint.textContent).toBe('点图放大');expect(hint.getAttribute('aria-hidden')).toBe('true');
+    expect(trigger.tagName).toBe('BUTTON');expect(trigger.getAttribute('aria-label')).toBe('放大鉴赏小红包');expect(trigger.getAttribute('aria-haspopup')).toBe('dialog');
+    trigger.click();expect(art.zoom).toHaveBeenLastCalledWith('T16',info.name);owner.close();expect(zoom.close).toHaveBeenCalledOnce();
+  });
   it.each(JOKER_ART.map(a=>a.id))('opens registered %s by model identity, independent of versioned filenames',id=>{
     const owner=new DetailDialog(),zoom={close:vi.fn()};art.zoom.mockReturnValue(zoom);
     const dialog=owner.open('卡面','规则',[],{portrait:{url:jokerArtUrl(id)!,thumbnailUrl:jokerArtPreviewUrl(id),alt:cardDisplayName(id),layout:'card'}});

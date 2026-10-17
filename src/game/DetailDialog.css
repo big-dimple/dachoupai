@@ -1,7 +1,10 @@
 /* The picture is its own inspection target, separate from purchase/use actions. */
-.detail-dialog .dialog-card-art:has(.dialog-card-zoom-trigger) { padding:0;border:0;background:transparent;box-shadow:none; }
+.detail-dialog .dialog-card-art:has(.dialog-card-zoom-trigger) { display:grid;grid-template-rows:minmax(0,1fr) auto;gap:3px;padding:0;border:0;background:transparent;box-shadow:none; }
+.detail-dialog .dialog-card-art:has(.dialog-card-zoom-trigger) > .dialog-art-visual { min-height:0; }
+.detail-dialog .dialog-art-visual > .dialog-card-zoom-trigger { border:0;border-radius:0;background:transparent;box-shadow:none;transform:none; }
 .detail-dialog .dialog-card-zoom-trigger[hidden] { display:none; }
-.detail-dialog .dialog-card-zoom-badge { top:6px;bottom:auto;right:6px;border:0;background:#000b; }
+.detail-dialog .dialog-card-zoom-badge { position:static;display:block;justify-self:center;margin:0;padding:0;border:0;border-radius:0;background:none;color:#59646a;font-size:11px;line-height:16px;white-space:nowrap; }
+.detail-dialog .dialog-card-art:has(.dialog-card-zoom-trigger[hidden]) > .dialog-card-zoom-badge { display:none; }
 
 /* Only a plain message and its actions shrink to their content. Callers that
    append catalog controls, forms or art retain the existing detail workspace. */
