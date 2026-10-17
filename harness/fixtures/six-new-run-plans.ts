@@ -12,7 +12,8 @@ export function sixSend(state:R2RunState,action:Action):R2RunState {
 const enter=(s:R2RunState)=>sixSend(sixSend(s,{type:'LeaveShop'}),{type:'EnterStage'});
 const cards=(s:R2RunState,ids:readonly string[])=>ids.map(id=>s.deckInstances.find(c=>c.id===id)!);
 const pairs=(s:R2RunState)=>{const ranks=new Map<number,string[]>();for(const c of cards(s,s.handOrder))ranks.set(c.rank,[...(ranks.get(c.rank)??[]),c.id]);return [...ranks.entries()].filter(([,ids])=>ids.length>=2).sort((a,b)=>a[0]-b[0]).map(([,ids])=>ids.slice(0,2));};
-const twoPair=(s:R2RunState)=>{const p=pairs(s);return p.length>=2?[...p[0],...p[1]]:undefined;};
+const ordered=(s:R2RunState,ids:readonly string[])=>s.handOrder.filter(id=>ids.includes(id));
+const twoPair=(s:R2RunState)=>{const p=pairs(s);return p.length>=2?ordered(s,[...p[0],...p[1]]):undefined;};
 function* combinations(ids:readonly string[],count:number,start=0,prefix:string[]=[]):Generator<string[]>{if(!count){yield prefix;return;}for(let i=start;i<=ids.length-count;i++)yield* combinations(ids,count-1,i+1,[...prefix,ids[i]]);}
 export interface SixNewRunPlan {hero:Hero;seed:string;shop:R2RunState;initial:R2RunState;prep:Action[];skill:Action[];skillBefore:R2RunState;skillAfter:R2RunState;nextStage:Action[];next:Action}
 /** Seed-selected formal new games. No assignment to hand, deck, gold, stage, growth, levels or RNG. */
@@ -21,7 +22,7 @@ export function sixNewRunPlan(hero:Hero):SixNewRunPlan {
     const seed='six-new-'+cursor,shop=sixNewRun(hero,seed),initial=enter(shop);let state=initial;const prep:Action[]=[],skill:Action[]=[];
     if(hero==='amo'){
       const p=pairs(state);if(p.length<3)continue;
-      skill.push({type:'PlayAssistedHand',selectedIds:[...p[0],...p[1]],assistIds:p[2]});
+      skill.push({type:'PlayAssistedHand',selectedIds:ordered(state,[...p[0],...p[1]]),assistIds:p[2]});
     }else if(hero==='erxiang'){
       const p=pairs(state)[0];if(!p)continue;skill.push({type:'PlayHand',selectedIds:p,erxiangTargetId:p[0]});
     }else if(hero==='azao'){
