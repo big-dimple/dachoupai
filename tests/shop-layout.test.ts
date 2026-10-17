@@ -136,7 +136,7 @@ it('short landscape stock, tabs and the shared action row fit inside top/bottom/
 it('PC portrait art spends actual remaining height without clipping three goods and independent lower groups',()=>{
  for(const [width,height] of [[1000,768],[1280,720],[1366,768],[1920,1080]]){
   const p=shopLayout(width,height,8,0,3,true);expect(p.shelf).toHaveLength(3);
-  for(const face of p.shelf){expect(face.width).toBeGreaterThan(88);expect(face.width).toBeLessThanOrEqual(144);expect(face.height/face.width).toBeCloseTo(1.4);expect(face.y+face.height).toBeLessThan(p.pc!.groupY);}
+  for(const face of p.shelf){expect(face.width).toBeGreaterThan(88);expect(face.width).toBeLessThanOrEqual(224);expect(face.height/face.width).toBeCloseTo(1.25);expect(face.y+face.height).toBeLessThan(p.pc!.groupY);}
   for(const g of [p.pc!.toolOffers,p.pc!.itemOffers]){expect(g.height).toBeGreaterThanOrEqual(96);expect(g.y+g.height).toBeLessThanOrEqual(p.pc!.feedback.y);}
  }
 });

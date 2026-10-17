@@ -34,7 +34,7 @@ describe('shop tips stay beside the relevant card and outside protected regions'
 describe('shop goods have a stable title, summary and price grid',()=>{
   it.each([['tools',320,180],['items',320,180],['tools',220,150],['jokers',280,400]] as const)('%s keeps complete art and all copy inside a %s×%s seat',(kind,width,height)=>{
     const tile={x:400,y:240,width,height},geometry=shopOfferGeometry(tile,kind)!;
-    expect(geometry).toBeDefined();expect(geometry.art.height/geometry.art.width).toBeCloseTo(1.4);
+    expect(geometry).toBeDefined();expect(geometry.art.height/geometry.art.width).toBeCloseTo(1.25);
     const boxes=Object.values(geometry);for(const box of boxes){expect(inside(box,tile)).toBe(true);expect(box.width).toBeGreaterThan(0);expect(box.height).toBeGreaterThan(0);}
     for(let i=0;i<boxes.length;i++)for(let j=i+1;j<boxes.length;j++)expect(intersects(boxes[i],boxes[j])).toBe(false);
     if(width===320)expect(geometry.art.width).toBeGreaterThan(100);
