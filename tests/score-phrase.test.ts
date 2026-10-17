@@ -25,6 +25,7 @@ it('preserves increasing density and alternating weights instead of overwriting 
 });
 it('4x compresses single strikes while keeping selected spring second landings distinct',()=>{
  const plan=scorePhrase(events,'400',4);for(const b of plan.values())if(b.phrase!.paired)expect(b.impact/4*OWNED_SCORE_SPRING.reboundAt).toBeGreaterThanOrEqual(50);
+ for(const e of events.filter(e=>e.sourceType==='joker')){const b=plan.get(e.eventId)!;if(b.phrase!.role==='run'&&!b.phrase!.paired)expect(b.impact/4).toBeGreaterThanOrEqual(96);}
  expect([...plan.values()].filter(b=>b.phrase!.paired).length).toBeLessThan([...plan.values()].filter(b=>['opening','run','accent'].includes(b.phrase!.role)).length);
  const normal=scorePhrase(events,'400');expect([...plan.values()].at(-1)!.phrase!.end/4).toBeLessThan([...normal.values()].at(-1)!.phrase!.end*.55);
  const final=[...plan.values()].find(b=>b.phrase!.role==='settle')!;expect(final.windup).toBe(120);expect(final.impact).toBe(430);

@@ -33,6 +33,7 @@ export function scorePhrase(events:readonly ScoreEvent[],target:string,speed=1):
   // Only structural two-beat gestures need a real-time floor at 4x. Ordinary
   // single strikes retain their faster slots; no later motion layer overrides it.
   if(paired)impact=Math.max(impact,Math.ceil(50/OWNED_SCORE_SPRING.reboundAt*rate));
+  else if(gain&&event.sourceType==='joker')impact=Math.max(impact,96*rate);
   const start=cursor,arrival=start+windup+flight;cursor=arrival+impact+rest;
   beats.set(event.eventId,{...base,windup,flight,impact,rest,phrase:{role,pulse:gain?pulse-1:pulse,accentWeight:weight,paired,start,arrival,end:cursor}});
  }
