@@ -78,6 +78,7 @@ import { AudioEngine } from '../audio/AudioEngine';
 import { rankLabel, SUIT_SYMBOL, SUITS, type Suit, type PlayingCard } from '../cards/types';
 import {EffectQueue,type EffectContext} from '../core/EffectQueue';
 import {r2JokerDefinitionsFor,r2JokerDefinitionFor} from '../domain/r2ContentProfiles';
+import {cardDisplayName} from './tangsongCardNames';
 import {readR2Modifiers,type R2JokerInstance} from '../content/r2Schema';
 import {HAND_LABELS} from '../content/handLabels';
 import {heatText,fractionText,readableFractionText,readableScoreFormula,accumulatorRollValue} from './scoreText';
@@ -921,8 +922,8 @@ export class GameScene extends Phaser.Scene {
     cards.forEach((card,i)=>{const cv=this.cardPiece(card,boxes[i]);this.previewCards!.add(cv.container);cv.container.setAlpha(1);paintCardFeedback(cv,{scoring:preview.activeScoringIds.includes(card.id)});cv.scoringMark.setVisible(false);});
   }
   private get assistProfile():boolean {return r2UsesAssist(this.run);}
-  private get jokerDefinitions(){return r2JokerDefinitionsFor(this.run);}
-  private jokerDefinition(id:string){return r2JokerDefinitionFor(this.run,id);}
+  private get jokerDefinitions(){return r2JokerDefinitionsFor(this.run).map(d=>({...d,name:cardDisplayName(d.id,d.name)}));}
+  private jokerDefinition(id:string){const d=r2JokerDefinitionFor(this.run,id);return {...d,name:cardDisplayName(d.id,d.name)};}
   private draftRevision():string {return JSON.stringify([this.run.contentVersion,this.run.contentHash,r2HandRevision(this.candidateInput())]);}
   private assistInput(){return{...this.candidateInput(),selectedIds:[...this.selectedIds]};}
   private validateAssistSelection():void {

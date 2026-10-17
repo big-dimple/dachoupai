@@ -42,6 +42,7 @@ import {ShopResultFeedback,shopResultBox,shopResultPages,type ShopResultLine} fr
 import {requestJokerArt,jokerArtLoadState,retryJokerArt} from './JokerArtLoading';
 import {JOKER_RARITY,createJokerRarityBadge,type JokerRarity} from './JokerRarity';
 import {findShopSynergy} from './ShopSynergy';
+import {cardDisplayName} from './tangsongCardNames';
 import Phaser from 'phaser';
 import {r2JokerCapacity} from '../domain/r2Resources';
 import {r2RunModeConfig,R2_MODE_CATALOG} from '../content/r2Modes';
@@ -86,8 +87,8 @@ export class ShopScene extends Phaser.Scene {
   private ownedArts=new Map<string,Phaser.GameObjects.Container>();
   private ownedDrag?:OwnedJokerDragVisual;
   private ownedHint?:Phaser.GameObjects.Text;
-  private get jokerDefinitions(){return r2JokerDefinitionsFor(this.run);}
-  private jokerDefinition(id:string){return r2JokerDefinitionFor(this.run,id);}
+  private get jokerDefinitions(){return r2JokerDefinitionsFor(this.run).map(d=>({...d,name:cardDisplayName(d.id,d.name)}));}
+  private jokerDefinition(id:string){const d=r2JokerDefinitionFor(this.run,id);return {...d,name:cardDisplayName(d.id,d.name)};}
   private busy=false;
   private lifecycle=0;
   private selectedOfferId?:string;

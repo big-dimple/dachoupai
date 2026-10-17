@@ -2,15 +2,17 @@
   "taskId": "cards-bgm-tangsong-refresh",
   "date": "2026-10-17",
   "branch": "feat/cards-bgm-tangsong-refresh",
-  "headCommit": "529f68813fc8818d1c57fac3d9751869d062ee8b",
+  "mergedToMain": true,
   "status": "PASS",
   "scope": {
-    "cardsHalf1WebP": "36 handdrawn cards (A01-C12) converted to detail (615x768) and thumb (240x336) WebP with SHA-256 manifests",
+    "cardsFull72WebP": "All 72 handdrawn cards (A01-F12) converted to detail (615x768) and thumb (128x160) WebP with SHA-256 manifests",
     "progressivePreloading": "BootScene lightweight cold boot with requestIdleCallback stage background texture decoding",
     "goldfishLoader": "SVG dynamic swimming goldfish tied to real decoding progress ratio without raw number anxiety",
     "multiSceneBgm": "5 dedicated atmospheric BGMs (Yangguan Sandie, Tango, Evening Fishing, Schubert, Dark Things)",
     "bossPrewarning": "ShopScene pre-boss music transition to battle theme with stamp and warning banner",
     "tangsongNameMigration": "Presentation-layer rename to Tangsongpai while strictly preserving domain hashes and save keys",
+    "tangsongCardNames": "Full 72 card names 1:1 aligned with handdrawn card artwork names",
+    "cardArtZoomModal": "Live on-demand 615x768 detail inspection zoom modal with progressive thumbnail loading and mobile vertical layout adaptation",
     "threeBlindOverview": "Tri-fold blind selection sheet with 16 boss fatal debuff alerts and tactical counters",
     "scoringJuicePunch": "Card spring jump, ±2.5 deg tilt, rising pentatonic scale dings, 1.54x mult punch, and screen shake",
     "shopSynergyVisualCues": "Golden breathing aura, floating synergy tags (group/straight/mult), and dialog reason explanation",
@@ -18,10 +20,16 @@
   },
   "checks": [
     {
-      "name": "handdrawn card manifest and art verification",
+      "name": "full 72 handdrawn card manifest and art verification",
       "test": "tests/handdrawn-art.test.ts",
       "status": "PASS",
-      "passed": 17
+      "passed": 18
+    },
+    {
+      "name": "72 Tang-Song card names 1:1 match verification",
+      "test": "tests/tangsong-card-names.test.ts",
+      "status": "PASS",
+      "passed": 4
     },
     {
       "name": "BGM scene and shop transition verification",
@@ -60,5 +68,5 @@
       "exitCode": 0
     }
   ],
-  "pendingUserScope": "Remaining 36 cards (D01-F12) reserved for user completion"
+  "completion": "100% complete for all 72 card artworks, zoom inspection modal, mobile portrait adaptation, scoring juice, audio and synergy visual cues"
 }
