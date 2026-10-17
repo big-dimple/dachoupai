@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "originalArtworkCount": 81,
   "runtimeFileCount": 165,
-  "runtimeBytes": 10112306,
+  "runtimeBytes": 10196942,
   "sourceCommit": "c618cee93089bb2e556f16567709b0ea23abbcb9",
   "assets": [
     {
@@ -1520,20 +1520,20 @@
       "category": "functional-card",
       "outputs": [
         {
+          "purpose": "thumbnail",
+          "path": "cards/b05-v3-ee1848ebb107.thumbnail.webp",
           "width": 128,
           "height": 160,
-          "bytes": 4492,
-          "sha256": "8d67df58e814b22e7ec17787c21c70b587b13cd8e1f690f5ac1e4703db6861b2",
-          "purpose": "thumbnail",
-          "path": "cards/b05.thumbnail.webp"
+          "bytes": 7960,
+          "sha256": "ee1848ebb107e505ada50db8484a9ab6967d7716687b8cb8a3e11daefecf1604"
         },
         {
+          "purpose": "detail",
+          "path": "cards/b05-v3-808bf2fbfd26.detail.webp",
           "width": 615,
           "height": 768,
-          "bytes": 55626,
-          "sha256": "4ca14fb60f315926245f1d95e8acbba7167983c49aca444c9e915790b9dfcb58",
-          "purpose": "detail",
-          "path": "cards/b05.detail.webp"
+          "bytes": 136794,
+          "sha256": "808bf2fbfd262662b2c678e3dfec1ae5d3fb511325f5d62bcef0be50336a3ec7"
         }
       ],
       "historicalSources": [
@@ -1541,12 +1541,19 @@
           "receiptCommit": "b67200e4a6a89d71a2e0d33ec18d36a1a446d5fb",
           "sourceManifestPath": "art/sources/handdrawn-runtime-20261004-b7/manifest.json",
           "sourceManifestSHA256": "f5e99f342787eb159fd538a07e71eb9bd3613a462f23cebe6ec24b88435d5053"
+        },
+        {
+          "receiptCommit": "fddb7378112304ead60d67a676e73bb4a3fe2ec0",
+          "sourceManifestPath": "art/sources/handdrawn-runtime-20261017-half1/manifest.json",
+          "sourceManifestSHA256": "a5a703a20c18ab3b9dca29b9a10cda15b50a22c37c7c804c07aaa8e09f8039b6",
+          "status": "source-verified",
+          "outputsRoot": "public/assets/handdrawn-p08"
         }
       ],
       "currentSource": {
-        "receiptCommit": "fddb7378112304ead60d67a676e73bb4a3fe2ec0",
-        "sourceManifestPath": "art/sources/handdrawn-runtime-20261017-half1/manifest.json",
-        "sourceManifestSHA256": "a5a703a20c18ab3b9dca29b9a10cda15b50a22c37c7c804c07aaa8e09f8039b6",
+        "receiptCommit": "70340cc590a22882948490e6276808b9d12cca70",
+        "sourceManifestPath": "art/sources/fengmingchaoyang-art-20261017/manifest.json",
+        "sourceManifestSHA256": "76459e0c50e2ba0763b7b5bdf81b71e00ca8de2c382406a28879983aed8d9e18",
         "status": "source-verified"
       }
     },

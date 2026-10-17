@@ -17,7 +17,7 @@ it('pins all 165 runtime bytes and purpose paths independently of provenance sta
     expect(handdrawnPath(asset.id, output.purpose)).toBe('assets/handdrawn-p08/' + output.path);
     count++; total += bytes.length;
   }
-  expect(count).toBe(165); expect(total).toBe(10112306); expect(manifest.runtimeBytes).toBe(total);
+  expect(count).toBe(165); expect(total).toBe(10196942); expect(manifest.runtimeBytes).toBe(total);
 });
 
 it('preserves six role mappings and independent rank-specific JQK faces', () => {

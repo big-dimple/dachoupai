@@ -6,16 +6,18 @@ const manifest = readJSON(runtimeManifestPath);
 const half1 = 'art/sources/handdrawn-runtime-20261017-half1/manifest.json';
 const half2 = 'art/sources/handdrawn-runtime-20261017-half2/manifest.json';
 const c06 = 'art/sources/qingchuyulan-art-20261017/manifest.json';
+const b05 = 'art/sources/fengmingchaoyang-art-20261017/manifest.json';
 const currentReceipts = [
-  [half1, 'fddb7378112304ead60d67a676e73bb4a3fe2ec0', 'a5a703a20c18ab3b9dca29b9a10cda15b50a22c37c7c804c07aaa8e09f8039b6', 35],
+  [half1, 'fddb7378112304ead60d67a676e73bb4a3fe2ec0', 'a5a703a20c18ab3b9dca29b9a10cda15b50a22c37c7c804c07aaa8e09f8039b6', 34],
   [half2, 'c374c7aa31ec75f3a02b27b6d1bb0b6a5f8ea77e', '854b8f1d29a8aa511c7764c7f527eec8457c694d164c07f3a01f3920e73bb891', 36],
   [c06, '3897abbc80f71d760fa41a9a8330f9fb606e72ab', 'a248d6f72527d6e60c2ab9e01d1ede2b3eaf57ae6be562988c75d2a4ae62d863', 1],
+  [b05, '70340cc590a22882948490e6276808b9d12cca70', '76459e0c50e2ba0763b7b5bdf81b71e00ca8de2c382406a28879983aed8d9e18', 1],
 ];
 
-it('verifies all active source bindings, 73 original files, 165 runtime files and historical derivatives', async () => {
-  expect(await verifyProvenance(manifest)).toEqual({sourceVerified:72, originalsVerified:73,
+it('verifies all active source bindings, 74 original files, 165 runtime files and historical derivatives', async () => {
+  expect(await verifyProvenance(manifest)).toEqual({sourceVerified:72, originalsVerified:74,
     derivativeOnlyIds:['azao','amo','touye','laohuan','erxiang','xiemu','j','q','k'],
-    runtimeFiles:165, runtimeBytes:10112306, receiptsVerified:15, gitHistory:false});
+    runtimeFiles:165, runtimeBytes:10196942, receiptsVerified:16, gitHistory:false});
 }, 30000);
 
 it.each(currentReceipts)('pins current receipt %s independently of its outputs', (file, commit, hash, count) => {
