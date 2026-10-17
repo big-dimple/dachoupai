@@ -1,27 +1,26 @@
-# 本轮反馈合批：已齐来源先整合
+# 本轮反馈合批：等待最后两份来源
 
-基线 `212e23d547d4fcfdd886f9dfe80699318e77a738`；分支 `dev/feedback-batch-integration-20261017`，当前产品快照 `689251951120d69d24daae5b8d91545f350d4ed3`。本阶段只有两份已齐来源，正常merge无冲突；**暂不main，也未运行新的单测/类型/构建或浏览器矩阵**。待剩余来源齐后集中一次集成验证，再按授权正常发布。P08仍in_progress，不写整体百分比。
+基线 `212e23d547d4fcfdd886f9dfe80699318e77a738`；分支 `dev/feedback-batch-integration-20261017`。当前正常merge产品快照 `565be54e0b588ddd98c54aae43d144637be9ff9e`，无冲突；后续只有交接文档。**暂不main，未新增运行来源单测、类型/构建、浏览器或最终集成验证。** 等全部来源到齐后集中一次集成验证，再按授权正常发布。P08仍in_progress。
 
-|已合来源|精确SHA|已交路径|
+|已合最终来源|精确SHA|原增量路径完全一致|
 |---|---|---|
-|数字音阶|5273a1fa3099d29aba7a1300de7560c3d644ed1b|22/22与来源blob一致|
-|高光+已接线新底栏（含dfef8971/85ee1c0c祖先）|deee66633965266c558704bf05b419ea0e45e4c5|19/19与来源blob一致|
+|数字音阶|`5273a1fa3099d29aba7a1300de7560c3d644ed1b`|22/22|
+|高光+新底栏+六英雄名与共性接线|`09249ad5c6e382c56f19a395cbde150d0e3b9153`|52/52|
 
-[逐路径和merge绑定](source-bindings.json)确认两来源无变更路径交集，规则/数值/存档、素材及包锁未变。音频三文件与其来源一致；GameScene及高光/底栏保持deee原文，没有整份场景复制或新手改。
+09249ad5包含此前dfef8971/deee6663/85ee1c0c/1eacdcd0；只正常merge最终来源，没有重复应用owner-only.patch。GameScene与09249ad5逐字节一致，音频三文件保持5273。[完整来源绑定](source-bindings.json)保留原快照与最终来源，两个来源变更路径无交集，规则/数值/存档、素材及包锁未变。
 
-## 契约核对与证据边界
+## 静态契约与原证据
 
-静态核对：scoreImpact五参数签名与可用kind一致；音频仍由GameScene在await transferToAccumulator/arrival后调用。ScoreEnergy仅改脉冲峰值和拍长，kind/tier/chain分类推导不变；音频从已保存的正向事件获取完整乐句档位，不依赖视觉的multiplyOrdinal或新拍长。底栏AI状态推导与动作回调保持来源，英雄命名/共性窗口仍待交接。以上是静态兼容核对，**不是新的整合运行通过**。
+scoreImpact五参数和arrival调用点保持；视觉只改峰值/拍长，数字kind/tier/chain分类不变，音频按保存的正向事件取完整乐句档位。技能按钮裸名、共同标识、独立状态、draft及ariaLabel由GameScene owner接入，秦琼取消/AI流程由该来源保留。以上仅静态兼容检查，未签新的整合运行通过。
 
-[音频原证据](../score-melody-audio-2026-10-17/README.md)、[高光原范围](../score-posture-pressure-2026-10-17/README.md)和[底栏/接线证据](../hand-action-footer-2026-10-17/README.md)分别按各自SHA复用，不重跑、不将相互重叠的来源测试机械相加。视觉负责人本地shots不复制/上传；缺现场材料的范围继续保留。
+六个显示技能名为：苏轼余音袅袅、秦琼跃马冲阵、辛弃疾众里寻他、刘娥垂帘听政、文成公主文成和亲、花蕊夫人花蕊赏赐。专属说明/示例/提醒/回看和结算来源投影均按最终来源保留。手机结算来源若触及SettlementHighlights/ScoreReview等模块，须保留新名称投影与新布局，不能整文件择一覆盖。
 
-父级尝试播放根音WAV时，工具返回不支持audio input，**没有试听成功，heard=false**。3.56秒录音与频谱只证明软件输出；不签主观音阶/力度、实际BGM混音或设备听感。
+[音频113项及短WAV](../score-melody-audio-2026-10-17/README.md)、[高光51项与本地帧边界](../score-posture-pressure-2026-10-17/README.md)、[底栏组件/接线](../hand-action-footer-2026-10-17/README.md)、[名称226项与最终接线17项](../hero-skill-name-projection-2026-10-17/README.md)均只按各自SHA/范围引用，不重跑、不机械相加。视觉owner本地shots不复制或上传。父级播放WAV工具返回不支持audio input，没有试听成功，**heard=false**；参数与录音不代签主观音阶/力度、BGM混音或设备听感。
 
-## 等待精确来源
+## 等待与Boss接口
 
-- 01a147f7：商店推荐/模糊/风格及T18价差。
-- 01a147eb：六英雄显示名/技能共性，待GameScene最小接线。
-- 01a147ee：Boss备战页，待ShopScene可见信号后的音乐时序。
-- 01a147f5：手机结算。
+剩余最终来源：Shop/Boss（01a147f7/01a147ee）和手机结算（01a147f5）。Boss模块d77fd635已交Shop owner，由其正常merge并接线后一次纳入；当前不重复补丁。
 
-父级继续回传SHA后按唯一窗口顺序合入；当前不抢写这些文件，不提前运行最终集成验证，不查CI/域名或部署，不push main。
+接口为 `presentBossPreparation(dialog,run,{valid,onReveal,onFinish})`，返回shown/seen/not-applicable/deferred。Shop保存后首次render之后、其他弹窗之前调用，并删提前切boss；shown真正显示后onReveal才执行setScene('boss')及sourceCue('boss')，seen可保持boss，deferred保持原曲。valid检查原场景/controller/saved run，onFinish恢复店内展示；继续/取消仅收预告，不提交领域命令，去重不进存档。音频模块无需再改，集成时核对去重与恢复。
+
+当前不抢写未齐owner窗口，不查CI/域名或部署，不push main；最终远端整合版复看归父级dot。

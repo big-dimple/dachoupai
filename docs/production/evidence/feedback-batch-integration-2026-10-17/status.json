@@ -5,7 +5,7 @@
   "taskStatus": "in_progress",
   "phase": "PARTIAL_SOURCES_MERGED_WAITING_REMAINDER",
   "baseCommit": "212e23d547d4fcfdd886f9dfe80699318e77a738",
-  "integratedProductCommit": "689251951120d69d24daae5b8d91545f350d4ed3",
+  "integratedProductCommit": "565be54e0b588ddd98c54aae43d144637be9ff9e",
   "branch": "dev/feedback-batch-integration-20261017",
   "sources": [
     {
@@ -14,8 +14,8 @@
       "status": "MERGED_EXACT_OWNER_PATHS"
     },
     {
-      "name": "score-burst-footer",
-      "commit": "deee66633965266c558704bf05b419ea0e45e4c5",
+      "name": "score-burst-footer-hero-names",
+      "commit": "09249ad5c6e382c56f19a395cbde150d0e3b9153",
       "status": "MERGED_EXACT_OWNER_PATHS"
     }
   ],
@@ -30,7 +30,7 @@
       "name": "Audio/visual arrival API compatibility",
       "status": "PASS",
       "method": "Static inspection only",
-      "note": "scoreImpact(presentation,eventId,kind,tier,chain) unchanged. GameScene remains exact deee source; calls after transfer/arrival. ScoreEnergy changes only peak and beat durations, not numeric kind/tier/chain classification. Audio recipes, private voice budgets and source footprints remain audio-source exact."
+      "note": "Static only: scoreImpact signature/arrival route unchanged; finalGameScene exact09249ad5, SkillPresentation helper imported and bare name/common mark/separate status/draft/ariaLabel applied by owner, not integrator patch. ScoreEnergy classification unchanged; audio exact5273."
     },
     {
       "name": "New combined unit/type/build/browser run",
@@ -41,28 +41,22 @@
   "reusedEvidence": {
     "audio": "113 source contracts/type/build and3.56s SFX-only OfflineAudioContext render at exact audio source, not combined acceptance.",
     "visual": "Owner reports51 checks/type/build and local-only short frame observations in its README; no private/local screenshots copied or uploaded.",
-    "footer": "Owner75 component/layout cases and9 wiring cancellation cases/type/build as scoped in source README, not added into a new aggregate total."
+    "footer": "Owner75 component/layout cases and9 wiring cancellation cases/type/build as scoped in source README, not added into a new aggregate total.",
+    "heroNames": "Owner226 name-projection cases and17 final owner wiring cases/type/build, per final sourceREADME. Not rerun and not aggregated with other overlapping source counts."
   },
   "waitingSources": [
     {
-      "owner": "01a147f7",
-      "scope": "商店推荐/模糊/风格与T18价差",
-      "status": "WAITING_SHA"
-    },
-    {
-      "owner": "01a147eb",
-      "scope": "六英雄显示名/技能共性及GameScene最小接线",
-      "status": "WAITING_SHA"
-    },
-    {
-      "owner": "01a147ee",
-      "scope": "Boss备战页及ShopScene音乐时序接线",
-      "status": "WAITING_SHA"
+      "owner": "01a147f7 / 01a147ee",
+      "scope": "Shop recommendation/blur/style/T18 plus Boss preparation module and actual music timing wiring",
+      "status": "WAITING_FINAL_SHOP_SHA",
+      "bossModuleCandidate": "d77fd635c91b52d71ebbceaa635e2d5ae10825a0",
+      "instruction": "Wait combined Shop source; no standalone duplicate patch/merge."
     },
     {
       "owner": "01a147f5",
-      "scope": "手机结算",
-      "status": "WAITING_SHA"
+      "scope": "Mobile settlement",
+      "status": "WAITING_SHA",
+      "conflictRule": "Keep final hero-name projection in SettlementHighlights/ScoreReview and incoming layout; resolve locally, never choose one whole old module."
     }
   ],
   "hearing": {
@@ -76,5 +70,26 @@
     "main": "PENDING until remaining sources and concentrated integration checks complete",
     "authorization": "User authorized today fixes; latest parent explicitly says no main until all source owners deliver.",
     "restrictions": "No force push, CI/domain query, deployment, natural long game or repeated matrix."
+  },
+  "bossContract": {
+    "status": "RECEIVED_NOT_YET_INTEGRATED",
+    "api": "presentBossPreparation(dialog,run,{valid,onReveal,onFinish})",
+    "returns": [
+      "shown",
+      "seen",
+      "not-applicable",
+      "deferred"
+    ],
+    "timing": "Shop owner calls after saved-state first render and before other dialogs, removes eager boss switch. shown: actual visible onReveal then setScene(boss)+sourceCue(boss); seen may keepboss; deferred keeps previous music. valid guards scene/controller/saved run; onFinish restores shop display.",
+    "state": "Continue/cancel only closes preview; no domain command, de-dup not saved.",
+    "audioChange": "None needed."
+  },
+  "heroSkillNames": {
+    "苏轼": "余音袅袅",
+    "秦琼": "跃马冲阵",
+    "辛弃疾": "众里寻他",
+    "刘娥": "垂帘听政",
+    "文成公主": "文成和亲",
+    "花蕊夫人": "花蕊赏赐"
   }
 }
