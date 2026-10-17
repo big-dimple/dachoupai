@@ -1,4 +1,4 @@
-import {heroSkillName,heroSkillTitle} from './HeroSkillPresentation';
+import {heroSkillName,heroSkillTitle,type TouyeSkillPhase} from './HeroSkillPresentation';
 import {showTouyeDiscardChoice} from './TouyeDiscardChoice';
 import {carriedToolAtEntry,carriedToolAtHand,type ToolCarryIntent} from './ToolCarryIntent';
 import {heroText} from './HeroIdentity';
@@ -214,6 +214,7 @@ export class GameScene extends Phaser.Scene {
   private get handsLeft(): number { return this.run.stage?.handsLeft ?? 0; }
   private get heat(): string { return this.run.stage?.heat ?? '0'; }
   private playing = false;
+  private touyeSkillPhase?:TouyeSkillPhase;
   private ownedInput?:OwnedJokerInput;
   private ownedDrag?:OwnedJokerDragVisual;
   private lifecycle=0;
@@ -297,6 +298,7 @@ export class GameScene extends Phaser.Scene {
 
   private carriedTool?:ToolCarryIntent;
   async create(data?:{carriedTool?:ToolCarryIntent;preparedBossOwner?:object}): Promise<void> {
+    this.touyeSkillPhase=undefined;
     this.carriedTool=undefined;this.waitingForStage=false;this.reopenStageDirectory=undefined;this.enterPreparedStage=undefined;this.openStagePrograms=undefined;
     // Phaser reuses this Scene instance. Its former controls were destroyed on shutdown.
     this.controlsLive=false;this.candidates.dispose();this.aiCandidates.dispose();this.aiCursor=undefined;this.candidateGhost=undefined;this.candidateUndo=undefined;
@@ -323,6 +325,7 @@ export class GameScene extends Phaser.Scene {
     };
     window.addEventListener('dachoupai-presentation',settings);
     this.events.once('shutdown',()=>{
+      this.touyeSkillPhase=undefined;
       this.game.canvas.removeAttribute('data-hand-input');this.stopHandHint();window.removeEventListener('pointerdown',this.pointerFocus,true);document.removeEventListener('focusin',this.focusFeedback);document.removeEventListener('focusout',this.focusFeedback);window.removeEventListener('blur',this.stopHandHint);document.removeEventListener('visibilitychange',this.hintVisibility);
       this.ownedInput?.destroy();this.ownedInput=undefined;if(this.ownedDrag?.saving)this.input.enabled=true;this.ownedDrag?.destroy();this.ownedDrag=undefined;
       this.candidates.dispose();this.aiCandidates.dispose();this.aiCursor=undefined;this.candidateGhost=undefined;this.candidateUndo=undefined;this.handInput?.destroy();this.handInput=undefined;this.assistIds=[];this.assistGestureStart=undefined;this.controlsLive=false;this.stopScoreFire();
@@ -1133,7 +1136,7 @@ export class GameScene extends Phaser.Scene {
   }
   private updateHeroControl():void {
     if(!this.roleFrame?.active)return;
-    const heroCue=heroAbilityCue(this.run,this.selectionPreview(),[...this.selectedIds],this.assistProfile&&assistCandidates(this.assistInput(),r2AssistAvailability(this.run).available).length>0,{erxiangTargetId:this.erxiangTargetId,xiemuBurn:this.xiemuBurn,azaoRelease:this.azaoRelease,assistCount:this.assistIds.length});
+    const heroCue=heroAbilityCue(this.run,this.selectionPreview(),[...this.selectedIds],this.assistProfile&&assistCandidates(this.assistInput(),r2AssistAvailability(this.run).available).length>0,{erxiangTargetId:this.erxiangTargetId,xiemuBurn:this.xiemuBurn,azaoRelease:this.azaoRelease,assistCount:this.assistIds.length,touyePhase:this.touyeSkillPhase});
     const heroChosen=!!(this.erxiangTargetId||this.azaoRelease||this.xiemuBurn||this.assistIds.length);
     if(this.assistProfile&&heroChosen&&!this.presentation&&!this.playing)this.roleText.setText(heroText('阿默·已选助攻×')+(this.assistIds.length===3?4:2));
     if(heroCue&&!this.presentation&&!this.playing&&!heroChosen)this.roleText.setText(heroCue.label);
@@ -1143,7 +1146,7 @@ export class GameScene extends Phaser.Scene {
     this.roleFrame.setData('abilityOpportunity',heroOpportunity&&!heroChosen).setData('abilityAvailable',heroAvailable).setData('abilityChosen',heroChosen&&this.ready).setData('abilityState',heroCue?.state??'unavailable');
     if(this.heroActionButton){
       this.heroActionButton.setData('abilityAvailable',heroAvailable).setData('abilityChosen',heroChosen&&this.ready).setData('abilityState',heroCue?.state??'unavailable').setData('ariaLabel',heroCue?.ariaLabel??'');
-      this.view.setEnabled(this.heroActionButton,this.ready&&(heroOpportunity||!!this.pendingRefill||heroChosen));
+      this.view.setEnabled(this.heroActionButton,this.ready&&heroCue?.actionable!==false&&(heroOpportunity||!!this.pendingRefill||heroChosen));
       (this.heroActionButton.getData('label') as Phaser.GameObjects.Text).setText(heroCue?.label??this.heroActionLabel());
       (this.heroActionButton.getData('skillStatus') as Phaser.GameObjects.Text|undefined)?.setText(heroCue?.status??'').setColor(heroCue?.state==='available'||heroCue?.state==='selected'?C.jade:heroCue?.state==='pending'?C.red:C.mutedInk);
     }
@@ -1642,7 +1645,7 @@ export class GameScene extends Phaser.Scene {
   private async discardSelected(trick=false,bet?:TouyeBet,seq?:number,committedIds?:string[]):Promise<void> {
     if(this.pendingTouye)return;
     if(this.pendingRefill){if(!this.ready)return;this.refillHidden=!this.refillHidden;this.selectedIds.clear();this.statusMessage='';this.render();return;}
-    if(!this.ready||!(committedIds??[...this.selectedIds]).length||this.run.stage!.discardsLeft<r2DiscardCost(this.run))return;this.clearHover();this.cancelAiCandidates();this.playing=true;this.statusMessage='';this.updateControls();const lifecycle=this.lifecycle,intent=++this.intent,previousRun=this.run,selectedIds=committedIds??[...this.selectedIds],previousIds=[...this.run.handOrder],beforeDiscards=this.run.stage!.discardsLeft,spentDiscards=beforeDiscards-r2DiscardCost(this.run);
+    if(!this.ready||!(committedIds??[...this.selectedIds]).length||this.run.stage!.discardsLeft<r2DiscardCost(this.run))return;this.clearHover();this.cancelAiCandidates();this.touyeSkillPhase=bet?'drawing':undefined;this.playing=true;this.statusMessage='';this.updateControls();const lifecycle=this.lifecycle,intent=++this.intent,previousRun=this.run,selectedIds=committedIds??[...this.selectedIds],previousIds=[...this.run.handOrder],beforeDiscards=this.run.stage!.discardsLeft,spentDiscards=beforeDiscards-r2DiscardCost(this.run);
     try {
       const result=await dispatchRun(this,{type:'DiscardHand',selectedIds,...(trick?{laohuanTrick:true}:{}),...(bet?{touyeBet:bet}:{})},seq);
       if(!this.alive(lifecycle,intent))return;
@@ -1661,7 +1664,7 @@ export class GameScene extends Phaser.Scene {
       this.erxiangTargetId=null;this.azaoRelease=false;this.xiemuBurn=0;this.selectedIds.clear();this.assistIds=[];this.assistGestureStart=undefined;this.statusMessage=bet||this.pendingRefill?'':result.events.flatMap(event=>event.type==='joker-transaction'?[transactionGrowthChange(previousRun,result.state,event,true)].filter(Boolean):[])[0]??(trick?heroSkillTitle('laohuan')+'已保存 · 候选不足，全留':'已弃 '+selectedIds.length+' 张 · '+(this.deck.length?'补抽完成':'牌堆已空'));this.updateHud();this.renderHand();this.revealDrawnCards(previousIds);
       if(trick&&!this.pendingRefill){const kept=this.run.handOrder.filter(id=>!previousRun.handOrder.includes(id));await this.showLaohuanPayoff(kept,0,lifecycle,intent);}
       if(this.run.phase==='run-lost')this.finishStage(false);
-    } finally {if(this.alive(lifecycle,intent)&&['await-input','pending-refill'].includes(this.run.phase)){this.playing=false;this.refreshSelection();}}
+    } finally {if(this.alive(lifecycle,intent)){this.touyeSkillPhase=undefined;if(['await-input','pending-refill'].includes(this.run.phase)){this.playing=false;this.refreshSelection();}else this.updateHeroControl();}}
   }
 
   private async showLaohuanPayoff(ids:readonly string[],looked:number,lifecycle:number,intent:number):Promise<void> {
@@ -1697,7 +1700,7 @@ export class GameScene extends Phaser.Scene {
       });return;
     }
     const erxiangTargetId=this.erxiangTargetId,xiemuBurn=this.xiemuBurn,azaoRelease=this.azaoRelease,selectedIds=[...this.selectedIds],assistIds=[...this.assistIds],lifecycle=this.lifecycle,intent=++this.intent,beforeHeat=this.heat,previousTrace=this.run.lastTrace,beforeHands=this.handsLeft,beforeGold=this.run.gold;
-    this.clearHover();this.cancelAiCandidates();this.playing=true;this.statusMessage='';this.updateControls();
+    this.clearHover();this.cancelAiCandidates();this.touyeSkillPhase=this.pendingTouye?'settling':undefined;this.playing=true;this.statusMessage='';this.updateControls();
     const selectedViews=this.cardViews.filter(v=>selectedIds.includes(v.card.id)||assistIds.includes(v.card.id));
     try {
       const result=await dispatchRun(this,assistIds.length?{type:'PlayAssistedHand',selectedIds,assistIds}:{type:'PlayHand',selectedIds,...(usesErxiangHandoff(this.run)&&erxiangTargetId?{erxiangTargetId}:{}),...(usesAzaoCharge(this.run)?{azaoRelease}:{}),...(usesXiemuBurn(this.run)&&xiemuBurn?{xiemuBurn:xiemuBurn as 10|20|30}:{})});
@@ -1707,7 +1710,7 @@ export class GameScene extends Phaser.Scene {
       const event=result.events.find(e=>e.type==='hand-scored-r2');if(!event||event.type!=='hand-scored-r2')throw Error('Successful play missing score event');
       await this.presentTrace(event.score,result.state,selectedViews,lifecycle,intent,beforeHeat,false,previousTrace,beforeHands,beforeGold);
     } finally {
-      if(this.alive(lifecycle,intent)&&this.run.phase==='await-input'&&!this.presentation){this.playing=false;this.refreshSelection();}
+      if(this.alive(lifecycle,intent)){this.touyeSkillPhase=undefined;if(this.run.phase==='await-input'&&!this.presentation){this.playing=false;this.refreshSelection();}else this.updateHeroControl();}
     }
   }
 

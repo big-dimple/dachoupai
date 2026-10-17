@@ -59,10 +59,13 @@ export class DetailDialog {
     const afterClose=this.afterClose;this.afterClose=undefined;afterClose?.();
     if(this.returnFocus?.isConnected)this.returnFocus.focus({preventScroll:true});this.returnFocus=undefined;
   }
-  open(title:string,body:string,actions:DialogAction[]=[],options:DialogOptions={}):HTMLDialogElement {
-    this.close();this.afterClose=options.onClose;this.returnFocus=document.activeElement instanceof HTMLElement?document.activeElement:undefined;
+  open(title:string,body:string,actions:DialogAction[]=[],options:DialogOptions={},reuse?:HTMLDialogElement):HTMLDialogElement {
+    const retained=reuse&&this.active(reuse)?reuse:undefined,returnFocus=this.returnFocus;
+    if(retained){this.stopArt?.();this.attachFallback=undefined;this.refreshArt=undefined;retained.replaceChildren();for(const key of Object.keys(retained.dataset))delete retained.dataset[key];}
+    else this.close();
+    this.afterClose=options.onClose;this.returnFocus=retained?returnFocus:document.activeElement instanceof HTMLElement?document.activeElement:undefined;
     this.rarity=options.rarity;const cleanups:(()=>void)[]=[];this.stopArt=()=>{for(const cleanup of cleanups)cleanup();};
-    const dialog=document.createElement('dialog'),header=document.createElement('header'),heading=document.createElement('h2'),content=document.createElement('p'),layout=document.createElement('div'),copy=document.createElement('div'),row=document.createElement('div'),status=document.createElement('p');
+    const dialog=retained??document.createElement('dialog'),header=document.createElement('header'),heading=document.createElement('h2'),content=document.createElement('p'),layout=document.createElement('div'),copy=document.createElement('div'),row=document.createElement('div'),status=document.createElement('p');
     if(options.shopContext)dialog.dataset.shopContext=options.shopContext;
     dialog.className='detail-dialog'+(options.ability?.plain?' detail-dialog--plain-joker':'');dialog.setAttribute('aria-label',title);heading.textContent=title;content.textContent=body;content.className='dialog-body';row.className='dialog-actions';
     status.className='dialog-status';status.setAttribute('role','status');status.hidden=true;
@@ -83,7 +86,7 @@ export class DetailDialog {
         const artSource=portraitCardArt(portrait);let zoom:HTMLButtonElement|undefined;
         if(artSource){
           zoom=document.createElement('button');const badge=document.createElement('span');zoom.type='button';zoom.className='dialog-card-zoom-trigger';zoom.setAttribute('aria-label','放大鉴赏'+artSource.name);zoom.setAttribute('aria-haspopup','dialog');
-          badge.className='dialog-card-zoom-badge';badge.textContent='放大鉴赏';zoom.append(badge);visual.append(zoom);
+          badge.className='dialog-card-zoom-badge';badge.textContent='点图放大';badge.setAttribute('aria-hidden','true');visual.append(zoom);frame.append(badge);
           let opened:HTMLDialogElement|undefined;zoom.onclick=event=>{event.preventDefault();event.stopPropagation();zoom!.focus({preventScroll:true});opened=openCardArtZoom(artSource.id,portrait.alt);};cleanups.push(()=>{zoom!.onclick=null;opened?.close();});
         }
         image.width=615;image.height=768;
@@ -195,15 +198,17 @@ export class DetailDialog {
     if(options.keepsake&&options.keepsakeCompact)intro.append(compactBuildKeepsakeView(options.keepsake,cleanups,inspectHero));
     if(options.collapseRules||options.ability){const rules=document.createElement('details'),summary=document.createElement('summary'),text=document.createElement('p');rules.className='card-rules';summary.textContent=options.rulesLabel??'规则与操作';text.textContent=[options.ability?.plain?.details??options.ability?.rules,body].filter(Boolean).join('\n\n');rules.append(summary,text);copy.append(rules,status);}
     else copy.append(content,status);
-    const scroll=document.createElement('div');scroll.className='dialog-scroll';if(intro.childElementCount)scroll.append(intro);for(const selector of ['figcaption','.detail-art-status','.detail-art-retry'])for(const node of layout.querySelectorAll(selector))scroll.append(node);scroll.append(copy);layout.append(scroll);dialog.append(layout,row);document.body.append(dialog);
-    dialog.addEventListener('cancel',event=>{event.preventDefault();this.close(dialog);});
-    dialog.addEventListener('keydown',event=>{
+    const scroll=document.createElement('div');scroll.className='dialog-scroll';if(intro.childElementCount)scroll.append(intro);for(const selector of ['figcaption','.detail-art-status','.detail-art-retry'])for(const node of layout.querySelectorAll(selector))scroll.append(node);scroll.append(copy);layout.append(scroll);dialog.append(layout,row);if(!retained)document.body.append(dialog);
+    const cancel=(event:Event)=>{event.preventDefault();this.close(dialog);};
+    const keydown=(event:KeyboardEvent)=>{
       if(event.key!=='Tab')return;
       const controls=[...dialog.querySelectorAll<HTMLElement>('button,input,select,textarea,a[href],summary,[tabindex]')].filter(element=>element.tabIndex>=0&&!element.matches(':disabled')&&element.getClientRects().length>0&&getComputedStyle(element).visibility!=='hidden');
       const first=controls[0],last=controls[controls.length-1];
       if(event.shiftKey&&document.activeElement===first||!event.shiftKey&&document.activeElement===last){event.preventDefault();(event.shiftKey?last:first)?.focus({preventScroll:true});}
-    });
-    dialog.addEventListener('pointerup',event=>{this.lastPointer={x:event.clientX,y:event.clientY};});
-    dialog.showModal();this.dialog=dialog;cleanups.push(observeSuitSymbols(dialog));close.focus({preventScroll:true});dialog.scrollTop=0;return dialog;
+    };
+    const pointerup=(event:PointerEvent)=>{this.lastPointer={x:event.clientX,y:event.clientY};};
+    dialog.addEventListener('cancel',cancel);dialog.addEventListener('keydown',keydown);dialog.addEventListener('pointerup',pointerup);
+    cleanups.push(()=>{dialog.removeEventListener('cancel',cancel);dialog.removeEventListener('keydown',keydown);dialog.removeEventListener('pointerup',pointerup);});
+    if(!retained)dialog.showModal();this.dialog=dialog;cleanups.push(observeSuitSymbols(dialog));close.focus({preventScroll:true});dialog.scrollTop=0;return dialog;
   }
 }
