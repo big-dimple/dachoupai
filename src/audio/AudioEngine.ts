@@ -3,12 +3,15 @@ import bgmManifest from '../../public/assets/audio/bgm/manifest.json';
 import {DEFAULT_AUDIO} from './preferences';
 import {FOLEY,FOLEY_SAMPLES,type FoleyKind,type Layer} from './foley';
 import {sampleBody,type SampleBody} from './sampleBody';
-import {awardForScore,chainRate,EFFECT_VOICE_BUDGET,ACCENT_TAIL_FLOOR} from './mixPolicy';
+import {awardForScore,chainRate,scoreStrikeRate,MAX_RECORDED_RATE,EFFECT_VOICE_BUDGET,ACCENT_TAIL_FLOOR} from './mixPolicy';
 
 export type AudioBus = 'master' | 'music' | 'sfx' | 'ui';
 export type AudioScene = 'menu' | 'shop' | 'table' | 'boss' | 'success' | 'failure';
 export type FailureCue = { runId: string; commandSeq: number };
 type VoiceBus = Exclude<AudioBus, 'master'>;
+type MusicTrack = { title: string; runtimePath: string };
+type MusicSlot = { element: HTMLAudioElement; node: MediaElementAudioSourceNode; gain: GainNode;
+  track?: MusicTrack; cancelAttempt?: () => void };
 type Voice = { source: AudioScheduledSourceNode; gain: GainNode; filter?: BiquadFilterNode; bus: VoiceBus; scoreAccent?: boolean; roll?: ScoreRollKind; semantic?: FoleyKind; startsAt?:number; endsAt?:number; priority?:number; peak?:number };
 export type ScoreSourceCue = 'card' | 'held' | 'character' | 'joker' | 'boss' | 'retrigger';
 export type ScoreRollKind = 'heat' | 'mult' | 'total';
@@ -36,6 +39,8 @@ const MUSIC_HEADROOM=.18; // Internal mix, not a preference/slider migration.
 const SAMPLE_CONCURRENCY = 3;
 const SAMPLE_TIMEOUT_MS = 5000; // Fetch, response body and decode share one deadline.
 const SAMPLE_MAX_ATTEMPTS = 3; // Session budget; repeated gestures cannot restart it.
+const MUSIC_START_TIMEOUT_MS = 8000;
+const MUSIC_CROSSFADE_SECONDS = .25;
 
 /** One application context. The app owns gesture/visibility listeners and persistence. */
 export class AudioEngine {
@@ -57,19 +62,25 @@ export class AudioEngine {
   private unlocked = false;
   private unlockTask?: Promise<void>;
   private scene: AudioScene = 'menu';
-  private currentTrack?: { title: string; runtimePath: string };
+  private currentTrack?: MusicTrack;
   private sceneTrackIndices = new Map<AudioScene, number>();
-  private musicElement?: HTMLAudioElement;
-  private musicNode?: MediaElementAudioSourceNode;
-  private musicTask?: Promise<void>;
+  // Two streaming slots at most: keep the old performance until the new one can play.
+  private readonly musicSlots: MusicSlot[] = [];
+  private activeMusic?: MusicSlot;
+  private pendingMusic?: MusicSlot;
+  private musicFadeTimer?: ReturnType<typeof setTimeout>;
   private musicGeneration = 0;
-  private musicFailed = false;
+  private readonly musicFailures = new Set<string>();
+  private musicRetryNeeded = false;
+  private get musicElement(): HTMLAudioElement | undefined { return (this.pendingMusic ?? this.activeMusic)?.element; }
   private duckUntil = 0;
   private duckFloor=.35;
   private readonly failureCues = new WeakSet<FailureCue>();
 
   /** Retry a failed/interrupted unlock on a later gesture without resuming every ordinary click. */
-  get needsGestureUnlock(): boolean { return !this.context || this.context.state !== 'running'; }
+  get needsGestureUnlock(): boolean {
+    return !this.context || this.context.state !== 'running' || this.musicRetryNeeded && this.canPlay('music');
+  }
 
   get muted(): boolean { return this.masterMuted; }
   set muted(value: boolean) {
@@ -86,7 +97,7 @@ export class AudioEngine {
     if (value) this.duckUntil = 0;
     this.applyVolume('music');
     if (value) this.stopMusic();
-    else this.startMusic();
+    else if (this.unlocked) void this.unlock();
   }
   setVolume(bus: AudioBus, value: number): void {
     // The removed UI slider remains a compatible alias of the effects route.
@@ -114,6 +125,9 @@ export class AudioEngine {
     // already-resolved no-op task that would swallow that synchronous second call.
     if (this.masterMuted || this.suspended || this.hidden()) return Promise.resolve();
     if (this.unlockTask) return this.unlockTask;
+    // A denial/network fault is scoped to this request, never to the application.
+    // One later gesture/foreground retry gets a fresh finite playlist budget.
+    if (this.musicRetryNeeded) { this.musicFailures.clear(); this.musicRetryNeeded = false; }
     const pending = this.enableAudio();
     this.unlockTask = pending;
     void pending.then(() => { if (this.unlockTask === pending) this.unlockTask = undefined; });
@@ -123,11 +137,12 @@ export class AudioEngine {
   setScene(scene: AudioScene): void {
     if (scene === this.scene) return;
     this.scene = scene;
+    this.musicFailures.clear(); this.musicRetryNeeded = false;
     this.stopScoreFire();
     this.stopVoices('sfx');
     this.duckUntil = 0;
     this.applyVolume('music');
-    // The same performance continues across title, shop, table and intermission.
+    // Matching scene tracks continue; different tracks use the bounded music handoff.
     this.startMusic();
   }
 
@@ -316,7 +331,7 @@ export class AudioEngine {
   scoreImpact(presentation:object,eventId:string,kind:'add'|'key'|'multiply'|'award'|'flight',tier=0,chain=0):void {
     let seen=this.scoreCues.get(presentation);if(!seen){seen=new Set();this.scoreCues.set(presentation,seen);}const id='recorded/'+eventId+'/'+kind;
     if(seen.has(id)||seen.size>=1024)return;seen.add(id);if(!this.canPlay('sfx'))return;
-    const rate=kind==='multiply'?chainRate(chain):1;
+    const rate=scoreStrikeRate(presentation,eventId,kind,chain);
     const sound=kind==='award'?awardForScore(presentation):kind;
     const voices=this.cue(sound,'sfx',rate,0,kind==='add'||kind==='flight'?1:1+bounded(tier,3)*.035);
     for(const voice of voices)voice.scoreAccent=true;
@@ -328,7 +343,7 @@ export class AudioEngine {
     for(const voice of this.voices)if(voice.scoreAccent)this.release(voice);
   }
 
-  getTrackForScene(scene: AudioScene): { title: string; runtimePath: string } {
+  getTrackForScene(scene: AudioScene): MusicTrack {
     const list = (bgmManifest.tracks as BGMTrackMeta[]).filter(t => t.scenes.includes(scene));
     if (!list.length) return { title: TRANSITION_MUSIC, runtimePath: RECORDING_PATH };
     const index = this.sceneTrackIndices.get(scene) ?? 0;
@@ -337,63 +352,136 @@ export class AudioEngine {
   }
 
   preloadSceneMusic(scene: AudioScene): void {
-    if (typeof window === 'undefined') return;
-    const list = (bgmManifest.tracks as BGMTrackMeta[]).filter(t => t.scenes.includes(scene));
-    for (const track of list) {
-      try {
-        const audio = new Audio();
-        audio.preload = 'metadata';
-        audio.src = `${import.meta.env.BASE_URL}${track.runtimePath}`;
-      } catch { /* Background preload failure is silent. */ }
-    }
+    // Scene hints may reuse metadata, never allocate an unowned media/request fan-out.
+    // New recordings stream through the gesture-gated, bounded startMusic handoff.
+    const path = this.getTrackForScene(scene).runtimePath;
+    const slot = this.musicSlots.find(s => s.track?.runtimePath === path);
+    if (slot) slot.element.preload = 'metadata';
   }
 
   private startMusic(): void {
-    if (!RECORDING_PATH || this.musicFailed || !this.canPlay('music') || this.context!.state !== 'running') return;
+    if (!this.canPlay('music') || this.context!.state !== 'running') return;
+    const track = this.getTrackForScene(this.scene);
+    if (this.musicFailures.has(track.runtimePath)) return;
+    if (this.pendingMusic?.track?.runtimePath === track.runtimePath) return;
+    const active = this.activeMusic;
+    if (active?.track?.runtimePath === track.runtimePath && !active.element.paused && !active.element.ended) {
+      this.cancelMusicTransition();
+      this.configureMusicLoop(active);
+      return;
+    }
+    this.cancelMusicTransition();
+    const generation = this.musicGeneration;
+    let slot: MusicSlot | undefined;
     try {
-      const track = this.getTrackForScene(this.scene);
-      this.currentTrack = track;
-      const targetSrc = `${import.meta.env.BASE_URL}${track.runtimePath}`;
-      if (!this.musicElement) {
-        // Streaming keeps the music decode buffer out of application memory on phones.
-        // Neither an element nor a request exists before a real gesture and an open bus.
+      slot = this.musicSlots.find(s => s.track?.runtimePath === track.runtimePath && s !== active)
+        ?? (active?.track?.runtimePath === track.runtimePath ? active : this.musicSlots.find(s => s !== active));
+      if (!slot) {
+        // No music element/request before a gesture and an open bus. Reuse both slots.
         const element = new Audio();
-        element.preload = 'none'; element.loop = true; element.volume = 1;
+        element.preload = 'none'; element.volume = 1;
         element.playbackRate = 1; element.setAttribute('playsinline', '');
-        const node = this.context!.createMediaElementSource(element);
-        node.connect(this.gains!.music);
-        element.onerror = () => { this.musicFailed = true; this.stopMusic(); };
-        element.onended = () => {
-          const list = (bgmManifest.tracks as BGMTrackMeta[]).filter(t => t.scenes.includes(this.scene));
-          if (list.length > 1) {
-            const next = ((this.sceneTrackIndices.get(this.scene) ?? 0) + 1) % list.length;
-            this.sceneTrackIndices.set(this.scene, next);
-            this.startMusic();
-          }
-        };
-        element.src = targetSrc;
-        this.musicElement = element; this.musicNode = node;
-      } else if (this.musicElement.src !== targetSrc && !this.musicElement.src.endsWith(track.runtimePath)) {
-        this.musicElement.src = targetSrc;
+        const node = this.context!.createMediaElementSource(element), gain = this.context!.createGain();
+        gain.gain.setValueAtTime(0, this.context!.currentTime);
+        node.connect(gain); gain.connect(this.gains!.music);
+        slot = {element, node, gain}; this.musicSlots.push(slot);
       }
-      const element = this.musicElement;
-      if (this.musicTask || !element.paused) return;
-      const generation = this.musicGeneration;
-      const pending = element.play();
-      this.musicTask = pending;
-      void pending.then(() => {
-        // A mute/background transition can happen while browser playback is pending.
-        if (!this.canPlay('music')) element.pause();
-      }).catch(() => { /* A blocked/failed recording leaves the game silently usable. */ }).finally(() => {
-        if (this.musicTask === pending) this.musicTask = undefined;
-        // Recover a fast pause/resume race once; a plain playback denial is not retried.
-        if (generation !== this.musicGeneration && this.canPlay('music')) this.startMusic();
-      });
-    } catch { /* No synthetic melody replaces an unavailable recording. */ }
+      const target = slot, element = target.element;
+      if (target.track?.runtimePath !== track.runtimePath || element.error) {
+        element.src = `${import.meta.env.BASE_URL}${track.runtimePath}`;
+      } else if (element.ended) element.currentTime = 0;
+      target.track = track; this.pendingMusic = target; this.configureMusicLoop(target);
+      let waiting = true;
+      const current = () => waiting && generation === this.musicGeneration && this.pendingMusic === target;
+      const finish = () => { waiting = false; clearTimeout(timer); target.cancelAttempt = undefined; };
+      const fail = (allowNext = true) => {
+        if (!current()) return;
+        finish(); this.failMusic(target, track, allowNext);
+      };
+      const timer = setTimeout(() => fail(), MUSIC_START_TIMEOUT_MS);
+      target.cancelAttempt = finish;
+      element.onerror = () => fail();
+      void Promise.resolve(element.play()).then(() => {
+        if (!current()) return; // Obsolete promises cannot pause or promote a reused slot.
+        finish();
+        if (!this.canPlay('music')) { this.stopMusic(); return; }
+        const previous = this.activeMusic;
+        this.pendingMusic = undefined; this.activeMusic = target; this.currentTrack = track;
+        this.musicRetryNeeded = false;
+        // Slot identity alone is insufficient: later requests can reuse the same element.
+        const ownsPlayback = () => this.activeMusic === target && target.track === track;
+        element.onerror = () => {
+          if (ownsPlayback() && !this.pendingMusic) this.failMusic(target, track);
+        };
+        element.onended = () => {
+          if (!ownsPlayback() || this.pendingMusic || !this.canPlay('music')) return;
+          const list = (bgmManifest.tracks as BGMTrackMeta[]).filter(t => t.scenes.includes(this.scene));
+          if (list.length > 1) this.sceneTrackIndices.set(this.scene, ((this.sceneTrackIndices.get(this.scene) ?? 0) + 1) % list.length);
+          this.startMusic();
+        };
+        this.musicLevel(target, 1, MUSIC_CROSSFADE_SECONDS);
+        if (previous && previous !== target) {
+          this.musicLevel(previous, 0, MUSIC_CROSSFADE_SECONDS);
+          this.musicFadeTimer = setTimeout(() => {
+            if (generation === this.musicGeneration) this.retireMusic(previous);
+            this.musicFadeTimer = undefined;
+          }, MUSIC_CROSSFADE_SECONDS * 1000);
+        }
+      }).catch(error => fail(error?.name !== 'NotAllowedError' && error?.name !== 'AbortError'));
+    } catch {
+      if (slot) this.failMusic(slot, track, false);
+      else this.musicRetryNeeded = true;
+    }
+  }
+  private configureMusicLoop(slot: MusicSlot): void {
+    // Native looping suppresses ended: only one-track scenes may use it.
+    slot.element.loop = (bgmManifest.tracks as BGMTrackMeta[]).filter(t => t.scenes.includes(this.scene)).length <= 1;
+  }
+  private musicLevel(slot: MusicSlot, level: number, duration = 0): void {
+    const now = this.context!.currentTime, param = slot.gain.gain;
+    if (typeof param.cancelAndHoldAtTime === 'function') param.cancelAndHoldAtTime(now);
+    else { param.cancelScheduledValues(now); param.setValueAtTime(param.value, now); }
+    if (duration) param.linearRampToValueAtTime(level, now + duration);
+    else param.setValueAtTime(level, now);
+  }
+  private retireMusic(slot: MusicSlot): void {
+    slot.cancelAttempt?.(); slot.element.onerror = null; slot.element.onended = null;
+    this.musicLevel(slot, 0); slot.element.pause();
+  }
+  private cancelMusicTransition(): void {
+    this.musicGeneration++;
+    clearTimeout(this.musicFadeTimer); this.musicFadeTimer = undefined;
+    for (const slot of this.musicSlots) {
+      if (slot !== this.activeMusic) this.retireMusic(slot);
+      else {
+        if (slot.cancelAttempt) { slot.cancelAttempt(); slot.element.pause(); }
+        if (!slot.element.paused) this.musicLevel(slot, 1, .02);
+      }
+    }
+    this.pendingMusic = undefined;
+  }
+  private failMusic(slot: MusicSlot, track: MusicTrack, allowNext = true): void {
+    this.retireMusic(slot);
+    // Abort the failed/stalled request as well as its play promise.
+    slot.element.removeAttribute('src'); slot.element.load(); slot.track = undefined;
+    if (this.pendingMusic === slot) this.pendingMusic = undefined;
+    if (this.activeMusic === slot) this.activeMusic = undefined;
+    this.musicFailures.add(track.runtimePath);
+    const list = (bgmManifest.tracks as BGMTrackMeta[]).filter(t => t.scenes.includes(this.scene));
+    const index = this.sceneTrackIndices.get(this.scene) ?? 0;
+    if (allowNext) for (let offset = 1; offset <= list.length; offset++) {
+      const next = (index + offset) % list.length;
+      if (!this.musicFailures.has(list[next].runtimePath)) {
+        this.sceneTrackIndices.set(this.scene, next); this.startMusic(); return;
+      }
+    }
+    this.musicRetryNeeded = true; // Retry on a later gesture/scene, never spin forever.
   }
   private stopMusic(): void {
-    this.musicGeneration++;
-    try { this.musicElement?.pause(); } catch { /* Device teardown. */ }
+    try {
+      this.cancelMusicTransition();
+      for (const slot of this.musicSlots) this.retireMusic(slot);
+    } catch { /* Device teardown. */ }
   }
 
   /** One short recorded texture per committed roll; no synthetic bed or tone. */
@@ -413,7 +501,7 @@ export class AudioEngine {
       const context=this.context!,source=context.createBufferSource(),gain=context.createGain(),time=context.currentTime+offset;
       // cloth2 has an 80ms quiet lead; start at its recorded cloth body, not silence.
       const body=this.sampleBodies.get(name),sampleOffset=body?.offset??(name==='cloth2'?.08:0);
-      const speed=Math.max(.65,Math.min(1.4,rate)),length=Math.min(Math.max(.035,duration),(buffer.duration-sampleOffset)/speed);
+      const speed=Number.isFinite(rate)?Math.max(.65,Math.min(MAX_RECORDED_RATE,rate)):1,length=Math.min(Math.max(.035,duration),(buffer.duration-sampleOffset)/speed);
       if(!Number.isFinite(length)||length<=0)return;
       source.buffer=buffer;source.playbackRate.value=speed;
       const peak=bounded(volume,.14)*SOURCE_GAIN[bus]*(body?.gain??1),attack=Math.min(length*.2,shape?.attack??.005),hold=Math.max(attack,length*(shape?.hold??.55));

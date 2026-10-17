@@ -1,0 +1,8 @@
+FAIL native-restart-1366 AssertionError [ERR_ASSERTION]: actual add sample rate 1 should be 1.12 at scoring-card 1
+FAIL native-restart-390 AssertionError [ERR_ASSERTION]: actual add sample rate 1 should be 1.12 at scoring-card 1
+FAIL slow-first-track-native-start page.waitForFunction: Timeout 6000ms exceeded.
+FAIL media-error-next-scene page.waitForFunction: Timeout 6000ms exceeded.
+FAIL media-error-same-scene-gesture page.waitForFunction: Timeout 6000ms exceeded.
+FAIL slow-next-track-keeps-old-performance AssertionError [ERR_ASSERTION]: The input did not match the regular expression /menu-chinese-yangguan/. Input:
+FAIL playlist-natural-ended page.waitForFunction: Timeout 6000ms exceeded.
+FAIL rapid-switch-gates-and-output page.waitForFunction: Timeout 6000ms exceeded.
