@@ -1,0 +1,45 @@
+import assert from 'node:assert/strict';
+import {createServer} from 'vite';
+import {chromium} from 'playwright';
+import {mkdir,writeFile,readFile,rename} from 'node:fs/promises';
+import {resolve} from 'node:path';
+import {createHash} from 'node:crypto';
+import {execFileSync} from 'node:child_process';
+import {waitScene} from './ui.mjs';
+
+const root=process.cwd(),port=5661,dir=resolve(process.env.HERO_PORTRAIT_OUTPUT||'shots/hero-portrait-score-motion');await mkdir(dir,{recursive:true});
+const server=await createServer({root,mode:'e2e',cacheDir:resolve('shots/hero-portrait-vite'),server:{host:'127.0.0.1',port,strictPort:true},logLevel:'error'});await server.listen();console.log('Portrait evidence server ready');
+const {scoreEnergyFixture,energySend}=await server.ssrLoadModule('/harness/fixtures/score-energy.ts'),{makeCheckpoint,readCheckpoint}=await server.ssrLoadModule('/src/application/checkpoint.ts');
+const fixture=scoreEnergyFixture('multiply'),after=energySend(fixture.state,{type:'PlayAssistedHand',selectedIds:fixture.selectedIds,assistIds:fixture.assistIds}),trace=after.lastTrace,event=trace.events.find(e=>e.sourceType==='character');assert.ok(event);const checkpoint=makeCheckpoint(fixture.state,[]);assert.ok(readCheckpoint(checkpoint).ok);
+const browser=await chromium.launch({headless:true}).catch(async error=>{await server.close();throw error;});
+const report={head:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),scope:'Independent module attached to the existing table portrait in a controlled fixture. The event comes from an actual domain-saved assisted hand, but its motion is invoked by this test. Production GameScene and shared sidebar/layout are untouched; not a natural play or final owner integration.',sourceHashes:{},events:[],checks:[]};
+for(const file of ['src/game/HeroPortraitLayout.ts','src/game/HeroPortraitScoreMotion.ts'])report.sourceHashes[file]=createHash('sha256').update(await readFile(file)).digest('hex');
+const context=await browser.newContext({viewport:{width:1366,height:900},deviceScaleFactor:1,reducedMotion:'no-preference',recordVideo:{dir:resolve(dir,'raw-video'),size:{width:1366,height:900}}}),page=await context.newPage();page.setDefaultTimeout(20000);page.on('dialog',d=>d.accept());page.on('pageerror',e=>report.events.push(String(e)));
+const snapshot=()=>page.evaluate(()=>{const {image,motion}=window.__heroPortrait;return {x:image.x,y:image.y,angle:image.angle,scaleX:image.scaleX,scaleY:image.scaleY,tints:[image.tintTopLeft,image.tintTopRight,image.tintBottomLeft,image.tintBottomRight],phase:window.__portraitPhases.at(-1),state:JSON.stringify(window.__harness.game.registry.get('runController').state)};});
+const pose=s=>({x:s.x,y:s.y,angle:s.angle,scaleX:s.scaleX,scaleY:s.scaleY,tints:s.tints});
+async function start({delay=120,replay=false}={}){await page.evaluate(({trace,event,delay,replay})=>{const scene=window.__harness.game.scene.getScene('game'),demo=window.__heroPortrait;window.__portraitPhases=[];demo.abort=new AbortController();const arrival=new Promise(resolve=>{demo.timer=setTimeout(resolve,delay);});demo.done=demo.motion.play({trace,event,context:{generation:++demo.generation,signal:demo.abort.signal},arrival,duration:1000,replay,onPhase:phase=>window.__portraitPhases.push(phase)});},{trace,event,delay,replay});}
+try{
+  await page.goto(`http://127.0.0.1:${port}/?harness=1`);await waitScene(page,'title');await page.locator('.run-menu-toggle').click();const section=page.getByText('进度与存档',{exact:true}).locator('..');if(!await section.evaluate(e=>e.open))await section.locator('summary').click();const chooser=page.waitForEvent('filechooser');await page.getByRole('button',{name:'导入本局',exact:true}).click();await(await chooser).setFiles({name:'portrait-module-fixture.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(checkpoint))});await waitScene(page,'game');await page.waitForFunction(()=>window.__harness.game.scene.getScene('game').controlsLive);const intro=page.getByRole('button',{name:'开始出牌',exact:true});if(await intro.count())await intro.click();
+  await page.waitForFunction(()=>{const s=window.__harness.game.scene.getScene('game'),holder=s.view.root.getByName('table-art/character-holder');return holder?.getByName('table-art/character');});
+  report.layout=await page.evaluate(async()=>{
+    const {heroPortraitLayout}=await import('/src/game/HeroPortraitLayout.ts'),{mountHeroPortraitScoreMotion}=await import('/src/game/HeroPortraitScoreMotion.ts'),{gameToolInventoryBox}=await import('/src/game/ToolInventoryEntry.ts'),{portraitKey}=await import('/src/game/portraits.ts'),{gameSession}=await import('/src/game/session.ts');
+    const scene=window.__harness.game.scene.getScene('game'),l=scene.view.layout,holder=scene.view.root.getByName('table-art/character-holder'),image=holder.getByName('table-art/character'),before=image.getBounds(),full=portraitKey('amo');
+    if(scene.textures.exists(full))image.setTexture(full);
+    const area={x:l.hud.x,y:l.hud.y,width:l.hud.width,height:l.actions.y+l.actions.height-l.hud.y},protectedBounds=[l.hud,l.scoreBoard,gameToolInventoryBox(l),...(scene.heroActionButton?.active?[scene.heroActionButton.getBounds()]:[])];
+    const placement=heroPortraitLayout(area,{width:image.width,height:image.height},protectedBounds);if(!placement)throw Error('No safe portrait band');image.setPosition(placement.x,placement.y).setScale(placement.scale);
+    const motion=mountHeroPortraitScoreMotion(scene,image,{heroId:'amo',bounds:placement.safeBounds,reducedMotion:()=>gameSession().reducedMotion});window.__heroPortrait={image,motion,generation:0};window.__portraitPhases=[];
+    return {before,after:image.getBounds(),placement,protectedBounds,texture:image.texture.key,source:{width:image.width,height:image.height}};
+  });
+  assert.ok(report.layout.after.width>report.layout.before.width);const rest=await snapshot();await page.screenshot({path:resolve(dir,'1366-rest.png'),scale:'css'});
+  await start({delay:250});await page.waitForTimeout(100);assert.deepEqual(pose(await snapshot()),pose(rest));report.checks.push('waiting has no success pose/light');
+  await page.waitForTimeout(420);report.impact=await snapshot();assert.ok(report.impact.scaleX>rest.scaleX);assert.ok(report.impact.y<rest.y);await page.screenshot({path:resolve(dir,'1366-impact.png'),scale:'css'});
+  await page.waitForTimeout(470);report.rebound=await snapshot();await page.screenshot({path:resolve(dir,'1366-rebound.png'),scale:'css'});await page.evaluate(()=>window.__heroPortrait.done);report.rest=await snapshot();assert.deepEqual(pose(report.rest),pose(rest));assert.equal(report.rest.state,rest.state);report.checks.push('actual saved hero event impact/rebound/rest; state unchanged');
+  await start({delay:3000});await page.waitForTimeout(100);await page.evaluate(()=>{window.__heroPortrait.abort.abort();clearTimeout(window.__heroPortrait.timer);return window.__heroPortrait.done;});assert.deepEqual(pose(await snapshot()),pose(rest));report.checks.push('cancel before arrival has no false success');
+  await start({replay:true});await page.evaluate(()=>window.__heroPortrait.done);assert.deepEqual(pose(await snapshot()),pose(rest));report.checks.push('replay does not reenact portrait');
+  await page.emulateMedia({reducedMotion:'reduce'});await start();await page.waitForTimeout(350);const reduced=await snapshot();assert.deepEqual({...pose(reduced),tints:rest.tints},pose(rest));assert.notDeepEqual(reduced.tints,rest.tints);await page.screenshot({path:resolve(dir,'1366-reduced.png'),scale:'css'});await page.evaluate(()=>window.__heroPortrait.done);report.checks.push('reduced static emphasis with no translation/rotation/scale');await page.emulateMedia({reducedMotion:'no-preference'});
+  await start();await page.waitForTimeout(350);await page.evaluate(()=>{Object.defineProperty(document,'hidden',{configurable:true,get:()=>true});document.dispatchEvent(new Event('visibilitychange'));return window.__heroPortrait.done;});assert.deepEqual(pose(await snapshot()),pose(rest));await page.evaluate(()=>{delete document.hidden;document.dispatchEvent(new Event('visibilitychange'));});report.checks.push('hidden cancels and restores; return does not replay');
+  await start();await page.waitForTimeout(350);await page.evaluate(()=>{window.__heroPortrait.motion.destroy();return window.__heroPortrait.done;});assert.deepEqual(pose(await snapshot()),pose(rest));report.checks.push('destroy restores while impact is active');
+  assert.deepEqual(report.events,[]);report.status='PASS';const video=page.video();await context.close();await rename(await video.path(),resolve(dir,'1366-module-process.webm'));
+}catch(error){report.status='FAIL';report.failure=String(error.stack||error);await page.screenshot({path:resolve(dir,'failure.png'),scale:'css'}).catch(()=>{});throw error;}
+finally{await writeFile(resolve(dir,'report.json'),JSON.stringify(report,null,2)+'\n');await browser.close();await server.close();}
+console.log(JSON.stringify({status:report.status,checks:report.checks}));
