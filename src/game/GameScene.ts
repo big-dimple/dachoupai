@@ -263,6 +263,8 @@ export class GameScene extends Phaser.Scene {
   private scoreFlame?:ScoreFlame;
   private displayedScoreProduct='0';
   private controlsLive=false;
+  private waitingForStage=false;
+  private reopenStageDirectory?:()=>void;
 
   constructor() {
     super('game');
@@ -283,7 +285,7 @@ export class GameScene extends Phaser.Scene {
 
   private carriedTool?:ToolCarryIntent;
   async create(data?:{carriedTool?:ToolCarryIntent}): Promise<void> {
-    this.carriedTool=undefined;
+    this.carriedTool=undefined;this.waitingForStage=false;this.reopenStageDirectory=undefined;
     // Phaser reuses this Scene instance. Its former controls were destroyed on shutdown.
     this.controlsLive=false;this.candidates.dispose();this.aiCandidates.dispose();this.aiCursor=undefined;this.candidateGhost=undefined;this.candidateUndo=undefined;
     // Default Phaser lag smoothing turns every >500ms frame into only 33ms.
@@ -320,15 +322,20 @@ export class GameScene extends Phaser.Scene {
     });
     const controller=runController(this);
     if(!controller){this.scene.start('character-select');return;}
+    this.run=controller.state;
+    this.view=new SceneView(this,()=>{
+      if(this.waitingForStage){this.renderStageReady();return;}
+      if(this.presentation)this.fastForward();
+      else if(this.heroClimax||this.refillPresentation){this.effects.clear();this.heroClimax?.dispose();this.heroClimax=undefined;}
+      if(this.toolHand){this.effects.clear();this.toolHand=undefined;}
+      if(this.controlsLive)this.render();
+    },()=>({count:this.run?.handOrder.length??0,start:this.handStart}));
     const carried=carriedToolAtEntry(controller.state,data?.carriedTool)?data?.carriedTool:undefined;
     let enteredStage=false;
     if(controller.state.phase==='stage-ready'){
-      const enter=await presentOpponentEntrance(this.dialog,controller.state,this);
+      const enter=await this.awaitStageEntry(lifecycle);
       if(lifecycle!==this.lifecycle||!this.scene.isActive())return;
-      if(!enter){this.scene.start('character-select');return;}
-      const entered=await dispatchRun(this,{type:'EnterStage'});
-      if(lifecycle!==this.lifecycle||!this.scene.isActive())return;
-      if(!entered.ok){this.scene.start('character-select');return;}
+      if(!enter)return;
       enteredStage=true;
     }
     this.run=controller.state;
@@ -336,12 +343,6 @@ export class GameScene extends Phaser.Scene {
     if(!['await-input','pending-refill'].includes(this.run.phase)||!this.run.stage){this.scene.start('character-select');return;}
     this.stage=getStage(this.run.stage.index,this.run.tourMode,this.run.difficulty,this.run)!;this.characterId=this.run.characterId;settings();this.audio.setScene(this.stage.index%3===2?'boss':'table');
     this.cameras.main.setBackgroundColor(C.paper);
-    this.view=new SceneView(this,()=>{
-      if(this.presentation)this.fastForward();
-      else if(this.heroClimax||this.refillPresentation){this.effects.clear();this.heroClimax?.dispose();this.heroClimax=undefined;}
-      if(this.toolHand){this.effects.clear();this.toolHand=undefined;}
-      this.render();
-    },()=>({count:this.hand.length,start:this.handStart}));
     this.handInput=new HandSelectionInput(this,{
       cancelCanvas:()=>this.view.cancelInteraction(),
       pointerCard:id=>{const index=this.hand.findIndex(card=>card.id===id);if(index>=0)this.focusIndex=index;},
@@ -392,6 +393,43 @@ export class GameScene extends Phaser.Scene {
       dialog.classList.add('stage-identity-entry');
       dialog.dataset.stageKind=identity.isBoss?'boss':'normal';
     }
+  }
+
+  /** Closing the directory keeps this stage-ready run mounted until the player reopens it. */
+  private awaitStageEntry(lifecycle:number):Promise<boolean> {
+    const controller=runController(this)!;
+    this.waitingForStage=true;this.cameras.main.setBackgroundColor(C.paper);
+    return new Promise(resolve=>{
+      let opening=false;
+      const finish=(entered:boolean)=>{this.events.off('shutdown',cancel);this.waitingForStage=false;this.reopenStageDirectory=undefined;resolve(entered);};
+      const cancel=()=>finish(false);
+      this.events.once('shutdown',cancel);
+      this.reopenStageDirectory=()=>{
+        if(opening||lifecycle!==this.lifecycle)return;
+        opening=true;
+        void (async()=>{
+          try {
+            const enter=await presentOpponentEntrance(this.dialog,controller.state,this);
+            if(lifecycle!==this.lifecycle||!this.scene.isActive()||runController(this)!==controller)return;
+            if(controller.state.phase!=='stage-ready'){finish(false);return;}
+            if(!enter)return;
+            const result=await dispatchRun(this,{type:'EnterStage'},controller.state.commandSeq);
+            if(lifecycle!==this.lifecycle||!this.scene.isActive())return;
+            if(result.ok){this.view.clear();finish(true);return;}
+            this.statusMessage='入场未完成，请重试；如存档暂停，请在菜单重试保存。';
+          }catch {this.statusMessage='入场未完成，请重试。';}
+          finally {opening=false;if(this.waitingForStage&&lifecycle===this.lifecycle&&this.scene.isActive())this.renderStageReady();}
+        })();
+      };
+      this.renderStageReady();this.reopenStageDirectory();
+    });
+  }
+  private renderStageReady():void {
+    const v=this.view,l=v.layout,w=Math.min(560,l.width-32),x=(l.width-w)/2,y=Math.max(52,(l.height-210)/2);
+    v.clear();v.text(x,y,getCharacter(this.run.characterId).name+' · 本章待开战',24,C.ink,w).setName('stage-ready/title');
+    v.text(x,y+48,'本局进度已保留。准备好后，打开节目录选择入场或跳场。',16,C.jade,w);
+    v.button({x,y:y+112,width:w,height:52},'打开本章节目录','action/stage-directory',()=>this.reopenStageDirectory?.(),true,true);
+    if(this.statusMessage)v.text(x,y+178,this.statusMessage,14,C.red,w);
   }
 
   private readonly keyboard=(event:KeyboardEvent)=>{
@@ -922,7 +960,7 @@ export class GameScene extends Phaser.Scene {
     cards.forEach((card,i)=>{const cv=this.cardPiece(card,boxes[i]);this.previewCards!.add(cv.container);cv.container.setAlpha(1);paintCardFeedback(cv,{scoring:preview.activeScoringIds.includes(card.id)});cv.scoringMark.setVisible(false);});
   }
   private get assistProfile():boolean {return r2UsesAssist(this.run);}
-  private get jokerDefinitions(){return r2JokerDefinitionsFor(this.run).map(d=>({...d,name:cardDisplayName(d.id,d.name)}));}
+  private get jokerDefinitions(){return r2JokerDefinitionsFor(this.run);}
   private jokerDefinition(id:string){const d=r2JokerDefinitionFor(this.run,id);return {...d,name:cardDisplayName(d.id,d.name)};}
   private draftRevision():string {return JSON.stringify([this.run.contentVersion,this.run.contentHash,r2HandRevision(this.candidateInput())]);}
   private assistInput(){return{...this.candidateInput(),selectedIds:[...this.selectedIds]};}

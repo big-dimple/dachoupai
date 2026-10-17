@@ -1,8 +1,15 @@
 import {afterEach, beforeEach, describe, it, expect, vi} from 'vitest';
 import {presentStageSelection} from '../src/game/BlindSelectPresentation';
 import {DetailDialog} from '../src/game/DetailDialog';
-import {createRun, type R2RunState} from '../src/domain/run';
+import {applyCommand, createRun, type R2RunState} from '../src/domain/run';
 import {R2_BOSSES} from '../src/domain/r2Chapter';
+import {dispatchRun,runController} from '../src/game/runAdapter';
+import {paperSceneStart} from '../src/game/PaperFlow';
+import {gameSession} from '../src/game/session';
+
+vi.mock('../src/game/runAdapter',()=>({dispatchRun:vi.fn(),runController:vi.fn()}));
+vi.mock('../src/game/PaperFlow',()=>({paperSceneStart:vi.fn()}));
+vi.mock('../src/game/session',()=>({gameSession:vi.fn()}));
 
 class MockElement {
   readonly children: MockElement[] = [];
@@ -80,7 +87,7 @@ class MockElement {
   }
 
   click() {
-    if (!this.disabled) this.onclick?.({ type: 'click' });
+    if (!this.disabled) return this.onclick?.({ type: 'click' });
   }
 
   showModal() { this.setAttribute('open', ''); }
@@ -106,6 +113,7 @@ class MockElement {
 let dom: { body: MockElement; activeElement: MockElement | null; createElement: (t: string) => MockElement; querySelector: (s: string) => MockElement | null };
 
 beforeEach(() => {
+  vi.resetAllMocks();
   const body = new MockElement('BODY');
   dom = {
     body,
@@ -117,6 +125,57 @@ beforeEach(() => {
   vi.stubGlobal('HTMLElement', MockElement);
   vi.stubGlobal('HTMLDialogElement', MockElement);
   vi.stubGlobal('HTMLButtonElement', MockElement);
+});
+
+describe('directory commands and settlement contract',()=>{
+  const scene=()=>({audio:{select:vi.fn(),sourceCue:vi.fn()},scene:{isActive:()=>true}} as any);
+  function commandRun(index=0){
+    let run=createRun({seed:'blind-command-test',runId:'run/blind-command',characterId:'erxiang',rulesVersion:'r2'}) as R2RunState;
+    const send=(type:'SkipStage'|'OpenShop'|'LeaveShop')=>{const r=applyCommand(run,{runId:run.runId,commandId:'test/'+run.commandSeq,expectedSeq:run.commandSeq,action:{type}});if(!r.ok)throw Error(r.code);run=r.state;};
+    for(let i=0;i<index;i++){send('SkipStage');send('OpenShop');}send('LeaveShop');return run;
+  }
+  function savedSkip(run:R2RunState){
+    const result=applyCommand(run,{runId:run.runId,commandId:run.runId+'/command/'+(run.commandSeq+1),expectedSeq:run.commandSeq,action:{type:'SkipStage'}});
+    expect(result.ok).toBe(true);return result;
+  }
+  it.each([0,1])('passes the saved flat IntermissionResult for stage %s exactly once',async index=>{
+    const run=commandRun(index),result=savedSkip(run),owner={state:run};
+    vi.mocked(runController).mockReturnValue(owner as any);
+    let finish!:(r:any)=>void;vi.mocked(dispatchRun).mockImplementation(()=>new Promise(resolve=>finish=resolve));
+    const dialog=new DetailDialog(),s=scene(),done=presentStageSelection(dialog,run,s),host=dialog.current as unknown as MockElement;
+    const skip=host.querySelector('.is-skip')!,first=skip.click();
+    await skip.onclick?.({}); // A stale/programmatic second handler also cannot dispatch.
+    expect(dispatchRun).toHaveBeenCalledTimes(1);expect(host.querySelectorAll('button').every(b=>b.disabled)).toBe(true);
+    finish(result);await first;expect(await done).toBe(false);
+    expect(dispatchRun).toHaveBeenCalledWith(s,{type:'SkipStage'},run.commandSeq);
+    if(!result.ok)throw Error('skip failed');const stage=result.state.stage!;
+    expect(paperSceneStart).toHaveBeenCalledExactlyOnceWith(s,'intermission',{cleared:true,stageIndex:stage.index,stageHeat:stage.heat,handsLeft:stage.handsLeft,goldEarned:stage.goldEarned});
+  });
+  it('a rejected command or thrown error restores controls and remains retryable',async()=>{
+    const run=commandRun(),dialog=new DetailDialog();vi.mocked(dispatchRun).mockRejectedValueOnce(Error('transport')).mockResolvedValueOnce({ok:false,code:'command-busy',state:run});
+    void presentStageSelection(dialog,run,scene());const host=dialog.current as unknown as MockElement,skip=host.querySelector('.is-skip')!;
+    await skip.click();expect(skip.disabled).toBe(false);expect(host.querySelector('.blind-operation-status')?.textContent).toContain('请重试');
+    await skip.click();expect(skip.disabled).toBe(false);expect(dispatchRun).toHaveBeenCalledTimes(2);expect(paperSceneStart).not.toHaveBeenCalled();dialog.close();
+  });
+  it('save retry persists the same candidate without sending another SkipStage',async()=>{
+    const run=commandRun(),saved=savedSkip(run),owner={state:run},retry=vi.fn(async()=>{if(saved.ok)owner.state=saved.state;return true;});
+    vi.mocked(runController).mockReturnValue(owner as any);vi.mocked(gameSession).mockReturnValue({retry} as any);vi.mocked(dispatchRun).mockResolvedValue({ok:false,code:'save-failed',state:run});
+    const dialog=new DetailDialog(),done=presentStageSelection(dialog,run,scene()),host=dialog.current as unknown as MockElement,skip=host.querySelector('.is-skip')!;
+    await skip.click();expect(skip.textContent).toBe('重试保存并跳场');expect(skip.disabled).toBe(false);
+    await skip.click();expect(await done).toBe(false);expect(retry).toHaveBeenCalledTimes(1);expect(dispatchRun).toHaveBeenCalledTimes(1);expect(paperSceneStart).toHaveBeenCalledTimes(1);
+  });
+  it('offers one later action; close and stale callbacks send no commands',async()=>{
+    const dialog=new DetailDialog(),run=makeRun(0),done=presentStageSelection(dialog,run,scene()),host=dialog.current as unknown as MockElement;
+    expect(host.querySelectorAll('button').filter(b=>b.textContent==='稍后开战')).toHaveLength(1);
+    const skip=host.querySelector('.is-skip')!;host.querySelector('.dialog-close')!.click();expect(await done).toBe(false);await skip.onclick?.({});
+    expect(dispatchRun).not.toHaveBeenCalled();expect(paperSceneStart).not.toHaveBeenCalled();
+  });
+  it('a late saved skip cannot navigate a replaced scene/controller',async()=>{
+    const run=commandRun(),result=savedSkip(run);let owner:any={state:run},finish!:(r:any)=>void;
+    vi.mocked(runController).mockImplementation(()=>owner);vi.mocked(dispatchRun).mockImplementation(()=>new Promise(resolve=>finish=resolve));
+    const dialog=new DetailDialog();void presentStageSelection(dialog,run,scene());const host=dialog.current as unknown as MockElement,click=host.querySelector('.is-skip')!.click();
+    owner=undefined;finish(result);await click;expect(dispatchRun).toHaveBeenCalledTimes(1);expect(paperSceneStart).not.toHaveBeenCalled();dialog.close();
+  });
 });
 
 afterEach(() => {

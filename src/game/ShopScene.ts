@@ -87,7 +87,7 @@ export class ShopScene extends Phaser.Scene {
   private ownedArts=new Map<string,Phaser.GameObjects.Container>();
   private ownedDrag?:OwnedJokerDragVisual;
   private ownedHint?:Phaser.GameObjects.Text;
-  private get jokerDefinitions(){return r2JokerDefinitionsFor(this.run).map(d=>({...d,name:cardDisplayName(d.id,d.name)}));}
+  private get jokerDefinitions(){return r2JokerDefinitionsFor(this.run);}
   private jokerDefinition(id:string){const d=r2JokerDefinitionFor(this.run,id);return {...d,name:cardDisplayName(d.id,d.name)};}
   private busy=false;
   private lifecycle=0;
