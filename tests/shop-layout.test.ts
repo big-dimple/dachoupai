@@ -1,5 +1,5 @@
 import {it,expect} from 'vitest';
-import {shopLayout,shopFirstGuideLayout,shopSummaryWrap,shopOfferCopy,shopOwnedDropIndex,shopOwnedHitBox,shopOwnedNameArea,shopGoodsGrid} from '../src/game/ShopLayout';
+import {shopLayout,shopFirstGuideLayout,shopSummaryWrap,shopOfferCopy,shopOwnedDropIndex,shopOwnedHitBox,shopOwnedNameArea,shopGoodsGrid,shopDecisionBox} from '../src/game/ShopLayout';
 import {intersects} from '../src/game/layout';
 it('portrait gallery and full-size hit areas remain stable across browser toolbar height changes',()=>{
  for(const width of [320,360,390,412])for(const cols of [2,3])for(const guide of [false,true])for(const height of [640,693,740,844]){
@@ -16,7 +16,9 @@ it('portrait gallery and full-size hit areas remain stable across browser toolba
 });
 it('first-shop guide has reachable exits without covering merchandise or primary shop actions',()=>{
  for(const [width,height] of [[1280,720],[1366,768],[1920,1080],[390,740],[320,740],[740,390],[768,1024]]){
-  const p=shopLayout(width,height,12,0,3),g=shopFirstGuideLayout(p,height,true);expect(g,'guide at '+width+'x'+height).toBeDefined();if(!g)continue;
+  const p=shopLayout(width,height,12,0,3),g=shopFirstGuideLayout(p,height,true);
+  if(p.portrait){expect(g).toBeUndefined();const b=shopDecisionBox(p)!;expect(b.height).toBeGreaterThanOrEqual(88);for(const action of [p.play,p.reroll,p.build])expect(intersects(b,action)).toBe(false);for(const face of p.shelf)expect(intersects(b,shopOfferCopy(p,face,true).tile)).toBe(false);continue;}
+  expect(g,'guide at '+width+'x'+height).toBeDefined();if(!g)continue;
   expect(g.box.y).toBeGreaterThanOrEqual(8);expect(g.box.x).toBeGreaterThanOrEqual(0);expect(g.box.x+g.box.width).toBeLessThanOrEqual(width);expect(g.box.y+g.box.height).toBeLessThanOrEqual(height);
   for(const action of [p.play,p.reroll,p.build])expect(intersects(g.box,action)).toBe(false);
   for(const b of p.shelf)expect(intersects(g.box,{...b,height:b.height+(p.copyBeside?0:76)}),width+'x'+height+' merchandise').toBe(false);

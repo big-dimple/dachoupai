@@ -4,6 +4,13 @@ import type {SceneView} from './SceneView';
 import type {shopLayout} from './ShopLayout';
 import {PAPER_THEME as T} from './theme';
 
+/** The same dark ink header leads into a cool paper shop, without recoloring card art. */
+export function drawShopBackdrop(scene:Phaser.Scene,view:SceneView,p:ReturnType<typeof shopLayout>):void {
+ if(p.pc)return;
+ view.add(scene.add.rectangle(0,0,view.layout.width,view.layout.height,0xefeee5).setOrigin(0).setName('shop-art/backdrop'));
+ view.add(scene.add.graphics().fillStyle(0x203f3b,1).fillRect(0,Math.max(0,p.top-8),view.layout.width,50).lineStyle(1,0xb7a36d,.8).lineBetween(p.x,p.top+42,p.x+p.w,p.top+42).setName('shop-art/ink-header'));
+}
+
 /** Quiet sheets follow published shop rectangles; decoration owns no input. */
 export function shopSheet(scene:Phaser.Scene,view:SceneView,name:string,b:Box,color:number,raised=false,outlined=false):void {
   if(b.width<=0||b.height<=0)return;

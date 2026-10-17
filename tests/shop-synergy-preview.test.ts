@@ -6,7 +6,7 @@ import type {ShopSynergyResult} from '../src/game/ShopSynergy';
 function scene(){
  const roots:{destroy:ReturnType<typeof vi.fn>}[]=[],pulses:{remove:ReturnType<typeof vi.fn>}[]=[];
  const node=()=>{const n:Record<string,unknown>={height:42,destroy:vi.fn()};for(const key of ['setDepth','setName','setData','setOrigin','setY','add','lineStyle','strokeRoundedRect','fillStyle','fillRoundedRect'])n[key]=()=>n;return n;};
- const stub={add:{container:()=>{const n=node();roots.push(n as typeof roots[number]);return n;},graphics:node,text:node},tweens:{add:()=>{const pulse={remove:vi.fn()};pulses.push(pulse);return pulse;}}};
+ const stub={scale:{zoom:1/3},add:{container:()=>{const n=node();roots.push(n as typeof roots[number]);return n;},graphics:node,text:node},tweens:{add:()=>{const pulse={remove:vi.fn()};pulses.push(pulse);return pulse;}}};
  return {scene:stub as unknown as Phaser.Scene,roots,pulses};
 }
 const result:ShopSynergyResult={hasSynergy:true,heroSynergy:false,tag:'条件交集',reason:'各自按时点触发',cashNote:'购后24金',heldInstanceIds:['held'],matches:[{instanceId:'held',name:'炉火纯青',shortReason:'同走对子',reason:'对子条件交集'}]};

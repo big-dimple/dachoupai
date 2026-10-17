@@ -25,7 +25,7 @@ export function showShopComparison(dialog:DetailDialog,run:R2RunState,offer:R2Of
     costs.className='shop-compare-costs';for(const line of row.costs){const p=document.createElement('p');p.textContent=line;costs.append(p);}
     button.type='button';button.textContent='管理这张';button.onclick=()=>{view.scrollTop=scroll.scrollTop;view.selectedId=row.id;inspect(row.id);};
     more.className='card-rules';summary.textContent='条件、配合与完整损失';full.textContent=row.details;more.append(summary,full);
-    copy.append(name,createShopIdentityTags(row.rarity,row.editionId),costs,createShopOfferValue(row.guidance,'换此槽后的推荐'),button,more);card.append(art,copy);grid.append(card);
+    copy.append(name,createShopIdentityTags(row.rarity,row.editionId),costs,createShopOfferValue(row.guidance,'换此槽后的条件'),button,more);card.append(art,copy);grid.append(card);
     if(row.uses){const usage=document.createElement('p');usage.className='shop-card-uses';usage.textContent=row.uses;costs.before(usage);}
   }
   // Reflow the open dialog as browser chrome / viewport height changes. Keep the

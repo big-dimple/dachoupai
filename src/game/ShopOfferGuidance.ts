@@ -7,6 +7,7 @@ import {r2JokerCapacity} from '../domain/r2Resources';
 import {currentBuildFocus} from './BuildDirectionPreferences';
 import {shopRecommendation} from './ShopRecommendation';
 import {shopRouteRelation,shopPurchaseConditionLosses} from './ShopRouteRelations';
+import {shopDecisionCopy} from './ShopDecisionCopy';
 const routes=['group','straight','flush'] as const;
 const names={group:'同点',straight:'顺子',flush:'同花'};
 /** Applicability of public effects, not activation or a recommendation. All three remain visible. */
@@ -24,8 +25,8 @@ export function shopOfferGuidance(state:R2RunState,offer:R2Offer,sold?:R2JokerIn
  const losses=shopPurchaseConditionLosses(state,offer,sold);
  const operation=offer.consumed?'已购':same?'已持同名':full?'需替换':price>state.gold?`差${price-state.gold}金`:'可购买';
  const cashBasis=sold?'指定第'+(state.jokers.findIndex(j=>j.instanceId===sold.instanceId)+1)+'槽先售后买':full?'未选替换：买后余额待核':'直接买入';
- const stars=recommendation.stars,label=stars?'推荐指数 '+'★'.repeat(stars)+'☆'.repeat(5-stars):'推荐指数 待核';
- return {stars,label,reason:losses.length&&offer.definitionId!=='e08'?'现金风险':recommendation.reason,condition:recommendation.condition,recommendation,operation,operationShort:losses.length?'现金风险':full&&!same&&!offer.consumed&&price>state.gold?`差${price-state.gold}金`:operation,
+ const stars=recommendation.stars,label='选购依据',decision=shopDecisionCopy(state,offer,sold);
+ return {stars,label,decision,reason:losses.length&&offer.definitionId!=='e08'?'现金风险':recommendation.reason,condition:recommendation.condition,recommendation,operation,operationShort:losses.length?'现金风险':full&&!same&&!offer.consumed&&price>state.gold?`差${price-state.gold}金`:operation,
   purchaseConditionLosses:losses,cashBasis,replaceId:sold?.instanceId,
   detail:recommendation.detail+'\n'+operation+(price>state.gold?` · 直接买入差${price-state.gold}金`:'')+'\n'+cashBasis+(losses.length?'\n'+losses.join('\n'):''),
   routes:jokerApplicableRoutes(state,j),routeCaption:jokerRouteCaption(state,j)};

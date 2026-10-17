@@ -77,15 +77,15 @@ function shopContentLayout(width:number,height:number,top:number,bottom:number,c
   if(height<=width&&height-top-bottom<500)return shortShopLayout(width,height,top,bottom,cols);
   const portrait=width<700&&height>width,x=12,w=width-24,seat=(Math.min(w,420)-8*(cols-1))/cols;
   // Browser toolbar height changes keep the same three-card gallery.
-  const slotGap=6,slotWidth=Math.min(64,(w-4*slotGap)/5),slotHeight=slotWidth*1.4;
+  const slotGap=6,slotWidth=Math.min(portrait&&height-top-bottom>=650?52:64,(w-4*slotGap)/5),slotHeight=slotWidth*1.4;
   // Fit the visible owned rail before the fixed action row; only art shrinks.
-  const portraitFaceBudget=(height-top-bottom-352-slotHeight)/1.4;
-  const inventoryCollapsed=portrait&&height-top-bottom<560;
-  const cardWidth=Math.min(Math.max(88,Math.min(108,seat-8)),portrait&&!inventoryCollapsed?portraitFaceBudget:Infinity),cardHeight=cardWidth*1.4;
+  const portraitFaceBudget=(height-top-bottom-564)/1.4;
+  const inventoryCollapsed=portrait&&height-top-bottom<650;
+  const cardWidth=Math.min(Math.max(88,Math.min(108,seat-8)),portrait&&!inventoryCollapsed?Math.max(76,portraitFaceBudget):Infinity),cardHeight=cardWidth*1.4;
   const shelfWidth=cols*seat+8*(cols-1),shelfX=x+(w-shelfWidth)/2,shelfTop=top+104;
   const shelf:Box[]=Array.from({length:cols},(_,i)=>({x:shelfX+i*(seat+8)+(seat-cardWidth)/2,y:shelfTop,width:cardWidth,height:cardHeight}));
   const ownedGap=portrait?Math.min(24,Math.max(0,height-top-bottom-352-slotHeight-cardHeight)):24;
-  const rackWidth=5*slotWidth+4*slotGap,slotX=x+(w-rackWidth)/2,originalSlotY=shelfTop+cardHeight+100+ownedGap;
+  const rackWidth=5*slotWidth+4*slotGap,slotX=x+(w-rackWidth)/2,originalSlotY=shelfTop+cardHeight+(portrait&&!inventoryCollapsed?238:100+ownedGap);
   const guidanceBelow=false;
   const slotY=originalSlotY+(guidanceBelow?54:0);
   const slots:Box[]=Array.from({length:5},(_,i)=>({x:slotX+i*(slotWidth+slotGap),y:slotY,width:slotWidth,height:slotHeight}));
@@ -97,6 +97,7 @@ function shopContentLayout(width:number,height:number,top:number,bottom:number,c
 
 /** Use existing empty inventory/rail space, never goods, live owned cards or primary actions. */
 export function shopFirstGuideLayout(p:ReturnType<typeof shopLayout>,height:number,emptyOwned:boolean){
+ if(p.portrait)return;
  let x=p.x,width=p.w,y:number,limit:number,replacesEmptySlots=false;
  if(p.pc){x=p.x+12;width=p.pc.left.width-24;y=p.chapter.y+p.chapter.height+12;limit=p.pc.left.y+p.pc.left.height-8;}
  else if(p.short){
@@ -125,8 +126,16 @@ export function shopOfferCopy(p:ReturnType<typeof shopLayout>,b:Box,plainJoker=f
   const seat=((p.short&&p.inventoryCollapsed?p.w:p.tabs.width)-8*(p.shelf.length-1))/p.shelf.length;
   const x=p.copyBeside?b.x+b.width+6:b.x,y=p.copyBeside?b.y:b.y+b.height,width=p.copyBeside?seat-b.width-8:b.width+6;
   if(p.short&&p.inventoryCollapsed)return {x,y,width,priceY:y+(plainJoker?92:58),lines:plainJoker?3:2,tile:{...b,width:b.width+6+width}};
+  if(p.portrait&&plainJoker)return {x,y,width,priceY:y+80,lines:3,tile:{...b,height:b.height+104}};
   const extra=plainJoker?(p.copyBeside?36:'guidanceBelow' in p&&p.guidanceBelow?54:0):0;
   return {x,y,width,priceY:y+(plainJoker?76:58)+extra,lines:plainJoker?3:2,tile:{...b,width:p.copyBeside?b.width+6+width:b.width,height:p.copyBeside?Math.max(b.height,plainJoker?136:0):b.height+(plainJoker?94:76)+extra}};
+}
+
+/** One stable mobile explanation replaces the former oversized starter prompt. */
+export function shopDecisionBox(p:ReturnType<typeof shopLayout>):Box|undefined {
+ if(!p.portrait)return;
+ const y=Math.max(...p.shelf.map(b=>b.y+b.height))+108;
+ return {x:p.x,y,width:p.w,height:Math.min(108,p.reroll.y-y-8)};
 }
 
 /** Wrapped desktop racks need both axes; horizontal legacy racks retain their drop rule. */
