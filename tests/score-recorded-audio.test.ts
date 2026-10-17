@@ -1,17 +1,17 @@
 import {it,expect,vi,afterEach} from 'vitest';
 import {AudioEngine} from '../src/audio/AudioEngine';
 import {FOLEY_SAMPLES} from '../src/audio/foley';
+const noteRate=(step:number)=>2**([0,2,4,5,7,9,11,12][step]/12);
 import {scoreR2Hand} from '../src/domain/scoreR2';
 import {numberImpact} from '../src/game/ScoreEnergy';
 import type {PlayingCard, Rank} from '../src/cards/types';
 const fixture=()=>{vi.stubGlobal('document',{hidden:false});const sources:any[]=[];const param=()=>({value:1,cancelScheduledValues:vi.fn(),setValueAtTime:vi.fn(),setTargetAtTime:vi.fn(),linearRampToValueAtTime:vi.fn()});const gain=()=>({gain:param(),connect:vi.fn(),disconnect:vi.fn()});const engine=new AudioEngine(),inside=engine as any;inside.context={currentTime:1,state:'running',createGain:gain,createBufferSource:()=>{const node={buffer:null,playbackRate:param(),start:vi.fn(),stop:vi.fn(),connect:vi.fn(),disconnect:vi.fn(),onended:null};sources.push(node);return node;}};inside.gains={master:gain(),sfx:gain(),ui:gain(),music:gain()};inside.unlocked=true;for(const name of [...FOLEY_SAMPLES.map(a=>a.name),'cloth2'])inside.scoreSamples.set(name,{name,duration:.3});return {engine,inside,sources};};
 afterEach(()=>vi.unstubAllGlobals());
-it('ordinary hits stay light and key multiplication has bounded three-layer timbre, all cancellable',()=>{const {engine,inside,sources}=fixture(),show={};engine.scoreImpact(show,'one','add',0,0);expect(sources[0].buffer.name).toBe('impactWood_light_000');engine.scoreImpact(show,'two','multiply',3,3);expect(sources.slice(1).map(s=>s.buffer.name)).toEqual(['impactSoft_heavy_000','impactBell_heavy_003','card-fan-1']);expect(sources[1].playbackRate.value).toBeCloseTo(.82*1.35);expect(inside.voices.size).toBe(4);engine.cancelPresentation();expect(inside.voices.size).toBe(0);expect(sources.every(s=>s.disconnect.mock.calls.length===1)).toBe(true);});
+it('numeric notes have a fixed recorded root and multiplication adds a bounded body/air accent, all cancellable',()=>{const {engine,inside,sources}=fixture(),show={};engine.scoreImpact(show,'one','add',0,0);expect(sources.map(s=>s.buffer.name)).toEqual(['impactBell_heavy_003','impactWood_light_000']);engine.scoreImpact(show,'two','multiply',3,3);expect(sources.slice(2).map(s=>s.buffer.name)).toEqual(['impactBell_heavy_003','impactSoft_heavy_000','card-slide-1']);expect(sources[2].playbackRate.value).toBeCloseTo(noteRate(3));expect(sources[3].playbackRate.value).toBeCloseTo(.82*noteRate(3));expect(inside.voices.size).toBe(5);engine.cancelPresentation();expect(inside.voices.size).toBe(0);expect(sources.every(s=>s.disconnect.mock.calls.length===1)).toBe(true);});
 
-it.each([1,1.12,1.25,1.35,1.5,1.68,1.88,2])('chain step %# preserves its actual recorded rate %s without flattening the last four steps', rate=>{
- const {engine,sources}=fixture();const chain=[1,1.12,1.25,1.35,1.5,1.68,1.88,2].indexOf(rate);
- engine.scoreImpact({},'chain/'+chain,'multiply',3,chain);
- expect(sources.map(s=>s.playbackRate.value)).toEqual([.82*rate,rate,rate]);
+it.each([0,1,2,3,4,5,6,7])('numeric major-scale step %i reaches every actual recorded layer without rate clamping', step=>{
+ const {engine,sources}=fixture();engine.scoreImpact({},'chain/'+step,'multiply',3,step);const rate=noteRate(step);
+ expect(sources.map(s=>s.playbackRate.value)).toEqual([rate,.82*rate,rate]);
 });
 
 it.each(['10000','16'])('real scoring-card events reach rising recorded rates through the scene numeric path (target %s)', target=>{
@@ -29,18 +29,17 @@ it.each(['10000','16'])('real scoring-card events reach rising recorded rates th
  }
  expect(score.sets.activeScoringIds).toEqual(hand.map(c=>c.id));
  expect(recorded).toHaveLength(5);
- const rates=[1,1.12,1.25,1.35,1.5];
- expect(recorded).toEqual(target==='10000'?rates.map(rate=>[rate]):rates.map(rate=>[.76*rate,1.1*rate,.9*rate,.84*rate]));
+ const rates=[0,1,2,3,4].map(noteRate);
+ expect(recorded).toEqual(target==='10000'?rates.map(rate=>[rate,rate]):rates.map(rate=>[rate,.82*rate,rate]));
  expect(JSON.stringify(score)).toBe(saved);
 });
 
-it.each([1,1.12,1.25,1.35,1.5,1.68,1.88,2])('card key step %# preserves every material layer at octave factor %s', rate=>{
- const {engine,sources}=fixture(),ids=Array.from({length:8},(_,i)=>'card/'+i),index=[1,1.12,1.25,1.35,1.5,1.68,1.88,2].indexOf(rate);
- const presentation={score:{sets:{activeScoringIds:ids},events:[{eventId:'key',targetCardId:ids[index]}]}};
- engine.scoreImpact(presentation,'key','key',3,1);
- expect(sources.map(s=>s.playbackRate.value)).toEqual([.76*rate,1.1*rate,.9*rate,.84*rate]);
+it.each([0,1,2,3,4,5,6,7])('numeric key step %i retains one bell root at the actual major-scale rate', index=>{
+ const {engine,sources}=fixture(),ids=Array.from({length:8},(_,i)=>'card/'+i),rate=noteRate(index);
+ const presentation={score:{sets:{activeScoringIds:ids},events:[{eventId:'key',targetCardId:ids[index]}]}};engine.scoreImpact(presentation,'key','key',3,1);
+ expect(sources.map(s=>s.playbackRate.value)).toEqual([rate,.82*rate,rate]);
 });
-it('mute and missing clip consume cue without late playback; duplicate saved event cannot sound again',()=>{const {engine,inside,sources}=fixture(),show={};engine.muted=true;engine.scoreImpact(show,'one','multiply',3,2);engine.muted=false;engine.scoreImpact(show,'one','multiply',3,2);expect(sources).toHaveLength(0);inside.scoreSamples.delete('impactWood_light_000');inside.scoreSamples.delete('impactWood_light_001');engine.scoreImpact(show,'two','add');inside.scoreSamples.set('impactWood_light_000',{name:'impactWood_light_000',duration:.3});inside.scoreSamples.set('impactWood_light_001',{name:'impactWood_light_001',duration:.3});inside.context.currentTime+=.1;engine.scoreImpact(show,'two','add');expect(sources).toHaveLength(0);engine.scoreImpact(show,'three','add');engine.scoreImpact(show,'three','add');expect(sources).toHaveLength(1);});
+it('mute and missing clip consume cue without late playback; duplicate saved event cannot sound again',()=>{const {engine,inside,sources}=fixture(),show={};engine.muted=true;engine.scoreImpact(show,'one','multiply',3,2);engine.muted=false;engine.scoreImpact(show,'one','multiply',3,2);expect(sources).toHaveLength(0);inside.scoreSamples.delete('impactBell_heavy_003');inside.scoreSamples.delete('impactWood_light_000');inside.scoreSamples.delete('impactWood_light_001');engine.scoreImpact(show,'two','add');inside.scoreSamples.set('impactBell_heavy_003',{name:'impactBell_heavy_003',duration:.3});inside.scoreSamples.set('impactWood_light_000',{name:'impactWood_light_000',duration:.3});inside.scoreSamples.set('impactWood_light_001',{name:'impactWood_light_001',duration:.3});inside.context.currentTime+=.1;engine.scoreImpact(show,'two','add');expect(sources).toHaveLength(0);engine.scoreImpact(show,'three','add');engine.scoreImpact(show,'three','add');expect(sources).toHaveLength(2);});
 it('hidden/scene exit cancel all recorded tails without rewards or replay',()=>{const {engine,inside,sources}=fixture();engine.scoreImpact({},'award','award',3);engine.setScene('shop');expect(inside.voices.size).toBe(0);expect(sources[0].disconnect).toHaveBeenCalledOnce();vi.stubGlobal('document',{hidden:true});engine.scoreImpact({},'hidden','award',3);expect(sources).toHaveLength(3);});
 
 it('selection, confirmation, source multiplication and endings use actual samples without oscillator layers',()=>{
@@ -90,15 +89,14 @@ it('user 7/100 remains exact while internal music headroom, trimmed body and duc
  engine.setVolume('music',0);expect(inside.gains.music.gain.setValueAtTime).toHaveBeenLastCalledWith(0,1);
 });
 
-it('key landing owns four recorded layers with low body, filtered air and bounded tail',()=>{
+it('numeric key landing starts its fixed note at arrival with a lower body and bounded tails',()=>{
  const {engine,inside,sources}=fixture(),filters:any[]=[];inside.context.createBiquadFilter=()=>{const f={type:'',Q:{value:0},frequency:{setValueAtTime:vi.fn(),linearRampToValueAtTime:vi.fn()},connect:vi.fn(),disconnect:vi.fn()};filters.push(f);return f;};
- const show={};engine.scoreImpact(show,'actual-key','key',3);expect(sources.map(s=>s.buffer.name)).toEqual(['impactSoft_heavy_000','cloth2','impactWood_heavy_000','impactBell_heavy_003']);expect(filters.map(f=>f.type)).toEqual(['lowpass','bandpass','lowpass','lowpass']);expect(filters[0].frequency.setValueAtTime).toHaveBeenCalledWith(720,1);expect(filters[0].frequency.linearRampToValueAtTime).toHaveBeenCalledWith(200,1.32);expect(sources.every(s=>s.stop.mock.calls[0][0]-s.start.mock.calls[0][0]<=.53)).toBe(true);
- engine.cancelPresentation();engine.scoreImpact(show,'actual-key','key',3);expect(sources).toHaveLength(4);expect(filters.every(f=>f.disconnect.mock.calls.length===1)).toBe(true);
+ const show={};engine.scoreImpact(show,'actual-key','key',3);expect(sources.map(s=>s.buffer.name)).toEqual(['impactBell_heavy_003','impactSoft_heavy_000','card-slide-1']);expect(filters.map(f=>f.type)).toEqual(['lowpass','lowpass','bandpass']);expect(filters[1].frequency.setValueAtTime).toHaveBeenCalledWith(720,1);expect(sources[0].start.mock.calls[0][0]).toBe(1);expect(sources.every(s=>s.stop.mock.calls[0][0]-s.start.mock.calls[0][0]<=.35)).toBe(true);
+ engine.cancelPresentation();engine.scoreImpact(show,'actual-key','key',3);expect(sources).toHaveLength(3);expect(filters.every(f=>f.disconnect.mock.calls.length===1)).toBe(true);
 });
 
-it('ordinary saved wooden impacts preserve the recorded 1ms body, rotate variants and retain the cap',()=>{
- const {engine,inside,sources}=fixture(),show={};engine.scoreImpact(show,'wood/one','add');
- const first=[...inside.voices][0] as any;expect(first.gain.gain.linearRampToValueAtTime.mock.calls[0][1]).toBeCloseTo(1.0005);expect(sources[0].stop.mock.calls[0][0]).toBeCloseTo(1.18);
- inside.context.currentTime=1.06;engine.scoreImpact(show,'wood/two','add');expect(sources.map(s=>s.buffer.name)).toEqual(['impactWood_light_000','impactWood_light_001']);inside.context.currentTime=1.12;engine.scoreImpact(show,'wood/three','add');expect(inside.voices.size).toBe(2);
- engine.setVolume('sfx',0);engine.scoreImpact(show,'wood/muted','add');expect(inside.voices.size).toBe(0);expect(sources).toHaveLength(3);
+it('numeric arrivals retain the bell root while only their quiet wood accents rotate, with bounded overlap',()=>{
+ const {engine,inside,sources}=fixture(),show={};engine.scoreImpact(show,'wood/one','add');const first=[...inside.voices][0] as any;expect(first.gain.gain.linearRampToValueAtTime.mock.calls[0][1]).toBeCloseTo(1.0015);expect(sources[0].stop.mock.calls[0][0]).toBeCloseTo(1.23);
+ inside.context.currentTime=1.06;engine.scoreImpact(show,'wood/two','add');inside.context.currentTime=1.12;engine.scoreImpact(show,'wood/three','add');expect(sources.filter(s=>s.buffer.name==='impactBell_heavy_003')).toHaveLength(3);expect(sources.filter(s=>s.buffer.name.startsWith('impactWood')).map(s=>s.buffer.name)).toEqual(['impactWood_light_000','impactWood_light_001','impactWood_light_000']);expect([...inside.voices].filter((v:any)=>v.startsAt<=1.12&&v.endsAt>1.12).length).toBeLessThanOrEqual(8);
+ engine.setVolume('sfx',0);engine.scoreImpact(show,'wood/muted','add');expect(inside.voices.size).toBe(0);expect(sources).toHaveLength(6);
 });

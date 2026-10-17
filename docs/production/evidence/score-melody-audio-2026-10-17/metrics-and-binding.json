@@ -1,0 +1,141 @@
+{
+  "baseCommit": "212e23d547d4fcfdd886f9dfe80699318e77a738",
+  "productCommit": "a084af1f1e29386f74ba830f460896fdefedeb67",
+  "heard": false,
+  "scope": "Real saved trace from existing controlled legal PlayAssistedHand -> numberImpact -> actual AudioEngine; real OfflineAudioContext and production bus/compressor/ceiling. Fixed320ms probe arrivals, not GameScene/frame sync or human listening.",
+  "seconds": 3.56,
+  "before": {
+    "peak": 0.31951904296875,
+    "rms": 0.037815297961527126,
+    "dominantPeaks": [
+      320,
+      320,
+      400,
+      385,
+      100,
+      100,
+      105,
+      120
+    ]
+  },
+  "after": {
+    "peak": 0.37573689222335815,
+    "rms": 0.025578841667061446,
+    "dominantPeaks": [
+      325,
+      365,
+      410,
+      435,
+      485,
+      545,
+      615,
+      650
+    ],
+    "bellRates": [
+      1,
+      1.1224620342254639,
+      1.2599210739135742,
+      1.3348398208618164,
+      1.4983071088790894,
+      1.6817928552627563,
+      1.8877485990524292,
+      2
+    ],
+    "startOffsets": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "files": {
+    "before.wav": {
+      "bytes": 341804,
+      "sha256": "57fa8e4a8cf1ac80dcc40482c36afba4a24ce462faf8f8eb9e141d2020d8da70"
+    },
+    "after.wav": {
+      "bytes": 341804,
+      "sha256": "5e5aa15055a9e8c1a974e843e9105004375721fe1b8358be0c9586ddaf79b863"
+    },
+    "before.json": {
+      "bytes": 13532,
+      "sha256": "27f35e959030726b9503cd2ed9094721e5d004b9b1cd400fd0448e2500a2fbb9"
+    },
+    "after.json": {
+      "bytes": 14241,
+      "sha256": "262d2c1701487fdfe14a3139ff3e3c324589f4d8db58a124d347a86561ae2045"
+    }
+  },
+  "bindingNote": "Before render executed on clean specified base before product edits; after render executed after the three audio edits and before committing them. Their normalized source equals productCommit; tests-only edits afterward did not change audio. Recorded sample bytes unchanged.",
+  "beforeAudioBindings": [
+    {
+      "path": "src/audio/AudioEngine.ts",
+      "blob": "24770d78954907fa3de23e11aed4306f764b1fa0",
+      "normalizedSHA256": "d15e6c1abd2a1ce5815b70ae9b0df8271d9ad2dd2bb8c7f2b07e9d564450e4a2"
+    },
+    {
+      "path": "src/audio/foley.ts",
+      "blob": "4655f9e6d8bb4ee7fed06818790acbdd8673bdf9",
+      "normalizedSHA256": "83c5f59f71fea8cb9116627c45a62620626bfad5af8e3119e1cfb505a03fc05d"
+    },
+    {
+      "path": "src/audio/mixPolicy.ts",
+      "blob": "75706a6408dea873535cc8e99d4bd5adf792af32",
+      "normalizedSHA256": "633d79d7f86ae892d17d515b21a5f87021ec94b5b5146faa9e853ac10c43dfef"
+    }
+  ],
+  "testedBindings": [
+    {
+      "path": "src/audio/AudioEngine.ts",
+      "blob": "e2a5695e26d3da9a3a46237ca993562a4f68e5eb",
+      "normalizedSHA256": "23d5e6851bf00b4dc8bb0090d4f9b5f2cfc6d08fbc4ee4cbf7bec8ffaec5dae7"
+    },
+    {
+      "path": "src/audio/foley.ts",
+      "blob": "3bee74507aa73623bbb1b8479cfc1f8cd7bbe6ed",
+      "normalizedSHA256": "2e5f5c4d3dd8eb60e1534d7e92d9de060d7f72928039508a7c7746af1d5f85d1"
+    },
+    {
+      "path": "src/audio/mixPolicy.ts",
+      "blob": "f07765853bb359166454305c9d014e403437d182",
+      "normalizedSHA256": "531b25c68b861c5ee4a5f917bda47a5191766c66dfbeca9fc81524ee4a0d1215"
+    },
+    {
+      "path": "tests/audio-mix-policy.test.ts",
+      "blob": "12179353dbd7616450139509bb7a35fad3744daf",
+      "normalizedSHA256": "c71d72edc24e3bf6cdb2152607cf00ceb1f0d5893f35497c239081ec7909e99c"
+    },
+    {
+      "path": "tests/audio-sample-loading.test.ts",
+      "blob": "d3e64091eef355affa890bf251fd8664baf57979",
+      "normalizedSHA256": "9a0ff45f0125b368bc8ead0315efa188920ad13de9090846859072d0131c37d0"
+    },
+    {
+      "path": "tests/score-melody-audio.test.ts",
+      "blob": "739ef0a874e7ee5262836d6e10e81b6b7ef0a391",
+      "normalizedSHA256": "c3e59f9a818f6cf5d402395b7cba43468a8169c079710b7734f41d916c5f5003"
+    },
+    {
+      "path": "tests/score-recorded-audio.test.ts",
+      "blob": "8cdc0d90e024fc77b73d7c427a1b25cb50533143",
+      "normalizedSHA256": "5fce26908e38dc9d416ac41be63d7a4ad693e6d3f6c9b417694ebb2c5ee17143"
+    }
+  ],
+  "protectedPaths": [
+    "src/game",
+    "src/domain",
+    "src/content",
+    "src/application",
+    "src/platform",
+    "public",
+    "art",
+    "harness",
+    "package.json",
+    "package-lock.json"
+  ],
+  "protectedChanges": []
+}

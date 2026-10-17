@@ -1,0 +1,32 @@
+
+ RUN  v4.1.11 C:/Users/wanghongping/AppData/Local/Temp/dachoupai-windows-integration-20261017
+
+ ❯ tests/audio-sample-loading.test.ts (18 tests | 1 failed) 70ms
+   × mute/background and unavailable clips consume cues, without playback on load or foreground 10ms
+
+ Test Files  1 failed | 7 passed (8)
+      Tests  1 failed | 112 passed (113)
+   Start at  13:47:42
+   Duration  4.52s (transform 6.95s, setup 0ms, import 8.53s, tests 325ms, environment 1ms)
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/audio-sample-loading.test.ts > mute/background and unavailable clips consume cues, without playback on load or foreground
+AssertionError: expected [ { buffer: { …(5) }, …(6) }, …(1) ] to have a length of 1 but got 2
+
+- Expected
++ Received
+
+- 1
++ 2
+
+ ❯ tests/audio-sample-loading.test.ts:245:19
+    243|   inside.context.currentTime += .1; // Preserve the existing ordinary-…
+    244|   engine.scoreImpact(presentation, 'fresh', 'add');
+    245|   expect(sources).toHaveLength(1);
+       |                   ^
+    246|   engine.setSuspended(true);
+    247|   expect(inside.voices.size).toBe(0);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯

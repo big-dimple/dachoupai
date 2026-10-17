@@ -1,0 +1,630 @@
+{
+  "scope": "Real saved trace from existing controlled legal PlayAssistedHand -> numberImpact -> actual AudioEngine; real OfflineAudioContext and production bus/compressor/ceiling. Fixed320ms probe arrivals, not GameScene/frame sync or human listening.",
+  "heard": false,
+  "score": {
+    "finalScore": "2095",
+    "activeScoringIds": [
+      "spades-2",
+      "spades-3",
+      "spades-4",
+      "spades-5"
+    ]
+  },
+  "samples": [
+    {
+      "name": "impactWood_light_000",
+      "rate": 24000,
+      "duration": 0.26266666666666666,
+      "body": {
+        "offset": 0,
+        "gain": 0.8138179738870738
+      },
+      "spectrum": {
+        "rms": 0.11401843423900852,
+        "peaks": [
+          [
+            325,
+            136.5683457640663
+          ],
+          [
+            320,
+            128.38423310433245
+          ],
+          [
+            340,
+            118.00580032047677
+          ],
+          [
+            330,
+            113.8600672613327
+          ],
+          [
+            335,
+            112.70635465046108
+          ],
+          [
+            345,
+            80.75147928305547
+          ]
+        ]
+      }
+    },
+    {
+      "name": "impactWood_light_001",
+      "rate": 24000,
+      "duration": 0.26266666666666666,
+      "body": {
+        "offset": 0,
+        "gain": 0.8951140165943691
+      },
+      "spectrum": {
+        "rms": 0.09315839182698944,
+        "peaks": [
+          [
+            290,
+            58.33058604621152
+          ],
+          [
+            285,
+            55.41844986532525
+          ],
+          [
+            305,
+            50.17341922740461
+          ],
+          [
+            295,
+            48.46200491210953
+          ],
+          [
+            300,
+            47.7770415694408
+          ],
+          [
+            310,
+            36.30685250963251
+          ]
+        ]
+      }
+    },
+    {
+      "name": "impactSoft_heavy_000",
+      "rate": 24000,
+      "duration": 0.5035416666666667,
+      "body": {
+        "offset": 0,
+        "gain": 0.6164107374825989
+      },
+      "spectrum": {
+        "rms": 0.278611071253278,
+        "peaks": [
+          [
+            100,
+            35620.60253540139
+          ],
+          [
+            105,
+            13099.29960570343
+          ],
+          [
+            110,
+            1265.83976540145
+          ],
+          [
+            115,
+            165.80675381126025
+          ],
+          [
+            120,
+            95.0368787375964
+          ],
+          [
+            125,
+            16.010826232112578
+          ]
+        ]
+      }
+    },
+    {
+      "name": "impactBell_heavy_003",
+      "rate": 24000,
+      "duration": 0.6535833333333333,
+      "body": {
+        "offset": 0,
+        "gain": 0.903523309135077
+      },
+      "spectrum": {
+        "rms": 0.13489070128518413,
+        "peaks": [
+          [
+            325,
+            5041.761218640162
+          ],
+          [
+            330,
+            3237.551687118971
+          ],
+          [
+            320,
+            2939.666309624954
+          ],
+          [
+            535,
+            1626.4595095975278
+          ],
+          [
+            540,
+            1019.1788857139304
+          ],
+          [
+            530,
+            1004.5959637179247
+          ]
+        ]
+      }
+    },
+    {
+      "name": "impactBell_heavy_000",
+      "rate": 24000,
+      "duration": 1.4801666666666666,
+      "body": {
+        "offset": 0,
+        "gain": 0.9124477740234733
+      },
+      "spectrum": {
+        "rms": 0.1406203806629641,
+        "peaks": [
+          [
+            380,
+            4721.601944234579
+          ],
+          [
+            375,
+            3199.8909879818766
+          ],
+          [
+            475,
+            3094.221879294427
+          ],
+          [
+            480,
+            2944.316048596019
+          ],
+          [
+            385,
+            2668.593201905939
+          ],
+          [
+            470,
+            1761.5424405299802
+          ]
+        ]
+      }
+    }
+  ],
+  "hits": [
+    {
+      "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/1",
+      "phase": "onCardScore",
+      "sourceType": "card",
+      "sourceDefinitionId": "rank-7",
+      "targetCardId": "spades-2",
+      "kind": "add",
+      "chain": 1,
+      "arrival": 0.25066666666666665,
+      "layers": [
+        {
+          "name": "impactWood_light_000",
+          "rate": 1,
+          "time": 0.25066666666666665,
+          "offset": 0
+        }
+      ],
+      "outputSpectrum": {
+        "rms": 0.03464415622131471,
+        "peaks": [
+          [
+            320,
+            18.558336443130155
+          ],
+          [
+            345,
+            16.483163345168148
+          ],
+          [
+            340,
+            16.444105277141908
+          ],
+          [
+            325,
+            14.959032539444017
+          ],
+          [
+            315,
+            13.160727116247617
+          ],
+          [
+            270,
+            11.027480946625724
+          ]
+        ]
+      }
+    },
+    {
+      "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/2",
+      "phase": "onCardScore",
+      "sourceType": "card",
+      "sourceDefinitionId": "rank-7",
+      "targetCardId": "spades-3",
+      "kind": "add",
+      "chain": 1,
+      "arrival": 0.5706666666666667,
+      "layers": [
+        {
+          "name": "impactWood_light_001",
+          "rate": 1.1200000047683716,
+          "time": 0.5706666666666667,
+          "offset": 0
+        }
+      ],
+      "outputSpectrum": {
+        "rms": 0.02896550093832996,
+        "peaks": [
+          [
+            320,
+            7.418347205997623
+          ],
+          [
+            345,
+            6.550371069681297
+          ],
+          [
+            325,
+            5.921018750010538
+          ],
+          [
+            315,
+            5.658396188286003
+          ],
+          [
+            340,
+            5.606142811113143
+          ],
+          [
+            350,
+            5.089332506190205
+          ]
+        ]
+      }
+    },
+    {
+      "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/3",
+      "phase": "onCardScore",
+      "sourceType": "card",
+      "sourceDefinitionId": "rank-9",
+      "targetCardId": "spades-4",
+      "kind": "add",
+      "chain": 1,
+      "arrival": 0.8906666666666667,
+      "layers": [
+        {
+          "name": "impactWood_light_000",
+          "rate": 1.25,
+          "time": 0.8906666666666667,
+          "offset": 0
+        }
+      ],
+      "outputSpectrum": {
+        "rms": 0.030700409326123074,
+        "peaks": [
+          [
+            400,
+            9.341815451445076
+          ],
+          [
+            405,
+            8.824904895734072
+          ],
+          [
+            425,
+            7.96608888614163
+          ],
+          [
+            430,
+            7.529576145112415
+          ],
+          [
+            395,
+            6.178735464509396
+          ],
+          [
+            410,
+            5.913751087534989
+          ]
+        ]
+      }
+    },
+    {
+      "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/4",
+      "phase": "onCardScore",
+      "sourceType": "card",
+      "sourceDefinitionId": "rank-9",
+      "targetCardId": "spades-5",
+      "kind": "add",
+      "chain": 1,
+      "arrival": 1.2106666666666666,
+      "layers": [
+        {
+          "name": "impactWood_light_001",
+          "rate": 1.350000023841858,
+          "time": 1.2106666666666666,
+          "offset": 0
+        }
+      ],
+      "outputSpectrum": {
+        "rms": 0.02598321227539966,
+        "peaks": [
+          [
+            385,
+            3.915665522038191
+          ],
+          [
+            390,
+            3.6874790382762486
+          ],
+          [
+            415,
+            3.315307545321421
+          ],
+          [
+            410,
+            2.901408453048442
+          ],
+          [
+            380,
+            2.7025567158202506
+          ],
+          [
+            420,
+            2.54474855879947
+          ]
+        ]
+      }
+    },
+    {
+      "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/5",
+      "phase": "jokerScore",
+      "sourceType": "joker",
+      "sourceDefinitionId": "f09",
+      "kind": "multiply",
+      "chain": 1,
+      "arrival": 1.5306666666666666,
+      "layers": [
+        {
+          "name": "impactSoft_heavy_000",
+          "rate": 0.91839998960495,
+          "time": 1.5306666666666666,
+          "offset": 0
+        },
+        {
+          "name": "impactBell_heavy_003",
+          "rate": 1.1200000047683716,
+          "time": 1.5656666666666665,
+          "offset": 0
+        },
+        {
+          "name": "card-fan-1",
+          "rate": 1.1200000047683716,
+          "time": 1.6106666666666667,
+          "offset": 0.142
+        }
+      ],
+      "outputSpectrum": {
+        "rms": 0.10931405885362286,
+        "peaks": [
+          [
+            100,
+            621.8133646313102
+          ],
+          [
+            365,
+            315.1302429157435
+          ],
+          [
+            360,
+            295.1630619536664
+          ],
+          [
+            370,
+            261.43583461464914
+          ],
+          [
+            355,
+            217.78213941241572
+          ],
+          [
+            375,
+            165.1942288195828
+          ]
+        ]
+      }
+    },
+    {
+      "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/6",
+      "phase": "jokerScore",
+      "sourceType": "joker",
+      "sourceDefinitionId": "f06",
+      "kind": "multiply",
+      "chain": 2,
+      "arrival": 1.8506666666666667,
+      "layers": [
+        {
+          "name": "impactSoft_heavy_000",
+          "rate": 1.024999976158142,
+          "time": 1.8506666666666667,
+          "offset": 0
+        },
+        {
+          "name": "impactBell_heavy_000",
+          "rate": 1.25,
+          "time": 1.8856666666666666,
+          "offset": 0
+        },
+        {
+          "name": "card-fan-1",
+          "rate": 1.25,
+          "time": 1.9306666666666668,
+          "offset": 0.142
+        }
+      ],
+      "outputSpectrum": {
+        "rms": 0.1078221490509203,
+        "peaks": [
+          [
+            100,
+            5101.59403588257
+          ],
+          [
+            105,
+            3048.63978794528
+          ],
+          [
+            110,
+            782.8503665341849
+          ],
+          [
+            475,
+            191.97827180101748
+          ],
+          [
+            470,
+            173.45761822586118
+          ],
+          [
+            480,
+            161.09361340587486
+          ]
+        ]
+      }
+    },
+    {
+      "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/7",
+      "phase": "jokerScore",
+      "sourceType": "joker",
+      "sourceDefinitionId": "e08",
+      "kind": "multiply",
+      "chain": 3,
+      "arrival": 2.1706666666666665,
+      "layers": [
+        {
+          "name": "impactSoft_heavy_000",
+          "rate": 1.1069999933242798,
+          "time": 2.1706666666666665,
+          "offset": 0
+        },
+        {
+          "name": "impactBell_heavy_003",
+          "rate": 1.350000023841858,
+          "time": 2.2056666666666667,
+          "offset": 0
+        },
+        {
+          "name": "card-fan-1",
+          "rate": 1.350000023841858,
+          "time": 2.2506666666666666,
+          "offset": 0.142
+        }
+      ],
+      "outputSpectrum": {
+        "rms": 0.10660120716189855,
+        "peaks": [
+          [
+            105,
+            4789.527194112489
+          ],
+          [
+            110,
+            4391.29714625983
+          ],
+          [
+            100,
+            2856.254649572696
+          ],
+          [
+            115,
+            2033.4764589703927
+          ],
+          [
+            120,
+            349.6384058870745
+          ],
+          [
+            440,
+            309.06444445825423
+          ]
+        ]
+      }
+    },
+    {
+      "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/9",
+      "phase": "characterScore",
+      "sourceType": "character",
+      "sourceDefinitionId": "amo",
+      "kind": "multiply",
+      "chain": 4,
+      "arrival": 2.490666666666667,
+      "layers": [
+        {
+          "name": "impactSoft_heavy_000",
+          "rate": 1.2300000190734863,
+          "time": 2.490666666666667,
+          "offset": 0
+        },
+        {
+          "name": "impactBell_heavy_000",
+          "rate": 1.5,
+          "time": 2.525666666666667,
+          "offset": 0
+        },
+        {
+          "name": "card-fan-1",
+          "rate": 1.5,
+          "time": 2.570666666666667,
+          "offset": 0.142
+        }
+      ],
+      "outputSpectrum": {
+        "rms": 0.1025799098107828,
+        "peaks": [
+          [
+            120,
+            4344.228601731687
+          ],
+          [
+            115,
+            3569.35612615288
+          ],
+          [
+            125,
+            2857.579716352859
+          ],
+          [
+            110,
+            1629.8321865705275
+          ],
+          [
+            130,
+            896.175958166348
+          ],
+          [
+            105,
+            470.05229930269365
+          ]
+        ]
+      }
+    }
+  ],
+  "duration": 3.56,
+  "peak": 0.31951904296875,
+  "rms": 0.037815297961527126
+}

@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "taskId": "P08",
+  "taskStatus": "in_progress",
+  "branch": "dev/score-melody-audio-20261017",
+  "baseCommit": "212e23d547d4fcfdd886f9dfe80699318e77a738",
+  "testedCommit": "a084af1f1e29386f74ba830f460896fdefedeb67",
+  "runtimeFiles": [
+    "src/audio/AudioEngine.ts",
+    "src/audio/foley.ts",
+    "src/audio/mixPolicy.ts"
+  ],
+  "protectedUnchanged": [
+    "src/game",
+    "src/domain",
+    "src/content",
+    "src/application",
+    "src/platform",
+    "public",
+    "art",
+    "harness",
+    "package.json",
+    "package-lock.json"
+  ],
+  "rootCauses": [
+    {
+      "cause": "Rotating recorded roots defeat nominal pitch rise",
+      "evidence": "before.json",
+      "detail": "Wood000≈325Hz andWood001≈290Hz. After1.12x second hit still≈320Hz; fourth≈385 below prior≈400. Bell003≈325Hz vsBell000≈380Hz also rotated."
+    },
+    {
+      "cause": "Low-frequency impact dominates multiplication",
+      "evidence": "before.json",
+      "detail": "Within100–4000Hz probe range, multiplication dominant peaks≈100/100/105/120Hz; this is range floor, not a claimed exact sub100 fundamental. Body .045 and lowpass720→200 dominated the pitched layer."
+    },
+    {
+      "cause": "Pitch phrase resets at first multiplier / non-card gains",
+      "evidence": "before.json and source audit",
+      "detail": "Scene visual chain is multiplyOrdinal+1. Old card route derived card index, but first multiplier used1.12 after fourth card1.35. Ordinary non-card fallback also reused multiplier chain."
+    }
+  ],
+  "excludedAsMainCause": [
+    "Actual playbackRate reaches buffers and remains below2.3; no current1.4 clamp flattening in this trace.",
+    "Normal numeric sound call is already after awaited packet transfer/arrival in GameScene; no missing interface was found in the inspected path.",
+    "No shared HTML media player for score impacts: each layer uses its own AudioBufferSourceNode; BGM media slots separate."
+  ],
+  "changes": [
+    "Only numeric scoreImpact maps to new scoreAdd/scoreKey/scoreMultiply recipes: fixed existing CC0 bell003 as pitched carrier; quiet rotating wood retained only as accent, multiplication body/air retained and bounded.",
+    "Numeric notes use equal-tempered major semitones0/2/4/5/7/9/11/12 and one saved positive accumulator-event ordinal across cards/jokers/hero. Top octave holds after8; new hand restarts from its first saved arrival; no mutable rule counter or future-total inference.",
+    "Numeric gap0 avoids discarding valid4x-spaced arrivals. Original input-material throttle,16-overlap budget,32-node backstop, atomic admission and per-kind caps remain.",
+    "No oscillator, new audio asset, copied copyrighted sound, BGM or music preference change; scoreImpact signature/arrival call unchanged."
+  ],
+  "contractChange": "Old rounded8-rate chainRate remains for material/UI APIs. Numeric scoreStrikeRate now uses exact major intervals and fixed carrier, and proceeds across all positive arrivals. Old material/count/rate assertions were intentionally updated; do not claim them unchanged.",
+  "checks": [
+    {
+      "name": "Concentrated audio suite original",
+      "status": "FAIL",
+      "exitCode": 1,
+      "files": 8,
+      "cases": 113,
+      "passed": 112,
+      "failed": 1,
+      "evidence": "checks/concentrated-original-FAIL.txt",
+      "resolution": "Only old expected1 ordinary voice versus new note+quiet wood2. No missing/muted/late replay assertion removed."
+    },
+    {
+      "name": "Necessary failed-file regression",
+      "status": "PASS",
+      "exitCode": 0,
+      "files": 1,
+      "cases": 18,
+      "evidence": "checks/necessary-repair-PASS.txt"
+    },
+    {
+      "name": "Final deduplicated audio contracts",
+      "status": "PASS",
+      "files": 8,
+      "cases": 113,
+      "note": "95 cases from7 initial passed files +18 repaired file. Not131; no full rerun. Four new real-trace/fast/late-root/deterministic regressions included."
+    },
+    {
+      "name": "TypeScript",
+      "command": "node node_modules/typescript/bin/tsc --noEmit",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "checks/typecheck-PASS.txt"
+    },
+    {
+      "name": "Production build",
+      "command": "node node_modules/vite/bin/vite.js build",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "checks/build-PASS.txt",
+      "binding": "checks/built-source-info.json",
+      "warning": "Existing large-chunk advisory."
+    },
+    {
+      "name": "3.56s before/after actual WebAudio rendering",
+      "status": "PASS",
+      "evidence": "metrics-and-binding.json",
+      "scope": "Real saved trace from existing controlled legal PlayAssistedHand -> numberImpact -> actual AudioEngine; real OfflineAudioContext and production bus/compressor/ceiling. Fixed320ms probe arrivals, not GameScene/frame sync or human listening.",
+      "heard": false
+    },
+    {
+      "name": "GameScene visual/audio frame sync and human listening",
+      "status": "NOT_RUN",
+      "reason": "Only source arrival route audited and actual OfflineAudioContext starts measured. Fixed320ms probe arrivals do not prove live frame sync, device loudness or subjective do-re-mi/punch."
+    }
+  ],
+  "bossFollowup": {
+    "status": "READ_ONLY_HANDOFF",
+    "owner": "Existing chapter/preparation worker01a147ee; main integrator coordinates unique ShopScene window.",
+    "evidence": "BOSS_HANDOFF.md",
+    "implementation": "NOT_RUN in this numeric-audio batch"
+  },
+  "humanReview": {
+    "status": "NOT_RUN",
+    "heard": false
+  },
+  "remaining": [
+    "Parent/dot/user must listen to the supplied short WAV and then current merged game with BGM; no claim of subjective timbre/strength or physical-device acceptance.",
+    "Live arrival/frame sync on integrated visual-worker version pending; GameScene/score presentation files unchanged here.",
+    "Boss preparation/reveal timing is a separate visible-signal task; no premature BGM implementation in this source.",
+    "No main push, CI/domain query, deployment, natural long game or screenshot matrix; P08 and formal gates unchanged."
+  ],
+  "delivery": {
+    "mode": "Ordinary dev push only; parent performs combined integration",
+    "status": "Ready for documentation closeout and ordinary dev push"
+  }
+}
