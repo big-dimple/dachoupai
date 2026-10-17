@@ -196,6 +196,8 @@ export class GameScene extends Phaser.Scene {
   private reopenRefill():void {if(!this.pendingRefill)return;this.refillHidden=false;this.selectedIds.clear();this.statusMessage='';this.render();}
   private get deck(): string[] { return this.run.drawPile; }
   private get hand(): readonly PlayingCard[] { return this.presentation?.hand??this.toolHand??(this.pendingRefill&&!this.refillHidden?this.pendingRefill.candidateIds:this.run.handOrder).map(id => this.run.deckInstances.find(card => card.id === id)!); }
+  /** Candidate refill seats must match the rendered candidates, not the smaller retained hand. */
+  private get handLayoutWindow(){return {count:this.run?this.hand.length:0,start:this.handStart};}
   private toolHand?:readonly PlayingCard[];
   private selectedIds = new Set<string>();
   private assistIds:string[]=[];
@@ -353,7 +355,7 @@ export class GameScene extends Phaser.Scene {
       else if(this.heroClimax||this.refillPresentation){this.effects.clear();this.heroClimax?.dispose();this.heroClimax=undefined;}
       if(this.toolHand){this.effects.clear();this.toolHand=undefined;}
       if(this.controlsLive)this.render();
-    },()=>({count:this.run?.handOrder.length??0,start:this.handStart}));
+    },()=>this.handLayoutWindow);
     this.targetAttachment=new HeroTargetAttachment(this,{
       root:()=>this.view?.root,
       target:id=>{const view=this.settledCards.get(id)??this.cardViews.find(v=>v.card.id===id);return view?{container:view.container,width:Number(view.container.getData('width')),height:Number(view.container.getData('height'))}:undefined;},
