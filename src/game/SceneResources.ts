@@ -20,6 +20,8 @@ export function boundedResources(assets:readonly SceneResource[],budget=PRELOAD_
  const seen=new Set<string>(),rows:SceneResource[]=[];let pixels=0;
  for(const a of assets){if(!a.url||seen.has(a.key)||a.pixels<=0||pixels+a.pixels>budget)continue;seen.add(a.key);pixels+=a.pixels;rows.push(a);}return rows;
 }
+/** First entry needs the paper and six small hero pairs; the remaining catalog warms in the background. */
+export function openingResources():SceneResource[]{return boundedResources([...paper,...heroes]);}
 /** Fixed public catalog or actual saved holdings/offers only; no future deals, RNG or domain actions. */
 export function sceneResources(target:string,run?:R2RunState,startup=false):SceneResource[]{
  const starter=['mantangcai','b10','b03','c04','c06','jiedongfeng'],priority=joker.filter(a=>starter.some(id=>jokerArtKey(id)===a.key));

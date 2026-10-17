@@ -12,7 +12,7 @@ export class BootScene extends Phaser.Scene {
   private loading?:LoadingScreen;
   private generation=0;
   preload(): void {
-    this.generation++;this.loading=new LoadingScreen();const loading=this.loading,loaded=new Set<string>(),failed=new Set<string>();const refresh=()=>loading.base(loaded.size,P00_ASSETS.length,failed.size);
+    this.generation++;this.loading=new LoadingScreen('为你铺开这一局',true);const loading=this.loading,loaded=new Set<string>(),failed=new Set<string>();const refresh=()=>loading.base(loaded.size,P00_ASSETS.length,failed.size);
     const complete=(key:string)=>{loaded.add(key);failed.delete(key);refresh();},failure=(file:Phaser.Loader.File)=>{if(!loaded.has(file.key))failed.add(file.key);refresh();console.warn(`[boot] 资源暂未就绪，将自动恢复: ${file.key} -> ${file.url}`);};
     this.load.on('filecomplete',complete);this.load.on('loaderror',failure);refresh();
     this.events.once('shutdown',()=>{this.generation++;this.load.off('filecomplete',complete);this.load.off('loaderror',failure);cancelDestinationPreparation(this.game,'title');loading.close();if(this.loading===loading)this.loading=undefined;});

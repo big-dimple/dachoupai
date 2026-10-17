@@ -3,10 +3,16 @@ import {LoadingProgress} from '../src/game/LoadingProgress';
 it('moves smoothly, never reverses on retries or phase counts, and cannot fabricate completion',()=>{
  const progress=new LoadingProgress(0),samples:number[]=[];
  for(let now=16;now<180000;now+=16)samples.push(progress.sample(now,now<5000?.8:.2,1,false,false));
- expect(samples.at(-1)).toBeLessThan(.97);expect(samples.at(-1)).toBeGreaterThan(.85);
+ expect(samples.at(-1)).toBeLessThanOrEqual(.8*.96);expect(samples.at(-1)).toBeGreaterThan(.76);
  expect(samples.every((v,i)=>!i||v>=samples[i-1])).toBe(true);
  expect(Math.max(...samples.map((v,i)=>v-(samples[i-1]??0)))).toBeLessThan(.06);
  expect(progress.sample(180001,1,1,true,true)).toBe(1);
+});
+it('does not advance by elapsed time when no additional image has decoded',()=>{
+ const progress=new LoadingProgress(0);
+ for(let now=16;now<180000;now+=16)expect(progress.sample(now,0,20,false,false)).toBe(0);
+ for(let now=180000;now<360000;now+=16)expect(progress.sample(now,5,20,false,false)).toBeLessThanOrEqual(.24);
+ expect(progress.sample(360001,5,20,false,false)).toBeCloseTo(.24);
 });
 it('reduced motion uses real decoded changes and stays below 100 until the gate is ready',()=>{
  const progress=new LoadingProgress(0);expect(progress.sample(50000,0,146,false,true)).toBe(0);
