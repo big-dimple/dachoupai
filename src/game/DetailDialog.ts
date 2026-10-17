@@ -11,6 +11,8 @@ import type {CardAbilityCopy} from './CardCopy';
 import {mountF09Detail} from './F09Art';
 import {createJokerRarityElement,type JokerRarity} from './JokerRarity';
 import {openCardArtZoom} from './CardArtZoomModal';
+import {JOKER_ART,jokerArtUrl,jokerArtPreviewUrl} from './jokerArt';
+import {cardDisplayName} from './tangsongCardNames';
 /** Native modal owns focus and readable, scrollable details independently of canvas resize. */
 let dismissedPointer:{x:number;y:number;until:number}|undefined;
 /** A rapid second tap at a just-dismissed modal button must not reach the canvas behind it. */
@@ -78,10 +80,14 @@ export class DetailDialog {
       dialog.classList.add('detail-dialog--illustrated');
       if(card){
         const frame=document.createElement('figure'),visual=this.artVisual(image);frame.className='dialog-card-art';frame.append(visual);
-        const zoomBadge=document.createElement('span');zoomBadge.className='dialog-card-zoom-badge';zoomBadge.textContent='🔍 点击放大细节';frame.append(zoomBadge);
-        const cardMatch=portrait.url.match(/cards\/([a-z0-9_]+)\.(detail|thumbnail)\.webp/);
-        const cardDefId=cardMatch?cardMatch[1]:undefined;
-        if(cardDefId){frame.style.cursor='zoom-in';frame.title='点击放大鉴赏手绘卡面细节';frame.onclick=(e)=>{e.stopPropagation();openCardArtZoom(cardDefId,portrait.alt);};}
+        // Resolve the exact registered model, including versioned paths and BASE_URL.
+        // No filename parsing: goods, snapshots and unregistered URLs have no zoom badge.
+        const cardDefId=JOKER_ART.find(art=>jokerArtUrl(art.id)===portrait.url&&(!portrait.thumbnailUrl||jokerArtPreviewUrl(art.id)===portrait.thumbnailUrl))?.id;
+        if(cardDefId){
+          const zoom=document.createElement('button'),badge=document.createElement('span');zoom.type='button';zoom.className='dialog-card-zoom-trigger';zoom.setAttribute('aria-label','放大鉴赏'+cardDisplayName(cardDefId,portrait.alt));zoom.setAttribute('aria-haspopup','dialog');
+          badge.className='dialog-card-zoom-badge';badge.textContent='放大鉴赏';zoom.append(badge);visual.append(zoom);
+          let opened:HTMLDialogElement|undefined;zoom.onclick=event=>{event.stopPropagation();opened=openCardArtZoom(cardDefId,portrait.alt);};cleanups.push(()=>{zoom.onclick=null;opened?.close();});
+        }
         image.width=615;image.height=768;
         const thumbnailUrl=portrait.thumbnailUrl??portrait.url;
         let closed=false,thumbnailFailed=false,detailReady=false,showingFallback=false,registeredFailed=options.artLoad?.status==='failed',registeredLoading=options.artLoad?.status==='loading';

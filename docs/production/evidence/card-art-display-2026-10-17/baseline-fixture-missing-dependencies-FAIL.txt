@@ -1,0 +1,24 @@
+
+ RUN  v4.1.11 /tmp/card-art-main-audio
+
+ ❯ tests/score-recorded-audio.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/score-recorded-audio.test.ts [ tests/score-recorded-audio.test.ts ]
+Error: Cannot find module '../../public/assets/audio/p06/recording.json' imported from /tmp/card-art-main-audio/src/audio/AudioEngine.ts
+ ❯ src/audio/AudioEngine.ts:1:23
+      1| import recording from '../../public/assets/audio/p06/recording.json';
+       |                       ^
+      2| import bgmManifest from '../../public/assets/audio/bgm/manifest.json';
+      3| import {DEFAULT_AUDIO} from './preferences';
+ ❯ tests/score-recorded-audio.test.ts:2:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  02:03:05
+   Duration  392ms (transform 196ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)
+

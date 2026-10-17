@@ -1,0 +1,42 @@
+{
+  "productCommit": "fddb7378112304ead60d67a676e73bb4a3fe2ec0",
+  "sourceFingerprint": "902346621bfc318be823126e2403e8390903528e445819f7ca9b262db34b72b5",
+  "browserCasesPassed": 9,
+  "browserPageErrors": 0,
+  "mainBaselineFailuresMatch": [
+    "tests/assist-profile-ui-copy.test.ts > same-ID game and shop copy follows the current exact profile in both directions",
+    "tests/assist-profile-ui-copy.test.ts > all known identities bind game, shop and AI to the exact definition; only Amo shows assist",
+    "tests/score-recorded-audio.test.ts > ordinary hits stay light and key multiplication has bounded three-layer timbre, all cancellable",
+    "tests/source-stage-art.test.ts > same-ID existing detail is bounded and has no legacy/background/unknown substitution",
+    "tests/source-stage-art.test.ts > publishes the existing exact-size image only after decode and current generation checks",
+    "tests/source-stage-art.test.ts > a stale decode cannot publish, and cancellation resolves before a blocked decode"
+  ],
+  "protectedTreesUnchanged": [
+    "src/game/GameScene.ts",
+    "src/game/ShopScene.ts",
+    "src/audio/AudioEngine.ts",
+    "src/domain",
+    "src/application",
+    "src/platform"
+  ],
+  "screenshots": {
+    "1366-a11-entry-FAIL.png": "7e031f26591e67bc429f1007ef38996bc860cb8c12f401fe21665cc0a52413fb",
+    "1366-warm-cache-PASS.png": "8274dc581a961c12bbeed95e4e7fedb9168d7a69cf3e2705b735fc3e6aa16586",
+    "1366-zoom-FAIL.png": "9125d24a74281edb70bd9049d4a5b7215f23977a678badc8c8fa5f877c1f7a38",
+    "1366-zoom-PASS.png": "1888447a41eff960ced45808e69aff44948ec024429d0e400469295472af33ae",
+    "390-a11-entry-FAIL.png": "b603480e192dabf8502a84c29ba872135ed660ab1d0a8fdf6001d1c468780687",
+    "390-built-subpath-PASS.png": "d032e5e849935d5c14c989ef97fea3db3e0d42c3ca6dc102046d7fcb8ce5a136",
+    "390-decode-readable-fallback-PASS.png": "3c8c4b7858ae236927bc5ca5eb127c925ed6d58cc1b5fe494056ad8c5911e255",
+    "390-decode-recovered-PASS.png": "d032e5e849935d5c14c989ef97fea3db3e0d42c3ca6dc102046d7fcb8ce5a136",
+    "390-goods-no-zoom-PASS.png": "c5d42a3e9df86fba0cf30e35c92024d5c3182b180044125182422b7a62b5a7b3",
+    "390-hang-readable-fallback-PASS.png": "3c8c4b7858ae236927bc5ca5eb127c925ed6d58cc1b5fe494056ad8c5911e255",
+    "390-hang-recovered-PASS.png": "d032e5e849935d5c14c989ef97fea3db3e0d42c3ca6dc102046d7fcb8ce5a136",
+    "390-http-readable-fallback-PASS.png": "3c8c4b7858ae236927bc5ca5eb127c925ed6d58cc1b5fe494056ad8c5911e255",
+    "390-http-recovered-PASS.png": "d032e5e849935d5c14c989ef97fea3db3e0d42c3ca6dc102046d7fcb8ce5a136",
+    "390-zoom-FAIL.png": "a3aa6b9dc531f43d9f33355e943a904175cb78a70cb27fb9705e0b1cb91366f3",
+    "390-zoom-PASS.png": "23dcbeadbfe342481fe382f8c9a018d5374f8c62285faaf3ba61644cc5e4fdb8",
+    "740-a11-entry-FAIL.png": "ffd5110d42747d3143cb61f180d5e484b206b75dd83caa7a250e4ebd523ba867",
+    "740-zoom-FAIL.png": "34cdb1e6734b58441a2fa1aa4be4ec7a45dddc0e9b7dc18010f5f92ad0e5a5ad",
+    "740-zoom-PASS.png": "552b982bd0ce9e17c10c5c8a32ce2617e28e3f37d5c82f27c72f2622fc2250bd"
+  }
+}

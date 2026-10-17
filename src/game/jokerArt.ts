@@ -30,7 +30,13 @@ const LEGACY_JOKER_ART = [
 ] as const;
 
 interface JokerArt {id:string;key:string;path:string;detailPath:string;detailOnDemand?:boolean;alignedLayers?:boolean}
-const reviewed=HANDDRAWN_ART.filter(a=>a.category==='functional-card').map(a=>({id:a.id,key:'p08-joker-'+a.id,path:handdrawnPath(a.id,'thumbnail')!,detailPath:handdrawnPath(a.id,'detail')!,detailOnDemand:true,alignedLayers:false}));
+// These public files were replaced in place. Bind both Phaser and DOM requests to
+// the manifest bytes so a warm browser cannot keep an earlier card illustration.
+export const reviewedCardPath=(id:string,purpose:'thumbnail'|'detail'):string|undefined=>{
+  const output=HANDDRAWN_ART.find(a=>a.id===id&&a.category==='functional-card')?.outputs.find(o=>o.purpose===purpose);
+  return output?handdrawnPath(id,purpose)+'?v='+output.sha256:undefined;
+};
+const reviewed=HANDDRAWN_ART.filter(a=>a.category==='functional-card').map(a=>({id:a.id,key:'p08-joker-'+a.id,path:reviewedCardPath(a.id,'thumbnail')!,detailPath:reviewedCardPath(a.id,'detail')!,detailOnDemand:true,alignedLayers:false}));
 export const JOKER_ART:readonly JokerArt[]=[...LEGACY_JOKER_ART.filter(a=>!reviewed.some(r=>r.id===a.id)),...reviewed];
 export const jokerArtAlignedLayers=(id:string):boolean=>JOKER_ART.find(a=>a.id===id)?.alignedLayers!==false;
 

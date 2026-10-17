@@ -1,0 +1,396 @@
+{
+  "head": "7d7921e76ca794a14e715e3eac3b4d66143862ff",
+  "baseline": false,
+  "browser": "151.0.7922.173",
+  "scope": "Real production menu → catalog → detail → artwork; controlled failures and lifecycle probes use the same shipped components. Chromium software Canvas, no physical-device claim.",
+  "cases": [
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "errors": [],
+      "geometry": {
+        "dialog": {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "right": 390,
+          "bottom": 844
+        },
+        "close": {
+          "x": 338,
+          "y": 8,
+          "width": 44,
+          "height": 44,
+          "right": 382,
+          "bottom": 52
+        },
+        "image": {
+          "x": 8,
+          "y": 56,
+          "width": 374,
+          "height": 776,
+          "right": 382,
+          "bottom": 832
+        },
+        "fit": "contain",
+        "thumbFilter": "none",
+        "loaded": true,
+        "natural": [
+          615,
+          768
+        ],
+        "focus": "card-art-zoom-close"
+      },
+      "outsideClick": "PASS",
+      "safeInsetsAndRotation": {
+        "dialog": {
+          "x": 0,
+          "y": 0,
+          "width": 740,
+          "height": 320,
+          "right": 740,
+          "bottom": 320
+        },
+        "close": {
+          "x": 662,
+          "y": 12,
+          "width": 44,
+          "height": 44,
+          "right": 706,
+          "bottom": 56
+        },
+        "image": {
+          "x": 12,
+          "y": 60,
+          "width": 694,
+          "height": 222,
+          "right": 706,
+          "bottom": 282
+        },
+        "fit": "contain",
+        "thumbFilter": "none",
+        "loaded": true,
+        "natural": [
+          615,
+          768
+        ],
+        "focus": "card-art-zoom-close"
+      },
+      "keyboardAndFocus": "PASS",
+      "readOnly": "PASS",
+      "status": "PASS"
+    },
+    {
+      "viewport": {
+        "width": 740,
+        "height": 320
+      },
+      "errors": [],
+      "geometry": {
+        "dialog": {
+          "x": 0,
+          "y": 0,
+          "width": 740,
+          "height": 320,
+          "right": 740,
+          "bottom": 320
+        },
+        "close": {
+          "x": 688,
+          "y": 8,
+          "width": 44,
+          "height": 44,
+          "right": 732,
+          "bottom": 52
+        },
+        "image": {
+          "x": 8,
+          "y": 56,
+          "width": 724,
+          "height": 252,
+          "right": 732,
+          "bottom": 308
+        },
+        "fit": "contain",
+        "thumbFilter": "none",
+        "loaded": true,
+        "natural": [
+          615,
+          768
+        ],
+        "focus": "card-art-zoom-close"
+      },
+      "outsideClick": "PASS",
+      "safeInsetsAndRotation": {
+        "dialog": {
+          "x": 0,
+          "y": 0,
+          "width": 740,
+          "height": 320,
+          "right": 740,
+          "bottom": 320
+        },
+        "close": {
+          "x": 662,
+          "y": 12,
+          "width": 44,
+          "height": 44,
+          "right": 706,
+          "bottom": 56
+        },
+        "image": {
+          "x": 12,
+          "y": 60,
+          "width": 694,
+          "height": 222,
+          "right": 706,
+          "bottom": 282
+        },
+        "fit": "contain",
+        "thumbFilter": "none",
+        "loaded": true,
+        "natural": [
+          615,
+          768
+        ],
+        "focus": "card-art-zoom-close"
+      },
+      "keyboardAndFocus": "PASS",
+      "readOnly": "PASS",
+      "status": "PASS"
+    },
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 900
+      },
+      "errors": [],
+      "geometry": {
+        "dialog": {
+          "x": 0,
+          "y": 0,
+          "width": 1366,
+          "height": 900,
+          "right": 1366,
+          "bottom": 900
+        },
+        "close": {
+          "x": 1314,
+          "y": 8,
+          "width": 44,
+          "height": 44,
+          "right": 1358,
+          "bottom": 52
+        },
+        "image": {
+          "x": 8,
+          "y": 56,
+          "width": 1350,
+          "height": 832,
+          "right": 1358,
+          "bottom": 888
+        },
+        "fit": "contain",
+        "thumbFilter": "none",
+        "loaded": true,
+        "natural": [
+          615,
+          768
+        ],
+        "focus": "card-art-zoom-close"
+      },
+      "outsideClick": "PASS",
+      "safeInsetsAndRotation": {
+        "dialog": {
+          "x": 0,
+          "y": 0,
+          "width": 740,
+          "height": 320,
+          "right": 740,
+          "bottom": 320
+        },
+        "close": {
+          "x": 662,
+          "y": 12,
+          "width": 44,
+          "height": 44,
+          "right": 706,
+          "bottom": 56
+        },
+        "image": {
+          "x": 12,
+          "y": 60,
+          "width": 694,
+          "height": 222,
+          "right": 706,
+          "bottom": 282
+        },
+        "fit": "contain",
+        "thumbFilter": "none",
+        "loaded": true,
+        "natural": [
+          615,
+          768
+        ],
+        "focus": "card-art-zoom-close"
+      },
+      "keyboardAndFocus": "PASS",
+      "readOnly": "PASS",
+      "status": "PASS"
+    },
+    {
+      "failure": "http",
+      "errors": [],
+      "fallback": {
+        "natural": [
+          128,
+          160
+        ],
+        "visible": true,
+        "filter": "none",
+        "fit": "contain"
+      },
+      "recovered": {
+        "dialog": {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "right": 390,
+          "bottom": 844
+        },
+        "close": {
+          "x": 338,
+          "y": 8,
+          "width": 44,
+          "height": 44,
+          "right": 382,
+          "bottom": 52
+        },
+        "image": {
+          "x": 8,
+          "y": 56,
+          "width": 374,
+          "height": 776,
+          "right": 382,
+          "bottom": 832
+        },
+        "fit": "contain",
+        "thumbFilter": "none",
+        "loaded": true,
+        "natural": [
+          615,
+          768
+        ],
+        "focus": ""
+      },
+      "status": "PASS"
+    },
+    {
+      "failure": "decode",
+      "errors": [],
+      "fallback": {
+        "natural": [
+          128,
+          160
+        ],
+        "visible": true,
+        "filter": "none",
+        "fit": "contain"
+      },
+      "recovered": {
+        "dialog": {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "right": 390,
+          "bottom": 844
+        },
+        "close": {
+          "x": 338,
+          "y": 8,
+          "width": 44,
+          "height": 44,
+          "right": 382,
+          "bottom": 52
+        },
+        "image": {
+          "x": 8,
+          "y": 56,
+          "width": 374,
+          "height": 776,
+          "right": 382,
+          "bottom": 832
+        },
+        "fit": "contain",
+        "thumbFilter": "none",
+        "loaded": true,
+        "natural": [
+          615,
+          768
+        ],
+        "focus": ""
+      },
+      "status": "PASS"
+    },
+    {
+      "failure": "hang",
+      "errors": [],
+      "fallback": {
+        "natural": [
+          128,
+          160
+        ],
+        "visible": true,
+        "filter": "none",
+        "fit": "contain"
+      },
+      "recovered": {
+        "dialog": {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "right": 390,
+          "bottom": 844
+        },
+        "close": {
+          "x": 338,
+          "y": 8,
+          "width": 44,
+          "height": 44,
+          "right": 382,
+          "bottom": 52
+        },
+        "image": {
+          "x": 8,
+          "y": 56,
+          "width": 374,
+          "height": 776,
+          "right": 382,
+          "bottom": 832
+        },
+        "fit": "contain",
+        "thumbFilter": "none",
+        "loaded": true,
+        "natural": [
+          615,
+          768
+        ],
+        "focus": ""
+      },
+      "status": "PASS"
+    },
+    {
+      "lifecycle": "late decode, replacement, parent close",
+      "errors": []
+    }
+  ],
+  "sourceFingerprint": "902346621bfc318be823126e2403e8390903528e445819f7ca9b262db34b72b5",
+  "status": "FAIL",
+  "error": "page.evaluate: EncodingError: The source image cannot be decoded.\n    at /workspace/dachoupai/harness/card-art-zoom.mjs:98:16"
+}

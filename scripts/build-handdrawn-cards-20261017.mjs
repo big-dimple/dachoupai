@@ -35,14 +35,14 @@ for (const file of files) {
 
   // Compress thumbnail (128x160)
   const thumbBuf = await sharp(srcBuf, { failOn: 'none' })
-    .resize(128, 160, { fit: 'cover', position: 'center' })
+    .resize(128, 160, { fit: cardId === 'a11' ? 'contain' : 'cover', position: 'center', background: '#000' })
     .webp({ quality: 80, effort: 6 })
     .toBuffer();
   const thumbHash = sha256(thumbBuf);
 
   // Compress detail (615x768)
   const detailBuf = await sharp(srcBuf, { failOn: 'none' })
-    .resize(615, 768, { fit: 'cover', position: 'center' })
+    .resize(615, 768, { fit: cardId === 'a11' ? 'contain' : 'cover', position: 'center', background: '#000' })
     .webp({ quality: 78, effort: 6 })
     .toBuffer();
   const detailHash = sha256(detailBuf);
@@ -53,10 +53,12 @@ for (const file of files) {
   fs.writeFileSync(thumbDest, thumbBuf);
   fs.writeFileSync(detailDest, detailBuf);
 
-  // Special case for a11 legacy compatibility
+  // Old v2 URLs are retained; newly contained A11 bytes get new content paths.
+  const thumbPath = cardId === 'a11' ? `cards/a11-v3-${thumbHash.slice(0,12)}.thumbnail.webp` : `cards/${cardId}.thumbnail.webp`;
+  const detailPath = cardId === 'a11' ? `cards/a11-v3-${detailHash.slice(0,12)}.detail.webp` : `cards/${cardId}.detail.webp`;
   if (cardId === 'a11') {
-    fs.writeFileSync(path.join(outCardsDir, 'a11-v2-ea9e76e4a31f.thumbnail.webp'), thumbBuf);
-    fs.writeFileSync(path.join(outCardsDir, 'a11-v2-aa4e6a9988ab.detail.webp'), detailBuf);
+    fs.writeFileSync(path.join('public/assets/handdrawn-p08', thumbPath), thumbBuf);
+    fs.writeFileSync(path.join('public/assets/handdrawn-p08', detailPath), detailBuf);
   }
 
   // Update manifest entry
@@ -72,6 +74,7 @@ for (const file of files) {
     thumbOut.sha256 = thumbHash;
     thumbOut.width = 128;
     thumbOut.height = 160;
+    thumbOut.path = thumbPath;
   }
 
   const detailOut = asset.outputs.find(o => o.purpose === 'detail');
@@ -80,6 +83,7 @@ for (const file of files) {
     detailOut.sha256 = detailHash;
     detailOut.width = 615;
     detailOut.height = 768;
+    detailOut.path = detailPath;
   }
 
   batchManifest.assets.push({
@@ -92,19 +96,20 @@ for (const file of files) {
     sourceHeight: srcMeta.height,
     sourceBytes: srcBuf.length,
     thumbnail: {
-      path: `cards/${cardId}.thumbnail.webp`,
+      path: thumbPath,
       width: 128,
       height: 160,
       bytes: thumbBuf.length,
       sha256: thumbHash
     },
     detail: {
-      path: `cards/${cardId}.detail.webp`,
+      path: detailPath,
       width: 615,
       height: 768,
       bytes: detailBuf.length,
       sha256: detailHash
-    }
+    },
+    ...(cardId === 'a11' ? {geometry:{fit:'contain',entireSourceSampled:true,noStretch:true,sourceCropPixels:{left:0,top:0,width:srcMeta.width,height:srcMeta.height},background:'#000'}} : {})
   });
 
   console.log(`Processed ${index} [${cardId}] ${rawName}: thumb=${thumbBuf.length}B, detail=${detailBuf.length}B`);

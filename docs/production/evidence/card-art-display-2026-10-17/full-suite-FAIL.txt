@@ -1,0 +1,1945 @@
+
+> dachoupai@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/score-recorded-audio.test.ts (12 tests | 1 failed) 57ms
+   × ordinary hits stay light and key multiplication has bounded three-layer timbre, all cancellable 9ms
+ ❯ tests/assist-profile-ui-copy.test.ts (4 tests | 2 failed) 197ms
+   × same-ID game and shop copy follows the current exact profile in both directions 117ms
+   × all known identities bind game, shop and AI to the exact definition; only Amo shows assist 56ms
+ ❯ tests/source-stage-art.test.ts (12 tests | 3 failed) 1025ms
+   × same-ID existing detail is bounded and has no legacy/background/unknown substitution 5ms
+   × publishes the existing exact-size image only after decode and current generation checks 4ms
+   × a stale decode cannot publish, and cancellation resolves before a blocked decode 1004ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 6 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/assist-profile-ui-copy.test.ts > same-ID game and shop copy follows the current exact profile in both directions
+AssertionError: expected [ { id: 'pengci', …(4) }, …(71) ] to be [ …(72) ] // Object.is equality
+
+- Expected
++ Received
+
+@@ -20,11 +20,11 @@
+          ],
+          "phase": "jokerScore",
+        },
+      ],
+      "id": "pengci",
+-     "name": "碰瓷",
++     "name": "狭路相逢",
+      "rarity": "common",
+    },
+    {
+      "description": "对子、两对、三条、葫芦、四条，整手热度 +90；扩展牌型不自动继承。",
+      "hooks": [
+@@ -50,11 +50,11 @@
+          ],
+          "phase": "jokerScore",
+        },
+      ],
+      "id": "mantangcai",
+-     "name": "满堂彩",
++     "name": "满堂喝彩",
+      "rarity": "common",
+    },
+    {
+      "description": "每张有效计分的 J/Q/K/A 加 25 热度；杂牌和持牌不触发。",
+      "hooks": [
+@@ -79,11 +79,11 @@
+          ],
+          "phase": "onCardScore",
+        },
+      ],
+      "id": "tiesuanpan",
+-     "name": "铁算盘",
++     "name": "精打细算",
+      "rarity": "uncommon",
+    },
+    {
+      "description": "本场每第 3 次出牌，整手倍率 ×2。",
+      "hooks": [
+@@ -132,11 +132,11 @@
+          ],
+          "phase": "jokerScore",
+        },
+      ],
+      "id": "jiedongfeng",
+-     "name": "借东风",
++     "name": "巧借东风",
+      "rarity": "uncommon",
+    },
+    {
+      "description": "实际打出恰好1张牌时，整手热度 +35。",
+      "hooks": [
+@@ -156,11 +156,11 @@
+          ],
+          "phase": "jokerScore",
+        },
+      ],
+      "id": "a03",
+-     "name": "一束光",
++     "name": "掌灯破雾",
+      "rarity": "common",
+    },
+    {
+      "description": "打出1张后热度成长 +6，上限90，从下一手生效；每手加入已有成长。",
+      "hooks": [
+@@ -198,11 +198,11 @@
+          ],
+          "phase": "afterHand",
+        },
+      ],
+      "id": "a05",
+-     "name": "熟面孔",
++     "name": "轻车熟路",
+      "rarity": "uncommon",
+    },
+    {
+      "description": "计分牌的点数在实际打出牌中至少出现2次时，该牌倍率 +0.25。",
+      "hooks": [
+@@ -222,11 +222,11 @@
+          ],
+          "phase": "onCardScore",
+        },
+      ],
+      "id": "b02",
+-     "name": "对上眼",
++     "name": "心有灵犀",
+      "rarity": "common",
+    },
+    {
+      "description": "对子、两对、三条后倍率成长 +0.25，上限3，从下一手生效；每手加入已有成长。",
+      "hooks": [
+@@ -268,11 +268,11 @@
+          ],
+          "phase": "afterHand",
+        },
+      ],
+      "id": "b03",
+-     "name": "老搭档",
++     "name": "莫逆之交",
+      "rarity": "uncommon",
+    },
+    {
+      "description": "实际打出牌含至少两组不同点数、每组至少2张时，整手倍率 +2。",
+      "hooks": [
+@@ -293,11 +293,11 @@
+          ],
+          "phase": "jokerScore",
+        },
+      ],
+      "id": "b04",
+-     "name": "一唱一和",
++     "name": "琴瑟和鸣",
+      "rarity": "common",
+    },
+    {
+      "description": "每张有效计分的红桃或方片，加8热度；杂牌和持牌不触发。",
+      "hooks": [
+@@ -320,11 +320,11 @@
+          ],
+          "phase": "onCardScore",
+        },
+      ],
+      "id": "c02",
+-     "name": "红线",
++     "name": "朱砂点绛",
+      "rarity": "common",
+    },
+    {
+      "description": "顺子或同花顺，整手热度 +50。",
+      "hooks": [
+@@ -347,11 +347,11 @@
+          ],
+          "phase": "jokerScore",
+        },
+      ],
+      "id": "c04",
+-     "name": "搭台阶",
++     "name": "步步高升",
+      "rarity": "common",
+    },
+    {
+      "description": "同花或同花顺后倍率成长 +0.25，上限4，从下一手生效；每手加入已有成长。",
+      "hooks": [
+@@ -392,11 +392,11 @@
+          ],
+          "phase": "afterHand",
+        },
+      ],
+      "id": "c06",
+-     "name": "越染越深",
++     "name": "青出于蓝",
+      "rarity": "uncommon",
+    },
+    {
+      "description": "手牌顺序前4张持有的J/Q/K各加0.5倍率；A不算人头。",
+      "hooks": [
+@@ -421,11 +421,11 @@
+          ],
+          "phase": "onHeldCard",
+        },
+      ],
+      "id": "d01",
+-     "name": "候场席",
++     "name": "坐镇中军",
+      "rarity": "common",
+    },
+    {
+      "description": "一手后留下至少3张牌，热度成长 +4，上限60，从下一手生效；每手加入已有成长。",
+      "hooks": [
+@@ -463,11 +463,11 @@
+          ],
+          "phase": "afterHand",
+        },
+      ],
+      "id": "d03",
+-     "name": "等得住",
++     "name": "陈年佳酿",
+      "rarity": "uncommon",
+    },
+    {
+      "description": "本场首次成功弃牌返还1次弃牌；仅一次，返还仍算使用过弃牌。",
+      "hooks": [
+@@ -485,11 +485,11 @@
+          ],
+          "phase": "onDiscard",
+        },
+      ],
+      "id": "d05",
+-     "name": "彩排",
++     "name": "小试牛刀",
+      "rarity": "uncommon",
+    },
+    {
+      "description": "每个空大丑牌槽加12热度，最多4个空槽。",
+      "hooks": [
+@@ -512,11 +512,11 @@
+          ],
+          "phase": "jokerScore",
+        },
+      ],
+      "id": "d10",
+-     "name": "空位有价",
++     "name": "无中生有",
+      "rarity": "common",
+    },
+    {
+      "description": "成功过场额外 +2金币；失败和跳场不触发。",
+      "hooks": [
+@@ -532,11 +532,11 @@
+          ],
+          "phase": "onStageClear",
+        },
+      ],
+      "id": "e01",
+-     "name": "小费盒",
++     "name": "金玉满盘",
+      "rarity": "common",
+    },
+    {
+      "description": "每持有1金币加2热度，最多60热度。",
+      "hooks": [
+@@ -559,11 +559,11 @@
+          ],
+          "phase": "jokerScore",
+        },
+      ],
+      "id": "e03",
+-     "name": "家底",
++     "name": "聚宝金瓮",
+      "rarity": "uncommon",
+    },
+    {
+      "description": "持有期间购买其他大丑牌后，热度成长 +8，上限80；每手加入已有成长。",
+      "hooks": [
+@@ -600,11 +600,11 @@
+          ],
+          "phase": "onBuyOffer",
+        },
+      ],
+      "id": "e05",
+-     "name": "置办行头",
++     "name": "鲜衣怒马",
+      "rarity": "uncommon",
+    },
+    {
+      "description": "当前金币至少20时，整手倍率 ×1.8。",
+      "hooks": [
+@@ -625,11 +625,11 @@
+          ],
+          "phase": "jokerScore",
+        },
+      ],
+      "id": "e08",
+-     "name": "包场",
++     "name": "一掷千金",
+      "rarity": "rare",
+    },
+    {
+      "description": "扣除本手后出牌余量为0时，整手热度 +70。",
+      "hooks": [
+@@ -650,11 +650,11 @@
+          ],
+          "phase": "jokerScore",
+        },
+      ],
+      "id": "f02",
+-     "name": "最后一句",
++     "name": "孤注一掷",
+      "rarity": "common",
+    },
+    {
+      "description": "本场第一手，整手倍率 +2。",
+      "hooks": [
+@@ -675,11 +675,11 @@
+          ],
+          "phase": "jokerScore",
+        },
+      ],
+      "id": "f03",
+-     "name": "开门见喜",
++     "name": "双喜临门",
+      "rarity": "common",
+    },
+    {
+      "description": "本场尚未成功使用弃牌时，整手倍率 ×1.5；返还弃牌不恢复资格。",
+      "hooks": [
+@@ -700,11 +700,11 @@
+          ],
+          "phase": "jokerScore",
+        },
+      ],
+      "id": "f09",
+-     "name": "不换词",
++     "name": "始终如一",
+      "rarity": "uncommon",
+    },
+    {
+      "description": "进场时持久有效牌组不超过40张，手牌上限 +2；只在下次进场生效，总上限14。",
+      "hooks": [],
+@@ -714,11 +714,11 @@
+          "amount": 2,
+          "deckMaximum": 40,
+          "kind": "hand-limit",
+        },
+      ],
+-     "name": "小口袋",
++     "name": "乾坤锦囊",
+      "rarity": "uncommon",
+      "requiredFeatures": [
+        "static-modifiers",
+      ],
+    },
+@@ -743,11 +743,11 @@
+          ],
+          "phase": "jokerScore",
+        },
+      ],
+      "id": "a06",
+-     "name": "独家戏",
++     "name": "一舞倾城",
+      "rarity": "rare",
+      "requiredFeatures": [
+        "score-hooks",
+      ],
+    },
+@@ -768,11 +768,11 @@
+          ],
+          "phase": "onDiscard",
+        },
+      ],
+      "id": "a07",
+-     "name": "偷闲",
++     "name": "浮生半日",
+      "rarity": "common",
+      "requiredFeatures": [
+        "discard-hooks",
+      ],
+    },
+@@ -800,11 +800,11 @@
+          ],
+          "phase": "onCardScore",
+        },
+      ],
+      "id": "a08",
+-     "name": "小人物",
++     "name": "野火春风",
+      "rarity": "common",
+      "requiredFeatures": [
+        "score-hooks",
+      ],
+    },
+@@ -827,11 +827,11 @@
+          ],
+          "phase": "onCardScore",
+        },
+      ],
+      "id": "b05",
+-     "name": "合唱班",
++     "name": "凤鸣朝阳",
+      "rarity": "uncommon",
+      "requiredFeatures": [
+        "score-hooks",
+      ],
+    },
+@@ -853,11 +853,11 @@
+          ],
+          "phase": "onCardScore",
+        },
+      ],
+      "id": "b06",
+-     "name": "再说一遍",
++     "name": "重锤响鼓",
+      "rarity": "rare",
+      "requiredFeatures": [
+        "score-hooks",
+        "retrigger",
+      ],
+@@ -881,11 +881,11 @@
+          ],
+          "phase": "jokerScore",
+        },
+      ],
+      "id": "b07",
+-     "name": "人人有份",
++     "name": "宾主尽欢",
+      "rarity": "common",
+      "requiredFeatures": [
+        "score-hooks",
+      ],
+    },
+@@ -908,11 +908,11 @@
+          ],
+          "phase": "onStageClear",
+        },
+      ],
+      "id": "b08",
+-     "name": "对半分",
++     "name": "平分秋色",
+      "rarity": "uncommon",
+      "requiredFeatures": [
+        "stage-clear-hooks",
+      ],
+    },
+@@ -938,11 +938,11 @@
+          ],
+          "phase": "onCardScore",
+        },
+      ],
+      "id": "c03",
+-     "name": "蓝墨",
++     "name": "挥毫泼墨",
+      "rarity": "common",
+      "requiredFeatures": [
+        "score-hooks",
+      ],
+    },
+@@ -983,11 +983,11 @@
+          ],
+          "phase": "onDiscard",
+        },
+      ],
+      "id": "c05",
+-     "name": "换布景",
++     "name": "辞旧迎新",
+      "rarity": "uncommon",
+      "requiredFeatures": [
+        "score-hooks",
+        "discard-hooks",
+      ],
+@@ -1012,11 +1012,11 @@
+          ],
+          "phase": "onCardScore",
+        },
+      ],
+      "id": "c07",
+-     "name": "拖个尾音",
++     "name": "弦外之音",
+      "rarity": "rare",
+      "requiredFeatures": [
+        "score-hooks",
+        "retrigger",
+      ],
+@@ -1028,11 +1028,11 @@
+      "modifiers": [
+        {
+          "kind": "four-straight",
+        },
+      ],
+-     "name": "少一级",
++     "name": "一步之遥",
+      "rarity": "uncommon",
+      "requiredFeatures": [
+        "static-modifiers",
+      ],
+    },
+@@ -1061,11 +1061,11 @@
+          ],
+          "phase": "onHeldCard",
+        },
+      ],
+      "id": "d02",
+-     "name": "小凳子",
++     "name": "奇兵突起",
+      "rarity": "common",
+      "requiredFeatures": [
+        "score-hooks",
+      ],
+    },
+@@ -1089,11 +1089,11 @@
+          ],
+          "phase": "onCardScore",
+        },
+      ],
+      "id": "d04",
+-     "name": "递个眼色",
++     "name": "顾盼生威",
+      "rarity": "rare",
+      "requiredFeatures": [
+        "score-hooks",
+        "retrigger",
+      ],
+@@ -1106,11 +1106,11 @@
+        {
+          "amount": 1,
+          "kind": "hand-limit",
+        },
+      ],
+-     "name": "搬张椅子",
++     "name": "虚位以待",
+      "rarity": "uncommon",
+      "requiredFeatures": [
+        "static-modifiers",
+      ],
+    },
+@@ -1133,11 +1133,11 @@
+          ],
+          "phase": "jokerScore",
+        },
+      ],
+      "id": "d07",
+-     "name": "镜头不空",
++     "name": "箭无虚发",
+      "rarity": "common",
+      "requiredFeatures": [
+        "score-hooks",
+      ],
+    },
+@@ -1150,11 +1150,11 @@
+          "amount": 1,
+          "kind": "first-purchase-discount",
+          "minimum": 1,
+        },
+      ],
+-     "name": "熟客券",
++     "name": "宾至如归",
+      "rarity": "common",
+      "requiredFeatures": [
+        "static-modifiers",
+      ],
+    },
+@@ -1166,11 +1166,11 @@
+        {
+          "amount": 2,
+          "kind": "interest-cap",
+        },
+      ],
+-     "name": "滚个零头",
++     "name": "一本万利",
+      "rarity": "uncommon",
+      "requiredFeatures": [
+        "static-modifiers",
+      ],
+    },
+@@ -1210,11 +1210,11 @@
+          ],
+          "phase": "onSellJoker",
+        },
+      ],
+      "id": "e06",
+-     "name": "旧物新用",
++     "name": "点石成金",
+      "rarity": "uncommon",
+      "requiredFeatures": [
+        "score-hooks",
+        "trade-hooks",
+      ],
+@@ -1236,11 +1236,11 @@
+          ],
+          "phase": "onStageClear",
+        },
+      ],
+      "id": "e07",
+-     "name": "加班费",
++     "name": "天道酬勤",
+      "rarity": "uncommon",
+      "requiredFeatures": [
+        "stage-clear-hooks",
+      ],
+    },
+@@ -1264,11 +1264,11 @@
+          ],
+          "phase": "jokerScore",
+        },
+      ],
+      "id": "f04",
+-     "name": "兜比脸净",
++     "name": "两袖清风",
+      "rarity": "uncommon",
+      "requiredFeatures": [
+        "score-hooks",
+      ],
+    },
+@@ -1308,11 +1308,11 @@
+          ],
+          "phase": "afterHand",
+        },
+      ],
+      "id": "f05",
+-     "name": "越说越顺",
++     "name": "青云直上",
+      "rarity": "uncommon",
+      "requiredFeatures": [
+        "score-hooks",
+        "score-growth",
+      ],
+@@ -1347,11 +1347,11 @@
+          ],
+          "phase": "afterHand",
+        },
+      ],
+      "id": "f06",
+-     "name": "一次性招牌",
++     "name": "刹那芳华",
+      "rarity": "rare",
+      "requiredFeatures": [
+        "score-hooks",
+        "hand-lifetime",
+      ],
+@@ -1371,11 +1371,11 @@
+          ],
+          "phase": "beforeFailure",
+        },
+      ],
+      "id": "f07",
+-     "name": "安全网",
++     "name": "逢凶化吉",
+      "rarity": "uncommon",
+      "requiredFeatures": [
+        "before-failure",
+      ],
+    },
+@@ -1398,11 +1398,11 @@
+          ],
+          "phase": "jokerScore",
+        },
+      ],
+      "id": "a09",
+-     "name": "短节目",
++     "name": "清音穿云",
+      "rarity": "common",
+      "requiredFeatures": [
+        "score-hooks",
+      ],
+    },
+@@ -1431,11 +1431,11 @@
+          ],
+          "phase": "onHeldCard",
+        },
+      ],
+      "id": "a10",
+-     "name": "后台眼神",
++     "name": "慧眼识珠",
+      "rarity": "uncommon",
+      "requiredFeatures": [
+        "score-hooks",
+      ],
+    },
+@@ -1455,11 +1455,11 @@
+          ],
+          "phase": "onCardScore",
+        },
+      ],
+      "id": "a11",
+-     "name": "返个场",
++     "name": "梅开二度",
+      "rarity": "rare",
+      "requiredFeatures": [
+        "score-hooks",
+        "retrigger",
+      ],
+@@ -1480,11 +1480,11 @@
+          ],
+          "phase": "onStageClear",
+        },
+      ],
+      "id": "a12",
+-     "name": "不铺张",
++     "name": "一盏清茗",
+      "rarity": "uncommon",
+      "requiredFeatures": [
+        "stage-clear-hooks",
+        "stage-history",
+      ],
+@@ -1512,11 +1512,11 @@
+          ],
+          "phase": "jokerScore",
+        },
+      ],
+      "id": "b09",
+-     "name": "四座皆惊",
++     "name": "技惊四座",
+      "rarity": "rare",
+      "requiredFeatures": [
+        "score-hooks",
+      ],
+    },
+@@ -1559,11 +1559,11 @@
+          ],
+          "phase": "afterHand",
+        },
+      ],
+      "id": "b10",
+-     "name": "练对子",
++     "name": "炉火纯青",
+      "rarity": "uncommon",
+      "requiredFeatures": [
+        "score-hooks",
+      ],
+    },
+@@ -1586,11 +1586,11 @@
+          ],
+          "phase": "onHeldCard",
+        },
+      ],
+      "id": "b11",
+-     "name": "候场同伴",
++     "name": "蓄势待发",
+      "rarity": "uncommon",
+      "requiredFeatures": [
+        "score-hooks",
+      ],
+    },
+@@ -1613,11 +1613,11 @@
+          ],
+          "phase": "afterHand",
+        },
+      ],
+      "id": "b12",
+-     "name": "救个场",
++     "name": "绝处逢生",
+      "rarity": "rare",
+      "requiredFeatures": [
+        "score-hooks",
+        "hand-refund",
+      ],
+@@ -1629,11 +1629,11 @@
+      "modifiers": [
+        {
+          "kind": "four-flush",
+        },
+      ],
+-     "name": "少一块布",
++     "name": "天衣无缝",
+      "rarity": "rare",
+      "requiredFeatures": [
+        "static-modifiers",
+      ],
+    },
+@@ -1659,11 +1659,11 @@
+          ],
+          "phase": "onHeldCard",
+        },
+      ],
+      "id": "c10",
+-     "name": "压住书页",
++     "name": "稳如泰山",
+      "rarity": "uncommon",
+      "requiredFeatures": [
+        "score-hooks",
+      ],
+    },
+@@ -1704,11 +1704,11 @@
+          ],
+          "phase": "jokerScore",
+        },
+      ],
+      "id": "c11",
+-     "name": "换轨",
++     "name": "峰回路转",
+      "rarity": "uncommon",
+      "requiredFeatures": [
+        "score-hooks",
+      ],
+    },
+@@ -1737,11 +1737,11 @@
+          ],
+          "phase": "onStageClear",
+        },
+      ],
+      "id": "c12",
+-     "name": "换一身",
++     "name": "锦上添花",
+      "rarity": "uncommon",
+      "requiredFeatures": [
+        "stage-clear-hooks",
+        "stage-history",
+        "consumable-rewards",
+@@ -1767,11 +1767,11 @@
+          ],
+          "phase": "onHeldCard",
+        },
+      ],
+      "id": "d08",
+-     "name": "留声机",
++     "name": "余音绕梁",
+      "rarity": "rare",
+      "requiredFeatures": [
+        "score-hooks",
+        "held-enhancement-hooks",
+      ],
+@@ -1812,11 +1812,11 @@
+          ],
+          "phase": "afterHand",
+        },
+      ],
+      "id": "d09",
+-     "name": "回声越来越近",
++     "name": "空谷传响",
+      "rarity": "uncommon",
+      "requiredFeatures": [
+        "score-hooks",
+      ],
+    },
+@@ -1836,11 +1836,11 @@
+          ],
+          "phase": "onCardScore",
+        },
+      ],
+      "id": "d11",
+-     "name": "三拍子",
++     "name": "一鼓作气",
+      "rarity": "rare",
+      "requiredFeatures": [
+        "score-hooks",
+        "retrigger",
+      ],
+@@ -1861,11 +1861,11 @@
+          ],
+          "phase": "onStageClear",
+        },
+      ],
+      "id": "d12",
+-     "name": "留点悬念",
++     "name": "深藏不露",
+      "rarity": "uncommon",
+      "requiredFeatures": [
+        "stage-clear-hooks",
+      ],
+    },
+@@ -1877,11 +1877,11 @@
+        {
+          "amount": 1,
+          "kind": "consumable-capacity",
+        },
+      ],
+-     "name": "储物箱",
++     "name": "内有乾坤",
+      "rarity": "common",
+      "requiredFeatures": [
+        "static-modifiers",
+        "consumable-capacity",
+      ],
+@@ -1903,11 +1903,11 @@
+          ],
+          "phase": "onStageClear",
+        },
+      ],
+      "id": "e10",
+-     "name": "赠票",
++     "name": "倾囊相授",
+      "rarity": "uncommon",
+      "requiredFeatures": [
+        "stage-clear-hooks",
+        "consumable-rewards",
+      ],
+@@ -1967,11 +1967,11 @@
+          ],
+          "phase": "onSellJoker",
+        },
+      ],
+      "id": "e11",
+-     "name": "长期捧场",
++     "name": "薪火相传",
+      "rarity": "rare",
+      "requiredFeatures": [
+        "score-hooks",
+        "stage-clear-hooks",
+        "trade-hooks",
+@@ -2015,11 +2015,11 @@
+          ],
+          "phase": "onReroll",
+        },
+      ],
+      "id": "e12",
+-     "name": "淘旧摊",
++     "name": "沙里淘金",
+      "rarity": "uncommon",
+      "requiredFeatures": [
+        "score-hooks",
+        "reroll-hooks",
+      ],
+@@ -2046,11 +2046,11 @@
+          ],
+          "phase": "jokerScore",
+        },
+      ],
+      "id": "f08",
+-     "name": "试试手气",
++     "name": "上上大吉",
+      "rarity": "uncommon",
+      "requiredFeatures": [
+        "score-hooks",
+        "rule-chance",
+      ],
+@@ -2077,11 +2077,11 @@
+          ],
+          "phase": "jokerScore",
+        },
+      ],
+      "id": "f10",
+-     "name": "冷场救火",
++     "name": "柳暗花明",
+      "rarity": "rare",
+      "requiredFeatures": [
+        "score-hooks",
+      ],
+    },
+@@ -2125,11 +2125,11 @@
+          ],
+          "phase": "afterHand",
+        },
+      ],
+      "id": "f11",
+-     "name": "越挫越会",
++     "name": "越战越勇",
+      "rarity": "uncommon",
+      "requiredFeatures": [
+        "score-hooks",
+      ],
+    },
+@@ -2174,11 +2174,11 @@
+          ],
+          "phase": "onStageClear",
+        },
+      ],
+      "id": "f12",
+-     "name": "真正的压轴",
++     "name": "压轴好戏",
+      "rarity": "rare",
+      "requiredFeatures": [
+        "score-hooks",
+        "stage-clear-hooks",
+        "coefficient-growth",
+
+ ❯ tests/assist-profile-ui-copy.test.ts:29:45
+     27|   expect(game.jokerAbility(j,facts)).toEqual(jokerAbilityCopyForRun(s,…
+     28|   expect(shop.jokerCopy(id,j)).toEqual(jokerAbilityCopyForRun(s,id,j,p…
+     29|   expect(game.candidateInput().definitions).toBe(r2JokerDefinitionsFor…
+       |                                             ^
+     30|   if(prototype){expect(facts.heldIds).not.toContain(side[0]);expect(fa…
+     31|  }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/6]⎯
+
+ FAIL  tests/assist-profile-ui-copy.test.ts > all known identities bind game, shop and AI to the exact definition; only Amo shows assist
+AssertionError: expected [ { id: 'pengci', …(4) }, …(71) ] to be [ …(72) ] // Object.is equality
+
+- Expected
++ Received
+
+@@ -20,11 +20,11 @@
+          ],
+          "phase": "jokerScore",
+        },
+      ],
+      "id": "pengci",
+-     "name": "碰瓷",
++     "name": "狭路相逢",
+      "rarity": "common",
+    },
+    {
+      "description": "对子、两对、三条、葫芦、四条，整手热度 +90；扩展牌型不自动继承。",
+      "hooks": [
+@@ -50,11 +50,11 @@
+          ],
+          "phase": "jokerScore",
+        },
+      ],
+      "id": "mantangcai",
+-     "name": "满堂彩",
++     "name": "满堂喝彩",
+      "rarity": "common",
+    },
+    {
+      "description": "每张有效计分的 J/Q/K/A 加 25 热度；杂牌和持牌不触发。",
+      "hooks": [
+@@ -79,11 +79,11 @@
+          ],
+          "phase": "onCardScore",
+        },
+      ],
+      "id": "tiesuanpan",
+-     "name": "铁算盘",
++     "name": "精打细算",
+      "rarity": "uncommon",
+    },
+    {
+      "description": "本场每第 3 次出牌，整手倍率 ×2。",
+      "hooks": [
+@@ -132,11 +132,11 @@
+          ],
+          "phase": "jokerScore",
+        },
+      ],
+      "id": "jiedongfeng",
+-     "name": "借东风",
++     "name": "巧借东风",
+      "rarity": "uncommon",
+    },
+    {
+      "description": "合格主手的首张有效计分牌热度 +15；合法重触发可重复获得。",
+      "hooks": [
+@@ -168,11 +168,11 @@
+          ],
+          "phase": "onCardScore",
+        },
+      ],
+      "id": "a03",
+-     "name": "一束光",
++     "name": "掌灯破雾",
+      "rarity": "common",
+    },
+    {
+      "description": "每手读取已存热度成长；连续两手为同一种合格主手时，结算后成长 +6，封顶90，下一手生效。",
+      "hooks": [
+@@ -222,11 +222,11 @@
+          ],
+          "phase": "afterHand",
+        },
+      ],
+      "id": "a05",
+-     "name": "熟面孔",
++     "name": "轻车熟路",
+      "rarity": "uncommon",
+    },
+    {
+      "description": "计分牌的点数在实际打出牌中至少出现2次时，该牌倍率 +0.25。",
+      "hooks": [
+@@ -246,11 +246,11 @@
+          ],
+          "phase": "onCardScore",
+        },
+      ],
+      "id": "b02",
+-     "name": "对上眼",
++     "name": "心有灵犀",
+      "rarity": "common",
+    },
+    {
+      "description": "任何成组牌型结算后倍率成长+0.25，上限+3，下次起生效；每手任意牌型均加入已有成长，跨场保留。",
+      "hooks": [
+@@ -297,11 +297,11 @@
+          ],
+          "phase": "afterHand",
+        },
+      ],
+      "id": "b03",
+-     "name": "老搭档",
++     "name": "莫逆之交",
+      "rarity": "uncommon",
+    },
+    {
+      "description": "实际打出牌含至少两组不同点数、每组至少2张时，整手倍率 +2。",
+      "hooks": [
+@@ -322,11 +322,11 @@
+          ],
+          "phase": "jokerScore",
+        },
+      ],
+      "id": "b04",
+-     "name": "一唱一和",
++     "name": "琴瑟和鸣",
+      "rarity": "common",
+    },
+    {
+      "description": "每张有效计分的红桃或方片，加8热度；杂牌和持牌不触发。",
+      "hooks": [
+@@ -349,11 +349,11 @@
+          ],
+          "phase": "onCardScore",
+        },
+      ],
+      "id": "c02",
+-     "name": "红线",
++     "name": "朱砂点绛",
+      "rarity": "common",
+    },
+    {
+      "description": "顺子或同花顺，整手热度 +50。",
+      "hooks": [
+@@ -376,11 +376,11 @@
+          ],
+          "phase": "jokerScore",
+        },
+      ],
+      "id": "c04",
+-     "name": "搭台阶",
++     "name": "步步高升",
+      "rarity": "common",
+    },
+    {
+      "description": "同花或同花顺后倍率成长 +0.25，上限4，从下一手生效；每手加入已有成长。",
+      "hooks": [
+@@ -421,11 +421,11 @@
+          ],
+          "phase": "afterHand",
+        },
+      ],
+      "id": "c06",
+-     "name": "越染越深",
++     "name": "青出于蓝",
+      "rarity": "uncommon",
+    },
+    {
+      "description": "手牌顺序前4张持有的J/Q/K各加0.5倍率；A不算人头。",
+      "hooks": [
+@@ -450,11 +450,11 @@
+          ],
+          "phase": "onHeldCard",
+        },
+      ],
+      "id": "d01",
+-     "name": "候场席",
++     "name": "坐镇中军",
+      "rarity": "common",
+    },
+    {
+      "description": "一手后留下至少3张牌，热度成长 +4，上限60，从下一手生效；每手加入已有成长。",
+      "hooks": [
+@@ -492,11 +492,11 @@
+          ],
+          "phase": "afterHand",
+        },
+      ],
+      "id": "d03",
+-     "name": "等得住",
++     "name": "陈年佳酿",
+      "rarity": "uncommon",
+    },
+    {
+      "description": "本场首次成功弃牌返还1次弃牌；仅一次，返还仍算使用过弃牌。",
+      "hooks": [
+@@ -514,11 +514,11 @@
+          ],
+          "phase": "onDiscard",
+        },
+      ],
+      "id": "d05",
+-     "name": "彩排",
++     "name": "小试牛刀",
+      "rarity": "uncommon",
+    },
+    {
+      "description": "每个空大丑牌槽加12热度，最多4个空槽。",
+      "hooks": [
+@@ -541,11 +541,11 @@
+          ],
+          "phase": "jokerScore",
+        },
+      ],
+      "id": "d10",
+-     "name": "空位有价",
++     "name": "无中生有",
+      "rarity": "common",
+    },
+    {
+      "description": "成功过场额外 +2金币；失败和跳场不触发。",
+      "hooks": [
+@@ -561,11 +561,11 @@
+          ],
+          "phase": "onStageClear",
+        },
+      ],
+      "id": "e01",
+-     "name": "小费盒",
++     "name": "金玉满盘",
+      "rarity": "common",
+    },
+    {
+      "description": "每持有1金币加2热度，最多60热度。",
+      "hooks": [
+@@ -588,11 +588,11 @@
+          ],
+          "phase": "jokerScore",
+        },
+      ],
+      "id": "e03",
+-     "name": "家底",
++     "name": "聚宝金瓮",
+      "rarity": "uncommon",
+    },
+    {
+      "description": "持有期间购买其他大丑牌后，热度成长 +8，上限80；每手加入已有成长。",
+      "hooks": [
+@@ -629,11 +629,11 @@
+          ],
+          "phase": "onBuyOffer",
+        },
+      ],
+      "id": "e05",
+-     "name": "置办行头",
++     "name": "鲜衣怒马",
+      "rarity": "uncommon",
+    },
+    {
+      "description": "当前金币至少20时，整手倍率 ×1.8。",
+      "hooks": [
+@@ -654,11 +654,11 @@
+          ],
+          "phase": "jokerScore",
+        },
+      ],
+      "id": "e08",
+-     "name": "包场",
++     "name": "一掷千金",
+      "rarity": "rare",
+    },
+    {
+      "description": "扣除本手后出牌余量为0时，整手热度 +70。",
+      "hooks": [
+@@ -679,11 +679,11 @@
+          ],
+          "phase": "jokerScore",
+        },
+      ],
+      "id": "f02",
+-     "name": "最后一句",
++     "name": "孤注一掷",
+      "rarity": "common",
+    },
+    {
+      "description": "本场第一手，整手倍率 +2。",
+      "hooks": [
+@@ -704,11 +704,11 @@
+          ],
+          "phase": "jokerScore",
+        },
+      ],
+      "id": "f03",
+-     "name": "开门见喜",
++     "name": "双喜临门",
+      "rarity": "common",
+    },
+    {
+      "description": "本场尚未成功使用弃牌时，整手倍率 ×1.5；返还弃牌不恢复资格。",
+      "hooks": [
+@@ -729,11 +729,11 @@
+          ],
+          "phase": "jokerScore",
+        },
+      ],
+      "id": "f09",
+-     "name": "不换词",
++     "name": "始终如一",
+      "rarity": "uncommon",
+    },
+    {
+      "description": "进场时持久有效牌组不超过40张，手牌上限 +2；只在下次进场生效，总上限14。",
+      "hooks": [],
+@@ -743,11 +743,11 @@
+          "amount": 2,
+          "deckMaximum": 40,
+          "kind": "hand-limit",
+        },
+      ],
+-     "name": "小口袋",
++     "name": "乾坤锦囊",
+      "rarity": "uncommon",
+      "requiredFeatures": [
+        "static-modifiers",
+      ],
+    },
+@@ -815,11 +815,11 @@
+          ],
+          "phase": "afterHand",
+        },
+      ],
+      "id": "a06",
+-     "name": "独家戏",
++     "name": "一舞倾城",
+      "rarity": "rare",
+      "requiredFeatures": [
+        "score-hooks",
+        "coefficient-growth",
+      ],
+@@ -841,11 +841,11 @@
+          ],
+          "phase": "onDiscard",
+        },
+      ],
+      "id": "a07",
+-     "name": "偷闲",
++     "name": "浮生半日",
+      "rarity": "common",
+      "requiredFeatures": [
+        "discard-hooks",
+      ],
+    },
+@@ -873,11 +873,11 @@
+          ],
+          "phase": "onCardScore",
+        },
+      ],
+      "id": "a08",
+-     "name": "小人物",
++     "name": "野火春风",
+      "rarity": "common",
+      "requiredFeatures": [
+        "score-hooks",
+      ],
+    },
+@@ -900,11 +900,11 @@
+          ],
+          "phase": "onCardScore",
+        },
+      ],
+      "id": "b05",
+-     "name": "合唱班",
++     "name": "凤鸣朝阳",
+      "rarity": "uncommon",
+      "requiredFeatures": [
+        "score-hooks",
+      ],
+    },
+@@ -923,11 +923,11 @@
+          ],
+          "phase": "onCardScore",
+        },
+      ],
+      "id": "b06",
+-     "name": "再说一遍",
++     "name": "重锤响鼓",
+      "rarity": "rare",
+      "requiredFeatures": [
+        "score-hooks",
+        "retrigger",
+      ],
+@@ -951,11 +951,11 @@
+          ],
+          "phase": "jokerScore",
+        },
+      ],
+      "id": "b07",
+-     "name": "人人有份",
++     "name": "宾主尽欢",
+      "rarity": "common",
+      "requiredFeatures": [
+        "score-hooks",
+      ],
+    },
+@@ -984,11 +984,11 @@
+          ],
+          "phase": "onStageClear",
+        },
+      ],
+      "id": "b08",
+-     "name": "对半分",
++     "name": "平分秋色",
+      "rarity": "uncommon",
+      "requiredFeatures": [
+        "stage-clear-hooks",
+      ],
+    },
+@@ -1014,11 +1014,11 @@
+          ],
+          "phase": "onCardScore",
+        },
+      ],
+      "id": "c03",
+-     "name": "蓝墨",
++     "name": "挥毫泼墨",
+      "rarity": "common",
+      "requiredFeatures": [
+        "score-hooks",
+      ],
+    },
+@@ -1059,11 +1059,11 @@
+          ],
+          "phase": "onDiscard",
+        },
+      ],
+      "id": "c05",
+-     "name": "换布景",
++     "name": "辞旧迎新",
+      "rarity": "uncommon",
+      "requiredFeatures": [
+        "score-hooks",
+        "discard-hooks",
+      ],
+@@ -1088,11 +1088,11 @@
+          ],
+          "phase": "onCardScore",
+        },
+      ],
+      "id": "c07",
+-     "name": "拖个尾音",
++     "name": "弦外之音",
+      "rarity": "rare",
+      "requiredFeatures": [
+        "score-hooks",
+        "retrigger",
+      ],
+@@ -1104,11 +1104,11 @@
+      "modifiers": [
+        {
+          "kind": "four-straight",
+        },
+      ],
+-     "name": "少一级",
++     "name": "一步之遥",
+      "rarity": "uncommon",
+      "requiredFeatures": [
+        "static-modifiers",
+      ],
+    },
+@@ -1137,11 +1137,11 @@
+          ],
+          "phase": "onHeldCard",
+        },
+      ],
+      "id": "d02",
+-     "name": "小凳子",
++     "name": "奇兵突起",
+      "rarity": "common",
+      "requiredFeatures": [
+        "score-hooks",
+      ],
+    },
+@@ -1165,11 +1165,11 @@
+          ],
+          "phase": "onCardScore",
+        },
+      ],
+      "id": "d04",
+-     "name": "递个眼色",
++     "name": "顾盼生威",
+      "rarity": "rare",
+      "requiredFeatures": [
+        "score-hooks",
+        "retrigger",
+      ],
+@@ -1182,11 +1182,11 @@
+        {
+          "amount": 1,
+          "kind": "hand-limit",
+        },
+      ],
+-     "name": "搬张椅子",
++     "name": "虚位以待",
+      "rarity": "uncommon",
+      "requiredFeatures": [
+        "static-modifiers",
+      ],
+    },
+@@ -1209,11 +1209,11 @@
+          ],
+          "phase": "jokerScore",
+        },
+      ],
+      "id": "d07",
+-     "name": "镜头不空",
++     "name": "箭无虚发",
+      "rarity": "common",
+      "requiredFeatures": [
+        "score-hooks",
+      ],
+    },
+@@ -1226,11 +1226,11 @@
+          "amount": 1,
+          "kind": "first-purchase-discount",
+          "minimum": 1,
+        },
+      ],
+-     "name": "熟客券",
++     "name": "宾至如归",
+      "rarity": "common",
+      "requiredFeatures": [
+        "static-modifiers",
+      ],
+    },
+@@ -1250,11 +1250,11 @@
+          ],
+          "phase": "onStageClear",
+        },
+      ],
+      "id": "e04",
+-     "name": "滚个零头",
++     "name": "一本万利",
+      "rarity": "uncommon",
+      "requiredFeatures": [
+        "stage-clear-hooks",
+      ],
+    },
+@@ -1294,11 +1294,11 @@
+          ],
+          "phase": "onSellJoker",
+        },
+      ],
+      "id": "e06",
+-     "name": "旧物新用",
++     "name": "点石成金",
+      "rarity": "uncommon",
+      "requiredFeatures": [
+        "score-hooks",
+        "trade-hooks",
+      ],
+@@ -1320,11 +1320,11 @@
+          ],
+          "phase": "onStageClear",
+        },
+      ],
+      "id": "e07",
+-     "name": "加班费",
++     "name": "天道酬勤",
+      "rarity": "uncommon",
+      "requiredFeatures": [
+        "stage-clear-hooks",
+      ],
+    },
+@@ -1348,11 +1348,11 @@
+          ],
+          "phase": "jokerScore",
+        },
+      ],
+      "id": "f04",
+-     "name": "兜比脸净",
++     "name": "两袖清风",
+      "rarity": "uncommon",
+      "requiredFeatures": [
+        "score-hooks",
+      ],
+    },
+@@ -1392,11 +1392,11 @@
+          ],
+          "phase": "afterHand",
+        },
+      ],
+      "id": "f05",
+-     "name": "越说越顺",
++     "name": "青云直上",
+      "rarity": "uncommon",
+      "requiredFeatures": [
+        "score-hooks",
+        "score-growth",
+      ],
+@@ -1431,11 +1431,11 @@
+          ],
+          "phase": "afterHand",
+        },
+      ],
+      "id": "f06",
+-     "name": "一次性招牌",
++     "name": "刹那芳华",
+      "rarity": "rare",
+      "requiredFeatures": [
+        "score-hooks",
+        "hand-lifetime",
+      ],
+@@ -1455,11 +1455,11 @@
+          ],
+          "phase": "beforeFailure",
+        },
+      ],
+      "id": "f07",
+-     "name": "安全网",
++     "name": "逢凶化吉",
+      "rarity": "uncommon",
+      "requiredFeatures": [
+        "before-failure",
+      ],
+    },
+@@ -1482,11 +1482,11 @@
+          ],
+          "phase": "jokerScore",
+        },
+      ],
+      "id": "a09",
+-     "name": "短节目",
++     "name": "清音穿云",
+      "rarity": "common",
+      "requiredFeatures": [
+        "score-hooks",
+      ],
+    },
+@@ -1514,11 +1514,11 @@
+          ],
+          "phase": "onHeldCard",
+        },
+      ],
+      "id": "a10",
+-     "name": "后台眼神",
++     "name": "慧眼识珠",
+      "rarity": "uncommon",
+      "requiredFeatures": [
+        "score-hooks",
+      ],
+    },
+@@ -1541,11 +1541,11 @@
+          ],
+          "phase": "onCardScore",
+        },
+      ],
+      "id": "a11",
+-     "name": "返个场",
++     "name": "梅开二度",
+      "rarity": "rare",
+      "requiredFeatures": [
+        "score-hooks",
+        "retrigger",
+      ],
+@@ -1566,11 +1566,11 @@
+          ],
+          "phase": "onStageClear",
+        },
+      ],
+      "id": "a12",
+-     "name": "不铺张",
++     "name": "一盏清茗",
+      "rarity": "uncommon",
+      "requiredFeatures": [
+        "stage-clear-hooks",
+        "stage-history",
+      ],
+@@ -1598,11 +1598,11 @@
+          ],
+          "phase": "jokerScore",
+        },
+      ],
+      "id": "b09",
+-     "name": "四座皆惊",
++     "name": "技惊四座",
+      "rarity": "rare",
+      "requiredFeatures": [
+        "score-hooks",
+      ],
+    },
+@@ -1652,11 +1652,11 @@
+          ],
+          "phase": "afterHand",
+        },
+      ],
+      "id": "b10",
+-     "name": "练对子",
++     "name": "炉火纯青",
+      "rarity": "common",
+      "requiredFeatures": [
+        "score-hooks",
+      ],
+    },
+@@ -1679,11 +1679,11 @@
+          ],
+          "phase": "onHeldCard",
+        },
+      ],
+      "id": "b11",
+-     "name": "候场同伴",
++     "name": "蓄势待发",
+      "rarity": "uncommon",
+      "requiredFeatures": [
+        "score-hooks",
+      ],
+    },
+@@ -1706,11 +1706,11 @@
+          ],
+          "phase": "afterHand",
+        },
+      ],
+      "id": "b12",
+-     "name": "救个场",
++     "name": "绝处逢生",
+      "rarity": "rare",
+      "requiredFeatures": [
+        "score-hooks",
+        "hand-refund",
+      ],
+@@ -1722,11 +1722,11 @@
+      "modifiers": [
+        {
+          "kind": "four-flush",
+        },
+      ],
+-     "name": "少一块布",
++     "name": "天衣无缝",
+      "rarity": "rare",
+      "requiredFeatures": [
+        "static-modifiers",
+      ],
+    },
+@@ -1752,11 +1752,11 @@
+          ],
+          "phase": "onHeldCard",
+        },
+      ],
+      "id": "c10",
+-     "name": "压住书页",
++     "name": "稳如泰山",
+      "rarity": "uncommon",
+      "requiredFeatures": [
+        "score-hooks",
+      ],
+    },
+@@ -1797,11 +1797,11 @@
+          ],
+          "phase": "jokerScore",
+        },
+      ],
+      "id": "c11",
+-     "name": "换轨",
++     "name": "峰回路转",
+      "rarity": "uncommon",
+      "requiredFeatures": [
+        "score-hooks",
+      ],
+    },
+@@ -1830,11 +1830,11 @@
+          ],
+          "phase": "onStageClear",
+        },
+      ],
+      "id": "c12",
+-     "name": "换一身",
++     "name": "锦上添花",
+      "rarity": "uncommon",
+      "requiredFeatures": [
+        "stage-clear-hooks",
+        "stage-history",
+        "consumable-rewards",
+@@ -1860,11 +1860,11 @@
+          ],
+          "phase": "onHeldCard",
+        },
+      ],
+      "id": "d08",
+-     "name": "留声机",
++     "name": "余音绕梁",
+      "rarity": "rare",
+      "requiredFeatures": [
+        "score-hooks",
+        "held-enhancement-hooks",
+      ],
+@@ -1905,11 +1905,11 @@
+          ],
+          "phase": "afterHand",
+        },
+      ],
+      "id": "d09",
+-     "name": "回声越来越近",
++     "name": "空谷传响",
+      "rarity": "uncommon",
+      "requiredFeatures": [
+        "score-hooks",
+      ],
+    },
+@@ -1929,11 +1929,11 @@
+          ],
+          "phase": "onCardScore",
+        },
+      ],
+      "id": "d11",
+-     "name": "三拍子",
++     "name": "一鼓作气",
+      "rarity": "rare",
+      "requiredFeatures": [
+        "score-hooks",
+        "retrigger",
+      ],
+@@ -1966,11 +1966,11 @@
+          ],
+          "phase": "onStageClear",
+        },
+      ],
+      "id": "d12",
+-     "name": "留点悬念",
++     "name": "深藏不露",
+      "rarity": "uncommon",
+      "requiredFeatures": [
+        "stage-clear-hooks",
+      ],
+    },
+@@ -1982,11 +1982,11 @@
+        {
+          "amount": 1,
+          "kind": "consumable-capacity",
+        },
+      ],
+-     "name": "储物箱",
++     "name": "内有乾坤",
+      "rarity": "common",
+      "requiredFeatures": [
+        "static-modifiers",
+        "consumable-capacity",
+      ],
+@@ -2008,11 +2008,11 @@
+          ],
+          "phase": "onStageClear",
+        },
+      ],
+      "id": "e10",
+-     "name": "赠票",
++     "name": "倾囊相授",
+      "rarity": "uncommon",
+      "requiredFeatures": [
+        "stage-clear-hooks",
+        "consumable-rewards",
+      ],
+@@ -2072,11 +2072,11 @@
+          ],
+          "phase": "onSellJoker",
+        },
+      ],
+      "id": "e11",
+-     "name": "长期捧场",
++     "name": "薪火相传",
+      "rarity": "rare",
+      "requiredFeatures": [
+        "score-hooks",
+        "stage-clear-hooks",
+        "trade-hooks",
+@@ -2120,11 +2120,11 @@
+          ],
+          "phase": "onReroll",
+        },
+      ],
+      "id": "e12",
+-     "name": "淘旧摊",
++     "name": "沙里淘金",
+      "rarity": "uncommon",
+      "requiredFeatures": [
+        "score-hooks",
+        "reroll-hooks",
+      ],
+@@ -2151,11 +2151,11 @@
+          ],
+          "phase": "jokerScore",
+        },
+      ],
+      "id": "f08",
+-     "name": "试试手气",
++     "name": "上上大吉",
+      "rarity": "uncommon",
+      "requiredFeatures": [
+        "score-hooks",
+        "rule-chance",
+      ],
+@@ -2212,11 +2212,11 @@
+          ],
+          "phase": "afterHand",
+        },
+      ],
+      "id": "f10",
+-     "name": "冷场救火",
++     "name": "柳暗花明",
+      "rarity": "rare",
+      "requiredFeatures": [
+        "score-hooks",
+        "discard-hooks",
+      ],
+@@ -2261,11 +2261,11 @@
+          ],
+          "phase": "afterHand",
+        },
+      ],
+      "id": "f11",
+-     "name": "越挫越会",
++     "name": "越战越勇",
+      "rarity": "uncommon",
+      "requiredFeatures": [
+        "score-hooks",
+      ],
+    },
+@@ -2310,11 +2310,11 @@
+          ],
+          "phase": "onStageClear",
+        },
+      ],
+      "id": "f12",
+-     "name": "真正的压轴",
++     "name": "压轴好戏",
+      "rarity": "rare",
+      "requiredFeatures": [
+        "score-hooks",
+        "stage-clear-hooks",
+        "coefficient-growth",
+
+ ❯ tests/assist-profile-ui-copy.test.ts:50:46
+     48|    expect(game.jokerAbility(j,facts)).toEqual(jokerAbilityCopyForRun(s…
+     49|    expect(shop.jokerCopy(id,j)).toEqual(jokerAbilityCopyForRun(s,id,j,…
+     50|    expect(game.candidateInput().definitions).toBe(defs);expect(game.ca…
+       |                                              ^
+     51|   }
+     52|  }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/6]⎯
+
+ FAIL  tests/score-recorded-audio.test.ts > ordinary hits stay light and key multiplication has bounded three-layer timbre, all cancellable
+AssertionError: expected 1.107 to be close to 0.8815, received difference is 0.22550000000000003, but expected 0.005
+ ❯ tests/score-recorded-audio.test.ts:6:457
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/6]⎯
+
+ FAIL  tests/source-stage-art.test.ts > same-ID existing detail is bounded and has no legacy/background/unknown substitution
+TypeError: Cannot read properties of undefined (reading 'url')
+ ❯ tests/source-stage-art.test.ts:7:45
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/6]⎯
+
+ FAIL  tests/source-stage-art.test.ts > publishes the existing exact-size image only after decode and current generation checks
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/source-stage-art.test.ts:14:261
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/6]⎯
+
+ FAIL  tests/source-stage-art.test.ts > a stale decode cannot publish, and cancellation resolves before a blocked decode
+AssertionError: expected undefined to be defined
+ ❯ tests/source-stage-art.test.ts:17:285
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/6]⎯
+
+
+ Test Files  3 failed | 280 passed (283)
+      Tests  6 failed | 3800 passed (3806)
+   Start at  02:02:30
+   Duration  56.42s (transform 8.78s, setup 0ms, import 45.53s, tests 81.48s, environment 28ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

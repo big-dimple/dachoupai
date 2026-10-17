@@ -1,0 +1,141 @@
+{
+  "head": "7d7921e76ca794a14e715e3eac3b4d66143862ff",
+  "baseline": true,
+  "browser": "151.0.7922.173",
+  "scope": "Real production menu → catalog → detail → artwork; controlled failures and lifecycle probes use the same shipped components. Chromium software Canvas, no physical-device claim.",
+  "cases": [
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "errors": [],
+      "badge": 1,
+      "a11Opened": 0,
+      "geometry": {
+        "dialog": {
+          "x": 18,
+          "y": 91.3984375,
+          "width": 354,
+          "height": 541.609375,
+          "right": 372,
+          "bottom": 633.0078125
+        },
+        "close": {
+          "x": 311,
+          "y": 104.3984375,
+          "width": 44,
+          "height": 44,
+          "right": 355,
+          "bottom": 148.3984375
+        },
+        "image": {
+          "x": 35,
+          "y": 177.3984375,
+          "width": 320,
+          "height": 399.609375,
+          "right": 355,
+          "bottom": 577.0078125
+        },
+        "fit": "cover",
+        "thumbFilter": "blur(8px)",
+        "loaded": true,
+        "natural": [
+          615,
+          768
+        ],
+        "focus": "card-art-zoom-close"
+      },
+      "status": "FAIL (retained regression)"
+    },
+    {
+      "viewport": {
+        "width": 740,
+        "height": 320
+      },
+      "errors": [],
+      "badge": 1,
+      "a11Opened": 0,
+      "geometry": {
+        "dialog": {
+          "x": 129,
+          "y": -50,
+          "width": 482,
+          "height": 290,
+          "right": 611,
+          "bottom": 240
+        },
+        "close": {
+          "x": 550,
+          "y": -37,
+          "width": 44,
+          "height": 44,
+          "right": 594,
+          "bottom": 7
+        },
+        "image": {
+          "x": 190,
+          "y": 36,
+          "width": 360,
+          "height": 148,
+          "right": 550,
+          "bottom": 184
+        },
+        "fit": "cover",
+        "thumbFilter": "blur(8px)",
+        "loaded": true,
+        "natural": [
+          615,
+          768
+        ],
+        "focus": "card-art-zoom-close"
+      },
+      "status": "FAIL (retained regression)"
+    },
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 900
+      },
+      "errors": [],
+      "badge": 1,
+      "a11Opened": 0,
+      "geometry": {
+        "dialog": {
+          "x": 542.5,
+          "y": 83.4609375,
+          "width": 482,
+          "height": 591.546875,
+          "right": 1024.5,
+          "bottom": 675.0078125
+        },
+        "close": {
+          "x": 963.5,
+          "y": 96.4609375,
+          "width": 44,
+          "height": 44,
+          "right": 1007.5,
+          "bottom": 140.4609375
+        },
+        "image": {
+          "x": 603.5,
+          "y": 169.4609375,
+          "width": 360,
+          "height": 449.546875,
+          "right": 963.5,
+          "bottom": 619.0078125
+        },
+        "fit": "cover",
+        "thumbFilter": "blur(8px)",
+        "loaded": true,
+        "natural": [
+          615,
+          768
+        ],
+        "focus": "card-art-zoom-close"
+      },
+      "status": "FAIL (retained regression)"
+    }
+  ],
+  "status": "FAIL (expected baseline)"
+}

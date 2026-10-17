@@ -1,10 +1,13 @@
 import {afterEach,beforeEach,describe,expect,it,vi} from 'vitest';
 import {DetailDialog} from '../src/game/DetailDialog';
 import {cardAbilityCopy} from '../src/game/CardCopy';
+import {JOKER_ART,jokerArtUrl,jokerArtPreviewUrl} from '../src/game/jokerArt';
+import {cardDisplayName} from '../src/game/tangsongCardNames';
 
-const art=vi.hoisted(()=>({progressive:vi.fn(),decode:vi.fn(),mountF09:vi.fn()}));
+const art=vi.hoisted(()=>({progressive:vi.fn(),decode:vi.fn(),mountF09:vi.fn(),zoom:vi.fn()}));
 vi.mock('../src/game/DetailArt',()=>({progressiveArt:art.progressive,decodeArtImage:art.decode}));
 vi.mock('../src/game/F09Art',()=>({mountF09Detail:art.mountF09}));
+vi.mock('../src/game/CardArtZoomModal',()=>({openCardArtZoom:art.zoom}));
 
 /** Only the tree, event and focus operations used by the dialog; no image loading or layout. */
 class Element {
@@ -83,6 +86,30 @@ beforeEach(()=>{
 afterEach(()=>{vi.unstubAllGlobals();});
 
 describe('detail art recovery and stable rarity',()=>{
+  it.each(JOKER_ART.map(a=>a.id))('opens registered %s by model identity, independent of versioned filenames',id=>{
+    const owner=new DetailDialog(),zoom={close:vi.fn()};art.zoom.mockReturnValue(zoom);
+    const dialog=owner.open('卡面','规则',[],{portrait:{url:jokerArtUrl(id)!,thumbnailUrl:jokerArtPreviewUrl(id),alt:cardDisplayName(id),layout:'card'}});
+    const trigger=find(dialog,'.dialog-card-zoom-trigger');expect(trigger.tagName).toBe('BUTTON');expect(trigger.type).toBe('button');expect(trigger.getAttribute('aria-label')).toBe('放大鉴赏'+cardDisplayName(id));expect(trigger.getAttribute('aria-haspopup')).toBe('dialog');
+    trigger.click();expect(art.zoom).toHaveBeenLastCalledWith(id,cardDisplayName(id));owner.close();expect(zoom.close).toHaveBeenCalledOnce();expect(trigger.onclick).toBeNull();
+  });
+
+  it.each(['/invented/cards/a11.detail.webp','/assets/handdrawn-p08/cards/a11-v2-aa4e6a9988ab.detail.webp','/tool-hd.webp'])('does not advertise zoom for unregistered or stale %s',url=>{
+    const owner=new DetailDialog(),dialog=owner.open('卡面','规则',[],{portrait:{...portrait,url}});
+    expect(node(dialog).querySelector('.dialog-card-zoom-trigger')).toBeNull();expect(node(dialog).querySelector('.dialog-card-zoom-badge')).toBeNull();owner.close();
+  });
+
+  it('omits the entry when only a small card image or the same small/HD URL is supplied',()=>{
+    const owner=new DetailDialog();
+    for(const source of [
+      {url:jokerArtPreviewUrl('a11')!},
+      {url:jokerArtUrl('a11')!,thumbnailUrl:jokerArtUrl('a11')},
+      {url:'data:image/png;base64,mechanism',fallbackUrl:'data:image/png;base64,placeholder'},
+    ]){
+      const dialog=owner.open('商品','规则',[],{portrait:{...source,alt:'机制示意',layout:'card'}});
+      expect(node(dialog).querySelector('.dialog-card-zoom-trigger')).toBeNull();expect(node(dialog).querySelector('.dialog-card-zoom-badge')).toBeNull();owner.close();
+    }
+  });
+
   it.each(['f09','f04','a03','pengci','huimaqiang'])('keeps %s ability and edition above art with one flavor and collapsed rules',id=>{
     const owner=new DetailDialog(),ability=cardAbilityCopy(id,{gold:3,inStage:false})!;
     const operations='出售可得 2 金。调序不花金币。',editionBody='版次：闪箔（热度+25） · 独立于本体条件';
