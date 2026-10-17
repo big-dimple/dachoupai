@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "auditCommit": "7d7921e76ca794a14e715e3eac3b4d66143862ff",
   "currentTask": "P08",
-  "selectionPolicy": "辛弃疾2f2e已发布main/eyes179e；后继c676计划与47f旧资源清理合入e92ebe1a，152来源路径精确。17当前URL/高光交叉、423资产只读、类型/328构建与366在用字节核对通过，137退役文件缺席；首轮4SVG换行审计FAIL保留并窄复核。389文件37458958B仍超20MB，不删在用素材。首刘娥附着样例独立实现中尚未交付，本批仅计划不等待；普通eyes/main发布已授权，CI既有缺口/三目标未达标/P08 in_progress/人验正式门保持。",
+  "selectionPolicy": "已发布main760；侧栏1af6e已无冲突合入46ced0c8，29路径28精确、GameScene仅叠加已发布Xin；6/7源指纹精确，浏览器源范围不冒称新整合复测。16必要交叉/类型329构建通过，源72/24布局与文成受控动态复用。孤注尚无SHA不纳入，不等刘娥样例；按已有授权普通eyes/main发布。389文件37460495B仍超20MB，规则资产/137清理保持；CI既有缺口、三目标未达标/P08 in_progress/人验正式门保持。",
   "resumeContract": {
     "candidateCommit": "4bf6a7d63d7738d3c415d09439a1bdca878dc685",
     "gateTask": "A01",
@@ -38,7 +38,7 @@
       ],
       "package": "docs/production/WORK_PACKAGES.md#p08",
       "humanGate": false,
-      "completionScope": "三大体验仍未达标/重新整改，P08 in_progress。辛弃疾2f2e隔离出牌/弃牌/候选已合de144e并正常发布179e；来源50与PC/390复用、13必要交叉/类型/328构建通过。后继c676全日对账/H17真实对象附着计划与47f退役资源已合e92ebe1a；152来源路径精确、17交叉/423资产只读/类型328构建/366在用保护通过，137移除，原FAIL保留。H17首刘娥样例独立实现中尚未交付/合入，四消费区新商店未完成，软件证据不代签体验。389文件37458958B仍超20MB，指定CI15格式/55混合失配/待战超时开放；真人/设备/听感/触感与C04/A03/V01/L01不解锁。",
+      "completionScope": "三大体验仍未达标/重新整改，P08 in_progress。已发布760含Xin179e/2f2e隔离、47f资源清理137与c676计划；后继1af6e侧栏和阶段误停用已合46ced0，29路径28精确、GameScene保Xin，16交叉/类型329构建通过，源72/24布局及文成受控动态原范围复用，不签新合版完整矩阵。PC14/手机13px保持关键数值，阶段结束不误报永久停用，真实已用/B08/Q01合同保持。孤注未获SHA不纳入；H17刘娥样例独立实现中尚未交付，四消费区未完成。389文件37460495B仍超20MB；CI15格式/55混合断言/待战超时、人验/听感/触感/真机及C04/A03/V01/L01保持。",
       "evidence": [
         "docs/production/evidence/feedback-batch-integration-2026-10-17/eyes-followups.json",
         "docs/production/evidence/feedback-batch-integration-2026-10-17/zoom-sort.json",
@@ -2095,7 +2095,7 @@
       "c6760d6e03422f704cb0a0d4a8a716e5ce7f2505",
       "47f15ca62e81fedc7db014c9313f8cef5d8b9614"
     ],
-    "status": "MERGED_NECESSARY_CHECKS_PASS_NORMAL_PUBLICATION_AUTHORIZED",
+    "status": "PUBLISHED_MAIN_AND_EYES_760b_SCOPED_EVIDENCE_RETAINED",
     "assetSourcePaths": 152,
     "exactAssetPaths": 152,
     "retiredFiles": 137,
@@ -2135,6 +2135,48 @@
       "art/sources",
       ".github"
     ],
-    "open": "CI evidence metadata/55 mixed assertions/stage-ready smoke timeout;budget,human/hearing/physical haptics/device,three unmet experience goals,P08 and formal gates"
+    "open": "CI evidence metadata/55 mixed assertions/stage-ready smoke timeout;budget,human/hearing/physical haptics/device,three unmet experience goals,P08 and formal gates",
+    "actualPublishedMain": "760b9ebd56605d44786e6e8d2221b8ba22ab06a6"
+  },
+  "heroSidebarFollowup": {
+    "baseMain": "760b9ebd56605d44786e6e8d2221b8ba22ab06a6",
+    "source": "1af6e1710ad3c5fbb22430b561228bc2b39ce6db",
+    "product": "46ced0c81471b18f059a88b5720a60bcf105b44a",
+    "devBranch": "dev/eyes-followups-integration-20261017",
+    "status": "MERGED_NECESSARY_CHECKS_PASS_NORMAL_PUBLICATION_AUTHORIZED",
+    "paths": 29,
+    "exactPaths": 28,
+    "intentionalCombined": [
+      "src/game/GameScene.ts"
+    ],
+    "sourceFingerprints": 7,
+    "exactFingerprints": 6,
+    "preservedXinMethodsAndDispatch": true,
+    "newCross": {
+      "files": 3,
+      "tests": 16,
+      "status": "PASS",
+      "log": "docs/production/evidence/feedback-batch-integration-2026-10-17/checks/hero-sidebar-cross.log"
+    },
+    "typecheckAndBuild": "PASS 329 modules",
+    "sourceEvidenceReused": "72 tests;24 layout profiles/232 captions;controlled Wencheng178/297 scores,676 frames;not new integrated browser,natural or physical-device tests",
+    "fontContract": "desktop14px full-width two rows;phone13px no scale,decision tokens retained",
+    "phaseContract": "ability enablement separate from live input;ended unavailable;real used/B08/Q01 retained;no domain change",
+    "fullDist": {
+      "files": 389,
+      "bytes": 37460495,
+      "limit": 20000000,
+      "status": "FAIL"
+    },
+    "optionalCopySource": "No Guzhu copy SHA received at batch cut;not included",
+    "LiuEOwnerWindow": "Independent sample continues based on1af6e;not waited for or copied",
+    "protectedUnchanged": [
+      "src/domain/content/application/platform",
+      "AudioEngine/audio",
+      "public/art/sources",
+      "137 retired assets",
+      ".github/package lock"
+    ],
+    "open": "existing CI defects;three experience goals/P08,human/device/hearing/haptics/formal gates"
   }
 }
