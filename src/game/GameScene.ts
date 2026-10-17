@@ -1058,7 +1058,9 @@ export class GameScene extends Phaser.Scene {
     this.updateInventoryControl();
     this.view.setEnabled(this.rankButton,this.ready&&!this.pendingRefill);this.view.setEnabled(this.suitButton,this.ready&&!this.pendingRefill);
     const aiInput=this.aiInput(),aiResult=this.aiCandidates.result;
-    this.view.setEnabled(this.aiButton,this.ready&&!this.pendingRefill&&!this.presentation&&aiResult?.status==='ready'&&aiResult.key===aiHandKey(aiInput)&&aiResult.ordered.length>0);
+    const aiCurrent=aiResult?.key===aiHandKey(aiInput),aiState=!this.ready||this.pendingRefill||this.presentation||document.hidden?'paused':!aiCurrent||aiResult?.status==='working'?'working':aiResult?.status==='ready'&&aiResult.ordered.length?'ready':'unavailable';
+    this.view.setEnabled(this.aiButton,aiState==='ready');this.aiButton.setData('aiState',aiState);
+    (this.aiButton.getData('label') as Phaser.GameObjects.Text).setText(aiState==='ready'?(this.assistProfile?'AI\n主手':'AI 切'):aiState==='working'?'AI\n计算':aiState==='paused'?'AI\n稍候':'AI\n不可用');
     const handWindow=this.view.layout;this.handNavigationButtons.forEach((button,i)=>this.view.setEnabled(button,this.ready&&(i===0?handWindow.handStart>0:handWindow.handStart+handWindow.visibleCardCount<this.hand.length)));
     const notice=stageNotice(this.run),discardGoldCost=notice?.discardGoldCost??0;
     (this.playButton.getData('label') as Phaser.GameObjects.Text).setText('出牌');
@@ -1161,7 +1163,11 @@ export class GameScene extends Phaser.Scene {
     const stage=this.run.stage!,context=r2ScoreContext(this.run,this.hand,[]);
     return{...this.candidateInput(),boss:context.boss,sealedJokerIds:context.sealedJokerIds,challengeDisabledJokerId:context.challengeDisabledJokerId,score:{...(context.boundedClear?{boundedClear:context.boundedClear}:{}),...(context.activeMultTiming?{activeMultTiming:context.activeMultTiming}:{}),...(context.routeGrowth?{routeGrowth:context.routeGrowth}:{}),...(context.erxiangHandoff?{erxiangHandoff:context.erxiangHandoff}:{}),...(context.touyeWager?{touyeWager:context.touyeWager}:{}),...(context.laohuanTrick?{laohuanTrick:context.laohuanTrick}:{}),...(context.xiemuBurn?{xiemuBurn:context.xiemuBurn}:{}),...(context.azaoCharge?{azaoCharge:context.azaoCharge}:{}),characterId:context.characterId,amoScoreTiming:context.amoScoreTiming,jokerSlots:context.jokerSlots,handLevels:this.run.handLevels,previousHandType:stage.previousHandType,previousHandScore:context.previousHandScore,wager:stage.wagerSelected}};
   }
-  private cancelAiCandidates():void {this.aiCandidates.dispose();this.aiCursor=undefined;}
+  private cancelAiCandidates():void {
+    // Finished facts are immutable and still checked against the full public key.
+    // Cancel pending work before dispatch; a rejected/no-op command can reuse a ready result.
+    if(this.aiCandidates.result?.status!=='ready')this.aiCandidates.dispose();this.aiCursor=undefined;
+  }
   private candidateEntry():string {
     const result=this.candidates.result;
     return result?.status==='ready'?'本轮可成'+result.groups.length+'种 · 查看':result?.status==='working'?'本轮牌型整理中 · 选牌照常':'选择说明 · 完整规则 ›';
