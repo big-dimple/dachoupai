@@ -1,0 +1,18 @@
+{
+  "base": "4b0de064480a9c518f6443984ef6a465c4b3323d",
+  "browser": "153.0.8010.12",
+  "scope": "Software Chromium mouse/touch; validator-approved controlled imports, actual menu, native canvas/DOM clicks, exact command-state comparisons. No physical device, natural run, sound or user aesthetic acceptance claim.",
+  "profiles": [
+    {
+      "width": 1366,
+      "height": 900,
+      "owned": 0,
+      "errors": [],
+      "status": "FAIL",
+      "error": "page.evaluate: Error: invalid-save-integer\n    at q (http://127.0.0.1:5596/assets/workshop-entry-unLY21Gr.js:165:11229)\n    at Be (http://127.0.0.1:5596/assets/workshop-entry-unLY21Gr.js:165:11545)\n    at Hb (http://127.0.0.1:5596/assets/workshop-entry-unLY21Gr.js:165:13845)\n    at h0 (http://127.0.0.1:5596/assets/workshop-entry-unLY21Gr.js:165:77868)\n    at Sh (http://127.0.0.1:5596/assets/workshop-entry-unLY21Gr.js:165:81652)\n    at Object.fixture (http://127.0.0.1:5596/assets/workshop-entry-unLY21Gr.js:764:12526)\n    at eval (eval at evaluate (:311:30), <anonymous>:1:18)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)\n    at imp (C:\\Users\\wanghongping\\AppData\\Local\\Temp\\dachoupai-common-art-zoom-20261017\\harness\\shop-workshop-structure.mjs:20:42)\n    at C:\\Users\\wanghongping\\AppData\\Local\\Temp\\dachoupai-common-art-zoom-20261017\\harness\\shop-workshop-structure.mjs:27:89"
+    }
+  ],
+  "flows": [],
+  "status": "FAIL",
+  "error": "page.evaluate: Error: invalid-save-integer\n    at q (http://127.0.0.1:5596/assets/workshop-entry-unLY21Gr.js:165:11229)\n    at Be (http://127.0.0.1:5596/assets/workshop-entry-unLY21Gr.js:165:11545)\n    at Hb (http://127.0.0.1:5596/assets/workshop-entry-unLY21Gr.js:165:13845)\n    at h0 (http://127.0.0.1:5596/assets/workshop-entry-unLY21Gr.js:165:77868)\n    at Sh (http://127.0.0.1:5596/assets/workshop-entry-unLY21Gr.js:165:81652)\n    at Object.fixture (http://127.0.0.1:5596/assets/workshop-entry-unLY21Gr.js:764:12526)\n    at eval (eval at evaluate (:311:30), <anonymous>:1:18)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)\n    at imp (C:\\Users\\wanghongping\\AppData\\Local\\Temp\\dachoupai-common-art-zoom-20261017\\harness\\shop-workshop-structure.mjs:20:42)\n    at C:\\Users\\wanghongping\\AppData\\Local\\Temp\\dachoupai-common-art-zoom-20261017\\harness\\shop-workshop-structure.mjs:27:89"
+}

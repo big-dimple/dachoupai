@@ -1,0 +1,26 @@
+
+ RUN  v4.1.11 C:/Users/wanghongping/AppData/Local/Temp/dachoupai-common-art-zoom-20261017
+
+ 鉂?tests/workshop-goals.test.ts (5 tests | 1 failed) 57ms
+   脳 controlled browser samples pass the unchanged strict checkpoint validator 32ms
+
+鈳幆鈳幆鈳幆鈳?Failed Tests 1 鈳幆鈳幆鈳幆鈳?
+ FAIL  tests/workshop-goals.test.ts > controlled browser samples pass the unchanged strict checkpoint validator
+Error: invalid-save-basic-choice-quota
+ 鉂?fail src/application/checkpoint.ts:64:43
+     62| }
+     63| type ReadResult={ok:true;checkpoint:Checkpoint}|{ok:false;code:string};
+     64| const fail=(message:string):never=>{throw Error(message);};
+       |                                           ^
+     65| function record(value:unknown,required:string[],optional:string[]=[]):鈥?     66|   if(!value||typeof value!=='object'||Array.isArray(value))return fail鈥? 鉂?validateState src/application/checkpoint.ts:853:54
+ 鉂?makeCheckpoint src/application/checkpoint.ts:891:19
+ 鉂?workshopLayoutFixture harness/fixtures/workshop-layout.ts:13:11
+ 鉂?tests/workshop-goals.test.ts:9:149
+
+鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆[1/1]鈳?
+
+ Test Files  1 failed | 4 passed (5)
+      Tests  1 failed | 50 passed (51)
+   Start at  19:33:36
+   Duration  5.34s (transform 10.72s, setup 0ms, import 12.66s, tests 301ms, environment 1ms)
+
