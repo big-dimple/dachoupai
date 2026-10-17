@@ -17,7 +17,7 @@ it('portrait gallery and full-size hit areas remain stable across browser toolba
 it('first-shop guide has reachable exits without covering merchandise or primary shop actions',()=>{
  for(const [width,height] of [[1280,720],[1366,768],[1920,1080],[390,740],[320,740],[740,390],[768,1024]]){
   const p=shopLayout(width,height,12,0,3),g=shopFirstGuideLayout(p,height,true);
-  if(p.portrait){expect(g).toBeUndefined();const b=shopDecisionBox(p)!;expect(b.height).toBeGreaterThanOrEqual(88);for(const action of [p.play,p.reroll,p.build])expect(intersects(b,action)).toBe(false);for(const face of p.shelf)expect(intersects(b,shopOfferCopy(p,face,true).tile)).toBe(false);continue;}
+  if(p.portrait){expect(g).toBeUndefined();const b=shopDecisionBox(p);if(b){expect(b.height).toBeGreaterThanOrEqual(32);expect(b.y+b.height).toBeLessThanOrEqual(p.slots[0].y-24);for(const action of [p.play,p.reroll,p.build])expect(intersects(b,action)).toBe(false);for(const face of p.shelf)expect(intersects(b,shopOfferCopy(p,face,true).tile)).toBe(false);}continue;}
   expect(g,'guide at '+width+'x'+height).toBeDefined();if(!g)continue;
   expect(g.box.y).toBeGreaterThanOrEqual(8);expect(g.box.x).toBeGreaterThanOrEqual(0);expect(g.box.x+g.box.width).toBeLessThanOrEqual(width);expect(g.box.y+g.box.height).toBeLessThanOrEqual(height);
   for(const action of [p.play,p.reroll,p.build])expect(intersects(g.box,action)).toBe(false);
@@ -26,11 +26,11 @@ it('first-shop guide has reachable exits without covering merchandise or primary
   if(g.replacesEmptySlots){const held=shopFirstGuideLayout(p,height,false);if(held)for(const b of p.slots)expect(intersects(held.box,{...b,height:b.height+22})).toBe(false);}
  }
 });
-it('three visible modest 5:7 goods, separate readable copy, inventory below, one main action row',()=>{
+it('three complete 4:5 portrait goods keep readable information and visible inventory clear of actions',()=>{
  for(const width of [360,390,430])for(const height of [640,740])for(const bottom of [0,34]){
   const l=shopLayout(width,height,8,bottom,3);expect(l.shelf).toHaveLength(3);
-  for(const b of l.shelf){expect(b.width).toBeGreaterThanOrEqual(l.copyBeside?60:88);expect(b.width).toBeLessThanOrEqual(108);expect(b.height/b.width).toBeCloseTo(1.4);const copy=shopOfferCopy(l,b,true),tile=l.copyBeside?copy.tile:{...b,height:b.height+76};expect(tile.y+tile.height).toBeLessThan(l.slots[0].y-18);expect(intersects(tile,l.reroll)).toBe(false);if(l.copyBeside)expect(copy.width).toBeGreaterThan(190);}
-  expect(l.slots.every(b=>Math.abs(b.height/b.width-1.4)<1e-6)).toBe(true);
+  for(const b of l.shelf){expect(b.width).toBeGreaterThanOrEqual(l.copyBeside?60:88);expect(b.width).toBeLessThanOrEqual(108);expect(b.height/b.width).toBeCloseTo(1.25);const tile=shopOfferCopy(l,b,true).tile;if(!l.inventoryCollapsed)expect(tile.y+tile.height).toBeLessThan(l.slots[0].y-18);expect(intersects(tile,l.reroll)).toBe(false);}
+  expect(l.slots.every(b=>b.height>=b.width*1.25+32)).toBe(true);
   expect(l.play.y).toBeGreaterThan(l.reroll.y+l.reroll.height);expect(l.play.y+l.play.height).toBeLessThan(height-bottom);expect(l.play.height).toBeGreaterThanOrEqual(48);
   expect(l.slots[0].y+l.slots[0].height).toBeLessThan(l.reroll.y);
  }
@@ -68,7 +68,7 @@ it('compact inventory names retain measured four-character14px room without cove
 it('toolbar and action anchors stay fixed while compact stock reserves an owned heading',()=>{
  for(const [width,height,top,bottom] of [[320,568,12,0],[390,740,12,0],[844,300,12,34]]){
   const l=shopLayout(width,height,top,bottom,3,true);
-  if(width===320){expect(l.tabs).toEqual({x:12,y:64,width:296,height:44});expect(l.reroll).toEqual({x:12,y:424,width:144,height:44});expect(l.play).toEqual({x:12,y:476,width:296,height:56});expect(l.shelf[0]).toMatchObject({y:116,width:88,height:88*1.4});expect(l.slots[0].y+l.slots[0].height).toBeLessThanOrEqual(l.reroll.y-4);}
+  if(width===320){expect(l.tabs).toEqual({x:12,y:64,width:296,height:44});expect(l.reroll).toEqual({x:12,y:424,width:144,height:44});expect(l.play).toEqual({x:12,y:476,width:296,height:56});expect(l.shelf[0]).toMatchObject({y:116,width:88,height:88*1.25});expect(l.slots[0].y+l.slots[0].height).toBeLessThanOrEqual(l.reroll.y-4);}
   for(const b of l.shelf)expect(b.x).toBeGreaterThanOrEqual(0);
   for(const b of l.slots){const hit=shopOwnedHitBox(b,l.reroll.y,true);for(const a of [l.reroll,l.build,l.play])expect(intersects(hit,a)).toBe(false);}
  }
@@ -121,7 +121,7 @@ it('wide PC low heights reserve lower goods and feedback before sizing either ca
 });
 
 it('320 short portrait retains its gallery and collapses owned cards into the existing management entry',()=>{
- for(const bottom of [0,12,34]){const p=shopLayout(320,568,12,bottom,3,true);expect(p.portrait).toBe(true);expect(p.inventoryCollapsed).toBe(true);for(const b of p.shelf){expect(b.height/b.width).toBeCloseTo(1.4);for(const action of [p.reroll,p.build,p.play])expect(intersects(shopOfferCopy(p,b,true).tile,action)).toBe(false);}expect(p.play.height).toBeGreaterThanOrEqual(48);expect(p.reroll.height).toBeGreaterThanOrEqual(44);}
+ for(const bottom of [0,12,34]){const p=shopLayout(320,568,12,bottom,3,true);expect(p.portrait).toBe(true);expect(p.inventoryCollapsed).toBe(true);for(const b of p.shelf){expect(b.height/b.width).toBeCloseTo(1.25);for(const action of [p.reroll,p.build,p.play])expect(intersects(shopOfferCopy(p,b,true).tile,action)).toBe(false);}expect(p.play.height).toBeGreaterThanOrEqual(48);expect(p.reroll.height).toBeGreaterThanOrEqual(44);}
 });
 
 it('short landscape stock, tabs and the shared action row fit inside top/bottom/side insets',()=>{

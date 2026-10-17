@@ -1,0 +1,411 @@
+{
+  "phase": "after",
+  "scope": "One validated actual rolled shop, native import and details, 1180x757 with one 1000x757 resize. Normal motion and read-only first-frame observations; no production hooks, stock override, purchase, whole-device matrix or visual acceptance.",
+  "sourceHashes": {
+    "src/game/ShopLayout.ts": "ca46f6f0577f20256b367f5e1cfd2563a6fda210d541e70ed9ee051b76bf5562",
+    "src/game/ShopOfferLayout.ts": "09ecd201d5b37fe7dd8c6cd8101465aef5a18bf570a9628ee6cf2a6f773aa851",
+    "src/game/ShopScene.ts": "985948c90ce365ee7715d8ac0c02300ce72a1dbc2e0670afb3458923f5964683",
+    "src/game/ShopArt.ts": "c5df3ef1cc98e12c5f3988535463c2c0db69b7e9dbb5b620e6d09ac3abcffc75",
+    "src/game/ShopPresentation.css": "1dfd78c9e6379896f77071a2541ca148ba5e87870d9eaff0857b15e4ec257511"
+  },
+  "frames": [
+    {
+      "time": 3446.10000000149,
+      "elapsed": 0,
+      "rootAlpha": 0.35,
+      "goods": [
+        {
+          "alpha": 1,
+          "visible": true,
+          "images": [
+            {
+              "key": "p08-joker-d12",
+              "width": 169.12,
+              "height": 211.4
+            }
+          ]
+        },
+        {
+          "alpha": 1,
+          "visible": true,
+          "images": [
+            {
+              "key": "p08-joker-a04",
+              "width": 169.12,
+              "height": 211.4
+            }
+          ]
+        },
+        {
+          "alpha": 1,
+          "visible": true,
+          "images": [
+            {
+              "key": "p08-joker-f11",
+              "width": 169.12,
+              "height": 211.4
+            }
+          ]
+        },
+        {
+          "alpha": 1,
+          "visible": true,
+          "images": [
+            {
+              "key": "goods-art/T06",
+              "width": 89.6,
+              "height": 112
+            }
+          ]
+        },
+        {
+          "alpha": 1,
+          "visible": true,
+          "images": [
+            {
+              "key": "goods-art/U02",
+              "width": 89.6,
+              "height": 112
+            }
+          ]
+        }
+      ],
+      "textures": [
+        {
+          "id": "d12",
+          "loaded": true
+        },
+        {
+          "id": "a04",
+          "loaded": true
+        },
+        {
+          "id": "f11",
+          "loaded": true
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "medium": {
+    "viewport": {
+      "width": 1180,
+      "height": 757
+    },
+    "layout": {
+      "x": 24,
+      "w": 1132,
+      "top": 8,
+      "pc": {
+        "left": {
+          "x": 24,
+          "y": 8,
+          "width": 224,
+          "height": 741
+        },
+        "ownedRail": {
+          "x": 272,
+          "y": 8,
+          "width": 884,
+          "height": 149.6
+        },
+        "inventoryEntry": {
+          "x": 988,
+          "y": 72,
+          "width": 168,
+          "height": 44
+        },
+        "shopPanel": {
+          "x": 272,
+          "y": 177.6,
+          "width": 884,
+          "height": 571.4
+        },
+        "actionRail": {
+          "x": 1016,
+          "y": 205.6,
+          "width": 128,
+          "height": 519.4
+        },
+        "jokerOffers": [
+          {
+            "x": 288,
+            "y": 205.6,
+            "width": 228,
+            "height": 351.4
+          },
+          {
+            "x": 528,
+            "y": 205.6,
+            "width": 228,
+            "height": 351.4
+          },
+          {
+            "x": 768,
+            "y": 205.6,
+            "width": 228,
+            "height": 351.4
+          }
+        ],
+        "toolOffers": {
+          "x": 288,
+          "y": 589,
+          "width": 346,
+          "height": 128
+        },
+        "itemOffers": {
+          "x": 650,
+          "y": 589,
+          "width": 346,
+          "height": 128
+        },
+        "feedback": {
+          "x": 284,
+          "y": 725,
+          "width": 860,
+          "height": 20
+        },
+        "groupY": 565,
+        "guidanceHeight": 0
+      },
+      "desktop": true,
+      "short": false,
+      "copyBeside": false,
+      "inventoryCollapsed": false,
+      "compact": false,
+      "wideHeader": false,
+      "portrait": false,
+      "slots": [
+        {
+          "x": 272,
+          "y": 64,
+          "width": 64,
+          "height": 89.6
+        },
+        {
+          "x": 348,
+          "y": 64,
+          "width": 64,
+          "height": 89.6
+        },
+        {
+          "x": 424,
+          "y": 64,
+          "width": 64,
+          "height": 89.6
+        },
+        {
+          "x": 500,
+          "y": 64,
+          "width": 64,
+          "height": 89.6
+        },
+        {
+          "x": 576,
+          "y": 64,
+          "width": 64,
+          "height": 89.6
+        }
+      ],
+      "shelf": [
+        {
+          "x": 317.44,
+          "y": 213.6,
+          "width": 169.12,
+          "height": 211.4
+        },
+        {
+          "x": 557.44,
+          "y": 213.6,
+          "width": 169.12,
+          "height": 211.4
+        },
+        {
+          "x": 797.44,
+          "y": 213.6,
+          "width": 169.12,
+          "height": 211.4
+        }
+      ],
+      "tabs": {
+        "x": 288,
+        "y": 181.6,
+        "width": 708,
+        "height": 20
+      },
+      "chapter": {
+        "x": 24,
+        "y": 184,
+        "width": 224,
+        "height": 44
+      },
+      "items": {
+        "x": 988,
+        "y": 72,
+        "width": 168,
+        "height": 44
+      },
+      "build": {
+        "x": 664,
+        "y": 14,
+        "width": 132,
+        "height": 44
+      },
+      "reroll": {
+        "x": 1016,
+        "y": 273.6,
+        "width": 128,
+        "height": 44
+      },
+      "play": {
+        "x": 1016,
+        "y": 205.6,
+        "width": 128,
+        "height": 56
+      },
+      "noticeY": 725
+    },
+    "offers": [
+      {
+        "id": "controlled/shop-medium-layout/shop/0/1/joker/0",
+        "art": {
+          "x": 317.44,
+          "y": 213.6,
+          "width": 169.12,
+          "height": 211.4
+        },
+        "paintedArt": {
+          "x": 317.44,
+          "y": 213.60311279296877,
+          "width": 169.12,
+          "height": 211.39999999999998
+        },
+        "fields": {
+          "name": {
+            "text": "深藏不露",
+            "x": 296,
+            "y": 429.00310058593755,
+            "width": 60,
+            "height": 19
+          },
+          "identity": {
+            "text": "特别 · 普通版",
+            "x": 296,
+            "y": 451.00310058593755,
+            "width": 82,
+            "height": 17
+          },
+          "purpose": {
+            "text": "多步条件 · 分时点生效\n多步条件",
+            "x": 296,
+            "y": 469.00310058593755,
+            "width": 138,
+            "height": 34
+          },
+          "price": {
+            "text": "6 金 · 查看",
+            "x": 296,
+            "y": 507.00310058593755,
+            "width": 80,
+            "height": 19
+          }
+        }
+      },
+      {
+        "id": "controlled/shop-medium-layout/shop/0/1/joker/1",
+        "art": {
+          "x": 557.44,
+          "y": 213.6,
+          "width": 169.12,
+          "height": 211.4
+        },
+        "paintedArt": {
+          "x": 557.44,
+          "y": 213.7774597167969,
+          "width": 169.12,
+          "height": 211.39999999999998
+        },
+        "fields": {
+          "name": {
+            "text": "乾坤锦囊",
+            "x": 536,
+            "y": 429.17744750976567,
+            "width": 60,
+            "height": 19
+          },
+          "identity": {
+            "text": "特别 · 闪箔版",
+            "x": 536,
+            "y": 451.17744750976567,
+            "width": 82,
+            "height": 17
+          },
+          "purpose": {
+            "text": "手牌上限+2\n进场时牌组≤40张",
+            "x": 536,
+            "y": 469.17744750976567,
+            "width": 111,
+            "height": 34
+          },
+          "price": {
+            "text": "8 金 · 查看",
+            "x": 536,
+            "y": 507.17744750976567,
+            "width": 80,
+            "height": 19
+          }
+        }
+      },
+      {
+        "id": "controlled/shop-medium-layout/shop/0/1/joker/2",
+        "art": {
+          "x": 797.44,
+          "y": 213.6,
+          "width": 169.12,
+          "height": 211.4
+        },
+        "paintedArt": {
+          "x": 797.44,
+          "y": 214.31682739257815,
+          "width": 169.12,
+          "height": 211.39999999999998
+        },
+        "fields": {
+          "name": {
+            "text": "越战越勇",
+            "x": 776,
+            "y": 429.7168151855469,
+            "width": 60,
+            "height": 19
+          },
+          "identity": {
+            "text": "特别 · 普通版",
+            "x": 776,
+            "y": 451.7168151855469,
+            "width": 82,
+            "height": 17
+          },
+          "purpose": {
+            "text": "多步成长 · 热度+已存值\n多步成长",
+            "x": 776,
+            "y": 469.7168151855469,
+            "width": 149,
+            "height": 34
+          },
+          "price": {
+            "text": "6 金 · 查看",
+            "x": 776,
+            "y": 507.7168151855469,
+            "width": 80,
+            "height": 19
+          }
+        }
+      }
+    ],
+    "rootAlpha": 0.999832494365139,
+    "stateHash": "018d41652cef1459aebe4027ac80f6cdfb3a285f1c75f1f275bd9c07a02b7ad4"
+  },
+  "status": "FAIL",
+  "error": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert.ok(prices.every(y=>Math.abs(y-prices[0])<.01))\n\n    at assertOfferLayout (file:///D:/ai/dachoupai/dachoupai/.codex-remote-attachments/shop-flow-redesign-20261017/docs/production/evidence/shop-flow-redesign-2026-10-17/medium-layout-check.mjs:29:90)\n    at file:///D:/ai/dachoupai/dachoupai/.codex-remote-attachments/shop-flow-redesign-20261017/docs/production/evidence/shop-flow-redesign-2026-10-17/medium-layout-check.mjs:29:406",
+  "observedFrameCount": 12
+}

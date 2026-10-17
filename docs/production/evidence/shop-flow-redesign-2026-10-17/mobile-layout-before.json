@@ -1,0 +1,912 @@
+{
+  "phase": "before",
+  "scope": "Controlled validated stock with all three rarities, two owned cards,30 gold and T11; native import/category/details/purchase/later at360/390 touch. No natural supply, device or aesthetic approval.",
+  "sourceHashes": {
+    "src/game/ShopLayout.ts": "c73235438e22797cd264aa737805051945318e60e4cd25bb4556769b07e8c1e5",
+    "src/game/ShopOfferLayout.ts": "09ecd201d5b37fe7dd8c6cd8101465aef5a18bf570a9628ee6cf2a6f773aa851",
+    "src/game/ShopScene.ts": "994dbfee38972c36fb5ebdf5f4fe0420de3e2fceef5777e5c938ce3d17b0b9ba",
+    "src/game/ShopArt.ts": "70bf3020a3a9b9eb1efa7d2be80e20ca344c3b4e1f17e6317f3ba7ca48646175",
+    "src/game/ShopPresentation.css": "e4ea3cdd1ae0136303cfb6dc74b243d3a20be8a17b6b6d660be214b6359cee67"
+  },
+  "cases": [
+    {
+      "width": 390,
+      "errors": [],
+      "shots": [
+        "390-shop-before.png",
+        "390-rare-detail-before.png",
+        "390-target-before.png"
+      ],
+      "shop": {
+        "geometry": {
+          "x": 12,
+          "w": 366,
+          "top": 8,
+          "pc": null,
+          "desktop": false,
+          "short": false,
+          "copyBeside": false,
+          "inventoryCollapsed": false,
+          "compact": true,
+          "wideHeader": false,
+          "portrait": true,
+          "guidanceBelow": false,
+          "slots": [
+            {
+              "x": 53,
+              "y": 501.2,
+              "width": 52,
+              "height": 72.8
+            },
+            {
+              "x": 111,
+              "y": 501.2,
+              "width": 52,
+              "height": 72.8
+            },
+            {
+              "x": 169,
+              "y": 501.2,
+              "width": 52,
+              "height": 72.8
+            },
+            {
+              "x": 227,
+              "y": 501.2,
+              "width": 52,
+              "height": 72.8
+            },
+            {
+              "x": 285,
+              "y": 501.2,
+              "width": 52,
+              "height": 72.8
+            }
+          ],
+          "shelf": [
+            {
+              "x": 16.333333333333336,
+              "y": 112,
+              "width": 108,
+              "height": 151.2
+            },
+            {
+              "x": 141.00000000000003,
+              "y": 112,
+              "width": 108,
+              "height": 151.2
+            },
+            {
+              "x": 265.6666666666667,
+              "y": 112,
+              "width": 108,
+              "height": 151.2
+            }
+          ],
+          "tabs": {
+            "x": 12,
+            "y": 60,
+            "width": 366,
+            "height": 44
+          },
+          "chapter": {
+            "x": 12,
+            "y": 582,
+            "width": 179,
+            "height": 44
+          },
+          "items": {
+            "x": 199,
+            "y": 582,
+            "width": 179,
+            "height": 44
+          },
+          "reroll": {
+            "x": 12,
+            "y": 700,
+            "width": 179,
+            "height": 44
+          },
+          "build": {
+            "x": 199,
+            "y": 700,
+            "width": 179,
+            "height": 44
+          },
+          "play": {
+            "x": 12,
+            "y": 752,
+            "width": 366,
+            "height": 56
+          },
+          "noticeY": 816
+        },
+        "hero": [],
+        "fields": [
+          {
+            "name": "shop/offer-name",
+            "text": "狭路相逢",
+            "id": "controlled/shop-mobile-layout/shop/0/1/joker/0",
+            "x": 16.0000025431315,
+            "y": 267.0000061035156,
+            "width": 60,
+            "height": 19
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "每手一次，倍率 +\n2 三条",
+            "id": "controlled/shop-mobile-layout/shop/0/1/joker/0",
+            "x": 16.0000025431315,
+            "y": 306.20000610351565,
+            "width": 113,
+            "height": 34
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "4金 · 选择",
+            "id": "controlled/shop-mobile-layout/shop/0/1/joker/0",
+            "x": 16.0000025431315,
+            "y": 343.0000061035156,
+            "width": 75,
+            "height": 19
+          },
+          {
+            "name": "shop/offer-identity",
+            "text": "普通 · 普通版",
+            "id": "controlled/shop-mobile-layout/shop/0/1/joker/0",
+            "x": 16.0000025431315,
+            "y": 287.0000061035156,
+            "width": 82,
+            "height": 17
+          },
+          {
+            "name": "shop/offer-name",
+            "text": "精打细算",
+            "id": "controlled/shop-mobile-layout/shop/0/1/joker/1",
+            "x": 140.99999999999997,
+            "y": 267.0000061035156,
+            "width": 60,
+            "height": 19
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "每张符合条件的有\n 效计分牌热度+…",
+            "id": "controlled/shop-mobile-layout/shop/0/1/joker/1",
+            "x": 140.99999999999997,
+            "y": 306.20000610351565,
+            "width": 112,
+            "height": 34
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "6金 · 选择",
+            "id": "controlled/shop-mobile-layout/shop/0/1/joker/1",
+            "x": 140.99999999999997,
+            "y": 343.0000061035156,
+            "width": 75,
+            "height": 19
+          },
+          {
+            "name": "shop/offer-identity",
+            "text": "精良 · 普通版",
+            "id": "controlled/shop-mobile-layout/shop/0/1/joker/1",
+            "x": 140.99999999999997,
+            "y": 287.0000061035156,
+            "width": 82,
+            "height": 17
+          },
+          {
+            "name": "shop/offer-name",
+            "text": "回马枪",
+            "id": "controlled/shop-mobile-layout/shop/0/1/joker/2",
+            "x": 265.99998982747394,
+            "y": 267.0000061035156,
+            "width": 45,
+            "height": 19
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "每手一次，倍率 ×\n 2 本场第3/6/9…",
+            "id": "controlled/shop-mobile-layout/shop/0/1/joker/2",
+            "x": 265.99998982747394,
+            "y": 306.20000610351565,
+            "width": 113,
+            "height": 34
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "8金 · 选择",
+            "id": "controlled/shop-mobile-layout/shop/0/1/joker/2",
+            "x": 265.99998982747394,
+            "y": 343.0000061035156,
+            "width": 75,
+            "height": 19
+          },
+          {
+            "name": "shop/offer-identity",
+            "text": "稀有 · 普通版",
+            "id": "controlled/shop-mobile-layout/shop/0/1/joker/2",
+            "x": 265.99998982747394,
+            "y": 287.0000061035156,
+            "width": 82,
+            "height": 17
+          }
+        ]
+      },
+      "rareDetail": {
+        "box": {
+          "x": 19,
+          "y": 32,
+          "width": 352,
+          "height": 780
+        },
+        "scrollWidth": 350,
+        "clientWidth": 350,
+        "art": {
+          "x": 149.765625,
+          "y": 126.5,
+          "width": 90.46875,
+          "height": 145.65625
+        },
+        "visual": {
+          "x": 149.765625,
+          "y": 126.5,
+          "width": 90.46875,
+          "height": 126.65625
+        },
+        "image": {
+          "x": 149.765625,
+          "y": 126.5,
+          "width": 90.46875,
+          "height": 126.65625,
+          "naturalWidth": 128,
+          "naturalHeight": 160
+        },
+        "badge": {
+          "text": "✦ 稀有",
+          "x": 176.234375,
+          "y": 225.15625,
+          "width": 58,
+          "height": 22
+        },
+        "buttons": [
+          {
+            "text": "比较替换",
+            "x": 36,
+            "y": 757,
+            "width": 155,
+            "height": 44
+          },
+          {
+            "text": "购买 · 8 金",
+            "x": 36,
+            "y": 693,
+            "width": 318,
+            "height": 56
+          },
+          {
+            "text": "取消",
+            "x": 199,
+            "y": 757,
+            "width": 155,
+            "height": 44
+          }
+        ],
+        "checked": 0
+      },
+      "heldDetail": {
+        "box": {
+          "x": 19,
+          "y": 32,
+          "width": 352,
+          "height": 780
+        },
+        "scrollWidth": 350,
+        "clientWidth": 350,
+        "art": {
+          "x": 149.234375,
+          "y": 152.5,
+          "width": 91.515625,
+          "height": 147.125
+        },
+        "visual": {
+          "x": 149.234375,
+          "y": 152.5,
+          "width": 91.515625,
+          "height": 128.125
+        },
+        "image": {
+          "x": 149.234375,
+          "y": 152.5,
+          "width": 91.515625,
+          "height": 128.125,
+          "naturalWidth": 128,
+          "naturalHeight": 160
+        },
+        "badge": {
+          "text": "✦ 稀有",
+          "x": 176.75,
+          "y": 252.625,
+          "width": 58,
+          "height": 22
+        },
+        "buttons": [
+          {
+            "text": "左移",
+            "x": 36,
+            "y": 705,
+            "width": 155,
+            "height": 44
+          },
+          {
+            "text": "右移",
+            "x": 199,
+            "y": 705,
+            "width": 155,
+            "height": 44
+          },
+          {
+            "text": "出售",
+            "x": 36,
+            "y": 757,
+            "width": 155,
+            "height": 44
+          },
+          {
+            "text": "关闭",
+            "x": 199,
+            "y": 757,
+            "width": 155,
+            "height": 44
+          }
+        ],
+        "checked": 0
+      },
+      "toolDetail": {
+        "box": {
+          "x": 19,
+          "y": 197.265625,
+          "width": 352,
+          "height": 449.46875
+        },
+        "scrollWidth": 350,
+        "clientWidth": 350,
+        "art": {
+          "x": 36,
+          "y": 317.765625,
+          "width": 96,
+          "height": 153.390625
+        },
+        "visual": {
+          "x": 36,
+          "y": 317.765625,
+          "width": 96,
+          "height": 134.390625
+        },
+        "image": {
+          "x": 36,
+          "y": 317.765625,
+          "width": 96,
+          "height": 134.390625,
+          "naturalWidth": 615,
+          "naturalHeight": 768
+        },
+        "buttons": [
+          {
+            "text": "购买 · 2 金",
+            "x": 36,
+            "y": 531.734375,
+            "width": 318,
+            "height": 48
+          },
+          {
+            "text": "取消",
+            "x": 36,
+            "y": 587.734375,
+            "width": 318,
+            "height": 48
+          }
+        ],
+        "checked": 0
+      },
+      "target": {
+        "box": {
+          "x": 19,
+          "y": 32,
+          "width": 352,
+          "height": 780
+        },
+        "scrollWidth": 350,
+        "clientWidth": 350,
+        "art": {
+          "x": 30,
+          "y": 1810.28125,
+          "width": 60,
+          "height": 103
+        },
+        "visual": {
+          "x": 30,
+          "y": 1810.28125,
+          "width": 60,
+          "height": 84
+        },
+        "image": {
+          "x": 30,
+          "y": 1810.28125,
+          "width": 60,
+          "height": 84,
+          "naturalWidth": 615,
+          "naturalHeight": 768
+        },
+        "buttons": [
+          {
+            "text": "确认使用",
+            "x": 32,
+            "y": 755,
+            "width": 159,
+            "height": 48
+          },
+          {
+            "text": "稍后使用",
+            "x": 199,
+            "y": 755,
+            "width": 159,
+            "height": 48
+          }
+        ],
+        "checked": 0
+      },
+      "status": "PASS"
+    },
+    {
+      "width": 360,
+      "errors": [],
+      "shots": [
+        "360-shop-before.png",
+        "360-rare-detail-before.png",
+        "360-target-before.png"
+      ],
+      "shop": {
+        "geometry": {
+          "x": 12,
+          "w": 336,
+          "top": 8,
+          "pc": null,
+          "desktop": false,
+          "short": false,
+          "copyBeside": false,
+          "inventoryCollapsed": false,
+          "compact": true,
+          "wideHeader": false,
+          "portrait": true,
+          "guidanceBelow": false,
+          "slots": [
+            {
+              "x": 38,
+              "y": 488.1333333333333,
+              "width": 52,
+              "height": 72.8
+            },
+            {
+              "x": 96,
+              "y": 488.1333333333333,
+              "width": 52,
+              "height": 72.8
+            },
+            {
+              "x": 154,
+              "y": 488.1333333333333,
+              "width": 52,
+              "height": 72.8
+            },
+            {
+              "x": 212,
+              "y": 488.1333333333333,
+              "width": 52,
+              "height": 72.8
+            },
+            {
+              "x": 270,
+              "y": 488.1333333333333,
+              "width": 52,
+              "height": 72.8
+            }
+          ],
+          "shelf": [
+            {
+              "x": 16,
+              "y": 112,
+              "width": 98.66666666666667,
+              "height": 138.13333333333333
+            },
+            {
+              "x": 130.66666666666669,
+              "y": 112,
+              "width": 98.66666666666667,
+              "height": 138.13333333333333
+            },
+            {
+              "x": 245.33333333333334,
+              "y": 112,
+              "width": 98.66666666666667,
+              "height": 138.13333333333333
+            }
+          ],
+          "tabs": {
+            "x": 12,
+            "y": 60,
+            "width": 336,
+            "height": 44
+          },
+          "chapter": {
+            "x": 12,
+            "y": 568.9333333333333,
+            "width": 164,
+            "height": 44
+          },
+          "items": {
+            "x": 184,
+            "y": 568.9333333333333,
+            "width": 164,
+            "height": 44
+          },
+          "reroll": {
+            "x": 12,
+            "y": 700,
+            "width": 164,
+            "height": 44
+          },
+          "build": {
+            "x": 184,
+            "y": 700,
+            "width": 164,
+            "height": 44
+          },
+          "play": {
+            "x": 12,
+            "y": 752,
+            "width": 336,
+            "height": 56
+          },
+          "noticeY": 816
+        },
+        "hero": [],
+        "fields": [
+          {
+            "name": "shop/offer-name",
+            "text": "狭路相逢",
+            "id": "controlled/shop-mobile-layout/shop/0/1/joker/0",
+            "x": 16.0000025431315,
+            "y": 253.9999989827474,
+            "width": 60,
+            "height": 19
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "每手一次，倍率 \n+2 三条",
+            "id": "controlled/shop-mobile-layout/shop/0/1/joker/0",
+            "x": 16.0000025431315,
+            "y": 293.1333323160807,
+            "width": 103,
+            "height": 34
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "4金 · 选择",
+            "id": "controlled/shop-mobile-layout/shop/0/1/joker/0",
+            "x": 16.0000025431315,
+            "y": 329.9999989827474,
+            "width": 75,
+            "height": 19
+          },
+          {
+            "name": "shop/offer-identity",
+            "text": "普通 · 普通版",
+            "id": "controlled/shop-mobile-layout/shop/0/1/joker/0",
+            "x": 16.0000025431315,
+            "y": 273.9999989827474,
+            "width": 82,
+            "height": 17
+          },
+          {
+            "name": "shop/offer-name",
+            "text": "精打细算",
+            "id": "controlled/shop-mobile-layout/shop/0/1/joker/1",
+            "x": 130.99999999999997,
+            "y": 253.9999989827474,
+            "width": 60,
+            "height": 19
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "每张符合条件的 \n 有效计分牌热…",
+            "id": "controlled/shop-mobile-layout/shop/0/1/joker/1",
+            "x": 130.99999999999997,
+            "y": 293.1333323160807,
+            "width": 103,
+            "height": 34
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "6金 · 选择",
+            "id": "controlled/shop-mobile-layout/shop/0/1/joker/1",
+            "x": 130.99999999999997,
+            "y": 329.9999989827474,
+            "width": 75,
+            "height": 19
+          },
+          {
+            "name": "shop/offer-identity",
+            "text": "精良 · 普通版",
+            "id": "controlled/shop-mobile-layout/shop/0/1/joker/1",
+            "x": 130.99999999999997,
+            "y": 273.9999989827474,
+            "width": 82,
+            "height": 17
+          },
+          {
+            "name": "shop/offer-name",
+            "text": "回马枪",
+            "id": "controlled/shop-mobile-layout/shop/0/1/joker/2",
+            "x": 244.99998982747394,
+            "y": 253.9999989827474,
+            "width": 45,
+            "height": 19
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "每手一次，倍率 \n ×2 本场第3/6…",
+            "id": "controlled/shop-mobile-layout/shop/0/1/joker/2",
+            "x": 244.99998982747394,
+            "y": 293.1333323160807,
+            "width": 103,
+            "height": 34
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "8金 · 选择",
+            "id": "controlled/shop-mobile-layout/shop/0/1/joker/2",
+            "x": 244.99998982747394,
+            "y": 329.9999989827474,
+            "width": 75,
+            "height": 19
+          },
+          {
+            "name": "shop/offer-identity",
+            "text": "稀有 · 普通版",
+            "id": "controlled/shop-mobile-layout/shop/0/1/joker/2",
+            "x": 244.99998982747394,
+            "y": 273.9999989827474,
+            "width": 82,
+            "height": 17
+          }
+        ]
+      },
+      "rareDetail": {
+        "box": {
+          "x": 19,
+          "y": 32,
+          "width": 322,
+          "height": 780
+        },
+        "scrollWidth": 320,
+        "clientWidth": 320,
+        "art": {
+          "x": 134.765625,
+          "y": 126.5,
+          "width": 90.46875,
+          "height": 145.65625
+        },
+        "visual": {
+          "x": 134.765625,
+          "y": 126.5,
+          "width": 90.46875,
+          "height": 126.65625
+        },
+        "image": {
+          "x": 134.765625,
+          "y": 126.5,
+          "width": 90.46875,
+          "height": 126.65625,
+          "naturalWidth": 128,
+          "naturalHeight": 160
+        },
+        "badge": {
+          "text": "✦ 稀有",
+          "x": 161.234375,
+          "y": 225.15625,
+          "width": 58,
+          "height": 22
+        },
+        "buttons": [
+          {
+            "text": "比较替换",
+            "x": 36,
+            "y": 757,
+            "width": 140,
+            "height": 44
+          },
+          {
+            "text": "购买 · 8 金",
+            "x": 36,
+            "y": 693,
+            "width": 288,
+            "height": 56
+          },
+          {
+            "text": "取消",
+            "x": 184,
+            "y": 757,
+            "width": 140,
+            "height": 44
+          }
+        ],
+        "checked": 0
+      },
+      "heldDetail": {
+        "box": {
+          "x": 19,
+          "y": 32,
+          "width": 322,
+          "height": 780
+        },
+        "scrollWidth": 320,
+        "clientWidth": 320,
+        "art": {
+          "x": 134.234375,
+          "y": 152.5,
+          "width": 91.515625,
+          "height": 147.125
+        },
+        "visual": {
+          "x": 134.234375,
+          "y": 152.5,
+          "width": 91.515625,
+          "height": 128.125
+        },
+        "image": {
+          "x": 134.234375,
+          "y": 152.5,
+          "width": 91.515625,
+          "height": 128.125,
+          "naturalWidth": 128,
+          "naturalHeight": 160
+        },
+        "badge": {
+          "text": "✦ 稀有",
+          "x": 161.75,
+          "y": 252.625,
+          "width": 58,
+          "height": 22
+        },
+        "buttons": [
+          {
+            "text": "左移",
+            "x": 36,
+            "y": 705,
+            "width": 140,
+            "height": 44
+          },
+          {
+            "text": "右移",
+            "x": 184,
+            "y": 705,
+            "width": 140,
+            "height": 44
+          },
+          {
+            "text": "出售",
+            "x": 36,
+            "y": 757,
+            "width": 140,
+            "height": 44
+          },
+          {
+            "text": "关闭",
+            "x": 184,
+            "y": 757,
+            "width": 140,
+            "height": 44
+          }
+        ],
+        "checked": 0
+      },
+      "toolDetail": {
+        "box": {
+          "x": 19,
+          "y": 197.265625,
+          "width": 322,
+          "height": 449.46875
+        },
+        "scrollWidth": 320,
+        "clientWidth": 320,
+        "art": {
+          "x": 36,
+          "y": 317.765625,
+          "width": 96,
+          "height": 153.390625
+        },
+        "visual": {
+          "x": 36,
+          "y": 317.765625,
+          "width": 96,
+          "height": 134.390625
+        },
+        "image": {
+          "x": 36,
+          "y": 317.765625,
+          "width": 96,
+          "height": 134.390625,
+          "naturalWidth": 615,
+          "naturalHeight": 768
+        },
+        "buttons": [
+          {
+            "text": "购买 · 2 金",
+            "x": 36,
+            "y": 531.734375,
+            "width": 288,
+            "height": 48
+          },
+          {
+            "text": "取消",
+            "x": 36,
+            "y": 587.734375,
+            "width": 288,
+            "height": 48
+          }
+        ],
+        "checked": 0
+      },
+      "target": {
+        "box": {
+          "x": 19,
+          "y": 32,
+          "width": 322,
+          "height": 780
+        },
+        "scrollWidth": 320,
+        "clientWidth": 320,
+        "art": {
+          "x": 30,
+          "y": 2270.46875,
+          "width": 60,
+          "height": 103
+        },
+        "visual": {
+          "x": 30,
+          "y": 2270.46875,
+          "width": 60,
+          "height": 84
+        },
+        "image": {
+          "x": 30,
+          "y": 2270.46875,
+          "width": 60,
+          "height": 84,
+          "naturalWidth": 615,
+          "naturalHeight": 768
+        },
+        "buttons": [
+          {
+            "text": "确认使用",
+            "x": 32,
+            "y": 755,
+            "width": 144,
+            "height": 48
+          },
+          {
+            "text": "稍后使用",
+            "x": 184,
+            "y": 755,
+            "width": 144,
+            "height": 48
+          }
+        ],
+        "checked": 0
+      },
+      "status": "PASS"
+    }
+  ],
+  "status": "PASS"
+}

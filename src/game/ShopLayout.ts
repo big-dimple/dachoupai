@@ -39,13 +39,14 @@ function shortShopLayout(width:number,height:number,top:number,bottom:number,col
 function desktopShopLayout(width:number,height:number,top:number,bottom:number,_cols:number){
   const w=Math.min(1480,width-48),x=(width-w)/2,leftWidth=width>=1600?248:224,gap=width>=1600?32:24,rightX=x+leftWidth+gap,rightWidth=w-leftWidth-gap;
   const usableHeight=height-top-bottom;
-  const ownedWidth=width>=1600&&usableHeight>=800?96:80,ownedHeight=ownedWidth*1.4,slotY=top+56;
+  const compactRail=width<1450&&usableHeight<800,railGap=compactRail?24:40;
+  const ownedWidth=compactRail?64:width>=1600&&usableHeight>=800?96:80,ownedHeight=ownedWidth*1.4,slotY=top+56;
   const slots:Box[]=Array.from({length:5},(_,i)=>({x:rightX+i*(ownedWidth+12),y:slotY,width:ownedWidth,height:ownedHeight}));
-  const ownedRail={x:rightX,y:top,width:rightWidth,height:76+ownedHeight};
+  const ownedRail={x:rightX,y:top,width:rightWidth,height:56+ownedHeight+railGap-20};
   const inventoryEntry={x:rightX+rightWidth-168,y:top+64,width:168,height:44};
-  const shopPanel={x:rightX,y:slotY+ownedHeight+40,width:rightWidth,height:height-bottom-8-(slotY+ownedHeight+40)};
+  const shopPanel={x:rightX,y:slotY+ownedHeight+railGap,width:rightWidth,height:height-bottom-8-(slotY+ownedHeight+railGap)};
   const actionWidth=width>=1600?144:128,goodsX=shopPanel.x+16,goodsWidth=shopPanel.width-actionWidth-48;
-  const guidanceHeight=0,groupGap=8,lowerHeight=usableHeight>=850?192:144;
+  const guidanceHeight=0,groupGap=8,lowerHeight=compactRail?128:usableHeight>=850?192:144;
   const seat=(goodsWidth-24)/3,upperY=shopPanel.y+28,upperHeight=shopPanel.height-28-groupGap-24-lowerHeight-32;
   const jokerOffers:Box[]=Array.from({length:3},(_,i)=>({x:goodsX+i*(seat+12),y:upperY,width:seat,height:upperHeight}));
   const shelf=jokerOffers.map(b=>shopOfferGeometry(b,'jokers')!.art);
@@ -75,19 +76,19 @@ function shopContentLayout(width:number,height:number,top:number,bottom:number,c
   if(height<=width&&height-top-bottom<500)return shortShopLayout(width,height,top,bottom,cols);
   const portrait=width<700&&height>width,x=12,w=width-24,seat=(Math.min(w,420)-8*(cols-1))/cols;
   // Browser toolbar height changes keep the same three-card gallery.
-  const slotGap=6,slotWidth=Math.min(portrait&&height-top-bottom>=650?52:64,(w-4*slotGap)/5),slotHeight=slotWidth*1.4;
+  const slotGap=6,slotWidth=Math.min(portrait&&height-top-bottom>=650?52:64,(w-4*slotGap)/5),slotHeight=portrait?slotWidth*1.25+36:slotWidth*1.4;
   // Fit the visible owned rail before the fixed action row; only art shrinks.
   const portraitFaceBudget=(height-top-bottom-564)/1.4;
   const inventoryCollapsed=portrait&&height-top-bottom<650;
-  const cardWidth=Math.min(Math.max(88,Math.min(108,seat-8)),portrait&&!inventoryCollapsed?Math.max(76,portraitFaceBudget):Infinity),cardHeight=cardWidth*1.4;
+  const cardWidth=Math.min(Math.max(88,Math.min(108,seat-8)),portrait&&!inventoryCollapsed?Math.max(76,portraitFaceBudget):Infinity),cardHeight=cardWidth*(portrait?1.25:1.4);
   const shelfWidth=cols*seat+8*(cols-1),shelfX=x+(w-shelfWidth)/2,shelfTop=top+104;
   const shelf:Box[]=Array.from({length:cols},(_,i)=>({x:shelfX+i*(seat+8)+(seat-cardWidth)/2,y:shelfTop,width:cardWidth,height:cardHeight}));
   const ownedGap=portrait?Math.min(24,Math.max(0,height-top-bottom-352-slotHeight-cardHeight)):24;
-  const rackWidth=5*slotWidth+4*slotGap,slotX=x+(w-rackWidth)/2,originalSlotY=shelfTop+cardHeight+(portrait&&!inventoryCollapsed?238:100+ownedGap);
+  const rackWidth=5*slotWidth+4*slotGap,slotX=x+(w-rackWidth)/2,originalSlotY=shelfTop+cardHeight+(portrait&&!inventoryCollapsed?196:100+ownedGap);
   const guidanceBelow=false;
-  const slotY=originalSlotY+(guidanceBelow?54:0);
+  const slotY=portrait?Math.min(originalSlotY,height-bottom-144-78-slotHeight):originalSlotY+(guidanceBelow?54:0);
   const slots:Box[]=Array.from({length:5},(_,i)=>({x:slotX+i*(slotWidth+slotGap),y:slotY,width:slotWidth,height:slotHeight}));
-  const secondaryY=portrait?height-bottom-144:Math.min(height-bottom-144,slotY+slotHeight+20),toolWidth=(Math.min(w,420)-8)/2,actionX=x+(w-Math.min(w,420))/2,inventoryY=slotY+slotHeight+8;
+  const secondaryY=portrait?height-bottom-144:Math.min(height-bottom-144,slotY+slotHeight+20),toolWidth=(Math.min(w,420)-8)/2,actionX=x+(w-Math.min(w,420))/2,inventoryY=slotY+slotHeight+(portrait?24:8);
   return {x,w,top,pc:null,desktop:false,short:false,copyBeside:false,inventoryCollapsed,compact:portrait,wideHeader:false,portrait,guidanceBelow,slots,shelf,tabs:{x:actionX,y:top+52,width:Math.min(w,420),height:44},
     chapter:{x:portrait?actionX:x,y:portrait?inventoryY:top+104,width:portrait?toolWidth:200,height:44},items:{x:portrait?actionX+toolWidth+8:x,y:portrait?inventoryY:top+156,width:portrait?toolWidth:200,height:44},
     reroll:{x:actionX,y:secondaryY,width:toolWidth,height:44},build:{x:actionX+toolWidth+8,y:secondaryY,width:toolWidth,height:44},play:{x:actionX,y:secondaryY+52,width:Math.min(w,420),height:56},noticeY:secondaryY+116};
@@ -133,7 +134,8 @@ export function shopOfferCopy(p:ReturnType<typeof shopLayout>,b:Box,plainJoker=f
 export function shopDecisionBox(p:ReturnType<typeof shopLayout>):Box|undefined {
  if(!p.portrait)return;
  const y=Math.max(...p.shelf.map(b=>b.y+b.height))+108;
- return {x:p.x,y,width:p.w,height:Math.min(108,p.reroll.y-y-8)};
+ const height=Math.min(40,p.reroll.y-y-8,p.slots[0].y-y-24);
+ return height>=32?{x:p.x,y,width:p.w,height}:undefined;
 }
 
 /** Wrapped desktop racks need both axes; horizontal legacy racks retain their drop rule. */
@@ -150,11 +152,24 @@ export function shopGoodsGrid(group:Box,count:number){
 }
 
 /** Keep numeric gains/caps together while wrapping Chinese desktop summaries. */
-export function shopSummaryWrap(text:string,width:number,measure:(text:string)=>number):string {
+export function shopSummaryWrap(text:string,width:number,measure:(text:string)=>number,maxLines=Infinity):string {
   const lines:string[]=[];let line='';
-  for(const token of text.match(/[+×−-]?\d+(?:\.\d+)?(?:\/\d+)?|[^\d]/gu)??[]){
+  for(const token of text.match(/[+×−-]?\d+(?:\.\d+)?(?:\/\d+)*|[^\d]/gu)??[]){
     if(token==='\n'){lines.push(line);line='';continue;}
     if(line&&measure(line+token)>width){lines.push(line);line=token;}else line+=token;
   }
-  lines.push(line);return lines.join('\n');
+  lines.push(line);
+  if(lines.length>maxLines){
+    lines.length=Math.max(1,Math.floor(maxLines));
+    const tail=lines.at(-1)!.match(/[+×−-]?\d+(?:\.\d+)?(?:\/\d+)*|[^\d]/gu)??[];
+    while(tail.length&&measure(tail.join('')+'…')>width)tail.pop();
+    lines[lines.length-1]=tail.join('')+'…';
+  }
+  return lines.join('\n');
+}
+
+/** Reserve a separate row for a distinct trigger instead of letting the effect consume both rows. */
+export function shopOfferSummary(text:string,width:number,measure:(text:string)=>number):string {
+  const rows=text.split('\n').filter(Boolean);
+  return rows.length===2?rows.map(row=>shopSummaryWrap(row,width,measure,1)).join('\n'):shopSummaryWrap(text,width,measure,2);
 }
